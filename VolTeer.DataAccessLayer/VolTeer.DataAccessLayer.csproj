@@ -1,0 +1,219 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BF6A3D20-8004-4274-84F9-1CBFF4436C61}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>VolTeer.DataAccessLayer</RootNamespace>
+    <AssemblyName>VolTeer.DataAccessLayer</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AspNet\AspNET.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AspNET.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNet\AspNET.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AspNET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNet\AspNET.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AspNET.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="AspNet\AspNetRolesDAL.cs" />
+    <Compile Include="AspNet\AspNetUsersDAL.cs" />
+    <Compile Include="AspNet\aspnet_Applications.cs">
+      <DependentUpon>AspNET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNet\aspnet_Membership.cs">
+      <DependentUpon>AspNET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNet\aspnet_Membership_GetPasswordWithFormat_Result.cs">
+      <DependentUpon>AspNET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNet\aspnet_Membership_GetPassword_Result.cs">
+      <DependentUpon>AspNET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNet\aspnet_Membership_GetUserByName_Result.cs">
+      <DependentUpon>AspNET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNet\aspnet_Membership_GetUserByUserId_Result.cs">
+      <DependentUpon>AspNET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNet\aspnet_Paths.cs">
+      <DependentUpon>AspNET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNet\aspnet_PersonalizationAllUsers.cs">
+      <DependentUpon>AspNET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNet\aspnet_PersonalizationPerUser.cs">
+      <DependentUpon>AspNET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNet\aspnet_Profile.cs">
+      <DependentUpon>AspNET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNet\aspnet_Profile_GetProperties_Result.cs">
+      <DependentUpon>AspNET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNet\aspnet_Roles.cs">
+      <DependentUpon>AspNET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNet\aspnet_SchemaVersions.cs">
+      <DependentUpon>AspNET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNet\aspnet_Users.cs">
+      <DependentUpon>AspNET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNet\aspnet_UsersInRoles_RemoveUsersFromRoles_Result.cs">
+      <DependentUpon>AspNET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNet\aspnet_WebEvent_Events.cs">
+      <DependentUpon>AspNET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNet\vw_aspnet_Applications.cs">
+      <DependentUpon>AspNET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNet\vw_aspnet_MembershipUsers.cs">
+      <DependentUpon>AspNET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNet\vw_aspnet_Profiles.cs">
+      <DependentUpon>AspNET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNet\vw_aspnet_Roles.cs">
+      <DependentUpon>AspNET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNet\vw_aspnet_Users.cs">
+      <DependentUpon>AspNET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNet\vw_aspnet_UsersInRoles.cs">
+      <DependentUpon>AspNET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNet\vw_aspnet_WebPartState_Paths.cs">
+      <DependentUpon>AspNET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNet\vw_aspnet_WebPartState_Shared.cs">
+      <DependentUpon>AspNET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNet\vw_aspnet_WebPartState_User.cs">
+      <DependentUpon>AspNET.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VT\Skill.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\SkillDAL.cs" />
+    <Compile Include="VT\VolTeer.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VolTeer.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\VolTeer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\VolTeer.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VolTeer.edmx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EntityDeploy Include="AspNet\AspNET.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>AspNET.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
+    <None Include="AspNet\AspNET.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AspNET.edmx</DependentUpon>
+      <LastGenOutput>AspNET.Context.cs</LastGenOutput>
+    </None>
+    <None Include="AspNet\AspNET.edmx.diagram">
+      <DependentUpon>AspNET.edmx</DependentUpon>
+    </None>
+    <None Include="AspNet\AspNET.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>AspNET.edmx</DependentUpon>
+      <LastGenOutput>AspNET.cs</LastGenOutput>
+    </None>
+    <None Include="packages.config" />
+    <EntityDeploy Include="VT\VolTeer.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>VolTeer.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="VT\VolTeer.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>VolTeer.edmx</DependentUpon>
+      <LastGenOutput>VolTeer.Context.cs</LastGenOutput>
+    </None>
+    <None Include="VT\VolTeer.edmx.diagram">
+      <DependentUpon>VolTeer.edmx</DependentUpon>
+    </None>
+    <None Include="VT\VolTeer.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>VolTeer.edmx</DependentUpon>
+      <LastGenOutput>VolTeer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VolTeer.DomainModels\VolTeer.DomainModels.csproj">
+      <Project>{7919ce03-6597-4a4b-82e4-d73b7511ab7f}</Project>
+      <Name>VolTeer.DomainModels</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

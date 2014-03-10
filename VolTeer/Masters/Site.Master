@@ -1,0 +1,99 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="VolTeer.Masters.Site" %>
+
+<!DOCTYPE html>
+
+<html lang="en">
+<head id="Head1" runat="server">
+    <meta charset="utf-8" />
+    <title><%: Page.Title %> - VolTeer</title>
+    <link href="~/Content/Site.css" rel="stylesheet" />
+    <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
+    <asp:PlaceHolder ID="PlaceHolder1" runat="server">
+        <script src="<%: ResolveUrl("~/Scripts/modernizr-2.6.2.js") %>"></script>
+    </asp:PlaceHolder>
+    <meta name="viewport" content="width=device-width" />
+    <asp:ContentPlaceHolder runat="server" ID="HeadContent" />
+</head>
+<body>
+    <form id="frmMaster" runat="server">
+        <%--    <asp:ScriptManager ID="ScriptManager1" runat="server">
+        <Scripts>
+            <asp:ScriptReference Name="jquery" />
+            <asp:ScriptReference Name="jquery.ui.combined" />
+        </Scripts>
+    </asp:ScriptManager>--%>
+        <telerik:RadScriptManager ID="RadScriptManager1" runat="server"></telerik:RadScriptManager>
+
+        <header>
+            <div class="content-wrapper">
+                <div class="float-right">
+                    <p class="site-title">
+                        <asp:Image runat="server" ImageUrl="~/Content/themes/base/images/volunteer-green-logo1.jpg" Height="61px" Width="107px" />
+                    </p>
+
+                    <%--<a id="A1" runat="server" href="~/Content/themes/base/images/volunteer-green-logo1.jpg">your logo here</a></p>--%>
+                </div>
+                <%--                <div class="float-left">
+                    <section id="login">
+                        <asp:LoginView ID="LoginView1" runat="server" ViewStateMode="Disabled">
+                            <AnonymousTemplate>
+                                <ul>
+                                    <li><a id="registerLink" runat="server" href="~/Account/Register.aspx">Register</a></li>
+                                    <li><a id="forgotPWLink" runat="server" href="~/Account/Forgot.aspx">Forgot Password?</a></li>
+                                    <li><a id="loginLink" runat="server" href="~/Account/Login.aspx">Log in</a></li>
+                                </ul>
+                            </AnonymousTemplate>
+                            <LoggedInTemplate>
+                                <p>
+                                    Hello, <a id="A2" runat="server" class="username" href="~/Account/Manage" title="Manage your account">
+                                        <asp:LoginName ID="LoginName1" runat="server" CssClass="username" />
+                                    </a>!
+                                <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" />
+                                </p>
+                            </LoggedInTemplate>
+                        </asp:LoginView>
+                    </section>
+                </div>--%>
+            </div>
+            <telerik:RadAjaxManager ID="RadAjaxManager1" runat="server">
+            </telerik:RadAjaxManager>
+            <div class="float-left">
+
+
+                <telerik:RadMenu ID="RadMenu1" CssClass="mainMenu" runat="server" Skin="Silk">
+                    <Items>
+                        <telerik:RadMenuItem Text="Home" NavigateUrl="~/Default.aspx" />
+                        <telerik:RadMenuItem Text="Account">
+                            <GroupSettings Width="200px" />
+                            <Items>
+                                <telerik:RadMenuItem Text="Login" NavigateUrl="~/Account/Login.aspx" EnableImageSprite="true" CssClass="icon-chair"></telerik:RadMenuItem>
+                                <telerik:RadMenuItem Text="Login" NavigateUrl="~/Account/Login.aspx" EnableImageSprite="true" CssClass="icon-chair"></telerik:RadMenuItem>
+                                <telerik:RadMenuItem Text="Forgot Password" NavigateUrl="~/Account/ForgotPassword.aspx" EnableImageSprite="true" CssClass="icon-sofa"></telerik:RadMenuItem>
+                                <telerik:RadMenuItem Text="Manage Roles" NavigateUrl="~/Account/ManageRoles.aspx" EnableImageSprite="true" CssClass="icon-table"></telerik:RadMenuItem>
+                                <telerik:RadMenuItem Text="Manage Users" NavigateUrl="~/Account/ManageUsers.aspx" EnableImageSprite="true" CssClass="icon-table"></telerik:RadMenuItem>
+                                <telerik:RadMenuItem Text="Register" NavigateUrl="~/Account/Register.aspx" EnableImageSprite="true" CssClass="icon-table"></telerik:RadMenuItem>
+                            </Items>
+                        </telerik:RadMenuItem>
+                        <telerik:RadMenuItem Text="ManageSkills" NavigateUrl="~/Skills/ManageSkills.aspx" />
+                        <telerik:RadMenuItem Text="About" NavigateUrl="DefaultCS.aspx?page=aboutus" />
+                    </Items>
+                </telerik:RadMenu>
+            </div>
+        </header>
+        <div id="body">
+            <asp:ContentPlaceHolder runat="server" ID="FeaturedContent" />
+            <section class="content-wrapper main-content clear-fix">
+                <asp:ContentPlaceHolder runat="server" ID="MainContent" />
+            </section>
+        </div>
+        <footer>
+            <div class="content-wrapper">
+                <div class="float-left">
+                    <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
+                </div>
+            </div>
+        </footer>
+    </form>
+
+</body>
+</html>

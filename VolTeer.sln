@@ -1,0 +1,64 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2012
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PresentationLayer", "PresentationLayer", "{934E5C00-98CD-4AD0-B391-BB079F3F788C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Middle Tier Projects", "Middle Tier Projects", "{1298E134-3DE8-475E-9205-01FBEF2EAFF8}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WCF Layer", "WCF Layer", "{1CD0E87D-9796-4463-A6AC-F0B20703B3EF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Volteer.WCF", "Volteer.WCF\Volteer.WCF.csproj", "{B598136C-50D4-4766-B3E1-B36EBFE1345B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VolTeer.DomainModels", "VolTeer.DomainModels\VolTeer.DomainModels.csproj", "{7919CE03-6597-4A4B-82E4-D73B7511AB7F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VolTeer.DataAccessLayer", "VolTeer.DataAccessLayer\VolTeer.DataAccessLayer.csproj", "{BF6A3D20-8004-4274-84F9-1CBFF4436C61}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VolTeer.BusinessLogicLayer", "VolTeer.BusinessLogicLayer\VolTeer.BusinessLogicLayer.csproj", "{81446B41-8D0A-4E58-A275-1578C7F536F2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestApp", "TestApp\TestApp.csproj", "{03F0AC9B-8887-4C7D-95DB-BE38B9B272FC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VolTeer", "VolTeer\VolTeer.csproj", "{0BE36127-23CB-4C74-85DE-89D8A0490C83}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{B598136C-50D4-4766-B3E1-B36EBFE1345B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B598136C-50D4-4766-B3E1-B36EBFE1345B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B598136C-50D4-4766-B3E1-B36EBFE1345B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B598136C-50D4-4766-B3E1-B36EBFE1345B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7919CE03-6597-4A4B-82E4-D73B7511AB7F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7919CE03-6597-4A4B-82E4-D73B7511AB7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7919CE03-6597-4A4B-82E4-D73B7511AB7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7919CE03-6597-4A4B-82E4-D73B7511AB7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BF6A3D20-8004-4274-84F9-1CBFF4436C61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BF6A3D20-8004-4274-84F9-1CBFF4436C61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BF6A3D20-8004-4274-84F9-1CBFF4436C61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BF6A3D20-8004-4274-84F9-1CBFF4436C61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{81446B41-8D0A-4E58-A275-1578C7F536F2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{81446B41-8D0A-4E58-A275-1578C7F536F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{81446B41-8D0A-4E58-A275-1578C7F536F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{81446B41-8D0A-4E58-A275-1578C7F536F2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{03F0AC9B-8887-4C7D-95DB-BE38B9B272FC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{03F0AC9B-8887-4C7D-95DB-BE38B9B272FC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{03F0AC9B-8887-4C7D-95DB-BE38B9B272FC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{03F0AC9B-8887-4C7D-95DB-BE38B9B272FC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0BE36127-23CB-4C74-85DE-89D8A0490C83}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0BE36127-23CB-4C74-85DE-89D8A0490C83}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0BE36127-23CB-4C74-85DE-89D8A0490C83}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0BE36127-23CB-4C74-85DE-89D8A0490C83}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{03F0AC9B-8887-4C7D-95DB-BE38B9B272FC} = {934E5C00-98CD-4AD0-B391-BB079F3F788C}
+		{0BE36127-23CB-4C74-85DE-89D8A0490C83} = {934E5C00-98CD-4AD0-B391-BB079F3F788C}
+		{7919CE03-6597-4A4B-82E4-D73B7511AB7F} = {1298E134-3DE8-475E-9205-01FBEF2EAFF8}
+		{BF6A3D20-8004-4274-84F9-1CBFF4436C61} = {1298E134-3DE8-475E-9205-01FBEF2EAFF8}
+		{81446B41-8D0A-4E58-A275-1578C7F536F2} = {1298E134-3DE8-475E-9205-01FBEF2EAFF8}
+		{B598136C-50D4-4766-B3E1-B36EBFE1345B} = {1CD0E87D-9796-4463-A6AC-F0B20703B3EF}
+	EndGlobalSection
+EndGlobal
