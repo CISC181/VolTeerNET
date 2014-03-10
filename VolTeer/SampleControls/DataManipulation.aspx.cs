@@ -4,7 +4,6 @@ using System.Linq;
 using System.Text;
 using VolTeer.BusinessLogicLayer;
 using VolTeer.BusinessLogicLayer.AspNet;
-using VolTeer.BusinessLogicLayer.AspNet;
 using VolTeer.DomainModels;
 using Telerik.Web.UI;
 
