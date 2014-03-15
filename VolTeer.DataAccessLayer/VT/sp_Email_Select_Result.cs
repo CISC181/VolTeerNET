@@ -11,13 +11,9 @@ namespace VolTeer.DataAccessLayer.VT
 {
     using System;
     
-    public partial class sp_Group_Update_Result
+    public partial class sp_Email_Select_Result
     {
-        public Nullable<int> ErrorNumber { get; set; }
-        public Nullable<int> ErrorSeverity { get; set; }
-        public Nullable<int> ErrorState { get; set; }
-        public string ErrorProcedure { get; set; }
-        public Nullable<int> ErrorLine { get; set; }
-        public string ErrorMessage { get; set; }
+        public int EmailID { get; set; }
+        public string EmailAddr { get; set; }
     }
 }

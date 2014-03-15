@@ -55,7 +55,6 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.Optimization">
@@ -201,11 +200,8 @@
     <Compile Include="VT\sp_Group_Insert_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
-    <Compile Include="VT\sp_Group_Select_DAL.cs" />
+    <Compile Include="VT\sp_Group_DAL.cs" />
     <Compile Include="VT\sp_Group_Select_Result.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VT\sp_Group_Update_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
     <Compile Include="VT\sp_helpdiagramdefinition_Result.cs">

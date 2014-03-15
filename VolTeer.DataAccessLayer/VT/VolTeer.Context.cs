@@ -12,8 +12,8 @@ namespace VolTeer.DataAccessLayer.VT
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    //using System.Data.Objects;
     using System.Data.Entity.Core.Objects;
+    using System.Data;
     //using System.Data.Objects.DataClasses;
     using System.Linq;
     
@@ -585,19 +585,6 @@ namespace VolTeer.DataAccessLayer.VT
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Email_Update_Result>("sp_Email_Update", emailIDParameter, emailAddrParameter);
         }
     
-        public virtual ObjectResult<sp_Group_Insert_Result> sp_Group_Insert(string groupName, Nullable<int> participationLevelID)
-        {
-            var groupNameParameter = groupName != null ?
-                new ObjectParameter("GroupName", groupName) :
-                new ObjectParameter("GroupName", typeof(string));
-    
-            var participationLevelIDParameter = participationLevelID.HasValue ?
-                new ObjectParameter("ParticipationLevelID", participationLevelID) :
-                new ObjectParameter("ParticipationLevelID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Group_Insert_Result>("sp_Group_Insert", groupNameParameter, participationLevelIDParameter);
-        }
-    
         public virtual ObjectResult<sp_Group_Select_Result> sp_Group_Select(Nullable<int> groupID)
         {
             var groupIDParameter = groupID.HasValue ?
@@ -605,23 +592,6 @@ namespace VolTeer.DataAccessLayer.VT
                 new ObjectParameter("GroupID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Group_Select_Result>("sp_Group_Select", groupIDParameter);
-        }
-    
-        public virtual ObjectResult<sp_Group_Update_Result> sp_Group_Update(Nullable<int> groupID, string groupName, Nullable<int> participationLevelID)
-        {
-            var groupIDParameter = groupID.HasValue ?
-                new ObjectParameter("GroupID", groupID) :
-                new ObjectParameter("GroupID", typeof(int));
-    
-            var groupNameParameter = groupName != null ?
-                new ObjectParameter("GroupName", groupName) :
-                new ObjectParameter("GroupName", typeof(string));
-    
-            var participationLevelIDParameter = participationLevelID.HasValue ?
-                new ObjectParameter("ParticipationLevelID", participationLevelID) :
-                new ObjectParameter("ParticipationLevelID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Group_Update_Result>("sp_Group_Update", groupIDParameter, groupNameParameter, participationLevelIDParameter);
         }
     
         public virtual ObjectResult<sp_Skill_Delete_Result> sp_Skill_Delete(Nullable<System.Guid> skillID, Nullable<int> activeFlg)
@@ -721,6 +691,45 @@ namespace VolTeer.DataAccessLayer.VT
                 new ObjectParameter("VolID", typeof(System.Guid));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("sp_Volunteer_Select", volIDParameter);
+        }
+    
+        public virtual ObjectResult<sp_Group_Insert_Result> sp_Group_Insert(string groupName, Nullable<int> participationLevelID)
+        {
+            var groupNameParameter = groupName != null ?
+                new ObjectParameter("GroupName", groupName) :
+                new ObjectParameter("GroupName", typeof(string));
+    
+            var participationLevelIDParameter = participationLevelID.HasValue ?
+                new ObjectParameter("ParticipationLevelID", participationLevelID) :
+                new ObjectParameter("ParticipationLevelID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Group_Insert_Result>("sp_Group_Insert", groupNameParameter, participationLevelIDParameter);
+        }
+    
+        public virtual int sp_Group_Update(Nullable<int> groupID, string groupName, Nullable<int> participationLevelID)
+        {
+            var groupIDParameter = groupID.HasValue ?
+                new ObjectParameter("GroupID", groupID) :
+                new ObjectParameter("GroupID", typeof(int));
+    
+            var groupNameParameter = groupName != null ?
+                new ObjectParameter("GroupName", groupName) :
+                new ObjectParameter("GroupName", typeof(string));
+    
+            var participationLevelIDParameter = participationLevelID.HasValue ?
+                new ObjectParameter("ParticipationLevelID", participationLevelID) :
+                new ObjectParameter("ParticipationLevelID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Group_Update", groupIDParameter, groupNameParameter, participationLevelIDParameter);
+        }
+    
+        public virtual int sp_Group_Delete(Nullable<int> groupID)
+        {
+            var groupIDParameter = groupID.HasValue ?
+                new ObjectParameter("GroupID", groupID) :
+                new ObjectParameter("GroupID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Group_Delete", groupIDParameter);
         }
     }
 }

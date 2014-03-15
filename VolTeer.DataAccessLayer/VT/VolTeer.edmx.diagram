@@ -18,9 +18,9 @@
         <EntityTypeShape EntityType="VolTeerModel.tblVendor" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
         <EntityTypeShape EntityType="VolTeerModel.tblVendorAddr" Width="1.5" PointX="11" PointY="12.875" IsExpanded="true" />
         <EntityTypeShape EntityType="VolTeerModel.tblVendorProjContact" Width="1.5" PointX="11" PointY="9.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolTeerModel.tblAddress1" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolTeerModel.tblAddress1" Width="1.5" PointX="0.5" PointY="3.5" IsExpanded="true" />
         <EntityTypeShape EntityType="VolTeerModel.tblEmail1" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolTeerModel.tblGroup" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolTeerModel.tblGroup" Width="1.5" PointX="2.25" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="VolTeerModel.tblSkill" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
         <EntityTypeShape EntityType="VolTeerModel.tblVolunteer" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
         <AssociationConnector Association="VolTeerModel.FK_tblProject_tblAddress" ManuallyRouted="false" />

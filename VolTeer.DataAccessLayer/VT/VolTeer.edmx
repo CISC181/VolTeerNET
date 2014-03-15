@@ -4,31 +4,31 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="VolTeerModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="VolTeerModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="VolTeerModelStoreContainer">
-          <EntitySet Name="sysdiagrams" EntityType="VolTeerModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="tblAddress" EntityType="VolTeerModel.Store.tblAddress" store:Type="Tables" Schema="Vend" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="tblContact" EntityType="VolTeerModel.Store.tblContact" store:Type="Tables" Schema="Vend" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="tblContactEmail" EntityType="VolTeerModel.Store.tblContactEmail" store:Type="Tables" Schema="Vend" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="tblEmail" EntityType="VolTeerModel.Store.tblEmail" store:Type="Tables" Schema="Vend" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="tblEventRating" EntityType="VolTeerModel.Store.tblEventRating" store:Type="Tables" Schema="Vend" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="tblProject" EntityType="VolTeerModel.Store.tblProject" store:Type="Tables" Schema="Vend" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="tblProjectEvent" EntityType="VolTeerModel.Store.tblProjectEvent" store:Type="Tables" Schema="Vend" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="tblProjectEventContact" EntityType="VolTeerModel.Store.tblProjectEventContact" store:Type="Tables" Schema="Vend" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="tblVendContact" EntityType="VolTeerModel.Store.tblVendContact" store:Type="Tables" Schema="Vend" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="tblVendor" EntityType="VolTeerModel.Store.tblVendor" store:Type="Tables" Schema="Vend" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="tblVendorAddr" EntityType="VolTeerModel.Store.tblVendorAddr" store:Type="Tables" Schema="Vend" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="tblVendorProjContact" EntityType="VolTeerModel.Store.tblVendorProjContact" store:Type="Tables" Schema="Vend" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="tblAddress1" EntityType="VolTeerModel.Store.tblAddress1" store:Type="Tables" Schema="Vol" Table="tblAddress" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="tblEmail1" EntityType="VolTeerModel.Store.tblEmail1" store:Type="Tables" Schema="Vol" Table="tblEmail" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="tblGroup" EntityType="VolTeerModel.Store.tblGroup" store:Type="Tables" Schema="Vol" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="tblGroupAddr" EntityType="VolTeerModel.Store.tblGroupAddr" store:Type="Tables" Schema="Vol" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="tblGroupVol" EntityType="VolTeerModel.Store.tblGroupVol" store:Type="Tables" Schema="Vol" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="tblSkill" EntityType="VolTeerModel.Store.tblSkill" store:Type="Tables" Schema="Vol" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="tblVolAddr" EntityType="VolTeerModel.Store.tblVolAddr" store:Type="Tables" Schema="Vol" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="tblVolEmail" EntityType="VolTeerModel.Store.tblVolEmail" store:Type="Tables" Schema="Vol" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="tblVolSkill" EntityType="VolTeerModel.Store.tblVolSkill" store:Type="Tables" Schema="Vol" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="tblVolunteer" EntityType="VolTeerModel.Store.tblVolunteer" store:Type="Tables" Schema="Vol" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
+          <EntitySet Name="sysdiagrams" EntityType="VolTeerModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="tblAddress" EntityType="VolTeerModel.Store.tblAddress" store:Type="Tables" Schema="Vend" />
+          <EntitySet Name="tblContact" EntityType="VolTeerModel.Store.tblContact" store:Type="Tables" Schema="Vend" />
+          <EntitySet Name="tblContactEmail" EntityType="VolTeerModel.Store.tblContactEmail" store:Type="Tables" Schema="Vend" />
+          <EntitySet Name="tblEmail" EntityType="VolTeerModel.Store.tblEmail" store:Type="Tables" Schema="Vend" />
+          <EntitySet Name="tblEventRating" EntityType="VolTeerModel.Store.tblEventRating" store:Type="Tables" Schema="Vend" />
+          <EntitySet Name="tblProject" EntityType="VolTeerModel.Store.tblProject" store:Type="Tables" Schema="Vend" />
+          <EntitySet Name="tblProjectEvent" EntityType="VolTeerModel.Store.tblProjectEvent" store:Type="Tables" Schema="Vend" />
+          <EntitySet Name="tblProjectEventContact" EntityType="VolTeerModel.Store.tblProjectEventContact" store:Type="Tables" Schema="Vend" />
+          <EntitySet Name="tblVendContact" EntityType="VolTeerModel.Store.tblVendContact" store:Type="Tables" Schema="Vend" />
+          <EntitySet Name="tblVendor" EntityType="VolTeerModel.Store.tblVendor" store:Type="Tables" Schema="Vend" />
+          <EntitySet Name="tblVendorAddr" EntityType="VolTeerModel.Store.tblVendorAddr" store:Type="Tables" Schema="Vend" />
+          <EntitySet Name="tblVendorProjContact" EntityType="VolTeerModel.Store.tblVendorProjContact" store:Type="Tables" Schema="Vend" />
+          <EntitySet Name="tblAddress1" EntityType="VolTeerModel.Store.tblAddress1" store:Type="Tables" Schema="Vol" Table="tblAddress" />
+          <EntitySet Name="tblEmail1" EntityType="VolTeerModel.Store.tblEmail1" store:Type="Tables" Schema="Vol" Table="tblEmail" />
+          <EntitySet Name="tblGroup" EntityType="VolTeerModel.Store.tblGroup" store:Type="Tables" Schema="Vol" />
+          <EntitySet Name="tblGroupAddr" EntityType="VolTeerModel.Store.tblGroupAddr" store:Type="Tables" Schema="Vol" />
+          <EntitySet Name="tblGroupVol" EntityType="VolTeerModel.Store.tblGroupVol" store:Type="Tables" Schema="Vol" />
+          <EntitySet Name="tblSkill" EntityType="VolTeerModel.Store.tblSkill" store:Type="Tables" Schema="Vol" />
+          <EntitySet Name="tblVolAddr" EntityType="VolTeerModel.Store.tblVolAddr" store:Type="Tables" Schema="Vol" />
+          <EntitySet Name="tblVolEmail" EntityType="VolTeerModel.Store.tblVolEmail" store:Type="Tables" Schema="Vol" />
+          <EntitySet Name="tblVolSkill" EntityType="VolTeerModel.Store.tblVolSkill" store:Type="Tables" Schema="Vol" />
+          <EntitySet Name="tblVolunteer" EntityType="VolTeerModel.Store.tblVolunteer" store:Type="Tables" Schema="Vol" />
           <AssociationSet Name="FK_Skill_Skill" Association="VolTeerModel.Store.FK_Skill_Skill">
             <End Role="tblSkill" EntitySet="tblSkill" />
             <End Role="tblSkill1" EntitySet="tblSkill" />
@@ -803,6 +803,9 @@
           <Parameter Name="EmailID" Type="int" Mode="In" />
           <Parameter Name="EmailAddr" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="sp_Group_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
+          <Parameter Name="GroupID" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_Group_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="GroupName" Type="nvarchar" Mode="In" />
           <Parameter Name="ParticipationLevelID" Type="int" Mode="In" />
@@ -846,8 +849,7 @@
         <Function Name="sp_Volunteer_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="VolID" Type="uniqueidentifier" Mode="In" />
         </Function>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="VolTeerModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns="http://schemas.microsoft.com/ado/2008/09/edm" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
@@ -1066,7 +1068,7 @@
             <Parameter Name="AddrID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_tblProject_Select" ReturnType="Collection(VolTeerModel.sp_tblProject_Select_Result)">
-            <Parameter Name="ProjectID" Mode="In" Type="Guid" />
+          <Parameter Name="ProjectID" Mode="In" Type="Guid" />
           </FunctionImport>
           <FunctionImport Name="sp_tblProject_Update">
             <Parameter Name="flag" Mode="InOut" Type="Boolean" />
@@ -1084,7 +1086,7 @@
             <Parameter Name="VendorName" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_tblVendor_Select" ReturnType="Collection(VolTeerModel.sp_tblVendor_Select_Result)">
-            <Parameter Name="VendorID" Mode="In" Type="Guid" />
+          <Parameter Name="VendorID" Mode="In" Type="Guid" />
           </FunctionImport>
           <FunctionImport Name="sp_tblVendor_Update">
             <Parameter Name="flag" Mode="InOut" Type="Boolean" />
@@ -1092,10 +1094,10 @@
             <Parameter Name="VendorName" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_Address_Delete" ReturnType="Collection(VolTeerModel.sp_Address_Delete_Result)">
-            <Parameter Name="AddrID" Mode="In" Type="Int32" />
+          <Parameter Name="AddrID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Address_Select" ReturnType="Collection(VolTeerModel.sp_Address_Select_Result)">
-            <Parameter Name="AddrID" Mode="In" Type="Int32" />
+          <Parameter Name="AddrID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Address_Update" ReturnType="Collection(VolTeerModel.sp_Address_Update_Result)">
             <Parameter Name="AddrId" Mode="In" Type="Int32" />
@@ -1109,26 +1111,17 @@
             <Parameter Name="Zip4" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Email_Insert" ReturnType="Collection(VolTeerModel.sp_Email_Insert_Result)">
-            <Parameter Name="EmailAddr" Mode="In" Type="String" />
+          <Parameter Name="EmailAddr" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_Email_Select" ReturnType="Collection(VolTeerModel.sp_Email_Select_Result)">
-            <Parameter Name="EmailID" Mode="In" Type="Int32" />
+          <Parameter Name="EmailID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Email_Update" ReturnType="Collection(VolTeerModel.sp_Email_Update_Result)">
             <Parameter Name="EmailID" Mode="In" Type="Int32" />
             <Parameter Name="EmailAddr" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="sp_Group_Insert" ReturnType="Collection(VolTeerModel.sp_Group_Insert_Result)">
-            <Parameter Name="GroupName" Mode="In" Type="String" />
-            <Parameter Name="ParticipationLevelID" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="sp_Group_Select" ReturnType="Collection(VolTeerModel.sp_Group_Select_Result)">
-            <Parameter Name="GroupID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_Group_Update" ReturnType="Collection(VolTeerModel.sp_Group_Update_Result)">
-            <Parameter Name="GroupID" Mode="In" Type="Int32" />
-            <Parameter Name="GroupName" Mode="In" Type="String" />
-            <Parameter Name="ParticipationLevelID" Mode="In" Type="Int32" />
+          <Parameter Name="GroupID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Skill_Delete" ReturnType="Collection(VolTeerModel.sp_Skill_Delete_Result)">
             <Parameter Name="SkillID" Mode="In" Type="Guid" />
@@ -1140,7 +1133,7 @@
             <Parameter Name="ReqCert" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="sp_Skill_Select" ReturnType="Collection(VolTeerModel.sp_Skill_Select_Result)">
-            <Parameter Name="SkillID" Mode="In" Type="Guid" />
+          <Parameter Name="SkillID" Mode="In" Type="Guid" />
           </FunctionImport>
           <FunctionImport Name="sp_Skill_Update" ReturnType="Collection(VolTeerModel.sp_Skill_Update_Result)">
             <Parameter Name="SkillID" Mode="In" Type="Guid" />
@@ -1159,7 +1152,19 @@
             <Parameter Name="VolLastName" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_Volunteer_Select" ReturnType="Collection(Guid)">
-            <Parameter Name="VolID" Mode="In" Type="Guid" />
+          <Parameter Name="VolID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Group_Insert" ReturnType="Collection(VolTeerModel.sp_Group_Insert_Result)">
+            <Parameter Name="GroupName" Mode="In" Type="String" />
+            <Parameter Name="ParticipationLevelID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Group_Update">
+            <Parameter Name="GroupID" Mode="In" Type="Int32" />
+            <Parameter Name="GroupName" Mode="In" Type="String" />
+            <Parameter Name="ParticipationLevelID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Group_Delete">
+            <Parameter Name="GroupID" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="sysdiagram">
@@ -1671,26 +1676,10 @@
           <Property Type="Int32" Name="ErrorLine" Nullable="true" />
           <Property Type="String" Name="ErrorMessage" Nullable="true" MaxLength="4000" />
         </ComplexType>
-        <ComplexType Name="sp_Group_Insert_Result">
-          <Property Type="Int32" Name="ErrorNumber" Nullable="true" />
-          <Property Type="Int32" Name="ErrorSeverity" Nullable="true" />
-          <Property Type="Int32" Name="ErrorState" Nullable="true" />
-          <Property Type="String" Name="ErrorProcedure" Nullable="true" MaxLength="128" />
-          <Property Type="Int32" Name="ErrorLine" Nullable="true" />
-          <Property Type="String" Name="ErrorMessage" Nullable="true" MaxLength="4000" />
-        </ComplexType>
         <ComplexType Name="sp_Group_Select_Result">
           <Property Type="Int32" Name="GroupID" Nullable="false" />
           <Property Type="String" Name="GroupName" Nullable="true" MaxLength="50" />
           <Property Type="Int32" Name="ParticipationLevelID" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="sp_Group_Update_Result">
-          <Property Type="Int32" Name="ErrorNumber" Nullable="true" />
-          <Property Type="Int32" Name="ErrorSeverity" Nullable="true" />
-          <Property Type="Int32" Name="ErrorState" Nullable="true" />
-          <Property Type="String" Name="ErrorProcedure" Nullable="true" MaxLength="128" />
-          <Property Type="Int32" Name="ErrorLine" Nullable="true" />
-          <Property Type="String" Name="ErrorMessage" Nullable="true" MaxLength="4000" />
         </ComplexType>
         <ComplexType Name="sp_Skill_Delete_Result">
           <Property Type="Int32" Name="ErrorNumber" Nullable="true" />
@@ -1736,6 +1725,9 @@
           <Property Type="String" Name="ErrorProcedure" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="ErrorLine" Nullable="true" />
           <Property Type="String" Name="ErrorMessage" Nullable="true" MaxLength="4000" />
+        </ComplexType>
+        <ComplexType Name="sp_Group_Insert_Result">
+          <Property Type="Int32" Name="NewGroupID" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2160,36 +2152,12 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_Group_Insert" FunctionName="VolTeerModel.Store.sp_Group_Insert">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="VolTeerModel.sp_Group_Insert_Result">
-                <ScalarProperty Name="ErrorNumber" ColumnName="ErrorNumber" />
-                <ScalarProperty Name="ErrorSeverity" ColumnName="ErrorSeverity" />
-                <ScalarProperty Name="ErrorState" ColumnName="ErrorState" />
-                <ScalarProperty Name="ErrorProcedure" ColumnName="ErrorProcedure" />
-                <ScalarProperty Name="ErrorLine" ColumnName="ErrorLine" />
-                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_Group_Select" FunctionName="VolTeerModel.Store.sp_Group_Select">
             <ResultMapping>
               <ComplexTypeMapping TypeName="VolTeerModel.sp_Group_Select_Result">
                 <ScalarProperty Name="GroupID" ColumnName="GroupID" />
                 <ScalarProperty Name="GroupName" ColumnName="GroupName" />
                 <ScalarProperty Name="ParticipationLevelID" ColumnName="ParticipationLevelID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_Group_Update" FunctionName="VolTeerModel.Store.sp_Group_Update">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="VolTeerModel.sp_Group_Update_Result">
-                <ScalarProperty Name="ErrorNumber" ColumnName="ErrorNumber" />
-                <ScalarProperty Name="ErrorSeverity" ColumnName="ErrorSeverity" />
-                <ScalarProperty Name="ErrorState" ColumnName="ErrorState" />
-                <ScalarProperty Name="ErrorProcedure" ColumnName="ErrorProcedure" />
-                <ScalarProperty Name="ErrorLine" ColumnName="ErrorLine" />
-                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
@@ -2263,6 +2231,15 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_Volunteer_Select" FunctionName="VolTeerModel.Store.sp_Volunteer_Select" />
+          <FunctionImportMapping FunctionImportName="sp_Group_Insert" FunctionName="VolTeerModel.Store.sp_Group_Insert">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VolTeerModel.sp_Group_Insert_Result">
+                <ScalarProperty Name="NewGroupID" ColumnName="NewGroupID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Group_Update" FunctionName="VolTeerModel.Store.sp_Group_Update" />
+          <FunctionImportMapping FunctionImportName="sp_Group_Delete" FunctionName="VolTeerModel.Store.sp_Group_Delete" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
