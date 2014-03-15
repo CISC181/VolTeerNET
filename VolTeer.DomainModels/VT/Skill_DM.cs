@@ -7,9 +7,9 @@ namespace VolTeer.DomainModels.VT
 {
     public class Skill_DM
     {
-        public int SkillID { get; set; }
+        public Guid SkillID { get; set; }
         public string SkillName { get; set; }
-        public Nullable<int> MstrSkillID { get; set; }
+        public Guid? MstrSkillID { get; set; }
 
     }
 }

@@ -14,7 +14,7 @@ namespace VolTeer.DataAccessLayer.VT
             List<Skill_DM> list = new List<Skill_DM>();
             using (VolTeerEntities context = new VolTeerEntities())
             {
-                list = (from result in context.Skills
+                list = (from result in context.tblSkills 
                         select new Skill_DM
                         {
                             SkillID = result.SkillID,

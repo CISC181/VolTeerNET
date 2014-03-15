@@ -11,6 +11,8 @@
     <AssemblyName>VolTeer.DataAccessLayer</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <WebGreaseLibPath>..\packages\WebGrease.1.5.2\lib</WebGreaseLibPath>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -20,6 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -28,10 +31,26 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="EntityFramework">
-      <HintPath>..\packages\EntityFramework.5.0.0\lib\net40\EntityFramework.dll</HintPath>
+    <Reference Include="Antlr3.Runtime">
+      <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.0.2\lib\net40\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\EntityFramework.6.0.2\lib\net40\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.FriendlyUrls">
+      <HintPath>..\packages\Microsoft.AspNet.FriendlyUrls.Core.1.0.2\lib\net40\Microsoft.AspNet.FriendlyUrls.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
@@ -39,110 +58,255 @@
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
+    <Reference Include="WebGrease">
+      <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AspNet\AspNET.Context.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>AspNET.Context.tt</DependentUpon>
+    <Compile Include="AspNet\Application.cs">
+      <DependentUpon>AspNet.tt</DependentUpon>
     </Compile>
-    <Compile Include="AspNet\AspNET.cs">
+    <Compile Include="AspNet\AspNet.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AspNET.tt</DependentUpon>
+      <DependentUpon>AspNet.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="AspNet\AspNET.Designer.cs">
+    <Compile Include="AspNet\AspNet.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>AspNET.edmx</DependentUpon>
+      <DependentUpon>AspNet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNet\AspNet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AspNet.edmx</DependentUpon>
     </Compile>
     <Compile Include="AspNet\AspNetRolesDAL.cs" />
     <Compile Include="AspNet\AspNetUsersDAL.cs" />
     <Compile Include="AspNet\aspnet_Applications.cs">
-      <DependentUpon>AspNET.tt</DependentUpon>
+      <DependentUpon>AspNet.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNet\aspnet_Membership.cs">
-      <DependentUpon>AspNET.tt</DependentUpon>
+      <DependentUpon>AspNet.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNet\aspnet_Membership_GetPasswordWithFormat_Result.cs">
-      <DependentUpon>AspNET.tt</DependentUpon>
+      <DependentUpon>AspNet.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNet\aspnet_Membership_GetPassword_Result.cs">
-      <DependentUpon>AspNET.tt</DependentUpon>
+      <DependentUpon>AspNet.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNet\aspnet_Membership_GetUserByName_Result.cs">
-      <DependentUpon>AspNET.tt</DependentUpon>
+      <DependentUpon>AspNet.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNet\aspnet_Membership_GetUserByUserId_Result.cs">
-      <DependentUpon>AspNET.tt</DependentUpon>
+      <DependentUpon>AspNet.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNet\aspnet_Paths.cs">
-      <DependentUpon>AspNET.tt</DependentUpon>
+      <DependentUpon>AspNet.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNet\aspnet_PersonalizationAllUsers.cs">
-      <DependentUpon>AspNET.tt</DependentUpon>
+      <DependentUpon>AspNet.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNet\aspnet_PersonalizationPerUser.cs">
-      <DependentUpon>AspNET.tt</DependentUpon>
+      <DependentUpon>AspNet.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNet\aspnet_Profile.cs">
-      <DependentUpon>AspNET.tt</DependentUpon>
+      <DependentUpon>AspNet.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNet\aspnet_Profile_GetProperties_Result.cs">
-      <DependentUpon>AspNET.tt</DependentUpon>
+      <DependentUpon>AspNet.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNet\aspnet_Roles.cs">
-      <DependentUpon>AspNET.tt</DependentUpon>
+      <DependentUpon>AspNet.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNet\aspnet_SchemaVersions.cs">
-      <DependentUpon>AspNET.tt</DependentUpon>
+      <DependentUpon>AspNet.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNet\aspnet_Users.cs">
-      <DependentUpon>AspNET.tt</DependentUpon>
+      <DependentUpon>AspNet.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNet\aspnet_UsersInRoles_RemoveUsersFromRoles_Result.cs">
-      <DependentUpon>AspNET.tt</DependentUpon>
+      <DependentUpon>AspNet.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNet\aspnet_WebEvent_Events.cs">
-      <DependentUpon>AspNET.tt</DependentUpon>
+      <DependentUpon>AspNet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNet\Membership.cs">
+      <DependentUpon>AspNet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNet\Profile.cs">
+      <DependentUpon>AspNet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNet\Role.cs">
+      <DependentUpon>AspNet.tt</DependentUpon>
+    </Compile>
+    <Compile Include="AspNet\User.cs">
+      <DependentUpon>AspNet.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNet\vw_aspnet_Applications.cs">
-      <DependentUpon>AspNET.tt</DependentUpon>
+      <DependentUpon>AspNet.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNet\vw_aspnet_MembershipUsers.cs">
-      <DependentUpon>AspNET.tt</DependentUpon>
+      <DependentUpon>AspNet.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNet\vw_aspnet_Profiles.cs">
-      <DependentUpon>AspNET.tt</DependentUpon>
+      <DependentUpon>AspNet.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNet\vw_aspnet_Roles.cs">
-      <DependentUpon>AspNET.tt</DependentUpon>
+      <DependentUpon>AspNet.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNet\vw_aspnet_Users.cs">
-      <DependentUpon>AspNET.tt</DependentUpon>
+      <DependentUpon>AspNet.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNet\vw_aspnet_UsersInRoles.cs">
-      <DependentUpon>AspNET.tt</DependentUpon>
+      <DependentUpon>AspNet.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNet\vw_aspnet_WebPartState_Paths.cs">
-      <DependentUpon>AspNET.tt</DependentUpon>
+      <DependentUpon>AspNet.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNet\vw_aspnet_WebPartState_Shared.cs">
-      <DependentUpon>AspNET.tt</DependentUpon>
+      <DependentUpon>AspNet.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNet\vw_aspnet_WebPartState_User.cs">
-      <DependentUpon>AspNET.tt</DependentUpon>
+      <DependentUpon>AspNet.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="VT\Skill.cs">
+    <Compile Include="VT\SkillDAL.cs" />
+    <Compile Include="VT\sp_Address_Delete_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
-    <Compile Include="VT\SkillDAL.cs" />
+    <Compile Include="VT\sp_Address_Select_Result.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\sp_Address_Update_Result.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\sp_Email_Insert_Result.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\sp_Email_Select_Result.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\sp_Email_Update_Result.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\sp_Group_Insert_Result.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\sp_Group_Select_DAL.cs" />
+    <Compile Include="VT\sp_Group_Select_Result.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\sp_Group_Update_Result.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\sp_helpdiagrams_Result.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\sp_Skill_Delete_Result.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\sp_Skill_Insert_Result.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\sp_Skill_Select_Result.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\sp_Skill_Update_Result.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\sp_tblAddress_Select_Result.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\sp_tblContact_Insert_Result.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\sp_tblContact_Select_Result.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\sp_tblEmail_Select_Result.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\sp_tblEmail_Update1_Result.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\sp_tblEventRating_Select_Result.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\sp_tblProject_Select_Result.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\sp_tblVendor_Select_Result.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\sp_Volunteer_Insert_Result.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\sysdiagram.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\tblAddress.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\tblAddress1.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\tblContact.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\tblContactEmail.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\tblEmail.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\tblEmail1.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\tblEventRating.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\tblGroup.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\tblProject.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\tblProjectEvent.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\tblProjectEventContact.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\tblSkill.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\tblVendContact.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\tblVendor.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\tblVendorAddr.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\tblVendorProjContact.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\tblVolunteer.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
     <Compile Include="VT\VolTeer.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -160,25 +324,23 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <EntityDeploy Include="AspNet\AspNET.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>AspNET.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="App.Config" />
-    <None Include="AspNet\AspNET.Context.tt">
+    <EntityDeploy Include="AspNet\AspNet.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>AspNet.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="AspNet\AspNet.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AspNET.edmx</DependentUpon>
-      <LastGenOutput>AspNET.Context.cs</LastGenOutput>
+      <DependentUpon>AspNet.edmx</DependentUpon>
+      <LastGenOutput>AspNet.Context.cs</LastGenOutput>
     </None>
-    <None Include="AspNet\AspNET.edmx.diagram">
-      <DependentUpon>AspNET.edmx</DependentUpon>
+    <None Include="AspNet\AspNet.edmx.diagram">
+      <DependentUpon>AspNet.edmx</DependentUpon>
     </None>
-    <None Include="AspNet\AspNET.tt">
+    <None Include="AspNet\AspNet.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>AspNET.edmx</DependentUpon>
-      <LastGenOutput>AspNET.cs</LastGenOutput>
+      <DependentUpon>AspNet.edmx</DependentUpon>
+      <LastGenOutput>AspNet.cs</LastGenOutput>
     </None>
     <None Include="packages.config" />
     <EntityDeploy Include="VT\VolTeer.edmx">
@@ -208,6 +370,7 @@
       <Name>VolTeer.DomainModels</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

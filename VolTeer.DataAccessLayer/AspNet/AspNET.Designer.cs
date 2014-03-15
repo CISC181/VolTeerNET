@@ -1,4 +1,4 @@
-﻿// Default code generation is disabled for model 'c:\users\dad\documents\visual studio 2012\Projects\VolTeer.DataAccessLayer\VolTeer.DataAccessLayer\AspNet\AspNET.edmx'. 
+﻿// Default code generation is disabled for model 'C:\Users\Dad\Source\Repos\VolTeerNET\VolTeer.DataAccessLayer\AspNet\AspNet.edmx'. 
 // To enable default code generation, change the value of the 'Code Generation Strategy' designer
 // property to an alternate value. This property is available in the Properties Window when the model is
 // open in the designer.

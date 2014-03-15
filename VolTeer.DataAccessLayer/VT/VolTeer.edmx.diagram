@@ -1,12 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
-<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
-  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="629b233795754ba9a9b280f8b6783569" Name="Diagram1">
-        <EntityTypeShape EntityType="VolTeerModel.Skill" Width="1.5" PointX="0.75" PointY="0.75" IsExpanded="true" />
+      <Diagram DiagramId="fab9faaa83684faeb8368221472c4319" Name="Diagram1">
+        <EntityTypeShape EntityType="VolTeerModel.sysdiagram" Width="1.5" PointX="10.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolTeerModel.tblAddress" Width="1.5" PointX="6.5" PointY="16.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolTeerModel.tblContact" Width="1.5" PointX="5.75" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolTeerModel.tblContactEmail" Width="1.5" PointX="8" PointY="9.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolTeerModel.tblEmail" Width="1.5" PointX="5.75" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolTeerModel.tblEventRating" Width="1.5" PointX="8" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolTeerModel.tblProject" Width="1.5" PointX="8.75" PointY="17.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolTeerModel.tblProjectEvent" Width="1.5" PointX="5.75" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolTeerModel.tblProjectEventContact" Width="1.5" PointX="8" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolTeerModel.tblVendContact" Width="1.5" PointX="8" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolTeerModel.tblVendor" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolTeerModel.tblVendorAddr" Width="1.5" PointX="11" PointY="12.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolTeerModel.tblVendorProjContact" Width="1.5" PointX="11" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolTeerModel.tblAddress1" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolTeerModel.tblEmail1" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolTeerModel.tblGroup" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolTeerModel.tblSkill" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolTeerModel.tblVolunteer" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <AssociationConnector Association="VolTeerModel.FK_tblProject_tblAddress" ManuallyRouted="false" />
+        <AssociationConnector Association="VolTeerModel.FK_tblVendorAddr_tblAddress" ManuallyRouted="false" />
+        <AssociationConnector Association="VolTeerModel.FK_tblContactEmail_tblContact" ManuallyRouted="false" />
+        <AssociationConnector Association="VolTeerModel.FK_tblProjectEventContact_tblContact" ManuallyRouted="false" />
+        <AssociationConnector Association="VolTeerModel.FK_tblVendContact_tblContact" ManuallyRouted="false" />
+        <AssociationConnector Association="VolTeerModel.FK_tblVendorProj_tblContact" ManuallyRouted="false" />
+        <AssociationConnector Association="VolTeerModel.FK_tblContactEmail_tblEmail" ManuallyRouted="false" />
+        <AssociationConnector Association="VolTeerModel.FK_tblEventRating_tblProjectEvent" ManuallyRouted="false" />
+        <AssociationConnector Association="VolTeerModel.FK_tblVendorProj_tblProject" ManuallyRouted="false" />
+        <AssociationConnector Association="VolTeerModel.FK_tblProjectEventContact_tblProjectEvent" ManuallyRouted="false" />
+        <AssociationConnector Association="VolTeerModel.FK_tblVendContact_tblVendor" ManuallyRouted="false" />
+        <AssociationConnector Association="VolTeerModel.FK_tblVendorAddr_tblVendor" ManuallyRouted="false" />
+        <AssociationConnector Association="VolTeerModel.FK_tblVendorProj_tblVendor" ManuallyRouted="false" />
         <AssociationConnector Association="VolTeerModel.FK_Skill_Skill" ManuallyRouted="false" />
+        <AssociationConnector Association="VolTeerModel.tblGroupAddr" ManuallyRouted="false" />
+        <AssociationConnector Association="VolTeerModel.tblGroupVol" ManuallyRouted="false" />
+        <AssociationConnector Association="VolTeerModel.tblVolAddr" ManuallyRouted="false" />
+        <AssociationConnector Association="VolTeerModel.tblVolEmail" ManuallyRouted="false" />
+        <AssociationConnector Association="VolTeerModel.tblVolSkill" ManuallyRouted="false" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -10,20 +10,11 @@
 namespace VolTeer.DataAccessLayer.VT
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Skill
+    public partial class sp_Skill_Select_Result
     {
-        public Skill()
-        {
-            this.Skill1 = new HashSet<Skill>();
-        }
-    
-        public int SkillID { get; set; }
+        public System.Guid SkillID { get; set; }
         public string SkillName { get; set; }
-        public Nullable<int> MstrSkillID { get; set; }
-    
-        public virtual ICollection<Skill> Skill1 { get; set; }
-        public virtual Skill Skill2 { get; set; }
+        public Nullable<System.Guid> MstrSkillID { get; set; }
     }
 }

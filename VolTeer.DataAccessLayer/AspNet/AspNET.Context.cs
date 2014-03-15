@@ -12,8 +12,10 @@ namespace VolTeer.DataAccessLayer.AspNet
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    using System.Data.Objects;
-    using System.Data.Objects.DataClasses;
+    using System.Data.Entity.Core.Objects;
+    using System.Data;
+    //using System.Data.Objects.DataClasses;
+
     using System.Linq;
     
     public partial class AspNetProviderEntities : DbContext
@@ -28,6 +30,7 @@ namespace VolTeer.DataAccessLayer.AspNet
             throw new UnintentionalCodeFirstException();
         }
     
+        public DbSet<Application> Applications { get; set; }
         public DbSet<aspnet_Applications> aspnet_Applications { get; set; }
         public DbSet<aspnet_Membership> aspnet_Membership { get; set; }
         public DbSet<aspnet_Paths> aspnet_Paths { get; set; }
@@ -38,6 +41,10 @@ namespace VolTeer.DataAccessLayer.AspNet
         public DbSet<aspnet_SchemaVersions> aspnet_SchemaVersions { get; set; }
         public DbSet<aspnet_Users> aspnet_Users { get; set; }
         public DbSet<aspnet_WebEvent_Events> aspnet_WebEvent_Events { get; set; }
+        public DbSet<Membership> Memberships { get; set; }
+        public DbSet<Profile> Profiles { get; set; }
+        public DbSet<Role> Roles { get; set; }
+        public DbSet<User> Users { get; set; }
         public DbSet<vw_aspnet_Applications> vw_aspnet_Applications { get; set; }
         public DbSet<vw_aspnet_MembershipUsers> vw_aspnet_MembershipUsers { get; set; }
         public DbSet<vw_aspnet_Profiles> vw_aspnet_Profiles { get; set; }
