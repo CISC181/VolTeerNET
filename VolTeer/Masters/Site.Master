@@ -55,12 +55,11 @@
                     </section>
                 </div>--%>
             </div>
-            <telerik:RadAjaxManager ID="RadAjaxManager1" runat="server">
-            </telerik:RadAjaxManager>
+
             <div class="float-left">
 
 
-                <telerik:RadMenu ID="RadMenu1" CssClass="mainMenu" runat="server" Skin="Silk">
+                <telerik:RadMenu ID="RadMenu1" CssClass="mainMenu" runat="server" Skin="Office2010Silver">
                     <Items>
                         <telerik:RadMenuItem Text="Home" NavigateUrl="~/Default.aspx" />
                         <telerik:RadMenuItem Text="Account">
