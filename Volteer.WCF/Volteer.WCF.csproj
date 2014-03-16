@@ -76,6 +76,7 @@
     <Content Include="AspNet\AspNetRoles.svc" />
     <Content Include="Service1.svc" />
     <Content Include="ViewSwitcher.ascx" />
+    <Content Include="VT\SampleAddress.svc" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -102,6 +103,10 @@
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="VT\ISampleAddress.cs" />
+    <Compile Include="VT\SampleAddress.svc.cs">
+      <DependentUpon>SampleAddress.svc</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

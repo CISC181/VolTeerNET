@@ -14,6 +14,5 @@ namespace Volteer.WCF.AspNet
     {
         [OperationContract]
         string ListAspNetRoles();
-        //void DoWork();
     }
 }
