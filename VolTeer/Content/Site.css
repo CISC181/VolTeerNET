@@ -8,7 +8,6 @@
     color: #0066cc;
 }
 
-}
 
 html {
     background-color: #e2e2e2;
@@ -17,7 +16,7 @@ html {
 }
 
 body {
-    background-color: #fff;
+    background-color: white;
     border-top: solid 10px #000;
     color: #333;
     font-size: .85em;
@@ -126,14 +125,16 @@ h5, h6 {
 }
 
 header .content-wrapper {
-    padding-top: 20px;
+    padding-top: 5px;
 }
 
 footer {
+    bottom: 5px;
+    position: absolute;
     clear: both;
     background-color: #e2e2e2;
     font-size: .8em;
-    height: 100px;
+    height: 35px;
 }
 
 
@@ -743,7 +744,7 @@ tr.pager td {
         }
 
 
-/* END: Mobile Styles */
+    /* END: Mobile Styles */
 
 
 

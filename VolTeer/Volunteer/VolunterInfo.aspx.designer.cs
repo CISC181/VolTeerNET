@@ -7,99 +7,99 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace VolTeer.Masters {
+namespace VolTeer.Volunteer {
     
     
-    public partial class Site {
+    public partial class VolunterInfo {
         
         /// <summary>
-        /// Head1 control.
+        /// RadAjaxManager1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlHead Head1;
+        protected global::Telerik.Web.UI.RadAjaxManager RadAjaxManager1;
         
         /// <summary>
-        /// PlaceHolder1 control.
+        /// RadAjaxLoadingPanel1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PlaceHolder PlaceHolder1;
+        protected global::Telerik.Web.UI.RadAjaxLoadingPanel RadAjaxLoadingPanel1;
         
         /// <summary>
-        /// HeadContent control.
+        /// rTSVolunteer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder HeadContent;
+        protected global::Telerik.Web.UI.RadTabStrip rTSVolunteer;
         
         /// <summary>
-        /// frmMaster control.
+        /// rMPVolunteer control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm frmMaster;
+        protected global::Telerik.Web.UI.RadMultiPage rMPVolunteer;
         
         /// <summary>
-        /// RadScriptManager1 control.
+        /// rPVBasic control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadScriptManager RadScriptManager1;
+        protected global::Telerik.Web.UI.RadPageView rPVBasic;
         
         /// <summary>
-        /// Image1 control.
+        /// ucVolBasicInfo control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image Image1;
+        protected global::VolTeer.Common.WebControls.ucVolBasicInfo ucVolBasicInfo;
         
         /// <summary>
-        /// LoginView1 control.
+        /// rPVAddress control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LoginView LoginView1;
+        protected global::Telerik.Web.UI.RadPageView rPVAddress;
         
         /// <summary>
-        /// RadMenu1 control.
+        /// ucVolAddress control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadMenu RadMenu1;
+        protected global::VolTeer.Common.WebControls.ucAddress ucVolAddress;
         
         /// <summary>
-        /// FeaturedContent control.
+        /// rPVEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder FeaturedContent;
+        protected global::Telerik.Web.UI.RadPageView rPVEmail;
         
         /// <summary>
-        /// MainContent control.
+        /// rPVPhone control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.ContentPlaceHolder MainContent;
+        protected global::Telerik.Web.UI.RadPageView rPVPhone;
     }
 }

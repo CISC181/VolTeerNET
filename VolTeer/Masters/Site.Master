@@ -16,36 +16,34 @@
 </head>
 <body>
     <form id="frmMaster" runat="server">
-        <%--    <asp:ScriptManager ID="ScriptManager1" runat="server">
-        <Scripts>
-            <asp:ScriptReference Name="jquery" />
-            <asp:ScriptReference Name="jquery.ui.combined" />
-        </Scripts>
-    </asp:ScriptManager>--%>
-        <telerik:RadScriptManager ID="RadScriptManager1" runat="server"></telerik:RadScriptManager>
-
+        <telerik:RadScriptManager ID="RadScriptManager1" runat="server">
+            <Scripts>
+                <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.Core.js" />
+                <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.jQuery.js" />
+                <asp:ScriptReference Assembly="Telerik.Web.UI" Name="Telerik.Web.UI.Common.jQueryInclude.js" />
+            </Scripts>
+        </telerik:RadScriptManager>
         <header>
             <div class="content-wrapper">
                 <div class="float-right">
                     <p class="site-title">
-                        <asp:Image runat="server" ImageUrl="~/Content/themes/base/images/volunteer-green-logo1.jpg" Height="61px" Width="107px" />
+                        <asp:Image ID="Image1" runat="server" ImageUrl="~/Content/themes/base/images/volunteer-green-logo1.jpg" Height="61px" Width="107px" />
                     </p>
 
-                    <%--<a id="A1" runat="server" href="~/Content/themes/base/images/volunteer-green-logo1.jpg">your logo here</a></p>--%>
                 </div>
-                <%--                <div class="float-left">
+                <div class="float-right">
                     <section id="login">
                         <asp:LoginView ID="LoginView1" runat="server" ViewStateMode="Disabled">
                             <AnonymousTemplate>
                                 <ul>
-                                    <li><a id="registerLink" runat="server" href="~/Account/Register.aspx">Register</a></li>
+                                    <%--                                    <li><a id="registerLink" runat="server" href="~/Account/Register.aspx">Register</a></li>
                                     <li><a id="forgotPWLink" runat="server" href="~/Account/Forgot.aspx">Forgot Password?</a></li>
-                                    <li><a id="loginLink" runat="server" href="~/Account/Login.aspx">Log in</a></li>
+                                    <li><a id="loginLink" runat="server" href="~/Account/Login.aspx">Log in</a></li>--%>
                                 </ul>
                             </AnonymousTemplate>
                             <LoggedInTemplate>
                                 <p>
-                                    Hello, <a id="A2" runat="server" class="username" href="~/Account/Manage" title="Manage your account">
+                                    Hello, <a id="A2" runat="server" class="username" href="~/Account/ManageUser.aspx" title="Manage your account">
                                         <asp:LoginName ID="LoginName1" runat="server" CssClass="username" />
                                     </a>!
                                 <asp:LoginStatus ID="LoginStatus1" runat="server" LogoutAction="Redirect" LogoutText="Log off" LogoutPageUrl="~/" />
@@ -53,7 +51,8 @@
                             </LoggedInTemplate>
                         </asp:LoginView>
                     </section>
-                </div>--%>
+                </div>
+
             </div>
 
             <div class="float-left">
@@ -65,7 +64,6 @@
                         <telerik:RadMenuItem Text="Account">
                             <GroupSettings Width="200px" />
                             <Items>
-                                <telerik:RadMenuItem Text="Login" NavigateUrl="~/Account/Login.aspx" EnableImageSprite="true" CssClass="icon-chair"></telerik:RadMenuItem>
                                 <telerik:RadMenuItem Text="Login" NavigateUrl="~/Account/Login.aspx" EnableImageSprite="true" CssClass="icon-chair"></telerik:RadMenuItem>
                                 <telerik:RadMenuItem Text="Forgot Password" NavigateUrl="~/Account/ForgotPassword.aspx" EnableImageSprite="true" CssClass="icon-sofa"></telerik:RadMenuItem>
                                 <telerik:RadMenuItem Text="Manage Roles" NavigateUrl="~/Account/ManageRoles.aspx" EnableImageSprite="true" CssClass="icon-table"></telerik:RadMenuItem>

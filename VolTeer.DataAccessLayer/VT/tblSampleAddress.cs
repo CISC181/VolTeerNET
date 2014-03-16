@@ -10,9 +10,18 @@
 namespace VolTeer.DataAccessLayer.VT
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class sp_Group_Insert_Result
+    public partial class tblSampleAddress
     {
-        public Nullable<int> NewGroupID { get; set; }
+        public int AddrID { get; set; }
+        public Nullable<bool> ActiveFlg { get; set; }
+        public string AddrLine1 { get; set; }
+        public string AddrLine2 { get; set; }
+        public string AddrLine3 { get; set; }
+        public string City { get; set; }
+        public string St { get; set; }
+        public Nullable<int> Zip { get; set; }
+        public Nullable<int> Zip4 { get; set; }
     }
 }

@@ -13,7 +13,6 @@ namespace VolTeer.DataAccessLayer.VT
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
     using System.Data.Entity.Core.Objects;
-    using System.Data;
     //using System.Data.Objects.DataClasses;
     using System.Linq;
     
@@ -38,6 +37,7 @@ namespace VolTeer.DataAccessLayer.VT
         public DbSet<tblProject> tblProjects { get; set; }
         public DbSet<tblProjectEvent> tblProjectEvents { get; set; }
         public DbSet<tblProjectEventContact> tblProjectEventContacts { get; set; }
+        public DbSet<tblState> tblStates { get; set; }
         public DbSet<tblVendContact> tblVendContacts { get; set; }
         public DbSet<tblVendor> tblVendors { get; set; }
         public DbSet<tblVendorAddr> tblVendorAddrs { get; set; }
@@ -45,7 +45,9 @@ namespace VolTeer.DataAccessLayer.VT
         public DbSet<tblAddress1> tblAddress1 { get; set; }
         public DbSet<tblEmail1> tblEmail1 { get; set; }
         public DbSet<tblGroup> tblGroups { get; set; }
+        public DbSet<tblSampleAddress> tblSampleAddresses { get; set; }
         public DbSet<tblSkill> tblSkills { get; set; }
+        public DbSet<tblState1> tblState1 { get; set; }
         public DbSet<tblVolunteer> tblVolunteers { get; set; }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
@@ -585,6 +587,28 @@ namespace VolTeer.DataAccessLayer.VT
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Email_Update_Result>("sp_Email_Update", emailIDParameter, emailAddrParameter);
         }
     
+        public virtual int sp_Group_Delete(Nullable<int> groupID)
+        {
+            var groupIDParameter = groupID.HasValue ?
+                new ObjectParameter("GroupID", groupID) :
+                new ObjectParameter("GroupID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Group_Delete", groupIDParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> sp_Group_Insert(string groupName, Nullable<int> participationLevelID)
+        {
+            var groupNameParameter = groupName != null ?
+                new ObjectParameter("GroupName", groupName) :
+                new ObjectParameter("GroupName", typeof(string));
+    
+            var participationLevelIDParameter = participationLevelID.HasValue ?
+                new ObjectParameter("ParticipationLevelID", participationLevelID) :
+                new ObjectParameter("ParticipationLevelID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_Group_Insert", groupNameParameter, participationLevelIDParameter);
+        }
+    
         public virtual ObjectResult<sp_Group_Select_Result> sp_Group_Select(Nullable<int> groupID)
         {
             var groupIDParameter = groupID.HasValue ?
@@ -592,6 +616,106 @@ namespace VolTeer.DataAccessLayer.VT
                 new ObjectParameter("GroupID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Group_Select_Result>("sp_Group_Select", groupIDParameter);
+        }
+    
+        public virtual int sp_Group_Update(Nullable<int> groupID, string groupName, Nullable<int> participationLevelID)
+        {
+            var groupIDParameter = groupID.HasValue ?
+                new ObjectParameter("GroupID", groupID) :
+                new ObjectParameter("GroupID", typeof(int));
+    
+            var groupNameParameter = groupName != null ?
+                new ObjectParameter("GroupName", groupName) :
+                new ObjectParameter("GroupName", typeof(string));
+    
+            var participationLevelIDParameter = participationLevelID.HasValue ?
+                new ObjectParameter("ParticipationLevelID", participationLevelID) :
+                new ObjectParameter("ParticipationLevelID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Group_Update", groupIDParameter, groupNameParameter, participationLevelIDParameter);
+        }
+    
+        public virtual int sp_Sample_Address_Insert(string addrLine1, string addrLine2, string addrLine3, string city, string st, Nullable<int> zip, Nullable<int> zip4, Nullable<bool> activeFlg)
+        {
+            var addrLine1Parameter = addrLine1 != null ?
+                new ObjectParameter("AddrLine1", addrLine1) :
+                new ObjectParameter("AddrLine1", typeof(string));
+    
+            var addrLine2Parameter = addrLine2 != null ?
+                new ObjectParameter("AddrLine2", addrLine2) :
+                new ObjectParameter("AddrLine2", typeof(string));
+    
+            var addrLine3Parameter = addrLine3 != null ?
+                new ObjectParameter("AddrLine3", addrLine3) :
+                new ObjectParameter("AddrLine3", typeof(string));
+    
+            var cityParameter = city != null ?
+                new ObjectParameter("City", city) :
+                new ObjectParameter("City", typeof(string));
+    
+            var stParameter = st != null ?
+                new ObjectParameter("St", st) :
+                new ObjectParameter("St", typeof(string));
+    
+            var zipParameter = zip.HasValue ?
+                new ObjectParameter("Zip", zip) :
+                new ObjectParameter("Zip", typeof(int));
+    
+            var zip4Parameter = zip4.HasValue ?
+                new ObjectParameter("Zip4", zip4) :
+                new ObjectParameter("Zip4", typeof(int));
+    
+            var activeFlgParameter = activeFlg.HasValue ?
+                new ObjectParameter("ActiveFlg", activeFlg) :
+                new ObjectParameter("ActiveFlg", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Sample_Address_Insert", addrLine1Parameter, addrLine2Parameter, addrLine3Parameter, cityParameter, stParameter, zipParameter, zip4Parameter, activeFlgParameter);
+        }
+    
+        public virtual ObjectResult<sp_Sample_Address_Select_Result> sp_Sample_Address_Select()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Sample_Address_Select_Result>("sp_Sample_Address_Select");
+        }
+    
+        public virtual int sp_Sample_Address_Update(Nullable<int> addrID, string addrLine1, string addrLine2, string addrLine3, string city, string st, Nullable<int> zip, Nullable<int> zip4, Nullable<bool> activeFlg)
+        {
+            var addrIDParameter = addrID.HasValue ?
+                new ObjectParameter("AddrID", addrID) :
+                new ObjectParameter("AddrID", typeof(int));
+    
+            var addrLine1Parameter = addrLine1 != null ?
+                new ObjectParameter("AddrLine1", addrLine1) :
+                new ObjectParameter("AddrLine1", typeof(string));
+    
+            var addrLine2Parameter = addrLine2 != null ?
+                new ObjectParameter("AddrLine2", addrLine2) :
+                new ObjectParameter("AddrLine2", typeof(string));
+    
+            var addrLine3Parameter = addrLine3 != null ?
+                new ObjectParameter("AddrLine3", addrLine3) :
+                new ObjectParameter("AddrLine3", typeof(string));
+    
+            var cityParameter = city != null ?
+                new ObjectParameter("City", city) :
+                new ObjectParameter("City", typeof(string));
+    
+            var stParameter = st != null ?
+                new ObjectParameter("St", st) :
+                new ObjectParameter("St", typeof(string));
+    
+            var zipParameter = zip.HasValue ?
+                new ObjectParameter("Zip", zip) :
+                new ObjectParameter("Zip", typeof(int));
+    
+            var zip4Parameter = zip4.HasValue ?
+                new ObjectParameter("Zip4", zip4) :
+                new ObjectParameter("Zip4", typeof(int));
+    
+            var activeFlgParameter = activeFlg.HasValue ?
+                new ObjectParameter("ActiveFlg", activeFlg) :
+                new ObjectParameter("ActiveFlg", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Sample_Address_Update", addrIDParameter, addrLine1Parameter, addrLine2Parameter, addrLine3Parameter, cityParameter, stParameter, zipParameter, zip4Parameter, activeFlgParameter);
         }
     
         public virtual ObjectResult<sp_Skill_Delete_Result> sp_Skill_Delete(Nullable<System.Guid> skillID, Nullable<int> activeFlg)
@@ -654,6 +778,11 @@ namespace VolTeer.DataAccessLayer.VT
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Skill_Update_Result>("sp_Skill_Update", skillIDParameter, skillNameParameter, mstrSkillIDParameter, reqCertParameter);
         }
     
+        public virtual ObjectResult<sp_State_Select_Result> sp_State_Select()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_State_Select_Result>("sp_State_Select");
+        }
+    
         public virtual ObjectResult<sp_tblEmail_Update1_Result> sp_tblEmail_Update1(ObjectParameter flag, Nullable<int> emailID, string emailAddr)
         {
             var emailIDParameter = emailID.HasValue ?
@@ -693,43 +822,13 @@ namespace VolTeer.DataAccessLayer.VT
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("sp_Volunteer_Select", volIDParameter);
         }
     
-        public virtual ObjectResult<sp_Group_Insert_Result> sp_Group_Insert(string groupName, Nullable<int> participationLevelID)
+        public virtual int sp_Sample_Address_Delete(Nullable<int> addrID)
         {
-            var groupNameParameter = groupName != null ?
-                new ObjectParameter("GroupName", groupName) :
-                new ObjectParameter("GroupName", typeof(string));
+            var addrIDParameter = addrID.HasValue ?
+                new ObjectParameter("AddrID", addrID) :
+                new ObjectParameter("AddrID", typeof(int));
     
-            var participationLevelIDParameter = participationLevelID.HasValue ?
-                new ObjectParameter("ParticipationLevelID", participationLevelID) :
-                new ObjectParameter("ParticipationLevelID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Group_Insert_Result>("sp_Group_Insert", groupNameParameter, participationLevelIDParameter);
-        }
-    
-        public virtual int sp_Group_Update(Nullable<int> groupID, string groupName, Nullable<int> participationLevelID)
-        {
-            var groupIDParameter = groupID.HasValue ?
-                new ObjectParameter("GroupID", groupID) :
-                new ObjectParameter("GroupID", typeof(int));
-    
-            var groupNameParameter = groupName != null ?
-                new ObjectParameter("GroupName", groupName) :
-                new ObjectParameter("GroupName", typeof(string));
-    
-            var participationLevelIDParameter = participationLevelID.HasValue ?
-                new ObjectParameter("ParticipationLevelID", participationLevelID) :
-                new ObjectParameter("ParticipationLevelID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Group_Update", groupIDParameter, groupNameParameter, participationLevelIDParameter);
-        }
-    
-        public virtual int sp_Group_Delete(Nullable<int> groupID)
-        {
-            var groupIDParameter = groupID.HasValue ?
-                new ObjectParameter("GroupID", groupID) :
-                new ObjectParameter("GroupID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Group_Delete", groupIDParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Sample_Address_Delete", addrIDParameter);
         }
     }
 }

@@ -125,14 +125,43 @@
     <Compile Include="Account\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
+    <Compile Include="App_Code\cEnums.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Common\WebControls\ucAddress.ascx.cs">
+      <DependentUpon>ucAddress.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Common\WebControls\ucAddress.ascx.designer.cs">
+      <DependentUpon>ucAddress.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Common\WebControls\ucEmail.ascx.cs">
+      <DependentUpon>ucEmail.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Common\WebControls\ucEmail.ascx.designer.cs">
+      <DependentUpon>ucEmail.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Common\WebControls\ucPhone.ascx.cs">
+      <DependentUpon>ucPhone.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Common\WebControls\ucPhone.ascx.designer.cs">
+      <DependentUpon>ucPhone.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Common\WebControls\ucSkill.ascx.cs">
       <DependentUpon>ucSkill.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Common\WebControls\ucSkill.ascx.designer.cs">
       <DependentUpon>ucSkill.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Common\WebControls\ucVolBasicInfo.ascx.cs">
+      <DependentUpon>ucVolBasicInfo.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Common\WebControls\ucVolBasicInfo.ascx.designer.cs">
+      <DependentUpon>ucVolBasicInfo.ascx</DependentUpon>
     </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
@@ -159,6 +188,11 @@
       <DependentUpon>ManageOrg.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
     <Compile Include="SampleControls\DataManipulation.aspx.cs">
       <DependentUpon>DataManipulation.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -187,6 +221,13 @@
     <Compile Include="SampleControls\RadEditorWebForm.aspx.designer.cs">
       <DependentUpon>RadEditorWebForm.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SampleControls\SampleAddress.aspx.cs">
+      <DependentUpon>SampleAddress.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SampleControls\SampleAddress.aspx.designer.cs">
+      <DependentUpon>SampleAddress.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SampleControls\TestForm1.aspx.cs">
       <DependentUpon>TestForm1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -214,6 +255,13 @@
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Volunteer\VolunterInfo.aspx.cs">
+      <DependentUpon>VolunterInfo.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Volunteer\VolunterInfo.aspx.designer.cs">
+      <DependentUpon>VolunterInfo.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -258,7 +306,11 @@
     <Content Include="App_Data\RadCaptcha\X.wav" />
     <Content Include="App_Data\RadCaptcha\Y.wav" />
     <Content Include="App_Data\RadCaptcha\Z.wav" />
+    <Content Include="Common\WebControls\ucAddress.ascx" />
+    <Content Include="Common\WebControls\ucEmail.ascx" />
+    <Content Include="Common\WebControls\ucPhone.ascx" />
     <Content Include="Common\WebControls\ucSkill.ascx" />
+    <Content Include="Common\WebControls\ucVolBasicInfo.ascx" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
@@ -333,15 +385,21 @@
     <Content Include="SampleControls\InputControls.aspx" />
     <Content Include="SampleControls\ListBox.aspx" />
     <Content Include="SampleControls\RadEditorWebForm.aspx" />
+    <Content Include="SampleControls\SampleAddress.aspx" />
     <Content Include="SampleControls\TestForm1.aspx" />
     <Content Include="Skills\ManageSkills.aspx" />
     <Content Include="ViewSwitcher.ascx" />
+    <Content Include="Volunteer\VolunterInfo.aspx" />
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Masters\Site.Master" />
     <Content Include="packages.config" />
     <Content Include="Site.Mobile.Master" />
+    <Content Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </Content>
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
@@ -390,7 +448,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
+      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
