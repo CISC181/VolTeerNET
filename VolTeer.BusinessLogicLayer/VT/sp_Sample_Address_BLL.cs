@@ -14,7 +14,14 @@ namespace VolTeer.BusinessLogicLayer.VT
 
         public List<sp_Sample_Address_Select_DM> ListSampleAddress()
         {
-            return DAL.ListSampleAddress();
+            try
+            {
+                return DAL.ListSampleAddress();
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
         }
 
         public void UpdateSampleAddress(Nullable<int> addrID, string addrLine1, string addrLine2, string addrLine3, string city, string st, Nullable<int> zip, Nullable<int> zip4, Nullable<bool> activeFlg)

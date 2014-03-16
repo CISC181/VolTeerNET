@@ -8,6 +8,7 @@ using VolTeer.BusinessLogicLayer.VT;
 using VolTeer.DomainModels.VT;
 using Telerik.Web.UI;
 using VolTeer.App_Code;
+using System.Data.SqlClient;
 
 namespace VolTeer.SampleControls
 {
@@ -23,7 +24,18 @@ namespace VolTeer.SampleControls
 
         protected void rGridAddress_NeedDataSource(object sender, Telerik.Web.UI.GridNeedDataSourceEventArgs e)
         {
-            rGridAddress.DataSource = BLL.ListSampleAddress();
+            try
+            {
+                rGridAddress.DataSource = BLL.ListSampleAddress();
+            }
+            catch (SqlException sex)
+            {
+                //TODO: Implement error page to display SQL Exception errors
+            }
+            catch (Exception ex)
+            {
+
+            }
         }
 
 
