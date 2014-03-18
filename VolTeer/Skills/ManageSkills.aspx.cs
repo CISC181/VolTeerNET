@@ -6,7 +6,7 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 
 //TODO: This form uses a user control for Skills.  That control will load 
-//Nick
+//Nick Ben
 namespace VolTeer.Skills
 {
     public partial class ManageSkills : System.Web.UI.Page
