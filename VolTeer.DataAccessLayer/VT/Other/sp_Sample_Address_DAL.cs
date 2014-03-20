@@ -46,6 +46,28 @@ namespace VolTeer.DataAccessLayer.VT.Other
             return list;
 
         }
+                
+        //public List<sp_Sample_Contact_DM> ListSampleAddress(sp_Sample_Contact_DM cSampleContact)
+        //{
+        //    List<sp_Sample_Address_Select_DM> list = new List<sp_Sample_Address_Select_DM>();
+        //    try
+        //    {
+        //        using (VolTeerEntities context = new VolTeerEntities())
+        //        {
+
+        //            var mylist = context.tblSampleAddresses.Include(u => u Profile.Avatar) 
+                            
+        //        } // Guaranteed to close the Connection
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw (ex);
+        //    }
+
+        //    return list;
+
+        //}
+
         #endregion
         #region Update Statements
         /// <summary>

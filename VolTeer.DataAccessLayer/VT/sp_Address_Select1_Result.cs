@@ -11,12 +11,16 @@ namespace VolTeer.DataAccessLayer.VT
 {
     using System;
     
-    public partial class sp_helpdiagrams_Result
+    public partial class sp_Address_Select1_Result
     {
-        public string Database { get; set; }
-        public string Name { get; set; }
-        public int ID { get; set; }
-        public string Owner { get; set; }
-        public int OwnerID { get; set; }
+        public bool ActiveFlg { get; set; }
+        public int AddrID { get; set; }
+        public string AddrLine1 { get; set; }
+        public string AddrLine2 { get; set; }
+        public string AddrLine3 { get; set; }
+        public string City { get; set; }
+        public string St { get; set; }
+        public Nullable<int> Zip { get; set; }
+        public Nullable<int> Zip4 { get; set; }
     }
 }

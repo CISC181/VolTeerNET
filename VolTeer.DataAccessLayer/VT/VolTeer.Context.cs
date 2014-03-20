@@ -31,7 +31,6 @@ namespace VolTeer.DataAccessLayer.VT
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<sysdiagram> sysdiagrams { get; set; }
         public DbSet<tblAddress> tblAddresses { get; set; }
         public DbSet<tblContact> tblContacts { get; set; }
         public DbSet<tblContactEmail> tblContactEmails { get; set; }
@@ -52,27 +51,7 @@ namespace VolTeer.DataAccessLayer.VT
         public DbSet<tblSkill> tblSkills { get; set; }
         public DbSet<tblState1> tblState1 { get; set; }
         public DbSet<tblVolunteer> tblVolunteers { get; set; }
-    
-        public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
-        {
-            var diagramnameParameter = diagramname != null ?
-                new ObjectParameter("diagramname", diagramname) :
-                new ObjectParameter("diagramname", typeof(string));
-    
-            var owner_idParameter = owner_id.HasValue ?
-                new ObjectParameter("owner_id", owner_id) :
-                new ObjectParameter("owner_id", typeof(int));
-    
-            var versionParameter = version.HasValue ?
-                new ObjectParameter("version", version) :
-                new ObjectParameter("version", typeof(int));
-    
-            var definitionParameter = definition != null ?
-                new ObjectParameter("definition", definition) :
-                new ObjectParameter("definition", typeof(byte[]));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
-        }
+        public DbSet<tblSampleContact> tblSampleContacts { get; set; }
     
         public virtual int sp_creatediagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
@@ -108,7 +87,7 @@ namespace VolTeer.DataAccessLayer.VT
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
         }
     
-        public virtual ObjectResult<sp_helpdiagramdefinition_Result> sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
+        public virtual int sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
         {
             var diagramnameParameter = diagramname != null ?
                 new ObjectParameter("diagramname", diagramname) :
@@ -118,10 +97,10 @@ namespace VolTeer.DataAccessLayer.VT
                 new ObjectParameter("owner_id", owner_id) :
                 new ObjectParameter("owner_id", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagramdefinition_Result>("sp_helpdiagramdefinition", diagramnameParameter, owner_idParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_helpdiagramdefinition", diagramnameParameter, owner_idParameter);
         }
     
-        public virtual ObjectResult<sp_helpdiagrams_Result> sp_helpdiagrams(string diagramname, Nullable<int> owner_id)
+        public virtual int sp_helpdiagrams(string diagramname, Nullable<int> owner_id)
         {
             var diagramnameParameter = diagramname != null ?
                 new ObjectParameter("diagramname", diagramname) :
@@ -131,7 +110,7 @@ namespace VolTeer.DataAccessLayer.VT
                 new ObjectParameter("owner_id", owner_id) :
                 new ObjectParameter("owner_id", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagrams_Result>("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
         }
     
         public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)
@@ -149,11 +128,6 @@ namespace VolTeer.DataAccessLayer.VT
                 new ObjectParameter("new_diagramname", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
-        }
-    
-        public virtual int sp_upgraddiagrams()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
     
         public virtual int sp_tblAddress_Delete(Nullable<int> addrID, ObjectParameter flag)
@@ -873,6 +847,354 @@ namespace VolTeer.DataAccessLayer.VT
                 new ObjectParameter("ActiveFlg", typeof(bool));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_Address_Insert", addrLine1Parameter, addrLine2Parameter, addrLine3Parameter, cityParameter, stParameter, zipParameter, zip4Parameter, activeFlgParameter);
+        }
+    
+        public virtual int sp_Address_Delete1(Nullable<int> addrID)
+        {
+            var addrIDParameter = addrID.HasValue ?
+                new ObjectParameter("AddrID", addrID) :
+                new ObjectParameter("AddrID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Address_Delete1", addrIDParameter);
+        }
+    
+        public virtual ObjectResult<sp_Address_Insert1_Result> sp_Address_Insert1(string addrLine1, string addrLine2, string addrLine3, string city, string st, Nullable<int> zip, Nullable<int> zip4)
+        {
+            var addrLine1Parameter = addrLine1 != null ?
+                new ObjectParameter("AddrLine1", addrLine1) :
+                new ObjectParameter("AddrLine1", typeof(string));
+    
+            var addrLine2Parameter = addrLine2 != null ?
+                new ObjectParameter("AddrLine2", addrLine2) :
+                new ObjectParameter("AddrLine2", typeof(string));
+    
+            var addrLine3Parameter = addrLine3 != null ?
+                new ObjectParameter("AddrLine3", addrLine3) :
+                new ObjectParameter("AddrLine3", typeof(string));
+    
+            var cityParameter = city != null ?
+                new ObjectParameter("City", city) :
+                new ObjectParameter("City", typeof(string));
+    
+            var stParameter = st != null ?
+                new ObjectParameter("St", st) :
+                new ObjectParameter("St", typeof(string));
+    
+            var zipParameter = zip.HasValue ?
+                new ObjectParameter("Zip", zip) :
+                new ObjectParameter("Zip", typeof(int));
+    
+            var zip4Parameter = zip4.HasValue ?
+                new ObjectParameter("Zip4", zip4) :
+                new ObjectParameter("Zip4", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Address_Insert1_Result>("sp_Address_Insert1", addrLine1Parameter, addrLine2Parameter, addrLine3Parameter, cityParameter, stParameter, zipParameter, zip4Parameter);
+        }
+    
+        public virtual int sp_Address_MassUpdate(string xML_IN)
+        {
+            var xML_INParameter = xML_IN != null ?
+                new ObjectParameter("XML_IN", xML_IN) :
+                new ObjectParameter("XML_IN", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Address_MassUpdate", xML_INParameter);
+        }
+    
+        public virtual ObjectResult<sp_Address_Select1_Result> sp_Address_Select1(Nullable<int> addrID)
+        {
+            var addrIDParameter = addrID.HasValue ?
+                new ObjectParameter("AddrID", addrID) :
+                new ObjectParameter("AddrID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Address_Select1_Result>("sp_Address_Select1", addrIDParameter);
+        }
+    
+        public virtual int sp_Address_Update1(Nullable<int> addrId, Nullable<bool> activeFlg, string addrLine1, string addrLine2, string addrLine3, string city, string st, Nullable<int> zip, Nullable<int> zip4)
+        {
+            var addrIdParameter = addrId.HasValue ?
+                new ObjectParameter("AddrId", addrId) :
+                new ObjectParameter("AddrId", typeof(int));
+    
+            var activeFlgParameter = activeFlg.HasValue ?
+                new ObjectParameter("ActiveFlg", activeFlg) :
+                new ObjectParameter("ActiveFlg", typeof(bool));
+    
+            var addrLine1Parameter = addrLine1 != null ?
+                new ObjectParameter("AddrLine1", addrLine1) :
+                new ObjectParameter("AddrLine1", typeof(string));
+    
+            var addrLine2Parameter = addrLine2 != null ?
+                new ObjectParameter("AddrLine2", addrLine2) :
+                new ObjectParameter("AddrLine2", typeof(string));
+    
+            var addrLine3Parameter = addrLine3 != null ?
+                new ObjectParameter("AddrLine3", addrLine3) :
+                new ObjectParameter("AddrLine3", typeof(string));
+    
+            var cityParameter = city != null ?
+                new ObjectParameter("City", city) :
+                new ObjectParameter("City", typeof(string));
+    
+            var stParameter = st != null ?
+                new ObjectParameter("St", st) :
+                new ObjectParameter("St", typeof(string));
+    
+            var zipParameter = zip.HasValue ?
+                new ObjectParameter("Zip", zip) :
+                new ObjectParameter("Zip", typeof(int));
+    
+            var zip4Parameter = zip4.HasValue ?
+                new ObjectParameter("Zip4", zip4) :
+                new ObjectParameter("Zip4", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Address_Update1", addrIdParameter, activeFlgParameter, addrLine1Parameter, addrLine2Parameter, addrLine3Parameter, cityParameter, stParameter, zipParameter, zip4Parameter);
+        }
+    
+        public virtual int sp_Contact_Delete(Nullable<System.Guid> contactID)
+        {
+            var contactIDParameter = contactID.HasValue ?
+                new ObjectParameter("ContactID", contactID) :
+                new ObjectParameter("ContactID", typeof(System.Guid));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Contact_Delete", contactIDParameter);
+        }
+    
+        public virtual ObjectResult<sp_Contact_Insert_Result> sp_Contact_Insert(string contactFirstName, string contactMiddleName, string contactLastName)
+        {
+            var contactFirstNameParameter = contactFirstName != null ?
+                new ObjectParameter("ContactFirstName", contactFirstName) :
+                new ObjectParameter("ContactFirstName", typeof(string));
+    
+            var contactMiddleNameParameter = contactMiddleName != null ?
+                new ObjectParameter("ContactMiddleName", contactMiddleName) :
+                new ObjectParameter("ContactMiddleName", typeof(string));
+    
+            var contactLastNameParameter = contactLastName != null ?
+                new ObjectParameter("ContactLastName", contactLastName) :
+                new ObjectParameter("ContactLastName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Contact_Insert_Result>("sp_Contact_Insert", contactFirstNameParameter, contactMiddleNameParameter, contactLastNameParameter);
+        }
+    
+        public virtual int sp_Contact_MassUpdate(string xML_IN)
+        {
+            var xML_INParameter = xML_IN != null ?
+                new ObjectParameter("XML_IN", xML_IN) :
+                new ObjectParameter("XML_IN", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Contact_MassUpdate", xML_INParameter);
+        }
+    
+        public virtual ObjectResult<sp_Contact_Select_Result> sp_Contact_Select(Nullable<System.Guid> contactID)
+        {
+            var contactIDParameter = contactID.HasValue ?
+                new ObjectParameter("ContactID", contactID) :
+                new ObjectParameter("ContactID", typeof(System.Guid));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Contact_Select_Result>("sp_Contact_Select", contactIDParameter);
+        }
+    
+        public virtual int sp_Contact_Update(Nullable<System.Guid> contactID, string contactFirstName, string contactMiddleName, string contactLastName, Nullable<bool> activeFlg)
+        {
+            var contactIDParameter = contactID.HasValue ?
+                new ObjectParameter("ContactID", contactID) :
+                new ObjectParameter("ContactID", typeof(System.Guid));
+    
+            var contactFirstNameParameter = contactFirstName != null ?
+                new ObjectParameter("ContactFirstName", contactFirstName) :
+                new ObjectParameter("ContactFirstName", typeof(string));
+    
+            var contactMiddleNameParameter = contactMiddleName != null ?
+                new ObjectParameter("ContactMiddleName", contactMiddleName) :
+                new ObjectParameter("ContactMiddleName", typeof(string));
+    
+            var contactLastNameParameter = contactLastName != null ?
+                new ObjectParameter("ContactLastName", contactLastName) :
+                new ObjectParameter("ContactLastName", typeof(string));
+    
+            var activeFlgParameter = activeFlg.HasValue ?
+                new ObjectParameter("ActiveFlg", activeFlg) :
+                new ObjectParameter("ActiveFlg", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Contact_Update", contactIDParameter, contactFirstNameParameter, contactMiddleNameParameter, contactLastNameParameter, activeFlgParameter);
+        }
+    
+        public virtual int sp_Email_Delete(Nullable<int> emailID)
+        {
+            var emailIDParameter = emailID.HasValue ?
+                new ObjectParameter("EmailID", emailID) :
+                new ObjectParameter("EmailID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Email_Delete", emailIDParameter);
+        }
+    
+        public virtual int sp_Email_Insert1(string emailAddr)
+        {
+            var emailAddrParameter = emailAddr != null ?
+                new ObjectParameter("EmailAddr", emailAddr) :
+                new ObjectParameter("EmailAddr", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Email_Insert1", emailAddrParameter);
+        }
+    
+        public virtual int sp_Email_MassUpdate(string xML_IN)
+        {
+            var xML_INParameter = xML_IN != null ?
+                new ObjectParameter("XML_IN", xML_IN) :
+                new ObjectParameter("XML_IN", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Email_MassUpdate", xML_INParameter);
+        }
+    
+        public virtual ObjectResult<sp_Email_Select1_Result> sp_Email_Select1()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Email_Select1_Result>("sp_Email_Select1");
+        }
+    
+        public virtual int sp_Email_Update1(Nullable<int> emailID, string emailAddr, Nullable<bool> activeFlg)
+        {
+            var emailIDParameter = emailID.HasValue ?
+                new ObjectParameter("EmailID", emailID) :
+                new ObjectParameter("EmailID", typeof(int));
+    
+            var emailAddrParameter = emailAddr != null ?
+                new ObjectParameter("EmailAddr", emailAddr) :
+                new ObjectParameter("EmailAddr", typeof(string));
+    
+            var activeFlgParameter = activeFlg.HasValue ?
+                new ObjectParameter("ActiveFlg", activeFlg) :
+                new ObjectParameter("ActiveFlg", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Email_Update1", emailIDParameter, emailAddrParameter, activeFlgParameter);
+        }
+    
+        public virtual int sp_EventRating_Delete(Nullable<int> ratingID)
+        {
+            var ratingIDParameter = ratingID.HasValue ?
+                new ObjectParameter("RatingID", ratingID) :
+                new ObjectParameter("RatingID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_EventRating_Delete", ratingIDParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> sp_EventRating_Insert(Nullable<System.Guid> eventID, Nullable<System.Guid> volID, Nullable<int> ratingValue)
+        {
+            var eventIDParameter = eventID.HasValue ?
+                new ObjectParameter("EventID", eventID) :
+                new ObjectParameter("EventID", typeof(System.Guid));
+    
+            var volIDParameter = volID.HasValue ?
+                new ObjectParameter("VolID", volID) :
+                new ObjectParameter("VolID", typeof(System.Guid));
+    
+            var ratingValueParameter = ratingValue.HasValue ?
+                new ObjectParameter("RatingValue", ratingValue) :
+                new ObjectParameter("RatingValue", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_EventRating_Insert", eventIDParameter, volIDParameter, ratingValueParameter);
+        }
+    
+        public virtual int sp_EventRating_MassUpdate(string xML_IN)
+        {
+            var xML_INParameter = xML_IN != null ?
+                new ObjectParameter("XML_IN", xML_IN) :
+                new ObjectParameter("XML_IN", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_EventRating_MassUpdate", xML_INParameter);
+        }
+    
+        public virtual ObjectResult<sp_EventRating_Select_Result> sp_EventRating_Select(Nullable<int> ratingID)
+        {
+            var ratingIDParameter = ratingID.HasValue ?
+                new ObjectParameter("RatingID", ratingID) :
+                new ObjectParameter("RatingID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_EventRating_Select_Result>("sp_EventRating_Select", ratingIDParameter);
+        }
+    
+        public virtual int sp_EventRating_Update(ObjectParameter flag, Nullable<int> ratingID, Nullable<System.Guid> eventID, Nullable<System.Guid> volID, Nullable<int> ratingValue, Nullable<bool> activeFlg)
+        {
+            var ratingIDParameter = ratingID.HasValue ?
+                new ObjectParameter("RatingID", ratingID) :
+                new ObjectParameter("RatingID", typeof(int));
+    
+            var eventIDParameter = eventID.HasValue ?
+                new ObjectParameter("EventID", eventID) :
+                new ObjectParameter("EventID", typeof(System.Guid));
+    
+            var volIDParameter = volID.HasValue ?
+                new ObjectParameter("VolID", volID) :
+                new ObjectParameter("VolID", typeof(System.Guid));
+    
+            var ratingValueParameter = ratingValue.HasValue ?
+                new ObjectParameter("RatingValue", ratingValue) :
+                new ObjectParameter("RatingValue", typeof(int));
+    
+            var activeFlgParameter = activeFlg.HasValue ?
+                new ObjectParameter("ActiveFlg", activeFlg) :
+                new ObjectParameter("ActiveFlg", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_EventRating_Update", flag, ratingIDParameter, eventIDParameter, volIDParameter, ratingValueParameter, activeFlgParameter);
+        }
+    
+        public virtual int sp_Address_MassUpdate1(string xML_IN)
+        {
+            var xML_INParameter = xML_IN != null ?
+                new ObjectParameter("XML_IN", xML_IN) :
+                new ObjectParameter("XML_IN", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Address_MassUpdate1", xML_INParameter);
+        }
+    
+        public virtual ObjectResult<sp_Email_Delete1_Result> sp_Email_Delete1(ObjectParameter flag, Nullable<int> emailID, string emailAddr, Nullable<bool> activeFlg)
+        {
+            var emailIDParameter = emailID.HasValue ?
+                new ObjectParameter("EmailID", emailID) :
+                new ObjectParameter("EmailID", typeof(int));
+    
+            var emailAddrParameter = emailAddr != null ?
+                new ObjectParameter("EmailAddr", emailAddr) :
+                new ObjectParameter("EmailAddr", typeof(string));
+    
+            var activeFlgParameter = activeFlg.HasValue ?
+                new ObjectParameter("ActiveFlg", activeFlg) :
+                new ObjectParameter("ActiveFlg", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Email_Delete1_Result>("sp_Email_Delete1", flag, emailIDParameter, emailAddrParameter, activeFlgParameter);
+        }
+    
+        public virtual int sp_Volenteer_Delete(Nullable<System.Guid> volID)
+        {
+            var volIDParameter = volID.HasValue ?
+                new ObjectParameter("VolID", volID) :
+                new ObjectParameter("VolID", typeof(System.Guid));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Volenteer_Delete", volIDParameter);
+        }
+    
+        public virtual int sp_Volenteer_Update(Nullable<System.Guid> volID, Nullable<bool> activeFlg, string volFirstName, string volMiddleName, string volLastName)
+        {
+            var volIDParameter = volID.HasValue ?
+                new ObjectParameter("VolID", volID) :
+                new ObjectParameter("VolID", typeof(System.Guid));
+    
+            var activeFlgParameter = activeFlg.HasValue ?
+                new ObjectParameter("ActiveFlg", activeFlg) :
+                new ObjectParameter("ActiveFlg", typeof(bool));
+    
+            var volFirstNameParameter = volFirstName != null ?
+                new ObjectParameter("VolFirstName", volFirstName) :
+                new ObjectParameter("VolFirstName", typeof(string));
+    
+            var volMiddleNameParameter = volMiddleName != null ?
+                new ObjectParameter("VolMiddleName", volMiddleName) :
+                new ObjectParameter("VolMiddleName", typeof(string));
+    
+            var volLastNameParameter = volLastName != null ?
+                new ObjectParameter("VolLastName", volLastName) :
+                new ObjectParameter("VolLastName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Volenteer_Update", volIDParameter, activeFlgParameter, volFirstNameParameter, volMiddleNameParameter, volLastNameParameter);
         }
     }
 }

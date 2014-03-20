@@ -5,26 +5,25 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="4ac437ae6f344b71961c3fced58f44a4" Name="Diagram1">
-        <EntityTypeShape EntityType="VolTeerModel.sysdiagram" Width="1.5" PointX="10.75" PointY="1" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolTeerModel.tblAddress" Width="1.5" PointX="6.5" PointY="16.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolTeerModel.tblContact" Width="1.5" PointX="5.75" PointY="9.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolTeerModel.tblContactEmail" Width="1.5" PointX="8" PointY="9.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolTeerModel.tblEmail" Width="1.5" PointX="5.75" PointY="14" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolTeerModel.tblEventRating" Width="1.5" PointX="8" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolTeerModel.tblProject" Width="1.5" PointX="8.75" PointY="17.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolTeerModel.tblProjectEvent" Width="1.5" PointX="5.75" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolTeerModel.tblProjectEventContact" Width="1.5" PointX="8" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolTeerModel.tblAddress" Width="1.5" PointX="15.625" PointY="15.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolTeerModel.tblContact" Width="1.5" PointX="14.125" PointY="3.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolTeerModel.tblContactEmail" Width="1.5" PointX="7.875" PointY="6.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolTeerModel.tblEmail" Width="1.5" PointX="8.125" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolTeerModel.tblEventRating" Width="1.5" PointX="10" PointY="0.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolTeerModel.tblProject" Width="1.5" PointX="11.125" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolTeerModel.tblProjectEvent" Width="1.5" PointX="7.875" PointY="2.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolTeerModel.tblProjectEventContact" Width="1.5" PointX="10.75" PointY="3.125" IsExpanded="true" />
         <EntityTypeShape EntityType="VolTeerModel.tblState" Width="1.5" PointX="0.75" PointY="11" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolTeerModel.tblVendContact" Width="1.5" PointX="8" PointY="12.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolTeerModel.tblVendor" Width="1.5" PointX="8.75" PointY="3.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolTeerModel.tblVendorAddr" Width="1.5" PointX="11" PointY="12.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolTeerModel.tblVendorProjContact" Width="1.5" PointX="11" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolTeerModel.tblVendContact" Width="1.5" PointX="13.375" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolTeerModel.tblVendor" Width="1.5" PointX="10.5" PointY="7.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolTeerModel.tblVendorAddr" Width="1.5" PointX="12.625" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolTeerModel.tblVendorProjContact" Width="2.125" PointX="6.875" PointY="12.875" IsExpanded="true" />
         <EntityTypeShape EntityType="VolTeerModel.tblAddress1" Width="1.5" PointX="0.75" PointY="1.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolTeerModel.tblEmail1" Width="1.5" PointX="3" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolTeerModel.tblEmail1" Width="1.5" PointX="5.75" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="VolTeerModel.tblGroup" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolTeerModel.tblSampleAddress" Width="1.5" PointX="2.75" PointY="11" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolTeerModel.tblSkill" Width="1.5" PointX="3" PointY="7.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolTeerModel.tblState1" Width="1.5" PointX="10.75" PointY="4" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolTeerModel.tblSampleAddress" Width="2.375" PointX="2.75" PointY="11" IsExpanded="true" FillColor="0, 192, 0" />
+        <EntityTypeShape EntityType="VolTeerModel.tblSkill" Width="1.5" PointX="1.375" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolTeerModel.tblState1" Width="1.5" PointX="19.75" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="VolTeerModel.tblVolunteer" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
         <AssociationConnector Association="VolTeerModel.FK_tblProject_tblAddress" ManuallyRouted="false" />
         <AssociationConnector Association="VolTeerModel.FK_tblVendorAddr_tblAddress" ManuallyRouted="false" />
@@ -45,6 +44,8 @@
         <AssociationConnector Association="VolTeerModel.tblVolAddr" ManuallyRouted="false" />
         <AssociationConnector Association="VolTeerModel.tblVolEmail" ManuallyRouted="false" />
         <AssociationConnector Association="VolTeerModel.tblVolSkill" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="VolTeerModel.tblSampleContact" Width="3.75" PointX="1.375" PointY="17.75" />
+        <AssociationConnector Association="VolTeerModel.tblSampleContactAddr1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

@@ -11,9 +11,13 @@ namespace VolTeer.DataAccessLayer.VT
 {
     using System;
     
-    public partial class sp_helpdiagramdefinition_Result
+    public partial class sp_Address_Insert1_Result
     {
-        public Nullable<int> version { get; set; }
-        public byte[] definition { get; set; }
+        public Nullable<int> ErrorNumber { get; set; }
+        public Nullable<int> ErrorSeverity { get; set; }
+        public Nullable<int> ErrorState { get; set; }
+        public string ErrorProcedure { get; set; }
+        public Nullable<int> ErrorLine { get; set; }
+        public string ErrorMessage { get; set; }
     }
 }

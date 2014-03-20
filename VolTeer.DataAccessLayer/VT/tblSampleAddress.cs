@@ -14,6 +14,11 @@ namespace VolTeer.DataAccessLayer.VT
     
     public partial class tblSampleAddress
     {
+        public tblSampleAddress()
+        {
+            this.tblSampleContacts = new HashSet<tblSampleContact>();
+        }
+    
         public int AddrID { get; set; }
         public Nullable<bool> ActiveFlg { get; set; }
         public string AddrLine1 { get; set; }
@@ -23,5 +28,7 @@ namespace VolTeer.DataAccessLayer.VT
         public string St { get; set; }
         public Nullable<int> Zip { get; set; }
         public Nullable<int> Zip4 { get; set; }
+    
+        public virtual ICollection<tblSampleContact> tblSampleContacts { get; set; }
     }
 }
