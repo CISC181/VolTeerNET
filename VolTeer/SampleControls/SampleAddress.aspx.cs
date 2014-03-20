@@ -95,12 +95,15 @@ namespace VolTeer.SampleControls
             if (iAction == (int)RecordAction.Update)
             {
                 CheckBox ActiveFlg = (CheckBox)eeditedItem.FindControl("chkActiveUpd");
-                BLL.UpdateSampleAddress(iAddrID, AddrLine1, AddrLine2, AddrLine3, City, rddSt.SelectedValue.ToString(), Zip, Zip4, ActiveFlg.Checked);
+                //BLL.UpdateSampleAddress(iAddrID, AddrLine1, AddrLine2, AddrLine3, City, rddSt.SelectedValue.ToString(), Zip, Zip4, ActiveFlg.Checked);
+                BLL.UpdateSampleAddressContext(iAddrID, AddrLine1, AddrLine2, AddrLine3, City, rddSt.SelectedValue.ToString(), Zip, Zip4, ActiveFlg.Checked);
+
+                
             }
             else if (iAction == (int)RecordAction.Insert)
             {
                 CheckBox ActiveFlg = (CheckBox)eeditedItem.FindControl("chkActiveIns");
-                BLL.InsertSampleAddress(AddrLine1, AddrLine2, AddrLine3, City, rddSt.SelectedValue.ToString(), Zip, Zip4, ActiveFlg.Checked);
+                BLL.InsertSampleAddressContext(AddrLine1, AddrLine2, AddrLine3, City, rddSt.SelectedValue.ToString(), Zip, Zip4, ActiveFlg.Checked);
             }
 
         }

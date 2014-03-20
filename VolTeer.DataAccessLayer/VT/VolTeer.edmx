@@ -2074,6 +2074,34 @@
                 <ScalarProperty Name="Zip4" ColumnName="Zip4" />
               </MappingFragment>
             </EntityTypeMapping>
+            <EntityTypeMapping TypeName="VolTeerModel.tblSampleAddress">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="VolTeerModel.Store.sp_Sample_Address_Insert">
+                  <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" />
+                  <ScalarProperty Name="Zip4" ParameterName="Zip4" />
+                  <ScalarProperty Name="Zip" ParameterName="Zip" />
+                  <ScalarProperty Name="St" ParameterName="St" />
+                  <ScalarProperty Name="City" ParameterName="City" />
+                  <ScalarProperty Name="AddrLine3" ParameterName="AddrLine3" />
+                  <ScalarProperty Name="AddrLine2" ParameterName="AddrLine2" />
+                  <ScalarProperty Name="AddrLine1" ParameterName="AddrLine1" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="VolTeerModel.Store.sp_Sample_Address_Update">
+                  <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" Version="Current" />
+                  <ScalarProperty Name="Zip4" ParameterName="Zip4" Version="Current" />
+                  <ScalarProperty Name="Zip" ParameterName="Zip" Version="Current" />
+                  <ScalarProperty Name="St" ParameterName="St" Version="Current" />
+                  <ScalarProperty Name="City" ParameterName="City" Version="Current" />
+                  <ScalarProperty Name="AddrLine3" ParameterName="AddrLine3" Version="Current" />
+                  <ScalarProperty Name="AddrLine2" ParameterName="AddrLine2" Version="Current" />
+                  <ScalarProperty Name="AddrLine1" ParameterName="AddrLine1" Version="Current" />
+                  <ScalarProperty Name="AddrID" ParameterName="AddrID" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="VolTeerModel.Store.sp_Sample_Address_Delete">
+                  <ScalarProperty Name="AddrID" ParameterName="AddrID" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblSkills">
             <EntityTypeMapping TypeName="VolTeerModel.tblSkill">
