@@ -445,5 +445,10 @@
     <Build Include="Security\Vend.sql" />
     <Build Include="Security\Vol.sql" />
     <Build Include="Security\Permissions.sql" />
+    <Build Include="Vol\Tables\tblSampleContact.sql" />
+    <Build Include="Vol\Tables\tblSampleContactAddr.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="VolTeer.SQLServer.refactorlog" />
   </ItemGroup>
 </Project>
