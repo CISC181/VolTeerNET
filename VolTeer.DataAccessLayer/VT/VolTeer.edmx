@@ -298,6 +298,7 @@
           </Key>
           <Property Name="EmailID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="EmailAddr" Type="nvarchar" MaxLength="100" />
+          <Property Name="ActiveFlg" Type="bit" />
         </EntityType>
         <EntityType Name="tblGroup">
           <Key>
@@ -306,6 +307,7 @@
           <Property Name="GroupID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="GroupName" Type="nvarchar" MaxLength="50" />
           <Property Name="ParticipationLevelID" Type="int" />
+          <Property Name="ActiveFlg" Type="bit" />
         </EntityType>
         <EntityType Name="tblGroupAddr">
           <Key>
@@ -722,85 +724,6 @@
           <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="sp_tblAddress_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
-          <Parameter Name="AddrID" Type="int" Mode="In" />
-          <Parameter Name="flag" Type="bit" Mode="InOut" />
-        </Function>
-        <Function Name="sp_tblAddress_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
-          <Parameter Name="AddrLine1" Type="nvarchar" Mode="In" />
-          <Parameter Name="AddrLine2" Type="nvarchar" Mode="In" />
-          <Parameter Name="AddrLine3" Type="nvarchar" Mode="In" />
-          <Parameter Name="City" Type="nvarchar" Mode="In" />
-          <Parameter Name="St" Type="char" Mode="In" />
-          <Parameter Name="Zip" Type="int" Mode="In" />
-          <Parameter Name="Zip4" Type="int" Mode="In" />
-          <Parameter Name="addrid" Type="int" Mode="InOut" />
-        </Function>
-        <Function Name="sp_tblAddress_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend" />
-        <Function Name="sp_tblAddress_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
-          <Parameter Name="flag" Type="bit" Mode="InOut" />
-          <Parameter Name="AddrID" Type="int" Mode="In" />
-          <Parameter Name="AddrLine1" Type="nvarchar" Mode="In" />
-          <Parameter Name="AddrLine2" Type="nvarchar" Mode="In" />
-          <Parameter Name="AddrLine3" Type="nvarchar" Mode="In" />
-          <Parameter Name="City" Type="nvarchar" Mode="In" />
-          <Parameter Name="St" Type="char" Mode="In" />
-          <Parameter Name="Zip" Type="int" Mode="In" />
-          <Parameter Name="Zip4" Type="int" Mode="In" />
-          <Parameter Name="ActiveFlg" Type="bit" Mode="In" />
-        </Function>
-        <Function Name="sp_tblContact_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
-          <Parameter Name="ContactID" Type="uniqueidentifier" Mode="In" />
-          <Parameter Name="flag" Type="bit" Mode="InOut" />
-        </Function>
-        <Function Name="sp_tblContact_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
-          <Parameter Name="ContactFirstName" Type="nvarchar" Mode="In" />
-          <Parameter Name="ContactMiddleName" Type="nvarchar" Mode="In" />
-          <Parameter Name="ContactLastName" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="sp_tblContact_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend" />
-        <Function Name="sp_tblContact_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
-          <Parameter Name="flag" Type="bit" Mode="InOut" />
-          <Parameter Name="ContactID" Type="uniqueidentifier" Mode="In" />
-          <Parameter Name="ContactFirstName" Type="nvarchar" Mode="In" />
-          <Parameter Name="ContactMiddleName" Type="nvarchar" Mode="In" />
-          <Parameter Name="ContactLastName" Type="nvarchar" Mode="In" />
-          <Parameter Name="ActiveFlg" Type="bit" Mode="In" />
-        </Function>
-        <Function Name="sp_tblEmail_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
-          <Parameter Name="EmailID" Type="int" Mode="In" />
-          <Parameter Name="flag" Type="bit" Mode="InOut" />
-        </Function>
-        <Function Name="sp_tblEmail_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
-          <Parameter Name="EmailAddr" Type="nvarchar" Mode="In" />
-          <Parameter Name="emailid" Type="int" Mode="InOut" />
-        </Function>
-        <Function Name="sp_tblEmail_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend" />
-        <Function Name="sp_tblEmail_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
-          <Parameter Name="flag" Type="bit" Mode="InOut" />
-          <Parameter Name="EmailID" Type="int" Mode="In" />
-          <Parameter Name="EmailAddr" Type="nvarchar" Mode="In" />
-          <Parameter Name="ActiveFlg" Type="bit" Mode="In" />
-        </Function>
-        <Function Name="sp_tblEventRating_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
-          <Parameter Name="RatingID" Type="int" Mode="In" />
-          <Parameter Name="flag" Type="bit" Mode="InOut" />
-        </Function>
-        <Function Name="sp_tblEventRating_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
-          <Parameter Name="EventID" Type="uniqueidentifier" Mode="In" />
-          <Parameter Name="VolID" Type="uniqueidentifier" Mode="In" />
-          <Parameter Name="RatingValue" Type="int" Mode="In" />
-          <Parameter Name="rateid" Type="int" Mode="InOut" />
-        </Function>
-        <Function Name="sp_tblEventRating_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend" />
-        <Function Name="sp_tblEventRating_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
-          <Parameter Name="flag" Type="bit" Mode="InOut" />
-          <Parameter Name="RatingID" Type="int" Mode="In" />
-          <Parameter Name="EventID" Type="uniqueidentifier" Mode="In" />
-          <Parameter Name="VolID" Type="uniqueidentifier" Mode="In" />
-          <Parameter Name="RatingValue" Type="int" Mode="In" />
-          <Parameter Name="ActiveFlg" Type="bit" Mode="In" />
-        </Function>
         <Function Name="sp_tblProject_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
           <Parameter Name="ProjectID" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="flag" Type="bit" Mode="InOut" />
@@ -840,6 +763,16 @@
         <Function Name="sp_Address_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="AddrID" Type="int" Mode="In" />
         </Function>
+        <Function Name="sp_Address_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
+          <Parameter Name="AddrLine1" Type="nvarchar" Mode="In" />
+          <Parameter Name="AddrLine2" Type="nvarchar" Mode="In" />
+          <Parameter Name="AddrLine3" Type="nvarchar" Mode="In" />
+          <Parameter Name="City" Type="nvarchar" Mode="In" />
+          <Parameter Name="St" Type="char" Mode="In" />
+          <Parameter Name="Zip" Type="int" Mode="In" />
+          <Parameter Name="Zip4" Type="int" Mode="In" />
+          <Parameter Name="ActiveFlg" Type="bit" Mode="In" />
+        </Function>
         <Function Name="sp_Address_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="AddrID" Type="int" Mode="In" />
         </Function>
@@ -866,6 +799,7 @@
         </Function>
         <Function Name="sp_Group_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="GroupID" Type="int" Mode="In" />
+          <Parameter Name="ActiveFlg" Type="bit" Mode="In" />
         </Function>
         <Function Name="sp_Group_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="GroupName" Type="nvarchar" Mode="In" />
@@ -923,7 +857,7 @@
           <Parameter Name="ReqCert" Type="bit" Mode="In" />
         </Function>
         <Function Name="sp_State_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol" />
-        <Function Name="sp_tblEmail_Update1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" StoreFunctionName="sp_tblEmail_Update" Schema="Vol">
+        <Function Name="sp_tblEmail_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="flag" Type="bit" Mode="InOut" />
           <Parameter Name="EmailID" Type="int" Mode="In" />
           <Parameter Name="EmailAddr" Type="nvarchar" Mode="In" />
@@ -1211,7 +1145,8 @@
             <Parameter Name="EmailAddr" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_Group_Delete">
-          <Parameter Name="GroupID" Mode="In" Type="Int32" />
+            <Parameter Name="GroupID" Mode="In" Type="Int32" />
+            <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="sp_Group_Insert" ReturnType="Collection(Int32)">
             <Parameter Name="GroupName" Mode="In" Type="String" />
@@ -1280,7 +1215,17 @@
           <Parameter Name="VolID" Mode="In" Type="Guid" />
           </FunctionImport>
           <FunctionImport Name="sp_Sample_Address_Delete">
-            <Parameter Name="AddrID" Mode="In" Type="Int32" />
+          <Parameter Name="AddrID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Address_Insert" ReturnType="Collection(Int32)">
+            <Parameter Name="AddrLine1" Mode="In" Type="String" />
+            <Parameter Name="AddrLine2" Mode="In" Type="String" />
+            <Parameter Name="AddrLine3" Mode="In" Type="String" />
+            <Parameter Name="City" Mode="In" Type="String" />
+            <Parameter Name="St" Mode="In" Type="String" />
+            <Parameter Name="Zip" Mode="In" Type="Int32" />
+            <Parameter Name="Zip4" Mode="In" Type="Int32" />
+            <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="sysdiagram">
@@ -1481,6 +1426,7 @@
           <Property Name="EmailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EmailAddr" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="tblVolunteers" Relationship="VolTeerModel.tblVolEmail" FromRole="tblEmail1" ToRole="tblVolunteer" />
+          <Property Type="Boolean" Name="ActiveFlg" />
         </EntityType>
         <EntityType Name="tblGroup">
           <Key>
@@ -1491,6 +1437,7 @@
           <Property Name="ParticipationLevelID" Type="Int32" />
           <NavigationProperty Name="tblAddress1" Relationship="VolTeerModel.tblGroupAddr" FromRole="tblGroup" ToRole="tblAddress1" />
           <NavigationProperty Name="tblVolunteers" Relationship="VolTeerModel.tblGroupVol" FromRole="tblGroup" ToRole="tblVolunteer" />
+          <Property Type="Boolean" Name="ActiveFlg" />
         </EntityType>
         <EntityType Name="tblSampleAddress">
           <Key>
@@ -2097,6 +2044,7 @@
           <EntitySetMapping Name="tblEmail1">
             <EntityTypeMapping TypeName="VolTeerModel.tblEmail1">
               <MappingFragment StoreEntitySet="tblEmail1">
+                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
                 <ScalarProperty Name="EmailID" ColumnName="EmailID" />
                 <ScalarProperty Name="EmailAddr" ColumnName="EmailAddr" />
               </MappingFragment>
@@ -2105,6 +2053,7 @@
           <EntitySetMapping Name="tblGroups">
             <EntityTypeMapping TypeName="VolTeerModel.tblGroup">
               <MappingFragment StoreEntitySet="tblGroup">
+                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
                 <ScalarProperty Name="GroupID" ColumnName="GroupID" />
                 <ScalarProperty Name="GroupName" ColumnName="GroupName" />
                 <ScalarProperty Name="ParticipationLevelID" ColumnName="ParticipationLevelID" />
@@ -2235,75 +2184,6 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="VolTeerModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="VolTeerModel.Store.sp_upgraddiagrams" />
-          <FunctionImportMapping FunctionImportName="sp_tblAddress_Delete" FunctionName="VolTeerModel.Store.sp_tblAddress_Delete" />
-          <FunctionImportMapping FunctionImportName="sp_tblAddress_Insert" FunctionName="VolTeerModel.Store.sp_tblAddress_Insert" />
-          <FunctionImportMapping FunctionImportName="sp_tblAddress_Select" FunctionName="VolTeerModel.Store.sp_tblAddress_Select">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="VolTeerModel.sp_tblAddress_Select_Result">
-                <ScalarProperty Name="AddrID" ColumnName="AddrID" />
-                <ScalarProperty Name="AddrLine1" ColumnName="AddrLine1" />
-                <ScalarProperty Name="AddrLine2" ColumnName="AddrLine2" />
-                <ScalarProperty Name="AddrLine3" ColumnName="AddrLine3" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="St" ColumnName="St" />
-                <ScalarProperty Name="Zip" ColumnName="Zip" />
-                <ScalarProperty Name="Zip4" ColumnName="Zip4" />
-                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_tblAddress_Update" FunctionName="VolTeerModel.Store.sp_tblAddress_Update" />
-          <FunctionImportMapping FunctionImportName="sp_tblContact_Delete" FunctionName="VolTeerModel.Store.sp_tblContact_Delete" />
-          <FunctionImportMapping FunctionImportName="sp_tblContact_Insert" FunctionName="VolTeerModel.Store.sp_tblContact_Insert">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="VolTeerModel.sp_tblContact_Insert_Result">
-                <ScalarProperty Name="ErrorNumber" ColumnName="ErrorNumber" />
-                <ScalarProperty Name="ErrorSeverity" ColumnName="ErrorSeverity" />
-                <ScalarProperty Name="ErrorState" ColumnName="ErrorState" />
-                <ScalarProperty Name="ErrorProcedure" ColumnName="ErrorProcedure" />
-                <ScalarProperty Name="ErrorLine" ColumnName="ErrorLine" />
-                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_tblContact_Select" FunctionName="VolTeerModel.Store.sp_tblContact_Select">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="VolTeerModel.sp_tblContact_Select_Result">
-                <ScalarProperty Name="ContactID" ColumnName="ContactID" />
-                <ScalarProperty Name="ContactFirstName" ColumnName="ContactFirstName" />
-                <ScalarProperty Name="ContactMiddleName" ColumnName="ContactMiddleName" />
-                <ScalarProperty Name="ContactLastName" ColumnName="ContactLastName" />
-                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_tblContact_Update" FunctionName="VolTeerModel.Store.sp_tblContact_Update" />
-          <FunctionImportMapping FunctionImportName="sp_tblEmail_Delete" FunctionName="VolTeerModel.Store.sp_tblEmail_Delete" />
-          <FunctionImportMapping FunctionImportName="sp_tblEmail_Insert" FunctionName="VolTeerModel.Store.sp_tblEmail_Insert" />
-          <FunctionImportMapping FunctionImportName="sp_tblEmail_Select" FunctionName="VolTeerModel.Store.sp_tblEmail_Select">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="VolTeerModel.sp_tblEmail_Select_Result">
-                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
-                <ScalarProperty Name="EmailAddr" ColumnName="EmailAddr" />
-                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_tblEmail_Update" FunctionName="VolTeerModel.Store.sp_tblEmail_Update" />
-          <FunctionImportMapping FunctionImportName="sp_tblEventRating_Delete" FunctionName="VolTeerModel.Store.sp_tblEventRating_Delete" />
-          <FunctionImportMapping FunctionImportName="sp_tblEventRating_Insert" FunctionName="VolTeerModel.Store.sp_tblEventRating_Insert" />
-          <FunctionImportMapping FunctionImportName="sp_tblEventRating_Select" FunctionName="VolTeerModel.Store.sp_tblEventRating_Select">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="VolTeerModel.sp_tblEventRating_Select_Result">
-                <ScalarProperty Name="RatingID" ColumnName="RatingID" />
-                <ScalarProperty Name="EventID" ColumnName="EventID" />
-                <ScalarProperty Name="VolID" ColumnName="VolID" />
-                <ScalarProperty Name="RatingValue" ColumnName="RatingValue" />
-                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_tblEventRating_Update" FunctionName="VolTeerModel.Store.sp_tblEventRating_Update" />
           <FunctionImportMapping FunctionImportName="sp_tblProject_Delete" FunctionName="VolTeerModel.Store.sp_tblProject_Delete" />
           <FunctionImportMapping FunctionImportName="sp_tblProject_Insert" FunctionName="VolTeerModel.Store.sp_tblProject_Insert" />
           <FunctionImportMapping FunctionImportName="sp_tblProject_Select" FunctionName="VolTeerModel.Store.sp_tblProject_Select">
@@ -2483,18 +2363,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_tblEmail_Update1" FunctionName="VolTeerModel.Store.sp_tblEmail_Update1">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="VolTeerModel.sp_tblEmail_Update1_Result">
-                <ScalarProperty Name="ErrorNumber" ColumnName="ErrorNumber" />
-                <ScalarProperty Name="ErrorSeverity" ColumnName="ErrorSeverity" />
-                <ScalarProperty Name="ErrorState" ColumnName="ErrorState" />
-                <ScalarProperty Name="ErrorProcedure" ColumnName="ErrorProcedure" />
-                <ScalarProperty Name="ErrorLine" ColumnName="ErrorLine" />
-                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_Volunteer_Insert" FunctionName="VolTeerModel.Store.sp_Volunteer_Insert">
             <ResultMapping>
               <ComplexTypeMapping TypeName="VolTeerModel.sp_Volunteer_Insert_Result">
@@ -2509,6 +2377,7 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_Volunteer_Select" FunctionName="VolTeerModel.Store.sp_Volunteer_Select" />
           <FunctionImportMapping FunctionImportName="sp_Sample_Address_Delete" FunctionName="VolTeerModel.Store.sp_Sample_Address_Delete" />
+          <FunctionImportMapping FunctionImportName="sp_Address_Insert" FunctionName="VolTeerModel.Store.sp_Address_Insert" />
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

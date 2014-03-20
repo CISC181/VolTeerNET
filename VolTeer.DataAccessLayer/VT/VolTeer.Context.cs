@@ -12,9 +12,12 @@ namespace VolTeer.DataAccessLayer.VT
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
-    using System.Data.Entity.Core.Objects;
-    //using System.Data.Objects.DataClasses;
-    using System.Linq;
+        using System;
+        using System.Data.Entity;
+        using System.Data.Entity.Infrastructure;
+        using System.Data.Entity.Core.Objects;
+        using System.Linq;
+        using System.Data;
     
     public partial class VolTeerEntities : DbContext
     {
@@ -587,13 +590,17 @@ namespace VolTeer.DataAccessLayer.VT
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Email_Update_Result>("sp_Email_Update", emailIDParameter, emailAddrParameter);
         }
     
-        public virtual int sp_Group_Delete(Nullable<int> groupID)
+        public virtual int sp_Group_Delete(Nullable<int> groupID, Nullable<bool> activeFlg)
         {
             var groupIDParameter = groupID.HasValue ?
                 new ObjectParameter("GroupID", groupID) :
                 new ObjectParameter("GroupID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Group_Delete", groupIDParameter);
+            var activeFlgParameter = activeFlg.HasValue ?
+                new ObjectParameter("ActiveFlg", activeFlg) :
+                new ObjectParameter("ActiveFlg", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Group_Delete", groupIDParameter, activeFlgParameter);
         }
     
         public virtual ObjectResult<Nullable<int>> sp_Group_Insert(string groupName, Nullable<int> participationLevelID)
@@ -829,6 +836,43 @@ namespace VolTeer.DataAccessLayer.VT
                 new ObjectParameter("AddrID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Sample_Address_Delete", addrIDParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> sp_Address_Insert(string addrLine1, string addrLine2, string addrLine3, string city, string st, Nullable<int> zip, Nullable<int> zip4, Nullable<bool> activeFlg)
+        {
+            var addrLine1Parameter = addrLine1 != null ?
+                new ObjectParameter("AddrLine1", addrLine1) :
+                new ObjectParameter("AddrLine1", typeof(string));
+    
+            var addrLine2Parameter = addrLine2 != null ?
+                new ObjectParameter("AddrLine2", addrLine2) :
+                new ObjectParameter("AddrLine2", typeof(string));
+    
+            var addrLine3Parameter = addrLine3 != null ?
+                new ObjectParameter("AddrLine3", addrLine3) :
+                new ObjectParameter("AddrLine3", typeof(string));
+    
+            var cityParameter = city != null ?
+                new ObjectParameter("City", city) :
+                new ObjectParameter("City", typeof(string));
+    
+            var stParameter = st != null ?
+                new ObjectParameter("St", st) :
+                new ObjectParameter("St", typeof(string));
+    
+            var zipParameter = zip.HasValue ?
+                new ObjectParameter("Zip", zip) :
+                new ObjectParameter("Zip", typeof(int));
+    
+            var zip4Parameter = zip4.HasValue ?
+                new ObjectParameter("Zip4", zip4) :
+                new ObjectParameter("Zip4", typeof(int));
+    
+            var activeFlgParameter = activeFlg.HasValue ?
+                new ObjectParameter("ActiveFlg", activeFlg) :
+                new ObjectParameter("ActiveFlg", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_Address_Insert", addrLine1Parameter, addrLine2Parameter, addrLine3Parameter, cityParameter, stParameter, zipParameter, zip4Parameter, activeFlgParameter);
         }
     }
 }
