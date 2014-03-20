@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using VolTeer.BusinessLogicLayer.VT;
+using VolTeer.BusinessLogicLayer.VT.Vol;
 using System.Web.Security;
 using System.Web.ApplicationServices;
 

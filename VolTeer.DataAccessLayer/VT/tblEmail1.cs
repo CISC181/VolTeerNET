@@ -21,6 +21,7 @@ namespace VolTeer.DataAccessLayer.VT
     
         public int EmailID { get; set; }
         public string EmailAddr { get; set; }
+        public Nullable<bool> ActiveFlg { get; set; }
     
         public virtual ICollection<tblVolunteer> tblVolunteers { get; set; }
     }
