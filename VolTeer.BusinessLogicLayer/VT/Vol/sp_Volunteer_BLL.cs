@@ -17,6 +17,11 @@ namespace VolTeer.BusinessLogicLayer.VT.Vol
             return DAL.ListVolunteers();
         }
 
+        public sp_Volunteer_DM ListVolunteers(Guid? Volunteer)
+        {
+            return DAL.ListVolunteers(Volunteer).Single();
+        }
+
         public void InsertVolunteerContext(sp_Volunteer_DM _cVolunteer)
         {
             DAL.InsertVolunteerContext(_cVolunteer);

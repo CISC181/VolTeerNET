@@ -431,6 +431,10 @@
       <Project>{81446b41-8d0a-4e58-a275-1578c7f536f2}</Project>
       <Name>VolTeer.BusinessLogicLayer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\VolTeer.Cache\VolTeer.Cache.csproj">
+      <Project>{04a431b2-cd03-48f3-9a2c-6c3bed2cc93f}</Project>
+      <Name>VolTeer.Cache</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VolTeer.DomainModels\VolTeer.DomainModels.csproj">
       <Project>{7919ce03-6597-4a4b-82e4-d73b7511ab7f}</Project>
       <Name>VolTeer.DomainModels</Name>
