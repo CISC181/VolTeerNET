@@ -52,11 +52,14 @@
                                      CssClass="field-validation-error" Display="Dynamic" ErrorMessage="The password and confirmation password do not match." />
                             </li>
                         </ol>
-                        <asp:Button runat="server" CommandName="MoveNext" Text="Register" />
+                        <asp:Button runat="server" ID="btnRegisterUser" CommandName="CreateNewUser" Text="Register" OnClick="btnRegisterUser_Click"  />
                     </fieldset>
                 </ContentTemplate>
                 <CustomNavigationTemplate />
             </asp:CreateUserWizardStep>
         </WizardSteps>
     </asp:CreateUserWizard>
+    <asp:Label id="lblError" runat="server" CssClass="field-validation-error">
+
+    </asp:Label>
 </asp:Content>

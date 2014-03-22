@@ -5,6 +5,7 @@
 -- =============================================
 CREATE PROCEDURE [Vol].[sp_Volunteer_Insert]
 	-- Add the parameters for the stored procedure here
+	@VolID        uniqueidentifier,
 	@VolFirstName nvarchar(20),
 	@VolMiddleName nvarchar(20),
 	@VolLastName nvarchar(30)
@@ -18,10 +19,10 @@ BEGIN TRY
 	BEGIN TRANSACTION 
 	
 		INSERT Vol.tblVolunteer 
-		(VolFirstName, VolMiddleName, VolLastName)
+		(VolID, VolFirstName, VolMiddleName, VolLastName)
 		OUTPUT INSERTED.VolID
 		INTO @outTable
-		VALUES (@VolFirstName, @VolMiddleName, @VolLastName)
+		VALUES (@VolID, @VolFirstName, @VolMiddleName, @VolLastName)
 		
 	 COMMIT TRANSACTION
 

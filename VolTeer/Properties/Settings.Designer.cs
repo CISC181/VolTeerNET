@@ -31,5 +31,14 @@ namespace VolTeer.Properties {
                 return ((string)(this["TelerikSkin1"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("Volunteer")]
+        public string DefaultVolRole {
+            get {
+                return ((string)(this["DefaultVolRole"]));
+            }
+        }
     }
 }

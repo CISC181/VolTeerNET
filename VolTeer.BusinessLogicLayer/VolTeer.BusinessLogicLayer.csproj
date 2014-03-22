@@ -67,11 +67,13 @@
   <ItemGroup>
     <Compile Include="AspNet\AspNetRolesBLL.cs" />
     <Compile Include="AspNet\AspNetUsersBLL.cs" />
+    <Compile Include="AspNet\AspNetViewsBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VT\Vol\SkillBLL.cs" />
     <Compile Include="VT\Vol\sp_Group_BLL.cs" />
     <Compile Include="VT\Other\sp_Sample_Address_BLL.cs" />
     <Compile Include="VT\Other\sp_State_BLL.cs" />
+    <Compile Include="VT\Vol\sp_Volunteer_BLL.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

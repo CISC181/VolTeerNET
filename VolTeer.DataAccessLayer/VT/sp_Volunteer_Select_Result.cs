@@ -7,19 +7,16 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace VolTeer.DataAccessLayer.AspNet
+namespace VolTeer.DataAccessLayer.VT
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class Profile
+    public partial class sp_Volunteer_Select_Result
     {
-        public System.Guid UserId { get; set; }
-        public string PropertyNames { get; set; }
-        public string PropertyValueStrings { get; set; }
-        public byte[] PropertyValueBinary { get; set; }
-        public System.DateTime LastUpdatedDate { get; set; }
-    
-        public virtual User User { get; set; }
+        public System.Guid VolID { get; set; }
+        public Nullable<bool> ActiveFlg { get; set; }
+        public string VolFirstName { get; set; }
+        public string VolMiddleName { get; set; }
+        public string VolLastName { get; set; }
     }
 }

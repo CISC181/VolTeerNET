@@ -51,7 +51,6 @@ namespace VolTeer.DataAccessLayer.VT
         public DbSet<tblSkill> tblSkills { get; set; }
         public DbSet<tblState1> tblState1 { get; set; }
         public DbSet<tblVolunteer> tblVolunteers { get; set; }
-        public DbSet<tblSampleContact> tblSampleContacts { get; set; }
     
         public virtual int sp_creatediagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
@@ -777,32 +776,6 @@ namespace VolTeer.DataAccessLayer.VT
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_tblEmail_Update1_Result>("sp_tblEmail_Update1", flag, emailIDParameter, emailAddrParameter);
         }
     
-        public virtual ObjectResult<sp_Volunteer_Insert_Result> sp_Volunteer_Insert(string volFirstName, string volMiddleName, string volLastName)
-        {
-            var volFirstNameParameter = volFirstName != null ?
-                new ObjectParameter("VolFirstName", volFirstName) :
-                new ObjectParameter("VolFirstName", typeof(string));
-    
-            var volMiddleNameParameter = volMiddleName != null ?
-                new ObjectParameter("VolMiddleName", volMiddleName) :
-                new ObjectParameter("VolMiddleName", typeof(string));
-    
-            var volLastNameParameter = volLastName != null ?
-                new ObjectParameter("VolLastName", volLastName) :
-                new ObjectParameter("VolLastName", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Volunteer_Insert_Result>("sp_Volunteer_Insert", volFirstNameParameter, volMiddleNameParameter, volLastNameParameter);
-        }
-    
-        public virtual ObjectResult<Nullable<System.Guid>> sp_Volunteer_Select(Nullable<System.Guid> volID)
-        {
-            var volIDParameter = volID.HasValue ?
-                new ObjectParameter("VolID", volID) :
-                new ObjectParameter("VolID", typeof(System.Guid));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("sp_Volunteer_Select", volIDParameter);
-        }
-    
         public virtual int sp_Sample_Address_Delete(Nullable<int> addrID)
         {
             var addrIDParameter = addrID.HasValue ?
@@ -1163,13 +1136,34 @@ namespace VolTeer.DataAccessLayer.VT
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Email_Delete1_Result>("sp_Email_Delete1", flag, emailIDParameter, emailAddrParameter, activeFlgParameter);
         }
     
-        public virtual int sp_Volenteer_Delete(Nullable<System.Guid> volID)
+        public virtual ObjectResult<sp_Volunteer_Select_Result> sp_Volunteer_Select(Nullable<System.Guid> volID)
         {
             var volIDParameter = volID.HasValue ?
                 new ObjectParameter("VolID", volID) :
                 new ObjectParameter("VolID", typeof(System.Guid));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Volenteer_Delete", volIDParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Volunteer_Select_Result>("sp_Volunteer_Select", volIDParameter);
+        }
+    
+        public virtual ObjectResult<sp_Volunteer_Insert_Result> sp_Volunteer_Insert(Nullable<System.Guid> volID, string volFirstName, string volMiddleName, string volLastName)
+        {
+            var volIDParameter = volID.HasValue ?
+                new ObjectParameter("VolID", volID) :
+                new ObjectParameter("VolID", typeof(System.Guid));
+    
+            var volFirstNameParameter = volFirstName != null ?
+                new ObjectParameter("VolFirstName", volFirstName) :
+                new ObjectParameter("VolFirstName", typeof(string));
+    
+            var volMiddleNameParameter = volMiddleName != null ?
+                new ObjectParameter("VolMiddleName", volMiddleName) :
+                new ObjectParameter("VolMiddleName", typeof(string));
+    
+            var volLastNameParameter = volLastName != null ?
+                new ObjectParameter("VolLastName", volLastName) :
+                new ObjectParameter("VolLastName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Volunteer_Insert_Result>("sp_Volunteer_Insert", volIDParameter, volFirstNameParameter, volMiddleNameParameter, volLastNameParameter);
         }
     
         public virtual int sp_Volenteer_Update(Nullable<System.Guid> volID, Nullable<bool> activeFlg, string volFirstName, string volMiddleName, string volLastName)
@@ -1195,6 +1189,15 @@ namespace VolTeer.DataAccessLayer.VT
                 new ObjectParameter("VolLastName", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Volenteer_Update", volIDParameter, activeFlgParameter, volFirstNameParameter, volMiddleNameParameter, volLastNameParameter);
+        }
+    
+        public virtual int sp_Volenteer_Delete(Nullable<System.Guid> volID)
+        {
+            var volIDParameter = volID.HasValue ?
+                new ObjectParameter("VolID", volID) :
+                new ObjectParameter("VolID", typeof(System.Guid));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Volenteer_Delete", volIDParameter);
         }
     }
 }

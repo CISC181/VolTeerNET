@@ -62,7 +62,7 @@
                     <Items>
                         <telerik:RadMenuItem Text="Home" NavigateUrl="~/Default.aspx" />
                         <telerik:RadMenuItem Text="Account">
-                            <GroupSettings Width="200px" />
+                            <GroupSettings Width="300px"  />
                             <Items>
                                 <telerik:RadMenuItem Text="Login" NavigateUrl="~/Account/Login.aspx" EnableImageSprite="true" CssClass="icon-chair"></telerik:RadMenuItem>
                                 <telerik:RadMenuItem Text="Forgot Password" NavigateUrl="~/Account/ForgotPassword.aspx" EnableImageSprite="true" CssClass="icon-sofa"></telerik:RadMenuItem>

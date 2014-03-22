@@ -244,6 +244,13 @@
     <Compile Include="SampleControls\TestForm1.aspx.designer.cs">
       <DependentUpon>TestForm1.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SampleControls\TestRoles.aspx.cs">
+      <DependentUpon>TestRoles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SampleControls\TestRoles.aspx.designer.cs">
+      <DependentUpon>TestRoles.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Site.Mobile.Master.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -397,6 +404,7 @@
     <Content Include="SampleControls\SampleAddress.aspx" />
     <Content Include="SampleControls\SampleAddressContext.aspx" />
     <Content Include="SampleControls\TestForm1.aspx" />
+    <Content Include="SampleControls\TestRoles.aspx" />
     <Content Include="Skills\ManageSkills.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Volunteer\VolunterInfo.aspx" />
@@ -410,6 +418,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </Content>
+    <Content Include="Account\Web.config" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
@@ -458,7 +467,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
+      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

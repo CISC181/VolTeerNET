@@ -71,9 +71,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AspNet\Application.cs">
-      <DependentUpon>AspNet.tt</DependentUpon>
-    </Compile>
     <Compile Include="AspNet\AspNet.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -91,6 +88,7 @@
     </Compile>
     <Compile Include="AspNet\AspNetRolesDAL.cs" />
     <Compile Include="AspNet\AspNetUsersDAL.cs" />
+    <Compile Include="AspNet\AspNetViews.cs" />
     <Compile Include="AspNet\aspnet_Applications.cs">
       <DependentUpon>AspNet.tt</DependentUpon>
     </Compile>
@@ -137,18 +135,6 @@
       <DependentUpon>AspNet.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNet\aspnet_WebEvent_Events.cs">
-      <DependentUpon>AspNet.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AspNet\Membership.cs">
-      <DependentUpon>AspNet.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AspNet\Profile.cs">
-      <DependentUpon>AspNet.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AspNet\Role.cs">
-      <DependentUpon>AspNet.tt</DependentUpon>
-    </Compile>
-    <Compile Include="AspNet\User.cs">
       <DependentUpon>AspNet.tt</DependentUpon>
     </Compile>
     <Compile Include="AspNet\vw_aspnet_Applications.cs">
@@ -200,7 +186,10 @@
     <Compile Include="VT\sp_EventRating_Select_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
-    <Compile Include="VT\tblSampleContact.cs">
+    <Compile Include="VT\sp_Volunteer_Insert_Result.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\sp_Volunteer_Select_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
     <Compile Include="VT\Vol\SkillDAL.cs" />
@@ -268,9 +257,6 @@
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
     <Compile Include="VT\sp_tblVendor_Select_Result.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VT\sp_Volunteer_Insert_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
     <Compile Include="VT\tblAddress.cs">
@@ -348,6 +334,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>VolTeer.edmx</DependentUpon>
     </Compile>
+    <Compile Include="VT\Vol\sp_Volunteer_DAL.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />

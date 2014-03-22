@@ -203,7 +203,7 @@ namespace VolTeer.DataAccessLayer.VT.Other
             }
         }
         #endregion
-        #region Insert Statements
+        #region Delete Statements
         public void DeleteSampleAddress(int addrID)
         {
             using (VolTeerEntities context = new VolTeerEntities())

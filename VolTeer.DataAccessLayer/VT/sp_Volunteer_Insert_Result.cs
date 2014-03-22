@@ -13,11 +13,6 @@ namespace VolTeer.DataAccessLayer.VT
     
     public partial class sp_Volunteer_Insert_Result
     {
-        public Nullable<int> ErrorNumber { get; set; }
-        public Nullable<int> ErrorSeverity { get; set; }
-        public Nullable<int> ErrorState { get; set; }
-        public string ErrorProcedure { get; set; }
-        public Nullable<int> ErrorLine { get; set; }
-        public string ErrorMessage { get; set; }
+        public Nullable<System.Guid> VolID_OUT { get; set; }
     }
 }

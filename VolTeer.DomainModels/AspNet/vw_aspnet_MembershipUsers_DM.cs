@@ -10,6 +10,7 @@ namespace VolTeer.DomainModels.AspNet
 
     public class vw_aspnet_MembershipUsers_DM
     {
+
         public System.Guid UserId { get; set; }
         public int PasswordFormat { get; set; }
         public string MobilePIN { get; set; }
@@ -33,5 +34,6 @@ namespace VolTeer.DomainModels.AspNet
         public string MobileAlias { get; set; }
         public bool IsAnonymous { get; set; }
         public System.DateTime LastActivityDate { get; set; }
+
     }
 }

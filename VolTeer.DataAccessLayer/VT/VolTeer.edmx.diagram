@@ -24,7 +24,7 @@
         <EntityTypeShape EntityType="VolTeerModel.tblSampleAddress" Width="2.375" PointX="2.75" PointY="11" IsExpanded="true" FillColor="0, 192, 0" />
         <EntityTypeShape EntityType="VolTeerModel.tblSkill" Width="1.5" PointX="1.375" PointY="5" IsExpanded="true" />
         <EntityTypeShape EntityType="VolTeerModel.tblState1" Width="1.5" PointX="19.75" PointY="5.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolTeerModel.tblVolunteer" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolTeerModel.tblVolunteer" Width="1.5" PointX="5.25" PointY="1.375" IsExpanded="true" FillColor="0, 192, 0" />
         <AssociationConnector Association="VolTeerModel.FK_tblProject_tblAddress" ManuallyRouted="false" />
         <AssociationConnector Association="VolTeerModel.FK_tblVendorAddr_tblAddress" ManuallyRouted="false" />
         <AssociationConnector Association="VolTeerModel.FK_tblContactEmail_tblContact" ManuallyRouted="false" />
@@ -44,8 +44,6 @@
         <AssociationConnector Association="VolTeerModel.tblVolAddr" ManuallyRouted="false" />
         <AssociationConnector Association="VolTeerModel.tblVolEmail" ManuallyRouted="false" />
         <AssociationConnector Association="VolTeerModel.tblVolSkill" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="VolTeerModel.tblSampleContact" Width="3.75" PointX="1.375" PointY="17.75" />
-        <AssociationConnector Association="VolTeerModel.tblSampleContactAddr1" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

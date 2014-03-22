@@ -5,7 +5,7 @@
 -- Pass in VolID as a parameter.  If VolID is null, then return the entire list, 
 -- If VolID is not null, return only that VolID's record.
 -- =============================================
-CREATE PROCEDURE [Vol].[sp_Volunteer_Select]
+create PROCEDURE [Vol].[sp_Volunteer_Select]
 	-- Add the parameters for the stored procedure here
 	@VolID UNIQUEIDENTIFIER
 AS
@@ -16,12 +16,12 @@ BEGIN TRY
 	
 		IF (@VolID = NULL)
 		BEGIN
-			SELECT VolID 
+			SELECT [VolID], [ActiveFlg], [VolFirstName], [VolMiddleName], [VolLastName]
 			FROM Vol.tblVolunteer 
 		END		
 		ELSE
 		BEGIN
-			SELECT VolID 
+			SELECT [VolID], [ActiveFlg], [VolFirstName], [VolMiddleName], [VolLastName]
 			FROM Vol.tblVolunteer 
 			WHERE VolID = @VolID
 		END	
