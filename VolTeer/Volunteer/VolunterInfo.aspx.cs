@@ -50,6 +50,8 @@ namespace VolTeer.Volunteer
 
             VolDM = VolCASH.ListVolunteers(UserID);
 
+            ctl02.Text = (string)DataBinder.Eval(VolDM, "VolID");
+            
             //Cache.Add(UserID.ToString(), VolDM, null, DateTime.Now.AddSeconds(60), Cache.NoSlidingExpiration, CacheItemPriority.High, null);
         }
 

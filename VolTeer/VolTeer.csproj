@@ -65,6 +65,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Web.Optimization">
@@ -135,6 +136,7 @@
       <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Code\cEnums.cs" />
+    <Compile Include="App_Code\cMail.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Common\WebControls\ucAddress.ascx.cs">
@@ -243,6 +245,13 @@
     </Compile>
     <Compile Include="SampleControls\SampleAddressContext.aspx.designer.cs">
       <DependentUpon>SampleAddressContext.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SampleControls\SendMail.aspx.cs">
+      <DependentUpon>SendMail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SampleControls\SendMail.aspx.designer.cs">
+      <DependentUpon>SendMail.aspx</DependentUpon>
     </Compile>
     <Compile Include="SampleControls\TestForm1.aspx.cs">
       <DependentUpon>TestForm1.aspx</DependentUpon>
@@ -411,6 +420,7 @@
     <Content Include="SampleControls\RadEditorWebForm.aspx" />
     <Content Include="SampleControls\SampleAddress.aspx" />
     <Content Include="SampleControls\SampleAddressContext.aspx" />
+    <Content Include="SampleControls\SendMail.aspx" />
     <Content Include="SampleControls\TestForm1.aspx" />
     <Content Include="SampleControls\TestRoles.aspx" />
     <Content Include="Skills\ManageSkills.aspx" />
@@ -479,7 +489,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
+      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

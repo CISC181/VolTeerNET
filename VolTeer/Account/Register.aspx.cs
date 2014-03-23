@@ -11,6 +11,7 @@ using VolTeer.DomainModels.VT.Vol;
 using VolTeer.DomainModels.AspNet;
 using VolTeer.BusinessLogicLayer.AspNet;
 using Telerik.Web.UI;
+using VolTeer.App_Code;
 
 namespace VolTeer.Account
 {
@@ -33,10 +34,15 @@ namespace VolTeer.Account
             sp_Volunteer_DM vol = new sp_Volunteer_DM();
 
             vol.VolID = (Guid)user.ProviderUserKey;
+            vol.VolFirstName = (CreateUserWizardStep1.ContentTemplateContainer.FindControl("rTXTFirstName") as RadTextBox).Text.Trim();
+            vol.VolMiddleName  = (CreateUserWizardStep1.ContentTemplateContainer.FindControl("rTXTMiddleName") as RadTextBox).Text.Trim();
+            vol.VolLastName = (CreateUserWizardStep1.ContentTemplateContainer.FindControl("rTXTLastName") as RadTextBox).Text.Trim();
             vol.ActiveFlg = true;
+
 
             BLL.InsertVolunteerContext(vol);
 
+            cMail.SendMessage("test@test.com", (CreateUserWizardStep1.ContentTemplateContainer.FindControl("Email") as RadTextBox).Text.Trim(), "VolTeer Registration", "Please click link to confirm");
 
             string continueUrl = "~/";
             Response.Redirect(continueUrl);
