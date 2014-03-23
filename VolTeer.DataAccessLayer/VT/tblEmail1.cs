@@ -14,15 +14,11 @@ namespace VolTeer.DataAccessLayer.VT
     
     public partial class tblEmail1
     {
-        public tblEmail1()
-        {
-            this.tblVolunteers = new HashSet<tblVolunteer>();
-        }
-    
         public int EmailID { get; set; }
         public string EmailAddr { get; set; }
         public Nullable<bool> ActiveFlg { get; set; }
+        public System.Guid VolID { get; set; }
     
-        public virtual ICollection<tblVolunteer> tblVolunteers { get; set; }
+        public virtual tblVolunteer tblVolunteer { get; set; }
     }
 }

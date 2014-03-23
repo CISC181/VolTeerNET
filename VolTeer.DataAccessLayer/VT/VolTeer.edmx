@@ -28,7 +28,6 @@
           <EntitySet Name="tblSkill" EntityType="VolTeerModel.Store.tblSkill" store:Type="Tables" Schema="Vol" />
           <EntitySet Name="tblState1" EntityType="VolTeerModel.Store.tblState1" store:Type="Tables" Schema="Vol" Table="tblState" />
           <EntitySet Name="tblVolAddr" EntityType="VolTeerModel.Store.tblVolAddr" store:Type="Tables" Schema="Vol" />
-          <EntitySet Name="tblVolEmail" EntityType="VolTeerModel.Store.tblVolEmail" store:Type="Tables" Schema="Vol" />
           <EntitySet Name="tblVolSkill" EntityType="VolTeerModel.Store.tblVolSkill" store:Type="Tables" Schema="Vol" />
           <EntitySet Name="tblVolunteer" EntityType="VolTeerModel.Store.tblVolunteer" store:Type="Tables" Schema="Vol" />
           <AssociationSet Name="FK_Skill_Skill" Association="VolTeerModel.Store.FK_Skill_Skill">
@@ -42,6 +41,10 @@
           <AssociationSet Name="FK_tblContactEmail_tblEmail" Association="VolTeerModel.Store.FK_tblContactEmail_tblEmail">
             <End Role="tblEmail" EntitySet="tblEmail" />
             <End Role="tblContactEmail" EntitySet="tblContactEmail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEmail_tblVolunteer" Association="VolTeerModel.Store.FK_tblEmail_tblVolunteer">
+            <End Role="tblVolunteer" EntitySet="tblVolunteer" />
+            <End Role="tblEmail1" EntitySet="tblEmail1" />
           </AssociationSet>
           <AssociationSet Name="FK_tblEventRating_tblProjectEvent" Association="VolTeerModel.Store.FK_tblEventRating_tblProjectEvent">
             <End Role="tblProjectEvent" EntitySet="tblProjectEvent" />
@@ -110,14 +113,6 @@
           <AssociationSet Name="FK_tblVolAddr_tblVolunteer" Association="VolTeerModel.Store.FK_tblVolAddr_tblVolunteer">
             <End Role="tblVolunteer" EntitySet="tblVolunteer" />
             <End Role="tblVolAddr" EntitySet="tblVolAddr" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblVolEmail_tblEmail" Association="VolTeerModel.Store.FK_tblVolEmail_tblEmail">
-            <End Role="tblEmail1" EntitySet="tblEmail1" />
-            <End Role="tblVolEmail" EntitySet="tblVolEmail" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblVolEmail_tblVolunteer" Association="VolTeerModel.Store.FK_tblVolEmail_tblVolunteer">
-            <End Role="tblVolunteer" EntitySet="tblVolunteer" />
-            <End Role="tblVolEmail" EntitySet="tblVolEmail" />
           </AssociationSet>
           <AssociationSet Name="FK_tblVolSkill_tblSkill" Association="VolTeerModel.Store.FK_tblVolSkill_tblSkill">
             <End Role="tblSkill" EntitySet="tblSkill" />
@@ -284,8 +279,10 @@
         <EntityType Name="tblEmail1">
           <Key>
             <PropertyRef Name="EmailID" />
+            <PropertyRef Name="VolID" />
           </Key>
           <Property Name="EmailID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="VolID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="EmailAddr" Type="nvarchar" MaxLength="100" />
           <Property Name="ActiveFlg" Type="bit" />
         </EntityType>
@@ -368,14 +365,6 @@
           <Property Name="VolID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="AddrID" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="tblVolEmail">
-          <Key>
-            <PropertyRef Name="VolID" />
-            <PropertyRef Name="EmailID" />
-          </Key>
-          <Property Name="VolID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="EmailID" Type="int" Nullable="false" />
-        </EntityType>
         <EntityType Name="tblVolSkill">
           <Key>
             <PropertyRef Name="VolID" />
@@ -427,6 +416,18 @@
             </Principal>
             <Dependent Role="tblContactEmail">
               <PropertyRef Name="EmailID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEmail_tblVolunteer">
+          <End Role="tblVolunteer" Type="VolTeerModel.Store.tblVolunteer" Multiplicity="1" />
+          <End Role="tblEmail1" Type="VolTeerModel.Store.tblEmail1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblVolunteer">
+              <PropertyRef Name="VolID" />
+            </Principal>
+            <Dependent Role="tblEmail1">
+              <PropertyRef Name="VolID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -630,30 +631,6 @@
               <PropertyRef Name="VolID" />
             </Principal>
             <Dependent Role="tblVolAddr">
-              <PropertyRef Name="VolID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblVolEmail_tblEmail">
-          <End Role="tblEmail1" Type="VolTeerModel.Store.tblEmail1" Multiplicity="1" />
-          <End Role="tblVolEmail" Type="VolTeerModel.Store.tblVolEmail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblEmail1">
-              <PropertyRef Name="EmailID" />
-            </Principal>
-            <Dependent Role="tblVolEmail">
-              <PropertyRef Name="EmailID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblVolEmail_tblVolunteer">
-          <End Role="tblVolunteer" Type="VolTeerModel.Store.tblVolunteer" Multiplicity="1" />
-          <End Role="tblVolEmail" Type="VolTeerModel.Store.tblVolEmail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblVolunteer">
-              <PropertyRef Name="VolID" />
-            </Principal>
-            <Dependent Role="tblVolEmail">
               <PropertyRef Name="VolID" />
             </Dependent>
           </ReferentialConstraint>
@@ -1028,10 +1005,6 @@
             <End Role="tblAddress1" EntitySet="tblAddress1" />
             <End Role="tblVolunteer" EntitySet="tblVolunteers" />
           </AssociationSet>
-          <AssociationSet Name="tblVolEmail" Association="VolTeerModel.tblVolEmail">
-            <End Role="tblEmail1" EntitySet="tblEmail1" />
-            <End Role="tblVolunteer" EntitySet="tblVolunteers" />
-          </AssociationSet>
           <AssociationSet Name="tblVolSkill" Association="VolTeerModel.tblVolSkill">
             <End Role="tblSkill" EntitySet="tblSkills" />
             <End Role="tblVolunteer" EntitySet="tblVolunteers" />
@@ -1391,6 +1364,10 @@
           <FunctionImport Name="sp_Volenteer_Delete">
           <Parameter Name="VolID" Mode="In" Type="Guid" />
           </FunctionImport>
+          <AssociationSet Name="FK_tblEmail_tblVolunteer" Association="VolTeerModel.FK_tblEmail_tblVolunteer">
+            <End Role="tblVolunteer" EntitySet="tblVolunteers" />
+            <End Role="tblEmail1" EntitySet="tblEmail1" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="tblAddress">
           <Key>
@@ -1576,11 +1553,13 @@
         <EntityType Name="tblEmail1">
           <Key>
             <PropertyRef Name="EmailID" />
+            <PropertyRef Name="VolID" />
           </Key>
           <Property Name="EmailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="EmailAddr" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="tblVolunteers" Relationship="VolTeerModel.tblVolEmail" FromRole="tblEmail1" ToRole="tblVolunteer" />
           <Property Type="Boolean" Name="ActiveFlg" />
+          <Property Type="Guid" Name="VolID" Nullable="false" />
+          <NavigationProperty Name="tblVolunteer" Relationship="VolTeerModel.FK_tblEmail_tblVolunteer" FromRole="tblEmail1" ToRole="tblVolunteer" />
         </EntityType>
         <EntityType Name="tblGroup">
           <Key>
@@ -1653,8 +1632,8 @@
           <Property Name="VolLastName" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
           <NavigationProperty Name="tblGroups" Relationship="VolTeerModel.tblGroupVol" FromRole="tblVolunteer" ToRole="tblGroup" />
           <NavigationProperty Name="tblAddress1" Relationship="VolTeerModel.tblVolAddr" FromRole="tblVolunteer" ToRole="tblAddress1" />
-          <NavigationProperty Name="tblEmail1" Relationship="VolTeerModel.tblVolEmail" FromRole="tblVolunteer" ToRole="tblEmail1" />
           <NavigationProperty Name="tblSkills" Relationship="VolTeerModel.tblVolSkill" FromRole="tblVolunteer" ToRole="tblSkill" />
+          <NavigationProperty Name="tblEmail11" Relationship="VolTeerModel.FK_tblEmail_tblVolunteer" FromRole="tblVolunteer" ToRole="tblEmail1" />
         </EntityType>
         <Association Name="FK_tblProject_tblAddress">
           <End Role="tblAddress" Type="VolTeerModel.tblAddress" Multiplicity="0..1" />
@@ -1834,10 +1813,6 @@
         </Association>
         <Association Name="tblVolAddr">
           <End Role="tblAddress1" Type="VolTeerModel.tblAddress1" Multiplicity="*" />
-          <End Role="tblVolunteer" Type="VolTeerModel.tblVolunteer" Multiplicity="*" />
-        </Association>
-        <Association Name="tblVolEmail">
-          <End Role="tblEmail1" Type="VolTeerModel.tblEmail1" Multiplicity="*" />
           <End Role="tblVolunteer" Type="VolTeerModel.tblVolunteer" Multiplicity="*" />
         </Association>
         <Association Name="tblVolSkill">
@@ -2062,6 +2037,18 @@
         <ComplexType Name="sp_Volunteer_Insert_Result">
           <Property Type="Guid" Name="VolID_OUT" Nullable="true" />
         </ComplexType>
+        <Association Name="FK_tblEmail_tblVolunteer">
+          <End Type="VolTeerModel.tblVolunteer" Role="tblVolunteer" Multiplicity="1" />
+          <End Type="VolTeerModel.tblEmail1" Role="tblEmail1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblVolunteer">
+              <PropertyRef Name="VolID" />
+            </Principal>
+            <Dependent Role="tblEmail1">
+              <PropertyRef Name="VolID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2232,6 +2219,7 @@
           <EntitySetMapping Name="tblEmail1">
             <EntityTypeMapping TypeName="VolTeerModel.tblEmail1">
               <MappingFragment StoreEntitySet="tblEmail1">
+                <ScalarProperty Name="VolID" ColumnName="VolID" />
                 <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
                 <ScalarProperty Name="EmailID" ColumnName="EmailID" />
                 <ScalarProperty Name="EmailAddr" ColumnName="EmailAddr" />
@@ -2375,14 +2363,6 @@
           <AssociationSetMapping Name="tblVolAddr" TypeName="VolTeerModel.tblVolAddr" StoreEntitySet="tblVolAddr">
             <EndProperty Name="tblAddress1">
               <ScalarProperty Name="AddrID" ColumnName="AddrID" />
-            </EndProperty>
-            <EndProperty Name="tblVolunteer">
-              <ScalarProperty Name="VolID" ColumnName="VolID" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="tblVolEmail" TypeName="VolTeerModel.tblVolEmail" StoreEntitySet="tblVolEmail">
-            <EndProperty Name="tblEmail1">
-              <ScalarProperty Name="EmailID" ColumnName="EmailID" />
             </EndProperty>
             <EndProperty Name="tblVolunteer">
               <ScalarProperty Name="VolID" ColumnName="VolID" />
