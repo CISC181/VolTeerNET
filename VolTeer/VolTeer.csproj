@@ -92,13 +92,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Account\ForgotPassword.aspx.cs">
-      <DependentUpon>ForgotPassword.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Account\ForgotPassword.aspx.designer.cs">
-      <DependentUpon>ForgotPassword.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Account\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -120,12 +113,26 @@
     <Compile Include="Account\ManageUser.aspx.designer.cs">
       <DependentUpon>ManageUser.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Account\RecoverPassword.aspx.cs">
+      <DependentUpon>RecoverPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\RecoverPassword.aspx.designer.cs">
+      <DependentUpon>RecoverPassword.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Account\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Account\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Code\cEnums.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
@@ -281,11 +288,12 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Account\ForgotPassword.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\ManageRole.aspx" />
     <Content Include="Account\ManageUser.aspx" />
+    <Content Include="Account\RecoverPassword.aspx" />
     <Content Include="Account\Register.aspx" />
+    <Content Include="Account\WebForm1.aspx" />
     <Content Include="App_Data\RadCaptcha\0.wav" />
     <Content Include="App_Data\RadCaptcha\1.wav" />
     <Content Include="App_Data\RadCaptcha\2.wav" />
@@ -471,7 +479,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
+      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

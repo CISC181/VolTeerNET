@@ -116,8 +116,8 @@ h5, h6 {
 
 .main-content {
     background: url("../Images/accent.png") no-repeat;
-    padding-left: 10px;
-    padding-top: 30px;
+    padding-left: 5px;
+    padding-top: 5px;
 }
 
 .featured + .main-content {
@@ -166,7 +166,7 @@ footer {
 
     #login a {
         background-color: #d3dce0;
-        margin-left: 10px;
+        margin-left: 5px;
         margin-right: 3px;
         padding: 2px 3px;
         text-decoration: none;
@@ -201,7 +201,7 @@ ul#menu {
     ul#menu li {
         display: inline;
         list-style: none;
-        padding-left: 15px;
+        padding-left: 5px;
     }
 
         ul#menu li a {
@@ -749,3 +749,79 @@ tr.pager td {
 
 
 }
+
+
+.Base
+    {
+      display: inline-block;
+      font: 12px/18px "segoe ui" ,arial,sans-serif;
+      height: 20px;
+      overflow: hidden;
+      text-align: center;
+      vertical-align: middle;
+      width: 121px;
+      color: #fff;
+      border: 1px solid #333;
+    }
+    .L0
+    {
+      border: 0 none;
+    }
+    .L1
+    {
+      background-color: #ff3933;
+    }
+    .L2
+    {
+      background-color: #ff6633;
+    }
+    .L3
+    {
+      background-color: #ff3399;
+    }
+    .L4
+    {
+      background-color: #cccc33;
+    }
+    .L5
+    {
+      background-color: #33cc00;
+    }
+     
+    .cfgContent .RadComboBox
+    {
+      margin-bottom: 10px;
+      width: 298px;
+    }
+     
+    .cfgContent .RadComboBoxWithLabel .rcbLabel
+    {
+      width: 210px;
+      display: inline-block;
+    }
+ 
+     
+    .checkboxes
+    {
+      line-height: 30px;
+    }
+     
+    .customizedInd .RadInput
+    {
+      margin-bottom: 5px;
+    }
+     
+    .customizedInd .RadInput .riLabel
+    {
+      width: 100px;
+      display: inline-block;
+    }
+     
+    .customizedInd h2
+    {
+      font-weight: normal;
+      font-size: 14px;
+      color: #666;
+    }
+
+
