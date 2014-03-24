@@ -10,19 +10,11 @@
 namespace VolTeer.DataAccessLayer.VT
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class tblEmail
+    public partial class sp_Vend_Email_Select_Result
     {
-        public tblEmail()
-        {
-            this.tblContactEmails = new HashSet<tblContactEmail>();
-        }
-    
         public int EmailID { get; set; }
         public string EmailAddr { get; set; }
         public bool ActiveFlg { get; set; }
-    
-        public virtual ICollection<tblContactEmail> tblContactEmails { get; set; }
     }
 }

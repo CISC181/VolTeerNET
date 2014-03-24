@@ -16,7 +16,7 @@ namespace VolTeer.DataAccessLayer.VT
     {
         public tblGroup()
         {
-            this.tblAddress1 = new HashSet<tblAddress1>();
+            this.tblVolAddresses = new HashSet<tblVolAddress>();
             this.tblVolunteers = new HashSet<tblVolunteer>();
         }
     
@@ -25,7 +25,7 @@ namespace VolTeer.DataAccessLayer.VT
         public Nullable<int> ParticipationLevelID { get; set; }
         public Nullable<bool> ActiveFlg { get; set; }
     
-        public virtual ICollection<tblAddress1> tblAddress1 { get; set; }
+        public virtual ICollection<tblVolAddress> tblVolAddresses { get; set; }
         public virtual ICollection<tblVolunteer> tblVolunteers { get; set; }
     }
 }

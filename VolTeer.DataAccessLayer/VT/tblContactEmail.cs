@@ -19,6 +19,6 @@ namespace VolTeer.DataAccessLayer.VT
         public Nullable<bool> PrimaryEmail { get; set; }
     
         public virtual tblContact tblContact { get; set; }
-        public virtual tblEmail tblEmail { get; set; }
+        public virtual tblVendEmail tblVendEmail { get; set; }
     }
 }

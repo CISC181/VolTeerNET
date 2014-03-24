@@ -12,20 +12,17 @@ namespace VolTeer.DataAccessLayer.VT
     using System;
     using System.Collections.Generic;
     
-    public partial class tblProject
+    public partial class tblVendEmail
     {
-        public tblProject()
+        public tblVendEmail()
         {
-            this.tblVendorProjContacts = new HashSet<tblVendorProjContact>();
+            this.tblContactEmails = new HashSet<tblContactEmail>();
         }
     
-        public System.Guid ProjectID { get; set; }
-        public string ProjectName { get; set; }
-        public string ProjectDesc { get; set; }
-        public Nullable<int> AddrID { get; set; }
-        public Nullable<int> ActiveFlg { get; set; }
+        public int EmailID { get; set; }
+        public string EmailAddr { get; set; }
+        public bool ActiveFlg { get; set; }
     
-        public virtual tblVendAddress tblVendAddress { get; set; }
-        public virtual ICollection<tblVendorProjContact> tblVendorProjContacts { get; set; }
+        public virtual ICollection<tblContactEmail> tblContactEmails { get; set; }
     }
 }

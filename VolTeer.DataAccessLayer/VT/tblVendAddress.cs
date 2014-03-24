@@ -12,16 +12,15 @@ namespace VolTeer.DataAccessLayer.VT
     using System;
     using System.Collections.Generic;
     
-    public partial class tblAddress1
+    public partial class tblVendAddress
     {
-        public tblAddress1()
+        public tblVendAddress()
         {
-            this.tblGroups = new HashSet<tblGroup>();
-            this.tblVolunteers = new HashSet<tblVolunteer>();
+            this.tblProjects = new HashSet<tblProject>();
+            this.tblVendorAddrs = new HashSet<tblVendorAddr>();
         }
     
         public int AddrID { get; set; }
-        public Nullable<bool> ActiveFlg { get; set; }
         public string AddrLine1 { get; set; }
         public string AddrLine2 { get; set; }
         public string AddrLine3 { get; set; }
@@ -29,8 +28,9 @@ namespace VolTeer.DataAccessLayer.VT
         public string St { get; set; }
         public Nullable<int> Zip { get; set; }
         public Nullable<int> Zip4 { get; set; }
+        public bool ActiveFlg { get; set; }
     
-        public virtual ICollection<tblGroup> tblGroups { get; set; }
-        public virtual ICollection<tblVolunteer> tblVolunteers { get; set; }
+        public virtual ICollection<tblProject> tblProjects { get; set; }
+        public virtual ICollection<tblVendorAddr> tblVendorAddrs { get; set; }
     }
 }

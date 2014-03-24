@@ -10,15 +10,14 @@
 namespace VolTeer.DataAccessLayer.VT
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class tblVendorAddr
+    public partial class sp_Vend_Address_Insert_Result
     {
-        public System.Guid VendorID { get; set; }
-        public int AddrID { get; set; }
-        public Nullable<bool> HQ { get; set; }
-    
-        public virtual tblVendAddress tblVendAddress { get; set; }
-        public virtual tblVendor tblVendor { get; set; }
+        public Nullable<int> ErrorNumber { get; set; }
+        public Nullable<int> ErrorSeverity { get; set; }
+        public Nullable<int> ErrorState { get; set; }
+        public string ErrorProcedure { get; set; }
+        public Nullable<int> ErrorLine { get; set; }
+        public string ErrorMessage { get; set; }
     }
 }

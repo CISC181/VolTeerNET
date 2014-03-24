@@ -186,10 +186,31 @@
     <Compile Include="VT\sp_EventRating_Select_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
+    <Compile Include="VT\sp_Vend_Address_Insert_Result.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\sp_Vend_Address_Select_Result.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\sp_Vend_Email_Select_Result.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
     <Compile Include="VT\sp_Volunteer_Insert_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
     <Compile Include="VT\sp_Volunteer_Select_Result.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\tblVendAddress.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\tblVendEmail.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\tblVolAddress.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\tblVolEmail.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
     <Compile Include="VT\Vol\SkillDAL.cs" />
@@ -259,22 +280,10 @@
     <Compile Include="VT\sp_tblVendor_Select_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
-    <Compile Include="VT\tblAddress.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VT\tblAddress1.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
     <Compile Include="VT\tblContact.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
     <Compile Include="VT\tblContactEmail.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VT\tblEmail.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VT\tblEmail1.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
     <Compile Include="VT\tblEventRating.cs">

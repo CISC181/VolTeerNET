@@ -6,21 +6,19 @@
     <edmx:StorageModels>
     <Schema Namespace="VolTeerModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="VolTeerModelStoreContainer">
-          <EntitySet Name="tblAddress" EntityType="VolTeerModel.Store.tblAddress" store:Type="Tables" Schema="Vend" />
           <EntitySet Name="tblContact" EntityType="VolTeerModel.Store.tblContact" store:Type="Tables" Schema="Vend" />
           <EntitySet Name="tblContactEmail" EntityType="VolTeerModel.Store.tblContactEmail" store:Type="Tables" Schema="Vend" />
-          <EntitySet Name="tblEmail" EntityType="VolTeerModel.Store.tblEmail" store:Type="Tables" Schema="Vend" />
           <EntitySet Name="tblEventRating" EntityType="VolTeerModel.Store.tblEventRating" store:Type="Tables" Schema="Vend" />
           <EntitySet Name="tblProject" EntityType="VolTeerModel.Store.tblProject" store:Type="Tables" Schema="Vend" />
           <EntitySet Name="tblProjectEvent" EntityType="VolTeerModel.Store.tblProjectEvent" store:Type="Tables" Schema="Vend" />
           <EntitySet Name="tblProjectEventContact" EntityType="VolTeerModel.Store.tblProjectEventContact" store:Type="Tables" Schema="Vend" />
           <EntitySet Name="tblState" EntityType="VolTeerModel.Store.tblState" store:Type="Tables" Schema="Vend" />
+          <EntitySet Name="tblVendAddress" EntityType="VolTeerModel.Store.tblVendAddress" store:Type="Tables" Schema="Vend" />
           <EntitySet Name="tblVendContact" EntityType="VolTeerModel.Store.tblVendContact" store:Type="Tables" Schema="Vend" />
+          <EntitySet Name="tblVendEmail" EntityType="VolTeerModel.Store.tblVendEmail" store:Type="Tables" Schema="Vend" />
           <EntitySet Name="tblVendor" EntityType="VolTeerModel.Store.tblVendor" store:Type="Tables" Schema="Vend" />
           <EntitySet Name="tblVendorAddr" EntityType="VolTeerModel.Store.tblVendorAddr" store:Type="Tables" Schema="Vend" />
           <EntitySet Name="tblVendorProjContact" EntityType="VolTeerModel.Store.tblVendorProjContact" store:Type="Tables" Schema="Vend" />
-          <EntitySet Name="tblAddress1" EntityType="VolTeerModel.Store.tblAddress1" store:Type="Tables" Schema="Vol" Table="tblAddress" />
-          <EntitySet Name="tblEmail1" EntityType="VolTeerModel.Store.tblEmail1" store:Type="Tables" Schema="Vol" Table="tblEmail" />
           <EntitySet Name="tblGroup" EntityType="VolTeerModel.Store.tblGroup" store:Type="Tables" Schema="Vol" />
           <EntitySet Name="tblGroupAddr" EntityType="VolTeerModel.Store.tblGroupAddr" store:Type="Tables" Schema="Vol" />
           <EntitySet Name="tblGroupVol" EntityType="VolTeerModel.Store.tblGroupVol" store:Type="Tables" Schema="Vol" />
@@ -28,6 +26,8 @@
           <EntitySet Name="tblSkill" EntityType="VolTeerModel.Store.tblSkill" store:Type="Tables" Schema="Vol" />
           <EntitySet Name="tblState1" EntityType="VolTeerModel.Store.tblState1" store:Type="Tables" Schema="Vol" Table="tblState" />
           <EntitySet Name="tblVolAddr" EntityType="VolTeerModel.Store.tblVolAddr" store:Type="Tables" Schema="Vol" />
+          <EntitySet Name="tblVolAddress" EntityType="VolTeerModel.Store.tblVolAddress" store:Type="Tables" Schema="Vol" />
+          <EntitySet Name="tblVolEmail" EntityType="VolTeerModel.Store.tblVolEmail" store:Type="Tables" Schema="Vol" />
           <EntitySet Name="tblVolSkill" EntityType="VolTeerModel.Store.tblVolSkill" store:Type="Tables" Schema="Vol" />
           <EntitySet Name="tblVolunteer" EntityType="VolTeerModel.Store.tblVolunteer" store:Type="Tables" Schema="Vol" />
           <AssociationSet Name="FK_Skill_Skill" Association="VolTeerModel.Store.FK_Skill_Skill">
@@ -39,19 +39,19 @@
             <End Role="tblContactEmail" EntitySet="tblContactEmail" />
           </AssociationSet>
           <AssociationSet Name="FK_tblContactEmail_tblEmail" Association="VolTeerModel.Store.FK_tblContactEmail_tblEmail">
-            <End Role="tblEmail" EntitySet="tblEmail" />
+            <End Role="tblVendEmail" EntitySet="tblVendEmail" />
             <End Role="tblContactEmail" EntitySet="tblContactEmail" />
           </AssociationSet>
           <AssociationSet Name="FK_tblEmail_tblVolunteer" Association="VolTeerModel.Store.FK_tblEmail_tblVolunteer">
             <End Role="tblVolunteer" EntitySet="tblVolunteer" />
-            <End Role="tblEmail1" EntitySet="tblEmail1" />
+            <End Role="tblVolEmail" EntitySet="tblVolEmail" />
           </AssociationSet>
           <AssociationSet Name="FK_tblEventRating_tblProjectEvent" Association="VolTeerModel.Store.FK_tblEventRating_tblProjectEvent">
             <End Role="tblProjectEvent" EntitySet="tblProjectEvent" />
             <End Role="tblEventRating" EntitySet="tblEventRating" />
           </AssociationSet>
           <AssociationSet Name="FK_tblGroupAddr_tblAddress" Association="VolTeerModel.Store.FK_tblGroupAddr_tblAddress">
-            <End Role="tblAddress1" EntitySet="tblAddress1" />
+            <End Role="tblVolAddress" EntitySet="tblVolAddress" />
             <End Role="tblGroupAddr" EntitySet="tblGroupAddr" />
           </AssociationSet>
           <AssociationSet Name="FK_tblGroupAddr_tblGroup" Association="VolTeerModel.Store.FK_tblGroupAddr_tblGroup">
@@ -67,7 +67,7 @@
             <End Role="tblGroupVol" EntitySet="tblGroupVol" />
           </AssociationSet>
           <AssociationSet Name="FK_tblProject_tblAddress" Association="VolTeerModel.Store.FK_tblProject_tblAddress">
-            <End Role="tblAddress" EntitySet="tblAddress" />
+            <End Role="tblVendAddress" EntitySet="tblVendAddress" />
             <End Role="tblProject" EntitySet="tblProject" />
           </AssociationSet>
           <AssociationSet Name="FK_tblProjectEventContact_tblContact" Association="VolTeerModel.Store.FK_tblProjectEventContact_tblContact">
@@ -87,7 +87,7 @@
             <End Role="tblVendContact" EntitySet="tblVendContact" />
           </AssociationSet>
           <AssociationSet Name="FK_tblVendorAddr_tblAddress" Association="VolTeerModel.Store.FK_tblVendorAddr_tblAddress">
-            <End Role="tblAddress" EntitySet="tblAddress" />
+            <End Role="tblVendAddress" EntitySet="tblVendAddress" />
             <End Role="tblVendorAddr" EntitySet="tblVendorAddr" />
           </AssociationSet>
           <AssociationSet Name="FK_tblVendorAddr_tblVendor" Association="VolTeerModel.Store.FK_tblVendorAddr_tblVendor">
@@ -107,7 +107,7 @@
             <End Role="tblVendorProjContact" EntitySet="tblVendorProjContact" />
           </AssociationSet>
           <AssociationSet Name="FK_tblVolAddr_tblAddress" Association="VolTeerModel.Store.FK_tblVolAddr_tblAddress">
-            <End Role="tblAddress1" EntitySet="tblAddress1" />
+            <End Role="tblVolAddress" EntitySet="tblVolAddress" />
             <End Role="tblVolAddr" EntitySet="tblVolAddr" />
           </AssociationSet>
           <AssociationSet Name="FK_tblVolAddr_tblVolunteer" Association="VolTeerModel.Store.FK_tblVolAddr_tblVolunteer">
@@ -123,20 +123,6 @@
             <End Role="tblVolSkill" EntitySet="tblVolSkill" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="tblAddress">
-          <Key>
-            <PropertyRef Name="AddrID" />
-          </Key>
-          <Property Name="AddrID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="AddrLine1" Type="nvarchar" MaxLength="50" />
-          <Property Name="AddrLine2" Type="nvarchar" MaxLength="50" />
-          <Property Name="AddrLine3" Type="nvarchar" MaxLength="50" />
-          <Property Name="City" Type="nvarchar" MaxLength="30" />
-          <Property Name="St" Type="char" MaxLength="2" />
-          <Property Name="Zip" Type="int" />
-          <Property Name="Zip4" Type="int" />
-          <Property Name="ActiveFlg" Type="bit" Nullable="false" />
-        </EntityType>
         <EntityType Name="tblContact">
           <Key>
             <PropertyRef Name="ContactID" />
@@ -155,14 +141,6 @@
           <Property Name="ContactID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="EmailID" Type="int" Nullable="false" />
           <Property Name="PrimaryEmail" Type="bit" />
-        </EntityType>
-        <EntityType Name="tblEmail">
-          <Key>
-            <PropertyRef Name="EmailID" />
-          </Key>
-          <Property Name="EmailID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="EmailAddr" Type="nvarchar" MaxLength="100" />
-          <Property Name="ActiveFlg" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="tblEventRating">
           <Key>
@@ -225,6 +203,20 @@
           <Property Name="census_devision_name" Type="varchar" MaxLength="255" />
           <Property Name="circuit_court" Type="varchar" MaxLength="255" />
         </EntityType>
+        <EntityType Name="tblVendAddress">
+          <Key>
+            <PropertyRef Name="AddrID" />
+          </Key>
+          <Property Name="AddrID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="AddrLine1" Type="nvarchar" MaxLength="50" />
+          <Property Name="AddrLine2" Type="nvarchar" MaxLength="50" />
+          <Property Name="AddrLine3" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="nvarchar" MaxLength="30" />
+          <Property Name="St" Type="char" MaxLength="2" />
+          <Property Name="Zip" Type="int" />
+          <Property Name="Zip4" Type="int" />
+          <Property Name="ActiveFlg" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="tblVendContact">
           <Key>
             <PropertyRef Name="VendorID" />
@@ -233,6 +225,14 @@
           <Property Name="VendorID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="ContactID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="PrimaryContact" Type="bit" />
+        </EntityType>
+        <EntityType Name="tblVendEmail">
+          <Key>
+            <PropertyRef Name="EmailID" />
+          </Key>
+          <Property Name="EmailID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="EmailAddr" Type="nvarchar" MaxLength="100" />
+          <Property Name="ActiveFlg" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="tblVendor">
           <Key>
@@ -261,30 +261,6 @@
           <Property Name="ProjectID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="ContactID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="PrimaryContact" Type="bit" />
-        </EntityType>
-        <EntityType Name="tblAddress1">
-          <Key>
-            <PropertyRef Name="AddrID" />
-          </Key>
-          <Property Name="AddrID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="ActiveFlg" Type="bit" />
-          <Property Name="AddrLine1" Type="nvarchar" MaxLength="50" />
-          <Property Name="AddrLine2" Type="nvarchar" MaxLength="50" />
-          <Property Name="AddrLine3" Type="nvarchar" MaxLength="50" />
-          <Property Name="City" Type="nvarchar" MaxLength="30" />
-          <Property Name="St" Type="char" MaxLength="2" />
-          <Property Name="Zip" Type="int" />
-          <Property Name="Zip4" Type="int" />
-        </EntityType>
-        <EntityType Name="tblEmail1">
-          <Key>
-            <PropertyRef Name="EmailID" />
-            <PropertyRef Name="VolID" />
-          </Key>
-          <Property Name="EmailID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="VolID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="EmailAddr" Type="nvarchar" MaxLength="100" />
-          <Property Name="ActiveFlg" Type="bit" />
         </EntityType>
         <EntityType Name="tblGroup">
           <Key>
@@ -365,6 +341,30 @@
           <Property Name="VolID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="AddrID" Type="int" Nullable="false" />
         </EntityType>
+        <EntityType Name="tblVolAddress">
+          <Key>
+            <PropertyRef Name="AddrID" />
+          </Key>
+          <Property Name="AddrID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="ActiveFlg" Type="bit" />
+          <Property Name="AddrLine1" Type="nvarchar" MaxLength="50" />
+          <Property Name="AddrLine2" Type="nvarchar" MaxLength="50" />
+          <Property Name="AddrLine3" Type="nvarchar" MaxLength="50" />
+          <Property Name="City" Type="nvarchar" MaxLength="30" />
+          <Property Name="St" Type="char" MaxLength="2" />
+          <Property Name="Zip" Type="int" />
+          <Property Name="Zip4" Type="int" />
+        </EntityType>
+        <EntityType Name="tblVolEmail">
+          <Key>
+            <PropertyRef Name="EmailID" />
+            <PropertyRef Name="VolID" />
+          </Key>
+          <Property Name="EmailID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="VolID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="EmailAddr" Type="nvarchar" MaxLength="100" />
+          <Property Name="ActiveFlg" Type="bit" />
+        </EntityType>
         <EntityType Name="tblVolSkill">
           <Key>
             <PropertyRef Name="VolID" />
@@ -408,10 +408,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblContactEmail_tblEmail">
-          <End Role="tblEmail" Type="VolTeerModel.Store.tblEmail" Multiplicity="1" />
+          <End Role="tblVendEmail" Type="VolTeerModel.Store.tblVendEmail" Multiplicity="1" />
           <End Role="tblContactEmail" Type="VolTeerModel.Store.tblContactEmail" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="tblEmail">
+            <Principal Role="tblVendEmail">
               <PropertyRef Name="EmailID" />
             </Principal>
             <Dependent Role="tblContactEmail">
@@ -421,12 +421,12 @@
         </Association>
         <Association Name="FK_tblEmail_tblVolunteer">
           <End Role="tblVolunteer" Type="VolTeerModel.Store.tblVolunteer" Multiplicity="1" />
-          <End Role="tblEmail1" Type="VolTeerModel.Store.tblEmail1" Multiplicity="*" />
+          <End Role="tblVolEmail" Type="VolTeerModel.Store.tblVolEmail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblVolunteer">
               <PropertyRef Name="VolID" />
             </Principal>
-            <Dependent Role="tblEmail1">
+            <Dependent Role="tblVolEmail">
               <PropertyRef Name="VolID" />
             </Dependent>
           </ReferentialConstraint>
@@ -444,10 +444,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblGroupAddr_tblAddress">
-          <End Role="tblAddress1" Type="VolTeerModel.Store.tblAddress1" Multiplicity="1" />
+          <End Role="tblVolAddress" Type="VolTeerModel.Store.tblVolAddress" Multiplicity="1" />
           <End Role="tblGroupAddr" Type="VolTeerModel.Store.tblGroupAddr" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="tblAddress1">
+            <Principal Role="tblVolAddress">
               <PropertyRef Name="AddrID" />
             </Principal>
             <Dependent Role="tblGroupAddr">
@@ -492,10 +492,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblProject_tblAddress">
-          <End Role="tblAddress" Type="VolTeerModel.Store.tblAddress" Multiplicity="0..1" />
+          <End Role="tblVendAddress" Type="VolTeerModel.Store.tblVendAddress" Multiplicity="0..1" />
           <End Role="tblProject" Type="VolTeerModel.Store.tblProject" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="tblAddress">
+            <Principal Role="tblVendAddress">
               <PropertyRef Name="AddrID" />
             </Principal>
             <Dependent Role="tblProject">
@@ -552,10 +552,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblVendorAddr_tblAddress">
-          <End Role="tblAddress" Type="VolTeerModel.Store.tblAddress" Multiplicity="1" />
+          <End Role="tblVendAddress" Type="VolTeerModel.Store.tblVendAddress" Multiplicity="1" />
           <End Role="tblVendorAddr" Type="VolTeerModel.Store.tblVendorAddr" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="tblAddress">
+            <Principal Role="tblVendAddress">
               <PropertyRef Name="AddrID" />
             </Principal>
             <Dependent Role="tblVendorAddr">
@@ -612,10 +612,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblVolAddr_tblAddress">
-          <End Role="tblAddress1" Type="VolTeerModel.Store.tblAddress1" Multiplicity="1" />
+          <End Role="tblVolAddress" Type="VolTeerModel.Store.tblVolAddress" Multiplicity="1" />
           <End Role="tblVolAddr" Type="VolTeerModel.Store.tblVolAddr" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="tblAddress1">
+            <Principal Role="tblVolAddress">
               <PropertyRef Name="AddrID" />
             </Principal>
             <Dependent Role="tblVolAddr">
@@ -659,35 +659,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="sp_Address_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
-          <Parameter Name="AddrID" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_Address_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
-          <Parameter Name="AddrLine1" Type="nvarchar" Mode="In" />
-          <Parameter Name="AddrLine2" Type="nvarchar" Mode="In" />
-          <Parameter Name="AddrLine3" Type="nvarchar" Mode="In" />
-          <Parameter Name="City" Type="nvarchar" Mode="In" />
-          <Parameter Name="St" Type="char" Mode="In" />
-          <Parameter Name="Zip" Type="int" Mode="In" />
-          <Parameter Name="Zip4" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_Address_MassUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
-          <Parameter Name="XML_IN" Type="xml" Mode="In" />
-        </Function>
-        <Function Name="sp_Address_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
-          <Parameter Name="AddrID" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_Address_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
-          <Parameter Name="AddrId" Type="int" Mode="In" />
-          <Parameter Name="ActiveFlg" Type="bit" Mode="In" />
-          <Parameter Name="AddrLine1" Type="nvarchar" Mode="In" />
-          <Parameter Name="AddrLine2" Type="nvarchar" Mode="In" />
-          <Parameter Name="AddrLine3" Type="nvarchar" Mode="In" />
-          <Parameter Name="City" Type="nvarchar" Mode="In" />
-          <Parameter Name="St" Type="char" Mode="In" />
-          <Parameter Name="Zip" Type="int" Mode="In" />
-          <Parameter Name="Zip4" Type="int" Mode="In" />
-        </Function>
         <Function Name="sp_Contact_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
           <Parameter Name="ContactID" Type="uniqueidentifier" Mode="In" />
         </Function>
@@ -709,21 +680,6 @@
           <Parameter Name="ContactLastName" Type="nvarchar" Mode="In" />
           <Parameter Name="ActiveFlg" Type="bit" Mode="In" />
         </Function>
-        <Function Name="sp_Email_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
-          <Parameter Name="EmailID" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_Email_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
-          <Parameter Name="EmailAddr" Type="nvarchar" Mode="In" />
-        </Function>
-        <Function Name="sp_Email_MassUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
-          <Parameter Name="XML_IN" Type="xml" Mode="In" />
-        </Function>
-        <Function Name="sp_Email_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend" />
-        <Function Name="sp_Email_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
-          <Parameter Name="EmailID" Type="int" Mode="In" />
-          <Parameter Name="EmailAddr" Type="nvarchar" Mode="In" />
-          <Parameter Name="ActiveFlg" Type="bit" Mode="In" />
-        </Function>
         <Function Name="sp_EventRating_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
           <Parameter Name="RatingID" Type="int" Mode="In" />
         </Function>
@@ -739,7 +695,6 @@
           <Parameter Name="RatingID" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_EventRating_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
-          <Parameter Name="flag" Type="bit" Mode="InOut" />
           <Parameter Name="RatingID" Type="int" Mode="In" />
           <Parameter Name="EventID" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="VolID" Type="uniqueidentifier" Mode="In" />
@@ -782,10 +737,10 @@
           <Parameter Name="VendorID" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="VendorName" Type="nvarchar" Mode="In" />
         </Function>
-        <Function Name="sp_Address_Delete1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" StoreFunctionName="sp_Address_Delete" Schema="Vol">
+        <Function Name="sp_Vend_Address_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
           <Parameter Name="AddrID" Type="int" Mode="In" />
         </Function>
-        <Function Name="sp_Address_Insert1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" StoreFunctionName="sp_Address_Insert" Schema="Vol">
+        <Function Name="sp_Vend_Address_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
           <Parameter Name="AddrLine1" Type="nvarchar" Mode="In" />
           <Parameter Name="AddrLine2" Type="nvarchar" Mode="In" />
           <Parameter Name="AddrLine3" Type="nvarchar" Mode="In" />
@@ -793,15 +748,14 @@
           <Parameter Name="St" Type="char" Mode="In" />
           <Parameter Name="Zip" Type="int" Mode="In" />
           <Parameter Name="Zip4" Type="int" Mode="In" />
-          <Parameter Name="ActiveFlg" Type="bit" Mode="In" />
         </Function>
-        <Function Name="sp_Address_MassUpdate1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" StoreFunctionName="sp_Address_MassUpdate" Schema="Vol">
+        <Function Name="sp_Vend_Address_MassUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
           <Parameter Name="XML_IN" Type="xml" Mode="In" />
         </Function>
-        <Function Name="sp_Address_Select1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" StoreFunctionName="sp_Address_Select" Schema="Vol">
+        <Function Name="sp_Vend_Address_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
           <Parameter Name="AddrID" Type="int" Mode="In" />
         </Function>
-        <Function Name="sp_Address_Update1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" StoreFunctionName="sp_Address_Update" Schema="Vol">
+        <Function Name="sp_Vend_Address_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
           <Parameter Name="AddrId" Type="int" Mode="In" />
           <Parameter Name="ActiveFlg" Type="bit" Mode="In" />
           <Parameter Name="AddrLine1" Type="nvarchar" Mode="In" />
@@ -812,19 +766,36 @@
           <Parameter Name="Zip" Type="int" Mode="In" />
           <Parameter Name="Zip4" Type="int" Mode="In" />
         </Function>
-        <Function Name="sp_Email_Delete1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" StoreFunctionName="sp_Email_Delete" Schema="Vol">
+        <Function Name="sp_Vend_Email_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
+          <Parameter Name="EmailID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_Vend_Email_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
+          <Parameter Name="EmailAddr" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_Vend_Email_MassUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
+          <Parameter Name="XML_IN" Type="xml" Mode="In" />
+        </Function>
+        <Function Name="sp_Vend_Email_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
+          <Parameter Name="EmailID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_Vend_Email_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
+          <Parameter Name="EmailID" Type="int" Mode="In" />
+          <Parameter Name="EmailAddr" Type="nvarchar" Mode="In" />
+          <Parameter Name="ActiveFlg" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="sp_Email_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="flag" Type="bit" Mode="InOut" />
           <Parameter Name="EmailID" Type="int" Mode="In" />
           <Parameter Name="EmailAddr" Type="nvarchar" Mode="In" />
           <Parameter Name="ActiveFlg" Type="bit" Mode="In" />
         </Function>
-        <Function Name="sp_Email_Insert1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" StoreFunctionName="sp_Email_Insert" Schema="Vol">
+        <Function Name="sp_Email_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="EmailAddr" Type="nvarchar" Mode="In" />
         </Function>
-        <Function Name="sp_Email_Select1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" StoreFunctionName="sp_Email_Select" Schema="Vol">
+        <Function Name="sp_Email_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="EmailID" Type="int" Mode="In" />
         </Function>
-        <Function Name="sp_Email_Update1" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" StoreFunctionName="sp_Email_Update" Schema="Vol">
+        <Function Name="sp_Email_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="EmailID" Type="int" Mode="In" />
           <Parameter Name="EmailAddr" Type="nvarchar" Mode="In" />
         </Function>
@@ -893,6 +864,36 @@
           <Parameter Name="EmailID" Type="int" Mode="In" />
           <Parameter Name="EmailAddr" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="sp_Vol_Address_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
+          <Parameter Name="AddrID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_Vol_Address_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
+          <Parameter Name="AddrLine1" Type="nvarchar" Mode="In" />
+          <Parameter Name="AddrLine2" Type="nvarchar" Mode="In" />
+          <Parameter Name="AddrLine3" Type="nvarchar" Mode="In" />
+          <Parameter Name="City" Type="nvarchar" Mode="In" />
+          <Parameter Name="St" Type="char" Mode="In" />
+          <Parameter Name="Zip" Type="int" Mode="In" />
+          <Parameter Name="Zip4" Type="int" Mode="In" />
+          <Parameter Name="ActiveFlg" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="sp_Vol_Address_MassUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
+          <Parameter Name="XML_IN" Type="xml" Mode="In" />
+        </Function>
+        <Function Name="sp_Vol_Address_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
+          <Parameter Name="AddrID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_Vol_Address_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
+          <Parameter Name="AddrId" Type="int" Mode="In" />
+          <Parameter Name="ActiveFlg" Type="bit" Mode="In" />
+          <Parameter Name="AddrLine1" Type="nvarchar" Mode="In" />
+          <Parameter Name="AddrLine2" Type="nvarchar" Mode="In" />
+          <Parameter Name="AddrLine3" Type="nvarchar" Mode="In" />
+          <Parameter Name="City" Type="nvarchar" Mode="In" />
+          <Parameter Name="St" Type="char" Mode="In" />
+          <Parameter Name="Zip" Type="int" Mode="In" />
+          <Parameter Name="Zip4" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_Volenteer_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="VolID" Type="uniqueidentifier" Mode="In" />
         </Function>
@@ -917,98 +918,6 @@
     <edmx:ConceptualModels>
       <Schema Namespace="VolTeerModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
         <EntityContainer Name="VolTeerEntities" annotation:LazyLoadingEnabled="true">
-          <EntitySet Name="tblAddresses" EntityType="VolTeerModel.tblAddress" />
-          <EntitySet Name="tblContacts" EntityType="VolTeerModel.tblContact" />
-          <EntitySet Name="tblContactEmails" EntityType="VolTeerModel.tblContactEmail" />
-          <EntitySet Name="tblEmails" EntityType="VolTeerModel.tblEmail" />
-          <EntitySet Name="tblEventRatings" EntityType="VolTeerModel.tblEventRating" />
-          <EntitySet Name="tblProjects" EntityType="VolTeerModel.tblProject" />
-          <EntitySet Name="tblProjectEvents" EntityType="VolTeerModel.tblProjectEvent" />
-          <EntitySet Name="tblProjectEventContacts" EntityType="VolTeerModel.tblProjectEventContact" />
-          <EntitySet Name="tblStates" EntityType="VolTeerModel.tblState" />
-          <EntitySet Name="tblVendContacts" EntityType="VolTeerModel.tblVendContact" />
-          <EntitySet Name="tblVendors" EntityType="VolTeerModel.tblVendor" />
-          <EntitySet Name="tblVendorAddrs" EntityType="VolTeerModel.tblVendorAddr" />
-          <EntitySet Name="tblVendorProjContacts" EntityType="VolTeerModel.tblVendorProjContact" />
-          <EntitySet Name="tblAddress1" EntityType="VolTeerModel.tblAddress1" />
-          <EntitySet Name="tblEmail1" EntityType="VolTeerModel.tblEmail1" />
-          <EntitySet Name="tblGroups" EntityType="VolTeerModel.tblGroup" />
-          <EntitySet Name="tblSampleAddresses" EntityType="VolTeerModel.tblSampleAddress" />
-          <EntitySet Name="tblSkills" EntityType="VolTeerModel.tblSkill" />
-          <EntitySet Name="tblState1" EntityType="VolTeerModel.tblState1" />
-          <EntitySet Name="tblVolunteers" EntityType="VolTeerModel.tblVolunteer" />
-          <AssociationSet Name="FK_tblProject_tblAddress" Association="VolTeerModel.FK_tblProject_tblAddress">
-            <End Role="tblAddress" EntitySet="tblAddresses" />
-            <End Role="tblProject" EntitySet="tblProjects" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblVendorAddr_tblAddress" Association="VolTeerModel.FK_tblVendorAddr_tblAddress">
-            <End Role="tblAddress" EntitySet="tblAddresses" />
-            <End Role="tblVendorAddr" EntitySet="tblVendorAddrs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblContactEmail_tblContact" Association="VolTeerModel.FK_tblContactEmail_tblContact">
-            <End Role="tblContact" EntitySet="tblContacts" />
-            <End Role="tblContactEmail" EntitySet="tblContactEmails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblProjectEventContact_tblContact" Association="VolTeerModel.FK_tblProjectEventContact_tblContact">
-            <End Role="tblContact" EntitySet="tblContacts" />
-            <End Role="tblProjectEventContact" EntitySet="tblProjectEventContacts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblVendContact_tblContact" Association="VolTeerModel.FK_tblVendContact_tblContact">
-            <End Role="tblContact" EntitySet="tblContacts" />
-            <End Role="tblVendContact" EntitySet="tblVendContacts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblVendorProj_tblContact" Association="VolTeerModel.FK_tblVendorProj_tblContact">
-            <End Role="tblContact" EntitySet="tblContacts" />
-            <End Role="tblVendorProjContact" EntitySet="tblVendorProjContacts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblContactEmail_tblEmail" Association="VolTeerModel.FK_tblContactEmail_tblEmail">
-            <End Role="tblEmail" EntitySet="tblEmails" />
-            <End Role="tblContactEmail" EntitySet="tblContactEmails" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblEventRating_tblProjectEvent" Association="VolTeerModel.FK_tblEventRating_tblProjectEvent">
-            <End Role="tblProjectEvent" EntitySet="tblProjectEvents" />
-            <End Role="tblEventRating" EntitySet="tblEventRatings" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblVendorProj_tblProject" Association="VolTeerModel.FK_tblVendorProj_tblProject">
-            <End Role="tblProject" EntitySet="tblProjects" />
-            <End Role="tblVendorProjContact" EntitySet="tblVendorProjContacts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblProjectEventContact_tblProjectEvent" Association="VolTeerModel.FK_tblProjectEventContact_tblProjectEvent">
-            <End Role="tblProjectEvent" EntitySet="tblProjectEvents" />
-            <End Role="tblProjectEventContact" EntitySet="tblProjectEventContacts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblVendContact_tblVendor" Association="VolTeerModel.FK_tblVendContact_tblVendor">
-            <End Role="tblVendor" EntitySet="tblVendors" />
-            <End Role="tblVendContact" EntitySet="tblVendContacts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblVendorAddr_tblVendor" Association="VolTeerModel.FK_tblVendorAddr_tblVendor">
-            <End Role="tblVendor" EntitySet="tblVendors" />
-            <End Role="tblVendorAddr" EntitySet="tblVendorAddrs" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblVendorProj_tblVendor" Association="VolTeerModel.FK_tblVendorProj_tblVendor">
-            <End Role="tblVendor" EntitySet="tblVendors" />
-            <End Role="tblVendorProjContact" EntitySet="tblVendorProjContacts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Skill_Skill" Association="VolTeerModel.FK_Skill_Skill">
-            <End Role="tblSkill" EntitySet="tblSkills" />
-            <End Role="tblSkill1" EntitySet="tblSkills" />
-          </AssociationSet>
-          <AssociationSet Name="tblGroupAddr" Association="VolTeerModel.tblGroupAddr">
-            <End Role="tblAddress1" EntitySet="tblAddress1" />
-            <End Role="tblGroup" EntitySet="tblGroups" />
-          </AssociationSet>
-          <AssociationSet Name="tblGroupVol" Association="VolTeerModel.tblGroupVol">
-            <End Role="tblGroup" EntitySet="tblGroups" />
-            <End Role="tblVolunteer" EntitySet="tblVolunteers" />
-          </AssociationSet>
-          <AssociationSet Name="tblVolAddr" Association="VolTeerModel.tblVolAddr">
-            <End Role="tblAddress1" EntitySet="tblAddress1" />
-            <End Role="tblVolunteer" EntitySet="tblVolunteers" />
-          </AssociationSet>
-          <AssociationSet Name="tblVolSkill" Association="VolTeerModel.tblVolSkill">
-            <End Role="tblSkill" EntitySet="tblSkills" />
-            <End Role="tblVolunteer" EntitySet="tblVolunteers" />
-          </AssociationSet>
           <FunctionImport Name="sp_creatediagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
@@ -1329,7 +1238,6 @@
           <Parameter Name="RatingID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_EventRating_Update">
-            <Parameter Name="flag" Mode="InOut" Type="Boolean" />
             <Parameter Name="RatingID" Mode="In" Type="Int32" />
             <Parameter Name="EventID" Mode="In" Type="Guid" />
             <Parameter Name="VolID" Mode="In" Type="Guid" />
@@ -1364,461 +1272,179 @@
           <FunctionImport Name="sp_Volenteer_Delete">
           <Parameter Name="VolID" Mode="In" Type="Guid" />
           </FunctionImport>
+          <FunctionImport Name="sp_Vend_Address_Delete">
+          <Parameter Name="AddrID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Vend_Address_Insert" ReturnType="Collection(VolTeerModel.sp_Vend_Address_Insert_Result)">
+            <Parameter Name="AddrLine1" Mode="In" Type="String" />
+            <Parameter Name="AddrLine2" Mode="In" Type="String" />
+            <Parameter Name="AddrLine3" Mode="In" Type="String" />
+            <Parameter Name="City" Mode="In" Type="String" />
+            <Parameter Name="St" Mode="In" Type="String" />
+            <Parameter Name="Zip" Mode="In" Type="Int32" />
+            <Parameter Name="Zip4" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Vend_Address_MassUpdate">
+          <Parameter Name="XML_IN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Vend_Address_Select" ReturnType="Collection(VolTeerModel.sp_Vend_Address_Select_Result)">
+          <Parameter Name="AddrID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Vend_Address_Update">
+            <Parameter Name="AddrId" Mode="In" Type="Int32" />
+            <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
+            <Parameter Name="AddrLine1" Mode="In" Type="String" />
+            <Parameter Name="AddrLine2" Mode="In" Type="String" />
+            <Parameter Name="AddrLine3" Mode="In" Type="String" />
+            <Parameter Name="City" Mode="In" Type="String" />
+            <Parameter Name="St" Mode="In" Type="String" />
+            <Parameter Name="Zip" Mode="In" Type="Int32" />
+            <Parameter Name="Zip4" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Vend_Email_Delete">
+          <Parameter Name="EmailID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Vend_Email_Insert">
+          <Parameter Name="EmailAddr" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Vend_Email_MassUpdate">
+          <Parameter Name="XML_IN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Vend_Email_Select" ReturnType="Collection(VolTeerModel.sp_Vend_Email_Select_Result)">
+          <Parameter Name="EmailID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Vend_Email_Update">
+            <Parameter Name="EmailID" Mode="In" Type="Int32" />
+            <Parameter Name="EmailAddr" Mode="In" Type="String" />
+            <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Vol_Address_Delete">
+          <Parameter Name="AddrID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Vol_Address_Insert">
+            <Parameter Name="AddrLine1" Mode="In" Type="String" />
+            <Parameter Name="AddrLine2" Mode="In" Type="String" />
+            <Parameter Name="AddrLine3" Mode="In" Type="String" />
+            <Parameter Name="City" Mode="In" Type="String" />
+            <Parameter Name="St" Mode="In" Type="String" />
+            <Parameter Name="Zip" Mode="In" Type="Int32" />
+            <Parameter Name="Zip4" Mode="In" Type="Int32" />
+            <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Vol_Address_MassUpdate">
+          <Parameter Name="XML_IN" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Vol_Address_Select">
+          <Parameter Name="AddrID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Vol_Address_Update">
+            <Parameter Name="AddrId" Mode="In" Type="Int32" />
+            <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
+            <Parameter Name="AddrLine1" Mode="In" Type="String" />
+            <Parameter Name="AddrLine2" Mode="In" Type="String" />
+            <Parameter Name="AddrLine3" Mode="In" Type="String" />
+            <Parameter Name="City" Mode="In" Type="String" />
+            <Parameter Name="St" Mode="In" Type="String" />
+            <Parameter Name="Zip" Mode="In" Type="Int32" />
+            <Parameter Name="Zip4" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="tblContacts" EntityType="VolTeerModel.tblContact" />
+          <EntitySet Name="tblContactEmails" EntityType="VolTeerModel.tblContactEmail" />
+          <EntitySet Name="tblEventRatings" EntityType="VolTeerModel.tblEventRating" />
+          <EntitySet Name="tblProjects" EntityType="VolTeerModel.tblProject" />
+          <EntitySet Name="tblProjectEvents" EntityType="VolTeerModel.tblProjectEvent" />
+          <EntitySet Name="tblProjectEventContacts" EntityType="VolTeerModel.tblProjectEventContact" />
+          <EntitySet Name="tblStates" EntityType="VolTeerModel.tblState" />
+          <EntitySet Name="tblVendAddresses" EntityType="VolTeerModel.tblVendAddress" />
+          <EntitySet Name="tblVendContacts" EntityType="VolTeerModel.tblVendContact" />
+          <EntitySet Name="tblVendEmails" EntityType="VolTeerModel.tblVendEmail" />
+          <EntitySet Name="tblVendors" EntityType="VolTeerModel.tblVendor" />
+          <EntitySet Name="tblVendorAddrs" EntityType="VolTeerModel.tblVendorAddr" />
+          <EntitySet Name="tblVendorProjContacts" EntityType="VolTeerModel.tblVendorProjContact" />
+          <EntitySet Name="tblGroups" EntityType="VolTeerModel.tblGroup" />
+          <EntitySet Name="tblSampleAddresses" EntityType="VolTeerModel.tblSampleAddress" />
+          <EntitySet Name="tblSkills" EntityType="VolTeerModel.tblSkill" />
+          <EntitySet Name="tblState1" EntityType="VolTeerModel.tblState1" />
+          <EntitySet Name="tblVolAddresses" EntityType="VolTeerModel.tblVolAddress" />
+          <EntitySet Name="tblVolEmails" EntityType="VolTeerModel.tblVolEmail" />
+          <EntitySet Name="tblVolunteers" EntityType="VolTeerModel.tblVolunteer" />
+          <AssociationSet Name="FK_tblContactEmail_tblContact" Association="VolTeerModel.FK_tblContactEmail_tblContact">
+            <End Role="tblContact" EntitySet="tblContacts" />
+            <End Role="tblContactEmail" EntitySet="tblContactEmails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProjectEventContact_tblContact" Association="VolTeerModel.FK_tblProjectEventContact_tblContact">
+            <End Role="tblContact" EntitySet="tblContacts" />
+            <End Role="tblProjectEventContact" EntitySet="tblProjectEventContacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblVendContact_tblContact" Association="VolTeerModel.FK_tblVendContact_tblContact">
+            <End Role="tblContact" EntitySet="tblContacts" />
+            <End Role="tblVendContact" EntitySet="tblVendContacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblVendorProj_tblContact" Association="VolTeerModel.FK_tblVendorProj_tblContact">
+            <End Role="tblContact" EntitySet="tblContacts" />
+            <End Role="tblVendorProjContact" EntitySet="tblVendorProjContacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblContactEmail_tblEmail" Association="VolTeerModel.FK_tblContactEmail_tblEmail">
+            <End Role="tblVendEmail" EntitySet="tblVendEmails" />
+            <End Role="tblContactEmail" EntitySet="tblContactEmails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEventRating_tblProjectEvent" Association="VolTeerModel.FK_tblEventRating_tblProjectEvent">
+            <End Role="tblProjectEvent" EntitySet="tblProjectEvents" />
+            <End Role="tblEventRating" EntitySet="tblEventRatings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProject_tblAddress" Association="VolTeerModel.FK_tblProject_tblAddress">
+            <End Role="tblVendAddress" EntitySet="tblVendAddresses" />
+            <End Role="tblProject" EntitySet="tblProjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblVendorProj_tblProject" Association="VolTeerModel.FK_tblVendorProj_tblProject">
+            <End Role="tblProject" EntitySet="tblProjects" />
+            <End Role="tblVendorProjContact" EntitySet="tblVendorProjContacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProjectEventContact_tblProjectEvent" Association="VolTeerModel.FK_tblProjectEventContact_tblProjectEvent">
+            <End Role="tblProjectEvent" EntitySet="tblProjectEvents" />
+            <End Role="tblProjectEventContact" EntitySet="tblProjectEventContacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblVendorAddr_tblAddress" Association="VolTeerModel.FK_tblVendorAddr_tblAddress">
+            <End Role="tblVendAddress" EntitySet="tblVendAddresses" />
+            <End Role="tblVendorAddr" EntitySet="tblVendorAddrs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblVendContact_tblVendor" Association="VolTeerModel.FK_tblVendContact_tblVendor">
+            <End Role="tblVendor" EntitySet="tblVendors" />
+            <End Role="tblVendContact" EntitySet="tblVendContacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblVendorAddr_tblVendor" Association="VolTeerModel.FK_tblVendorAddr_tblVendor">
+            <End Role="tblVendor" EntitySet="tblVendors" />
+            <End Role="tblVendorAddr" EntitySet="tblVendorAddrs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblVendorProj_tblVendor" Association="VolTeerModel.FK_tblVendorProj_tblVendor">
+            <End Role="tblVendor" EntitySet="tblVendors" />
+            <End Role="tblVendorProjContact" EntitySet="tblVendorProjContacts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Skill_Skill" Association="VolTeerModel.FK_Skill_Skill">
+            <End Role="tblSkill" EntitySet="tblSkills" />
+            <End Role="tblSkill1" EntitySet="tblSkills" />
+          </AssociationSet>
           <AssociationSet Name="FK_tblEmail_tblVolunteer" Association="VolTeerModel.FK_tblEmail_tblVolunteer">
             <End Role="tblVolunteer" EntitySet="tblVolunteers" />
-            <End Role="tblEmail1" EntitySet="tblEmail1" />
+            <End Role="tblVolEmail" EntitySet="tblVolEmails" />
+          </AssociationSet>
+          <AssociationSet Name="tblGroupAddr" Association="VolTeerModel.tblGroupAddr">
+            <End Role="tblVolAddress" EntitySet="tblVolAddresses" />
+            <End Role="tblGroup" EntitySet="tblGroups" />
+          </AssociationSet>
+          <AssociationSet Name="tblGroupVol" Association="VolTeerModel.tblGroupVol">
+            <End Role="tblGroup" EntitySet="tblGroups" />
+            <End Role="tblVolunteer" EntitySet="tblVolunteers" />
+          </AssociationSet>
+          <AssociationSet Name="tblVolAddr" Association="VolTeerModel.tblVolAddr">
+            <End Role="tblVolAddress" EntitySet="tblVolAddresses" />
+            <End Role="tblVolunteer" EntitySet="tblVolunteers" />
+          </AssociationSet>
+          <AssociationSet Name="tblVolSkill" Association="VolTeerModel.tblVolSkill">
+            <End Role="tblSkill" EntitySet="tblSkills" />
+            <End Role="tblVolunteer" EntitySet="tblVolunteers" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="tblAddress">
-          <Key>
-            <PropertyRef Name="AddrID" />
-          </Key>
-          <Property Name="AddrID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="AddrLine1" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="AddrLine2" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="AddrLine3" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="City" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
-          <Property Name="St" Type="String" MaxLength="2" Unicode="false" FixedLength="true" />
-          <Property Name="Zip" Type="Int32" />
-          <Property Name="Zip4" Type="Int32" />
-          <Property Name="ActiveFlg" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="tblProjects" Relationship="VolTeerModel.FK_tblProject_tblAddress" FromRole="tblAddress" ToRole="tblProject" />
-          <NavigationProperty Name="tblVendorAddrs" Relationship="VolTeerModel.FK_tblVendorAddr_tblAddress" FromRole="tblAddress" ToRole="tblVendorAddr" />
-        </EntityType>
-        <EntityType Name="tblContact">
-          <Key>
-            <PropertyRef Name="ContactID" />
-          </Key>
-          <Property Name="ContactID" Type="Guid" Nullable="false" />
-          <Property Name="ContactFirstName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="ContactMiddleName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="ContactLastName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="ActiveFlg" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="tblContactEmails" Relationship="VolTeerModel.FK_tblContactEmail_tblContact" FromRole="tblContact" ToRole="tblContactEmail" />
-          <NavigationProperty Name="tblProjectEventContacts" Relationship="VolTeerModel.FK_tblProjectEventContact_tblContact" FromRole="tblContact" ToRole="tblProjectEventContact" />
-          <NavigationProperty Name="tblVendContacts" Relationship="VolTeerModel.FK_tblVendContact_tblContact" FromRole="tblContact" ToRole="tblVendContact" />
-          <NavigationProperty Name="tblVendorProjContacts" Relationship="VolTeerModel.FK_tblVendorProj_tblContact" FromRole="tblContact" ToRole="tblVendorProjContact" />
-        </EntityType>
-        <EntityType Name="tblContactEmail">
-          <Key>
-            <PropertyRef Name="ContactID" />
-            <PropertyRef Name="EmailID" />
-          </Key>
-          <Property Name="ContactID" Type="Guid" Nullable="false" />
-          <Property Name="EmailID" Type="Int32" Nullable="false" />
-          <Property Name="PrimaryEmail" Type="Boolean" />
-          <NavigationProperty Name="tblContact" Relationship="VolTeerModel.FK_tblContactEmail_tblContact" FromRole="tblContactEmail" ToRole="tblContact" />
-          <NavigationProperty Name="tblEmail" Relationship="VolTeerModel.FK_tblContactEmail_tblEmail" FromRole="tblContactEmail" ToRole="tblEmail" />
-        </EntityType>
-        <EntityType Name="tblEmail">
-          <Key>
-            <PropertyRef Name="EmailID" />
-          </Key>
-          <Property Name="EmailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EmailAddr" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Name="ActiveFlg" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="tblContactEmails" Relationship="VolTeerModel.FK_tblContactEmail_tblEmail" FromRole="tblEmail" ToRole="tblContactEmail" />
-        </EntityType>
-        <EntityType Name="tblEventRating">
-          <Key>
-            <PropertyRef Name="RatingID" />
-          </Key>
-          <Property Name="RatingID" Type="Int32" Nullable="false" />
-          <Property Name="EventID" Type="Guid" />
-          <Property Name="VolID" Type="Guid" />
-          <Property Name="RatingValue" Type="Int32" />
-          <Property Name="ActiveFlg" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="tblProjectEvent" Relationship="VolTeerModel.FK_tblEventRating_tblProjectEvent" FromRole="tblEventRating" ToRole="tblProjectEvent" />
-        </EntityType>
-        <EntityType Name="tblProject">
-          <Key>
-            <PropertyRef Name="ProjectID" />
-          </Key>
-          <Property Name="ProjectID" Type="Guid" Nullable="false" />
-          <Property Name="ProjectName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="ProjectDesc" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="AddrID" Type="Int32" />
-          <Property Name="ActiveFlg" Type="Int32" />
-          <NavigationProperty Name="tblAddress" Relationship="VolTeerModel.FK_tblProject_tblAddress" FromRole="tblProject" ToRole="tblAddress" />
-          <NavigationProperty Name="tblVendorProjContacts" Relationship="VolTeerModel.FK_tblVendorProj_tblProject" FromRole="tblProject" ToRole="tblVendorProjContact" />
-        </EntityType>
-        <EntityType Name="tblProjectEvent">
-          <Key>
-            <PropertyRef Name="EventID" />
-          </Key>
-          <Property Name="EventID" Type="Guid" Nullable="false" />
-          <Property Name="ProjectID" Type="Guid" Nullable="false" />
-          <Property Name="StartDateTime" Type="DateTime" Precision="3" />
-          <Property Name="EndDateTime" Type="DateTime" Precision="3" />
-          <Property Name="AddrID" Type="Int32" />
-          <NavigationProperty Name="tblEventRatings" Relationship="VolTeerModel.FK_tblEventRating_tblProjectEvent" FromRole="tblProjectEvent" ToRole="tblEventRating" />
-          <NavigationProperty Name="tblProjectEventContacts" Relationship="VolTeerModel.FK_tblProjectEventContact_tblProjectEvent" FromRole="tblProjectEvent" ToRole="tblProjectEventContact" />
-        </EntityType>
-        <EntityType Name="tblProjectEventContact">
-          <Key>
-            <PropertyRef Name="EventID" />
-            <PropertyRef Name="ContactID" />
-          </Key>
-          <Property Name="EventID" Type="Guid" Nullable="false" />
-          <Property Name="ContactID" Type="Guid" Nullable="false" />
-          <Property Name="PrimaryContact" Type="Boolean" />
-          <NavigationProperty Name="tblContact" Relationship="VolTeerModel.FK_tblProjectEventContact_tblContact" FromRole="tblProjectEventContact" ToRole="tblContact" />
-          <NavigationProperty Name="tblProjectEvent" Relationship="VolTeerModel.FK_tblProjectEventContact_tblProjectEvent" FromRole="tblProjectEventContact" ToRole="tblProjectEvent" />
-        </EntityType>
-        <EntityType Name="tblState">
-          <Key>
-            <PropertyRef Name="StateID" />
-          </Key>
-          <Property Name="StateID" Type="Int32" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="abbreviation" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="country" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="type" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="sort" Type="Int32" />
-          <Property Name="status" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="occupied" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="notes" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="fips_state" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="assoc_press" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="standard_federal_region" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="census_region" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="census_region_name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="census_division" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="census_devision_name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="circuit_court" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="tblVendContact">
-          <Key>
-            <PropertyRef Name="VendorID" />
-            <PropertyRef Name="ContactID" />
-          </Key>
-          <Property Name="VendorID" Type="Guid" Nullable="false" />
-          <Property Name="ContactID" Type="Guid" Nullable="false" />
-          <Property Name="PrimaryContact" Type="Boolean" />
-          <NavigationProperty Name="tblContact" Relationship="VolTeerModel.FK_tblVendContact_tblContact" FromRole="tblVendContact" ToRole="tblContact" />
-          <NavigationProperty Name="tblVendor" Relationship="VolTeerModel.FK_tblVendContact_tblVendor" FromRole="tblVendContact" ToRole="tblVendor" />
-        </EntityType>
-        <EntityType Name="tblVendor">
-          <Key>
-            <PropertyRef Name="VendorID" />
-          </Key>
-          <Property Name="VendorID" Type="Guid" Nullable="false" />
-          <Property Name="VendorName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="ActiveFlg" Type="Int32" />
-          <NavigationProperty Name="tblVendContacts" Relationship="VolTeerModel.FK_tblVendContact_tblVendor" FromRole="tblVendor" ToRole="tblVendContact" />
-          <NavigationProperty Name="tblVendorAddrs" Relationship="VolTeerModel.FK_tblVendorAddr_tblVendor" FromRole="tblVendor" ToRole="tblVendorAddr" />
-          <NavigationProperty Name="tblVendorProjContacts" Relationship="VolTeerModel.FK_tblVendorProj_tblVendor" FromRole="tblVendor" ToRole="tblVendorProjContact" />
-        </EntityType>
-        <EntityType Name="tblVendorAddr">
-          <Key>
-            <PropertyRef Name="VendorID" />
-            <PropertyRef Name="AddrID" />
-          </Key>
-          <Property Name="VendorID" Type="Guid" Nullable="false" />
-          <Property Name="AddrID" Type="Int32" Nullable="false" />
-          <Property Name="HQ" Type="Boolean" />
-          <NavigationProperty Name="tblAddress" Relationship="VolTeerModel.FK_tblVendorAddr_tblAddress" FromRole="tblVendorAddr" ToRole="tblAddress" />
-          <NavigationProperty Name="tblVendor" Relationship="VolTeerModel.FK_tblVendorAddr_tblVendor" FromRole="tblVendorAddr" ToRole="tblVendor" />
-        </EntityType>
-        <EntityType Name="tblVendorProjContact">
-          <Key>
-            <PropertyRef Name="VendorID" />
-            <PropertyRef Name="ProjectID" />
-            <PropertyRef Name="ContactID" />
-          </Key>
-          <Property Name="VendorID" Type="Guid" Nullable="false" />
-          <Property Name="ProjectID" Type="Guid" Nullable="false" />
-          <Property Name="ContactID" Type="Guid" Nullable="false" />
-          <Property Name="PrimaryContact" Type="Boolean" />
-          <NavigationProperty Name="tblContact" Relationship="VolTeerModel.FK_tblVendorProj_tblContact" FromRole="tblVendorProjContact" ToRole="tblContact" />
-          <NavigationProperty Name="tblProject" Relationship="VolTeerModel.FK_tblVendorProj_tblProject" FromRole="tblVendorProjContact" ToRole="tblProject" />
-          <NavigationProperty Name="tblVendor" Relationship="VolTeerModel.FK_tblVendorProj_tblVendor" FromRole="tblVendorProjContact" ToRole="tblVendor" />
-        </EntityType>
-        <EntityType Name="tblAddress1">
-          <Key>
-            <PropertyRef Name="AddrID" />
-          </Key>
-          <Property Name="AddrID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ActiveFlg" Type="Boolean" />
-          <Property Name="AddrLine1" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="AddrLine2" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="AddrLine3" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="City" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
-          <Property Name="St" Type="String" MaxLength="2" Unicode="false" FixedLength="true" />
-          <Property Name="Zip" Type="Int32" />
-          <Property Name="Zip4" Type="Int32" />
-          <NavigationProperty Name="tblGroups" Relationship="VolTeerModel.tblGroupAddr" FromRole="tblAddress1" ToRole="tblGroup" />
-          <NavigationProperty Name="tblVolunteers" Relationship="VolTeerModel.tblVolAddr" FromRole="tblAddress1" ToRole="tblVolunteer" />
-        </EntityType>
-        <EntityType Name="tblEmail1">
-          <Key>
-            <PropertyRef Name="EmailID" />
-            <PropertyRef Name="VolID" />
-          </Key>
-          <Property Name="EmailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EmailAddr" Type="String" MaxLength="100" Unicode="true" FixedLength="false" />
-          <Property Type="Boolean" Name="ActiveFlg" />
-          <Property Type="Guid" Name="VolID" Nullable="false" />
-          <NavigationProperty Name="tblVolunteer" Relationship="VolTeerModel.FK_tblEmail_tblVolunteer" FromRole="tblEmail1" ToRole="tblVolunteer" />
-        </EntityType>
-        <EntityType Name="tblGroup">
-          <Key>
-            <PropertyRef Name="GroupID" />
-          </Key>
-          <Property Name="GroupID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="GroupName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="ParticipationLevelID" Type="Int32" />
-          <NavigationProperty Name="tblAddress1" Relationship="VolTeerModel.tblGroupAddr" FromRole="tblGroup" ToRole="tblAddress1" />
-          <NavigationProperty Name="tblVolunteers" Relationship="VolTeerModel.tblGroupVol" FromRole="tblGroup" ToRole="tblVolunteer" />
-          <Property Type="Boolean" Name="ActiveFlg" />
-        </EntityType>
-        <EntityType Name="tblSampleAddress">
-          <Key>
-            <PropertyRef Name="AddrID" />
-          </Key>
-          <Property Name="AddrID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="ActiveFlg" Type="Boolean" />
-          <Property Name="AddrLine1" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="AddrLine2" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="AddrLine3" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="City" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
-          <Property Name="St" Type="String" MaxLength="2" Unicode="false" FixedLength="true" />
-          <Property Name="Zip" Type="Int32" />
-          <Property Name="Zip4" Type="Int32" />
-        </EntityType>
-        <EntityType Name="tblSkill">
-          <Key>
-            <PropertyRef Name="SkillID" />
-          </Key>
-          <Property Name="SkillID" Type="Guid" Nullable="false" />
-          <Property Name="SkillName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="MstrSkillID" Type="Guid" />
-          <Property Name="ReqCert" Type="Boolean" />
-          <Property Name="ActiveFlg" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="tblSkill1" Relationship="VolTeerModel.FK_Skill_Skill" FromRole="tblSkill" ToRole="tblSkill1" />
-          <NavigationProperty Name="tblSkill2" Relationship="VolTeerModel.FK_Skill_Skill" FromRole="tblSkill1" ToRole="tblSkill" />
-          <NavigationProperty Name="tblVolunteers" Relationship="VolTeerModel.tblVolSkill" FromRole="tblSkill" ToRole="tblVolunteer" />
-        </EntityType>
-        <EntityType Name="tblState1">
-          <Key>
-            <PropertyRef Name="StateID" />
-          </Key>
-          <Property Name="StateID" Type="Int32" Nullable="false" />
-          <Property Name="name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="abbreviation" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="country" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="type" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="sort" Type="Int32" />
-          <Property Name="status" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="occupied" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="notes" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="fips_state" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="assoc_press" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="standard_federal_region" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="census_region" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="census_region_name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="census_division" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="census_devision_name" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-          <Property Name="circuit_court" Type="String" MaxLength="255" Unicode="false" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="tblVolunteer">
-          <Key>
-            <PropertyRef Name="VolID" />
-          </Key>
-          <Property Name="VolID" Type="Guid" Nullable="false" />
-          <Property Name="ActiveFlg" Type="Boolean" />
-          <Property Name="VolFirstName" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="VolMiddleName" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
-          <Property Name="VolLastName" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="tblGroups" Relationship="VolTeerModel.tblGroupVol" FromRole="tblVolunteer" ToRole="tblGroup" />
-          <NavigationProperty Name="tblAddress1" Relationship="VolTeerModel.tblVolAddr" FromRole="tblVolunteer" ToRole="tblAddress1" />
-          <NavigationProperty Name="tblSkills" Relationship="VolTeerModel.tblVolSkill" FromRole="tblVolunteer" ToRole="tblSkill" />
-          <NavigationProperty Name="tblEmail11" Relationship="VolTeerModel.FK_tblEmail_tblVolunteer" FromRole="tblVolunteer" ToRole="tblEmail1" />
-        </EntityType>
-        <Association Name="FK_tblProject_tblAddress">
-          <End Role="tblAddress" Type="VolTeerModel.tblAddress" Multiplicity="0..1" />
-          <End Role="tblProject" Type="VolTeerModel.tblProject" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblAddress">
-              <PropertyRef Name="AddrID" />
-            </Principal>
-            <Dependent Role="tblProject">
-              <PropertyRef Name="AddrID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblVendorAddr_tblAddress">
-          <End Role="tblAddress" Type="VolTeerModel.tblAddress" Multiplicity="1" />
-          <End Role="tblVendorAddr" Type="VolTeerModel.tblVendorAddr" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblAddress">
-              <PropertyRef Name="AddrID" />
-            </Principal>
-            <Dependent Role="tblVendorAddr">
-              <PropertyRef Name="AddrID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblContactEmail_tblContact">
-          <End Role="tblContact" Type="VolTeerModel.tblContact" Multiplicity="1" />
-          <End Role="tblContactEmail" Type="VolTeerModel.tblContactEmail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblContact">
-              <PropertyRef Name="ContactID" />
-            </Principal>
-            <Dependent Role="tblContactEmail">
-              <PropertyRef Name="ContactID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblProjectEventContact_tblContact">
-          <End Role="tblContact" Type="VolTeerModel.tblContact" Multiplicity="1" />
-          <End Role="tblProjectEventContact" Type="VolTeerModel.tblProjectEventContact" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblContact">
-              <PropertyRef Name="ContactID" />
-            </Principal>
-            <Dependent Role="tblProjectEventContact">
-              <PropertyRef Name="ContactID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblVendContact_tblContact">
-          <End Role="tblContact" Type="VolTeerModel.tblContact" Multiplicity="1" />
-          <End Role="tblVendContact" Type="VolTeerModel.tblVendContact" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblContact">
-              <PropertyRef Name="ContactID" />
-            </Principal>
-            <Dependent Role="tblVendContact">
-              <PropertyRef Name="ContactID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblVendorProj_tblContact">
-          <End Role="tblContact" Type="VolTeerModel.tblContact" Multiplicity="1" />
-          <End Role="tblVendorProjContact" Type="VolTeerModel.tblVendorProjContact" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblContact">
-              <PropertyRef Name="ContactID" />
-            </Principal>
-            <Dependent Role="tblVendorProjContact">
-              <PropertyRef Name="ContactID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblContactEmail_tblEmail">
-          <End Role="tblEmail" Type="VolTeerModel.tblEmail" Multiplicity="1" />
-          <End Role="tblContactEmail" Type="VolTeerModel.tblContactEmail" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblEmail">
-              <PropertyRef Name="EmailID" />
-            </Principal>
-            <Dependent Role="tblContactEmail">
-              <PropertyRef Name="EmailID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblEventRating_tblProjectEvent">
-          <End Role="tblProjectEvent" Type="VolTeerModel.tblProjectEvent" Multiplicity="0..1" />
-          <End Role="tblEventRating" Type="VolTeerModel.tblEventRating" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblProjectEvent">
-              <PropertyRef Name="EventID" />
-            </Principal>
-            <Dependent Role="tblEventRating">
-              <PropertyRef Name="EventID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblVendorProj_tblProject">
-          <End Role="tblProject" Type="VolTeerModel.tblProject" Multiplicity="1" />
-          <End Role="tblVendorProjContact" Type="VolTeerModel.tblVendorProjContact" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblProject">
-              <PropertyRef Name="ProjectID" />
-            </Principal>
-            <Dependent Role="tblVendorProjContact">
-              <PropertyRef Name="ProjectID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblProjectEventContact_tblProjectEvent">
-          <End Role="tblProjectEvent" Type="VolTeerModel.tblProjectEvent" Multiplicity="1" />
-          <End Role="tblProjectEventContact" Type="VolTeerModel.tblProjectEventContact" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblProjectEvent">
-              <PropertyRef Name="EventID" />
-            </Principal>
-            <Dependent Role="tblProjectEventContact">
-              <PropertyRef Name="EventID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblVendContact_tblVendor">
-          <End Role="tblVendor" Type="VolTeerModel.tblVendor" Multiplicity="1" />
-          <End Role="tblVendContact" Type="VolTeerModel.tblVendContact" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblVendor">
-              <PropertyRef Name="VendorID" />
-            </Principal>
-            <Dependent Role="tblVendContact">
-              <PropertyRef Name="VendorID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblVendorAddr_tblVendor">
-          <End Role="tblVendor" Type="VolTeerModel.tblVendor" Multiplicity="1" />
-          <End Role="tblVendorAddr" Type="VolTeerModel.tblVendorAddr" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblVendor">
-              <PropertyRef Name="VendorID" />
-            </Principal>
-            <Dependent Role="tblVendorAddr">
-              <PropertyRef Name="VendorID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblVendorProj_tblVendor">
-          <End Role="tblVendor" Type="VolTeerModel.tblVendor" Multiplicity="1" />
-          <End Role="tblVendorProjContact" Type="VolTeerModel.tblVendorProjContact" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblVendor">
-              <PropertyRef Name="VendorID" />
-            </Principal>
-            <Dependent Role="tblVendorProjContact">
-              <PropertyRef Name="VendorID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Skill_Skill">
-          <End Role="tblSkill" Type="VolTeerModel.tblSkill" Multiplicity="0..1" />
-          <End Role="tblSkill1" Type="VolTeerModel.tblSkill" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblSkill">
-              <PropertyRef Name="SkillID" />
-            </Principal>
-            <Dependent Role="tblSkill1">
-              <PropertyRef Name="MstrSkillID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="tblGroupAddr">
-          <End Role="tblAddress1" Type="VolTeerModel.tblAddress1" Multiplicity="*" />
-          <End Role="tblGroup" Type="VolTeerModel.tblGroup" Multiplicity="*" />
-        </Association>
-        <Association Name="tblGroupVol">
-          <End Role="tblGroup" Type="VolTeerModel.tblGroup" Multiplicity="*" />
-          <End Role="tblVolunteer" Type="VolTeerModel.tblVolunteer" Multiplicity="*" />
-        </Association>
-        <Association Name="tblVolAddr">
-          <End Role="tblAddress1" Type="VolTeerModel.tblAddress1" Multiplicity="*" />
-          <End Role="tblVolunteer" Type="VolTeerModel.tblVolunteer" Multiplicity="*" />
-        </Association>
-        <Association Name="tblVolSkill">
-          <End Role="tblSkill" Type="VolTeerModel.tblSkill" Multiplicity="*" />
-          <End Role="tblVolunteer" Type="VolTeerModel.tblVolunteer" Multiplicity="*" />
-        </Association>
         <ComplexType Name="sp_tblAddress_Select_Result">
           <Property Type="Int32" Name="AddrID" Nullable="false" />
           <Property Type="String" Name="AddrLine1" Nullable="true" MaxLength="50" />
@@ -2037,17 +1663,491 @@
         <ComplexType Name="sp_Volunteer_Insert_Result">
           <Property Type="Guid" Name="VolID_OUT" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="sp_Vend_Address_Insert_Result">
+          <Property Type="Int32" Name="ErrorNumber" Nullable="true" />
+          <Property Type="Int32" Name="ErrorSeverity" Nullable="true" />
+          <Property Type="Int32" Name="ErrorState" Nullable="true" />
+          <Property Type="String" Name="ErrorProcedure" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="ErrorLine" Nullable="true" />
+          <Property Type="String" Name="ErrorMessage" Nullable="true" MaxLength="4000" />
+        </ComplexType>
+        <ComplexType Name="sp_Vend_Address_Select_Result">
+          <Property Type="Boolean" Name="ActiveFlg" Nullable="false" />
+          <Property Type="Int32" Name="AddrID" Nullable="false" />
+          <Property Type="String" Name="AddrLine1" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="AddrLine2" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="AddrLine3" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="St" Nullable="true" MaxLength="2" />
+          <Property Type="Int32" Name="Zip" Nullable="true" />
+          <Property Type="Int32" Name="Zip4" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_Vend_Email_Select_Result">
+          <Property Type="Int32" Name="EmailID" Nullable="false" />
+          <Property Type="String" Name="EmailAddr" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="ActiveFlg" Nullable="false" />
+        </ComplexType>
+        <EntityType Name="tblContact">
+          <Key>
+            <PropertyRef Name="ContactID" />
+          </Key>
+          <Property Type="Guid" Name="ContactID" Nullable="false" />
+          <Property Type="String" Name="ContactFirstName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ContactMiddleName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ContactLastName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="ActiveFlg" Nullable="false" />
+          <NavigationProperty Name="tblContactEmails" Relationship="VolTeerModel.FK_tblContactEmail_tblContact" FromRole="tblContact" ToRole="tblContactEmail" />
+          <NavigationProperty Name="tblProjectEventContacts" Relationship="VolTeerModel.FK_tblProjectEventContact_tblContact" FromRole="tblContact" ToRole="tblProjectEventContact" />
+          <NavigationProperty Name="tblVendContacts" Relationship="VolTeerModel.FK_tblVendContact_tblContact" FromRole="tblContact" ToRole="tblVendContact" />
+          <NavigationProperty Name="tblVendorProjContacts" Relationship="VolTeerModel.FK_tblVendorProj_tblContact" FromRole="tblContact" ToRole="tblVendorProjContact" />
+        </EntityType>
+        <EntityType Name="tblContactEmail">
+          <Key>
+            <PropertyRef Name="ContactID" />
+            <PropertyRef Name="EmailID" />
+          </Key>
+          <Property Type="Guid" Name="ContactID" Nullable="false" />
+          <Property Type="Int32" Name="EmailID" Nullable="false" />
+          <Property Type="Boolean" Name="PrimaryEmail" />
+          <NavigationProperty Name="tblContact" Relationship="VolTeerModel.FK_tblContactEmail_tblContact" FromRole="tblContactEmail" ToRole="tblContact" />
+          <NavigationProperty Name="tblVendEmail" Relationship="VolTeerModel.FK_tblContactEmail_tblEmail" FromRole="tblContactEmail" ToRole="tblVendEmail" />
+        </EntityType>
+        <EntityType Name="tblEventRating">
+          <Key>
+            <PropertyRef Name="RatingID" />
+          </Key>
+          <Property Type="Int32" Name="RatingID" Nullable="false" />
+          <Property Type="Guid" Name="EventID" />
+          <Property Type="Guid" Name="VolID" />
+          <Property Type="Int32" Name="RatingValue" />
+          <Property Type="Boolean" Name="ActiveFlg" Nullable="false" />
+          <NavigationProperty Name="tblProjectEvent" Relationship="VolTeerModel.FK_tblEventRating_tblProjectEvent" FromRole="tblEventRating" ToRole="tblProjectEvent" />
+        </EntityType>
+        <EntityType Name="tblProject">
+          <Key>
+            <PropertyRef Name="ProjectID" />
+          </Key>
+          <Property Type="Guid" Name="ProjectID" Nullable="false" />
+          <Property Type="String" Name="ProjectName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ProjectDesc" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="AddrID" />
+          <Property Type="Int32" Name="ActiveFlg" />
+          <NavigationProperty Name="tblVendAddress" Relationship="VolTeerModel.FK_tblProject_tblAddress" FromRole="tblProject" ToRole="tblVendAddress" />
+          <NavigationProperty Name="tblVendorProjContacts" Relationship="VolTeerModel.FK_tblVendorProj_tblProject" FromRole="tblProject" ToRole="tblVendorProjContact" />
+        </EntityType>
+        <EntityType Name="tblProjectEvent">
+          <Key>
+            <PropertyRef Name="EventID" />
+          </Key>
+          <Property Type="Guid" Name="EventID" Nullable="false" />
+          <Property Type="Guid" Name="ProjectID" Nullable="false" />
+          <Property Type="DateTime" Name="StartDateTime" Precision="3" />
+          <Property Type="DateTime" Name="EndDateTime" Precision="3" />
+          <Property Type="Int32" Name="AddrID" />
+          <NavigationProperty Name="tblEventRatings" Relationship="VolTeerModel.FK_tblEventRating_tblProjectEvent" FromRole="tblProjectEvent" ToRole="tblEventRating" />
+          <NavigationProperty Name="tblProjectEventContacts" Relationship="VolTeerModel.FK_tblProjectEventContact_tblProjectEvent" FromRole="tblProjectEvent" ToRole="tblProjectEventContact" />
+        </EntityType>
+        <EntityType Name="tblProjectEventContact">
+          <Key>
+            <PropertyRef Name="EventID" />
+            <PropertyRef Name="ContactID" />
+          </Key>
+          <Property Type="Guid" Name="EventID" Nullable="false" />
+          <Property Type="Guid" Name="ContactID" Nullable="false" />
+          <Property Type="Boolean" Name="PrimaryContact" />
+          <NavigationProperty Name="tblContact" Relationship="VolTeerModel.FK_tblProjectEventContact_tblContact" FromRole="tblProjectEventContact" ToRole="tblContact" />
+          <NavigationProperty Name="tblProjectEvent" Relationship="VolTeerModel.FK_tblProjectEventContact_tblProjectEvent" FromRole="tblProjectEventContact" ToRole="tblProjectEvent" />
+        </EntityType>
+        <EntityType Name="tblState">
+          <Key>
+            <PropertyRef Name="StateID" />
+          </Key>
+          <Property Type="Int32" Name="StateID" Nullable="false" />
+          <Property Type="String" Name="name" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="abbreviation" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="country" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="type" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="sort" />
+          <Property Type="String" Name="status" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="occupied" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="notes" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="fips_state" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="assoc_press" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="standard_federal_region" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="census_region" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="census_region_name" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="census_division" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="census_devision_name" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="circuit_court" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblVendAddress">
+          <Key>
+            <PropertyRef Name="AddrID" />
+          </Key>
+          <Property Type="Int32" Name="AddrID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="AddrLine1" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AddrLine2" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AddrLine3" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="City" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="St" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Type="Int32" Name="Zip" />
+          <Property Type="Int32" Name="Zip4" />
+          <Property Type="Boolean" Name="ActiveFlg" Nullable="false" />
+          <NavigationProperty Name="tblProjects" Relationship="VolTeerModel.FK_tblProject_tblAddress" FromRole="tblVendAddress" ToRole="tblProject" />
+          <NavigationProperty Name="tblVendorAddrs" Relationship="VolTeerModel.FK_tblVendorAddr_tblAddress" FromRole="tblVendAddress" ToRole="tblVendorAddr" />
+        </EntityType>
+        <EntityType Name="tblVendContact">
+          <Key>
+            <PropertyRef Name="VendorID" />
+            <PropertyRef Name="ContactID" />
+          </Key>
+          <Property Type="Guid" Name="VendorID" Nullable="false" />
+          <Property Type="Guid" Name="ContactID" Nullable="false" />
+          <Property Type="Boolean" Name="PrimaryContact" />
+          <NavigationProperty Name="tblContact" Relationship="VolTeerModel.FK_tblVendContact_tblContact" FromRole="tblVendContact" ToRole="tblContact" />
+          <NavigationProperty Name="tblVendor" Relationship="VolTeerModel.FK_tblVendContact_tblVendor" FromRole="tblVendContact" ToRole="tblVendor" />
+        </EntityType>
+        <EntityType Name="tblVendEmail">
+          <Key>
+            <PropertyRef Name="EmailID" />
+          </Key>
+          <Property Type="Int32" Name="EmailID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="EmailAddr" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="ActiveFlg" Nullable="false" />
+          <NavigationProperty Name="tblContactEmails" Relationship="VolTeerModel.FK_tblContactEmail_tblEmail" FromRole="tblVendEmail" ToRole="tblContactEmail" />
+        </EntityType>
+        <EntityType Name="tblVendor">
+          <Key>
+            <PropertyRef Name="VendorID" />
+          </Key>
+          <Property Type="Guid" Name="VendorID" Nullable="false" />
+          <Property Type="String" Name="VendorName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ActiveFlg" />
+          <NavigationProperty Name="tblVendContacts" Relationship="VolTeerModel.FK_tblVendContact_tblVendor" FromRole="tblVendor" ToRole="tblVendContact" />
+          <NavigationProperty Name="tblVendorAddrs" Relationship="VolTeerModel.FK_tblVendorAddr_tblVendor" FromRole="tblVendor" ToRole="tblVendorAddr" />
+          <NavigationProperty Name="tblVendorProjContacts" Relationship="VolTeerModel.FK_tblVendorProj_tblVendor" FromRole="tblVendor" ToRole="tblVendorProjContact" />
+        </EntityType>
+        <EntityType Name="tblVendorAddr">
+          <Key>
+            <PropertyRef Name="VendorID" />
+            <PropertyRef Name="AddrID" />
+          </Key>
+          <Property Type="Guid" Name="VendorID" Nullable="false" />
+          <Property Type="Int32" Name="AddrID" Nullable="false" />
+          <Property Type="Boolean" Name="HQ" />
+          <NavigationProperty Name="tblVendAddress" Relationship="VolTeerModel.FK_tblVendorAddr_tblAddress" FromRole="tblVendorAddr" ToRole="tblVendAddress" />
+          <NavigationProperty Name="tblVendor" Relationship="VolTeerModel.FK_tblVendorAddr_tblVendor" FromRole="tblVendorAddr" ToRole="tblVendor" />
+        </EntityType>
+        <EntityType Name="tblVendorProjContact">
+          <Key>
+            <PropertyRef Name="VendorID" />
+            <PropertyRef Name="ProjectID" />
+            <PropertyRef Name="ContactID" />
+          </Key>
+          <Property Type="Guid" Name="VendorID" Nullable="false" />
+          <Property Type="Guid" Name="ProjectID" Nullable="false" />
+          <Property Type="Guid" Name="ContactID" Nullable="false" />
+          <Property Type="Boolean" Name="PrimaryContact" />
+          <NavigationProperty Name="tblContact" Relationship="VolTeerModel.FK_tblVendorProj_tblContact" FromRole="tblVendorProjContact" ToRole="tblContact" />
+          <NavigationProperty Name="tblProject" Relationship="VolTeerModel.FK_tblVendorProj_tblProject" FromRole="tblVendorProjContact" ToRole="tblProject" />
+          <NavigationProperty Name="tblVendor" Relationship="VolTeerModel.FK_tblVendorProj_tblVendor" FromRole="tblVendorProjContact" ToRole="tblVendor" />
+        </EntityType>
+        <EntityType Name="tblGroup">
+          <Key>
+            <PropertyRef Name="GroupID" />
+          </Key>
+          <Property Type="Int32" Name="GroupID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="GroupName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ParticipationLevelID" />
+          <Property Type="Boolean" Name="ActiveFlg" />
+          <NavigationProperty Name="tblVolAddresses" Relationship="VolTeerModel.tblGroupAddr" FromRole="tblGroup" ToRole="tblVolAddress" />
+          <NavigationProperty Name="tblVolunteers" Relationship="VolTeerModel.tblGroupVol" FromRole="tblGroup" ToRole="tblVolunteer" />
+        </EntityType>
+        <EntityType Name="tblSampleAddress">
+          <Key>
+            <PropertyRef Name="AddrID" />
+          </Key>
+          <Property Type="Int32" Name="AddrID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Boolean" Name="ActiveFlg" />
+          <Property Type="String" Name="AddrLine1" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AddrLine2" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AddrLine3" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="City" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="St" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Type="Int32" Name="Zip" />
+          <Property Type="Int32" Name="Zip4" />
+        </EntityType>
+        <EntityType Name="tblSkill">
+          <Key>
+            <PropertyRef Name="SkillID" />
+          </Key>
+          <Property Type="Guid" Name="SkillID" Nullable="false" />
+          <Property Type="String" Name="SkillName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Guid" Name="MstrSkillID" />
+          <Property Type="Boolean" Name="ReqCert" />
+          <Property Type="Int32" Name="ActiveFlg" Nullable="false" />
+          <NavigationProperty Name="tblSkill1" Relationship="VolTeerModel.FK_Skill_Skill" FromRole="tblSkill" ToRole="tblSkill1" />
+          <NavigationProperty Name="tblSkill2" Relationship="VolTeerModel.FK_Skill_Skill" FromRole="tblSkill1" ToRole="tblSkill" />
+          <NavigationProperty Name="tblVolunteers" Relationship="VolTeerModel.tblVolSkill" FromRole="tblSkill" ToRole="tblVolunteer" />
+        </EntityType>
+        <EntityType Name="tblState1">
+          <Key>
+            <PropertyRef Name="StateID" />
+          </Key>
+          <Property Type="Int32" Name="StateID" Nullable="false" />
+          <Property Type="String" Name="name" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="abbreviation" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="country" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="type" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="sort" />
+          <Property Type="String" Name="status" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="occupied" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="notes" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="fips_state" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="assoc_press" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="standard_federal_region" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="census_region" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="census_region_name" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="census_division" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="census_devision_name" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="circuit_court" MaxLength="255" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="tblVolAddress">
+          <Key>
+            <PropertyRef Name="AddrID" />
+          </Key>
+          <Property Type="Int32" Name="AddrID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Boolean" Name="ActiveFlg" />
+          <Property Type="String" Name="AddrLine1" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AddrLine2" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="AddrLine3" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="City" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="St" MaxLength="2" FixedLength="true" Unicode="false" />
+          <Property Type="Int32" Name="Zip" />
+          <Property Type="Int32" Name="Zip4" />
+          <NavigationProperty Name="tblGroups" Relationship="VolTeerModel.tblGroupAddr" FromRole="tblVolAddress" ToRole="tblGroup" />
+          <NavigationProperty Name="tblVolunteers" Relationship="VolTeerModel.tblVolAddr" FromRole="tblVolAddress" ToRole="tblVolunteer" />
+        </EntityType>
+        <EntityType Name="tblVolEmail">
+          <Key>
+            <PropertyRef Name="EmailID" />
+            <PropertyRef Name="VolID" />
+          </Key>
+          <Property Type="Int32" Name="EmailID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Guid" Name="VolID" Nullable="false" />
+          <Property Type="String" Name="EmailAddr" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="ActiveFlg" />
+          <NavigationProperty Name="tblVolunteer" Relationship="VolTeerModel.FK_tblEmail_tblVolunteer" FromRole="tblVolEmail" ToRole="tblVolunteer" />
+        </EntityType>
+        <EntityType Name="tblVolunteer">
+          <Key>
+            <PropertyRef Name="VolID" />
+          </Key>
+          <Property Type="Guid" Name="VolID" Nullable="false" />
+          <Property Type="Boolean" Name="ActiveFlg" />
+          <Property Type="String" Name="VolFirstName" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="VolMiddleName" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="VolLastName" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="tblVolEmails" Relationship="VolTeerModel.FK_tblEmail_tblVolunteer" FromRole="tblVolunteer" ToRole="tblVolEmail" />
+          <NavigationProperty Name="tblGroups" Relationship="VolTeerModel.tblGroupVol" FromRole="tblVolunteer" ToRole="tblGroup" />
+          <NavigationProperty Name="tblVolAddresses" Relationship="VolTeerModel.tblVolAddr" FromRole="tblVolunteer" ToRole="tblVolAddress" />
+          <NavigationProperty Name="tblSkills" Relationship="VolTeerModel.tblVolSkill" FromRole="tblVolunteer" ToRole="tblSkill" />
+        </EntityType>
+        <Association Name="FK_tblContactEmail_tblContact">
+          <End Type="VolTeerModel.tblContact" Role="tblContact" Multiplicity="1" />
+          <End Type="VolTeerModel.tblContactEmail" Role="tblContactEmail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblContact">
+              <PropertyRef Name="ContactID" />
+            </Principal>
+            <Dependent Role="tblContactEmail">
+              <PropertyRef Name="ContactID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProjectEventContact_tblContact">
+          <End Type="VolTeerModel.tblContact" Role="tblContact" Multiplicity="1" />
+          <End Type="VolTeerModel.tblProjectEventContact" Role="tblProjectEventContact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblContact">
+              <PropertyRef Name="ContactID" />
+            </Principal>
+            <Dependent Role="tblProjectEventContact">
+              <PropertyRef Name="ContactID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblVendContact_tblContact">
+          <End Type="VolTeerModel.tblContact" Role="tblContact" Multiplicity="1" />
+          <End Type="VolTeerModel.tblVendContact" Role="tblVendContact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblContact">
+              <PropertyRef Name="ContactID" />
+            </Principal>
+            <Dependent Role="tblVendContact">
+              <PropertyRef Name="ContactID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblVendorProj_tblContact">
+          <End Type="VolTeerModel.tblContact" Role="tblContact" Multiplicity="1" />
+          <End Type="VolTeerModel.tblVendorProjContact" Role="tblVendorProjContact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblContact">
+              <PropertyRef Name="ContactID" />
+            </Principal>
+            <Dependent Role="tblVendorProjContact">
+              <PropertyRef Name="ContactID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblContactEmail_tblEmail">
+          <End Type="VolTeerModel.tblVendEmail" Role="tblVendEmail" Multiplicity="1" />
+          <End Type="VolTeerModel.tblContactEmail" Role="tblContactEmail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblVendEmail">
+              <PropertyRef Name="EmailID" />
+            </Principal>
+            <Dependent Role="tblContactEmail">
+              <PropertyRef Name="EmailID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblEventRating_tblProjectEvent">
+          <End Type="VolTeerModel.tblProjectEvent" Role="tblProjectEvent" Multiplicity="0..1" />
+          <End Type="VolTeerModel.tblEventRating" Role="tblEventRating" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProjectEvent">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="tblEventRating">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProject_tblAddress">
+          <End Type="VolTeerModel.tblVendAddress" Role="tblVendAddress" Multiplicity="0..1" />
+          <End Type="VolTeerModel.tblProject" Role="tblProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblVendAddress">
+              <PropertyRef Name="AddrID" />
+            </Principal>
+            <Dependent Role="tblProject">
+              <PropertyRef Name="AddrID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblVendorProj_tblProject">
+          <End Type="VolTeerModel.tblProject" Role="tblProject" Multiplicity="1" />
+          <End Type="VolTeerModel.tblVendorProjContact" Role="tblVendorProjContact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProject">
+              <PropertyRef Name="ProjectID" />
+            </Principal>
+            <Dependent Role="tblVendorProjContact">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblProjectEventContact_tblProjectEvent">
+          <End Type="VolTeerModel.tblProjectEvent" Role="tblProjectEvent" Multiplicity="1" />
+          <End Type="VolTeerModel.tblProjectEventContact" Role="tblProjectEventContact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProjectEvent">
+              <PropertyRef Name="EventID" />
+            </Principal>
+            <Dependent Role="tblProjectEventContact">
+              <PropertyRef Name="EventID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblVendorAddr_tblAddress">
+          <End Type="VolTeerModel.tblVendAddress" Role="tblVendAddress" Multiplicity="1" />
+          <End Type="VolTeerModel.tblVendorAddr" Role="tblVendorAddr" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblVendAddress">
+              <PropertyRef Name="AddrID" />
+            </Principal>
+            <Dependent Role="tblVendorAddr">
+              <PropertyRef Name="AddrID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblVendContact_tblVendor">
+          <End Type="VolTeerModel.tblVendor" Role="tblVendor" Multiplicity="1" />
+          <End Type="VolTeerModel.tblVendContact" Role="tblVendContact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblVendor">
+              <PropertyRef Name="VendorID" />
+            </Principal>
+            <Dependent Role="tblVendContact">
+              <PropertyRef Name="VendorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblVendorAddr_tblVendor">
+          <End Type="VolTeerModel.tblVendor" Role="tblVendor" Multiplicity="1" />
+          <End Type="VolTeerModel.tblVendorAddr" Role="tblVendorAddr" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblVendor">
+              <PropertyRef Name="VendorID" />
+            </Principal>
+            <Dependent Role="tblVendorAddr">
+              <PropertyRef Name="VendorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblVendorProj_tblVendor">
+          <End Type="VolTeerModel.tblVendor" Role="tblVendor" Multiplicity="1" />
+          <End Type="VolTeerModel.tblVendorProjContact" Role="tblVendorProjContact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblVendor">
+              <PropertyRef Name="VendorID" />
+            </Principal>
+            <Dependent Role="tblVendorProjContact">
+              <PropertyRef Name="VendorID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Skill_Skill">
+          <End Type="VolTeerModel.tblSkill" Role="tblSkill" Multiplicity="0..1" />
+          <End Type="VolTeerModel.tblSkill" Role="tblSkill1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSkill">
+              <PropertyRef Name="SkillID" />
+            </Principal>
+            <Dependent Role="tblSkill1">
+              <PropertyRef Name="MstrSkillID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_tblEmail_tblVolunteer">
           <End Type="VolTeerModel.tblVolunteer" Role="tblVolunteer" Multiplicity="1" />
-          <End Type="VolTeerModel.tblEmail1" Role="tblEmail1" Multiplicity="*" />
+          <End Type="VolTeerModel.tblVolEmail" Role="tblVolEmail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblVolunteer">
               <PropertyRef Name="VolID" />
             </Principal>
-            <Dependent Role="tblEmail1">
+            <Dependent Role="tblVolEmail">
               <PropertyRef Name="VolID" />
             </Dependent>
           </ReferentialConstraint>
+        </Association>
+        <Association Name="tblGroupAddr">
+          <End Type="VolTeerModel.tblVolAddress" Role="tblVolAddress" Multiplicity="*" />
+          <End Type="VolTeerModel.tblGroup" Role="tblGroup" Multiplicity="*" />
+        </Association>
+        <Association Name="tblGroupVol">
+          <End Type="VolTeerModel.tblGroup" Role="tblGroup" Multiplicity="*" />
+          <End Type="VolTeerModel.tblVolunteer" Role="tblVolunteer" Multiplicity="*" />
+        </Association>
+        <Association Name="tblVolAddr">
+          <End Type="VolTeerModel.tblVolAddress" Role="tblVolAddress" Multiplicity="*" />
+          <End Type="VolTeerModel.tblVolunteer" Role="tblVolunteer" Multiplicity="*" />
+        </Association>
+        <Association Name="tblVolSkill">
+          <End Type="VolTeerModel.tblSkill" Role="tblSkill" Multiplicity="*" />
+          <End Type="VolTeerModel.tblVolunteer" Role="tblVolunteer" Multiplicity="*" />
         </Association>
       </Schema>
     </edmx:ConceptualModels>
@@ -2055,327 +2155,6 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="VolTeerModelStoreContainer" CdmEntityContainer="VolTeerEntities">
-          <EntitySetMapping Name="tblAddresses">
-            <EntityTypeMapping TypeName="VolTeerModel.tblAddress">
-              <MappingFragment StoreEntitySet="tblAddress">
-                <ScalarProperty Name="AddrID" ColumnName="AddrID" />
-                <ScalarProperty Name="AddrLine1" ColumnName="AddrLine1" />
-                <ScalarProperty Name="AddrLine2" ColumnName="AddrLine2" />
-                <ScalarProperty Name="AddrLine3" ColumnName="AddrLine3" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="St" ColumnName="St" />
-                <ScalarProperty Name="Zip" ColumnName="Zip" />
-                <ScalarProperty Name="Zip4" ColumnName="Zip4" />
-                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblContacts">
-            <EntityTypeMapping TypeName="VolTeerModel.tblContact">
-              <MappingFragment StoreEntitySet="tblContact">
-                <ScalarProperty Name="ContactID" ColumnName="ContactID" />
-                <ScalarProperty Name="ContactFirstName" ColumnName="ContactFirstName" />
-                <ScalarProperty Name="ContactMiddleName" ColumnName="ContactMiddleName" />
-                <ScalarProperty Name="ContactLastName" ColumnName="ContactLastName" />
-                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblContactEmails">
-            <EntityTypeMapping TypeName="VolTeerModel.tblContactEmail">
-              <MappingFragment StoreEntitySet="tblContactEmail">
-                <ScalarProperty Name="ContactID" ColumnName="ContactID" />
-                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
-                <ScalarProperty Name="PrimaryEmail" ColumnName="PrimaryEmail" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblEmails">
-            <EntityTypeMapping TypeName="VolTeerModel.tblEmail">
-              <MappingFragment StoreEntitySet="tblEmail">
-                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
-                <ScalarProperty Name="EmailAddr" ColumnName="EmailAddr" />
-                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblEventRatings">
-            <EntityTypeMapping TypeName="VolTeerModel.tblEventRating">
-              <MappingFragment StoreEntitySet="tblEventRating">
-                <ScalarProperty Name="RatingID" ColumnName="RatingID" />
-                <ScalarProperty Name="EventID" ColumnName="EventID" />
-                <ScalarProperty Name="VolID" ColumnName="VolID" />
-                <ScalarProperty Name="RatingValue" ColumnName="RatingValue" />
-                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblProjects">
-            <EntityTypeMapping TypeName="VolTeerModel.tblProject">
-              <MappingFragment StoreEntitySet="tblProject">
-                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
-                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
-                <ScalarProperty Name="ProjectDesc" ColumnName="ProjectDesc" />
-                <ScalarProperty Name="AddrID" ColumnName="AddrID" />
-                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblProjectEvents">
-            <EntityTypeMapping TypeName="VolTeerModel.tblProjectEvent">
-              <MappingFragment StoreEntitySet="tblProjectEvent">
-                <ScalarProperty Name="EventID" ColumnName="EventID" />
-                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
-                <ScalarProperty Name="StartDateTime" ColumnName="StartDateTime" />
-                <ScalarProperty Name="EndDateTime" ColumnName="EndDateTime" />
-                <ScalarProperty Name="AddrID" ColumnName="AddrID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblProjectEventContacts">
-            <EntityTypeMapping TypeName="VolTeerModel.tblProjectEventContact">
-              <MappingFragment StoreEntitySet="tblProjectEventContact">
-                <ScalarProperty Name="EventID" ColumnName="EventID" />
-                <ScalarProperty Name="ContactID" ColumnName="ContactID" />
-                <ScalarProperty Name="PrimaryContact" ColumnName="PrimaryContact" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblStates">
-            <EntityTypeMapping TypeName="VolTeerModel.tblState">
-              <MappingFragment StoreEntitySet="tblState">
-                <ScalarProperty Name="StateID" ColumnName="StateID" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="abbreviation" ColumnName="abbreviation" />
-                <ScalarProperty Name="country" ColumnName="country" />
-                <ScalarProperty Name="type" ColumnName="type" />
-                <ScalarProperty Name="sort" ColumnName="sort" />
-                <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="occupied" ColumnName="occupied" />
-                <ScalarProperty Name="notes" ColumnName="notes" />
-                <ScalarProperty Name="fips_state" ColumnName="fips_state" />
-                <ScalarProperty Name="assoc_press" ColumnName="assoc_press" />
-                <ScalarProperty Name="standard_federal_region" ColumnName="standard_federal_region" />
-                <ScalarProperty Name="census_region" ColumnName="census_region" />
-                <ScalarProperty Name="census_region_name" ColumnName="census_region_name" />
-                <ScalarProperty Name="census_division" ColumnName="census_division" />
-                <ScalarProperty Name="census_devision_name" ColumnName="census_devision_name" />
-                <ScalarProperty Name="circuit_court" ColumnName="circuit_court" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblVendContacts">
-            <EntityTypeMapping TypeName="VolTeerModel.tblVendContact">
-              <MappingFragment StoreEntitySet="tblVendContact">
-                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
-                <ScalarProperty Name="ContactID" ColumnName="ContactID" />
-                <ScalarProperty Name="PrimaryContact" ColumnName="PrimaryContact" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblVendors">
-            <EntityTypeMapping TypeName="VolTeerModel.tblVendor">
-              <MappingFragment StoreEntitySet="tblVendor">
-                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
-                <ScalarProperty Name="VendorName" ColumnName="VendorName" />
-                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblVendorAddrs">
-            <EntityTypeMapping TypeName="VolTeerModel.tblVendorAddr">
-              <MappingFragment StoreEntitySet="tblVendorAddr">
-                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
-                <ScalarProperty Name="AddrID" ColumnName="AddrID" />
-                <ScalarProperty Name="HQ" ColumnName="HQ" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblVendorProjContacts">
-            <EntityTypeMapping TypeName="VolTeerModel.tblVendorProjContact">
-              <MappingFragment StoreEntitySet="tblVendorProjContact">
-                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
-                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
-                <ScalarProperty Name="ContactID" ColumnName="ContactID" />
-                <ScalarProperty Name="PrimaryContact" ColumnName="PrimaryContact" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblAddress1">
-            <EntityTypeMapping TypeName="VolTeerModel.tblAddress1">
-              <MappingFragment StoreEntitySet="tblAddress1">
-                <ScalarProperty Name="AddrID" ColumnName="AddrID" />
-                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
-                <ScalarProperty Name="AddrLine1" ColumnName="AddrLine1" />
-                <ScalarProperty Name="AddrLine2" ColumnName="AddrLine2" />
-                <ScalarProperty Name="AddrLine3" ColumnName="AddrLine3" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="St" ColumnName="St" />
-                <ScalarProperty Name="Zip" ColumnName="Zip" />
-                <ScalarProperty Name="Zip4" ColumnName="Zip4" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblEmail1">
-            <EntityTypeMapping TypeName="VolTeerModel.tblEmail1">
-              <MappingFragment StoreEntitySet="tblEmail1">
-                <ScalarProperty Name="VolID" ColumnName="VolID" />
-                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
-                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
-                <ScalarProperty Name="EmailAddr" ColumnName="EmailAddr" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblGroups">
-            <EntityTypeMapping TypeName="VolTeerModel.tblGroup">
-              <MappingFragment StoreEntitySet="tblGroup">
-                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
-                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
-                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
-                <ScalarProperty Name="ParticipationLevelID" ColumnName="ParticipationLevelID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblSampleAddresses">
-            <EntityTypeMapping TypeName="VolTeerModel.tblSampleAddress">
-              <MappingFragment StoreEntitySet="tblSampleAddress">
-                <ScalarProperty Name="AddrID" ColumnName="AddrID" />
-                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
-                <ScalarProperty Name="AddrLine1" ColumnName="AddrLine1" />
-                <ScalarProperty Name="AddrLine2" ColumnName="AddrLine2" />
-                <ScalarProperty Name="AddrLine3" ColumnName="AddrLine3" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="St" ColumnName="St" />
-                <ScalarProperty Name="Zip" ColumnName="Zip" />
-                <ScalarProperty Name="Zip4" ColumnName="Zip4" />
-              </MappingFragment>
-            </EntityTypeMapping>
-            <EntityTypeMapping TypeName="VolTeerModel.tblSampleAddress">
-              <ModificationFunctionMapping>
-                <InsertFunction FunctionName="VolTeerModel.Store.sp_Sample_Address_Insert">
-                  <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" />
-                  <ScalarProperty Name="Zip4" ParameterName="Zip4" />
-                  <ScalarProperty Name="Zip" ParameterName="Zip" />
-                  <ScalarProperty Name="St" ParameterName="St" />
-                  <ScalarProperty Name="City" ParameterName="City" />
-                  <ScalarProperty Name="AddrLine3" ParameterName="AddrLine3" />
-                  <ScalarProperty Name="AddrLine2" ParameterName="AddrLine2" />
-                  <ScalarProperty Name="AddrLine1" ParameterName="AddrLine1" />
-                </InsertFunction>
-                <UpdateFunction FunctionName="VolTeerModel.Store.sp_Sample_Address_Update">
-                  <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" Version="Current" />
-                  <ScalarProperty Name="Zip4" ParameterName="Zip4" Version="Current" />
-                  <ScalarProperty Name="Zip" ParameterName="Zip" Version="Current" />
-                  <ScalarProperty Name="St" ParameterName="St" Version="Current" />
-                  <ScalarProperty Name="City" ParameterName="City" Version="Current" />
-                  <ScalarProperty Name="AddrLine3" ParameterName="AddrLine3" Version="Current" />
-                  <ScalarProperty Name="AddrLine2" ParameterName="AddrLine2" Version="Current" />
-                  <ScalarProperty Name="AddrLine1" ParameterName="AddrLine1" Version="Current" />
-                  <ScalarProperty Name="AddrID" ParameterName="AddrID" Version="Current" />
-                </UpdateFunction>
-                <DeleteFunction FunctionName="VolTeerModel.Store.sp_Sample_Address_Delete">
-                  <ScalarProperty Name="AddrID" ParameterName="AddrID" />
-                </DeleteFunction>
-              </ModificationFunctionMapping>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblSkills">
-            <EntityTypeMapping TypeName="VolTeerModel.tblSkill">
-              <MappingFragment StoreEntitySet="tblSkill">
-                <ScalarProperty Name="SkillID" ColumnName="SkillID" />
-                <ScalarProperty Name="SkillName" ColumnName="SkillName" />
-                <ScalarProperty Name="MstrSkillID" ColumnName="MstrSkillID" />
-                <ScalarProperty Name="ReqCert" ColumnName="ReqCert" />
-                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblState1">
-            <EntityTypeMapping TypeName="VolTeerModel.tblState1">
-              <MappingFragment StoreEntitySet="tblState1">
-                <ScalarProperty Name="StateID" ColumnName="StateID" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="abbreviation" ColumnName="abbreviation" />
-                <ScalarProperty Name="country" ColumnName="country" />
-                <ScalarProperty Name="type" ColumnName="type" />
-                <ScalarProperty Name="sort" ColumnName="sort" />
-                <ScalarProperty Name="status" ColumnName="status" />
-                <ScalarProperty Name="occupied" ColumnName="occupied" />
-                <ScalarProperty Name="notes" ColumnName="notes" />
-                <ScalarProperty Name="fips_state" ColumnName="fips_state" />
-                <ScalarProperty Name="assoc_press" ColumnName="assoc_press" />
-                <ScalarProperty Name="standard_federal_region" ColumnName="standard_federal_region" />
-                <ScalarProperty Name="census_region" ColumnName="census_region" />
-                <ScalarProperty Name="census_region_name" ColumnName="census_region_name" />
-                <ScalarProperty Name="census_division" ColumnName="census_division" />
-                <ScalarProperty Name="census_devision_name" ColumnName="census_devision_name" />
-                <ScalarProperty Name="circuit_court" ColumnName="circuit_court" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="tblVolunteers">
-            <EntityTypeMapping TypeName="VolTeerModel.tblVolunteer">
-              <MappingFragment StoreEntitySet="tblVolunteer">
-                <ScalarProperty Name="VolID" ColumnName="VolID" />
-                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
-                <ScalarProperty Name="VolFirstName" ColumnName="VolFirstName" />
-                <ScalarProperty Name="VolMiddleName" ColumnName="VolMiddleName" />
-                <ScalarProperty Name="VolLastName" ColumnName="VolLastName" />
-              </MappingFragment>
-            </EntityTypeMapping>
-            <EntityTypeMapping TypeName="VolTeerModel.tblVolunteer">
-              <ModificationFunctionMapping>
-                <InsertFunction FunctionName="VolTeerModel.Store.sp_Volunteer_Insert">
-                  <ScalarProperty Name="VolID" ParameterName="VolID" />
-                  <ScalarProperty Name="VolLastName" ParameterName="VolLastName" />
-                  <ScalarProperty Name="VolMiddleName" ParameterName="VolMiddleName" />
-                  <ScalarProperty Name="VolFirstName" ParameterName="VolFirstName" />
-                </InsertFunction>
-                <UpdateFunction FunctionName="VolTeerModel.Store.sp_Volenteer_Update">
-                  <ScalarProperty Name="VolLastName" ParameterName="VolLastName" Version="Current" />
-                  <ScalarProperty Name="VolMiddleName" ParameterName="VolMiddleName" Version="Current" />
-                  <ScalarProperty Name="VolFirstName" ParameterName="VolFirstName" Version="Current" />
-                  <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" Version="Current" />
-                  <ScalarProperty Name="VolID" ParameterName="VolID" Version="Current" />
-                </UpdateFunction>
-                <DeleteFunction FunctionName="VolTeerModel.Store.sp_Volenteer_Delete">
-                  <ScalarProperty Name="VolID" ParameterName="VolID" />
-                </DeleteFunction>
-              </ModificationFunctionMapping>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <AssociationSetMapping Name="tblGroupAddr" TypeName="VolTeerModel.tblGroupAddr" StoreEntitySet="tblGroupAddr">
-            <EndProperty Name="tblAddress1">
-              <ScalarProperty Name="AddrID" ColumnName="AddrID" />
-            </EndProperty>
-            <EndProperty Name="tblGroup">
-              <ScalarProperty Name="GroupID" ColumnName="GroupID" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="tblGroupVol" TypeName="VolTeerModel.tblGroupVol" StoreEntitySet="tblGroupVol">
-            <EndProperty Name="tblGroup">
-              <ScalarProperty Name="GroupID" ColumnName="GroupID" />
-            </EndProperty>
-            <EndProperty Name="tblVolunteer">
-              <ScalarProperty Name="VolID" ColumnName="VolID" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="tblVolAddr" TypeName="VolTeerModel.tblVolAddr" StoreEntitySet="tblVolAddr">
-            <EndProperty Name="tblAddress1">
-              <ScalarProperty Name="AddrID" ColumnName="AddrID" />
-            </EndProperty>
-            <EndProperty Name="tblVolunteer">
-              <ScalarProperty Name="VolID" ColumnName="VolID" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="tblVolSkill" TypeName="VolTeerModel.tblVolSkill" StoreEntitySet="tblVolSkill">
-            <EndProperty Name="tblSkill">
-              <ScalarProperty Name="SkillID" ColumnName="SkillID" />
-            </EndProperty>
-            <EndProperty Name="tblVolunteer">
-              <ScalarProperty Name="VolID" ColumnName="VolID" />
-            </EndProperty>
-          </AssociationSetMapping>
           <FunctionImportMapping FunctionImportName="sp_tblProject_Delete" FunctionName="VolTeerModel.Store.sp_tblProject_Delete" />
           <FunctionImportMapping FunctionImportName="sp_tblProject_Insert" FunctionName="VolTeerModel.Store.sp_tblProject_Insert" />
           <FunctionImportMapping FunctionImportName="sp_tblProject_Select" FunctionName="VolTeerModel.Store.sp_tblProject_Select">
@@ -2402,76 +2181,6 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_tblVendor_Update" FunctionName="VolTeerModel.Store.sp_tblVendor_Update" />
-          <FunctionImportMapping FunctionImportName="sp_Address_Delete" FunctionName="VolTeerModel.Store.sp_Address_Delete1">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="VolTeerModel.sp_Address_Delete_Result">
-                <ScalarProperty Name="ErrorNumber" ColumnName="ErrorNumber" />
-                <ScalarProperty Name="ErrorSeverity" ColumnName="ErrorSeverity" />
-                <ScalarProperty Name="ErrorState" ColumnName="ErrorState" />
-                <ScalarProperty Name="ErrorProcedure" ColumnName="ErrorProcedure" />
-                <ScalarProperty Name="ErrorLine" ColumnName="ErrorLine" />
-                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_Address_Select" FunctionName="VolTeerModel.Store.sp_Address_Select1">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="VolTeerModel.sp_Address_Select_Result">
-                <ScalarProperty Name="AddrID" ColumnName="AddrID" />
-                <ScalarProperty Name="AddrLine1" ColumnName="AddrLine1" />
-                <ScalarProperty Name="AddrLine2" ColumnName="AddrLine2" />
-                <ScalarProperty Name="AddrLine3" ColumnName="AddrLine3" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="St" ColumnName="St" />
-                <ScalarProperty Name="Zip" ColumnName="Zip" />
-                <ScalarProperty Name="Zip4" ColumnName="Zip4" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_Address_Update" FunctionName="VolTeerModel.Store.sp_Address_Update1">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="VolTeerModel.sp_Address_Update_Result">
-                <ScalarProperty Name="ErrorNumber" ColumnName="ErrorNumber" />
-                <ScalarProperty Name="ErrorSeverity" ColumnName="ErrorSeverity" />
-                <ScalarProperty Name="ErrorState" ColumnName="ErrorState" />
-                <ScalarProperty Name="ErrorProcedure" ColumnName="ErrorProcedure" />
-                <ScalarProperty Name="ErrorLine" ColumnName="ErrorLine" />
-                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_Email_Insert" FunctionName="VolTeerModel.Store.sp_Email_Insert1">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="VolTeerModel.sp_Email_Insert_Result">
-                <ScalarProperty Name="ErrorNumber" ColumnName="ErrorNumber" />
-                <ScalarProperty Name="ErrorSeverity" ColumnName="ErrorSeverity" />
-                <ScalarProperty Name="ErrorState" ColumnName="ErrorState" />
-                <ScalarProperty Name="ErrorProcedure" ColumnName="ErrorProcedure" />
-                <ScalarProperty Name="ErrorLine" ColumnName="ErrorLine" />
-                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_Email_Select" FunctionName="VolTeerModel.Store.sp_Email_Select1">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="VolTeerModel.sp_Email_Select_Result">
-                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
-                <ScalarProperty Name="EmailAddr" ColumnName="EmailAddr" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_Email_Update" FunctionName="VolTeerModel.Store.sp_Email_Update1">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="VolTeerModel.sp_Email_Update_Result">
-                <ScalarProperty Name="ErrorNumber" ColumnName="ErrorNumber" />
-                <ScalarProperty Name="ErrorSeverity" ColumnName="ErrorSeverity" />
-                <ScalarProperty Name="ErrorState" ColumnName="ErrorState" />
-                <ScalarProperty Name="ErrorProcedure" ColumnName="ErrorProcedure" />
-                <ScalarProperty Name="ErrorLine" ColumnName="ErrorLine" />
-                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_Group_Delete" FunctionName="VolTeerModel.Store.sp_Group_Delete" />
           <FunctionImportMapping FunctionImportName="sp_Group_Insert" FunctionName="VolTeerModel.Store.sp_Group_Insert" />
           <FunctionImportMapping FunctionImportName="sp_Group_Select" FunctionName="VolTeerModel.Store.sp_Group_Select">
@@ -2556,37 +2265,6 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_Sample_Address_Delete" FunctionName="VolTeerModel.Store.sp_Sample_Address_Delete" />
-          <FunctionImportMapping FunctionImportName="sp_Address_Insert" FunctionName="VolTeerModel.Store.sp_Address_Insert1" />
-          <FunctionImportMapping FunctionImportName="sp_Address_Delete1" FunctionName="VolTeerModel.Store.sp_Address_Delete" />
-          <FunctionImportMapping FunctionImportName="sp_Address_Insert1" FunctionName="VolTeerModel.Store.sp_Address_Insert">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="VolTeerModel.sp_Address_Insert1_Result">
-                <ScalarProperty Name="ErrorNumber" ColumnName="ErrorNumber" />
-                <ScalarProperty Name="ErrorSeverity" ColumnName="ErrorSeverity" />
-                <ScalarProperty Name="ErrorState" ColumnName="ErrorState" />
-                <ScalarProperty Name="ErrorProcedure" ColumnName="ErrorProcedure" />
-                <ScalarProperty Name="ErrorLine" ColumnName="ErrorLine" />
-                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_Address_MassUpdate" FunctionName="VolTeerModel.Store.sp_Address_MassUpdate" />
-          <FunctionImportMapping FunctionImportName="sp_Address_Select1" FunctionName="VolTeerModel.Store.sp_Address_Select">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="VolTeerModel.sp_Address_Select1_Result">
-                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
-                <ScalarProperty Name="AddrID" ColumnName="AddrID" />
-                <ScalarProperty Name="AddrLine1" ColumnName="AddrLine1" />
-                <ScalarProperty Name="AddrLine2" ColumnName="AddrLine2" />
-                <ScalarProperty Name="AddrLine3" ColumnName="AddrLine3" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="St" ColumnName="St" />
-                <ScalarProperty Name="Zip" ColumnName="Zip" />
-                <ScalarProperty Name="Zip4" ColumnName="Zip4" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_Address_Update1" FunctionName="VolTeerModel.Store.sp_Address_Update" />
           <FunctionImportMapping FunctionImportName="sp_Contact_Delete" FunctionName="VolTeerModel.Store.sp_Contact_Delete" />
           <FunctionImportMapping FunctionImportName="sp_Contact_Insert" FunctionName="VolTeerModel.Store.sp_Contact_Insert">
             <ResultMapping>
@@ -2613,19 +2291,6 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_Contact_Update" FunctionName="VolTeerModel.Store.sp_Contact_Update" />
-          <FunctionImportMapping FunctionImportName="sp_Email_Delete" FunctionName="VolTeerModel.Store.sp_Email_Delete" />
-          <FunctionImportMapping FunctionImportName="sp_Email_Insert1" FunctionName="VolTeerModel.Store.sp_Email_Insert" />
-          <FunctionImportMapping FunctionImportName="sp_Email_MassUpdate" FunctionName="VolTeerModel.Store.sp_Email_MassUpdate" />
-          <FunctionImportMapping FunctionImportName="sp_Email_Select1" FunctionName="VolTeerModel.Store.sp_Email_Select">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="VolTeerModel.sp_Email_Select1_Result">
-                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
-                <ScalarProperty Name="EmailAddr" ColumnName="EmailAddr" />
-                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_Email_Update1" FunctionName="VolTeerModel.Store.sp_Email_Update" />
           <FunctionImportMapping FunctionImportName="sp_EventRating_Delete" FunctionName="VolTeerModel.Store.sp_EventRating_Delete" />
           <FunctionImportMapping FunctionImportName="sp_EventRating_Insert" FunctionName="VolTeerModel.Store.sp_EventRating_Insert" />
           <FunctionImportMapping FunctionImportName="sp_EventRating_MassUpdate" FunctionName="VolTeerModel.Store.sp_EventRating_MassUpdate" />
@@ -2641,19 +2306,6 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_EventRating_Update" FunctionName="VolTeerModel.Store.sp_EventRating_Update" />
-          <FunctionImportMapping FunctionImportName="sp_Address_MassUpdate1" FunctionName="VolTeerModel.Store.sp_Address_MassUpdate1" />
-          <FunctionImportMapping FunctionImportName="sp_Email_Delete1" FunctionName="VolTeerModel.Store.sp_Email_Delete1">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="VolTeerModel.sp_Email_Delete1_Result">
-                <ScalarProperty Name="ErrorNumber" ColumnName="ErrorNumber" />
-                <ScalarProperty Name="ErrorSeverity" ColumnName="ErrorSeverity" />
-                <ScalarProperty Name="ErrorState" ColumnName="ErrorState" />
-                <ScalarProperty Name="ErrorProcedure" ColumnName="ErrorProcedure" />
-                <ScalarProperty Name="ErrorLine" ColumnName="ErrorLine" />
-                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_Volunteer_Select" FunctionName="VolTeerModel.Store.sp_Volunteer_Select">
             <ResultMapping>
               <ComplexTypeMapping TypeName="VolTeerModel.sp_Volunteer_Select_Result">
@@ -2674,6 +2326,327 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_Volenteer_Update" FunctionName="VolTeerModel.Store.sp_Volenteer_Update" />
           <FunctionImportMapping FunctionImportName="sp_Volenteer_Delete" FunctionName="VolTeerModel.Store.sp_Volenteer_Delete" />
+          <FunctionImportMapping FunctionImportName="sp_Vend_Address_Delete" FunctionName="VolTeerModel.Store.sp_Vend_Address_Delete" />
+          <FunctionImportMapping FunctionImportName="sp_Vend_Address_Insert" FunctionName="VolTeerModel.Store.sp_Vend_Address_Insert">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VolTeerModel.sp_Vend_Address_Insert_Result">
+                <ScalarProperty Name="ErrorNumber" ColumnName="ErrorNumber" />
+                <ScalarProperty Name="ErrorSeverity" ColumnName="ErrorSeverity" />
+                <ScalarProperty Name="ErrorState" ColumnName="ErrorState" />
+                <ScalarProperty Name="ErrorProcedure" ColumnName="ErrorProcedure" />
+                <ScalarProperty Name="ErrorLine" ColumnName="ErrorLine" />
+                <ScalarProperty Name="ErrorMessage" ColumnName="ErrorMessage" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Vend_Address_MassUpdate" FunctionName="VolTeerModel.Store.sp_Vend_Address_MassUpdate" />
+          <FunctionImportMapping FunctionImportName="sp_Vend_Address_Select" FunctionName="VolTeerModel.Store.sp_Vend_Address_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VolTeerModel.sp_Vend_Address_Select_Result">
+                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
+                <ScalarProperty Name="AddrID" ColumnName="AddrID" />
+                <ScalarProperty Name="AddrLine1" ColumnName="AddrLine1" />
+                <ScalarProperty Name="AddrLine2" ColumnName="AddrLine2" />
+                <ScalarProperty Name="AddrLine3" ColumnName="AddrLine3" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="St" ColumnName="St" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="Zip4" ColumnName="Zip4" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Vend_Address_Update" FunctionName="VolTeerModel.Store.sp_Vend_Address_Update" />
+          <FunctionImportMapping FunctionImportName="sp_Vend_Email_Delete" FunctionName="VolTeerModel.Store.sp_Vend_Email_Delete" />
+          <FunctionImportMapping FunctionImportName="sp_Vend_Email_Insert" FunctionName="VolTeerModel.Store.sp_Vend_Email_Insert" />
+          <FunctionImportMapping FunctionImportName="sp_Vend_Email_MassUpdate" FunctionName="VolTeerModel.Store.sp_Vend_Email_MassUpdate" />
+          <FunctionImportMapping FunctionImportName="sp_Vend_Email_Select" FunctionName="VolTeerModel.Store.sp_Vend_Email_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VolTeerModel.sp_Vend_Email_Select_Result">
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+                <ScalarProperty Name="EmailAddr" ColumnName="EmailAddr" />
+                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Vend_Email_Update" FunctionName="VolTeerModel.Store.sp_Vend_Email_Update" />
+          <FunctionImportMapping FunctionImportName="sp_Vol_Address_Delete" FunctionName="VolTeerModel.Store.sp_Vol_Address_Delete" />
+          <FunctionImportMapping FunctionImportName="sp_Vol_Address_Insert" FunctionName="VolTeerModel.Store.sp_Vol_Address_Insert" />
+          <FunctionImportMapping FunctionImportName="sp_Vol_Address_MassUpdate" FunctionName="VolTeerModel.Store.sp_Vol_Address_MassUpdate" />
+          <FunctionImportMapping FunctionImportName="sp_Vol_Address_Select" FunctionName="VolTeerModel.Store.sp_Vol_Address_Select" />
+          <FunctionImportMapping FunctionImportName="sp_Vol_Address_Update" FunctionName="VolTeerModel.Store.sp_Vol_Address_Update" />
+          <EntitySetMapping Name="tblContacts">
+            <EntityTypeMapping TypeName="VolTeerModel.tblContact">
+              <MappingFragment StoreEntitySet="tblContact">
+                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
+                <ScalarProperty Name="ContactLastName" ColumnName="ContactLastName" />
+                <ScalarProperty Name="ContactMiddleName" ColumnName="ContactMiddleName" />
+                <ScalarProperty Name="ContactFirstName" ColumnName="ContactFirstName" />
+                <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblContactEmails">
+            <EntityTypeMapping TypeName="VolTeerModel.tblContactEmail">
+              <MappingFragment StoreEntitySet="tblContactEmail">
+                <ScalarProperty Name="PrimaryEmail" ColumnName="PrimaryEmail" />
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+                <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblEventRatings">
+            <EntityTypeMapping TypeName="VolTeerModel.tblEventRating">
+              <MappingFragment StoreEntitySet="tblEventRating">
+                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
+                <ScalarProperty Name="RatingValue" ColumnName="RatingValue" />
+                <ScalarProperty Name="VolID" ColumnName="VolID" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="RatingID" ColumnName="RatingID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblProjects">
+            <EntityTypeMapping TypeName="VolTeerModel.tblProject">
+              <MappingFragment StoreEntitySet="tblProject">
+                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
+                <ScalarProperty Name="AddrID" ColumnName="AddrID" />
+                <ScalarProperty Name="ProjectDesc" ColumnName="ProjectDesc" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblProjectEvents">
+            <EntityTypeMapping TypeName="VolTeerModel.tblProjectEvent">
+              <MappingFragment StoreEntitySet="tblProjectEvent">
+                <ScalarProperty Name="AddrID" ColumnName="AddrID" />
+                <ScalarProperty Name="EndDateTime" ColumnName="EndDateTime" />
+                <ScalarProperty Name="StartDateTime" ColumnName="StartDateTime" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblProjectEventContacts">
+            <EntityTypeMapping TypeName="VolTeerModel.tblProjectEventContact">
+              <MappingFragment StoreEntitySet="tblProjectEventContact">
+                <ScalarProperty Name="PrimaryContact" ColumnName="PrimaryContact" />
+                <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblStates">
+            <EntityTypeMapping TypeName="VolTeerModel.tblState">
+              <MappingFragment StoreEntitySet="tblState">
+                <ScalarProperty Name="circuit_court" ColumnName="circuit_court" />
+                <ScalarProperty Name="census_devision_name" ColumnName="census_devision_name" />
+                <ScalarProperty Name="census_division" ColumnName="census_division" />
+                <ScalarProperty Name="census_region_name" ColumnName="census_region_name" />
+                <ScalarProperty Name="census_region" ColumnName="census_region" />
+                <ScalarProperty Name="standard_federal_region" ColumnName="standard_federal_region" />
+                <ScalarProperty Name="assoc_press" ColumnName="assoc_press" />
+                <ScalarProperty Name="fips_state" ColumnName="fips_state" />
+                <ScalarProperty Name="notes" ColumnName="notes" />
+                <ScalarProperty Name="occupied" ColumnName="occupied" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="sort" ColumnName="sort" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="abbreviation" ColumnName="abbreviation" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="StateID" ColumnName="StateID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblVendAddresses">
+            <EntityTypeMapping TypeName="VolTeerModel.tblVendAddress">
+              <MappingFragment StoreEntitySet="tblVendAddress">
+                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
+                <ScalarProperty Name="Zip4" ColumnName="Zip4" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="St" ColumnName="St" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="AddrLine3" ColumnName="AddrLine3" />
+                <ScalarProperty Name="AddrLine2" ColumnName="AddrLine2" />
+                <ScalarProperty Name="AddrLine1" ColumnName="AddrLine1" />
+                <ScalarProperty Name="AddrID" ColumnName="AddrID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblVendContacts">
+            <EntityTypeMapping TypeName="VolTeerModel.tblVendContact">
+              <MappingFragment StoreEntitySet="tblVendContact">
+                <ScalarProperty Name="PrimaryContact" ColumnName="PrimaryContact" />
+                <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblVendEmails">
+            <EntityTypeMapping TypeName="VolTeerModel.tblVendEmail">
+              <MappingFragment StoreEntitySet="tblVendEmail">
+                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
+                <ScalarProperty Name="EmailAddr" ColumnName="EmailAddr" />
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblVendors">
+            <EntityTypeMapping TypeName="VolTeerModel.tblVendor">
+              <MappingFragment StoreEntitySet="tblVendor">
+                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
+                <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblVendorAddrs">
+            <EntityTypeMapping TypeName="VolTeerModel.tblVendorAddr">
+              <MappingFragment StoreEntitySet="tblVendorAddr">
+                <ScalarProperty Name="HQ" ColumnName="HQ" />
+                <ScalarProperty Name="AddrID" ColumnName="AddrID" />
+                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblVendorProjContacts">
+            <EntityTypeMapping TypeName="VolTeerModel.tblVendorProjContact">
+              <MappingFragment StoreEntitySet="tblVendorProjContact">
+                <ScalarProperty Name="PrimaryContact" ColumnName="PrimaryContact" />
+                <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblGroups">
+            <EntityTypeMapping TypeName="VolTeerModel.tblGroup">
+              <MappingFragment StoreEntitySet="tblGroup">
+                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
+                <ScalarProperty Name="ParticipationLevelID" ColumnName="ParticipationLevelID" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSampleAddresses">
+            <EntityTypeMapping TypeName="VolTeerModel.tblSampleAddress">
+              <MappingFragment StoreEntitySet="tblSampleAddress">
+                <ScalarProperty Name="Zip4" ColumnName="Zip4" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="St" ColumnName="St" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="AddrLine3" ColumnName="AddrLine3" />
+                <ScalarProperty Name="AddrLine2" ColumnName="AddrLine2" />
+                <ScalarProperty Name="AddrLine1" ColumnName="AddrLine1" />
+                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
+                <ScalarProperty Name="AddrID" ColumnName="AddrID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblSkills">
+            <EntityTypeMapping TypeName="VolTeerModel.tblSkill">
+              <MappingFragment StoreEntitySet="tblSkill">
+                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
+                <ScalarProperty Name="ReqCert" ColumnName="ReqCert" />
+                <ScalarProperty Name="MstrSkillID" ColumnName="MstrSkillID" />
+                <ScalarProperty Name="SkillName" ColumnName="SkillName" />
+                <ScalarProperty Name="SkillID" ColumnName="SkillID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblState1">
+            <EntityTypeMapping TypeName="VolTeerModel.tblState1">
+              <MappingFragment StoreEntitySet="tblState1">
+                <ScalarProperty Name="circuit_court" ColumnName="circuit_court" />
+                <ScalarProperty Name="census_devision_name" ColumnName="census_devision_name" />
+                <ScalarProperty Name="census_division" ColumnName="census_division" />
+                <ScalarProperty Name="census_region_name" ColumnName="census_region_name" />
+                <ScalarProperty Name="census_region" ColumnName="census_region" />
+                <ScalarProperty Name="standard_federal_region" ColumnName="standard_federal_region" />
+                <ScalarProperty Name="assoc_press" ColumnName="assoc_press" />
+                <ScalarProperty Name="fips_state" ColumnName="fips_state" />
+                <ScalarProperty Name="notes" ColumnName="notes" />
+                <ScalarProperty Name="occupied" ColumnName="occupied" />
+                <ScalarProperty Name="status" ColumnName="status" />
+                <ScalarProperty Name="sort" ColumnName="sort" />
+                <ScalarProperty Name="type" ColumnName="type" />
+                <ScalarProperty Name="country" ColumnName="country" />
+                <ScalarProperty Name="abbreviation" ColumnName="abbreviation" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="StateID" ColumnName="StateID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblVolAddresses">
+            <EntityTypeMapping TypeName="VolTeerModel.tblVolAddress">
+              <MappingFragment StoreEntitySet="tblVolAddress">
+                <ScalarProperty Name="Zip4" ColumnName="Zip4" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="St" ColumnName="St" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="AddrLine3" ColumnName="AddrLine3" />
+                <ScalarProperty Name="AddrLine2" ColumnName="AddrLine2" />
+                <ScalarProperty Name="AddrLine1" ColumnName="AddrLine1" />
+                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
+                <ScalarProperty Name="AddrID" ColumnName="AddrID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblVolEmails">
+            <EntityTypeMapping TypeName="VolTeerModel.tblVolEmail">
+              <MappingFragment StoreEntitySet="tblVolEmail">
+                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
+                <ScalarProperty Name="EmailAddr" ColumnName="EmailAddr" />
+                <ScalarProperty Name="VolID" ColumnName="VolID" />
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="tblVolunteers">
+            <EntityTypeMapping TypeName="VolTeerModel.tblVolunteer">
+              <MappingFragment StoreEntitySet="tblVolunteer">
+                <ScalarProperty Name="VolLastName" ColumnName="VolLastName" />
+                <ScalarProperty Name="VolMiddleName" ColumnName="VolMiddleName" />
+                <ScalarProperty Name="VolFirstName" ColumnName="VolFirstName" />
+                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
+                <ScalarProperty Name="VolID" ColumnName="VolID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="tblGroupAddr" TypeName="VolTeerModel.tblGroupAddr" StoreEntitySet="tblGroupAddr">
+            <EndProperty Name="tblGroup">
+              <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+            </EndProperty>
+            <EndProperty Name="tblVolAddress">
+              <ScalarProperty Name="AddrID" ColumnName="AddrID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="tblGroupVol" TypeName="VolTeerModel.tblGroupVol" StoreEntitySet="tblGroupVol">
+            <EndProperty Name="tblVolunteer">
+              <ScalarProperty Name="VolID" ColumnName="VolID" />
+            </EndProperty>
+            <EndProperty Name="tblGroup">
+              <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="tblVolAddr" TypeName="VolTeerModel.tblVolAddr" StoreEntitySet="tblVolAddr">
+            <EndProperty Name="tblVolunteer">
+              <ScalarProperty Name="VolID" ColumnName="VolID" />
+            </EndProperty>
+            <EndProperty Name="tblVolAddress">
+              <ScalarProperty Name="AddrID" ColumnName="AddrID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <AssociationSetMapping Name="tblVolSkill" TypeName="VolTeerModel.tblVolSkill" StoreEntitySet="tblVolSkill">
+            <EndProperty Name="tblVolunteer">
+              <ScalarProperty Name="VolID" ColumnName="VolID" />
+            </EndProperty>
+            <EndProperty Name="tblSkill">
+              <ScalarProperty Name="SkillID" ColumnName="SkillID" />
+            </EndProperty>
+          </AssociationSetMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
