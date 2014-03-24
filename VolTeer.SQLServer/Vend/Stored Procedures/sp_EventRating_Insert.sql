@@ -67,3 +67,4 @@ END CATCH
 Select rateID_OUT from @outTable;
 
 
+

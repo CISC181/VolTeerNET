@@ -74,3 +74,4 @@ BEGIN
 	SELECT NewSkillID FROM @IdTable;
 
 END
+

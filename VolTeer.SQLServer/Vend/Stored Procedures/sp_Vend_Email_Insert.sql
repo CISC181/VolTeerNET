@@ -2,13 +2,13 @@
 -- Author:		Michael Matheny
 -- Create date: 3/18/14
 -- =============================================
-CREATE PROCEDURE [Vend].[sp_Email_Insert]
+CREATE PROCEDURE [Vend].[sp_Vend_Email_Insert]
 	-- Add the parameters for the stored procedure here
 	@EmailAddr nvarchar(100)
 AS
 BEGIN
 	BEGIN TRY
-		INSERT Into Vend.tblEmail (EmailAddr)
+		INSERT Into Vend.tblVendEmail (EmailAddr)
 		VALUES (@EmailAddr)
 	END TRY
 

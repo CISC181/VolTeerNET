@@ -5,6 +5,6 @@
     [AddrID]      INT              NULL,
     [ActiveFlg]   INT              NULL,
     CONSTRAINT [PK_tblProject] PRIMARY KEY CLUSTERED ([ProjectID] ASC),
-    CONSTRAINT [FK_tblProject_tblAddress] FOREIGN KEY ([AddrID]) REFERENCES [Vend].[tblAddress] ([AddrID])
+    CONSTRAINT [FK_tblProject_tblAddress] FOREIGN KEY ([AddrID]) REFERENCES [Vend].[tblVendAddress] ([AddrID])
 );
 

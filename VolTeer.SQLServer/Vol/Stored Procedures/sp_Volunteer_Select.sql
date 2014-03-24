@@ -5,27 +5,18 @@
 -- Pass in VolID as a parameter.  If VolID is null, then return the entire list, 
 -- If VolID is not null, return only that VolID's record.
 -- =============================================
-create PROCEDURE [Vol].[sp_Volunteer_Select]
+CREATE PROCEDURE [Vol].[sp_Volunteer_Select]
 	-- Add the parameters for the stored procedure here
-	@VolID UNIQUEIDENTIFIER
+	@VolID UNIQUEIDENTIFIER = null
 AS
 
 BEGIN TRY
 	
 	BEGIN TRANSACTION 
 	
-		IF (@VolID = NULL)
-		BEGIN
-			SELECT [VolID], [ActiveFlg], [VolFirstName], [VolMiddleName], [VolLastName]
-			FROM Vol.tblVolunteer 
-		END		
-		ELSE
-		BEGIN
-			SELECT [VolID], [ActiveFlg], [VolFirstName], [VolMiddleName], [VolLastName]
-			FROM Vol.tblVolunteer 
-			WHERE VolID = @VolID
-		END	
-
+		SELECT [VolID], [ActiveFlg], [VolFirstName], [VolMiddleName], [VolLastName]
+		FROM Vol.tblVolunteer 
+		WHERE @VolID IS NULL OR LEN(@VolID) = 0 OR (VolID = @VolID) 	
 	 COMMIT TRANSACTION
 
 END TRY
@@ -69,3 +60,4 @@ BEGIN CATCH
                    );
 
 END CATCH
+

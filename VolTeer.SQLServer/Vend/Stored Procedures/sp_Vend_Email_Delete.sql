@@ -4,7 +4,7 @@
 -- Create date: 3/18/2014
 -- Description:	Sets active flag for email entry to false
 -- =============================================
-CREATE PROCEDURE [Vend].[sp_Email_Delete] 
+CREATE PROCEDURE [Vend].[sp_Vend_Email_Delete] 
 	-- Add the parameters for the stored procedure here
 	@EmailID int 
 
@@ -13,7 +13,7 @@ AS
 BEGIN TRY
 	
 	BEGIN TRANSACTION 
-		UPDATE Vend.tblEmail SET ActiveFlg = 0 Where EmailID=@EmailID;
+		UPDATE Vend.tblVendEmail SET ActiveFlg = 0 Where EmailID=@EmailID;
 	COMMIT TRANSACTION
 
 END TRY
@@ -57,6 +57,7 @@ BEGIN CATCH
                    );
 
 END CATCH
+
 
 
 

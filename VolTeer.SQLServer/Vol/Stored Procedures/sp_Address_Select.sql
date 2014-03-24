@@ -14,34 +14,10 @@ BEGIN TRY
 	
 	BEGIN TRANSACTION 
 	
-		IF @AddrID = NULL
-		BEGIN
-			SELECT 
-				AddrID,
-				AddrLine1,
-				AddrLine2,
-				AddrLine3,
-				City,
-				St,
-				Zip,
-				Zip4
-			FROM Vol.tblAddress
-			ORDER BY AddrID;
-		END
-		ELSE
-		BEGIN
-			SELECT 
-				AddrID,
-				AddrLine1,
-				AddrLine2,
-				AddrLine3,
-				City,
-				St,
-				Zip,
-				Zip4
-			FROM Vol.tblAddress
-			WHERE AddrID = @AddrID;
-		END
+		SELECT AddrID, AddrLine1, AddrLine2, AddrLine3, City, St, Zip, Zip4
+		FROM Vol.tblAddress
+		WHERE @AddrID IS NULL OR LEN(@AddrID) = 0 OR (AddrID = @AddrID);
+	
 	 COMMIT TRANSACTION
 
 END TRY
@@ -85,3 +61,4 @@ BEGIN CATCH
                    );
 
 END CATCH
+

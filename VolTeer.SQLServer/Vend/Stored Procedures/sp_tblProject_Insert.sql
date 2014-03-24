@@ -13,3 +13,4 @@ BEGIN
 	(@ProjectID, @ProjectName, @ProjectDesc, @AddrID)
 END
 SELECT @addrid=SCOPE_IDENTITY()
+

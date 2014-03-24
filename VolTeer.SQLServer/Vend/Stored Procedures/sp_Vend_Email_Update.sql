@@ -4,7 +4,7 @@
 -- Create date: 3/18/14
 -- Description:	update each of the table's attributes, except the key
 -- =============================================
-CREATE PROCEDURE [Vend].[sp_Email_Update] 
+CREATE PROCEDURE [Vend].[sp_Vend_Email_Update] 
 	-- Add the parameters for the stored procedure here
 	@EmailID int,
 	@EmailAddr nvarchar(100),
@@ -14,7 +14,7 @@ AS
 BEGIN TRY
 	
 	BEGIN TRANSACTION 
-		Update Vend.tblEmail set
+		Update Vend.tblVendEmail set
 			EmailAddr = @EmailAddr,
 			ActiveFlg = @ActiveFlg
 			Where EmailID = @EmailID;
@@ -61,4 +61,5 @@ BEGIN CATCH
                    );
 
 END CATCH
+
 

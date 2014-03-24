@@ -3,7 +3,7 @@
 -- Create date: 3/19/14
 -- Description:	update each of the table's attributes, except the key
 -- =============================================
-CREATE PROCEDURE [Vend].[sp_Address_Update] 
+CREATE PROCEDURE [Vend].[sp_Vend_Address_Update] 
 	-- Add the parameters for the stored procedure here
 	@AddrId int,
 	@ActiveFlg bit,
@@ -20,7 +20,7 @@ AS
 BEGIN TRY
 	
 	BEGIN TRANSACTION 
-		Update Vend.tblAddress set
+		Update Vend.tblVendAddress set
 			AddrLine1 = @AddrLine1,
 			AddrLine2 = @AddrLine2,
 			AddrLine3 = @AddrLine3,
@@ -73,3 +73,4 @@ BEGIN CATCH
                    );
 
 END CATCH
+

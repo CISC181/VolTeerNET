@@ -1,5 +1,5 @@
 ﻿CREATE TABLE [Vol].[tblVolunteer] (
-    [VolID]         UNIQUEIDENTIFIER CONSTRAINT [DF_tblVolunteer_VolID]  NOT NULL,
+    [VolID]         UNIQUEIDENTIFIER NOT NULL,
     [ActiveFlg]     BIT              NULL,
     [VolFirstName]  NVARCHAR (20)    NULL,
     [VolMiddleName] NVARCHAR (20)    NULL,

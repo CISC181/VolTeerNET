@@ -2,10 +2,11 @@
 -- =============================================
 -- Author:		Kyle Tucker
 -- Create date: 3/19/2014
+-- Last Update: 3/24/2014 (Stephen Herbein)
 -- Description: List the record corresponding to the given contact ID or all of the records if no ID is given
 -- =============================================
 CREATE PROCEDURE [Vend].[sp_Contact_Select]
-	@ContactID uniqueidentifier
+	@ContactID UNIQUEIDENTIFIER = NULL
 AS
 BEGIN TRY
 	
@@ -19,19 +20,9 @@ BEGIN TRY
 				ContactMiddleName,
 				ContactLastName,
 				ActiveFlg
-			From Vend.tblContact
+			FROM Vend.tblContact
+			WHERE @ContactID IS NULL OR LEN(@ContactID) = 0 OR (ContactID = @ContactID)
 			ORDER BY ContactID;
-		END
-		ELSE
-		BEGIN
-			SELECT
-				ContactID,
-				ContactFirstName,
-				ContactMiddleName,
-				ContactLastName,
-				ActiveFlg
-			From Vend.tblContact
-			WHERE ContactID = @ContactID;
 		END
 	 COMMIT TRANSACTION
 

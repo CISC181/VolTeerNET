@@ -2,7 +2,7 @@
 -- Author:		Michael Matheny
 -- Create date: 3/18/14
 -- =============================================
-CREATE PROCEDURE Vend.[sp_Contact_MassUpdate] 
+CREATE PROCEDURE [Vend].[sp_Contact_MassUpdate] 
 	-- Add the parameters for the stored procedure here
 		@XML_IN                     XML
 AS

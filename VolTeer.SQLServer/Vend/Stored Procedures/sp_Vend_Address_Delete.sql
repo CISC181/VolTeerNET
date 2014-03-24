@@ -1,48 +1,19 @@
-﻿
-
+﻿-- =============================================
+-- Author:		Stephen Herbein
+-- Create date: 3/11/2014
+-- Description:	Sets active flag for address entry to false
 -- =============================================
--- Author:		Anthony Rizzo
--- Create date: 03/18/2014
--- Description:	Inserts a record into Address table, via transaction
--- =============================================
-CREATE PROCEDURE [Vend].[sp_Address_Insert]
+CREATE PROCEDURE [Vend].[sp_Vend_Address_Delete] 
 	-- Add the parameters for the stored procedure here
-		@AddrLine1 nvarchar(50),
-		@AddrLine2 nvarchar(50),
-		@AddrLine3 nvarchar(50),
-		@City nvarchar(30),
-		@St char(2),
-		@Zip int,
-		@Zip4 int
+	@AddrID int 
+
 AS
-
-
-Declare @outTable table(
-AddrID_OUT	INT)
 
 BEGIN TRY
 	
 	BEGIN TRANSACTION 
-	
-	INSERT Vend.tblAddress 
-		(AddrLine1, 
-		 AddrLine2, 
-		 AddrLine3, 
-		 City, 
-		 St, 
-		 Zip, 
-		 Zip4)
-		OUTPUT INSERTED.AddrId
-		INTO @outTable
-			VALUES (@AddrLine1, 
-			@AddrLine2,
-			@AddrLine3,
-			@City,
-			@St,
-			@Zip,
-			@Zip4)
-
-	 COMMIT TRANSACTION
+		UPDATE Vend.tblVendAddress SET ActiveFlg = 0 Where AddrID=@AddrID;
+	COMMIT TRANSACTION
 
 END TRY
 
@@ -72,15 +43,19 @@ BEGIN CATCH
             'Rolling back transaction.'
         ROLLBACK TRANSACTION;   
     END;
-    SELECT ERROR_NUMBER() AS ErrorNumber
-    ,ERROR_SEVERITY() AS ErrorSeverity
-    ,ERROR_STATE() AS ErrorState
-    ,ERROR_PROCEDURE() AS ErrorProcedure
-    ,ERROR_LINE() AS ErrorLine
-    ,ERROR_MESSAGE() AS ErrorMessage;
-	return error_number()
+    DECLARE @ErrorMessage NVARCHAR(4000);
+	DECLARE @ErrorSeverity INT;
+	DECLARE @ErrorState INT;
+
+	SELECT @ErrorMessage = ERROR_MESSAGE(),
+			@ErrorSeverity = ERROR_SEVERITY(),
+			@ErrorState = ERROR_STATE();
+	RAISERROR (@ErrorMessage, -- Message text.
+				@ErrorSeverity, -- Severity.
+				@ErrorState -- State.
+                   );
 
 END CATCH
 
-Select AddrID_OUT from @outTable;
+
 

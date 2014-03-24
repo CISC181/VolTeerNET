@@ -1,10 +1,11 @@
 ﻿-- =============================================
 -- Author:		Wilson Hsu
 -- Create date: 3/18/2014
+-- Last Update: 3/24/2014 (Stephen Herbein)
 -- Description: List the states eventrating_select
 -- =============================================
 CREATE PROCEDURE [Vend].[sp_EventRating_Select]
-	@RatingID int
+	@RatingID INT = NULL
 As
 BEGIN
 	SET NOCOUNT ON;
@@ -12,8 +13,6 @@ BEGIN
 	BEGIN TRY
 		
 		BEGIN TRANSACTION
-
-		IF @RatingID = NULL
 		BEGIN
 			SELECT
 				RatingID,
@@ -21,39 +20,29 @@ BEGIN
 				VolID,
 				RatingValue,
 				ActiveFlg
-		   From Vend.tblEventRating
-		   ORDER BY RatingID;
-		END
-		ELSE
-		BEGIN
-		SELECT
-				RatingID,
-				EventID,
-				VolID,
-				RatingValue,
-				ActiveFlg
-		   From Vend.tblEventRating
-		   WHERE RatingID = @RatingID;
+			FROM Vend.tblEventRating
+			WHERE @RatingID IS NULL OR LEN(@RatingID) = 0 OR (RatingID = @RatingID)
+			ORDER BY RatingID;
 		END
 	COMMIT TRANSACTION
 	END TRY
 	BEGIN CATCH
-	IF (XACT_STATE()) = -1
-    BEGIN
-        PRINT
-            N'The transaction is in an uncommittable state.' +
-            'Rolling back transaction.'
-        ROLLBACK TRANSACTION;
-    END;
+		IF (XACT_STATE()) = -1
+		BEGIN
+			PRINT
+				N'The transaction is in an uncommittable state.' +
+				'Rolling back transaction.'
+			ROLLBACK TRANSACTION;
+		END;
 
     -- Test whether the transaction is committable.
-    IF (XACT_STATE()) = 1
-    BEGIN
-        PRINT
-            N'The transaction is in committable state.' +
-            'Rolling back transaction.'
-        ROLLBACK TRANSACTION;   
-    END;
+		IF (XACT_STATE()) = 1
+		BEGIN
+			PRINT
+				N'The transaction is in committable state.' +
+				'Rolling back transaction.'
+			ROLLBACK TRANSACTION;   
+		END;
 		DECLARE @ErrorMessage NVARCHAR(4000);
 		DECLARE @ErrorSeverity INT;
 		DECLARE @ErrorState INT;
@@ -67,3 +56,4 @@ BEGIN
                    );
 	END CATCH
 END
+

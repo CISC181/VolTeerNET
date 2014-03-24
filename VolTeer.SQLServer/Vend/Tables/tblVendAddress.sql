@@ -1,4 +1,4 @@
-﻿CREATE TABLE [Vend].[tblAddress] (
+﻿CREATE TABLE [Vend].[tblVendAddress] (
     [AddrID]    INT           IDENTITY (1, 1) NOT NULL,
     [AddrLine1] NVARCHAR (50) NULL,
     [AddrLine2] NVARCHAR (50) NULL,

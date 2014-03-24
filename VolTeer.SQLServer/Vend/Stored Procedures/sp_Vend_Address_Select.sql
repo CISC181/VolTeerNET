@@ -6,15 +6,12 @@
 --- if AddrID is not null, return only that AddrID's record.
 -- =============================================
 
-CREATE PROCEDURE [Vend].[sp_Address_Select] 
+CREATE PROCEDURE [Vend].[sp_Vend_Address_Select] 
 	-- Add the parameters for the stored procedure here
-	@AddrID int 
+	@AddrID INT = NULL
 AS
-BEGIN TRY
-	
+BEGIN TRY	
 	BEGIN TRANSACTION 
-	
-		IF @AddrID = NULL
 		BEGIN
 			SELECT
 				ActiveFlg,
@@ -26,37 +23,19 @@ BEGIN TRY
 				St,
 				Zip,
 				Zip4
-			FROM Vend.tblAddress
+			FROM Vend.tblVendAddress
+			WHERE @AddrID IS NULL OR LEN(@AddrID) = 0 OR (AddrID = @AddrID)
 			ORDER BY AddrID;
 		END
-		ELSE
-		BEGIN
-			SELECT 
-				ActiveFlg,
-				AddrID,
-				AddrLine1,
-				AddrLine2,
-				AddrLine3,
-				City,
-				St,
-				Zip,
-				Zip4
-			FROM Vend.tblAddress
-			WHERE AddrID = @AddrID;
-		END
-	 COMMIT TRANSACTION
-
+	COMMIT TRANSACTION
 END TRY
-
 BEGIN CATCH
-
     -- Test XACT_STATE:
         -- If 1, the transaction is committable.
         -- If -1, the transaction is uncommittable and should 
         --     be rolled back.
         -- XACT_STATE = 0 means that there is no transaction and
         --     a commit or rollback operation would generate an error.
-
     -- Test whether the transaction is uncommittable.
     IF (XACT_STATE()) = -1
     BEGIN
@@ -65,7 +44,6 @@ BEGIN CATCH
             'Rolling back transaction.'
         ROLLBACK TRANSACTION;
     END;
-
     -- Test whether the transaction is committable.
     IF (XACT_STATE()) = 1
     BEGIN
@@ -78,12 +56,12 @@ BEGIN CATCH
 	DECLARE @ErrorSeverity INT;
 	DECLARE @ErrorState INT;
 
-	SELECT @ErrorMessage = ERROR_MESSAGE(),
+	SELECT	@ErrorMessage = ERROR_MESSAGE(),
 			@ErrorSeverity = ERROR_SEVERITY(),
 			@ErrorState = ERROR_STATE();
-	RAISERROR (@ErrorMessage, -- Message text.
+	RAISERROR (	@ErrorMessage, -- Message text.
 				@ErrorSeverity, -- Severity.
 				@ErrorState -- State.
                    );
-
 END CATCH
+
