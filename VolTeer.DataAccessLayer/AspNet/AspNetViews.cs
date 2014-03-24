@@ -51,5 +51,51 @@ namespace VolTeer.DataAccessLayer.AspNet
             return list;
 
         }
+
+
+
+
+        public vw_aspnet_MembershipUsers_DM ListUserByEmail(string strEmail)
+        {
+            vw_aspnet_MembershipUsers_DM list = new vw_aspnet_MembershipUsers_DM();
+            try
+            {
+                using (AspNetProviderEntities context = new AspNetProviderEntities())
+                {
+                    list = (from result in context.vw_aspnet_MembershipUsers
+                            where result.Email == strEmail
+                            select new vw_aspnet_MembershipUsers_DM
+                            {
+                                ApplicationId = result.ApplicationId,
+                                Comment = result.Comment,
+                                CreateDate = result.CreateDate,
+                                Email = result.Email,
+                                FailedPasswordAnswerAttemptCount = result.FailedPasswordAnswerAttemptCount,
+                                FailedPasswordAnswerAttemptWindowStart = result.FailedPasswordAnswerAttemptWindowStart,
+                                FailedPasswordAttemptCount = result.FailedPasswordAttemptCount,
+                                FailedPasswordAttemptWindowStart = result.FailedPasswordAttemptWindowStart,
+                                IsAnonymous = result.IsAnonymous,
+                                IsApproved = result.IsApproved,
+                                IsLockedOut = result.IsLockedOut,
+                                UserId = result.UserId,
+                                UserName = result.UserName,
+                                LastActivityDate = result.LastActivityDate,
+                                LastLockoutDate = result.LastLockoutDate,
+                                LastLoginDate = result.LastLoginDate,
+                                LoweredEmail = result.LoweredEmail,
+                                LastPasswordChangedDate = result.LastPasswordChangedDate
+                            }).FirstOrDefault();
+                } // Guaranteed to close the Connection
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+
+            return list;
+
+        }
+
+        
     }
 }

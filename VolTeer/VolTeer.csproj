@@ -121,19 +121,19 @@
     <Compile Include="Account\RecoverPassword.aspx.designer.cs">
       <DependentUpon>RecoverPassword.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Account\RecoverUserName.aspx.cs">
+      <DependentUpon>RecoverUserName.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\RecoverUserName.aspx.designer.cs">
+      <DependentUpon>RecoverUserName.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Account\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Account\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Account\WebForm1.aspx.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Account\WebForm1.aspx.designer.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Code\cEnums.cs" />
     <Compile Include="App_Code\cMail.cs" />
@@ -301,8 +301,8 @@
     <Content Include="Account\ManageRole.aspx" />
     <Content Include="Account\ManageUser.aspx" />
     <Content Include="Account\RecoverPassword.aspx" />
+    <Content Include="Account\RecoverUserName.aspx" />
     <Content Include="Account\Register.aspx" />
-    <Content Include="Account\WebForm1.aspx" />
     <Content Include="App_Data\RadCaptcha\0.wav" />
     <Content Include="App_Data\RadCaptcha\1.wav" />
     <Content Include="App_Data\RadCaptcha\2.wav" />
@@ -344,7 +344,11 @@
     <Content Include="Common\WebControls\ucPhone.ascx" />
     <Content Include="Common\WebControls\ucSkill.ascx" />
     <Content Include="Common\WebControls\ucVolBasicInfo.ascx" />
+    <Content Include="Content\button\ButtonSprites.png" />
+    <Content Include="Content\button\ToggleSprite.png" />
+    <Content Include="Content\EmailTemplates\ForgotUserName.html" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\Telerik.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />

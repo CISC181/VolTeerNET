@@ -14,5 +14,10 @@ namespace VolTeer.BusinessLogicLayer.AspNet
         {
             return DAL.ListUser(strUserName);
         }
+
+        public vw_aspnet_MembershipUsers_DM ListUserByEmail(string strEmail)
+        {
+            return DAL.ListUserByEmail(strEmail);
+        }
     }
 }
