@@ -5,7 +5,7 @@ using System.Web;
 using System.Net.Mail;
 using System.Configuration;
 using System.Net.Configuration;
-
+using System.IO;
 
 
 namespace VolTeer.App_Code
@@ -20,6 +20,8 @@ namespace VolTeer.App_Code
                subject,
                body);
 
+            message.IsBodyHtml = true;
+
             var section = ConfigurationManager.GetSection("system.net/mailSettings/smtp") as SmtpSection;
 
             SmtpClient client = new SmtpClient();
@@ -28,7 +30,6 @@ namespace VolTeer.App_Code
             client.Port = section.Network.Port;
             client.EnableSsl = section.Network.EnableSsl;
             client.Credentials = new System.Net.NetworkCredential(section.Network.UserName.ToString(), section.Network.Password.ToString());
-           
 
             try
             {
@@ -39,6 +40,23 @@ namespace VolTeer.App_Code
                 throw (ex);
             }
 
+        }
+
+        public static string PopulateBody(string TemplateLoc, string[,] MergeValues)
+        {
+            
+            string body = string.Empty;
+            using (StreamReader reader = new StreamReader(HttpContext.Current.Server.MapPath(TemplateLoc)))
+            {
+                body = reader.ReadToEnd();
+            }
+
+            for (int i = 0; i < MergeValues.Length-1; i++)
+            {
+                body = body.Replace(MergeValues[i, 0], MergeValues[i, 1]);
+            } 
+
+            return body;
         }
 
     }
