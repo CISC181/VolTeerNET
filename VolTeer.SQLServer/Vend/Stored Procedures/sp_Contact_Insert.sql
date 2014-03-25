@@ -1,5 +1,6 @@
 ﻿
 
+
 -- =============================================
 -- Author:		Anthony Rizzo
 -- Create date: 03/18/2014
@@ -61,16 +62,21 @@ BEGIN CATCH
             'Rolling back transaction.'
         ROLLBACK TRANSACTION;   
     END;
-    SELECT ERROR_NUMBER() AS ErrorNumber
-    ,ERROR_SEVERITY() AS ErrorSeverity
-    ,ERROR_STATE() AS ErrorState
-    ,ERROR_PROCEDURE() AS ErrorProcedure
-    ,ERROR_LINE() AS ErrorLine
-    ,ERROR_MESSAGE() AS ErrorMessage;
-	return error_number()
+		DECLARE @ErrorMessage NVARCHAR(4000);
+		DECLARE @ErrorSeverity INT;
+		DECLARE @ErrorState INT;
+
+		SELECT @ErrorMessage = ERROR_MESSAGE(),
+			   @ErrorSeverity = ERROR_SEVERITY(),
+			   @ErrorState = ERROR_STATE();
+        RAISERROR (@ErrorMessage, -- Message text.
+                   @ErrorSeverity, -- Severity.
+                   @ErrorState -- State.
+                   );
 
 END CATCH
 
 Select ContactID_OUT from @outTable;
+
 
 

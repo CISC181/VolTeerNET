@@ -1,6 +1,7 @@
 ﻿-- =============================================
 -- Author:		Wilson Hsu
 -- Create date: 3/18/14
+-- Update date: Wilson Hsu 3/24/14
 -- Description:	EventRating_Insert
 -- =============================================
 CREATE PROCEDURE [Vend].[sp_EventRating_Insert]
@@ -65,6 +66,5 @@ BEGIN CATCH
 END CATCH
 
 Select rateID_OUT from @outTable;
-
 
 
