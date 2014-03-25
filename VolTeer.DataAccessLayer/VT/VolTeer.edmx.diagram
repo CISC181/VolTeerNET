@@ -20,7 +20,7 @@
         <EntityTypeShape EntityType="VolTeerModel.tblVendorProjContact" Width="1.5" PointX="5.625" PointY="20.5" />
         <EntityTypeShape EntityType="VolTeerModel.tblGroup" Width="1.5" PointX="1" PointY="26.625" />
         <EntityTypeShape EntityType="VolTeerModel.tblSampleAddress" Width="1.5" PointX="2.625" PointY="20.125" />
-        <EntityTypeShape EntityType="VolTeerModel.tblSkill" Width="1.5" PointX="0.5" PointY="13.375" />
+        <EntityTypeShape EntityType="VolTeerModel.tblSkill" Width="1.5" PointX="0.5" PointY="13.375" FillColor="0, 192, 0" />
         <EntityTypeShape EntityType="VolTeerModel.tblState1" Width="1.5" PointX="9.875" PointY="23.125" />
         <EntityTypeShape EntityType="VolTeerModel.tblVolAddress" Width="1.5" PointX="2.5" PointY="29.625" />
         <EntityTypeShape EntityType="VolTeerModel.tblVolEmail" Width="1.5" PointX="1" PointY="16.625" />

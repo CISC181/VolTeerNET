@@ -2555,6 +2555,25 @@
                 <ScalarProperty Name="SkillID" ColumnName="SkillID" />
               </MappingFragment>
             </EntityTypeMapping>
+            <EntityTypeMapping TypeName="VolTeerModel.tblSkill">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="VolTeerModel.Store.sp_Skill_Insert">
+                  <ScalarProperty Name="ReqCert" ParameterName="ReqCert" />
+                  <ScalarProperty Name="MstrSkillID" ParameterName="MstrSkillID" />
+                  <ScalarProperty Name="SkillName" ParameterName="SkillName" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="VolTeerModel.Store.sp_Skill_Update">
+                  <ScalarProperty Name="ReqCert" ParameterName="ReqCert" Version="Current" />
+                  <ScalarProperty Name="MstrSkillID" ParameterName="MstrSkillID" Version="Current" />
+                  <ScalarProperty Name="SkillName" ParameterName="SkillName" Version="Current" />
+                  <ScalarProperty Name="SkillID" ParameterName="SkillID" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="VolTeerModel.Store.sp_Skill_Delete">
+                  <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" />
+                  <ScalarProperty Name="SkillID" ParameterName="SkillID" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblState1">
             <EntityTypeMapping TypeName="VolTeerModel.tblState1">
