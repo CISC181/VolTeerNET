@@ -2107,6 +2107,16 @@
                 <DeleteFunction FunctionName="VolTeerModel.Store.sp_Vol_Address_Delete">
                   <ScalarProperty Name="AddrID" ParameterName="AddrID" />
                 </DeleteFunction>
+                <UpdateFunction FunctionName="VolTeerModel.Store.sp_Vol_Address_Update">
+                  <ScalarProperty Name="Zip4" ParameterName="Zip4" Version="Current" />
+                  <ScalarProperty Name="Zip" ParameterName="Zip" Version="Current" />
+                  <ScalarProperty Name="St" ParameterName="St" Version="Current" />
+                  <ScalarProperty Name="City" ParameterName="City" Version="Current" />
+                  <ScalarProperty Name="AddrLine3" ParameterName="AddrLine3" Version="Current" />
+                  <ScalarProperty Name="AddrLine2" ParameterName="AddrLine2" Version="Current" />
+                  <ScalarProperty Name="AddrLine1" ParameterName="AddrLine1" Version="Current" />
+                  <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" Version="Current" />
+                </UpdateFunction>
               </ModificationFunctionMapping>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2152,6 +2162,30 @@
                 <ScalarProperty Name="VolMiddleName" ColumnName="VolMiddleName" />
                 <ScalarProperty Name="VolLastName" ColumnName="VolLastName" />
               </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="VolTeerModel.tblVolunteer">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="VolTeerModel.Store.sp_Volunteer_Insert">
+                  <ScalarProperty Name="VolLastName" ParameterName="VolLastName" />
+                  <ScalarProperty Name="VolMiddleName" ParameterName="VolMiddleName" />
+                  <ScalarProperty Name="VolFirstName" ParameterName="VolFirstName" />
+                  <ScalarProperty Name="VolID" ParameterName="VolID" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="VolTeerModel.Store.sp_Volunteer_Update">
+                  <ScalarProperty Name="VolLastName" ParameterName="VolLastName" Version="Current" />
+                  <ScalarProperty Name="VolMiddleName" ParameterName="VolMiddleName" Version="Current" />
+                  <ScalarProperty Name="VolFirstName" ParameterName="VolFirstName" Version="Current" />
+                  <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" Version="Current" />
+                  <ScalarProperty Name="VolID" ParameterName="VolID" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="VolTeerModel.Store.sp_Volunteer_Update">
+                  <ScalarProperty Name="VolLastName" ParameterName="VolLastName" />
+                  <ScalarProperty Name="VolMiddleName" ParameterName="VolMiddleName" />
+                  <ScalarProperty Name="VolFirstName" ParameterName="VolFirstName" />
+                  <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" />
+                  <ScalarProperty Name="VolID" ParameterName="VolID" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
             </EntityTypeMapping>
           </EntitySetMapping>
           <AssociationSetMapping Name="tblGroupAddr" TypeName="VolTeerModel.tblGroupAddr" StoreEntitySet="tblGroupAddr">

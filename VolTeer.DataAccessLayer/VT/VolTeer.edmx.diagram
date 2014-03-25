@@ -21,10 +21,10 @@
         <EntityTypeShape EntityType="VolTeerModel.tblGroup" Width="1.5" PointX="3" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="VolTeerModel.tblSampleAddress" Width="1.5" PointX="2.75" PointY="8.75" IsExpanded="true" />
         <EntityTypeShape EntityType="VolTeerModel.tblSkill" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolTeerModel.tblVolAddress" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolTeerModel.tblVolAddress" Width="1.5" PointX="0.75" PointY="1" IsExpanded="true" FillColor="0, 192, 0" />
         <EntityTypeShape EntityType="VolTeerModel.tblVolEmail" Width="1.5" PointX="7.5" PointY="1.5" IsExpanded="true" />
         <EntityTypeShape EntityType="VolTeerModel.tblVolState" Width="1.5" PointX="9.75" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolTeerModel.tblVolunteer" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolTeerModel.tblVolunteer" Width="1.5" PointX="5.25" PointY="1.125" IsExpanded="true" FillColor="0, 192, 0" />
         <AssociationConnector Association="VolTeerModel.FK_tblContactEmail_tblContact" ManuallyRouted="false" />
         <AssociationConnector Association="VolTeerModel.FK_tblProjectEventContact_tblContact" ManuallyRouted="false" />
         <AssociationConnector Association="VolTeerModel.FK_tblVendContact_tblContact" ManuallyRouted="false" />
