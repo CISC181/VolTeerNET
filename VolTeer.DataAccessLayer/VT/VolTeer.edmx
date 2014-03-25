@@ -2127,6 +2127,7 @@
                   <ScalarProperty Name="AddrID" ParameterName="AddrID" />
                 </DeleteFunction>
                 <UpdateFunction FunctionName="VolTeerModel.Store.sp_Vol_Address_Update">
+                  <ScalarProperty Name="AddrID" ParameterName="AddrId" Version="Current" />
                   <ScalarProperty Name="Zip4" ParameterName="Zip4" Version="Current" />
                   <ScalarProperty Name="Zip" ParameterName="Zip" Version="Current" />
                   <ScalarProperty Name="St" ParameterName="St" Version="Current" />
