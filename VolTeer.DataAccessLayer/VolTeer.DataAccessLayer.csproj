@@ -165,28 +165,25 @@
       <DependentUpon>AspNet.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="VT\sp_Address_Insert1_Result.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VT\sp_Address_Select1_Result.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VT\sp_Contact_Insert_Result.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
     <Compile Include="VT\sp_Contact_Select_Result.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VT\sp_Email_Delete1_Result.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VT\sp_Email_Select1_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
     <Compile Include="VT\sp_EventRating_Select_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
-    <Compile Include="VT\sp_Vend_Address_Insert_Result.cs">
+    <Compile Include="VT\sp_Group_Select_Result.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\sp_Project_Select_Result.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\sp_Sample_Address_Select_Result.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\sp_Skill_Select_Result.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\sp_Vendor_Select_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
     <Compile Include="VT\sp_Vend_Address_Select_Result.cs">
@@ -195,89 +192,16 @@
     <Compile Include="VT\sp_Vend_Email_Select_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
-    <Compile Include="VT\sp_Volunteer_Insert_Result.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
     <Compile Include="VT\sp_Volunteer_Select_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
-    <Compile Include="VT\tblVendAddress.cs">
+    <Compile Include="VT\sp_Vol_Address_Select_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
-    <Compile Include="VT\tblVendEmail.cs">
+    <Compile Include="VT\sp_Vol_Email_Select_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
-    <Compile Include="VT\tblVolAddress.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VT\tblVolEmail.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VT\Vol\SkillDAL.cs" />
-    <Compile Include="VT\sp_Address_Delete_Result.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VT\sp_Address_Select_Result.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VT\sp_Address_Update_Result.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VT\sp_Email_Insert_Result.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VT\sp_Email_Select_Result.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VT\sp_Email_Update_Result.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VT\Vol\sp_Group_DAL.cs" />
-    <Compile Include="VT\sp_Group_Select_Result.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VT\Other\sp_Sample_Address_DAL.cs" />
-    <Compile Include="VT\sp_Sample_Address_Select_Result.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VT\sp_Skill_Delete_Result.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VT\sp_Skill_Insert_Result.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VT\sp_Skill_Select_Result.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VT\sp_Skill_Update_Result.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VT\Other\sp_State_DAL.cs" />
-    <Compile Include="VT\sp_State_Select_Result.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VT\sp_tblAddress_Select_Result.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VT\sp_tblContact_Insert_Result.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VT\sp_tblContact_Select_Result.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VT\sp_tblEmail_Select_Result.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VT\sp_tblEmail_Update1_Result.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VT\sp_tblEventRating_Select_Result.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VT\sp_tblProject_Select_Result.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VT\sp_tblVendor_Select_Result.cs">
+    <Compile Include="VT\sp_Vol_State_Select_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
     <Compile Include="VT\tblContact.cs">
@@ -307,13 +231,13 @@
     <Compile Include="VT\tblSkill.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
-    <Compile Include="VT\tblState.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VT\tblState1.cs">
+    <Compile Include="VT\tblVendAddress.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
     <Compile Include="VT\tblVendContact.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\tblVendEmail.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
     <Compile Include="VT\tblVendor.cs">
@@ -323,6 +247,18 @@
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
     <Compile Include="VT\tblVendorProjContact.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\tblVendState.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\tblVolAddress.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\tblVolEmail.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\tblVolState.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
     <Compile Include="VT\tblVolunteer.cs">
@@ -343,6 +279,10 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>VolTeer.edmx</DependentUpon>
     </Compile>
+    <Compile Include="VT\Vol\SkillDAL.cs" />
+    <Compile Include="VT\Vol\sp_Group_DAL.cs" />
+    <Compile Include="VT\Other\sp_Sample_Address_DAL.cs" />
+    <Compile Include="VT\Other\sp_State_DAL.cs" />
     <Compile Include="VT\Vol\sp_Volunteer_DAL.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -364,6 +304,7 @@
       <DependentUpon>AspNet.edmx</DependentUpon>
       <LastGenOutput>AspNet.cs</LastGenOutput>
     </None>
+    <None Include="ClassDiagram1.cd" />
     <None Include="packages.config" />
     <EntityDeploy Include="VT\VolTeer.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
@@ -371,8 +312,8 @@
     </EntityDeploy>
     <None Include="VT\VolTeer.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>VolTeer.edmx</DependentUpon>
       <LastGenOutput>VolTeer.Context.cs</LastGenOutput>
+      <DependentUpon>VolTeer.edmx</DependentUpon>
     </None>
     <None Include="VT\VolTeer.edmx.diagram">
       <DependentUpon>VolTeer.edmx</DependentUpon>

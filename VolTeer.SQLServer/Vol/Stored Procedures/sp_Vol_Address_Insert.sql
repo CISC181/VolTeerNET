@@ -1,26 +1,49 @@
-﻿
+﻿-- =============================================
+-- Author:		Hogyeong Jeong
+-- Create date: 3/17/14
+-- Description:	insert a new address
 -- =============================================
--- Author:		Kyle Tucker
--- Create date: 3/19/2014
--- Last Update: 3/24/2014 (Stephen Herbein)
--- Description: List the record corresponding to the given contact ID or all of the records if no ID is given
--- =============================================
-CREATE PROCEDURE [Vend].[sp_Contact_Select]
-	@ContactID UNIQUEIDENTIFIER = NULL
+CREATE PROCEDURE [Vol].[sp_Vol_Address_Insert] 
+	@AddrLine1 nvarchar(50),
+	@AddrLine2 nvarchar(50),
+	@AddrLine3 nvarchar(50),
+	@City nvarchar(30),
+	@St char(2),
+	@Zip int,
+	@Zip4 int,
+	@ActiveFlg bit
 AS
+
+Declare @outTable table(
+AddrId_OUT	INT)
+
 BEGIN TRY
-	BEGIN TRANSACTION
-			SELECT
-				ContactID,
-				ContactFirstName,
-				ContactMiddleName,
-				ContactLastName,
-				ActiveFlg
-			FROM Vend.tblContact
-			WHERE @ContactID IS NULL OR LEN(@ContactID) = 0 OR (ContactID = @ContactID)
-			ORDER BY ContactID;
-	 COMMIT TRANSACTION
+	
+	BEGIN TRANSACTION 
+		INSERT Vol.tblVolAddress 
+		(AddrLine1, 
+		 AddrLine2, 
+		 AddrLine3, 
+		 City, 
+		 St, 
+		 Zip, 
+		 Zip4, 
+		 ActiveFlg)
+		OUTPUT INSERTED.AddrId
+		INTO @outTable
+			VALUES (@AddrLine1, 
+			@AddrLine2,
+			@AddrLine3,
+			@City,
+			@St,
+			@Zip,
+			@Zip4,
+			@ActiveFlg);
+			
+	COMMIT TRANSACTION
+
 END TRY
+
 BEGIN CATCH
 
     -- Test XACT_STATE:
@@ -47,16 +70,19 @@ BEGIN CATCH
             'Rolling back transaction.'
         ROLLBACK TRANSACTION;   
     END;
-    DECLARE @ErrorMessage NVARCHAR(4000);
+	
+	DECLARE @ErrorMessage NVARCHAR(4000);
 	DECLARE @ErrorSeverity INT;
 	DECLARE @ErrorState INT;
 
 	SELECT @ErrorMessage = ERROR_MESSAGE(),
-			@ErrorSeverity = ERROR_SEVERITY(),
-			@ErrorState = ERROR_STATE();
-	RAISERROR (@ErrorMessage, -- Message text.
-				@ErrorSeverity, -- Severity.
-				@ErrorState -- State.
+			   @ErrorSeverity = ERROR_SEVERITY(),
+			   @ErrorState = ERROR_STATE();
+    RAISERROR (@ErrorMessage, -- Message text.
+                   @ErrorSeverity, -- Severity.
+                   @ErrorState -- State.
                    );
 
 END CATCH
+
+Select AddrID_OUT from @outTable;

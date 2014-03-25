@@ -3,23 +3,22 @@
 -- Author:		Projects Group
 -- Create date: 3/12/2014
 -- Last Update: 3/24/2014 (Stephen Herbein)
--- Description: Handles Selects to the Vol.tblGroup table
+-- Description:	Handles Inserts into Vol.tblEmail
 -- =============================================
-CREATE PROCEDURE [Vol].[sp_Group_Select]
-	@GroupID int = null
+CREATE PROCEDURE [Vol].[sp_Vol_Email_Insert] 
+	@EmailAddr nvarchar(100)
 AS
 BEGIN
 	SET NOCOUNT ON;
-
+	
+	DECLARE @EmailIdTable table
+		( NewEmailID int );
+	
 	BEGIN TRY
-		BEGIN
-			SELECT 
-				GroupID,
-				GroupName,
-				ParticipationLevelID
-			FROM Vol.tblGroup
-			Where (@GroupID = 0 OR GroupID = @GroupID)
-		END
+		INSERT Vol.tblVolEmail( EmailAddr )
+			OUTPUT INSERTED.EmailID
+				INTO @EmailIdTable
+		VALUES ( @EmailAddr );
 	END TRY
 	BEGIN CATCH
 		-- Test XACT_STATE:
@@ -58,6 +57,10 @@ BEGIN
                    @ErrorState -- State.
                    );
 	END CATCH
+
+	--Return the ID from the inserted row
+	SELECT NewEmailID FROM @EmailIdTable;
+
 END
 
 

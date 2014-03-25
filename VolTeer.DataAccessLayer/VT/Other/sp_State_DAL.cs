@@ -13,7 +13,7 @@ namespace VolTeer.DataAccessLayer.VT.Other
             List<sp_State_Select_DM> list = new List<sp_State_Select_DM>();
             using (VolTeerEntities context = new VolTeerEntities())
             {
-                list = (from result in context.sp_State_Select()
+                list = (from result in context.sp_Vol_State_Select()
                         select new sp_State_Select_DM
                         {
                             StateID = result.StateID,

@@ -1,26 +1,39 @@
-﻿
+﻿-- =============================================
+-- Author:		Ryan Huttman
+-- Create date: 3/14/14
+-- Description:	update each of the table's attributes, except the key
 -- =============================================
--- Author:		Kyle Tucker
--- Create date: 3/19/2014
--- Last Update: 3/24/2014 (Stephen Herbein)
--- Description: List the record corresponding to the given contact ID or all of the records if no ID is given
--- =============================================
-CREATE PROCEDURE [Vend].[sp_Contact_Select]
-	@ContactID UNIQUEIDENTIFIER = NULL
+CREATE PROCEDURE [Vol].[sp_Vol_Address_Update] 
+	-- Add the parameters for the stored procedure here
+	@AddrId int,
+	@ActiveFlg bit,
+	@AddrLine1 nvarchar(50),
+	@AddrLine2 nvarchar(50),
+	@AddrLine3 nvarchar(50),
+	@City nvarchar(30),
+	@St char(2),
+	@Zip int,
+	@Zip4 int
+
+
 AS
 BEGIN TRY
-	BEGIN TRANSACTION
-			SELECT
-				ContactID,
-				ContactFirstName,
-				ContactMiddleName,
-				ContactLastName,
-				ActiveFlg
-			FROM Vend.tblContact
-			WHERE @ContactID IS NULL OR LEN(@ContactID) = 0 OR (ContactID = @ContactID)
-			ORDER BY ContactID;
-	 COMMIT TRANSACTION
+	
+	BEGIN TRANSACTION 
+		Update Vol.tblVolAddress set
+			AddrLine1 = @AddrLine1,
+			AddrLine2 = @AddrLine2,
+			AddrLine3 = @AddrLine3,
+			City = @City,
+			St = @St,
+			Zip = @Zip,
+			Zip4 = @Zip4,
+			ActiveFlg = @ActiveFlg
+			Where AddrID = @AddrID;
+	COMMIT TRANSACTION
+
 END TRY
+
 BEGIN CATCH
 
     -- Test XACT_STATE:
@@ -60,3 +73,4 @@ BEGIN CATCH
                    );
 
 END CATCH
+

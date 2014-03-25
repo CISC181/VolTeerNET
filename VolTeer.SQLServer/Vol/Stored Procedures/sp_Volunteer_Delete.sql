@@ -1,26 +1,24 @@
-﻿
+﻿-- =============================================
+-- Author:		Weihe Tian Aaron Kesler
+-- Create date: 3/17
+-- Description:	delete a row
 -- =============================================
--- Author:		Kyle Tucker
--- Create date: 3/19/2014
--- Last Update: 3/24/2014 (Stephen Herbein)
--- Description: List the record corresponding to the given contact ID or all of the records if no ID is given
--- =============================================
-CREATE PROCEDURE [Vend].[sp_Contact_Select]
-	@ContactID UNIQUEIDENTIFIER = NULL
+CREATE PROCEDURE [Vol].[sp_Volunteer_Delete] 
+	-- Add the parameters for the stored procedure here
+	@VolID UNIQUEIDENTIFIER
 AS
+
+
 BEGIN TRY
-	BEGIN TRANSACTION
-			SELECT
-				ContactID,
-				ContactFirstName,
-				ContactMiddleName,
-				ContactLastName,
-				ActiveFlg
-			FROM Vend.tblContact
-			WHERE @ContactID IS NULL OR LEN(@ContactID) = 0 OR (ContactID = @ContactID)
-			ORDER BY ContactID;
-	 COMMIT TRANSACTION
+	    
+	BEGIN TRANSACTION 
+		UPDATE Vol.tblVolunteer SET ActiveFlg = 0 Where VolID=@VolID;
+	COMMIT TRANSACTION
+
+
 END TRY
+	
+
 BEGIN CATCH
 
     -- Test XACT_STATE:
@@ -60,3 +58,4 @@ BEGIN CATCH
                    );
 
 END CATCH
+

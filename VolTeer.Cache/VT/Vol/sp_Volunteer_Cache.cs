@@ -5,8 +5,6 @@ using VolTeer.DomainModels.VT.Vol;
 using VolTeer.BusinessLogicLayer.VT.Vol;
 using System.Collections.Generic;
 
-using VolTeer.DomainModels.VT.Vol;
-using VolTeer.BusinessLogicLayer.VT.Vol;
 using System.Web;
 using System.Web.Caching;
 
