@@ -312,8 +312,8 @@
     </EntityDeploy>
     <None Include="VT\VolTeer.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>VolTeer.edmx</DependentUpon>
       <LastGenOutput>VolTeer.Context.cs</LastGenOutput>
+      <DependentUpon>VolTeer.edmx</DependentUpon>
     </None>
     <None Include="VT\VolTeer.edmx.diagram">
       <DependentUpon>VolTeer.edmx</DependentUpon>

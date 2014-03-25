@@ -911,7 +911,7 @@
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="VolTeerModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
-        <EntityContainer Name="Entities" annotation:LazyLoadingEnabled="true">
+        <EntityContainer Name="VolTeerEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="tblContacts" EntityType="VolTeerModel.tblContact" />
           <EntitySet Name="tblContactEmails" EntityType="VolTeerModel.tblContactEmail" />
           <EntitySet Name="tblEventRatings" EntityType="VolTeerModel.tblEventRating" />
@@ -1815,7 +1815,7 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="VolTeerModelStoreContainer" CdmEntityContainer="Entities">
+        <EntityContainerMapping StorageEntityContainer="VolTeerModelStoreContainer" CdmEntityContainer="VolTeerEntities">
           <EntitySetMapping Name="tblContacts">
             <EntityTypeMapping TypeName="VolTeerModel.tblContact">
               <MappingFragment StoreEntitySet="tblContact">
@@ -1825,6 +1825,25 @@
                 <ScalarProperty Name="ContactLastName" ColumnName="ContactLastName" />
                 <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
               </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="VolTeerModel.tblContact">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="VolTeerModel.Store.sp_Contact_Insert">
+                  <ScalarProperty Name="ContactLastName" ParameterName="ContactLastName" />
+                  <ScalarProperty Name="ContactMiddleName" ParameterName="ContactMiddleName" />
+                  <ScalarProperty Name="ContactFirstName" ParameterName="ContactFirstName" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="VolTeerModel.Store.sp_Contact_Update">
+                  <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" Version="Current" />
+                  <ScalarProperty Name="ContactLastName" ParameterName="ContactLastName" Version="Current" />
+                  <ScalarProperty Name="ContactMiddleName" ParameterName="ContactMiddleName" Version="Current" />
+                  <ScalarProperty Name="ContactFirstName" ParameterName="ContactFirstName" Version="Current" />
+                  <ScalarProperty Name="ContactID" ParameterName="ContactID" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="VolTeerModel.Store.sp_Contact_Delete">
+                  <ScalarProperty Name="ContactID" ParameterName="ContactID" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblContactEmails">
@@ -1845,6 +1864,25 @@
                 <ScalarProperty Name="RatingValue" ColumnName="RatingValue" />
                 <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
               </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="VolTeerModel.tblEventRating">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="VolTeerModel.Store.sp_EventRating_Insert">
+                  <ScalarProperty Name="RatingValue" ParameterName="RatingValue" />
+                  <ScalarProperty Name="VolID" ParameterName="VolID" />
+                  <ScalarProperty Name="EventID" ParameterName="EventID" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="VolTeerModel.Store.sp_EventRating_Update">
+                  <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" Version="Current" />
+                  <ScalarProperty Name="RatingValue" ParameterName="RatingValue" Version="Current" />
+                  <ScalarProperty Name="VolID" ParameterName="VolID" Version="Current" />
+                  <ScalarProperty Name="EventID" ParameterName="EventID" Version="Current" />
+                  <ScalarProperty Name="RatingID" ParameterName="RatingID" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="VolTeerModel.Store.sp_EventRating_Delete">
+                  <ScalarProperty Name="RatingID" ParameterName="RatingID" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblProjects">
@@ -1892,6 +1930,33 @@
                 <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
               </MappingFragment>
             </EntityTypeMapping>
+            <EntityTypeMapping TypeName="VolTeerModel.tblVendAddress">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="VolTeerModel.Store.sp_Vend_Address_Insert">
+                  <ScalarProperty Name="Zip4" ParameterName="Zip4" />
+                  <ScalarProperty Name="Zip" ParameterName="Zip" />
+                  <ScalarProperty Name="St" ParameterName="St" />
+                  <ScalarProperty Name="City" ParameterName="City" />
+                  <ScalarProperty Name="AddrLine3" ParameterName="AddrLine3" />
+                  <ScalarProperty Name="AddrLine2" ParameterName="AddrLine2" />
+                  <ScalarProperty Name="AddrLine1" ParameterName="AddrLine1" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="VolTeerModel.Store.sp_Vend_Address_Update">
+                  <ScalarProperty Name="AddrID" ParameterName="AddrId" Version="Current" />
+                  <ScalarProperty Name="Zip4" ParameterName="Zip4" Version="Current" />
+                  <ScalarProperty Name="Zip" ParameterName="Zip" Version="Current" />
+                  <ScalarProperty Name="St" ParameterName="St" Version="Current" />
+                  <ScalarProperty Name="City" ParameterName="City" Version="Current" />
+                  <ScalarProperty Name="AddrLine3" ParameterName="AddrLine3" Version="Current" />
+                  <ScalarProperty Name="AddrLine2" ParameterName="AddrLine2" Version="Current" />
+                  <ScalarProperty Name="AddrLine1" ParameterName="AddrLine1" Version="Current" />
+                  <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="VolTeerModel.Store.sp_Vend_Address_Delete">
+                  <ScalarProperty Name="AddrID" ParameterName="AddrID" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblVendContacts">
             <EntityTypeMapping TypeName="VolTeerModel.tblVendContact">
@@ -1909,6 +1974,21 @@
                 <ScalarProperty Name="EmailAddr" ColumnName="EmailAddr" />
                 <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
               </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="VolTeerModel.tblVendEmail">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="VolTeerModel.Store.sp_Vend_Email_Insert">
+                  <ScalarProperty Name="EmailAddr" ParameterName="EmailAddr" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="VolTeerModel.Store.sp_Vend_Email_Update">
+                  <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" Version="Current" />
+                  <ScalarProperty Name="EmailAddr" ParameterName="EmailAddr" Version="Current" />
+                  <ScalarProperty Name="EmailID" ParameterName="EmailID" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="VolTeerModel.Store.sp_Vend_Email_Delete">
+                  <ScalarProperty Name="EmailID" ParameterName="EmailID" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblVendors">
