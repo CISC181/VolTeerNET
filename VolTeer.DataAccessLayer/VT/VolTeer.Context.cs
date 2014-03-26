@@ -49,6 +49,7 @@ namespace VolTeer.DataAccessLayer.VT
         public DbSet<tblVolEmail> tblVolEmails { get; set; }
         public DbSet<tblVolState> tblVolStates { get; set; }
         public DbSet<tblVolunteer> tblVolunteers { get; set; }
+        public DbSet<tblAvailablity> tblAvailablities { get; set; }
     
         public virtual int sp_Contact_Delete(Nullable<System.Guid> contactID)
         {
@@ -870,6 +871,102 @@ namespace VolTeer.DataAccessLayer.VT
                 new ObjectParameter("VolLastName", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Volunteer_Update", volIDParameter, activeFlgParameter, volFirstNameParameter, volMiddleNameParameter, volLastNameParameter);
+        }
+    
+        public virtual int sp_Availability_Delete(Nullable<System.Guid> volID, Nullable<int> addrID, Nullable<int> availDateID)
+        {
+            var volIDParameter = volID.HasValue ?
+                new ObjectParameter("VolID", volID) :
+                new ObjectParameter("VolID", typeof(System.Guid));
+    
+            var addrIDParameter = addrID.HasValue ?
+                new ObjectParameter("AddrID", addrID) :
+                new ObjectParameter("AddrID", typeof(int));
+    
+            var availDateIDParameter = availDateID.HasValue ?
+                new ObjectParameter("AvailDateID", availDateID) :
+                new ObjectParameter("AvailDateID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Availability_Delete", volIDParameter, addrIDParameter, availDateIDParameter);
+        }
+    
+        public virtual int sp_Availability_Insert(Nullable<System.Guid> volID, Nullable<int> addrID, Nullable<System.DateTime> availStartDate, Nullable<System.DateTime> availEndDate, Nullable<int> dayID, Nullable<System.TimeSpan> startTime, Nullable<System.TimeSpan> endTime)
+        {
+            var volIDParameter = volID.HasValue ?
+                new ObjectParameter("VolID", volID) :
+                new ObjectParameter("VolID", typeof(System.Guid));
+    
+            var addrIDParameter = addrID.HasValue ?
+                new ObjectParameter("AddrID", addrID) :
+                new ObjectParameter("AddrID", typeof(int));
+    
+            var availStartDateParameter = availStartDate.HasValue ?
+                new ObjectParameter("AvailStartDate", availStartDate) :
+                new ObjectParameter("AvailStartDate", typeof(System.DateTime));
+    
+            var availEndDateParameter = availEndDate.HasValue ?
+                new ObjectParameter("AvailEndDate", availEndDate) :
+                new ObjectParameter("AvailEndDate", typeof(System.DateTime));
+    
+            var dayIDParameter = dayID.HasValue ?
+                new ObjectParameter("DayID", dayID) :
+                new ObjectParameter("DayID", typeof(int));
+    
+            var startTimeParameter = startTime.HasValue ?
+                new ObjectParameter("StartTime", startTime) :
+                new ObjectParameter("StartTime", typeof(System.TimeSpan));
+    
+            var endTimeParameter = endTime.HasValue ?
+                new ObjectParameter("EndTime", endTime) :
+                new ObjectParameter("EndTime", typeof(System.TimeSpan));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Availability_Insert", volIDParameter, addrIDParameter, availStartDateParameter, availEndDateParameter, dayIDParameter, startTimeParameter, endTimeParameter);
+        }
+    
+        public virtual ObjectResult<sp_Availability_Select_Result> sp_Availability_Select(Nullable<System.Guid> volID)
+        {
+            var volIDParameter = volID.HasValue ?
+                new ObjectParameter("VolID", volID) :
+                new ObjectParameter("VolID", typeof(System.Guid));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Availability_Select_Result>("sp_Availability_Select", volIDParameter);
+        }
+    
+        public virtual int sp_Availability_Update(Nullable<System.Guid> volID, Nullable<int> addrID, Nullable<int> availDateID, Nullable<System.DateTime> availStartDate, Nullable<System.DateTime> availEndDate, Nullable<int> dayID, Nullable<System.TimeSpan> startTime, Nullable<System.TimeSpan> endTime)
+        {
+            var volIDParameter = volID.HasValue ?
+                new ObjectParameter("VolID", volID) :
+                new ObjectParameter("VolID", typeof(System.Guid));
+    
+            var addrIDParameter = addrID.HasValue ?
+                new ObjectParameter("AddrID", addrID) :
+                new ObjectParameter("AddrID", typeof(int));
+    
+            var availDateIDParameter = availDateID.HasValue ?
+                new ObjectParameter("AvailDateID", availDateID) :
+                new ObjectParameter("AvailDateID", typeof(int));
+    
+            var availStartDateParameter = availStartDate.HasValue ?
+                new ObjectParameter("AvailStartDate", availStartDate) :
+                new ObjectParameter("AvailStartDate", typeof(System.DateTime));
+    
+            var availEndDateParameter = availEndDate.HasValue ?
+                new ObjectParameter("AvailEndDate", availEndDate) :
+                new ObjectParameter("AvailEndDate", typeof(System.DateTime));
+    
+            var dayIDParameter = dayID.HasValue ?
+                new ObjectParameter("DayID", dayID) :
+                new ObjectParameter("DayID", typeof(int));
+    
+            var startTimeParameter = startTime.HasValue ?
+                new ObjectParameter("StartTime", startTime) :
+                new ObjectParameter("StartTime", typeof(System.TimeSpan));
+    
+            var endTimeParameter = endTime.HasValue ?
+                new ObjectParameter("EndTime", endTime) :
+                new ObjectParameter("EndTime", typeof(System.TimeSpan));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Availability_Update", volIDParameter, addrIDParameter, availDateIDParameter, availStartDateParameter, availEndDateParameter, dayIDParameter, startTimeParameter, endTimeParameter);
         }
     }
 }

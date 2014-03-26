@@ -146,6 +146,12 @@
     <Compile Include="Common\WebControls\ucAddress.ascx.designer.cs">
       <DependentUpon>ucAddress.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Common\WebControls\ucAvailability.ascx.cs">
+      <DependentUpon>ucAvailability.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Common\WebControls\ucAvailability.ascx.designer.cs">
+      <DependentUpon>ucAvailability.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Common\WebControls\ucEmail.ascx.cs">
       <DependentUpon>ucEmail.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -340,6 +346,7 @@
     <Content Include="App_Data\RadCaptcha\Y.wav" />
     <Content Include="App_Data\RadCaptcha\Z.wav" />
     <Content Include="Common\WebControls\ucAddress.ascx" />
+    <Content Include="Common\WebControls\ucAvailability.ascx" />
     <Content Include="Common\WebControls\ucEmail.ascx" />
     <Content Include="Common\WebControls\ucPhone.ascx" />
     <Content Include="Common\WebControls\ucSkill.ascx" />
@@ -493,7 +500,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
+      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
