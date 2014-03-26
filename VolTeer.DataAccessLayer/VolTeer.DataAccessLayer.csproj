@@ -285,7 +285,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>VolTeer.edmx</DependentUpon>
     </Compile>
-    <Compile Include="VT\Vol\SkillDAL.cs" />
+    <Compile Include="VT\Vol\sp_Skill_DAL.cs" />
     <Compile Include="VT\Vol\sp_Availability_DAL.cs" />
     <Compile Include="VT\Vol\sp_Group_DAL.cs" />
     <Compile Include="VT\Other\sp_Sample_Address_DAL.cs" />
