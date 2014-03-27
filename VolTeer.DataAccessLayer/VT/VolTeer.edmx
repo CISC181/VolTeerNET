@@ -2304,6 +2304,7 @@
                   <ScalarProperty Name="AddrLine3" ParameterName="AddrLine3" />
                   <ScalarProperty Name="AddrLine2" ParameterName="AddrLine2" />
                   <ScalarProperty Name="AddrLine1" ParameterName="AddrLine1" />
+                  <ResultBinding Name="AddrID" ColumnName="AddrID" />
                 </InsertFunction>
                 <DeleteFunction FunctionName="VolTeerModel.Store.sp_Vol_Address_Delete">
                   <ScalarProperty Name="AddrID" ParameterName="AddrID" />

@@ -88,7 +88,7 @@ namespace VolTeer.DataAccessLayer.VT.Vol
         /// InsertAddressContext - Will insert a record into Address table via SProc
         /// </summary>
         /// <param name="_cAddress"></param>
-        public void InsertAddressContext(sp_Vol_Address_DM _cAddress)
+        public void InsertAddressContext(ref sp_Vol_Address_DM _cAddress)
         {
             using (VolTeerEntities context = new VolTeerEntities())
             {
@@ -107,6 +107,12 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                 };
                 context.tblVolAddresses.Add(cAddress);
                 context.SaveChanges();
+
+                //If the AddrID isn't null, set it equal to the return value
+                if (_cAddress.AddrID != null)
+                {
+                    _cAddress.AddrID = cAddress.AddrID;
+                }
             }
         }
         #endregion
