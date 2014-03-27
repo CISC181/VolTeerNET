@@ -290,6 +290,7 @@
     <Compile Include="VT\Vol\sp_Group_DAL.cs" />
     <Compile Include="VT\Other\sp_Sample_Address_DAL.cs" />
     <Compile Include="VT\Other\sp_State_DAL.cs" />
+    <Compile Include="VT\Vol\sp_VolEmail_DAL.cs" />
     <Compile Include="VT\Vol\sp_Volunteer_DAL.cs" />
     <Compile Include="VT\Vol\sp_Vol_Address_DAL.cs" />
   </ItemGroup>
