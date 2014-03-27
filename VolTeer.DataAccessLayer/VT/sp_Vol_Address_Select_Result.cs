@@ -14,6 +14,7 @@ namespace VolTeer.DataAccessLayer.VT
     public partial class sp_Vol_Address_Select_Result
     {
         public int AddrID { get; set; }
+        public Nullable<bool> ActiveFlg { get; set; }
         public string AddrLine1 { get; set; }
         public string AddrLine2 { get; set; }
         public string AddrLine3 { get; set; }
