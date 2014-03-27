@@ -11,16 +11,15 @@ namespace VolTeer.DataAccessLayer.VT
 {
     using System;
     
-    public partial class sp_Vol_Address_Select_Result
+    public partial class sp_Availability_Select_Result
     {
+        public System.Guid VolID { get; set; }
         public int AddrID { get; set; }
-        public Nullable<bool> ActiveFlg { get; set; }
-        public string AddrLine1 { get; set; }
-        public string AddrLine2 { get; set; }
-        public string AddrLine3 { get; set; }
-        public string City { get; set; }
-        public string St { get; set; }
-        public Nullable<int> Zip { get; set; }
-        public Nullable<int> Zip4 { get; set; }
+        public int AvailDateID { get; set; }
+        public System.DateTime AvailStartDate { get; set; }
+        public Nullable<System.DateTime> AvailEndDate { get; set; }
+        public Nullable<int> DayID { get; set; }
+        public Nullable<System.TimeSpan> StartTime { get; set; }
+        public Nullable<System.TimeSpan> EndTime { get; set; }
     }
 }
