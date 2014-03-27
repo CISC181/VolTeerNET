@@ -53,7 +53,7 @@
 
     <asp:ObjectDataSource ID="ObjectDataSource1" runat="server"
         SelectMethod="ListGroups" InsertMethod="InsertGroup" UpdateMethod="UpdateGroup" DeleteMethod="DeleteGroup"
-        TypeName="VolTeer.BusinessLogicLayer.VT.sp_Group_BLL">
+        TypeName="VolTeer.BusinessLogicLayer.VT.Vol.sp_Group_BLL">
         <SelectParameters>
             <asp:Parameter Name="IGroupID" DefaultValue="0" Type="Int32" />
         </SelectParameters>
@@ -64,6 +64,7 @@
         </UpdateParameters>
         <DeleteParameters>
             <asp:Parameter Name="GroupID" Type="Int32" />
+            <asp:Parameter Name="ActiveFlg" Type="Boolean" DefaultValue="False" />
         </DeleteParameters>
 
     </asp:ObjectDataSource>

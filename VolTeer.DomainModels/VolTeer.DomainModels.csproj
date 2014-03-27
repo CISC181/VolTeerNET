@@ -53,9 +53,6 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data" />
     <Reference Include="System.Xml" />
-    <Reference Include="Telerik.WinControls, Version=2013.3.1127.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
-    <Reference Include="Telerik.WinControls.UI, Version=2013.3.1127.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
-    <Reference Include="TelerikCommon, Version=2013.3.1127.40, Culture=neutral, PublicKeyToken=5bb2a467cbec794e, processorArchitecture=MSIL" />
     <Reference Include="WebGrease">
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
     </Reference>
@@ -65,12 +62,22 @@
     <Compile Include="AspNet\aspnet_Users_DM.cs" />
     <Compile Include="AspNet\vw_aspnet_MembershipUsers_DM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="VT\Skill_DM.cs" />
-    <Compile Include="VT\sp_Address_Select_DM.cs" />
-    <Compile Include="VT\sp_Group_Insert_DM.cs" />
-    <Compile Include="VT\sp_Group_Select_DM.cs" />
-    <Compile Include="VT\sp_Sample_Address_Select_DM.cs" />
-    <Compile Include="VT\sp_State_Select_DM.cs" />
+    <Compile Include="VT\Other\sp_Sample_Contact_DM.cs" />
+    <Compile Include="VT\Vend\sp_VendorAddr_DM.cs" />
+    <Compile Include="VT\Vend\sp_Project_DM.cs" />
+    <Compile Include="VT\Vend\sp_VendAddress_DM.cs" />
+    <Compile Include="VT\Vol\sp_Skill_DM.cs" />
+    <Compile Include="VT\Vol\sp_Availablity.cs" />
+    <Compile Include="VT\Vol\sp_Email_DM.cs" />
+    <Compile Include="VT\Vol\sp_Group_DM.cs" />
+    <Compile Include="VT\Other\sp_Sample_Address_Select_DM.cs" />
+    <Compile Include="VT\Other\sp_State_Select_DM.cs" />
+    <Compile Include="VT\Vol\sp_Volunteer_DM.cs" />
+    <Compile Include="VT\Vol\sp_Vol_Address_DM.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

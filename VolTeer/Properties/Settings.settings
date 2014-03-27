@@ -5,5 +5,8 @@
     <Setting Name="TelerikSkin1" Type="System.String" Scope="Application">
       <Value Profile="(Default)">Office2010Silver</Value>
     </Setting>
+    <Setting Name="DefaultVolRole" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">Volunteer</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

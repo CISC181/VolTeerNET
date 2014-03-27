@@ -1,0 +1,3 @@
+﻿CREATE LOGIN [CISC475]
+    WITH PASSWORD = N'm6usym3{r_{;bwgr.khwdecomsFT7_&#$!~<eaqixi z|cd$', SID = 0x9052119540B24446AE097C42731D33C9, DEFAULT_LANGUAGE = [us_english], CHECK_POLICY = OFF;
+

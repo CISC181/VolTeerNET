@@ -3,7 +3,7 @@ using System.Linq;
 using System.Web.UI;
 using Telerik.Web.UI;
 using Telerik.Web.UI.Skins;
-using VolTeer.BusinessLogicLayer.VT;
+using VolTeer.BusinessLogicLayer.VT.Vol;
 
 namespace VolTeer.Org
 {

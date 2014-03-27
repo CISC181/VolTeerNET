@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
-using VolTeer.BusinessLogicLayer.VT;
+using VolTeer.BusinessLogicLayer.VT.Vol;
 using System.Web.Security;
 using System.Web.ApplicationServices;
 
@@ -23,7 +23,7 @@ namespace VolTeer.Common.WebControls
 {
     public partial class ucSkill : System.Web.UI.UserControl
     {
-        private SkillBLL BLL = new SkillBLL();
+        private sp_Skill_BLL BLL = new sp_Skill_BLL();
 
         protected void Page_Load(object sender, EventArgs e)
         {

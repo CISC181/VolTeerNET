@@ -65,6 +65,7 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Net" />
     <Reference Include="System.Web" />
     <Reference Include="System.Web.ApplicationServices" />
     <Reference Include="System.Web.Optimization">
@@ -79,24 +80,19 @@
     <Reference Include="System.Web.Providers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
       <HintPath>..\packages\Microsoft.AspNet.Providers.Core.1.2\lib\net40\System.Web.Providers.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Web.UI">
-      <HintPath>..\lib\RCAJAX\2013.3.1324.40\Telerik.Web.UI.dll</HintPath>
+    <Reference Include="Telerik.Web.UI, Version=2014.1.225.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\RCAJAX\2014.1.225.40\Telerik.Web.UI.dll</HintPath>
     </Reference>
-    <Reference Include="Telerik.Web.UI.Skins">
-      <HintPath>..\lib\RCAJAX\2013.3.1324.40\Telerik.Web.UI.Skins.dll</HintPath>
+    <Reference Include="Telerik.Web.UI.Skins, Version=2014.1.225.40, Culture=neutral, PublicKeyToken=121fae78165ba3d4, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\lib\RCAJAX\2014.1.225.40\Telerik.Web.UI.Skins.dll</HintPath>
     </Reference>
     <Reference Include="WebGrease">
       <HintPath>..\packages\WebGrease.1.5.2\lib\WebGrease.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Account\ForgotPassword.aspx.cs">
-      <DependentUpon>ForgotPassword.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Account\ForgotPassword.aspx.designer.cs">
-      <DependentUpon>ForgotPassword.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Account\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -118,6 +114,20 @@
     <Compile Include="Account\ManageUser.aspx.designer.cs">
       <DependentUpon>ManageUser.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Account\RecoverPassword.aspx.cs">
+      <DependentUpon>RecoverPassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\RecoverPassword.aspx.designer.cs">
+      <DependentUpon>RecoverPassword.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Account\RecoverUserName.aspx.cs">
+      <DependentUpon>RecoverUserName.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\RecoverUserName.aspx.designer.cs">
+      <DependentUpon>RecoverUserName.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Account\Register.aspx.cs">
       <DependentUpon>Register.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -126,6 +136,7 @@
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Code\cEnums.cs" />
+    <Compile Include="App_Code\cMail.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Common\WebControls\ucAddress.ascx.cs">
@@ -134,6 +145,12 @@
     </Compile>
     <Compile Include="Common\WebControls\ucAddress.ascx.designer.cs">
       <DependentUpon>ucAddress.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Common\WebControls\ucAvailability.ascx.cs">
+      <DependentUpon>ucAvailability.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Common\WebControls\ucAvailability.ascx.designer.cs">
+      <DependentUpon>ucAvailability.ascx</DependentUpon>
     </Compile>
     <Compile Include="Common\WebControls\ucEmail.ascx.cs">
       <DependentUpon>ucEmail.ascx</DependentUpon>
@@ -228,12 +245,33 @@
     <Compile Include="SampleControls\SampleAddress.aspx.designer.cs">
       <DependentUpon>SampleAddress.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SampleControls\SampleAddressContext.aspx.cs">
+      <DependentUpon>SampleAddressContext.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SampleControls\SampleAddressContext.aspx.designer.cs">
+      <DependentUpon>SampleAddressContext.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SampleControls\SendMail.aspx.cs">
+      <DependentUpon>SendMail.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SampleControls\SendMail.aspx.designer.cs">
+      <DependentUpon>SendMail.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SampleControls\TestForm1.aspx.cs">
       <DependentUpon>TestForm1.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="SampleControls\TestForm1.aspx.designer.cs">
       <DependentUpon>TestForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SampleControls\TestRoles.aspx.cs">
+      <DependentUpon>TestRoles.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SampleControls\TestRoles.aspx.designer.cs">
+      <DependentUpon>TestRoles.aspx</DependentUpon>
     </Compile>
     <Compile Include="Site.Mobile.Master.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
@@ -265,10 +303,11 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Account\ForgotPassword.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\ManageRole.aspx" />
     <Content Include="Account\ManageUser.aspx" />
+    <Content Include="Account\RecoverPassword.aspx" />
+    <Content Include="Account\RecoverUserName.aspx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="App_Data\RadCaptcha\0.wav" />
     <Content Include="App_Data\RadCaptcha\1.wav" />
@@ -307,11 +346,16 @@
     <Content Include="App_Data\RadCaptcha\Y.wav" />
     <Content Include="App_Data\RadCaptcha\Z.wav" />
     <Content Include="Common\WebControls\ucAddress.ascx" />
+    <Content Include="Common\WebControls\ucAvailability.ascx" />
     <Content Include="Common\WebControls\ucEmail.ascx" />
     <Content Include="Common\WebControls\ucPhone.ascx" />
     <Content Include="Common\WebControls\ucSkill.ascx" />
     <Content Include="Common\WebControls\ucVolBasicInfo.ascx" />
+    <Content Include="Content\button\ButtonSprites.png" />
+    <Content Include="Content\button\ToggleSprite.png" />
+    <Content Include="Content\EmailTemplates\ForgotUserName.html" />
     <Content Include="Content\Site.css" />
+    <Content Include="Content\Telerik.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -386,7 +430,10 @@
     <Content Include="SampleControls\ListBox.aspx" />
     <Content Include="SampleControls\RadEditorWebForm.aspx" />
     <Content Include="SampleControls\SampleAddress.aspx" />
+    <Content Include="SampleControls\SampleAddressContext.aspx" />
+    <Content Include="SampleControls\SendMail.aspx" />
     <Content Include="SampleControls\TestForm1.aspx" />
+    <Content Include="SampleControls\TestRoles.aspx" />
     <Content Include="Skills\ManageSkills.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Volunteer\VolunterInfo.aspx" />
@@ -400,6 +447,7 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </Content>
+    <Content Include="Account\Web.config" />
     <None Include="web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
     </None>
@@ -411,6 +459,10 @@
     <ProjectReference Include="..\VolTeer.BusinessLogicLayer\VolTeer.BusinessLogicLayer.csproj">
       <Project>{81446b41-8d0a-4e58-a275-1578c7f536f2}</Project>
       <Name>VolTeer.BusinessLogicLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VolTeer.Cache\VolTeer.Cache.csproj">
+      <Project>{04a431b2-cd03-48f3-9a2c-6c3bed2cc93f}</Project>
+      <Name>VolTeer.Cache</Name>
     </ProjectReference>
     <ProjectReference Include="..\VolTeer.DomainModels\VolTeer.DomainModels.csproj">
       <Project>{7919ce03-6597-4a4b-82e4-d73b7511ab7f}</Project>

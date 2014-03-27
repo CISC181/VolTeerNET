@@ -1,0 +1,3 @@
+﻿CREATE LOGIN [Vendor]
+    WITH PASSWORD = N'!musym?r{bw3g1r^khwPdecnmsFT7_&#$!~<WoDeaixzH|u6', SID = 0xB3E68C27EAB57141AA6A5AA87A2BEEB7, DEFAULT_LANGUAGE = [us_english], CHECK_EXPIRATION = ON;
+

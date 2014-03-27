@@ -5,7 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using VolTeer.App_Code;
-using VolTeer.BusinessLogicLayer.VT;
+using VolTeer.BusinessLogicLayer.VT.Vol;
 
 namespace VolTeer.Common.WebControls
 {
@@ -15,7 +15,7 @@ namespace VolTeer.Common.WebControls
         public int iAddrOwner;
         public Guid gAddrOwner;
         public int iRecordTypeID;
-        private sp_Address_BLL BLL = new sp_Address_BLL();
+        //private sp_Address_BLL BLL = new sp_Address_BLL();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -28,7 +28,7 @@ namespace VolTeer.Common.WebControls
         private void LoadGrid()
         {
             // Set the data source and bind the grid
-            rGridAddress.DataSource = BLL.ListAddress(iAddrOwner, gAddrOwner, iRecordTypeID);
+            //rGridAddress.DataSource = BLL.ListAddress(iAddrOwner, gAddrOwner, iRecordTypeID);
             rGridAddress.DataBind();
 
             //TODO: Tailor any messages based on iRecordTypeID

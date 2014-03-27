@@ -4,12 +4,11 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
-using System.Collections.Generic;
 using System.Xml.Serialization;
 using System.IO;
-using VolTeer.DomainModels.VT;
-using VolTeer.BusinessLogicLayer.VT;
-using VolTeer.DomainModels;
+using VolTeer.DomainModels.VT.Other;
+using VolTeer.BusinessLogicLayer.VT.Other;
+
 
 
 namespace Volteer.WCF.VT

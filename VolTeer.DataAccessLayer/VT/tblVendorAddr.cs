@@ -18,7 +18,7 @@ namespace VolTeer.DataAccessLayer.VT
         public int AddrID { get; set; }
         public Nullable<bool> HQ { get; set; }
     
-        public virtual tblAddress tblAddress { get; set; }
+        public virtual tblVendAddress tblVendAddress { get; set; }
         public virtual tblVendor tblVendor { get; set; }
     }
 }

@@ -6,7 +6,8 @@
 <head id="Head1" runat="server">
     <meta charset="utf-8" />
     <title><%: Page.Title %> - VolTeer</title>
-    <link href="~/Content/Site.css" rel="stylesheet" />
+    <%--<link href="~/Content/Site.css" rel="stylesheet" />--%>
+    <link href="~/Content/Telerik.css" rel="stylesheet" />
     <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <asp:PlaceHolder ID="PlaceHolder1" runat="server">
         <script src="<%: ResolveUrl("~/Scripts/modernizr-2.6.2.js") %>"></script>
@@ -62,10 +63,10 @@
                     <Items>
                         <telerik:RadMenuItem Text="Home" NavigateUrl="~/Default.aspx" />
                         <telerik:RadMenuItem Text="Account">
-                            <GroupSettings Width="200px" />
+                            <GroupSettings Width="300px" />
                             <Items>
                                 <telerik:RadMenuItem Text="Login" NavigateUrl="~/Account/Login.aspx" EnableImageSprite="true" CssClass="icon-chair"></telerik:RadMenuItem>
-                                <telerik:RadMenuItem Text="Forgot Password" NavigateUrl="~/Account/ForgotPassword.aspx" EnableImageSprite="true" CssClass="icon-sofa"></telerik:RadMenuItem>
+                                <telerik:RadMenuItem Text="Forgot Password" NavigateUrl="~/Account/RecoverPassword.aspx" EnableImageSprite="true" CssClass="icon-sofa"></telerik:RadMenuItem>
                                 <telerik:RadMenuItem Text="Manage Roles" NavigateUrl="~/Account/ManageRoles.aspx" EnableImageSprite="true" CssClass="icon-table"></telerik:RadMenuItem>
                                 <telerik:RadMenuItem Text="Manage Users" NavigateUrl="~/Account/ManageUsers.aspx" EnableImageSprite="true" CssClass="icon-table"></telerik:RadMenuItem>
                                 <telerik:RadMenuItem Text="Register" NavigateUrl="~/Account/Register.aspx" EnableImageSprite="true" CssClass="icon-table"></telerik:RadMenuItem>

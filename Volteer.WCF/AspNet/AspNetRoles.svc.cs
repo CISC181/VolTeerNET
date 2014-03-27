@@ -6,7 +6,6 @@ using System.ServiceModel;
 using System.Text;
 using VolTeer.BusinessLogicLayer.AspNet;
 using VolTeer.DomainModels;
-using System.Collections.Generic;
 using System.Xml.Serialization;
 using System.IO;
 using VolTeer.DomainModels.AspNet;

@@ -40,15 +40,16 @@ namespace <#=code.EscapeNamespace(codeNamespace)#>
 }
 
 #>
+
 using System;
+using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
+using System.Data.Entity.Core.Objects;
 <#
 if (container.FunctionImports.Any())
 {
 #>
-using System.Data.Objects;
-using System.Data.Objects.DataClasses;
 using System.Linq;
 <#
 }

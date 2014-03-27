@@ -4,26 +4,20 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="AspNetProviderModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+      <Schema Namespace="AspNetProviderModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="AspNetProviderModelStoreContainer">
-          <EntitySet Name="Applications" EntityType="AspNetProviderModel.Store.Applications" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="aspnet_Applications" EntityType="AspNetProviderModel.Store.aspnet_Applications" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="aspnet_Membership" EntityType="AspNetProviderModel.Store.aspnet_Membership" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="aspnet_Paths" EntityType="AspNetProviderModel.Store.aspnet_Paths" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="aspnet_PersonalizationAllUsers" EntityType="AspNetProviderModel.Store.aspnet_PersonalizationAllUsers" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="aspnet_PersonalizationPerUser" EntityType="AspNetProviderModel.Store.aspnet_PersonalizationPerUser" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="aspnet_Profile" EntityType="AspNetProviderModel.Store.aspnet_Profile" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="aspnet_Roles" EntityType="AspNetProviderModel.Store.aspnet_Roles" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="aspnet_SchemaVersions" EntityType="AspNetProviderModel.Store.aspnet_SchemaVersions" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="aspnet_Users" EntityType="AspNetProviderModel.Store.aspnet_Users" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="aspnet_UsersInRoles" EntityType="AspNetProviderModel.Store.aspnet_UsersInRoles" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="aspnet_WebEvent_Events" EntityType="AspNetProviderModel.Store.aspnet_WebEvent_Events" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Memberships" EntityType="AspNetProviderModel.Store.Memberships" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Profiles" EntityType="AspNetProviderModel.Store.Profiles" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Roles" EntityType="AspNetProviderModel.Store.Roles" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="Users" EntityType="AspNetProviderModel.Store.Users" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="UsersInRoles" EntityType="AspNetProviderModel.Store.UsersInRoles" store:Type="Tables" Schema="dbo" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" />
-          <EntitySet Name="vw_aspnet_Applications" EntityType="AspNetProviderModel.Store.vw_aspnet_Applications" store:Type="Views" store:Schema="dbo" store:Name="vw_aspnet_Applications" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
+          <EntitySet Name="aspnet_Applications" EntityType="AspNetProviderModel.Store.aspnet_Applications" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="aspnet_Membership" EntityType="AspNetProviderModel.Store.aspnet_Membership" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="aspnet_Paths" EntityType="AspNetProviderModel.Store.aspnet_Paths" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="aspnet_PersonalizationAllUsers" EntityType="AspNetProviderModel.Store.aspnet_PersonalizationAllUsers" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="aspnet_PersonalizationPerUser" EntityType="AspNetProviderModel.Store.aspnet_PersonalizationPerUser" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="aspnet_Profile" EntityType="AspNetProviderModel.Store.aspnet_Profile" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="aspnet_Roles" EntityType="AspNetProviderModel.Store.aspnet_Roles" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="aspnet_SchemaVersions" EntityType="AspNetProviderModel.Store.aspnet_SchemaVersions" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="aspnet_Users" EntityType="AspNetProviderModel.Store.aspnet_Users" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="aspnet_UsersInRoles" EntityType="AspNetProviderModel.Store.aspnet_UsersInRoles" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="aspnet_WebEvent_Events" EntityType="AspNetProviderModel.Store.aspnet_WebEvent_Events" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="vw_aspnet_Applications" EntityType="AspNetProviderModel.Store.vw_aspnet_Applications" store:Type="Views" store:Schema="dbo" store:Name="vw_aspnet_Applications">
             <DefiningQuery>SELECT 
       [vw_aspnet_Applications].[ApplicationName] AS [ApplicationName], 
       [vw_aspnet_Applications].[LoweredApplicationName] AS [LoweredApplicationName], 
@@ -31,7 +25,7 @@
       [vw_aspnet_Applications].[Description] AS [Description]
       FROM [dbo].[vw_aspnet_Applications] AS [vw_aspnet_Applications]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="vw_aspnet_MembershipUsers" EntityType="AspNetProviderModel.Store.vw_aspnet_MembershipUsers" store:Type="Views" store:Schema="dbo" store:Name="vw_aspnet_MembershipUsers" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
+          <EntitySet Name="vw_aspnet_MembershipUsers" EntityType="AspNetProviderModel.Store.vw_aspnet_MembershipUsers" store:Type="Views" store:Schema="dbo" store:Name="vw_aspnet_MembershipUsers">
             <DefiningQuery>SELECT 
       [vw_aspnet_MembershipUsers].[UserId] AS [UserId], 
       [vw_aspnet_MembershipUsers].[PasswordFormat] AS [PasswordFormat], 
@@ -58,14 +52,14 @@
       [vw_aspnet_MembershipUsers].[LastActivityDate] AS [LastActivityDate]
       FROM [dbo].[vw_aspnet_MembershipUsers] AS [vw_aspnet_MembershipUsers]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="vw_aspnet_Profiles" EntityType="AspNetProviderModel.Store.vw_aspnet_Profiles" store:Type="Views" store:Schema="dbo" store:Name="vw_aspnet_Profiles" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
+          <EntitySet Name="vw_aspnet_Profiles" EntityType="AspNetProviderModel.Store.vw_aspnet_Profiles" store:Type="Views" store:Schema="dbo" store:Name="vw_aspnet_Profiles">
             <DefiningQuery>SELECT 
       [vw_aspnet_Profiles].[UserId] AS [UserId], 
       [vw_aspnet_Profiles].[LastUpdatedDate] AS [LastUpdatedDate], 
       [vw_aspnet_Profiles].[DataSize] AS [DataSize]
       FROM [dbo].[vw_aspnet_Profiles] AS [vw_aspnet_Profiles]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="vw_aspnet_Roles" EntityType="AspNetProviderModel.Store.vw_aspnet_Roles" store:Type="Views" store:Schema="dbo" store:Name="vw_aspnet_Roles" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
+          <EntitySet Name="vw_aspnet_Roles" EntityType="AspNetProviderModel.Store.vw_aspnet_Roles" store:Type="Views" store:Schema="dbo" store:Name="vw_aspnet_Roles">
             <DefiningQuery>SELECT 
       [vw_aspnet_Roles].[ApplicationId] AS [ApplicationId], 
       [vw_aspnet_Roles].[RoleId] AS [RoleId], 
@@ -74,7 +68,7 @@
       [vw_aspnet_Roles].[Description] AS [Description]
       FROM [dbo].[vw_aspnet_Roles] AS [vw_aspnet_Roles]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="vw_aspnet_Users" EntityType="AspNetProviderModel.Store.vw_aspnet_Users" store:Type="Views" store:Schema="dbo" store:Name="vw_aspnet_Users" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
+          <EntitySet Name="vw_aspnet_Users" EntityType="AspNetProviderModel.Store.vw_aspnet_Users" store:Type="Views" store:Schema="dbo" store:Name="vw_aspnet_Users">
             <DefiningQuery>SELECT 
       [vw_aspnet_Users].[ApplicationId] AS [ApplicationId], 
       [vw_aspnet_Users].[UserId] AS [UserId], 
@@ -85,13 +79,13 @@
       [vw_aspnet_Users].[LastActivityDate] AS [LastActivityDate]
       FROM [dbo].[vw_aspnet_Users] AS [vw_aspnet_Users]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="vw_aspnet_UsersInRoles" EntityType="AspNetProviderModel.Store.vw_aspnet_UsersInRoles" store:Type="Views" store:Schema="dbo" store:Name="vw_aspnet_UsersInRoles" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
+          <EntitySet Name="vw_aspnet_UsersInRoles" EntityType="AspNetProviderModel.Store.vw_aspnet_UsersInRoles" store:Type="Views" store:Schema="dbo" store:Name="vw_aspnet_UsersInRoles">
             <DefiningQuery>SELECT 
       [vw_aspnet_UsersInRoles].[UserId] AS [UserId], 
       [vw_aspnet_UsersInRoles].[RoleId] AS [RoleId]
       FROM [dbo].[vw_aspnet_UsersInRoles] AS [vw_aspnet_UsersInRoles]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="vw_aspnet_WebPartState_Paths" EntityType="AspNetProviderModel.Store.vw_aspnet_WebPartState_Paths" store:Type="Views" store:Schema="dbo" store:Name="vw_aspnet_WebPartState_Paths" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
+          <EntitySet Name="vw_aspnet_WebPartState_Paths" EntityType="AspNetProviderModel.Store.vw_aspnet_WebPartState_Paths" store:Type="Views" store:Schema="dbo" store:Name="vw_aspnet_WebPartState_Paths">
             <DefiningQuery>SELECT 
       [vw_aspnet_WebPartState_Paths].[ApplicationId] AS [ApplicationId], 
       [vw_aspnet_WebPartState_Paths].[PathId] AS [PathId], 
@@ -99,14 +93,14 @@
       [vw_aspnet_WebPartState_Paths].[LoweredPath] AS [LoweredPath]
       FROM [dbo].[vw_aspnet_WebPartState_Paths] AS [vw_aspnet_WebPartState_Paths]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="vw_aspnet_WebPartState_Shared" EntityType="AspNetProviderModel.Store.vw_aspnet_WebPartState_Shared" store:Type="Views" store:Schema="dbo" store:Name="vw_aspnet_WebPartState_Shared" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
+          <EntitySet Name="vw_aspnet_WebPartState_Shared" EntityType="AspNetProviderModel.Store.vw_aspnet_WebPartState_Shared" store:Type="Views" store:Schema="dbo" store:Name="vw_aspnet_WebPartState_Shared">
             <DefiningQuery>SELECT 
       [vw_aspnet_WebPartState_Shared].[PathId] AS [PathId], 
       [vw_aspnet_WebPartState_Shared].[DataSize] AS [DataSize], 
       [vw_aspnet_WebPartState_Shared].[LastUpdatedDate] AS [LastUpdatedDate]
       FROM [dbo].[vw_aspnet_WebPartState_Shared] AS [vw_aspnet_WebPartState_Shared]</DefiningQuery>
           </EntitySet>
-          <EntitySet Name="vw_aspnet_WebPartState_User" EntityType="AspNetProviderModel.Store.vw_aspnet_WebPartState_User" store:Type="Views" store:Schema="dbo" store:Name="vw_aspnet_WebPartState_User" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator">
+          <EntitySet Name="vw_aspnet_WebPartState_User" EntityType="AspNetProviderModel.Store.vw_aspnet_WebPartState_User" store:Type="Views" store:Schema="dbo" store:Name="vw_aspnet_WebPartState_User">
             <DefiningQuery>SELECT 
       [vw_aspnet_WebPartState_User].[PathId] AS [PathId], 
       [vw_aspnet_WebPartState_User].[UserId] AS [UserId], 
@@ -158,43 +152,7 @@
             <End Role="aspnet_Users" EntitySet="aspnet_Users" />
             <End Role="aspnet_UsersInRoles" EntitySet="aspnet_UsersInRoles" />
           </AssociationSet>
-          <AssociationSet Name="MembershipApplication" Association="AspNetProviderModel.Store.MembershipApplication">
-            <End Role="Applications" EntitySet="Applications" />
-            <End Role="Memberships" EntitySet="Memberships" />
-          </AssociationSet>
-          <AssociationSet Name="MembershipUser" Association="AspNetProviderModel.Store.MembershipUser">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Memberships" EntitySet="Memberships" />
-          </AssociationSet>
-          <AssociationSet Name="RoleApplication" Association="AspNetProviderModel.Store.RoleApplication">
-            <End Role="Applications" EntitySet="Applications" />
-            <End Role="Roles" EntitySet="Roles" />
-          </AssociationSet>
-          <AssociationSet Name="UserApplication" Association="AspNetProviderModel.Store.UserApplication">
-            <End Role="Applications" EntitySet="Applications" />
-            <End Role="Users" EntitySet="Users" />
-          </AssociationSet>
-          <AssociationSet Name="UserProfile" Association="AspNetProviderModel.Store.UserProfile">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Profiles" EntitySet="Profiles" />
-          </AssociationSet>
-          <AssociationSet Name="UsersInRoleRole" Association="AspNetProviderModel.Store.UsersInRoleRole">
-            <End Role="Roles" EntitySet="Roles" />
-            <End Role="UsersInRoles" EntitySet="UsersInRoles" />
-          </AssociationSet>
-          <AssociationSet Name="UsersInRoleUser" Association="AspNetProviderModel.Store.UsersInRoleUser">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="UsersInRoles" EntitySet="UsersInRoles" />
-          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Applications">
-          <Key>
-            <PropertyRef Name="ApplicationId" />
-          </Key>
-          <Property Name="ApplicationName" Type="nvarchar" Nullable="false" MaxLength="235" />
-          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Description" Type="nvarchar" MaxLength="256" />
-        </EntityType>
         <EntityType Name="aspnet_Applications">
           <Key>
             <PropertyRef Name="ApplicationId" />
@@ -325,67 +283,6 @@
           <Property Name="RequestUrl" Type="nvarchar" MaxLength="1024" />
           <Property Name="ExceptionType" Type="nvarchar" MaxLength="256" />
           <Property Name="Details" Type="ntext" />
-        </EntityType>
-        <EntityType Name="Memberships">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="128" />
-          <Property Name="PasswordFormat" Type="int" Nullable="false" />
-          <Property Name="PasswordSalt" Type="nvarchar" Nullable="false" MaxLength="128" />
-          <Property Name="Email" Type="nvarchar" MaxLength="256" />
-          <Property Name="PasswordQuestion" Type="nvarchar" MaxLength="256" />
-          <Property Name="PasswordAnswer" Type="nvarchar" MaxLength="128" />
-          <Property Name="IsApproved" Type="bit" Nullable="false" />
-          <Property Name="IsLockedOut" Type="bit" Nullable="false" />
-          <Property Name="CreateDate" Type="datetime" Nullable="false" />
-          <Property Name="LastLoginDate" Type="datetime" Nullable="false" />
-          <Property Name="LastPasswordChangedDate" Type="datetime" Nullable="false" />
-          <Property Name="LastLockoutDate" Type="datetime" Nullable="false" />
-          <Property Name="FailedPasswordAttemptCount" Type="int" Nullable="false" />
-          <Property Name="FailedPasswordAttemptWindowStart" Type="datetime" Nullable="false" />
-          <Property Name="FailedPasswordAnswerAttemptCount" Type="int" Nullable="false" />
-          <Property Name="FailedPasswordAnswerAttemptWindowsStart" Type="datetime" Nullable="false" />
-          <Property Name="Comment" Type="nvarchar" MaxLength="256" />
-        </EntityType>
-        <EntityType Name="Profiles">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="PropertyNames" Type="nvarchar" Nullable="false" />
-          <Property Name="PropertyValueStrings" Type="nvarchar" Nullable="false" />
-          <Property Name="PropertyValueBinary" Type="image" Nullable="false" />
-          <Property Name="LastUpdatedDate" Type="datetime" Nullable="false" />
-        </EntityType>
-        <EntityType Name="Roles">
-          <Key>
-            <PropertyRef Name="RoleId" />
-          </Key>
-          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="RoleName" Type="nvarchar" Nullable="false" MaxLength="256" />
-          <Property Name="Description" Type="nvarchar" MaxLength="256" />
-        </EntityType>
-        <EntityType Name="Users">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="ApplicationId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="UserName" Type="nvarchar" Nullable="false" MaxLength="50" />
-          <Property Name="IsAnonymous" Type="bit" Nullable="false" />
-          <Property Name="LastActivityDate" Type="datetime" Nullable="false" />
-        </EntityType>
-        <EntityType Name="UsersInRoles">
-          <Key>
-            <PropertyRef Name="UserId" />
-            <PropertyRef Name="RoleId" />
-          </Key>
-          <Property Name="UserId" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="RoleId" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
       warning 6002: The table/view 'AspNetProvider.dbo.vw_aspnet_Applications' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
@@ -673,90 +570,6 @@
               <PropertyRef Name="UserId" />
             </Principal>
             <Dependent Role="aspnet_UsersInRoles">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="MembershipApplication">
-          <End Role="Applications" Type="AspNetProviderModel.Store.Applications" Multiplicity="1" />
-          <End Role="Memberships" Type="AspNetProviderModel.Store.Memberships" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Applications">
-              <PropertyRef Name="ApplicationId" />
-            </Principal>
-            <Dependent Role="Memberships">
-              <PropertyRef Name="ApplicationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="MembershipUser">
-          <End Role="Users" Type="AspNetProviderModel.Store.Users" Multiplicity="1" />
-          <End Role="Memberships" Type="AspNetProviderModel.Store.Memberships" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="Memberships">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="RoleApplication">
-          <End Role="Applications" Type="AspNetProviderModel.Store.Applications" Multiplicity="1" />
-          <End Role="Roles" Type="AspNetProviderModel.Store.Roles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Applications">
-              <PropertyRef Name="ApplicationId" />
-            </Principal>
-            <Dependent Role="Roles">
-              <PropertyRef Name="ApplicationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="UserApplication">
-          <End Role="Applications" Type="AspNetProviderModel.Store.Applications" Multiplicity="1" />
-          <End Role="Users" Type="AspNetProviderModel.Store.Users" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Applications">
-              <PropertyRef Name="ApplicationId" />
-            </Principal>
-            <Dependent Role="Users">
-              <PropertyRef Name="ApplicationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="UserProfile">
-          <End Role="Users" Type="AspNetProviderModel.Store.Users" Multiplicity="1" />
-          <End Role="Profiles" Type="AspNetProviderModel.Store.Profiles" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="Profiles">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="UsersInRoleRole">
-          <End Role="Roles" Type="AspNetProviderModel.Store.Roles" Multiplicity="1" />
-          <End Role="UsersInRoles" Type="AspNetProviderModel.Store.UsersInRoles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Roles">
-              <PropertyRef Name="RoleId" />
-            </Principal>
-            <Dependent Role="UsersInRoles">
-              <PropertyRef Name="RoleId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="UsersInRoleUser">
-          <End Role="Users" Type="AspNetProviderModel.Store.Users" Multiplicity="1" />
-          <End Role="UsersInRoles" Type="AspNetProviderModel.Store.UsersInRoles" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="UsersInRoles">
               <PropertyRef Name="UserId" />
             </Dependent>
           </ReferentialConstraint>
@@ -1096,9 +909,8 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="AspNetProviderModel" Alias="Self" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
-        <EntityContainer Name="AspNetProviderEntities" annotation:LazyLoadingEnabled="true" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation">
-          <EntitySet Name="Applications" EntityType="AspNetProviderModel.Application" />
+      <Schema Namespace="AspNetProviderModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="AspNetProviderEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="aspnet_Applications" EntityType="AspNetProviderModel.aspnet_Applications" />
           <EntitySet Name="aspnet_Membership" EntityType="AspNetProviderModel.aspnet_Membership" />
           <EntitySet Name="aspnet_Paths" EntityType="AspNetProviderModel.aspnet_Paths" />
@@ -1109,10 +921,6 @@
           <EntitySet Name="aspnet_SchemaVersions" EntityType="AspNetProviderModel.aspnet_SchemaVersions" />
           <EntitySet Name="aspnet_Users" EntityType="AspNetProviderModel.aspnet_Users" />
           <EntitySet Name="aspnet_WebEvent_Events" EntityType="AspNetProviderModel.aspnet_WebEvent_Events" />
-          <EntitySet Name="Memberships" EntityType="AspNetProviderModel.Membership" />
-          <EntitySet Name="Profiles" EntityType="AspNetProviderModel.Profile" />
-          <EntitySet Name="Roles" EntityType="AspNetProviderModel.Role" />
-          <EntitySet Name="Users" EntityType="AspNetProviderModel.User" />
           <EntitySet Name="vw_aspnet_Applications" EntityType="AspNetProviderModel.vw_aspnet_Applications" />
           <EntitySet Name="vw_aspnet_MembershipUsers" EntityType="AspNetProviderModel.vw_aspnet_MembershipUsers" />
           <EntitySet Name="vw_aspnet_Profiles" EntityType="AspNetProviderModel.vw_aspnet_Profiles" />
@@ -1122,18 +930,6 @@
           <EntitySet Name="vw_aspnet_WebPartState_Paths" EntityType="AspNetProviderModel.vw_aspnet_WebPartState_Paths" />
           <EntitySet Name="vw_aspnet_WebPartState_Shared" EntityType="AspNetProviderModel.vw_aspnet_WebPartState_Shared" />
           <EntitySet Name="vw_aspnet_WebPartState_User" EntityType="AspNetProviderModel.vw_aspnet_WebPartState_User" />
-          <AssociationSet Name="MembershipApplication" Association="AspNetProviderModel.MembershipApplication">
-            <End Role="Applications" EntitySet="Applications" />
-            <End Role="Memberships" EntitySet="Memberships" />
-          </AssociationSet>
-          <AssociationSet Name="RoleApplication" Association="AspNetProviderModel.RoleApplication">
-            <End Role="Applications" EntitySet="Applications" />
-            <End Role="Roles" EntitySet="Roles" />
-          </AssociationSet>
-          <AssociationSet Name="UserApplication" Association="AspNetProviderModel.UserApplication">
-            <End Role="Applications" EntitySet="Applications" />
-            <End Role="Users" EntitySet="Users" />
-          </AssociationSet>
           <AssociationSet Name="FK__aspnet_Me__Appli__3A81B327" Association="AspNetProviderModel.FK__aspnet_Me__Appli__3A81B327">
             <End Role="aspnet_Applications" EntitySet="aspnet_Applications" />
             <End Role="aspnet_Membership" EntitySet="aspnet_Membership" />
@@ -1170,21 +966,9 @@
             <End Role="aspnet_Users" EntitySet="aspnet_Users" />
             <End Role="aspnet_Profile" EntitySet="aspnet_Profile" />
           </AssociationSet>
-          <AssociationSet Name="MembershipUser" Association="AspNetProviderModel.MembershipUser">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Memberships" EntitySet="Memberships" />
-          </AssociationSet>
-          <AssociationSet Name="UserProfile" Association="AspNetProviderModel.UserProfile">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Profiles" EntitySet="Profiles" />
-          </AssociationSet>
           <AssociationSet Name="aspnet_UsersInRoles" Association="AspNetProviderModel.aspnet_UsersInRoles">
             <End Role="aspnet_Roles" EntitySet="aspnet_Roles" />
             <End Role="aspnet_Users" EntitySet="aspnet_Users" />
-          </AssociationSet>
-          <AssociationSet Name="UsersInRoles" Association="AspNetProviderModel.UsersInRoles">
-            <End Role="Roles" EntitySet="Roles" />
-            <End Role="Users" EntitySet="Users" />
           </AssociationSet>
           <FunctionImport Name="aspnet_AnyDataInTables" ReturnType="Collection(String)">
             <Parameter Name="TablesToCheck" Mode="In" Type="Int32" />
@@ -1518,17 +1302,6 @@
             <Parameter Name="Details" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
-        <EntityType Name="Application">
-          <Key>
-            <PropertyRef Name="ApplicationId" />
-          </Key>
-          <Property Name="ApplicationName" Type="String" Nullable="false" MaxLength="235" Unicode="true" FixedLength="false" />
-          <Property Name="ApplicationId" Type="Guid" Nullable="false" />
-          <Property Name="Description" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="Memberships" Relationship="AspNetProviderModel.MembershipApplication" FromRole="Applications" ToRole="Memberships" />
-          <NavigationProperty Name="Roles" Relationship="AspNetProviderModel.RoleApplication" FromRole="Applications" ToRole="Roles" />
-          <NavigationProperty Name="Users" Relationship="AspNetProviderModel.UserApplication" FromRole="Applications" ToRole="Users" />
-        </EntityType>
         <EntityType Name="aspnet_Applications">
           <Key>
             <PropertyRef Name="ApplicationId" />
@@ -1672,68 +1445,6 @@
           <Property Name="ExceptionType" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
           <Property Name="Details" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
         </EntityType>
-        <EntityType Name="Membership">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="ApplicationId" Type="Guid" Nullable="false" />
-          <Property Name="UserId" Type="Guid" Nullable="false" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
-          <Property Name="PasswordFormat" Type="Int32" Nullable="false" />
-          <Property Name="PasswordSalt" Type="String" Nullable="false" MaxLength="128" Unicode="true" FixedLength="false" />
-          <Property Name="Email" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
-          <Property Name="PasswordQuestion" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
-          <Property Name="PasswordAnswer" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
-          <Property Name="IsApproved" Type="Boolean" Nullable="false" />
-          <Property Name="IsLockedOut" Type="Boolean" Nullable="false" />
-          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="LastLoginDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="LastPasswordChangedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="LastLockoutDate" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="FailedPasswordAttemptCount" Type="Int32" Nullable="false" />
-          <Property Name="FailedPasswordAttemptWindowStart" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="FailedPasswordAnswerAttemptCount" Type="Int32" Nullable="false" />
-          <Property Name="FailedPasswordAnswerAttemptWindowsStart" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="Comment" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="Application" Relationship="AspNetProviderModel.MembershipApplication" FromRole="Memberships" ToRole="Applications" />
-          <NavigationProperty Name="User" Relationship="AspNetProviderModel.MembershipUser" FromRole="Memberships" ToRole="Users" />
-        </EntityType>
-        <EntityType Name="Profile">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="UserId" Type="Guid" Nullable="false" />
-          <Property Name="PropertyNames" Type="String" Nullable="false" MaxLength="4000" Unicode="true" FixedLength="false" />
-          <Property Name="PropertyValueStrings" Type="String" Nullable="false" MaxLength="4000" Unicode="true" FixedLength="false" />
-          <Property Name="PropertyValueBinary" Type="Binary" Nullable="false" MaxLength="Max" FixedLength="false" />
-          <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="User" Relationship="AspNetProviderModel.UserProfile" FromRole="Profiles" ToRole="Users" />
-        </EntityType>
-        <EntityType Name="Role">
-          <Key>
-            <PropertyRef Name="RoleId" />
-          </Key>
-          <Property Name="ApplicationId" Type="Guid" Nullable="false" />
-          <Property Name="RoleId" Type="Guid" Nullable="false" />
-          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="256" Unicode="true" FixedLength="false" />
-          <Property Name="Description" Type="String" MaxLength="256" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="Application" Relationship="AspNetProviderModel.RoleApplication" FromRole="Roles" ToRole="Applications" />
-          <NavigationProperty Name="Users" Relationship="AspNetProviderModel.UsersInRoles" FromRole="Roles" ToRole="Users" />
-        </EntityType>
-        <EntityType Name="User">
-          <Key>
-            <PropertyRef Name="UserId" />
-          </Key>
-          <Property Name="ApplicationId" Type="Guid" Nullable="false" />
-          <Property Name="UserId" Type="Guid" Nullable="false" />
-          <Property Name="UserName" Type="String" Nullable="false" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="IsAnonymous" Type="Boolean" Nullable="false" />
-          <Property Name="LastActivityDate" Type="DateTime" Nullable="false" Precision="3" />
-          <NavigationProperty Name="Application" Relationship="AspNetProviderModel.UserApplication" FromRole="Users" ToRole="Applications" />
-          <NavigationProperty Name="Membership" Relationship="AspNetProviderModel.MembershipUser" FromRole="Users" ToRole="Memberships" />
-          <NavigationProperty Name="Profile" Relationship="AspNetProviderModel.UserProfile" FromRole="Users" ToRole="Profiles" />
-          <NavigationProperty Name="Roles" Relationship="AspNetProviderModel.UsersInRoles" FromRole="Users" ToRole="Roles" />
-        </EntityType>
         <EntityType Name="vw_aspnet_Applications">
           <Key>
             <PropertyRef Name="ApplicationName" />
@@ -1865,42 +1576,6 @@
           <Property Name="DataSize" Type="Int32" />
           <Property Name="LastUpdatedDate" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
-        <Association Name="MembershipApplication">
-          <End Role="Applications" Type="AspNetProviderModel.Application" Multiplicity="1" />
-          <End Role="Memberships" Type="AspNetProviderModel.Membership" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Applications">
-              <PropertyRef Name="ApplicationId" />
-            </Principal>
-            <Dependent Role="Memberships">
-              <PropertyRef Name="ApplicationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="RoleApplication">
-          <End Role="Applications" Type="AspNetProviderModel.Application" Multiplicity="1" />
-          <End Role="Roles" Type="AspNetProviderModel.Role" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Applications">
-              <PropertyRef Name="ApplicationId" />
-            </Principal>
-            <Dependent Role="Roles">
-              <PropertyRef Name="ApplicationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="UserApplication">
-          <End Role="Applications" Type="AspNetProviderModel.Application" Multiplicity="1" />
-          <End Role="Users" Type="AspNetProviderModel.User" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Applications">
-              <PropertyRef Name="ApplicationId" />
-            </Principal>
-            <Dependent Role="Users">
-              <PropertyRef Name="ApplicationId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK__aspnet_Me__Appli__3A81B327">
           <End Role="aspnet_Applications" Type="AspNetProviderModel.aspnet_Applications" Multiplicity="1" />
           <End Role="aspnet_Membership" Type="AspNetProviderModel.aspnet_Membership" Multiplicity="*" />
@@ -2009,37 +1684,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="MembershipUser">
-          <End Role="Users" Type="AspNetProviderModel.User" Multiplicity="1" />
-          <End Role="Memberships" Type="AspNetProviderModel.Membership" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="Memberships">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="UserProfile">
-          <End Role="Users" Type="AspNetProviderModel.User" Multiplicity="1" />
-          <End Role="Profiles" Type="AspNetProviderModel.Profile" Multiplicity="0..1" />
-          <ReferentialConstraint>
-            <Principal Role="Users">
-              <PropertyRef Name="UserId" />
-            </Principal>
-            <Dependent Role="Profiles">
-              <PropertyRef Name="UserId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="aspnet_UsersInRoles">
           <End Role="aspnet_Roles" Type="AspNetProviderModel.aspnet_Roles" Multiplicity="*" />
           <End Role="aspnet_Users" Type="AspNetProviderModel.aspnet_Users" Multiplicity="*" />
-        </Association>
-        <Association Name="UsersInRoles">
-          <End Role="Roles" Type="AspNetProviderModel.Role" Multiplicity="*" />
-          <End Role="Users" Type="AspNetProviderModel.User" Multiplicity="*" />
         </Association>
         <ComplexType Name="aspnet_Membership_GetPassword_Result">
           <Property Type="String" Name="Column1" Nullable="true" MaxLength="128" />
@@ -2096,15 +1743,6 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="AspNetProviderModelStoreContainer" CdmEntityContainer="AspNetProviderEntities">
-          <EntitySetMapping Name="Applications">
-            <EntityTypeMapping TypeName="AspNetProviderModel.Application">
-              <MappingFragment StoreEntitySet="Applications">
-                <ScalarProperty Name="ApplicationName" ColumnName="ApplicationName" />
-                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="aspnet_Applications">
             <EntityTypeMapping TypeName="AspNetProviderModel.aspnet_Applications">
               <MappingFragment StoreEntitySet="aspnet_Applications">
@@ -2237,63 +1875,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Memberships">
-            <EntityTypeMapping TypeName="AspNetProviderModel.Membership">
-              <MappingFragment StoreEntitySet="Memberships">
-                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
-                <ScalarProperty Name="PasswordFormat" ColumnName="PasswordFormat" />
-                <ScalarProperty Name="PasswordSalt" ColumnName="PasswordSalt" />
-                <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="PasswordQuestion" ColumnName="PasswordQuestion" />
-                <ScalarProperty Name="PasswordAnswer" ColumnName="PasswordAnswer" />
-                <ScalarProperty Name="IsApproved" ColumnName="IsApproved" />
-                <ScalarProperty Name="IsLockedOut" ColumnName="IsLockedOut" />
-                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
-                <ScalarProperty Name="LastLoginDate" ColumnName="LastLoginDate" />
-                <ScalarProperty Name="LastPasswordChangedDate" ColumnName="LastPasswordChangedDate" />
-                <ScalarProperty Name="LastLockoutDate" ColumnName="LastLockoutDate" />
-                <ScalarProperty Name="FailedPasswordAttemptCount" ColumnName="FailedPasswordAttemptCount" />
-                <ScalarProperty Name="FailedPasswordAttemptWindowStart" ColumnName="FailedPasswordAttemptWindowStart" />
-                <ScalarProperty Name="FailedPasswordAnswerAttemptCount" ColumnName="FailedPasswordAnswerAttemptCount" />
-                <ScalarProperty Name="FailedPasswordAnswerAttemptWindowsStart" ColumnName="FailedPasswordAnswerAttemptWindowsStart" />
-                <ScalarProperty Name="Comment" ColumnName="Comment" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Profiles">
-            <EntityTypeMapping TypeName="AspNetProviderModel.Profile">
-              <MappingFragment StoreEntitySet="Profiles">
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="PropertyNames" ColumnName="PropertyNames" />
-                <ScalarProperty Name="PropertyValueStrings" ColumnName="PropertyValueStrings" />
-                <ScalarProperty Name="PropertyValueBinary" ColumnName="PropertyValueBinary" />
-                <ScalarProperty Name="LastUpdatedDate" ColumnName="LastUpdatedDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Roles">
-            <EntityTypeMapping TypeName="AspNetProviderModel.Role">
-              <MappingFragment StoreEntitySet="Roles">
-                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
-                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
-                <ScalarProperty Name="Description" ColumnName="Description" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="AspNetProviderModel.User">
-              <MappingFragment StoreEntitySet="Users">
-                <ScalarProperty Name="ApplicationId" ColumnName="ApplicationId" />
-                <ScalarProperty Name="UserId" ColumnName="UserId" />
-                <ScalarProperty Name="UserName" ColumnName="UserName" />
-                <ScalarProperty Name="IsAnonymous" ColumnName="IsAnonymous" />
-                <ScalarProperty Name="LastActivityDate" ColumnName="LastActivityDate" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="vw_aspnet_Applications">
             <EntityTypeMapping TypeName="AspNetProviderModel.vw_aspnet_Applications">
               <MappingFragment StoreEntitySet="vw_aspnet_Applications">
@@ -2408,14 +1989,6 @@
               <ScalarProperty Name="RoleId" ColumnName="RoleId" />
             </EndProperty>
             <EndProperty Name="aspnet_Users">
-              <ScalarProperty Name="UserId" ColumnName="UserId" />
-            </EndProperty>
-          </AssociationSetMapping>
-          <AssociationSetMapping Name="UsersInRoles" TypeName="AspNetProviderModel.UsersInRoles" StoreEntitySet="UsersInRoles">
-            <EndProperty Name="Roles">
-              <ScalarProperty Name="RoleId" ColumnName="RoleId" />
-            </EndProperty>
-            <EndProperty Name="Users">
               <ScalarProperty Name="UserId" ColumnName="UserId" />
             </EndProperty>
           </AssociationSetMapping>
@@ -2561,6 +2134,6 @@
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->
-    <Diagrams />
+    <Diagrams></Diagrams>
   </Designer>
 </edmx:Edmx>
