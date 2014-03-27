@@ -7,31 +7,25 @@ using VolTeer.DomainModels.VT.Vend;
 
 namespace VolTeer.DataAccessLayer.VT.Vend
 {
-    public class sp_Event_Rating_DAL
+    public class sp_EventRating_DAL
     {
 
         #region Select Statements
-        /// <summary>
-        /// Return a list of Sample addresses using LINQ to SQL
-        /// </summary>
-        /// <returns></returns>
-        public List<sp_Event_Rating_DM> ListEventRatings(int? eventID)
+        public List<sp_EventRating_DM> ListEventRatings()
         {
-            List<sp_Event_Rating_DM> list = new List<sp_Event_Rating_DM>();
+            List<sp_EventRating_DM> list = new List<sp_EventRating_DM>();
             try
             {
                 using (VolTeerEntities context = new VolTeerEntities())
                 {
-                    list = (from result in context.sp_EventRating_Select(eventID)
-                            select new sp_Volunteer_DM
+                    list = (from result in context.sp_EventRating_Select(null)
+                            select new sp_EventRating_DM
                             {
-                                VolFirstName = result.VolFirstName,
+                                RatingID = result.RatingID,
+                                EventID = result.EventID,
                                 VolID = result.VolID,
-                                VolMiddleName = result.VolMiddleName,
-                                VolLastName = result.VolLastName,
+                                RatingValue = result.RatingValue,
                                 ActiveFlg = result.ActiveFlg
-
-
                             }).ToList();
                 } // Guaranteed to close the Connection
             }
@@ -44,20 +38,20 @@ namespace VolTeer.DataAccessLayer.VT.Vend
 
         }
 
-        public List<sp_Volunteer_DM> ListVolunteers(Guid? Volunteer)
+        public List<sp_EventRating_DM> ListEventRatings(int? RatingID)
         {
-            List<sp_Volunteer_DM> list = new List<sp_Volunteer_DM>();
+            List<sp_EventRating_DM> list = new List<sp_EventRating_DM>();
             try
             {
                 using (VolTeerEntities context = new VolTeerEntities())
                 {
-                    list = (from result in context.sp_Volunteer_Select(Volunteer)
-                            select new sp_Volunteer_DM
+                    list = (from result in context.sp_EventRating_Select(RatingID)
+                            select new sp_EventRating_DM
                             {
-                                VolFirstName = result.VolFirstName,
+                                RatingID = result.RatingID,
+                                EventID = result.EventID,
                                 VolID = result.VolID,
-                                VolMiddleName = result.VolMiddleName,
-                                VolLastName = result.VolLastName,
+                                RatingValue = result.RatingValue,
                                 ActiveFlg = result.ActiveFlg
                             }).ToList();
                 } // Guaranteed to close the Connection
@@ -73,28 +67,21 @@ namespace VolTeer.DataAccessLayer.VT.Vend
 
         #endregion
 
-
         #region Insert Statements
-
-
-        /// <summary>
-        /// InsertVolunteerContext - Will insert a record into Volunteer table via SProc
-        /// </summary>
-        /// <param name="_cVolunteer"></param>
-        public void InsertVolunteerContext(sp_Volunteer_DM _cVolunteer)
+        public void InsertEventRatingContext(sp_EventRating_DM InputRating)
         {
             using (VolTeerEntities context = new VolTeerEntities())
             {
-                var cVolunteer = new tblVolunteer
+                var NewEventRating = new tblEventRating
                 {
-                    VolID = _cVolunteer.VolID,
-                    VolFirstName = _cVolunteer.VolFirstName,
-                    VolMiddleName = _cVolunteer.VolMiddleName,
-                    VolLastName = _cVolunteer.VolLastName,
-                    ActiveFlg = _cVolunteer.ActiveFlg
+                    RatingID = InputRating.RatingID,
+                    EventID = InputRating.EventID,
+                    VolID = InputRating.VolID,
+                    RatingValue = InputRating.RatingValue,
+                    ActiveFlg = InputRating.ActiveFlg
 
                 };
-                context.tblVolunteers.Add(cVolunteer);
+                context.tblEventRatings.Add(NewEventRating);
                 context.SaveChanges();
             }
         }
@@ -102,22 +89,18 @@ namespace VolTeer.DataAccessLayer.VT.Vend
 
         #region Update Statements
 
-        /// <summary>
-        /// UpdateSampleAddressContext - Will update a given Volunteer record by VolID
-        /// </summary>
-        /// <param name="_cVolunteer"></param>
-        public void UpdateVolunteerContext(sp_Volunteer_DM _cVolunteer)
+        public void UpdateEventRatingContext(sp_EventRating_DM InputRating)
         {
             using (VolTeerEntities context = new VolTeerEntities())
             {
-                var cVolunteer = context.tblVolunteers.Find(_cVolunteer.VolID);
+                var ExistingRating = context.tblEventRatings.Find(InputRating.RatingID);
 
-                if (cVolunteer != null)
+                if (ExistingRating != null)
                 {
-                    cVolunteer.VolFirstName = _cVolunteer.VolFirstName;
-                    cVolunteer.VolMiddleName = _cVolunteer.VolMiddleName;
-                    cVolunteer.VolLastName = _cVolunteer.VolLastName;
-                    cVolunteer.ActiveFlg = _cVolunteer.ActiveFlg;
+                    ExistingRating.EventID = InputRating.EventID;
+                    ExistingRating.RatingID = InputRating.RatingID;
+                    ExistingRating.RatingValue = InputRating.RatingValue;
+                    ExistingRating.ActiveFlg = InputRating.ActiveFlg;
                     context.SaveChanges();
                 }
             }
@@ -125,17 +108,12 @@ namespace VolTeer.DataAccessLayer.VT.Vend
         #endregion
 
         #region Delete Statements
-
-        /// <summary>
-        /// DeleteVolunteerContext - Will do a soft delete (make inactive) by VolID
-        /// </summary>
-        /// <param name="_cVolunteer"></param>
-        public void DeleteVolunteerContext(sp_Volunteer_DM _cVolunteer)
+        public void DeleteEventRatingContext(sp_EventRating_DM InputRating)
         {
             using (VolTeerEntities context = new VolTeerEntities())
             {
-                var VolunteerToRemove = (from n in context.tblVolunteers where n.VolID == _cVolunteer.VolID select n).FirstOrDefault();
-                context.tblVolunteers.Remove(VolunteerToRemove);
+                var RatingToRemove = (from n in context.tblEventRatings where n.RatingID == InputRating.RatingID select n).FirstOrDefault();
+                context.tblEventRatings.Remove(RatingToRemove);
                 context.SaveChanges();
 
             }
