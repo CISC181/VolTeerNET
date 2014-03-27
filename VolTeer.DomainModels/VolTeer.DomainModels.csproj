@@ -70,6 +70,7 @@
     <Compile Include="VT\Other\sp_Sample_Address_Select_DM.cs" />
     <Compile Include="VT\Other\sp_State_Select_DM.cs" />
     <Compile Include="VT\Vol\sp_Volunteer_DM.cs" />
+    <Compile Include="VT\Vol\sp_Vol_Address_DM.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="VT\Vend\" />

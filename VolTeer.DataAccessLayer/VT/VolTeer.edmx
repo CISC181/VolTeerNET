@@ -1282,9 +1282,6 @@
           <FunctionImport Name="sp_Vol_Address_MassUpdate">
           <Parameter Name="XML_IN" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="sp_Vol_Address_Select" ReturnType="Collection(VolTeerModel.sp_Vol_Address_Select_Result)">
-          <Parameter Name="AddrID" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="sp_Vol_Address_Update">
             <Parameter Name="AddrId" Mode="In" Type="Int32" />
             <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
@@ -1367,6 +1364,9 @@
             <End Role="tblVolunteer" EntitySet="tblVolunteers" />
             <End Role="tblAvailablity" EntitySet="tblAvailablities" />
           </AssociationSet>
+          <FunctionImport Name="sp_Vol_Address_Select" ReturnType="Collection(VolTeerModel.sp_Vol_Address_Select_Result)">
+            <Parameter Name="AddrID" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="tblContact">
           <Key>
@@ -1895,16 +1895,6 @@
           <Property Type="String" Name="SkillName" Nullable="true" MaxLength="50" />
           <Property Type="Guid" Name="MstrSkillID" Nullable="true" />
         </ComplexType>
-        <ComplexType Name="sp_Vol_Address_Select_Result">
-          <Property Type="Int32" Name="AddrID" Nullable="false" />
-          <Property Type="String" Name="AddrLine1" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="AddrLine2" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="AddrLine3" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="City" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="St" Nullable="true" MaxLength="2" />
-          <Property Type="Int32" Name="Zip" Nullable="true" />
-          <Property Type="Int32" Name="Zip4" Nullable="true" />
-        </ComplexType>
         <ComplexType Name="sp_Vol_Email_Select_Result">
           <Property Type="Int32" Name="EmailID" Nullable="false" />
           <Property Type="Guid" Name="VolID" Nullable="false" />
@@ -1974,6 +1964,17 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="sp_Vol_Address_Select_Result">
+          <Property Type="Int32" Name="AddrID" Nullable="false" />
+          <Property Type="Boolean" Name="ActiveFlg" Nullable="true" />
+          <Property Type="String" Name="AddrLine1" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="AddrLine2" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="AddrLine3" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="St" Nullable="true" MaxLength="2" />
+          <Property Type="Int32" Name="Zip" Nullable="true" />
+          <Property Type="Int32" Name="Zip4" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2570,20 +2571,6 @@
           <FunctionImportMapping FunctionImportName="sp_Vol_Address_Delete" FunctionName="VolTeerModel.Store.sp_Vol_Address_Delete" />
           <FunctionImportMapping FunctionImportName="sp_Vol_Address_Insert" FunctionName="VolTeerModel.Store.sp_Vol_Address_Insert" />
           <FunctionImportMapping FunctionImportName="sp_Vol_Address_MassUpdate" FunctionName="VolTeerModel.Store.sp_Vol_Address_MassUpdate" />
-          <FunctionImportMapping FunctionImportName="sp_Vol_Address_Select" FunctionName="VolTeerModel.Store.sp_Vol_Address_Select">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="VolTeerModel.sp_Vol_Address_Select_Result">
-                <ScalarProperty Name="AddrID" ColumnName="AddrID" />
-                <ScalarProperty Name="AddrLine1" ColumnName="AddrLine1" />
-                <ScalarProperty Name="AddrLine2" ColumnName="AddrLine2" />
-                <ScalarProperty Name="AddrLine3" ColumnName="AddrLine3" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="St" ColumnName="St" />
-                <ScalarProperty Name="Zip" ColumnName="Zip" />
-                <ScalarProperty Name="Zip4" ColumnName="Zip4" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_Vol_Address_Update" FunctionName="VolTeerModel.Store.sp_Vol_Address_Update" />
           <FunctionImportMapping FunctionImportName="sp_Vol_Email_Delete" FunctionName="VolTeerModel.Store.sp_Vol_Email_Delete" />
           <FunctionImportMapping FunctionImportName="sp_Vol_Email_Insert" FunctionName="VolTeerModel.Store.sp_Vol_Email_Insert" />
@@ -2680,6 +2667,21 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_Availability_Update" FunctionName="VolTeerModel.Store.sp_Availability_Update" />
+          <FunctionImportMapping FunctionImportName="sp_Vol_Address_Select" FunctionName="VolTeerModel.Store.sp_Vol_Address_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VolTeerModel.sp_Vol_Address_Select_Result">
+                <ScalarProperty Name="AddrID" ColumnName="AddrID" />
+                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
+                <ScalarProperty Name="AddrLine1" ColumnName="AddrLine1" />
+                <ScalarProperty Name="AddrLine2" ColumnName="AddrLine2" />
+                <ScalarProperty Name="AddrLine3" ColumnName="AddrLine3" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="St" ColumnName="St" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="Zip4" ColumnName="Zip4" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

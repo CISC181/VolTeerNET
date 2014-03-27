@@ -285,13 +285,13 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>VolTeer.edmx</DependentUpon>
     </Compile>
-    <Compile Include="VT\Vol\sp_Email_DAL.cs" />
     <Compile Include="VT\Vol\sp_Skill_DAL.cs" />
     <Compile Include="VT\Vol\sp_Availability_DAL.cs" />
     <Compile Include="VT\Vol\sp_Group_DAL.cs" />
     <Compile Include="VT\Other\sp_Sample_Address_DAL.cs" />
     <Compile Include="VT\Other\sp_State_DAL.cs" />
     <Compile Include="VT\Vol\sp_Volunteer_DAL.cs" />
+    <Compile Include="VT\Vol\sp_Vol_Address_DAL.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
