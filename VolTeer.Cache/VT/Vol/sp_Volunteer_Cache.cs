@@ -13,7 +13,7 @@ using System.Web.Caching;
 
 namespace VolTeer.Cache.VT.Vol
 {
-    public class sp_Vol_Address_Cache
+    public class sp_Volunteer_Cache
     {
         sp_Volunteer_BLL BLL = new sp_Volunteer_BLL();
 
