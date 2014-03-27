@@ -69,6 +69,7 @@
     <Compile Include="AspNet\AspNetUsersBLL.cs" />
     <Compile Include="AspNet\AspNetViewsBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VT\Vend\sp_VendAddress_BLL.cs" />
     <Compile Include="VT\Vol\sp_Skill_BLL.cs" />
     <Compile Include="VT\Vol\sp_Availablity_BLL.cs" />
     <Compile Include="VT\Vol\sp_Group_BLL.cs" />
@@ -90,9 +91,7 @@
       <Name>VolTeer.DomainModels</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="VT\Vend\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
