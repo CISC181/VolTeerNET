@@ -45,7 +45,7 @@ namespace VolTeer.Volunteer
 
             System.Web.Caching.Cache cache = HttpRuntime.Cache;
 
-            sp_Volunteer_Cache VolCASH = new sp_Volunteer_Cache();
+            sp_Vol_Address_Cache VolCASH = new sp_Vol_Address_Cache();
             sp_Volunteer_DM VolDM = new sp_Volunteer_DM();
 
             VolDM = VolCASH.ListVolunteers(UserID);

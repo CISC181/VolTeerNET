@@ -27,9 +27,9 @@ namespace VolTeer.BusinessLogicLayer.VT.Vol
             DAL.InsertVolunteerContext(_cVolunteer);
         }
 
-        public void UpdateSampleAddressContext(sp_Volunteer_DM _cVolunteer)
+        public void UpdateVolunteerContext(sp_Volunteer_DM _cVolunteer)
         {
-            DAL.UpdateSampleAddressContext(_cVolunteer);
+            DAL.UpdateVolunteerContext(_cVolunteer);
         }
 
         public void DeleteVolunteerContext(sp_Volunteer_DM _cVolunteer)

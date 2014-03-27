@@ -13,7 +13,7 @@ using System.Web.Caching;
 
 namespace VolTeer.Cache.VT.Vol
 {
-    public class sp_Volunteer_Cache
+    public class sp_Vol_Address_Cache
     {
         sp_Volunteer_BLL BLL = new sp_Volunteer_BLL();
 
@@ -59,7 +59,7 @@ namespace VolTeer.Cache.VT.Vol
             BLL.InsertVolunteerContext(_cVolunteer);
         }
 
-        public void UpdateSampleAddressContext(sp_Volunteer_DM _cVolunteer)
+        public void UpdateVolunteerContext(sp_Volunteer_DM _cVolunteer)
         {
             System.Web.Caching.Cache cache = HttpRuntime.Cache;
 
@@ -72,7 +72,7 @@ namespace VolTeer.Cache.VT.Vol
             }
 
             cache.Insert(_cVolunteer.VolID.ToString(), _cVolunteer, null, DateTime.Now.AddSeconds(60), System.Web.Caching.Cache.NoSlidingExpiration, CacheItemPriority.High, null);
-            BLL.UpdateSampleAddressContext(_cVolunteer);
+            BLL.UpdateVolunteerContext(_cVolunteer);
         }
 
         public void DeleteVolunteerContext(sp_Volunteer_DM _cVolunteer)
