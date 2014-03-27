@@ -7,7 +7,7 @@ using VolTeer.DomainModels.VT.Vol;
 
 namespace VolTeer.DataAccessLayer.VT.Vol
 {
-    class sp_Email_DAL
+    public class sp_Email_DAL
     {
         #region Select Statements
         /// <summary>
@@ -41,20 +41,19 @@ namespace VolTeer.DataAccessLayer.VT.Vol
 
         }
 
-        public List<sp_Volunteer_DM> ListVolunteers(Guid? Volunteer)
+        public List<sp_Email_DM> ListVolunteers(Guid? Volunteer)
         {
-            List<sp_Volunteer_DM> list = new List<sp_Volunteer_DM>();
+            List<sp_Email_DM> list = new List<sp_Email_DM>();
             try
             {
                 using (VolTeerEntities context = new VolTeerEntities())
                 {
-                    list = (from result in context.sp_Volunteer_Select(Volunteer)
-                            select new sp_Volunteer_DM
+                    list = (from result in context.sp_Vol_Email_Select(Volunteer)
+                            select new sp_Email_DM
                             {
-                                VolFirstName = result.VolFirstName,
                                 VolID = result.VolID,
-                                VolMiddleName = result.VolMiddleName,
-                                VolLastName = result.VolLastName,
+                                EmailID = result.EmailID,
+                                EmailAddr = result.EmailAddr,
                                 ActiveFlg = result.ActiveFlg
                             }).ToList();
                 } // Guaranteed to close the Connection

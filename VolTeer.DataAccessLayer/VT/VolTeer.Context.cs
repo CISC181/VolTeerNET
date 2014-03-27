@@ -781,8 +781,8 @@ namespace VolTeer.DataAccessLayer.VT
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_Vol_Email_Insert", emailAddrParameter);
         }
-    
-        public virtual ObjectResult<sp_Vol_Email_Select_Result> sp_Vol_Email_Select(Nullable<int> emailID)
+
+        public virtual ObjectResult<sp_Vol_Email_Select_Result> sp_Vol_Email_Select(Nullable<System.Guid> emailID)
         {
             var emailIDParameter = emailID.HasValue ?
                 new ObjectParameter("EmailID", emailID) :
