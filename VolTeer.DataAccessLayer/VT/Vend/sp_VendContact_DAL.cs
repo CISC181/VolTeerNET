@@ -82,7 +82,7 @@ namespace VolTeer.DataAccessLayer.VT.Vend
         #endregion
 
         #region Delete Statements
-        public void DeleteAddressContext(sp_VendContact_DM InputContact)
+        public void DeleteContactContext(sp_VendContact_DM InputContact)
         {
             using (VolTeerEntities context = new VolTeerEntities())
             {
