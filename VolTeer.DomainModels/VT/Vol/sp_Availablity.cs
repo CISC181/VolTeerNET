@@ -10,14 +10,19 @@ namespace VolTeer.DomainModels.VT.Vol
     {
         public System.Guid VolID { get; set; }
         public int AddrID { get; set; }
-        public int AvailDateID { get; set; }
-        public System.DateTime AvailStartDate { get; set; }
-        public Nullable<System.DateTime> AvailEndDate { get; set; }
-        public Nullable<int> DayID { get; set; }
-        public Nullable<System.TimeSpan> StartTime { get; set; }
-        public Nullable<System.TimeSpan> EndTime { get; set; }
+        public int AvailID { get; set; }
+        public string Subject { get; set; }
+        public string Description { get; set; }
+        public System.DateTime AvailStart { get; set; }
+        public System.DateTime AvailEnd { get; set; }
+        public string RecurrenceRule { get; set; }
+        public Nullable<int> RecurrenceParentID { get; set; }
+        public string Reminder { get; set; }
+        public string Annotations { get; set; }
 
-        public virtual sp_Volunteer_DM tblVolAddress { get; set; }
+        public virtual ICollection<sp_Availablity_DM> tblAvailability1 { get; set; }
+        public virtual sp_Availablity_DM tblAvailability2 { get; set; }
+        public virtual sp_Vol_Address_DM tblVolAddress { get; set; }
         public virtual sp_Volunteer_DM tblVolunteer { get; set; }
     }
 }

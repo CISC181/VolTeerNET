@@ -207,7 +207,7 @@
     <Compile Include="VT\sp_Vol_State_Select_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
-    <Compile Include="VT\tblAvailablity.cs">
+    <Compile Include="VT\tblAvailability.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
     <Compile Include="VT\tblContact.cs">
