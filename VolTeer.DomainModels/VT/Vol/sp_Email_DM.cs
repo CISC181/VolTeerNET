@@ -10,11 +10,11 @@ namespace VolTeer.DomainModels.VT.Vol
 
     public class sp_Email_DM
     {
-
+        public System.Guid VolID { get; set; }
         public int EmailID { get; set; }
         public string EmailAddr { get; set; }
         public Nullable<bool> ActiveFlg { get; set; }
 
-        public virtual sp_Volunteer_DM sp_Volunteer_DM { get; set; }
+        //public virtual sp_Volunteer_DM sp_Volunteer_DM { get; set; }
     }
 }

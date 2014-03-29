@@ -207,7 +207,7 @@
     <Compile Include="VT\sp_Vol_State_Select_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
-    <Compile Include="VT\tblAvailablity.cs">
+    <Compile Include="VT\tblAvailability.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
     <Compile Include="VT\tblContact.cs">
@@ -270,6 +270,10 @@
     <Compile Include="VT\tblVolunteer.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
+    <Compile Include="VT\Vend\sp_VendAddress_DAL.cs" />
+    <Compile Include="VT\Vend\sp_Event_Rating_DAL.cs" />
+    <Compile Include="VT\Vend\sp_VendContact_DAL.cs" />
+    <Compile Include="VT\Vend\sp_VendEmail_DAL.cs" />
     <Compile Include="VT\VolTeer.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -290,7 +294,9 @@
     <Compile Include="VT\Vol\sp_Group_DAL.cs" />
     <Compile Include="VT\Other\sp_Sample_Address_DAL.cs" />
     <Compile Include="VT\Other\sp_State_DAL.cs" />
+    <Compile Include="VT\Vol\sp_VolEmail_DAL.cs" />
     <Compile Include="VT\Vol\sp_Volunteer_DAL.cs" />
+    <Compile Include="VT\Vol\sp_Vol_Address_DAL.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
@@ -340,9 +346,7 @@
       <Name>VolTeer.DomainModels</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="VT\Vend\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

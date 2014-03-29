@@ -51,5 +51,42 @@ namespace VolTeer.Cache.VT.Vol
 
             return cVol;
         }
+
+        public void InsertVolunteerContext(sp_Volunteer_DM _cVolunteer)
+        {
+            BLL.InsertVolunteerContext(_cVolunteer);
+            System.Web.Caching.Cache cache = HttpRuntime.Cache;
+            cache.Insert(_cVolunteer.VolID.ToString(), _cVolunteer, null, DateTime.Now.AddSeconds(60), System.Web.Caching.Cache.NoSlidingExpiration, CacheItemPriority.High, null);
+        }
+
+        public void UpdateVolunteerContext(sp_Volunteer_DM _cVolunteer)
+        {
+            System.Web.Caching.Cache cache = HttpRuntime.Cache;
+
+            sp_Volunteer_DM cacheVol;
+            cacheVol = (sp_Volunteer_DM)cache[_cVolunteer.VolID.ToString()];
+
+            if (cacheVol != null)
+            {
+                cache.Remove(_cVolunteer.VolID.ToString());
+            }
+
+            cache.Insert(_cVolunteer.VolID.ToString(), _cVolunteer, null, DateTime.Now.AddSeconds(60), System.Web.Caching.Cache.NoSlidingExpiration, CacheItemPriority.High, null);
+            BLL.UpdateVolunteerContext(_cVolunteer);
+        }
+
+        public void DeleteVolunteerContext(sp_Volunteer_DM _cVolunteer)
+        {
+            System.Web.Caching.Cache cache = HttpRuntime.Cache;
+
+            sp_Volunteer_DM cacheVol;
+            cacheVol = (sp_Volunteer_DM)cache[_cVolunteer.VolID.ToString()];
+
+            if (cacheVol != null)
+            {
+                cache.Remove(_cVolunteer.VolID.ToString());
+            }
+            BLL.DeleteVolunteerContext(_cVolunteer);
+        }
     }
 }

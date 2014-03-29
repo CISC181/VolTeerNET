@@ -81,7 +81,7 @@ namespace VolTeer.DataAccessLayer.VT.Vol
         /// InsertVolunteerContext - Will insert a record into Volunteer table via SProc
         /// </summary>
         /// <param name="_cVolunteer"></param>
-        public void InsertVolunteerContext(sp_Volunteer_DM _cVolunteer)
+        public void InsertVolunteerContext(ref sp_Volunteer_DM _cVolunteer)
         {
             using (VolTeerEntities context = new VolTeerEntities())
             {
@@ -96,6 +96,9 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                 };
                 context.tblVolunteers.Add(cVolunteer);
                 context.SaveChanges();
+
+                // pass VolID back to BLL
+                _cVolunteer.VolID = cVolunteer.VolID;
             }
         }
         #endregion
@@ -106,7 +109,7 @@ namespace VolTeer.DataAccessLayer.VT.Vol
         /// UpdateSampleAddressContext - Will update a given Volunteer record by VolID
         /// </summary>
         /// <param name="_cVolunteer"></param>
-        public void UpdateSampleAddressContext(sp_Volunteer_DM _cVolunteer)
+        public void UpdateVolunteerContext(sp_Volunteer_DM _cVolunteer)
         {
             using (VolTeerEntities context = new VolTeerEntities())
             {
