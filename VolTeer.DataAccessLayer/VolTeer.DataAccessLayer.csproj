@@ -271,6 +271,7 @@
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
     <Compile Include="VT\Vend\sp_VendAddress_DAL.cs" />
+    <Compile Include="VT\Vend\sp_VendEmail_DAL.cs" />
     <Compile Include="VT\VolTeer.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

@@ -63,6 +63,7 @@
     <Compile Include="AspNet\vw_aspnet_MembershipUsers_DM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VT\Other\sp_Sample_Contact_DM.cs" />
+    <Compile Include="VT\Vend\sp_VendEmail_DM.cs" />
     <Compile Include="VT\Vend\sp_VendorAddr_DM.cs" />
     <Compile Include="VT\Vend\sp_Project_DM.cs" />
     <Compile Include="VT\Vend\sp_VendAddress_DM.cs" />
