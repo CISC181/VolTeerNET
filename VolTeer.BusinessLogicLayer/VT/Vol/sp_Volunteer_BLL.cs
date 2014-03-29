@@ -24,7 +24,7 @@ namespace VolTeer.BusinessLogicLayer.VT.Vol
 
         public void InsertVolunteerContext(sp_Volunteer_DM _cVolunteer)
         {
-            DAL.InsertVolunteerContext(_cVolunteer);
+            DAL.InsertVolunteerContext(ref _cVolunteer);
         }
 
         public void UpdateVolunteerContext(sp_Volunteer_DM _cVolunteer)

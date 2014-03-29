@@ -54,9 +54,9 @@ namespace VolTeer.Cache.VT.Vol
 
         public void InsertAddressContext(sp_Vol_Address_DM _cAddress)
         {
+            BLL.InsertAddressContext(ref _cAddress);
             System.Web.Caching.Cache cache = HttpRuntime.Cache;
             cache.Insert(_cAddress.AddrID.ToString(), _cAddress, null, DateTime.Now.AddSeconds(60), System.Web.Caching.Cache.NoSlidingExpiration, CacheItemPriority.High, null);
-            BLL.InsertAddressContext(_cAddress);
         }
 
         public void UpdateAddressContext(sp_Vol_Address_DM _cAddress)

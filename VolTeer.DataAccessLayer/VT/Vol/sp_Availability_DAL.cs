@@ -22,13 +22,17 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                             {
                                 VolID = result.VolID,
                                 AddrID = result.AddrID,
-                                AvailDateID = result.AvailDateID,
-                                AvailStartDate = result.AvailStartDate,
-                                AvailEndDate = result.AvailEndDate,
-                                DayID = result.DayID,
-                                StartTime = result.StartTime,
-                                EndTime = result.EndTime
+                                AvailID = result.AvailID,
+                                AvailStart = result.AvailStart,
+                                AvailEnd = result.AvailEnd,
+                                Annotations = result.Annotations,
+                                Description = result.Description,
+                                RecurrenceParentID = result.RecurrenceParentID,
+                                RecurrenceRule = result.RecurrenceRule,
+                                Reminder = result.Reminder,
+                                Subject = result.Subject
                             }).ToList();
+
                 } // Guaranteed to close the Connection
             }
             catch (Exception ex)
@@ -44,19 +48,21 @@ namespace VolTeer.DataAccessLayer.VT.Vol
         {
             using (VolTeerEntities context = new VolTeerEntities())
             {
-                var cVolAvail = new tblAvailablity
+                var cVolAvail = new tblAvailability 
                 {
                     VolID = _cVolAvail.VolID,
                     AddrID = _cVolAvail.AddrID,
-                    AvailDateID = _cVolAvail.AvailDateID,
-                    AvailStartDate = _cVolAvail.AvailStartDate,
-                    AvailEndDate = _cVolAvail.AvailEndDate,
-                    DayID = _cVolAvail.DayID,
-                    StartTime = _cVolAvail.StartTime,
-                    EndTime = _cVolAvail.EndTime
+                    AvailStart = _cVolAvail.AvailStart,
+                    AvailEnd = _cVolAvail.AvailEnd,
+                    Annotations = _cVolAvail.Annotations,
+                    Description = _cVolAvail.Description,
+                    RecurrenceParentID = _cVolAvail.RecurrenceParentID,
+                    RecurrenceRule = _cVolAvail.RecurrenceRule,
+                    Reminder = _cVolAvail.Reminder,
+                    Subject = _cVolAvail.Subject
 
                 };
-                context.tblAvailablities.Add(cVolAvail);
+                context.tblAvailabilities.Add(cVolAvail);
                 context.SaveChanges();
             }
         }
@@ -66,16 +72,19 @@ namespace VolTeer.DataAccessLayer.VT.Vol
         {
             using (VolTeerEntities context = new VolTeerEntities())
             {
-                var cVolAvail = new tblAvailablity
+                var cVolAvail = new tblAvailability
                 {
                     VolID = _cVolAvail.VolID,
                     AddrID = _cVolAvail.AddrID,
-                    AvailDateID = _cVolAvail.AvailDateID,
-                    AvailStartDate = _cVolAvail.AvailStartDate,
-                    AvailEndDate = _cVolAvail.AvailEndDate,
-                    DayID = _cVolAvail.DayID,
-                    StartTime = _cVolAvail.StartTime,
-                    EndTime = _cVolAvail.EndTime
+                    AvailID = _cVolAvail.AvailID,
+                    AvailStart = _cVolAvail.AvailStart,
+                    AvailEnd = _cVolAvail.AvailEnd,
+                    Annotations = _cVolAvail.Annotations,
+                    Description = _cVolAvail.Description,
+                    RecurrenceParentID = _cVolAvail.RecurrenceParentID,
+                    RecurrenceRule = _cVolAvail.RecurrenceRule,
+                    Reminder = _cVolAvail.Reminder,
+                    Subject = _cVolAvail.Subject
                 };
                 context.SaveChanges();
             }
@@ -88,13 +97,13 @@ namespace VolTeer.DataAccessLayer.VT.Vol
         {
             using (VolTeerEntities context = new VolTeerEntities())
             {
-                var cVolAvail = new tblAvailablity
+                var cVolAvail = new tblAvailability
                 {
                     VolID = _cVolAvail.VolID,
                     AddrID = _cVolAvail.AddrID,
-                    AvailDateID = _cVolAvail.AvailDateID
+                    AvailID = _cVolAvail.AvailID
                 };
-                context.tblAvailablities.Remove(cVolAvail);
+                context.tblAvailabilities.Remove(cVolAvail);
                 context.SaveChanges();
             }
         }

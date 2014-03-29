@@ -207,7 +207,7 @@
     <Compile Include="VT\sp_Vol_State_Select_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
-    <Compile Include="VT\tblAvailablity.cs">
+    <Compile Include="VT\tblAvailability.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
     <Compile Include="VT\tblContact.cs">
@@ -271,6 +271,8 @@
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
     <Compile Include="VT\Vend\sp_VendAddress_DAL.cs" />
+    <Compile Include="VT\Vend\sp_Event_Rating_DAL.cs" />
+    <Compile Include="VT\Vend\sp_VendContact_DAL.cs" />
     <Compile Include="VT\Vend\sp_VendEmail_DAL.cs" />
     <Compile Include="VT\VolTeer.Context.cs">
       <AutoGen>True</AutoGen>

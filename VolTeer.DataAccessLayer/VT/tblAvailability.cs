@@ -10,9 +10,15 @@
 namespace VolTeer.DataAccessLayer.VT
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class sp_Availability_Select_Result
+    public partial class tblAvailability
     {
+        public tblAvailability()
+        {
+            this.tblAvailability1 = new HashSet<tblAvailability>();
+        }
+    
         public System.Guid VolID { get; set; }
         public int AddrID { get; set; }
         public int AvailID { get; set; }
@@ -24,5 +30,10 @@ namespace VolTeer.DataAccessLayer.VT
         public Nullable<int> RecurrenceParentID { get; set; }
         public string Reminder { get; set; }
         public string Annotations { get; set; }
+    
+        public virtual ICollection<tblAvailability> tblAvailability1 { get; set; }
+        public virtual tblAvailability tblAvailability2 { get; set; }
+        public virtual tblVolAddress tblVolAddress { get; set; }
+        public virtual tblVolunteer tblVolunteer { get; set; }
     }
 }

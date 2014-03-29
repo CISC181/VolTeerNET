@@ -22,9 +22,9 @@ namespace VolTeer.BusinessLogicLayer.VT.Vol
             return DAL.ListAddresses(Address).Single();
         }
 
-        public void InsertAddressContext(sp_Vol_Address_DM _cAddress)
+        public void InsertAddressContext(ref sp_Vol_Address_DM _cAddress)
         {
-            DAL.InsertAddressContext(_cAddress);
+            DAL.InsertAddressContext(ref _cAddress);
         }
 
         public void UpdateAddressContext(sp_Vol_Address_DM _cAddress)
