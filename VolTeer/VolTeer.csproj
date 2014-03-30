@@ -153,6 +153,13 @@
     <Compile Include="Common\WebControls\ucAvailability.ascx.designer.cs">
       <DependentUpon>ucAvailability.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Common\WebControls\ucEditSkill.ascx.cs">
+      <DependentUpon>ucEditSkill.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Common\WebControls\ucEditSkill.ascx.designer.cs">
+      <DependentUpon>ucEditSkill.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Common\WebControls\ucEmail.ascx.cs">
       <DependentUpon>ucEmail.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -300,6 +307,13 @@
     <Compile Include="Site.Mobile.Master.designer.cs">
       <DependentUpon>Site.Mobile.Master</DependentUpon>
     </Compile>
+    <Compile Include="Skills\EditSkills.aspx.cs">
+      <DependentUpon>EditSkills.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Skills\EditSkills.aspx.designer.cs">
+      <DependentUpon>EditSkills.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Skills\ManageSkills.aspx.cs">
       <DependentUpon>ManageSkills.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -365,13 +379,17 @@
     <Content Include="App_Data\RadCaptcha\X.wav" />
     <Content Include="App_Data\RadCaptcha\Y.wav" />
     <Content Include="App_Data\RadCaptcha\Z.wav" />
+    <Content Include="Common\JavaScripts\TreeScripts.js" />
     <Content Include="Common\WebControls\ucAddress.ascx" />
     <Content Include="Common\WebControls\ucAvailability.ascx" />
+    <Content Include="Common\WebControls\ucEditSkill.ascx" />
     <Content Include="Common\WebControls\ucEmail.ascx" />
     <Content Include="Common\WebControls\ucPhone.ascx" />
     <Content Include="Common\WebControls\ucSkill.ascx" />
     <Content Include="Common\WebControls\ucVolBasicInfo.ascx" />
     <Content Include="Content\button\ButtonSprites.png" />
+    <Content Include="Content\images\Green.png" />
+    <Content Include="Content\images\Red.png" />
     <Content Include="Content\button\ToggleSprite.png" />
     <Content Include="Content\EmailTemplates\ForgotUserName.html" />
     <Content Include="Content\Site.css" />
@@ -457,6 +475,7 @@
     <Content Include="SampleControls\SendMail.aspx" />
     <Content Include="SampleControls\TestForm1.aspx" />
     <Content Include="SampleControls\TestRoles.aspx" />
+    <Content Include="Skills\EditSkills.aspx" />
     <Content Include="Skills\ManageSkills.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Volunteer\VolunterInfo.aspx" />
@@ -525,7 +544,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
+      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

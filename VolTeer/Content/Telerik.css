@@ -1083,3 +1083,22 @@ tr.pager td {
 	background-position: -24px -40px; 
 }
 
+.dropClue {
+	width: 24px;
+	height: 24px;
+	position: absolute;
+	left: -10px;
+	top: -10px;
+}
+
+.dropEnabled {
+	background-image: url('images/Green.png');
+}
+
+.dropDisabled {
+	background-image: url('images/Red.png');
+}
+.dragDropCheckBox
+{
+    margin-top:15px;
+}

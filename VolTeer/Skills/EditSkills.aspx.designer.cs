@@ -10,7 +10,7 @@
 namespace VolTeer.Skills {
     
     
-    public partial class ManageSkills {
+    public partial class EditSkills {
         
         /// <summary>
         /// ucSkills control.
@@ -19,6 +19,6 @@ namespace VolTeer.Skills {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::VolTeer.Common.WebControls.ucSkill ucSkills;
+        protected global::VolTeer.Common.WebControls.ucEditSkill ucSkills;
     }
 }

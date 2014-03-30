@@ -35,6 +35,15 @@ namespace VolTeer.BusinessLogicLayer.VT.Vol
             return DAL.ListVolunteerAvailability(VolID, AddrID);
         }
 
+        public virtual void Update(RadScheduler owner, Appointment appointmentToUpdate)
+        {
+            if (!PersistChanges)
+            {
+                return;
+            }
+
+        }
+
 
         public override void Update(ISchedulerInfo shedulerInfo, Appointment appointmentToUpdate)
         {
