@@ -660,43 +660,6 @@ namespace VolTeer.DataAccessLayer.VT
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Vol_Address_Delete", addrIDParameter);
         }
     
-        public virtual ObjectResult<Nullable<int>> sp_Vol_Address_Insert(string addrLine1, string addrLine2, string addrLine3, string city, string st, Nullable<int> zip, Nullable<int> zip4, Nullable<bool> activeFlg)
-        {
-            var addrLine1Parameter = addrLine1 != null ?
-                new ObjectParameter("AddrLine1", addrLine1) :
-                new ObjectParameter("AddrLine1", typeof(string));
-    
-            var addrLine2Parameter = addrLine2 != null ?
-                new ObjectParameter("AddrLine2", addrLine2) :
-                new ObjectParameter("AddrLine2", typeof(string));
-    
-            var addrLine3Parameter = addrLine3 != null ?
-                new ObjectParameter("AddrLine3", addrLine3) :
-                new ObjectParameter("AddrLine3", typeof(string));
-    
-            var cityParameter = city != null ?
-                new ObjectParameter("City", city) :
-                new ObjectParameter("City", typeof(string));
-    
-            var stParameter = st != null ?
-                new ObjectParameter("St", st) :
-                new ObjectParameter("St", typeof(string));
-    
-            var zipParameter = zip.HasValue ?
-                new ObjectParameter("Zip", zip) :
-                new ObjectParameter("Zip", typeof(int));
-    
-            var zip4Parameter = zip4.HasValue ?
-                new ObjectParameter("Zip4", zip4) :
-                new ObjectParameter("Zip4", typeof(int));
-    
-            var activeFlgParameter = activeFlg.HasValue ?
-                new ObjectParameter("ActiveFlg", activeFlg) :
-                new ObjectParameter("ActiveFlg", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_Vol_Address_Insert", addrLine1Parameter, addrLine2Parameter, addrLine3Parameter, cityParameter, stParameter, zipParameter, zip4Parameter, activeFlgParameter);
-        }
-    
         public virtual int sp_Vol_Address_MassUpdate(string xML_IN)
         {
             var xML_INParameter = xML_IN != null ?
@@ -704,47 +667,6 @@ namespace VolTeer.DataAccessLayer.VT
                 new ObjectParameter("XML_IN", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Vol_Address_MassUpdate", xML_INParameter);
-        }
-    
-        public virtual int sp_Vol_Address_Update(Nullable<int> addrId, Nullable<bool> activeFlg, string addrLine1, string addrLine2, string addrLine3, string city, string st, Nullable<int> zip, Nullable<int> zip4)
-        {
-            var addrIdParameter = addrId.HasValue ?
-                new ObjectParameter("AddrId", addrId) :
-                new ObjectParameter("AddrId", typeof(int));
-    
-            var activeFlgParameter = activeFlg.HasValue ?
-                new ObjectParameter("ActiveFlg", activeFlg) :
-                new ObjectParameter("ActiveFlg", typeof(bool));
-    
-            var addrLine1Parameter = addrLine1 != null ?
-                new ObjectParameter("AddrLine1", addrLine1) :
-                new ObjectParameter("AddrLine1", typeof(string));
-    
-            var addrLine2Parameter = addrLine2 != null ?
-                new ObjectParameter("AddrLine2", addrLine2) :
-                new ObjectParameter("AddrLine2", typeof(string));
-    
-            var addrLine3Parameter = addrLine3 != null ?
-                new ObjectParameter("AddrLine3", addrLine3) :
-                new ObjectParameter("AddrLine3", typeof(string));
-    
-            var cityParameter = city != null ?
-                new ObjectParameter("City", city) :
-                new ObjectParameter("City", typeof(string));
-    
-            var stParameter = st != null ?
-                new ObjectParameter("St", st) :
-                new ObjectParameter("St", typeof(string));
-    
-            var zipParameter = zip.HasValue ?
-                new ObjectParameter("Zip", zip) :
-                new ObjectParameter("Zip", typeof(int));
-    
-            var zip4Parameter = zip4.HasValue ?
-                new ObjectParameter("Zip4", zip4) :
-                new ObjectParameter("Zip4", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Vol_Address_Update", addrIdParameter, activeFlgParameter, addrLine1Parameter, addrLine2Parameter, addrLine3Parameter, cityParameter, stParameter, zipParameter, zip4Parameter);
         }
     
         public virtual int sp_Vol_Email_Delete(Nullable<int> emailID, string emailAddr, Nullable<bool> activeFlg)
@@ -864,15 +786,6 @@ namespace VolTeer.DataAccessLayer.VT
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Volunteer_Update", volIDParameter, activeFlgParameter, volFirstNameParameter, volMiddleNameParameter, volLastNameParameter);
         }
     
-        public virtual ObjectResult<sp_Vol_Address_Select_Result> sp_Vol_Address_Select(Nullable<int> addrID)
-        {
-            var addrIDParameter = addrID.HasValue ?
-                new ObjectParameter("AddrID", addrID) :
-                new ObjectParameter("AddrID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Vol_Address_Select_Result>("sp_Vol_Address_Select", addrIDParameter);
-        }
-    
         public virtual ObjectResult<sp_Availability_Select_Result> sp_Availability_Select(Nullable<System.Guid> volID, Nullable<int> addrID)
         {
             var volIDParameter = volID.HasValue ?
@@ -884,6 +797,109 @@ namespace VolTeer.DataAccessLayer.VT
                 new ObjectParameter("AddrID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Availability_Select_Result>("sp_Availability_Select", volIDParameter, addrIDParameter);
+        }
+    
+        public virtual int sp_Vol_Address_Insert(string addrLine1, string addrLine2, string addrLine3, string city, string st, Nullable<int> zip, Nullable<int> zip4, string longitude, string latitude, Nullable<bool> activeFlg)
+        {
+            var addrLine1Parameter = addrLine1 != null ?
+                new ObjectParameter("AddrLine1", addrLine1) :
+                new ObjectParameter("AddrLine1", typeof(string));
+    
+            var addrLine2Parameter = addrLine2 != null ?
+                new ObjectParameter("AddrLine2", addrLine2) :
+                new ObjectParameter("AddrLine2", typeof(string));
+    
+            var addrLine3Parameter = addrLine3 != null ?
+                new ObjectParameter("AddrLine3", addrLine3) :
+                new ObjectParameter("AddrLine3", typeof(string));
+    
+            var cityParameter = city != null ?
+                new ObjectParameter("City", city) :
+                new ObjectParameter("City", typeof(string));
+    
+            var stParameter = st != null ?
+                new ObjectParameter("St", st) :
+                new ObjectParameter("St", typeof(string));
+    
+            var zipParameter = zip.HasValue ?
+                new ObjectParameter("Zip", zip) :
+                new ObjectParameter("Zip", typeof(int));
+    
+            var zip4Parameter = zip4.HasValue ?
+                new ObjectParameter("Zip4", zip4) :
+                new ObjectParameter("Zip4", typeof(int));
+    
+            var longitudeParameter = longitude != null ?
+                new ObjectParameter("longitude", longitude) :
+                new ObjectParameter("longitude", typeof(string));
+    
+            var latitudeParameter = latitude != null ?
+                new ObjectParameter("latitude", latitude) :
+                new ObjectParameter("latitude", typeof(string));
+    
+            var activeFlgParameter = activeFlg.HasValue ?
+                new ObjectParameter("ActiveFlg", activeFlg) :
+                new ObjectParameter("ActiveFlg", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Vol_Address_Insert", addrLine1Parameter, addrLine2Parameter, addrLine3Parameter, cityParameter, stParameter, zipParameter, zip4Parameter, longitudeParameter, latitudeParameter, activeFlgParameter);
+        }
+    
+        public virtual int sp_Vol_Address_Update(Nullable<int> addrId, Nullable<bool> activeFlg, string addrLine1, string addrLine2, string addrLine3, string city, string st, Nullable<int> zip, Nullable<int> zip4, string latitude, string longitude)
+        {
+            var addrIdParameter = addrId.HasValue ?
+                new ObjectParameter("AddrId", addrId) :
+                new ObjectParameter("AddrId", typeof(int));
+    
+            var activeFlgParameter = activeFlg.HasValue ?
+                new ObjectParameter("ActiveFlg", activeFlg) :
+                new ObjectParameter("ActiveFlg", typeof(bool));
+    
+            var addrLine1Parameter = addrLine1 != null ?
+                new ObjectParameter("AddrLine1", addrLine1) :
+                new ObjectParameter("AddrLine1", typeof(string));
+    
+            var addrLine2Parameter = addrLine2 != null ?
+                new ObjectParameter("AddrLine2", addrLine2) :
+                new ObjectParameter("AddrLine2", typeof(string));
+    
+            var addrLine3Parameter = addrLine3 != null ?
+                new ObjectParameter("AddrLine3", addrLine3) :
+                new ObjectParameter("AddrLine3", typeof(string));
+    
+            var cityParameter = city != null ?
+                new ObjectParameter("City", city) :
+                new ObjectParameter("City", typeof(string));
+    
+            var stParameter = st != null ?
+                new ObjectParameter("St", st) :
+                new ObjectParameter("St", typeof(string));
+    
+            var zipParameter = zip.HasValue ?
+                new ObjectParameter("Zip", zip) :
+                new ObjectParameter("Zip", typeof(int));
+    
+            var zip4Parameter = zip4.HasValue ?
+                new ObjectParameter("Zip4", zip4) :
+                new ObjectParameter("Zip4", typeof(int));
+    
+            var latitudeParameter = latitude != null ?
+                new ObjectParameter("latitude", latitude) :
+                new ObjectParameter("latitude", typeof(string));
+    
+            var longitudeParameter = longitude != null ?
+                new ObjectParameter("longitude", longitude) :
+                new ObjectParameter("longitude", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Vol_Address_Update", addrIdParameter, activeFlgParameter, addrLine1Parameter, addrLine2Parameter, addrLine3Parameter, cityParameter, stParameter, zipParameter, zip4Parameter, latitudeParameter, longitudeParameter);
+        }
+    
+        public virtual ObjectResult<sp_Vol_Address_Select_Result> sp_Vol_Address_Select(Nullable<int> addrID)
+        {
+            var addrIDParameter = addrID.HasValue ?
+                new ObjectParameter("AddrID", addrID) :
+                new ObjectParameter("AddrID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Vol_Address_Select_Result>("sp_Vol_Address_Select", addrIDParameter);
         }
     }
 }
