@@ -348,6 +348,9 @@
           <Property Name="VolID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="AddrID" Type="int" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+      warning 6005: The data type 'geography' is not supported for the target .NET Framework version. The column 'GeogCol1' in the table 'VolTeer.Vol.tblVolAddress' was excluded from the model. To use the data type 'geography', target the .NET Framework 4.5 or higher.
+      -->
         <EntityType Name="tblVolAddress">
           <Key>
             <PropertyRef Name="AddrID" />
@@ -361,6 +364,7 @@
           <Property Name="St" Type="char" MaxLength="2" />
           <Property Name="Zip" Type="int" />
           <Property Name="Zip4" Type="int" />
+          <Property Name="GeogCol2" Type="nvarchar(max)" StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="tblVolEmail">
           <Key>
@@ -952,6 +956,8 @@
           <Parameter Name="St" Type="char" Mode="In" />
           <Parameter Name="Zip" Type="int" Mode="In" />
           <Parameter Name="Zip4" Type="int" Mode="In" />
+          <Parameter Name="longitude" Type="nvarchar" Mode="In" />
+          <Parameter Name="latitude" Type="nvarchar" Mode="In" />
           <Parameter Name="ActiveFlg" Type="bit" Mode="In" />
         </Function>
         <Function Name="sp_Vol_Address_MassUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
@@ -970,6 +976,8 @@
           <Parameter Name="St" Type="char" Mode="In" />
           <Parameter Name="Zip" Type="int" Mode="In" />
           <Parameter Name="Zip4" Type="int" Mode="In" />
+          <Parameter Name="latitude" Type="nvarchar" Mode="In" />
+          <Parameter Name="longitude" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="sp_Vol_Email_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="EmailID" Type="int" Mode="In" />
@@ -1293,29 +1301,8 @@
           <FunctionImport Name="sp_Vol_Address_Delete">
           <Parameter Name="AddrID" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_Vol_Address_Insert" ReturnType="Collection(Int32)">
-            <Parameter Name="AddrLine1" Mode="In" Type="String" />
-            <Parameter Name="AddrLine2" Mode="In" Type="String" />
-            <Parameter Name="AddrLine3" Mode="In" Type="String" />
-            <Parameter Name="City" Mode="In" Type="String" />
-            <Parameter Name="St" Mode="In" Type="String" />
-            <Parameter Name="Zip" Mode="In" Type="Int32" />
-            <Parameter Name="Zip4" Mode="In" Type="Int32" />
-            <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
-          </FunctionImport>
           <FunctionImport Name="sp_Vol_Address_MassUpdate">
           <Parameter Name="XML_IN" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="sp_Vol_Address_Update">
-            <Parameter Name="AddrId" Mode="In" Type="Int32" />
-            <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
-            <Parameter Name="AddrLine1" Mode="In" Type="String" />
-            <Parameter Name="AddrLine2" Mode="In" Type="String" />
-            <Parameter Name="AddrLine3" Mode="In" Type="String" />
-            <Parameter Name="City" Mode="In" Type="String" />
-            <Parameter Name="St" Mode="In" Type="String" />
-            <Parameter Name="Zip" Mode="In" Type="Int32" />
-            <Parameter Name="Zip4" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Vol_Email_Delete">
             <Parameter Name="EmailID" Mode="In" Type="Int32" />
@@ -1352,9 +1339,6 @@
             <Parameter Name="VolMiddleName" Mode="In" Type="String" />
             <Parameter Name="VolLastName" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="sp_Vol_Address_Select" ReturnType="Collection(VolTeerModel.sp_Vol_Address_Select_Result)">
-          <Parameter Name="AddrID" Mode="In" Type="Int32" />
-          </FunctionImport>
           <EntitySet Name="tblAvailabilities" EntityType="VolTeerModel.tblAvailability" />
           <AssociationSet Name="FK_Appointments_ParentAppointments" Association="VolTeerModel.FK_Appointments_ParentAppointments">
             <End Role="tblAvailability" EntitySet="tblAvailabilities" />
@@ -1370,6 +1354,34 @@
           </AssociationSet>
           <FunctionImport Name="sp_Availability_Select" ReturnType="Collection(VolTeerModel.sp_Availability_Select_Result)">
             <Parameter Name="VolID" Mode="In" Type="Guid" />
+            <Parameter Name="AddrID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Vol_Address_Insert">
+            <Parameter Name="AddrLine1" Mode="In" Type="String" />
+            <Parameter Name="AddrLine2" Mode="In" Type="String" />
+            <Parameter Name="AddrLine3" Mode="In" Type="String" />
+            <Parameter Name="City" Mode="In" Type="String" />
+            <Parameter Name="St" Mode="In" Type="String" />
+            <Parameter Name="Zip" Mode="In" Type="Int32" />
+            <Parameter Name="Zip4" Mode="In" Type="Int32" />
+            <Parameter Name="longitude" Mode="In" Type="String" />
+            <Parameter Name="latitude" Mode="In" Type="String" />
+            <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Vol_Address_Update">
+            <Parameter Name="AddrId" Mode="In" Type="Int32" />
+            <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
+            <Parameter Name="AddrLine1" Mode="In" Type="String" />
+            <Parameter Name="AddrLine2" Mode="In" Type="String" />
+            <Parameter Name="AddrLine3" Mode="In" Type="String" />
+            <Parameter Name="City" Mode="In" Type="String" />
+            <Parameter Name="St" Mode="In" Type="String" />
+            <Parameter Name="Zip" Mode="In" Type="Int32" />
+            <Parameter Name="Zip4" Mode="In" Type="Int32" />
+            <Parameter Name="latitude" Mode="In" Type="String" />
+            <Parameter Name="longitude" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Vol_Address_Select" ReturnType="Collection(VolTeerModel.sp_Vol_Address_Select_Result)">
             <Parameter Name="AddrID" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
@@ -1592,6 +1604,7 @@
           <NavigationProperty Name="tblGroups" Relationship="VolTeerModel.tblGroupAddr" FromRole="tblVolAddress" ToRole="tblGroup" />
           <NavigationProperty Name="tblVolunteers" Relationship="VolTeerModel.tblVolAddr" FromRole="tblVolAddress" ToRole="tblVolunteer" />
           <NavigationProperty Name="tblAvailabilities" Relationship="VolTeerModel.FK_tblAvailability_tblVolAddress" FromRole="tblVolAddress" ToRole="tblAvailability" />
+          <Property Type="String" Name="GeogCol2" MaxLength="Max" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="tblVolEmail">
           <Key>
@@ -1918,17 +1931,6 @@
           <Property Type="String" Name="VolMiddleName" Nullable="true" MaxLength="20" />
           <Property Type="String" Name="VolLastName" Nullable="true" MaxLength="30" />
         </ComplexType>
-        <ComplexType Name="sp_Vol_Address_Select_Result">
-          <Property Type="Int32" Name="AddrID" Nullable="false" />
-          <Property Type="Boolean" Name="ActiveFlg" Nullable="true" />
-          <Property Type="String" Name="AddrLine1" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="AddrLine2" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="AddrLine3" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="City" Nullable="true" MaxLength="30" />
-          <Property Type="String" Name="St" Nullable="true" MaxLength="2" />
-          <Property Type="Int32" Name="Zip" Nullable="true" />
-          <Property Type="Int32" Name="Zip4" Nullable="true" />
-        </ComplexType>
         <EntityType Name="tblAvailability">
           <Key>
             <PropertyRef Name="AvailID" />
@@ -1997,6 +1999,18 @@
           <Property Type="Int32" Name="RecurrenceParentID" Nullable="true" />
           <Property Type="String" Name="Reminder" Nullable="true" MaxLength="255" />
           <Property Type="String" Name="Annotations" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_Vol_Address_Select_Result">
+          <Property Type="Int32" Name="AddrID" Nullable="false" />
+          <Property Type="Boolean" Name="ActiveFlg" Nullable="true" />
+          <Property Type="String" Name="AddrLine1" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="AddrLine2" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="AddrLine3" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="City" Nullable="true" MaxLength="30" />
+          <Property Type="String" Name="St" Nullable="true" MaxLength="2" />
+          <Property Type="Int32" Name="Zip" Nullable="true" />
+          <Property Type="Int32" Name="Zip4" Nullable="true" />
+          <Property Type="String" Name="GeogCol2" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2305,6 +2319,7 @@
           <EntitySetMapping Name="tblVolAddresses">
             <EntityTypeMapping TypeName="VolTeerModel.tblVolAddress">
               <MappingFragment StoreEntitySet="tblVolAddress">
+                <ScalarProperty Name="GeogCol2" ColumnName="GeogCol2" />
                 <ScalarProperty Name="AddrID" ColumnName="AddrID" />
                 <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
                 <ScalarProperty Name="AddrLine1" ColumnName="AddrLine1" />
@@ -2318,21 +2333,12 @@
             </EntityTypeMapping>
             <EntityTypeMapping TypeName="VolTeerModel.tblVolAddress">
               <ModificationFunctionMapping>
-                <InsertFunction FunctionName="VolTeerModel.Store.sp_Vol_Address_Insert">
-                  <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" />
-                  <ScalarProperty Name="Zip4" ParameterName="Zip4" />
-                  <ScalarProperty Name="Zip" ParameterName="Zip" />
-                  <ScalarProperty Name="St" ParameterName="St" />
-                  <ScalarProperty Name="City" ParameterName="City" />
-                  <ScalarProperty Name="AddrLine3" ParameterName="AddrLine3" />
-                  <ScalarProperty Name="AddrLine2" ParameterName="AddrLine2" />
-                  <ScalarProperty Name="AddrLine1" ParameterName="AddrLine1" />
-                  <ResultBinding Name="AddrID" ColumnName="AddrID" />
-                </InsertFunction>
                 <DeleteFunction FunctionName="VolTeerModel.Store.sp_Vol_Address_Delete">
                   <ScalarProperty Name="AddrID" ParameterName="AddrID" />
                 </DeleteFunction>
                 <UpdateFunction FunctionName="VolTeerModel.Store.sp_Vol_Address_Update">
+                  <ScalarProperty Name="GeogCol2" ParameterName="longitude" Version="Current" />
+                  <ScalarProperty Name="GeogCol2" ParameterName="latitude" Version="Current" />
                   <ScalarProperty Name="AddrID" ParameterName="AddrId" Version="Current" />
                   <ScalarProperty Name="Zip4" ParameterName="Zip4" Version="Current" />
                   <ScalarProperty Name="Zip" ParameterName="Zip" Version="Current" />
@@ -2343,6 +2349,18 @@
                   <ScalarProperty Name="AddrLine1" ParameterName="AddrLine1" Version="Current" />
                   <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" Version="Current" />
                 </UpdateFunction>
+                <InsertFunction FunctionName="VolTeerModel.Store.sp_Vol_Address_Insert">
+                  <ScalarProperty Name="GeogCol2" ParameterName="latitude" />
+                  <ScalarProperty Name="GeogCol2" ParameterName="longitude" />
+                  <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" />
+                  <ScalarProperty Name="Zip4" ParameterName="Zip4" />
+                  <ScalarProperty Name="Zip" ParameterName="Zip" />
+                  <ScalarProperty Name="St" ParameterName="St" />
+                  <ScalarProperty Name="City" ParameterName="City" />
+                  <ScalarProperty Name="AddrLine3" ParameterName="AddrLine3" />
+                  <ScalarProperty Name="AddrLine2" ParameterName="AddrLine2" />
+                  <ScalarProperty Name="AddrLine1" ParameterName="AddrLine1" />
+                </InsertFunction>
               </ModificationFunctionMapping>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -2593,9 +2611,7 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_Skill_Update" FunctionName="VolTeerModel.Store.sp_Skill_Update" />
           <FunctionImportMapping FunctionImportName="sp_Vol_Address_Delete" FunctionName="VolTeerModel.Store.sp_Vol_Address_Delete" />
-          <FunctionImportMapping FunctionImportName="sp_Vol_Address_Insert" FunctionName="VolTeerModel.Store.sp_Vol_Address_Insert" />
           <FunctionImportMapping FunctionImportName="sp_Vol_Address_MassUpdate" FunctionName="VolTeerModel.Store.sp_Vol_Address_MassUpdate" />
-          <FunctionImportMapping FunctionImportName="sp_Vol_Address_Update" FunctionName="VolTeerModel.Store.sp_Vol_Address_Update" />
           <FunctionImportMapping FunctionImportName="sp_Vol_Email_Delete" FunctionName="VolTeerModel.Store.sp_Vol_Email_Delete" />
           <FunctionImportMapping FunctionImportName="sp_Vol_Email_Insert" FunctionName="VolTeerModel.Store.sp_Vol_Email_Insert" />
           <FunctionImportMapping FunctionImportName="sp_Vol_Email_Select" FunctionName="VolTeerModel.Store.sp_Vol_Email_Select">
@@ -2632,21 +2648,6 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_Volunteer_Update" FunctionName="VolTeerModel.Store.sp_Volunteer_Update" />
-          <FunctionImportMapping FunctionImportName="sp_Vol_Address_Select" FunctionName="VolTeerModel.Store.sp_Vol_Address_Select">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="VolTeerModel.sp_Vol_Address_Select_Result">
-                <ScalarProperty Name="AddrID" ColumnName="AddrID" />
-                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
-                <ScalarProperty Name="AddrLine1" ColumnName="AddrLine1" />
-                <ScalarProperty Name="AddrLine2" ColumnName="AddrLine2" />
-                <ScalarProperty Name="AddrLine3" ColumnName="AddrLine3" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="St" ColumnName="St" />
-                <ScalarProperty Name="Zip" ColumnName="Zip" />
-                <ScalarProperty Name="Zip4" ColumnName="Zip4" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <EntitySetMapping Name="tblAvailabilities">
             <EntityTypeMapping TypeName="VolTeerModel.tblAvailability">
               <MappingFragment StoreEntitySet="tblAvailability">
@@ -2712,6 +2713,24 @@
                 <ScalarProperty Name="RecurrenceParentID" ColumnName="RecurrenceParentID" />
                 <ScalarProperty Name="Reminder" ColumnName="Reminder" />
                 <ScalarProperty Name="Annotations" ColumnName="Annotations" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Vol_Address_Insert" FunctionName="VolTeerModel.Store.sp_Vol_Address_Insert" />
+          <FunctionImportMapping FunctionImportName="sp_Vol_Address_Update" FunctionName="VolTeerModel.Store.sp_Vol_Address_Update" />
+          <FunctionImportMapping FunctionImportName="sp_Vol_Address_Select" FunctionName="VolTeerModel.Store.sp_Vol_Address_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VolTeerModel.sp_Vol_Address_Select_Result">
+                <ScalarProperty Name="AddrID" ColumnName="AddrID" />
+                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
+                <ScalarProperty Name="AddrLine1" ColumnName="AddrLine1" />
+                <ScalarProperty Name="AddrLine2" ColumnName="AddrLine2" />
+                <ScalarProperty Name="AddrLine3" ColumnName="AddrLine3" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="St" ColumnName="St" />
+                <ScalarProperty Name="Zip" ColumnName="Zip" />
+                <ScalarProperty Name="Zip4" ColumnName="Zip4" />
+                <ScalarProperty Name="GeogCol2" ColumnName="GeogCol2" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

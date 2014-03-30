@@ -33,7 +33,8 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                                 City = result.City,
                                 St = result.St,
                                 Zip = result.Zip,
-                                Zip4 = result.Zip4
+                                Zip4 = result.Zip4,
+                                GeogCol2 = result.GeogCol2
 
                             }).ToList();
                 } // Guaranteed to close the Connection
@@ -65,7 +66,8 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                                 City = result.City,
                                 St = result.St,
                                 Zip = result.Zip,
-                                Zip4 = result.Zip4
+                                Zip4 = result.Zip4,
+                                GeogCol2 = result.GeogCol2
                             }).ToList();
                 } // Guaranteed to close the Connection
             }
