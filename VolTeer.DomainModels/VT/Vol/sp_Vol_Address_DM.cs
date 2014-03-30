@@ -7,6 +7,7 @@ namespace VolTeer.DomainModels.VT.Vol
 {
     public class sp_Vol_Address_DM
     {
+        public Guid VolID { get; set; }
         public int AddrID { get; set; }
         public Nullable<bool> ActiveFlg { get; set; }
         public string AddrLine1 { get; set; }

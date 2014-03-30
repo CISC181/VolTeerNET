@@ -148,6 +148,7 @@
     </Compile>
     <Compile Include="Common\WebControls\ucAvailability.ascx.cs">
       <DependentUpon>ucAvailability.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Common\WebControls\ucAvailability.ascx.designer.cs">
       <DependentUpon>ucAvailability.ascx</DependentUpon>
@@ -238,6 +239,13 @@
     <Compile Include="SampleControls\RadEditorWebForm.aspx.designer.cs">
       <DependentUpon>RadEditorWebForm.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SampleControls\RadScheduler.aspx.cs">
+      <DependentUpon>RadScheduler.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SampleControls\RadScheduler.aspx.designer.cs">
+      <DependentUpon>RadScheduler.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SampleControls\SampleAddress.aspx.cs">
       <DependentUpon>SampleAddress.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -251,6 +259,18 @@
     </Compile>
     <Compile Include="SampleControls\SampleAddressContext.aspx.designer.cs">
       <DependentUpon>SampleAddressContext.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SampleControls\Scheduler\MyDbSchedulerProvider.cs" />
+    <Compile Include="SampleControls\Scheduler\MySchedulerInfo.cs" />
+    <Compile Include="SampleControls\Scheduler\RadSchedulerWebForm.aspx.cs">
+      <DependentUpon>RadSchedulerWebForm.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SampleControls\Scheduler\RadSchedulerWebForm.aspx.designer.cs">
+      <DependentUpon>RadSchedulerWebForm.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SampleControls\Scheduler\SchedulerWebService.cs">
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="SampleControls\SendMail.aspx.cs">
       <DependentUpon>SendMail.aspx</DependentUpon>
@@ -429,15 +449,20 @@
     <Content Include="SampleControls\InputControls.aspx" />
     <Content Include="SampleControls\ListBox.aspx" />
     <Content Include="SampleControls\RadEditorWebForm.aspx" />
+    <Content Include="SampleControls\RadScheduler.aspx" />
     <Content Include="SampleControls\SampleAddress.aspx" />
     <Content Include="SampleControls\SampleAddressContext.aspx" />
+    <Content Include="SampleControls\Scheduler\RadSchedulerWebForm.aspx" />
+    <Content Include="SampleControls\Scheduler\SchedulerWebService.asmx" />
     <Content Include="SampleControls\SendMail.aspx" />
     <Content Include="SampleControls\TestForm1.aspx" />
     <Content Include="SampleControls\TestRoles.aspx" />
     <Content Include="Skills\ManageSkills.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Volunteer\VolunterInfo.aspx" />
-    <Content Include="web.config" />
+    <Content Include="web.config">
+      <SubType>Designer</SubType>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Masters\Site.Master" />

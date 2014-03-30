@@ -867,6 +867,7 @@
         </Function>
         <Function Name="sp_Availability_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="VolID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AddrID" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_Availability_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="VolID" Type="uniqueidentifier" Mode="In" />
@@ -1369,6 +1370,7 @@
           </AssociationSet>
           <FunctionImport Name="sp_Availability_Select" ReturnType="Collection(VolTeerModel.sp_Availability_Select_Result)">
             <Parameter Name="VolID" Mode="In" Type="Guid" />
+            <Parameter Name="AddrID" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="tblContact">

@@ -873,13 +873,17 @@ namespace VolTeer.DataAccessLayer.VT
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Vol_Address_Select_Result>("sp_Vol_Address_Select", addrIDParameter);
         }
     
-        public virtual ObjectResult<sp_Availability_Select_Result> sp_Availability_Select(Nullable<System.Guid> volID)
+        public virtual ObjectResult<sp_Availability_Select_Result> sp_Availability_Select(Nullable<System.Guid> volID, Nullable<int> addrID)
         {
             var volIDParameter = volID.HasValue ?
                 new ObjectParameter("VolID", volID) :
                 new ObjectParameter("VolID", typeof(System.Guid));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Availability_Select_Result>("sp_Availability_Select", volIDParameter);
+            var addrIDParameter = addrID.HasValue ?
+                new ObjectParameter("AddrID", addrID) :
+                new ObjectParameter("AddrID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Availability_Select_Result>("sp_Availability_Select", volIDParameter, addrIDParameter);
         }
     }
 }
