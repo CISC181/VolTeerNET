@@ -65,6 +65,7 @@
     <Compile Include="AspNet\aspnet_Users_DM.cs" />
     <Compile Include="AspNet\vw_aspnet_MembershipUsers_DM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service\GoogleAddress.cs" />
     <Compile Include="VT\Other\sp_Sample_Contact_DM.cs" />
     <Compile Include="VT\Vend\sp_ProjectEvent_DM.cs" />
     <Compile Include="VT\Vend\sp_VendContact_DM.cs" />

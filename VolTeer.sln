@@ -2,6 +2,9 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PresentationLayer", "PresentationLayer", "{934E5C00-98CD-4AD0-B391-BB079F3F788C}"
+	ProjectSection(SolutionItems) = preProject
+		VolTeer.ExternalServiceLayer\Geocoder.sln = VolTeer.ExternalServiceLayer\Geocoder.sln
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Middle Tier Projects", "Middle Tier Projects", "{1298E134-3DE8-475E-9205-01FBEF2EAFF8}"
 EndProject
@@ -28,6 +31,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VolTeer.Cache", "VolTeer.Cache\VolTeer.Cache.csproj", "{04A431B2-CD03-48F3-9A2C-6C3BED2CC93F}"
 EndProject
 Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "VolTeer.SQLServer", "VolTeer.SQLServer\VolTeer.SQLServer.sqlproj", "{A64C4640-BFD4-4BE6-9C84-1A1A3A0B8B61}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VolTeer.ExternalServiceLayer", "VolTeer.ExternalServiceLayer\VolTeer.ExternalServiceLayer.csproj", "{AEEB9CDE-FA65-433D-BF5F-D3169081F11A}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -73,6 +78,10 @@ Global
 		{A64C4640-BFD4-4BE6-9C84-1A1A3A0B8B61}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{A64C4640-BFD4-4BE6-9C84-1A1A3A0B8B61}.Release|Any CPU.Build.0 = Release|Any CPU
 		{A64C4640-BFD4-4BE6-9C84-1A1A3A0B8B61}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{AEEB9CDE-FA65-433D-BF5F-D3169081F11A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEEB9CDE-FA65-433D-BF5F-D3169081F11A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEEB9CDE-FA65-433D-BF5F-D3169081F11A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEEB9CDE-FA65-433D-BF5F-D3169081F11A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -83,6 +92,7 @@ Global
 		{BF6A3D20-8004-4274-84F9-1CBFF4436C61} = {1298E134-3DE8-475E-9205-01FBEF2EAFF8}
 		{81446B41-8D0A-4E58-A275-1578C7F536F2} = {1298E134-3DE8-475E-9205-01FBEF2EAFF8}
 		{04A431B2-CD03-48F3-9A2C-6C3BED2CC93F} = {1298E134-3DE8-475E-9205-01FBEF2EAFF8}
+		{AEEB9CDE-FA65-433D-BF5F-D3169081F11A} = {1298E134-3DE8-475E-9205-01FBEF2EAFF8}
 		{B598136C-50D4-4766-B3E1-B36EBFE1345B} = {1CD0E87D-9796-4463-A6AC-F0B20703B3EF}
 		{03F0AC9B-8887-4C7D-95DB-BE38B9B272FC} = {E94FC6C1-EC80-420D-A6C9-E39940C11537}
 		{DEB60F79-CE10-49CC-B9AA-64E9751807CA} = {E94FC6C1-EC80-420D-A6C9-E39940C11537}
