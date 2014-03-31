@@ -2,17 +2,17 @@
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 
 <telerik:RadTreeList ID="rTLSkills" runat="server" OnNeedDataSource="rTLSkills_NeedDataSource"
-    ParentDataKeyNames="MstrSkillID" DataKeyNames="SkillID" AllowPaging="true" PageSize="5"
-    AutoGenerateColumns="false" AllowSorting="true">
+    ParentDataKeyNames="MstrSkillID" DataKeyNames="SkillID" Width="566px" 
+    AutoGenerateColumns="False" AllowSorting="True">
     <Columns>
 
-        <telerik:TreeListTemplateColumn>
+        <telerik:TreeListTemplateColumn HeaderText="Has Skill">
             <ItemTemplate>
-                <asp:CheckBox runat="server" ID="chkHasSkill" AutoPostBack="true" Width="30px" />
+                <asp:CheckBox runat="server" ID="chkHasSkill" AutoPostBack="true" Width="200px" />
             </ItemTemplate>
         </telerik:TreeListTemplateColumn>
 
-        <telerik:TreeListBoundColumn DataField="SkillID" UniqueName="SkillID" HeaderText="Skill ID">
+        <telerik:TreeListBoundColumn DataField="SkillID" UniqueName="SkillID" HeaderText="Skill ID" Visible="false" >
         </telerik:TreeListBoundColumn>
 
         <telerik:TreeListTemplateColumn DataField="SkillName" UniqueName="SkillName"
@@ -20,11 +20,11 @@
             <ItemTemplate>
                 <%# Eval("SkillName")%>
             </ItemTemplate>
-            <HeaderStyle Width="300px"></HeaderStyle>
+            <HeaderStyle Width="400px"></HeaderStyle>
         </telerik:TreeListTemplateColumn>
 
 
-        <telerik:TreeListBoundColumn DataField="MstrSkillID" UniqueName="MstrSkillID" HeaderText="Master Category ID">
+        <telerik:TreeListBoundColumn DataField="MstrSkillID" UniqueName="MstrSkillID" HeaderText="Master Category ID" Visible="false">
         </telerik:TreeListBoundColumn>
 
     </Columns>

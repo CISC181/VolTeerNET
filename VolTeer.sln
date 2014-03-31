@@ -2,9 +2,6 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2012
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "PresentationLayer", "PresentationLayer", "{934E5C00-98CD-4AD0-B391-BB079F3F788C}"
-	ProjectSection(SolutionItems) = preProject
-		VolTeer.ExternalServiceLayer\Geocoder.sln = VolTeer.ExternalServiceLayer\Geocoder.sln
-	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Middle Tier Projects", "Middle Tier Projects", "{1298E134-3DE8-475E-9205-01FBEF2EAFF8}"
 EndProject
