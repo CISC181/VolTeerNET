@@ -61,6 +61,14 @@ namespace VolTeer.Common.WebControls
 
             if (e.CommandName == "PerformInsert")
             {
+
+                Hashtable insertValues = new Hashtable();
+                TreeListEditableItem editedItem = e.Item as TreeListEditableItem;
+                e.Item.OwnerTreeList.ExtractValuesFromItem(insertValues, editedItem, true);
+
+
+
+
                 if (e.Item is TreeListDataInsertItem )
                 {
                     TreeListDataInsertItem insertForm = e.Item as TreeListDataInsertItem;

@@ -181,6 +181,13 @@
     <Compile Include="Common\WebControls\ucSkill.ascx.designer.cs">
       <DependentUpon>ucSkill.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Common\WebControls\ucSkillSearch.ascx.cs">
+      <DependentUpon>ucSkillSearch.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Common\WebControls\ucSkillSearch.ascx.designer.cs">
+      <DependentUpon>ucSkillSearch.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Common\WebControls\ucVolBasicInfo.ascx.cs">
       <DependentUpon>ucVolBasicInfo.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -321,6 +328,13 @@
     <Compile Include="Skills\ManageSkills.aspx.designer.cs">
       <DependentUpon>ManageSkills.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Skills\SkillSearch.aspx.cs">
+      <DependentUpon>SkillSearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Skills\SkillSearch.aspx.designer.cs">
+      <DependentUpon>SkillSearch.aspx</DependentUpon>
+    </Compile>
     <Compile Include="ViewSwitcher.ascx.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -386,6 +400,7 @@
     <Content Include="Common\WebControls\ucEmail.ascx" />
     <Content Include="Common\WebControls\ucPhone.ascx" />
     <Content Include="Common\WebControls\ucSkill.ascx" />
+    <Content Include="Common\WebControls\ucSkillSearch.ascx" />
     <Content Include="Common\WebControls\ucVolBasicInfo.ascx" />
     <Content Include="Content\button\ButtonSprites.png" />
     <Content Include="Content\images\Green.png" />
@@ -477,6 +492,7 @@
     <Content Include="SampleControls\TestRoles.aspx" />
     <Content Include="Skills\EditSkills.aspx" />
     <Content Include="Skills\ManageSkills.aspx" />
+    <Content Include="Skills\SkillSearch.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Volunteer\VolunterInfo.aspx" />
     <Content Include="web.config">

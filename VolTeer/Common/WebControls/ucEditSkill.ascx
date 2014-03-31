@@ -6,15 +6,13 @@
     <telerik:RadTreeList ID="rTLSkills"
         runat="server"
         OnItemCommand="rTLSkills_ItemCommand" OnUpdateCommand="rTLSkills_UpdateCommand"
-          
         OnNeedDataSource="rTLSkills_NeedDataSource"
         ParentDataKeyNames="MstrSkillID"
         DataKeyNames="SkillID"
         Width="566px"
-        AutoGenerateColumns="False" EditMode="EditForms"
+        AutoGenerateColumns="False" EditMode="InPlace"
         AllowSorting="True">
         <EditFormSettings>
-             
         </EditFormSettings>
         <Columns>
 
@@ -33,11 +31,12 @@
             </telerik:TreeListBoundColumn>
 
 
-<%--            <telerik:TreeListTemplateColumn UniqueName="SkillNamex" HeaderText="Skill Name">
+            <%--            <telerik:TreeListTemplateColumn UniqueName="SkillNamex" HeaderText="Skill Name">
                 <ItemTemplate>
                     <%# Eval("SkillName")%>
                 </ItemTemplate>
                 <HeaderStyle Width="400px"></HeaderStyle>
+
 
                 <EditItemTemplate>
                     <telerik:RadTextBox ID="rTBSkillName" Text='<%# Eval("SkillName")%>' runat="server"></telerik:RadTextBox>
@@ -46,13 +45,11 @@
                     <telerik:RadTextBox ID="rTBSkillNameIns"  runat="server"></telerik:RadTextBox>
                 </InsertItemTemplate>
             </telerik:TreeListTemplateColumn>--%>
-
-
         </Columns>
-<%--        <ClientSettings AllowItemsDragDrop="true">
+        <ClientSettings AllowItemsDragDrop="true">
             <Selecting AllowItemSelection="true" />
             <ClientEvents OnItemDropping="itemDropping" OnItemDragging="itemDragging" OnTreeListCreated="function(sender) { rTLSkills = sender; }" />
-        </ClientSettings>--%>
+        </ClientSettings>
     </telerik:RadTreeList>
 </telerik:RadAjaxPanel>
 <telerik:RadAjaxLoadingPanel ID="RadAjaxLoadingPanel1" runat="server"></telerik:RadAjaxLoadingPanel>
