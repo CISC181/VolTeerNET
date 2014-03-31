@@ -148,6 +148,7 @@
     </Compile>
     <Compile Include="Common\WebControls\ucAvailability.ascx.cs">
       <DependentUpon>ucAvailability.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Common\WebControls\ucAvailability.ascx.designer.cs">
       <DependentUpon>ucAvailability.ascx</DependentUpon>
@@ -500,7 +501,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
+      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
