@@ -4,15 +4,13 @@ using System.Xml;
 using System.Xml.Linq;
 using VolTeer.DomainModels;
 using VolTeer.DomainModels.Service;
+using System.Configuration;
+using System.Collections.Specialized;
 
 namespace VolTeer.ExternalServiceLayer
 {
     public class GoogleGeocoder : IGeocoder
     {
-        const string API_REVERSE_GEOCODE = "maps.googleapis.com/maps/api/geocode/xml?latlng={0},{1}&sensor=false";
-        const string API_GEOCODE = "maps.googleapis.com/maps/api/geocode/xml?address={0}&sensor=false";
-        const string API_DIRECTIONS = "maps.googleapis.com/maps/api/directions/xml?origin={0}&destination={1}&mode={2}&sensor=false";
-
         /// <summary>
         /// Gets a value indicating whether to send API requests via HTTPS.
         /// </summary>
@@ -21,25 +19,14 @@ namespace VolTeer.ExternalServiceLayer
         /// </value>
         public bool IsSSL { get; private set; }
 
-
         private string Protocol
         {
             get { return IsSSL ? "https://" : "http://"; }
         }
 
-        protected string ApiReverseGeoCode
-        {
-            get { return Protocol + API_REVERSE_GEOCODE; }
-        }
-
         protected string ApiGeoCode
         {
-            get { return Protocol + API_GEOCODE; }
-        }
-
-        protected string ApiDirections
-        {
-            get { return Protocol + API_DIRECTIONS; }
+            get { return Protocol + ConfigurationManager.AppSettings["API_GEOCODE"]; }
         }
 
         /// <summary>
@@ -59,13 +46,15 @@ namespace VolTeer.ExternalServiceLayer
         public string GetLatLongFromAddress(GoogleAddress address)
         {
             // @TODO: get our own Google API key?
-            XDocument doc = XDocument.Load(String.Format(ApiGeoCode, address.getFormattedAddress()));
-           
-            var result = doc.Descendants("result").Descendants("geometry").Descendants("location").First();
+            XDocument doc = XDocument.Load(String.Format(ApiGeoCode, address.FormattedAddress));
+
+            var result = doc.Descendants("result").Descendants("geometry").Descendants("location").FirstOrDefault();
+            string lat = result.Descendants("lat").FirstOrDefault().Value;
+            string lon = result.Descendants("lng").FirstOrDefault().Value;
             return result != null
                        ? "<coordinate>\n" +
-                            "<lat>" + (result.Descendants("lat").First().Value) + "</lat>\n" +
-                            "<lon>" + (result.Descendants("lng").First().Value) + "</lon>\n" +
+                            "<lat>" + (lat != null ? lat : "unknown") + "</lat>\n" +
+                            "<lon>" + (lon != null ? lon : "unknown") + "</lon>\n" +
                          "</coordinate>"
                        : "<coordinate>\n" +
                             "<lat>unknown</lat>\n" +
