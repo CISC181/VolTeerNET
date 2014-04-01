@@ -137,6 +137,7 @@
     </Compile>
     <Compile Include="App_Code\cEnums.cs" />
     <Compile Include="App_Code\cMail.cs" />
+    <Compile Include="App_Code\cValidations.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Common\WebControls\ucAddress.ascx.cs">
@@ -232,6 +233,13 @@
     <Compile Include="SampleControls\DataManipulation.aspx.designer.cs">
       <DependentUpon>DataManipulation.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SampleControls\GeoCode.aspx.cs">
+      <DependentUpon>GeoCode.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SampleControls\GeoCode.aspx.designer.cs">
+      <DependentUpon>GeoCode.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SampleControls\InputControls.aspx.cs">
       <DependentUpon>InputControls.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -273,6 +281,13 @@
     </Compile>
     <Compile Include="SampleControls\SampleAddressContext.aspx.designer.cs">
       <DependentUpon>SampleAddressContext.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SampleControls\SampleSimpleControls.aspx.cs">
+      <DependentUpon>SampleSimpleControls.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SampleControls\SampleSimpleControls.aspx.designer.cs">
+      <DependentUpon>SampleSimpleControls.aspx</DependentUpon>
     </Compile>
     <Compile Include="SampleControls\Scheduler\MyDbSchedulerProvider.cs" />
     <Compile Include="SampleControls\Scheduler\MySchedulerInfo.cs" />
@@ -479,12 +494,14 @@
     <Content Include="Global.asax" />
     <Content Include="Org\ManageOrg.aspx" />
     <Content Include="SampleControls\DataManipulation.aspx" />
+    <Content Include="SampleControls\GeoCode.aspx" />
     <Content Include="SampleControls\InputControls.aspx" />
     <Content Include="SampleControls\ListBox.aspx" />
     <Content Include="SampleControls\RadEditorWebForm.aspx" />
     <Content Include="SampleControls\RadScheduler.aspx" />
     <Content Include="SampleControls\SampleAddress.aspx" />
     <Content Include="SampleControls\SampleAddressContext.aspx" />
+    <Content Include="SampleControls\SampleSimpleControls.aspx" />
     <Content Include="SampleControls\Scheduler\RadSchedulerWebForm.aspx" />
     <Content Include="SampleControls\Scheduler\SchedulerWebService.asmx" />
     <Content Include="SampleControls\SendMail.aspx" />
@@ -560,7 +577,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
+      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

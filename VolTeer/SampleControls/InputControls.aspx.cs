@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using VolTeer.App_Code;
 
 namespace VolTeer.SampleControls
 {
@@ -11,6 +12,7 @@ namespace VolTeer.SampleControls
     {
         protected void Page_Load(object sender, EventArgs e)
         {
+            cValidations.SetValidations(this, this);
 
         }
 
@@ -19,11 +21,11 @@ namespace VolTeer.SampleControls
             MaskedTextBoxRequiredFieldValidator.EnableClientScript = CheckBox1.Checked;
             DateInputRangeValidator.EnableClientScript = CheckBox1.Checked;
             PickerRequiredFieldValidator.EnableClientScript = CheckBox1.Checked;
-            TextBoxRequiredFieldValidator.EnableClientScript = CheckBox1.Checked;
+            //TextBoxRequiredFieldValidator.EnableClientScript = CheckBox1.Checked;
             NumercTextBoxRequiredFieldValidator.EnableClientScript = CheckBox1.Checked;
             MaskedTextBoxRegularExpressionValidator.EnableClientScript = CheckBox1.Checked;
             NumericTextBoxRangeValidator.EnableClientScript = CheckBox1.Checked;
-            Requiredfieldvalidator1.EnableClientScript = CheckBox1.Checked;
+            //Requiredfieldvalidator1.EnableClientScript = CheckBox1.Checked;
             emailValidator.EnableClientScript = CheckBox1.Checked;
         }
 

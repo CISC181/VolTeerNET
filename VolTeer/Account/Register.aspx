@@ -280,5 +280,4 @@
         </WizardSteps>
     </asp:CreateUserWizard>
 
-    </asp:Label>
 </asp:Content>

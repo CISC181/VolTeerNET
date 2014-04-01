@@ -10,6 +10,7 @@
 </head>
 <body>
     <form id="form1" runat="server">
+        <asp:PlaceHolder ID="holder" runat="server" />
         <div>
             <telerik:RadScriptManager runat="server" ID="RadScriptManager1" />
             <telerik:RadSkinManager ID="QsfSkinManager" runat="server" ShowChooser="true" />
@@ -57,9 +58,9 @@
                                 <telerik:RadTextBox ID="RadTextBox1" runat="server" ValidationGroup="Group1">
                                 </telerik:RadTextBox>
                                 <br />
-                                <asp:RequiredFieldValidator ID="TextBoxRequiredFieldValidator" runat="server" Display="Dynamic"
+<%--                                <asp:RequiredFieldValidator ID="TextBoxRequiredFieldValidator" runat="server" Display="Dynamic"
                                     ValidationGroup="Group1" ControlToValidate="RadTextBox1" ErrorMessage="Please, supply a name!"
-                                    CssClass="Validator"></asp:RequiredFieldValidator>
+                                    CssClass="Validator"></asp:RequiredFieldValidator>--%>
                             </td>
                             <td>
                                 <asp:Label ID="Label6" runat="server" AssociatedControlID="EmailLogin" Text="Email:"></asp:Label>
@@ -128,9 +129,9 @@
                                 </asp:RegularExpressionValidator>
 
 
-                                <asp:RequiredFieldValidator ID="Requiredfieldvalidator1" runat="server" Display="Dynamic"
+<%--                                <asp:RequiredFieldValidator ID="Requiredfieldvalidator1" runat="server" Display="Dynamic"
                                     ValidationGroup="Group1" CssClass="Validator" ControlToValidate="Radtextbox2"
-                                    ErrorMessage="Please, enter an e-mail!"></asp:RequiredFieldValidator>
+                                    ErrorMessage="Please, enter an e-mail!"></asp:RequiredFieldValidator>--%>
                             </td>
                         </tr>
                         <tr class="FormContainer">
