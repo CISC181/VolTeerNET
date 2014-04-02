@@ -27,7 +27,9 @@ namespace VolTeer.DataAccessLayer.Describe
                             is_nullable = result.is_nullable,
                             numeric_precision = result.numeric_precision,
                             numeric_scale = result.numeric_scale,
-                            ordinal_position = result.ordinal_position
+                            ordinal_position = result.ordinal_position,
+                            container_name = result.container_name,
+                            control_name = result.control_name
                         }).ToList();
             } // Guaranteed to close the Connection
 

@@ -4,8 +4,13 @@ using System.Linq;
 using System.Web;
 using System.Web.Optimization;
 using System.Web.Routing;
-using System.Web.Security;
-using VolTeer;
+//using System.Web.Security;
+//using VolTeer;
+//using System.ComponentModel;
+//using System.Web.SessionState;
+using VolTeer.BusinessLogicLayer.Describe;
+using VolTeer.DomainModels.DescribeDB;
+
 
 namespace VolTeer
 {
@@ -18,6 +23,19 @@ namespace VolTeer
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             //AuthConfig.RegisterOpenAuth();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
+
+            DescribeBLL BLL = new DescribeBLL();
+
+            List<TableColumnDM> ListTableColumns = new List<TableColumnDM>();
+            List<CheckConstraintsDM> ListCheckConstraints = new List<CheckConstraintsDM>();
+            
+            ListTableColumns = BLL.ListTableColumns();
+            ListCheckConstraints = BLL.ListCheckConstraints();
+
+            Application["ListTableColumns"] = ListTableColumns;
+            Application["ListCheckConstraints"] = ListCheckConstraints;
+
+
         }
 
         protected void Session_Start(object sender, EventArgs e)

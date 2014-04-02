@@ -12,7 +12,8 @@ namespace VolTeer.SampleControls
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            cValidations.SetValidations(this, this);
+
+            //cValidations.SetValidations(this, this);
 
         }
 

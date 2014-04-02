@@ -65,6 +65,8 @@
           <Property Type="Byte" Name="numeric_precision" Nullable="true" />
           <Property Type="Int32" Name="numeric_scale" Nullable="true" />
           <Property Type="Int16" Name="datetime_precision" Nullable="true" />
+          <Property Type="String" Name="container_name" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="control_name" Nullable="true" MaxLength="255" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -113,6 +115,8 @@
                 <ScalarProperty Name="numeric_precision" ColumnName="numeric_precision" />
                 <ScalarProperty Name="numeric_scale" ColumnName="numeric_scale" />
                 <ScalarProperty Name="datetime_precision" ColumnName="datetime_precision" />
+                <ScalarProperty Name="container_name" ColumnName="container_name" />
+                <ScalarProperty Name="control_name" ColumnName="control_name" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

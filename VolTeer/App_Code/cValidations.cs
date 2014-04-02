@@ -6,16 +6,34 @@ using System.Web.UI.WebControls;
 using System.Web.UI;
 using System.Web.UI.HtmlControls;
 using Telerik.Web.UI;
+using VolTeer.DomainModels.DescribeDB;
+
+using System.Collections.Generic;
+using System.Web.SessionState;
+using VolTeer.DomainModels.DescribeDB;
+
 
 namespace VolTeer.App_Code
 {
 
     public class cValidations
     {
-        private static int iPlaceHolder = 0;
-        private static PlaceHolder plc;
+        HashSet<TableColumnDM> ListTableColumns;
 
-        public static void SetValidations(object obj, Control ctrl)
+        private int iPlaceHolder = 0;
+        private PlaceHolder plc;
+
+        public cValidations()
+        {
+            this.TableColumns = (List<TableColumnDM>)HttpContext.Current.Application["ListTableColumns"];
+            this.CheckConstraints = (List<CheckConstraintsDM>)HttpContext.Current.Application["ListCheckConstraints"];
+        }
+
+        public virtual List<TableColumnDM> TableColumns { get; set; }
+        public virtual List<CheckConstraintsDM> CheckConstraints { get; set; }
+
+
+        public void SetValidations(object obj, Control ctrl)
         {
             if (ctrl == null) return;
             Type objType = ctrl.GetType();
@@ -30,6 +48,7 @@ namespace VolTeer.App_Code
             {
                 ((TextBox)ctrl).Text = "test";
                 ((TextBox)ctrl).MaxLength = 10;
+
             }
             else if (ctrl is LiteralControl)
             {
@@ -46,38 +65,24 @@ namespace VolTeer.App_Code
 
             else if (ctrl is RadTextBox)
             {
-                ((RadTextBox)ctrl).Text = "testrad";
-                ((RadTextBox)ctrl).MaxLength = 4;
+                string ctrlID = ((RadTextBox)ctrl).ID;
+                string ctrlParentName = ((RadTextBox)ctrl).Parent.ID.ToString();
 
-                RequiredFieldValidator nameValidator = new RequiredFieldValidator();
-
-                nameValidator.ControlToValidate = (((RadTextBox)ctrl).ID.ToString());
-                nameValidator.ErrorMessage = "This field is required";
-                nameValidator.Display = ValidatorDisplay.Static;
-                nameValidator.Text = " ";
-                //nameValidator.ValidationGroup = "Group1";
-                //nameValidator.CssClass = "Validator";
-
-                //Control ContainerControl = ((RadTextBox)ctrl).NamingContainer;
-                //ContainerControl.Controls.Add(nameValidator);
-
-                //((Page)obj).Validators.Add(nameValidator);
-
-                //((HtmlForm)obj).Controls.Add(nameValidator);
-                //((PlaceHolder)obj).Controls.Add(nameValidator);
-
-
-                plc.Controls.Add(nameValidator);
-                //if (((HtmlForm)obj).Controls.IndexOf(ctrl) >= 0)
-                //{
-                //    ((HtmlForm)obj).Controls.AddAt(((HtmlForm)obj).Controls.IndexOf(ctrl), nameValidator);
-                //}
+                TableColumnDM TableColumnRecord = FilterTableColumn(this.TableColumns,ctrlParentName, ctrlID);
+                if (TableColumnRecord != null)
+                {
+                    ((RadTextBox)ctrl).MaxLength = Convert.ToInt32(TableColumnRecord.character_maximum_length);
+                    if (((TableColumnRecord.is_nullable).ToUpper()) == "NO")
+                    {
+                        RequiredFieldValidator nameValidator = new RequiredFieldValidator();
+                        nameValidator.ControlToValidate = (((RadTextBox)ctrl).ID.ToString());
+                        nameValidator.ErrorMessage = "This field is required";
+                        nameValidator.Display = ValidatorDisplay.Dynamic;
+                        nameValidator.Text = " ";
+                        plc.Controls.Add(nameValidator);
+                    }
+                }
             }
-            else if (ctrl is Label)
-            {
-                //   ((Label)ctrl).Text = "textlabel";
-            }
-
 
             if (ctrl.HasControls())
             {
@@ -93,6 +98,14 @@ namespace VolTeer.App_Code
 
             }
 
+        }
+
+        private TableColumnDM FilterTableColumn(List<TableColumnDM> tableColumns, string ContainerName, string ControlName)
+        {
+
+            TableColumnDM filtereditem = tableColumns.Where(j => j.control_name == ControlName).Where(j => j.container_name == ContainerName).SingleOrDefault();
+            
+            return filtereditem;
         }
 
         private void ResetAllControlsBackColor(Control control)

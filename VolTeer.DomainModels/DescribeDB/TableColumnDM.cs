@@ -19,5 +19,7 @@ namespace VolTeer.DomainModels.DescribeDB
         public Nullable<byte> numeric_precision { get; set; }
         public Nullable<int> numeric_scale { get; set; }
         public Nullable<short> datetime_precision { get; set; }
+        public string container_name { get; set; }
+        public string control_name { get; set; }
     }
 }

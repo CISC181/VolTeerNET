@@ -347,7 +347,6 @@
       <DependentUpon>AspNet.edmx</DependentUpon>
       <LastGenOutput>AspNet.cs</LastGenOutput>
     </None>
-    <None Include="ClassDiagram1.cd" />
     <EntityDeploy Include="Describe\DescribeDB.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>DescribeDB.Designer.cs</LastGenOutput>

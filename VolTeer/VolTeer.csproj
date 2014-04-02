@@ -545,10 +545,6 @@
       <Project>{7919ce03-6597-4a4b-82e4-d73b7511ab7f}</Project>
       <Name>VolTeer.DomainModels</Name>
     </ProjectReference>
-    <ProjectReference Include="..\VolTeer.Session\VolTeer.Session.csproj">
-      <Project>{a53f2a5c-b7c6-4a1d-9b1c-ca646be70d88}</Project>
-      <Name>VolTeer.Session</Name>
-    </ProjectReference>
   </ItemGroup>
   <ItemGroup />
   <PropertyGroup>
@@ -581,7 +577,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
+      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
