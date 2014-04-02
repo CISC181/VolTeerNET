@@ -169,6 +169,31 @@
     <Compile Include="AspNet\vw_aspnet_WebPartState_User.cs">
       <DependentUpon>AspNet.tt</DependentUpon>
     </Compile>
+    <Compile Include="Describe\DescribeDAL.cs" />
+    <Compile Include="Describe\DescribeDB.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DescribeDB.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Describe\DescribeDB.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DescribeDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Describe\DescribeDB.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DescribeDB.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Describe\Describe_CheckConstraints_Result.cs">
+      <DependentUpon>DescribeDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Describe\Describe_TableColumns_Result.cs">
+      <DependentUpon>DescribeDB.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Describe\RegisteredControl.cs">
+      <DependentUpon>DescribeDB.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VT\sp_Availability_Select_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
@@ -323,6 +348,23 @@
       <LastGenOutput>AspNet.cs</LastGenOutput>
     </None>
     <None Include="ClassDiagram1.cd" />
+    <EntityDeploy Include="Describe\DescribeDB.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>DescribeDB.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <None Include="Describe\DescribeDB.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DescribeDB.edmx</DependentUpon>
+      <LastGenOutput>DescribeDB.Context.cs</LastGenOutput>
+    </None>
+    <None Include="Describe\DescribeDB.edmx.diagram">
+      <DependentUpon>DescribeDB.edmx</DependentUpon>
+    </None>
+    <None Include="Describe\DescribeDB.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>DescribeDB.edmx</DependentUpon>
+      <LastGenOutput>DescribeDB.cs</LastGenOutput>
+    </None>
     <None Include="packages.config" />
     <EntityDeploy Include="VT\VolTeer.edmx">
       <Generator>EntityModelCodeGenerator</Generator>

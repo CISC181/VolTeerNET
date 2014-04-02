@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="DescribeModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="DescribeModelStoreContainer">
+          <EntitySet Name="RegisteredControls" EntityType="DescribeModel.Store.RegisteredControls" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="RegisteredControls">
+          <Key>
+            <PropertyRef Name="RegisterControlID" />
+          </Key>
+          <Property Name="RegisterControlID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="table_catalog" Type="nvarchar" MaxLength="128" />
+          <Property Name="table_schema" Type="nvarchar" MaxLength="128" />
+          <Property Name="table_name" Type="nvarchar" MaxLength="128" />
+          <Property Name="column_name" Type="nvarchar" MaxLength="255" />
+          <Property Name="container_name" Type="nvarchar" MaxLength="255" />
+          <Property Name="control_name" Type="nvarchar" MaxLength="255" />
+        </EntityType>
+        <Function Name="Describe_CheckConstraints" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Describe_TableColumns" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="DescribeModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="DescribeEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="RegisteredControls" EntityType="DescribeModel.RegisteredControl" />
+          <FunctionImport Name="Describe_CheckConstraints" ReturnType="Collection(DescribeModel.Describe_CheckConstraints_Result)" />
+          <FunctionImport Name="Describe_TableColumns" ReturnType="Collection(DescribeModel.Describe_TableColumns_Result)" />
+        </EntityContainer>
+        <EntityType Name="RegisteredControl">
+          <Key>
+            <PropertyRef Name="RegisterControlID" />
+          </Key>
+          <Property Name="RegisterControlID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="table_catalog" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="table_schema" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="table_name" Type="String" MaxLength="128" Unicode="true" FixedLength="false" />
+          <Property Name="column_name" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="container_name" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+          <Property Name="control_name" Type="String" MaxLength="255" Unicode="true" FixedLength="false" />
+        </EntityType>
+        <ComplexType Name="Describe_CheckConstraints_Result">
+          <Property Type="String" Name="Table_Catalog" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Table_Schema" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="table_name" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="column_name" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="constraint_catalog" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Constraint_name" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="check_clause" Nullable="true" MaxLength="4000" />
+        </ComplexType>
+        <ComplexType Name="Describe_TableColumns_Result">
+          <Property Type="String" Name="table_catalog" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="table_schema" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="table_name" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="column_name" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="ordinal_position" Nullable="true" />
+          <Property Type="String" Name="Column_Default" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="is_nullable" Nullable="true" MaxLength="3" />
+          <Property Type="String" Name="Data_type" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="character_maximum_length" Nullable="true" />
+          <Property Type="Byte" Name="numeric_precision" Nullable="true" />
+          <Property Type="Int32" Name="numeric_scale" Nullable="true" />
+          <Property Type="Int16" Name="datetime_precision" Nullable="true" />
+        </ComplexType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="DescribeModelStoreContainer" CdmEntityContainer="DescribeEntities">
+          <EntitySetMapping Name="RegisteredControls">
+            <EntityTypeMapping TypeName="DescribeModel.RegisteredControl">
+              <MappingFragment StoreEntitySet="RegisteredControls">
+                <ScalarProperty Name="RegisterControlID" ColumnName="RegisterControlID" />
+                <ScalarProperty Name="table_catalog" ColumnName="table_catalog" />
+                <ScalarProperty Name="table_schema" ColumnName="table_schema" />
+                <ScalarProperty Name="table_name" ColumnName="table_name" />
+                <ScalarProperty Name="column_name" ColumnName="column_name" />
+                <ScalarProperty Name="container_name" ColumnName="container_name" />
+                <ScalarProperty Name="control_name" ColumnName="control_name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="Describe_CheckConstraints" FunctionName="DescribeModel.Store.Describe_CheckConstraints">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DescribeModel.Describe_CheckConstraints_Result">
+                <ScalarProperty Name="Table_Catalog" ColumnName="Table_Catalog" />
+                <ScalarProperty Name="Table_Schema" ColumnName="Table_Schema" />
+                <ScalarProperty Name="table_name" ColumnName="table_name" />
+                <ScalarProperty Name="column_name" ColumnName="column_name" />
+                <ScalarProperty Name="constraint_catalog" ColumnName="constraint_catalog" />
+                <ScalarProperty Name="Constraint_name" ColumnName="Constraint_name" />
+                <ScalarProperty Name="check_clause" ColumnName="check_clause" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Describe_TableColumns" FunctionName="DescribeModel.Store.Describe_TableColumns">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="DescribeModel.Describe_TableColumns_Result">
+                <ScalarProperty Name="table_catalog" ColumnName="table_catalog" />
+                <ScalarProperty Name="table_schema" ColumnName="table_schema" />
+                <ScalarProperty Name="table_name" ColumnName="table_name" />
+                <ScalarProperty Name="column_name" ColumnName="column_name" />
+                <ScalarProperty Name="ordinal_position" ColumnName="ordinal_position" />
+                <ScalarProperty Name="Column_Default" ColumnName="Column_Default" />
+                <ScalarProperty Name="is_nullable" ColumnName="is_nullable" />
+                <ScalarProperty Name="Data_type" ColumnName="Data_type" />
+                <ScalarProperty Name="character_maximum_length" ColumnName="character_maximum_length" />
+                <ScalarProperty Name="numeric_precision" ColumnName="numeric_precision" />
+                <ScalarProperty Name="numeric_scale" ColumnName="numeric_scale" />
+                <ScalarProperty Name="datetime_precision" ColumnName="datetime_precision" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
