@@ -8,19 +8,20 @@
 </head>
 <body>
     <form id="form1" runat="server">
+
         <div>
             <telerik:RadScriptManager runat="server" ID="RadScriptManager1" />
 
+            
             <telerik:RadTextBox ID="RadTextBox1" runat="server"></telerik:RadTextBox>
+            <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
             <br />
             <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
-            <asp:RequiredFieldValidator ID="RequiredFieldValidator1"
-                ControlToValidate="TextBox1"
-                ErrorMessage="Name"
-                Text="*"
-                runat="server" />
+
             <asp:Panel runat="server">
                 <telerik:RadTextBox ID="RadTextBox2" runat="server"></telerik:RadTextBox>
+                <asp:PlaceHolder ID="PlaceHolder2" runat="server"></asp:PlaceHolder>
+
                 <br />
 
             </asp:Panel>
@@ -32,7 +33,7 @@
                 runat="server" />
 
         </div>
-        <asp:Button ID="Button1" runat="server"  Text="Button" />
+        <asp:Button ID="Button1" runat="server" Text="Button" />
     </form>
 </body>
 </html>
