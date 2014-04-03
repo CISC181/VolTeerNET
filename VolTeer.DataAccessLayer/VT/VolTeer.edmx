@@ -956,8 +956,7 @@
           <Parameter Name="St" Type="char" Mode="In" />
           <Parameter Name="Zip" Type="int" Mode="In" />
           <Parameter Name="Zip4" Type="int" Mode="In" />
-          <Parameter Name="longitude" Type="nvarchar" Mode="In" />
-          <Parameter Name="latitude" Type="nvarchar" Mode="In" />
+          <Parameter Name="PointLongLat" Type="nvarchar" Mode="In" />
           <Parameter Name="ActiveFlg" Type="bit" Mode="In" />
         </Function>
         <Function Name="sp_Vol_Address_MassUpdate" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
@@ -976,8 +975,7 @@
           <Parameter Name="St" Type="char" Mode="In" />
           <Parameter Name="Zip" Type="int" Mode="In" />
           <Parameter Name="Zip4" Type="int" Mode="In" />
-          <Parameter Name="latitude" Type="nvarchar" Mode="In" />
-          <Parameter Name="longitude" Type="nvarchar" Mode="In" />
+          <Parameter Name="PointLongLat" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="sp_Vol_Email_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="EmailID" Type="int" Mode="In" />
@@ -1364,8 +1362,7 @@
             <Parameter Name="St" Mode="In" Type="String" />
             <Parameter Name="Zip" Mode="In" Type="Int32" />
             <Parameter Name="Zip4" Mode="In" Type="Int32" />
-            <Parameter Name="longitude" Mode="In" Type="String" />
-            <Parameter Name="latitude" Mode="In" Type="String" />
+            <Parameter Name="PointLongLat" Mode="In" Type="String" />
             <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="sp_Vol_Address_Update">
@@ -1378,11 +1375,10 @@
             <Parameter Name="St" Mode="In" Type="String" />
             <Parameter Name="Zip" Mode="In" Type="Int32" />
             <Parameter Name="Zip4" Mode="In" Type="Int32" />
-            <Parameter Name="latitude" Mode="In" Type="String" />
-            <Parameter Name="longitude" Mode="In" Type="String" />
+            <Parameter Name="PointLongLat" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_Vol_Address_Select" ReturnType="Collection(VolTeerModel.sp_Vol_Address_Select_Result)">
-            <Parameter Name="AddrID" Mode="In" Type="Int32" />
+          <Parameter Name="AddrID" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="tblContact">
@@ -2337,8 +2333,6 @@
                   <ScalarProperty Name="AddrID" ParameterName="AddrID" />
                 </DeleteFunction>
                 <UpdateFunction FunctionName="VolTeerModel.Store.sp_Vol_Address_Update">
-                  <ScalarProperty Name="GeogCol2" ParameterName="longitude" Version="Current" />
-                  <ScalarProperty Name="GeogCol2" ParameterName="latitude" Version="Current" />
                   <ScalarProperty Name="AddrID" ParameterName="AddrId" Version="Current" />
                   <ScalarProperty Name="Zip4" ParameterName="Zip4" Version="Current" />
                   <ScalarProperty Name="Zip" ParameterName="Zip" Version="Current" />
@@ -2350,8 +2344,6 @@
                   <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" Version="Current" />
                 </UpdateFunction>
                 <InsertFunction FunctionName="VolTeerModel.Store.sp_Vol_Address_Insert">
-                  <ScalarProperty Name="GeogCol2" ParameterName="latitude" />
-                  <ScalarProperty Name="GeogCol2" ParameterName="longitude" />
                   <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" />
                   <ScalarProperty Name="Zip4" ParameterName="Zip4" />
                   <ScalarProperty Name="Zip" ParameterName="Zip" />
