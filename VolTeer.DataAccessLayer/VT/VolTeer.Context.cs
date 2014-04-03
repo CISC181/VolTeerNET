@@ -799,7 +799,7 @@ namespace VolTeer.DataAccessLayer.VT
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Availability_Select_Result>("sp_Availability_Select", volIDParameter, addrIDParameter);
         }
     
-        public virtual int sp_Vol_Address_Insert(string addrLine1, string addrLine2, string addrLine3, string city, string st, Nullable<int> zip, Nullable<int> zip4, string longitude, string latitude, Nullable<bool> activeFlg)
+        public virtual int sp_Vol_Address_Insert(string addrLine1, string addrLine2, string addrLine3, string city, string st, Nullable<int> zip, Nullable<int> zip4, string pointLongLat, Nullable<bool> activeFlg)
         {
             var addrLine1Parameter = addrLine1 != null ?
                 new ObjectParameter("AddrLine1", addrLine1) :
@@ -829,22 +829,18 @@ namespace VolTeer.DataAccessLayer.VT
                 new ObjectParameter("Zip4", zip4) :
                 new ObjectParameter("Zip4", typeof(int));
     
-            var longitudeParameter = longitude != null ?
-                new ObjectParameter("longitude", longitude) :
-                new ObjectParameter("longitude", typeof(string));
-    
-            var latitudeParameter = latitude != null ?
-                new ObjectParameter("latitude", latitude) :
-                new ObjectParameter("latitude", typeof(string));
+            var pointLongLatParameter = pointLongLat != null ?
+                new ObjectParameter("PointLongLat", pointLongLat) :
+                new ObjectParameter("PointLongLat", typeof(string));
     
             var activeFlgParameter = activeFlg.HasValue ?
                 new ObjectParameter("ActiveFlg", activeFlg) :
                 new ObjectParameter("ActiveFlg", typeof(bool));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Vol_Address_Insert", addrLine1Parameter, addrLine2Parameter, addrLine3Parameter, cityParameter, stParameter, zipParameter, zip4Parameter, longitudeParameter, latitudeParameter, activeFlgParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Vol_Address_Insert", addrLine1Parameter, addrLine2Parameter, addrLine3Parameter, cityParameter, stParameter, zipParameter, zip4Parameter, pointLongLatParameter, activeFlgParameter);
         }
     
-        public virtual int sp_Vol_Address_Update(Nullable<int> addrId, Nullable<bool> activeFlg, string addrLine1, string addrLine2, string addrLine3, string city, string st, Nullable<int> zip, Nullable<int> zip4, string latitude, string longitude)
+        public virtual int sp_Vol_Address_Update(Nullable<int> addrId, Nullable<bool> activeFlg, string addrLine1, string addrLine2, string addrLine3, string city, string st, Nullable<int> zip, Nullable<int> zip4, string pointLongLat)
         {
             var addrIdParameter = addrId.HasValue ?
                 new ObjectParameter("AddrId", addrId) :
@@ -882,15 +878,11 @@ namespace VolTeer.DataAccessLayer.VT
                 new ObjectParameter("Zip4", zip4) :
                 new ObjectParameter("Zip4", typeof(int));
     
-            var latitudeParameter = latitude != null ?
-                new ObjectParameter("latitude", latitude) :
-                new ObjectParameter("latitude", typeof(string));
+            var pointLongLatParameter = pointLongLat != null ?
+                new ObjectParameter("PointLongLat", pointLongLat) :
+                new ObjectParameter("PointLongLat", typeof(string));
     
-            var longitudeParameter = longitude != null ?
-                new ObjectParameter("longitude", longitude) :
-                new ObjectParameter("longitude", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Vol_Address_Update", addrIdParameter, activeFlgParameter, addrLine1Parameter, addrLine2Parameter, addrLine3Parameter, cityParameter, stParameter, zipParameter, zip4Parameter, latitudeParameter, longitudeParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Vol_Address_Update", addrIdParameter, activeFlgParameter, addrLine1Parameter, addrLine2Parameter, addrLine3Parameter, cityParameter, stParameter, zipParameter, zip4Parameter, pointLongLatParameter);
         }
     
         public virtual ObjectResult<sp_Vol_Address_Select_Result> sp_Vol_Address_Select(Nullable<int> addrID)

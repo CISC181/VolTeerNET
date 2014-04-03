@@ -82,7 +82,6 @@ namespace VolTeer.DataAccessLayer.VT.Vol
 
         #endregion
 
-
         #region Insert Statements
 
 
@@ -104,6 +103,7 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                     St = _cAddress.St,
                     Zip = _cAddress.Zip,
                     Zip4 = _cAddress.Zip4,
+                    GeogCol2 = _cAddress.GeogCol2,
                     ActiveFlg = _cAddress.ActiveFlg
 
                 };
@@ -141,6 +141,7 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                     cAddress.Zip = _cAddress.Zip;
                     cAddress.Zip4 = _cAddress.Zip4;
                     cAddress.ActiveFlg = _cAddress.ActiveFlg;
+                    cAddress.GeogCol2 = _cAddress.GeogCol2;
                     context.SaveChanges();
                 }
             }
