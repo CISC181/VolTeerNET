@@ -67,13 +67,13 @@ namespace VolTeer.Volunteer {
         protected global::VolTeer.Common.WebControls.ucVolBasicInfo ucVolBasicInfo;
         
         /// <summary>
-        /// ctl02 control.
+        /// rTBVolID control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadTextBox ctl02;
+        protected global::Telerik.Web.UI.RadTextBox rTBVolID;
         
         /// <summary>
         /// rPVAddress control.
@@ -110,5 +110,14 @@ namespace VolTeer.Volunteer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadPageView rPVPhone;
+        
+        /// <summary>
+        /// RadButton1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadButton RadButton1;
     }
 }

@@ -13,6 +13,8 @@ using System.Web.SessionState;
 using VolTeer.DomainModels.DescribeDB;
 
 
+using System.Reflection;
+
 namespace VolTeer.App_Code
 {
 
@@ -68,7 +70,7 @@ namespace VolTeer.App_Code
                 string ctrlID = ((RadTextBox)ctrl).ID;
                 string ctrlParentName = ((RadTextBox)ctrl).Parent.ID.ToString();
 
-                TableColumnDM TableColumnRecord = FilterTableColumn(this.TableColumns,ctrlParentName, ctrlID);
+                TableColumnDM TableColumnRecord = FilterTableColumn(this.TableColumns, ctrlParentName, ctrlID);
                 if (TableColumnRecord != null)
                 {
                     ((RadTextBox)ctrl).MaxLength = Convert.ToInt32(TableColumnRecord.character_maximum_length);
@@ -82,6 +84,21 @@ namespace VolTeer.App_Code
                         plc.Controls.Add(nameValidator);
                     }
                 }
+
+                ////////////////PropertyInfo[] objPropertiesArray = objType.GetProperties();                
+                ////////////////foreach (PropertyInfo objProperty in objPropertiesArray)
+                ////////////////{
+                ////////////////    //string str = objProperty.Name.ToString();
+                ////////////////    //string propertyValue = objProperty.GetValue(obj, null).ToString();
+
+                ////////////////    if (objProperty.Name.ToString().ToUpper() == "CssClass".ToUpper())
+                ////////////////    {                      
+                ////////////////        //objProperty.SetValue(obj, Convert.ChangeType(css, objProperty.PropertyType), null);
+
+                ////////////////        objProperty.SetValue(null, css, null);
+                ////////////////    }
+                ////////////////}
+
             }
 
             if (ctrl.HasControls())
@@ -104,7 +121,7 @@ namespace VolTeer.App_Code
         {
 
             TableColumnDM filtereditem = tableColumns.Where(j => j.control_name == ControlName).Where(j => j.container_name == ContainerName).SingleOrDefault();
-            
+
             return filtereditem;
         }
 

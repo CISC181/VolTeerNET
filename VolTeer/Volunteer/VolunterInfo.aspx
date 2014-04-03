@@ -40,7 +40,7 @@
         <telerik:RadPageView runat="server" ID="rPVBasic" Height="400px" BorderStyle="Solid" BorderWidth="1px">
             <uc:VolBasicInfo ID="ucVolBasicInfo" runat="server" />
 
-            <telerik:RadTextBox runat="server" ID="ctl02" LabelWidth="64px" Resize="None" Width="160px"></telerik:RadTextBox>
+            <telerik:RadTextBox runat="server" ID="rTBVolID" LabelWidth="64px" Resize="None" Width="160px"></telerik:RadTextBox>
         </telerik:RadPageView>
 
         <telerik:RadPageView runat="server" ID="rPVAddress" Height="400px" BorderStyle="Solid" BorderWidth="1px">
@@ -57,7 +57,7 @@
             Email Phone
         </telerik:RadPageView>
     </telerik:RadMultiPage>
-
+    <telerik:RadButton ID="RadButton1" runat="server" OnClick="RadButton1_Click" Text="RadButton"></telerik:RadButton>
 
 
 </asp:Content>
