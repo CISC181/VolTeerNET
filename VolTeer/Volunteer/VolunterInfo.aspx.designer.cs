@@ -58,6 +58,15 @@ namespace VolTeer.Volunteer {
         protected global::Telerik.Web.UI.RadPageView rPVBasic;
         
         /// <summary>
+        /// hdVolID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdVolID;
+        
+        /// <summary>
         /// ucVolBasicInfo control.
         /// </summary>
         /// <remarks>
@@ -65,24 +74,6 @@ namespace VolTeer.Volunteer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::VolTeer.Common.WebControls.ucVolBasicInfo ucVolBasicInfo;
-        
-        /// <summary>
-        /// rTBVolID control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadTextBox rTBVolID;
-        
-        /// <summary>
-        /// rPVAddress control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadPageView rPVAddress;
         
         /// <summary>
         /// ucVolAddress control.
@@ -94,22 +85,22 @@ namespace VolTeer.Volunteer {
         protected global::VolTeer.Common.WebControls.ucAddress ucVolAddress;
         
         /// <summary>
-        /// rPVEmail control.
+        /// rPVSkills control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadPageView rPVEmail;
+        protected global::Telerik.Web.UI.RadPageView rPVSkills;
         
         /// <summary>
-        /// rPVPhone control.
+        /// rPVHistory control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadPageView rPVPhone;
+        protected global::Telerik.Web.UI.RadPageView rPVHistory;
         
         /// <summary>
         /// RadButton1 control.

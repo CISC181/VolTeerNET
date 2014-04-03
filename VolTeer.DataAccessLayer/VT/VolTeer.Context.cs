@@ -45,11 +45,11 @@ namespace VolTeer.DataAccessLayer.VT
         public DbSet<tblGroup> tblGroups { get; set; }
         public DbSet<tblSampleAddress> tblSampleAddresses { get; set; }
         public DbSet<tblSkill> tblSkills { get; set; }
-        public DbSet<tblVolAddress> tblVolAddresses { get; set; }
         public DbSet<tblVolEmail> tblVolEmails { get; set; }
         public DbSet<tblVolState> tblVolStates { get; set; }
         public DbSet<tblVolunteer> tblVolunteers { get; set; }
         public DbSet<tblAvailability> tblAvailabilities { get; set; }
+        public DbSet<tblVolAddress> tblVolAddresses { get; set; }
     
         public virtual int sp_Contact_Delete(Nullable<System.Guid> contactID)
         {
@@ -434,19 +434,6 @@ namespace VolTeer.DataAccessLayer.VT
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Vendor_Select_Result>("sp_Vendor_Select", vendorIDParameter);
         }
     
-        public virtual int sp_Vendor_Update(ObjectParameter flag, Nullable<System.Guid> vendorID, string vendorName)
-        {
-            var vendorIDParameter = vendorID.HasValue ?
-                new ObjectParameter("VendorID", vendorID) :
-                new ObjectParameter("VendorID", typeof(System.Guid));
-    
-            var vendorNameParameter = vendorName != null ?
-                new ObjectParameter("VendorName", vendorName) :
-                new ObjectParameter("VendorName", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Vendor_Update", flag, vendorIDParameter, vendorNameParameter);
-        }
-    
         public virtual int sp_Group_Delete(Nullable<int> groupID, Nullable<bool> activeFlg)
         {
             var groupIDParameter = groupID.HasValue ?
@@ -651,24 +638,6 @@ namespace VolTeer.DataAccessLayer.VT
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Skill_Update", skillIDParameter, skillNameParameter, mstrSkillIDParameter, reqCertParameter);
         }
     
-        public virtual int sp_Vol_Address_Delete(Nullable<int> addrID)
-        {
-            var addrIDParameter = addrID.HasValue ?
-                new ObjectParameter("AddrID", addrID) :
-                new ObjectParameter("AddrID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Vol_Address_Delete", addrIDParameter);
-        }
-    
-        public virtual int sp_Vol_Address_MassUpdate(string xML_IN)
-        {
-            var xML_INParameter = xML_IN != null ?
-                new ObjectParameter("XML_IN", xML_IN) :
-                new ObjectParameter("XML_IN", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Vol_Address_MassUpdate", xML_INParameter);
-        }
-    
         public virtual int sp_Vol_Email_Delete(Nullable<int> emailID, string emailAddr, Nullable<bool> activeFlg)
         {
             var emailIDParameter = emailID.HasValue ?
@@ -799,7 +768,16 @@ namespace VolTeer.DataAccessLayer.VT
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Availability_Select_Result>("sp_Availability_Select", volIDParameter, addrIDParameter);
         }
     
-        public virtual int sp_Vol_Address_Insert(string addrLine1, string addrLine2, string addrLine3, string city, string st, Nullable<int> zip, Nullable<int> zip4, string pointLongLat, Nullable<bool> activeFlg)
+        public virtual int sp_Vol_Address_Delete(Nullable<int> addrID)
+        {
+            var addrIDParameter = addrID.HasValue ?
+                new ObjectParameter("AddrID", addrID) :
+                new ObjectParameter("AddrID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Vol_Address_Delete", addrIDParameter);
+        }
+    
+        public virtual ObjectResult<sp_Vol_Address_Insert_Result> sp_Vol_Address_Insert(string addrLine1, string addrLine2, string addrLine3, string city, string st, Nullable<int> zip, Nullable<int> zip4, string pointLongLat, Nullable<bool> activeFlg)
         {
             var addrLine1Parameter = addrLine1 != null ?
                 new ObjectParameter("AddrLine1", addrLine1) :
@@ -837,7 +815,16 @@ namespace VolTeer.DataAccessLayer.VT
                 new ObjectParameter("ActiveFlg", activeFlg) :
                 new ObjectParameter("ActiveFlg", typeof(bool));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Vol_Address_Insert", addrLine1Parameter, addrLine2Parameter, addrLine3Parameter, cityParameter, stParameter, zipParameter, zip4Parameter, pointLongLatParameter, activeFlgParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Vol_Address_Insert_Result>("sp_Vol_Address_Insert", addrLine1Parameter, addrLine2Parameter, addrLine3Parameter, cityParameter, stParameter, zipParameter, zip4Parameter, pointLongLatParameter, activeFlgParameter);
+        }
+    
+        public virtual ObjectResult<sp_Vol_Address_Select_Result1> sp_Vol_Address_Select(Nullable<int> addrID)
+        {
+            var addrIDParameter = addrID.HasValue ?
+                new ObjectParameter("AddrID", addrID) :
+                new ObjectParameter("AddrID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Vol_Address_Select_Result1>("sp_Vol_Address_Select", addrIDParameter);
         }
     
         public virtual int sp_Vol_Address_Update(Nullable<int> addrId, Nullable<bool> activeFlg, string addrLine1, string addrLine2, string addrLine3, string city, string st, Nullable<int> zip, Nullable<int> zip4, string pointLongLat)
@@ -883,15 +870,6 @@ namespace VolTeer.DataAccessLayer.VT
                 new ObjectParameter("PointLongLat", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Vol_Address_Update", addrIdParameter, activeFlgParameter, addrLine1Parameter, addrLine2Parameter, addrLine3Parameter, cityParameter, stParameter, zipParameter, zip4Parameter, pointLongLatParameter);
-        }
-    
-        public virtual ObjectResult<sp_Vol_Address_Select_Result> sp_Vol_Address_Select(Nullable<int> addrID)
-        {
-            var addrIDParameter = addrID.HasValue ?
-                new ObjectParameter("AddrID", addrID) :
-                new ObjectParameter("AddrID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Vol_Address_Select_Result>("sp_Vol_Address_Select", addrIDParameter);
         }
     }
 }

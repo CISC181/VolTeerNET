@@ -8,6 +8,7 @@ using VolTeer.DomainModels.VT.Vol;
 using VolTeer.BusinessLogicLayer.VT.Vol;
 using VolTeer.Cache.VT.Vol;
 using System.Web.Security;
+using VolTeer.App_Code;
 
 
 namespace VolTeer.Volunteer
@@ -33,15 +34,20 @@ namespace VolTeer.Volunteer
 
             VolDM = VolCASH.ListVolunteers(UserID);
 
-            rTBVolID.Text = DataBinder.Eval(VolDM, "VolID").ToString();           
+            hdVolID.Value = DataBinder.Eval(VolDM, "VolID").ToString();
+       
+            //Handle ucVolBasicInfo parameters
+            ucVolBasicInfo.UserID = UserID;
+
+            //Handle ucAddress parameters
+
         }
 
-
+        
         protected void RadButton1_Click(object sender, EventArgs e)
         {
-            UserControl UC = ucVolBasicInfo;
-            ucVolBasicInfo.publicstring = "3";
-            ucVolBasicInfo.PushButton();
+            ucVolBasicInfo.SaveUserInfo();
+            
         }
 
     }

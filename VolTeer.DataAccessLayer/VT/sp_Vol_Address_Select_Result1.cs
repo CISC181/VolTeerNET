@@ -10,17 +10,9 @@
 namespace VolTeer.DataAccessLayer.VT
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class tblVolAddress
+    public partial class sp_Vol_Address_Select_Result1
     {
-        public tblVolAddress()
-        {
-            this.tblAvailabilities = new HashSet<tblAvailability>();
-            this.tblGroups = new HashSet<tblGroup>();
-            this.tblVolunteers = new HashSet<tblVolunteer>();
-        }
-    
         public int AddrID { get; set; }
         public Nullable<bool> ActiveFlg { get; set; }
         public string AddrLine1 { get; set; }
@@ -30,10 +22,6 @@ namespace VolTeer.DataAccessLayer.VT
         public string St { get; set; }
         public Nullable<int> Zip { get; set; }
         public Nullable<int> Zip4 { get; set; }
-        public string GeoCodeSetGet { get; set; }
-    
-        public virtual ICollection<tblAvailability> tblAvailabilities { get; set; }
-        public virtual ICollection<tblGroup> tblGroups { get; set; }
-        public virtual ICollection<tblVolunteer> tblVolunteers { get; set; }
+        public string GeoCodeSetget { get; set; }
     }
 }

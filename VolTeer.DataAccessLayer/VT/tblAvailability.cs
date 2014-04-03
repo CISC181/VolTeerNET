@@ -33,7 +33,7 @@ namespace VolTeer.DataAccessLayer.VT
     
         public virtual ICollection<tblAvailability> tblAvailability1 { get; set; }
         public virtual tblAvailability tblAvailability2 { get; set; }
-        public virtual tblVolAddress tblVolAddress { get; set; }
         public virtual tblVolunteer tblVolunteer { get; set; }
+        public virtual tblVolAddress tblVolAddress { get; set; }
     }
 }

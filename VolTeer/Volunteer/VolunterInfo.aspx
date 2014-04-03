@@ -29,33 +29,32 @@
         MultiPageID="rMPVolunteer"
         SelectedIndex="2" Skin='<%$ AppSettings:Telerik.Skin %>'>
         <Tabs>
-            <telerik:RadTab Text="Basic Infromation" Value="1" Font-Bold="true" Width="200px"></telerik:RadTab>
-            <telerik:RadTab Text="Address" Value="2" Font-Bold="true" Width="200px"></telerik:RadTab>
-            <telerik:RadTab Text="Email" Value="3" Font-Bold="true" Width="200px" Selected="True"></telerik:RadTab>
-            <telerik:RadTab Text="Phone" Value="4" Font-Bold="true" Width="200px"></telerik:RadTab>
+            <telerik:RadTab Text="Demographics" Value="1" Font-Bold="true" Width="200px"></telerik:RadTab>
+            <telerik:RadTab Text="Skills" Value="2" Font-Bold="true" Width="200px"></telerik:RadTab>
+            <telerik:RadTab Text="History" Value="3" Font-Bold="true" Width="200px" Selected="True"></telerik:RadTab>
         </Tabs>
     </telerik:RadTabStrip>
-    <telerik:RadMultiPage runat="server" ID="rMPVolunteer" SelectedIndex="2">
+    <telerik:RadMultiPage runat="server" ID="rMPVolunteer" SelectedIndex="0">
 
         <telerik:RadPageView runat="server" ID="rPVBasic" Height="400px" BorderStyle="Solid" BorderWidth="1px">
+            <asp:HiddenField ID="hdVolID" runat="server" />            
             <uc:VolBasicInfo ID="ucVolBasicInfo" runat="server" />
-
-            <telerik:RadTextBox runat="server" ID="rTBVolID" LabelWidth="64px" Resize="None" Width="160px"></telerik:RadTextBox>
-        </telerik:RadPageView>
-
-        <telerik:RadPageView runat="server" ID="rPVAddress" Height="400px" BorderStyle="Solid" BorderWidth="1px">
+            <br />
             <uc:VolAddress ID="ucVolAddress" runat="server" />
 
+            
+        </telerik:RadPageView>
+
+        <telerik:RadPageView runat="server" ID="rPVSkills" Height="400px" BorderStyle="Solid" BorderWidth="1px">
+            Skills
+
 
         </telerik:RadPageView>
 
-        <telerik:RadPageView runat="server" ID="rPVEmail" Height="400px" BorderStyle="Solid" BorderWidth="1px">
-            Email Info
+        <telerik:RadPageView runat="server" ID="rPVHistory" Height="400px" BorderStyle="Solid" BorderWidth="1px">
+            History
         </telerik:RadPageView>
 
-        <telerik:RadPageView runat="server" ID="rPVPhone" Height="400px" BorderStyle="Solid" BorderWidth="1px">
-            Email Phone
-        </telerik:RadPageView>
     </telerik:RadMultiPage>
     <telerik:RadButton ID="RadButton1" runat="server" OnClick="RadButton1_Click" Text="RadButton"></telerik:RadButton>
 

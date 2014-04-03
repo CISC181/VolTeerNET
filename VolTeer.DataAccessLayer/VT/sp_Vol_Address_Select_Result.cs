@@ -22,6 +22,6 @@ namespace VolTeer.DataAccessLayer.VT
         public string St { get; set; }
         public Nullable<int> Zip { get; set; }
         public Nullable<int> Zip4 { get; set; }
-        public string GeogCol2 { get; set; }
+        public string GeoCodeSetget { get; set; }
     }
 }

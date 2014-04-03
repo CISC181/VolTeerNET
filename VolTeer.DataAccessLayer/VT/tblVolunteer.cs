@@ -18,9 +18,9 @@ namespace VolTeer.DataAccessLayer.VT
         {
             this.tblVolEmails = new HashSet<tblVolEmail>();
             this.tblGroups = new HashSet<tblGroup>();
-            this.tblVolAddresses = new HashSet<tblVolAddress>();
             this.tblSkills = new HashSet<tblSkill>();
             this.tblAvailabilities = new HashSet<tblAvailability>();
+            this.tblVolAddresses = new HashSet<tblVolAddress>();
         }
     
         public System.Guid VolID { get; set; }
@@ -31,8 +31,8 @@ namespace VolTeer.DataAccessLayer.VT
     
         public virtual ICollection<tblVolEmail> tblVolEmails { get; set; }
         public virtual ICollection<tblGroup> tblGroups { get; set; }
-        public virtual ICollection<tblVolAddress> tblVolAddresses { get; set; }
         public virtual ICollection<tblSkill> tblSkills { get; set; }
         public virtual ICollection<tblAvailability> tblAvailabilities { get; set; }
+        public virtual ICollection<tblVolAddress> tblVolAddresses { get; set; }
     }
 }

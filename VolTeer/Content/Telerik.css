@@ -130,7 +130,7 @@ header .content-wrapper {
 
 footer {
     bottom: 5px;
-    position: absolute;
+    position: relative;
     clear: both;
     background-color: #e2e2e2;
     font-size: .8em;

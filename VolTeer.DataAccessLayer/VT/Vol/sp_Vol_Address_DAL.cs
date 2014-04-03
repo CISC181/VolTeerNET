@@ -34,7 +34,7 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                                 St = result.St,
                                 Zip = result.Zip,
                                 Zip4 = result.Zip4,
-                                GeogCol2 = result.GeogCol2
+                                GeoCodeSetGet = result.GeoCodeSetget
 
                             }).ToList();
                 } // Guaranteed to close the Connection
@@ -67,7 +67,7 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                                 St = result.St,
                                 Zip = result.Zip,
                                 Zip4 = result.Zip4,
-                                GeogCol2 = result.GeogCol2
+                                GeoCodeSetGet = result.GeoCodeSetget
                             }).ToList();
                 } // Guaranteed to close the Connection
             }
@@ -103,7 +103,7 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                     St = _cAddress.St,
                     Zip = _cAddress.Zip,
                     Zip4 = _cAddress.Zip4,
-                    GeogCol2 = _cAddress.GeogCol2,
+                    GeoCodeSetGet = _cAddress.GeoCodeSetGet,
                     ActiveFlg = _cAddress.ActiveFlg
 
                 };
@@ -141,7 +141,7 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                     cAddress.Zip = _cAddress.Zip;
                     cAddress.Zip4 = _cAddress.Zip4;
                     cAddress.ActiveFlg = _cAddress.ActiveFlg;
-                    cAddress.GeogCol2 = _cAddress.GeogCol2;
+                    cAddress.GeoCodeSetGet = _cAddress.GeoCodeSetGet;
                     context.SaveChanges();
                 }
             }

@@ -135,6 +135,7 @@
     <Compile Include="Account\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
+    <Compile Include="App_Code\cCommonFunctions.cs" />
     <Compile Include="App_Code\cEnums.cs" />
     <Compile Include="App_Code\cMail.cs" />
     <Compile Include="App_Code\cValidations.cs" />
@@ -577,7 +578,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
+      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
