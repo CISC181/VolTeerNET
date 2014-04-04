@@ -17,8 +17,8 @@ namespace VolTeer.DataAccessLayer.VT
         public tblVolAddress()
         {
             this.tblAvailabilities = new HashSet<tblAvailability>();
+            this.tblVolAddrs = new HashSet<tblVolAddr>();
             this.tblGroups = new HashSet<tblGroup>();
-            this.tblVolunteers = new HashSet<tblVolunteer>();
         }
     
         public int AddrID { get; set; }
@@ -30,10 +30,10 @@ namespace VolTeer.DataAccessLayer.VT
         public string St { get; set; }
         public Nullable<int> Zip { get; set; }
         public Nullable<int> Zip4 { get; set; }
-        public string GeoCodeSetGet { get; set; }
+        public string GeoCodeGetSet { get; set; }
     
         public virtual ICollection<tblAvailability> tblAvailabilities { get; set; }
+        public virtual ICollection<tblVolAddr> tblVolAddrs { get; set; }
         public virtual ICollection<tblGroup> tblGroups { get; set; }
-        public virtual ICollection<tblVolunteer> tblVolunteers { get; set; }
     }
 }

@@ -17,6 +17,7 @@ namespace VolTeer.DomainModels.VT.Vol
         public string St { get; set; }
         public Nullable<int> Zip { get; set; }
         public Nullable<int> Zip4 { get; set; }
-        public string GeoCodeSetGet { get; set; }
+        public string GeoCodeGetSet { get; set; }
+        public bool PrimaryAddr { get; set; }
     }
 }

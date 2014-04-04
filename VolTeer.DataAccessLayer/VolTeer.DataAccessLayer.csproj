@@ -228,13 +228,7 @@
     <Compile Include="VT\sp_Volunteer_Select_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
-    <Compile Include="VT\sp_Vol_Address_Insert_Result.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
     <Compile Include="VT\sp_Vol_Address_Select_Result.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VT\sp_Vol_Address_Select_Result1.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
     <Compile Include="VT\sp_Vol_Email_Select_Result.cs">
@@ -291,7 +285,7 @@
     <Compile Include="VT\tblVendorProjContact.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
-    <Compile Include="VT\tblVendState.cs">
+    <Compile Include="VT\tblVolAddr.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
     <Compile Include="VT\tblVolAddress.cs">
@@ -310,7 +304,7 @@
     <Compile Include="VT\Vend\sp_Event_Rating_DAL.cs" />
     <Compile Include="VT\Vend\sp_VendContact_DAL.cs" />
     <Compile Include="VT\Vend\sp_VendEmail_DAL.cs" />
-    <Compile Include="VT\VolTeer.Context.cs">
+    <Compile Include="VT\VolTeer.Context1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>VolTeer.Context.tt</DependentUpon>
@@ -377,8 +371,8 @@
     </EntityDeploy>
     <None Include="VT\VolTeer.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <LastGenOutput>VolTeer.Context.cs</LastGenOutput>
       <DependentUpon>VolTeer.edmx</DependentUpon>
+      <LastGenOutput>VolTeer.Context1.cs</LastGenOutput>
     </None>
     <None Include="VT\VolTeer.edmx.diagram">
       <DependentUpon>VolTeer.edmx</DependentUpon>

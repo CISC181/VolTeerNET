@@ -12,14 +12,14 @@ namespace VolTeer.BusinessLogicLayer.VT.Vol
     {
         sp_Vol_Address_DAL DAL = new sp_Vol_Address_DAL();
 
-        public List<sp_Vol_Address_DM> ListAddresses()
+        public List<sp_Vol_Address_DM> ListAddresses(sp_Vol_Address_DM cVolAddr)
         {
-            return DAL.ListAddresses();
+            return DAL.ListAddresses(cVolAddr);
         }
 
-        public sp_Vol_Address_DM ListAddresses(int? Address)
+        public sp_Vol_Address_DM ListAddresses(Guid? VolID, int? Address)
         {
-            return DAL.ListAddresses(Address).Single();
+            return DAL.ListAddresses(VolID, Address).Single();
         }
 
         public void InsertAddressContext(ref sp_Vol_Address_DM _cAddress)

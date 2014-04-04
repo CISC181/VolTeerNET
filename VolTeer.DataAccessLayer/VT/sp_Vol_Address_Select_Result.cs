@@ -13,6 +13,7 @@ namespace VolTeer.DataAccessLayer.VT
     
     public partial class sp_Vol_Address_Select_Result
     {
+        public System.Guid VolID { get; set; }
         public int AddrID { get; set; }
         public Nullable<bool> ActiveFlg { get; set; }
         public string AddrLine1 { get; set; }
@@ -22,6 +23,7 @@ namespace VolTeer.DataAccessLayer.VT
         public string St { get; set; }
         public Nullable<int> Zip { get; set; }
         public Nullable<int> Zip4 { get; set; }
-        public string GeoCodeSetget { get; set; }
+        public string GeoCodeGetSet { get; set; }
+        public bool PrimaryAddr { get; set; }
     }
 }

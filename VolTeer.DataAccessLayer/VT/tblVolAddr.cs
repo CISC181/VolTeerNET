@@ -10,9 +10,15 @@
 namespace VolTeer.DataAccessLayer.VT
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class sp_Vol_Address_Insert_Result
+    public partial class tblVolAddr
     {
-        public Nullable<int> AddrID_OUT { get; set; }
+        public System.Guid VolID { get; set; }
+        public int AddrID { get; set; }
+        public bool PrimaryAddr { get; set; }
+    
+        public virtual tblVolAddress tblVolAddress { get; set; }
+        public virtual tblVolunteer tblVolunteer { get; set; }
     }
 }

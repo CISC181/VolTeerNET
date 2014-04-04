@@ -12,17 +12,17 @@ namespace VolTeer.DataAccessLayer.VT.Vol
 
         #region Select Statements
         /// <summary>
-        /// Return a list of Sample addresses using LINQ to SQL
+        /// Returns a list of all addresses
         /// </summary>
         /// <returns></returns>
-        public List<sp_Vol_Address_DM> ListAddresses()
+        public List<sp_Vol_Address_DM> ListAddresses(sp_Vol_Address_DM cVolAddr)
         {
             List<sp_Vol_Address_DM> list = new List<sp_Vol_Address_DM>();
             try
             {
                 using (VolTeerEntities context = new VolTeerEntities())
                 {
-                    list = (from result in context.sp_Vol_Address_Select(null)
+                    list = (from result in context.sp_Vol_Address_Select(cVolAddr.VolID, cVolAddr.AddrID)
                             select new sp_Vol_Address_DM
                             {
                                 AddrID = result.AddrID,
@@ -34,7 +34,7 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                                 St = result.St,
                                 Zip = result.Zip,
                                 Zip4 = result.Zip4,
-                                GeoCodeSetGet = result.GeoCodeSetget
+                                GeoCodeGetSet = result.GeoCodeGetSet
 
                             }).ToList();
                 } // Guaranteed to close the Connection
@@ -48,14 +48,14 @@ namespace VolTeer.DataAccessLayer.VT.Vol
 
         }
 
-        public List<sp_Vol_Address_DM> ListAddresses(int? Address)
+        public List<sp_Vol_Address_DM> ListAddresses(Guid? VolID, int? Address)
         {
             List<sp_Vol_Address_DM> list = new List<sp_Vol_Address_DM>();
             try
             {
                 using (VolTeerEntities context = new VolTeerEntities())
                 {
-                    list = (from result in context.sp_Vol_Address_Select(Address)
+                    list = (from result in context.sp_Vol_Address_Select(VolID, Address)
                             select new sp_Vol_Address_DM
                             {
                                 AddrID = result.AddrID,
@@ -67,7 +67,7 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                                 St = result.St,
                                 Zip = result.Zip,
                                 Zip4 = result.Zip4,
-                                GeoCodeSetGet = result.GeoCodeSetget
+                                GeoCodeGetSet = result.GeoCodeGetSet
                             }).ToList();
                 } // Guaranteed to close the Connection
             }
@@ -103,7 +103,7 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                     St = _cAddress.St,
                     Zip = _cAddress.Zip,
                     Zip4 = _cAddress.Zip4,
-                    GeoCodeSetGet = _cAddress.GeoCodeSetGet,
+                    GeoCodeGetSet = _cAddress.GeoCodeGetSet,
                     ActiveFlg = _cAddress.ActiveFlg
 
                 };
@@ -141,7 +141,7 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                     cAddress.Zip = _cAddress.Zip;
                     cAddress.Zip4 = _cAddress.Zip4;
                     cAddress.ActiveFlg = _cAddress.ActiveFlg;
-                    cAddress.GeoCodeSetGet = _cAddress.GeoCodeSetGet;
+                    cAddress.GeoCodeGetSet = _cAddress.GeoCodeGetSet;
                     context.SaveChanges();
                 }
             }

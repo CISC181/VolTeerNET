@@ -1,8 +1,8 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ucAddress.ascx.cs" Inherits="VolTeer.Common.WebControls.ucAddress" %>
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 
-<telerik:RadGrid ID="rGridAddress" runat="server" AutoGenerateColumns="False" BorderWidth="1px" CellSpacing="0" GridLines="None">
-    <MasterTableView>
+<telerik:RadGrid ID="rGridAddress" runat="server" AutoGenerateColumns="False" BorderWidth="1px">
+    <MasterTableView CommandItemDisplay="Top">
         <Columns>
             <telerik:GridBoundColumn DataField="AddrID" Display="False" FilterControlAltText="Filter column column" ReadOnly="True" UniqueName="column">
             </telerik:GridBoundColumn>

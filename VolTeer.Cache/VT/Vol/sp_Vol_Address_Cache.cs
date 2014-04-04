@@ -17,10 +17,10 @@ namespace VolTeer.Cache.VT.Vol
     {
         sp_Vol_Address_BLL BLL = new sp_Vol_Address_BLL();
 
-        public List<sp_Vol_Address_DM> ListAddresses()
-        {
-            return BLL.ListAddresses();
-        }
+        //public List<sp_Vol_Address_DM> ListAddresses()
+        //{
+        //    return BLL.ListAddresses();
+        //}
 
         /// <summary>
         /// ListAddress - There's a good chance the same record may be requested often.  Cache the address object...
@@ -28,29 +28,29 @@ namespace VolTeer.Cache.VT.Vol
         /// </summary>
         /// <param name="Address"></param>
         /// <returns></returns>
-        public sp_Vol_Address_DM ListAddresses(int? Address)
-        {
-            sp_Vol_Address_DM cAddress = new sp_Vol_Address_DM();
+        //public sp_Vol_Address_DM ListAddresses(int? Address)
+        //{
+        //    sp_Vol_Address_DM cAddress = new sp_Vol_Address_DM();
 
-            //Cache cache = HttpRuntime.Cache;
-            System.Web.Caching.Cache cache = HttpRuntime.Cache;
+        //    //Cache cache = HttpRuntime.Cache;
+        //    System.Web.Caching.Cache cache = HttpRuntime.Cache;
 
-            sp_Vol_Address_DM cacheAddress;
-            cacheAddress = (sp_Vol_Address_DM)cache[Address.ToString()];
+        //    sp_Vol_Address_DM cacheAddress;
+        //    cacheAddress = (sp_Vol_Address_DM)cache[Address.ToString()];
 
-            if (cacheAddress == null)
-            {
-                cAddress = BLL.ListAddresses(Address);
-                cache.Insert(cAddress.AddrID.ToString(), cAddress, null, DateTime.Now.AddSeconds(60), System.Web.Caching.Cache.NoSlidingExpiration, CacheItemPriority.High, null);
-            }
-            else
-            {
-                cAddress = cacheAddress;
-            }
+        //    if (cacheAddress == null)
+        //    {
+        //        cAddress = BLL.ListAddresses(Address);
+        //        cache.Insert(cAddress.AddrID.ToString(), cAddress, null, DateTime.Now.AddSeconds(60), System.Web.Caching.Cache.NoSlidingExpiration, CacheItemPriority.High, null);
+        //    }
+        //    else
+        //    {
+        //        cAddress = cacheAddress;
+        //    }
 
 
-            return cAddress;
-        }
+        //    return cAddress;
+        //}
 
         public void InsertAddressContext(sp_Vol_Address_DM _cAddress)
         {

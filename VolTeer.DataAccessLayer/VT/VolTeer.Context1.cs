@@ -41,14 +41,14 @@ namespace VolTeer.DataAccessLayer.VT
         public DbSet<tblVendor> tblVendors { get; set; }
         public DbSet<tblVendorAddr> tblVendorAddrs { get; set; }
         public DbSet<tblVendorProjContact> tblVendorProjContacts { get; set; }
-        public DbSet<tblVendState> tblVendStates { get; set; }
-        public DbSet<tblGroup> tblGroups { get; set; }
         public DbSet<tblSampleAddress> tblSampleAddresses { get; set; }
         public DbSet<tblSkill> tblSkills { get; set; }
         public DbSet<tblVolEmail> tblVolEmails { get; set; }
         public DbSet<tblVolState> tblVolStates { get; set; }
         public DbSet<tblVolunteer> tblVolunteers { get; set; }
         public DbSet<tblAvailability> tblAvailabilities { get; set; }
+        public DbSet<tblGroup> tblGroups { get; set; }
+        public DbSet<tblVolAddr> tblVolAddrs { get; set; }
         public DbSet<tblVolAddress> tblVolAddresses { get; set; }
     
         public virtual int sp_Contact_Delete(Nullable<System.Guid> contactID)
@@ -638,6 +638,136 @@ namespace VolTeer.DataAccessLayer.VT
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Skill_Update", skillIDParameter, skillNameParameter, mstrSkillIDParameter, reqCertParameter);
         }
     
+        public virtual ObjectResult<sp_Availability_Select_Result> sp_Availability_Select(Nullable<System.Guid> volID, Nullable<int> addrID)
+        {
+            var volIDParameter = volID.HasValue ?
+                new ObjectParameter("VolID", volID) :
+                new ObjectParameter("VolID", typeof(System.Guid));
+    
+            var addrIDParameter = addrID.HasValue ?
+                new ObjectParameter("AddrID", addrID) :
+                new ObjectParameter("AddrID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Availability_Select_Result>("sp_Availability_Select", volIDParameter, addrIDParameter);
+        }
+    
+        public virtual int sp_Vol_Address_Delete(Nullable<int> addrID)
+        {
+            var addrIDParameter = addrID.HasValue ?
+                new ObjectParameter("AddrID", addrID) :
+                new ObjectParameter("AddrID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Vol_Address_Delete", addrIDParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> sp_Vol_Address_Insert(string addrLine1, string addrLine2, string addrLine3, string city, string st, Nullable<int> zip, Nullable<int> zip4, string geoCodeGetSet, Nullable<bool> activeFlg)
+        {
+            var addrLine1Parameter = addrLine1 != null ?
+                new ObjectParameter("AddrLine1", addrLine1) :
+                new ObjectParameter("AddrLine1", typeof(string));
+    
+            var addrLine2Parameter = addrLine2 != null ?
+                new ObjectParameter("AddrLine2", addrLine2) :
+                new ObjectParameter("AddrLine2", typeof(string));
+    
+            var addrLine3Parameter = addrLine3 != null ?
+                new ObjectParameter("AddrLine3", addrLine3) :
+                new ObjectParameter("AddrLine3", typeof(string));
+    
+            var cityParameter = city != null ?
+                new ObjectParameter("City", city) :
+                new ObjectParameter("City", typeof(string));
+    
+            var stParameter = st != null ?
+                new ObjectParameter("St", st) :
+                new ObjectParameter("St", typeof(string));
+    
+            var zipParameter = zip.HasValue ?
+                new ObjectParameter("Zip", zip) :
+                new ObjectParameter("Zip", typeof(int));
+    
+            var zip4Parameter = zip4.HasValue ?
+                new ObjectParameter("Zip4", zip4) :
+                new ObjectParameter("Zip4", typeof(int));
+    
+            var geoCodeGetSetParameter = geoCodeGetSet != null ?
+                new ObjectParameter("GeoCodeGetSet", geoCodeGetSet) :
+                new ObjectParameter("GeoCodeGetSet", typeof(string));
+    
+            var activeFlgParameter = activeFlg.HasValue ?
+                new ObjectParameter("ActiveFlg", activeFlg) :
+                new ObjectParameter("ActiveFlg", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_Vol_Address_Insert", addrLine1Parameter, addrLine2Parameter, addrLine3Parameter, cityParameter, stParameter, zipParameter, zip4Parameter, geoCodeGetSetParameter, activeFlgParameter);
+        }
+    
+        public virtual int sp_Vol_Address_MassUpdate(string xML_IN)
+        {
+            var xML_INParameter = xML_IN != null ?
+                new ObjectParameter("XML_IN", xML_IN) :
+                new ObjectParameter("XML_IN", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Vol_Address_MassUpdate", xML_INParameter);
+        }
+    
+        public virtual ObjectResult<sp_Vol_Address_Select_Result> sp_Vol_Address_Select(Nullable<System.Guid> volID, Nullable<int> addrID)
+        {
+            var volIDParameter = volID.HasValue ?
+                new ObjectParameter("VolID", volID) :
+                new ObjectParameter("VolID", typeof(System.Guid));
+    
+            var addrIDParameter = addrID.HasValue ?
+                new ObjectParameter("AddrID", addrID) :
+                new ObjectParameter("AddrID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Vol_Address_Select_Result>("sp_Vol_Address_Select", volIDParameter, addrIDParameter);
+        }
+    
+        public virtual int sp_Vol_Address_Update(Nullable<int> addrId, Nullable<bool> activeFlg, string addrLine1, string addrLine2, string addrLine3, string city, string st, Nullable<int> zip, Nullable<int> zip4, string geoCodeGetSet)
+        {
+            var addrIdParameter = addrId.HasValue ?
+                new ObjectParameter("AddrId", addrId) :
+                new ObjectParameter("AddrId", typeof(int));
+    
+            var activeFlgParameter = activeFlg.HasValue ?
+                new ObjectParameter("ActiveFlg", activeFlg) :
+                new ObjectParameter("ActiveFlg", typeof(bool));
+    
+            var addrLine1Parameter = addrLine1 != null ?
+                new ObjectParameter("AddrLine1", addrLine1) :
+                new ObjectParameter("AddrLine1", typeof(string));
+    
+            var addrLine2Parameter = addrLine2 != null ?
+                new ObjectParameter("AddrLine2", addrLine2) :
+                new ObjectParameter("AddrLine2", typeof(string));
+    
+            var addrLine3Parameter = addrLine3 != null ?
+                new ObjectParameter("AddrLine3", addrLine3) :
+                new ObjectParameter("AddrLine3", typeof(string));
+    
+            var cityParameter = city != null ?
+                new ObjectParameter("City", city) :
+                new ObjectParameter("City", typeof(string));
+    
+            var stParameter = st != null ?
+                new ObjectParameter("St", st) :
+                new ObjectParameter("St", typeof(string));
+    
+            var zipParameter = zip.HasValue ?
+                new ObjectParameter("Zip", zip) :
+                new ObjectParameter("Zip", typeof(int));
+    
+            var zip4Parameter = zip4.HasValue ?
+                new ObjectParameter("Zip4", zip4) :
+                new ObjectParameter("Zip4", typeof(int));
+    
+            var geoCodeGetSetParameter = geoCodeGetSet != null ?
+                new ObjectParameter("GeoCodeGetSet", geoCodeGetSet) :
+                new ObjectParameter("GeoCodeGetSet", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Vol_Address_Update", addrIdParameter, activeFlgParameter, addrLine1Parameter, addrLine2Parameter, addrLine3Parameter, cityParameter, stParameter, zipParameter, zip4Parameter, geoCodeGetSetParameter);
+        }
+    
         public virtual int sp_Vol_Email_Delete(Nullable<int> emailID, string emailAddr, Nullable<bool> activeFlg)
         {
             var emailIDParameter = emailID.HasValue ?
@@ -753,123 +883,6 @@ namespace VolTeer.DataAccessLayer.VT
                 new ObjectParameter("VolLastName", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Volunteer_Update", volIDParameter, activeFlgParameter, volFirstNameParameter, volMiddleNameParameter, volLastNameParameter);
-        }
-    
-        public virtual ObjectResult<sp_Availability_Select_Result> sp_Availability_Select(Nullable<System.Guid> volID, Nullable<int> addrID)
-        {
-            var volIDParameter = volID.HasValue ?
-                new ObjectParameter("VolID", volID) :
-                new ObjectParameter("VolID", typeof(System.Guid));
-    
-            var addrIDParameter = addrID.HasValue ?
-                new ObjectParameter("AddrID", addrID) :
-                new ObjectParameter("AddrID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Availability_Select_Result>("sp_Availability_Select", volIDParameter, addrIDParameter);
-        }
-    
-        public virtual int sp_Vol_Address_Delete(Nullable<int> addrID)
-        {
-            var addrIDParameter = addrID.HasValue ?
-                new ObjectParameter("AddrID", addrID) :
-                new ObjectParameter("AddrID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Vol_Address_Delete", addrIDParameter);
-        }
-    
-        public virtual ObjectResult<sp_Vol_Address_Insert_Result> sp_Vol_Address_Insert(string addrLine1, string addrLine2, string addrLine3, string city, string st, Nullable<int> zip, Nullable<int> zip4, string pointLongLat, Nullable<bool> activeFlg)
-        {
-            var addrLine1Parameter = addrLine1 != null ?
-                new ObjectParameter("AddrLine1", addrLine1) :
-                new ObjectParameter("AddrLine1", typeof(string));
-    
-            var addrLine2Parameter = addrLine2 != null ?
-                new ObjectParameter("AddrLine2", addrLine2) :
-                new ObjectParameter("AddrLine2", typeof(string));
-    
-            var addrLine3Parameter = addrLine3 != null ?
-                new ObjectParameter("AddrLine3", addrLine3) :
-                new ObjectParameter("AddrLine3", typeof(string));
-    
-            var cityParameter = city != null ?
-                new ObjectParameter("City", city) :
-                new ObjectParameter("City", typeof(string));
-    
-            var stParameter = st != null ?
-                new ObjectParameter("St", st) :
-                new ObjectParameter("St", typeof(string));
-    
-            var zipParameter = zip.HasValue ?
-                new ObjectParameter("Zip", zip) :
-                new ObjectParameter("Zip", typeof(int));
-    
-            var zip4Parameter = zip4.HasValue ?
-                new ObjectParameter("Zip4", zip4) :
-                new ObjectParameter("Zip4", typeof(int));
-    
-            var pointLongLatParameter = pointLongLat != null ?
-                new ObjectParameter("PointLongLat", pointLongLat) :
-                new ObjectParameter("PointLongLat", typeof(string));
-    
-            var activeFlgParameter = activeFlg.HasValue ?
-                new ObjectParameter("ActiveFlg", activeFlg) :
-                new ObjectParameter("ActiveFlg", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Vol_Address_Insert_Result>("sp_Vol_Address_Insert", addrLine1Parameter, addrLine2Parameter, addrLine3Parameter, cityParameter, stParameter, zipParameter, zip4Parameter, pointLongLatParameter, activeFlgParameter);
-        }
-    
-        public virtual ObjectResult<sp_Vol_Address_Select_Result1> sp_Vol_Address_Select(Nullable<int> addrID)
-        {
-            var addrIDParameter = addrID.HasValue ?
-                new ObjectParameter("AddrID", addrID) :
-                new ObjectParameter("AddrID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Vol_Address_Select_Result1>("sp_Vol_Address_Select", addrIDParameter);
-        }
-    
-        public virtual int sp_Vol_Address_Update(Nullable<int> addrId, Nullable<bool> activeFlg, string addrLine1, string addrLine2, string addrLine3, string city, string st, Nullable<int> zip, Nullable<int> zip4, string pointLongLat)
-        {
-            var addrIdParameter = addrId.HasValue ?
-                new ObjectParameter("AddrId", addrId) :
-                new ObjectParameter("AddrId", typeof(int));
-    
-            var activeFlgParameter = activeFlg.HasValue ?
-                new ObjectParameter("ActiveFlg", activeFlg) :
-                new ObjectParameter("ActiveFlg", typeof(bool));
-    
-            var addrLine1Parameter = addrLine1 != null ?
-                new ObjectParameter("AddrLine1", addrLine1) :
-                new ObjectParameter("AddrLine1", typeof(string));
-    
-            var addrLine2Parameter = addrLine2 != null ?
-                new ObjectParameter("AddrLine2", addrLine2) :
-                new ObjectParameter("AddrLine2", typeof(string));
-    
-            var addrLine3Parameter = addrLine3 != null ?
-                new ObjectParameter("AddrLine3", addrLine3) :
-                new ObjectParameter("AddrLine3", typeof(string));
-    
-            var cityParameter = city != null ?
-                new ObjectParameter("City", city) :
-                new ObjectParameter("City", typeof(string));
-    
-            var stParameter = st != null ?
-                new ObjectParameter("St", st) :
-                new ObjectParameter("St", typeof(string));
-    
-            var zipParameter = zip.HasValue ?
-                new ObjectParameter("Zip", zip) :
-                new ObjectParameter("Zip", typeof(int));
-    
-            var zip4Parameter = zip4.HasValue ?
-                new ObjectParameter("Zip4", zip4) :
-                new ObjectParameter("Zip4", typeof(int));
-    
-            var pointLongLatParameter = pointLongLat != null ?
-                new ObjectParameter("PointLongLat", pointLongLat) :
-                new ObjectParameter("PointLongLat", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Vol_Address_Update", addrIdParameter, activeFlgParameter, addrLine1Parameter, addrLine2Parameter, addrLine3Parameter, cityParameter, stParameter, zipParameter, zip4Parameter, pointLongLatParameter);
         }
     }
 }

@@ -41,6 +41,10 @@ namespace VolTeer.Volunteer
 
             //Handle ucAddress parameters
 
+            ucVolAddress.gAddrOwner = (Guid)UserID;
+            ucVolAddress.iRecordTypeID = (int)RecordType.Volunteer;
+
+
         }
 
         
