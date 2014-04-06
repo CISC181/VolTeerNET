@@ -52,14 +52,14 @@ namespace VolTeer.Cache.VT.Vol
         //    return cAddress;
         //}
 
-        public void InsertAddressContext(sp_Vol_Address_DM _cAddress)
+        public void InsertAddressContext(sp_Vol_Address_DM _cAddress, ref sp_Vol_Addr_DM _cVolAddr)
         {
-            BLL.InsertAddressContext(ref _cAddress);
+            BLL.InsertAddressContext(ref _cAddress, ref _cVolAddr);
             System.Web.Caching.Cache cache = HttpRuntime.Cache;
             cache.Insert(_cAddress.AddrID.ToString(), _cAddress, null, DateTime.Now.AddSeconds(60), System.Web.Caching.Cache.NoSlidingExpiration, CacheItemPriority.High, null);
         }
 
-        public void UpdateAddressContext(sp_Vol_Address_DM _cAddress)
+        public void UpdateAddressContext(sp_Vol_Address_DM _cAddress, sp_Vol_Addr_DM _cVolAddr)
         {
             System.Web.Caching.Cache cache = HttpRuntime.Cache;
 
@@ -72,10 +72,10 @@ namespace VolTeer.Cache.VT.Vol
             }
 
             cache.Insert(_cAddress.AddrID.ToString(), _cAddress, null, DateTime.Now.AddSeconds(60), System.Web.Caching.Cache.NoSlidingExpiration, CacheItemPriority.High, null);
-            BLL.UpdateAddressContext(_cAddress);
+            BLL.UpdateAddressContext(_cAddress, _cVolAddr);
         }
 
-        public void DeleteAddressContext(sp_Vol_Address_DM _cAddress)
+        public void DeleteAddressContext(sp_Vol_Address_DM _cAddress, sp_Vol_Addr_DM _cVolAddr)
         {
             System.Web.Caching.Cache cache = HttpRuntime.Cache;
 
@@ -86,7 +86,7 @@ namespace VolTeer.Cache.VT.Vol
             {
                 cache.Remove(_cAddress.AddrID.ToString());
             }
-            BLL.DeleteAddressContext(_cAddress);
+            BLL.DeleteAddressContext(_cAddress, _cVolAddr);
         }
     }
 }

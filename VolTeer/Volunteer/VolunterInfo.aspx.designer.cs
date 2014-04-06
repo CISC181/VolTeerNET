@@ -67,6 +67,15 @@ namespace VolTeer.Volunteer {
         protected global::System.Web.UI.WebControls.HiddenField hdVolID;
         
         /// <summary>
+        /// hdEditView control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdEditView;
+        
+        /// <summary>
         /// ucVolBasicInfo control.
         /// </summary>
         /// <remarks>

@@ -20,6 +20,11 @@ namespace VolTeer.App_Code
         Delete = 3
     }
 
+    public enum PageViewType
+    {
+        PrimaryEdit = 1,
+        MultiEdit = 2
+    }
 
     public class Methods
     {

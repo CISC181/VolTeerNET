@@ -7,7 +7,7 @@ using VolTeer.DomainModels.Service;
 using System.Configuration;
 using System.Collections.Specialized;
 
-namespace VolTeer.ExternalServiceLayer
+namespace VolTeer.GoogleAPI
 {
     public class GoogleGeocoder : IGeocoder
     {
@@ -61,5 +61,6 @@ namespace VolTeer.ExternalServiceLayer
                             "<lon>unknown</lon>\n" +
                          "</coordinate>";
         }
+
     }
 }

@@ -8,6 +8,7 @@
     <title><%: Page.Title %> - VolTeer</title>
     <%--<link href="~/Content/Site.css" rel="stylesheet" />--%>
     <link href="~/Content/Telerik.css" rel="stylesheet" />
+    <link href="~/Content/GridStyleSheet.css" rel="stylesheet" />
     <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
     <asp:PlaceHolder ID="PlaceHolder1" runat="server">
         <script src="<%: ResolveUrl("~/Scripts/modernizr-2.6.2.js") %>"></script>

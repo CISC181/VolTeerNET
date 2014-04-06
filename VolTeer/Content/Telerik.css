@@ -105,7 +105,7 @@ h5, h6 {
 ----------------------------------------------------------*/
 .content-wrapper {
     margin: 0 auto;
-    max-width: 960px;
+    max-width: 95%;
 }
 
 #body {
@@ -324,7 +324,7 @@ label {
 table {
     border-collapse: collapse;
     border-spacing: 0;
-    margin-top: 0.75em;
+    margin-top: 0.25em;
     border: 0 none;
 }
 
@@ -372,8 +372,9 @@ th {
         }
 
 td {
-    padding: 0.25em 2em 0.25em 0em;
+    padding: 0.25em 0.25em 0.25em 0em;
     border: 0 none;
+    font-size: smaller;
 }
 
 tr.pager td {

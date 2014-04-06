@@ -22,7 +22,7 @@ namespace VolTeer.DataAccessLayer.VT.Vol
             {
                 using (VolTeerEntities context = new VolTeerEntities())
                 {
-                    list = (from result in context.sp_Vol_Address_Select(cVolAddr.VolID, cVolAddr.AddrID)
+                    list = (from result in context.sp_Vol_Address_Select(cVolAddr.VolID, cVolAddr.AddrID, null)
                             select new sp_Vol_Address_DM
                             {
                                 AddrID = result.AddrID,
@@ -55,7 +55,7 @@ namespace VolTeer.DataAccessLayer.VT.Vol
             {
                 using (VolTeerEntities context = new VolTeerEntities())
                 {
-                    list = (from result in context.sp_Vol_Address_Select(VolID, Address)
+                    list = (from result in context.sp_Vol_Address_Select(VolID, Address, null)
                             select new sp_Vol_Address_DM
                             {
                                 AddrID = result.AddrID,
@@ -80,6 +80,39 @@ namespace VolTeer.DataAccessLayer.VT.Vol
 
         }
 
+        public sp_Vol_Address_DM ListPrimaryAddress(sp_Vol_Address_DM cVolAddr)
+        {
+            sp_Vol_Address_DM item = new sp_Vol_Address_DM();
+            try
+            {
+                using (VolTeerEntities context = new VolTeerEntities())
+                {
+                    item = (from result in context.sp_Vol_Address_Select(cVolAddr.VolID, cVolAddr.AddrID, true)
+                            select new sp_Vol_Address_DM
+                            {
+                                AddrID = result.AddrID,
+                                ActiveFlg = result.ActiveFlg,
+                                AddrLine1 = result.AddrLine1,
+                                AddrLine2 = result.AddrLine2,
+                                AddrLine3 = result.AddrLine3,
+                                City = result.City,
+                                St = result.St,
+                                Zip = result.Zip,
+                                Zip4 = result.Zip4,
+                                GeoCodeGetSet = result.GeoCodeGetSet
+
+                            }).FirstOrDefault();
+                } // Guaranteed to close the Connection
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+
+            return item;
+
+        }
+
         #endregion
 
         #region Insert Statements
@@ -89,31 +122,46 @@ namespace VolTeer.DataAccessLayer.VT.Vol
         /// InsertAddressContext - Will insert a record into Address table via SProc
         /// </summary>
         /// <param name="_cAddress"></param>
-        public void InsertAddressContext(ref sp_Vol_Address_DM _cAddress)
+        public void InsertAddressContext(ref sp_Vol_Address_DM _cAddress, ref sp_Vol_Addr_DM _cVolAddr)
         {
             using (VolTeerEntities context = new VolTeerEntities())
             {
-                var cAddress = new tblVolAddress
+                try
                 {
-                    AddrID = _cAddress.AddrID,
-                    AddrLine1 = _cAddress.AddrLine1,
-                    AddrLine2 = _cAddress.AddrLine2,
-                    AddrLine3 = _cAddress.AddrLine3,
-                    City = _cAddress.City,
-                    St = _cAddress.St,
-                    Zip = _cAddress.Zip,
-                    Zip4 = _cAddress.Zip4,
-                    GeoCodeGetSet = _cAddress.GeoCodeGetSet,
-                    ActiveFlg = _cAddress.ActiveFlg
+                    var cAddress = new tblVolAddress
+                    {
+                        AddrLine1 = _cAddress.AddrLine1,
+                        AddrLine2 = _cAddress.AddrLine2,
+                        AddrLine3 = _cAddress.AddrLine3,
+                        City = _cAddress.City,
+                        St = _cAddress.St,
+                        Zip = _cAddress.Zip,
+                        Zip4 = _cAddress.Zip4,
+                        GeoCodeGetSet = _cAddress.GeoCodeGetSet,
+                        ActiveFlg = _cAddress.ActiveFlg
+                    };
+                    context.tblVolAddresses.Add(cAddress);
+                    context.SaveChanges();
 
-                };
-                context.tblVolAddresses.Add(cAddress);
-                context.SaveChanges();
+                    var cVolAddr = new tblVolAddr
+                    {
+                        VolID = _cVolAddr.VolID,
+                        AddrID = cAddress.AddrID,
+                        PrimaryAddr = _cVolAddr.PrimaryAddr
+                    };
 
-                //If the AddrID isn't null, set it equal to the return value
-                if (_cAddress.AddrID != null)
+                    context.tblVolAddrs.Add(cVolAddr);
+                    context.SaveChanges();
+
+                    //If the AddrID isn't null, set it equal to the return value
+                    if (_cAddress.AddrID != null)
+                    {
+                        _cAddress.AddrID = cAddress.AddrID;
+                    }
+                }
+                catch (Exception ex)
                 {
-                    _cAddress.AddrID = cAddress.AddrID;
+                    throw (ex);
                 }
             }
         }
@@ -125,11 +173,12 @@ namespace VolTeer.DataAccessLayer.VT.Vol
         /// UpdateAddressContext - Will update a given Address record by AddrID
         /// </summary>
         /// <param name="_cAddress"></param>
-        public void UpdateAddressContext(sp_Vol_Address_DM _cAddress)
+        public void UpdateAddressContext(sp_Vol_Address_DM _cAddress, sp_Vol_Addr_DM _cVolAddr)
         {
             using (VolTeerEntities context = new VolTeerEntities())
             {
                 var cAddress = context.tblVolAddresses.Find(_cAddress.AddrID);
+                var cVolAddr = context.tblVolAddrs.Find(_cVolAddr.AddrID);
 
                 if (cAddress != null)
                 {
@@ -142,9 +191,19 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                     cAddress.Zip4 = _cAddress.Zip4;
                     cAddress.ActiveFlg = _cAddress.ActiveFlg;
                     cAddress.GeoCodeGetSet = _cAddress.GeoCodeGetSet;
-                    context.SaveChanges();
                 }
+
+                if (cVolAddr != null)
+                {
+                    cVolAddr.VolID = _cVolAddr.VolID;
+                    cVolAddr.AddrID = _cVolAddr.AddrID;
+                    cVolAddr.PrimaryAddr = _cVolAddr.PrimaryAddr;
+                }
+
+                context.SaveChanges();
             }
+
+
         }
         #endregion
 
@@ -154,13 +213,25 @@ namespace VolTeer.DataAccessLayer.VT.Vol
         /// DeleteAddressContext - Will do a soft delete (make inactive) by AddrID
         /// </summary>
         /// <param name="_cAddress"></param>
-        public void DeleteAddressContext(sp_Vol_Address_DM _cAddress)
+        public void DeleteAddressContext(sp_Vol_Address_DM _cAddress, sp_Vol_Addr_DM _cVolAddr)
         {
             using (VolTeerEntities context = new VolTeerEntities())
             {
-                var AddressToRemove = (from n in context.tblVolAddresses where n.AddrID == _cAddress.AddrID select n).FirstOrDefault();
-                context.tblVolAddresses.Remove(AddressToRemove);
-                context.SaveChanges();
+                try
+                {
+                    var AddrToRemove = (from n in context.tblVolAddrs where n.AddrID == _cVolAddr.AddrID select n).FirstOrDefault();
+                    context.tblVolAddrs.Remove(AddrToRemove);
+                    context.SaveChanges();
+
+                    var AddressToRemove = (from n in context.tblVolAddresses where n.AddrID == _cAddress.AddrID select n).FirstOrDefault();
+                    context.tblVolAddresses.Remove(AddressToRemove);
+                    context.SaveChanges();
+
+                }                
+                catch (Exception ex)
+                {
+                    throw (ex);
+                }
 
             }
         }

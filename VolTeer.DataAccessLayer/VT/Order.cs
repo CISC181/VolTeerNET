@@ -10,11 +10,15 @@
 namespace VolTeer.DataAccessLayer.VT
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class sp_Vendor_Select_Result
+    public partial class Order
     {
-        public System.Guid VendorID { get; set; }
-        public string VendorName { get; set; }
-        public Nullable<int> ActiveFlg { get; set; }
+        public int id { get; set; }
+        public int productId { get; set; }
+        public int quantity { get; set; }
+        public byte[] timestamp { get; set; }
+    
+        public virtual Product Product { get; set; }
     }
 }

@@ -14,7 +14,7 @@ namespace VolTeer.BusinessLogicLayer.VT.Vol
     public class sp_Availablity_BLL : DbSchedulerProviderBase
     {
 
-        public sp_Vol_Address_DM cVolAddr;
+        public sp_Vol_Addr_DM cVolAddr;
 
         sp_Availability_DAL DAL = new sp_Availability_DAL();
 

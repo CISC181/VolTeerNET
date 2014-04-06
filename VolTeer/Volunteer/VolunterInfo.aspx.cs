@@ -35,14 +35,17 @@ namespace VolTeer.Volunteer
             VolDM = VolCASH.ListVolunteers(UserID);
 
             hdVolID.Value = DataBinder.Eval(VolDM, "VolID").ToString();
+            hdEditView.Value = "1";
        
+       
+
             //Handle ucVolBasicInfo parameters
             ucVolBasicInfo.UserID = UserID;
 
             //Handle ucAddress parameters
 
-            ucVolAddress.gAddrOwner = (Guid)UserID;
-            ucVolAddress.iRecordTypeID = (int)RecordType.Volunteer;
+            //ucVolAddress.gAddrOwner = (Guid)UserID;
+            //ucVolAddress.iRecordTypeID = (int)RecordType.Volunteer;
 
 
         }

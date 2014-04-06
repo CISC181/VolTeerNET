@@ -17,7 +17,15 @@
         OnUpdateCommand="rGridAddress_UpdateCommand"
         OnItemDataBound="rGridAddress_ItemDataBound"
         OnNeedDataSource="rGridAddress_NeedDataSource"
-        runat="server" AutoGenerateColumns="False" CellSpacing="0" GridLines="None" AllowFilteringByColumn="True" AllowMultiRowEdit="True" AllowMultiRowSelection="True" AllowSorting="True" Skin="Office2010Silver">
+        runat="server" 
+        AutoGenerateColumns="False" 
+        CellSpacing="0" 
+        GridLines="None" 
+        AllowFilteringByColumn="True" 
+        AllowMultiRowEdit="True" 
+        AllowMultiRowSelection="True" 
+        AllowSorting="True" 
+        Skin="Office2010Silver">
         <GroupingSettings CaseSensitive="False" />
         <MasterTableView DataKeyNames="AddrID" CommandItemDisplay="Top" EnableHeaderContextAggregatesMenu="True" EnableHeaderContextFilterMenu="True" EnableHeaderContextMenu="True">
             <Columns>

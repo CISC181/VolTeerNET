@@ -24,7 +24,7 @@
     <telerik:RadAjaxLoadingPanel ID="RadAjaxLoadingPanel1" runat="server" />
 
     <telerik:RadTabStrip runat="server"
-        ID="rTSVolunteer" Width="801px"
+        ID="rTSVolunteer" Width="90%"
         AutoPostBack="True"
         MultiPageID="rMPVolunteer"
         SelectedIndex="2" Skin='<%$ AppSettings:Telerik.Skin %>'>
@@ -37,12 +37,13 @@
     <telerik:RadMultiPage runat="server" ID="rMPVolunteer" SelectedIndex="0">
 
         <telerik:RadPageView runat="server" ID="rPVBasic" Height="400px" BorderStyle="Solid" BorderWidth="1px">
-            <asp:HiddenField ID="hdVolID" runat="server" />            
+            <asp:HiddenField ID="hdVolID"  runat="server" />
+            <asp:HiddenField ID="hdEditView" runat="server" />
+
             <uc:VolBasicInfo ID="ucVolBasicInfo" runat="server" />
-            <br />
             <uc:VolAddress ID="ucVolAddress" runat="server" />
 
-            
+
         </telerik:RadPageView>
 
         <telerik:RadPageView runat="server" ID="rPVSkills" Height="400px" BorderStyle="Solid" BorderWidth="1px">

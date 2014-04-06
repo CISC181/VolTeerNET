@@ -85,6 +85,7 @@
     <Compile Include="VT\Other\sp_State_Select_DM.cs" />
     <Compile Include="VT\Vol\sp_Volunteer_DM.cs" />
     <Compile Include="VT\Vol\sp_Vol_Address_DM.cs" />
+    <Compile Include="VT\Vol\sp_Vol_Addr_DM.cs" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

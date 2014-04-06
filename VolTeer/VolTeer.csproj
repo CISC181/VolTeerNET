@@ -419,6 +419,7 @@
     <Content Include="Common\WebControls\ucSkillSearch.ascx" />
     <Content Include="Common\WebControls\ucVolBasicInfo.ascx" />
     <Content Include="Content\button\ButtonSprites.png" />
+    <Content Include="Content\GridStyleSheet.css" />
     <Content Include="Content\images\Green.png" />
     <Content Include="Content\images\Red.png" />
     <Content Include="Content\button\ToggleSprite.png" />
@@ -534,6 +535,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GoogleAPI\GoogleAPI.csproj">
+      <Project>{f4ef7342-0228-4811-8e3d-0311f0608629}</Project>
+      <Name>GoogleAPI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VolTeer.BusinessLogicLayer\VolTeer.BusinessLogicLayer.csproj">
       <Project>{81446b41-8d0a-4e58-a275-1578c7f536f2}</Project>
       <Name>VolTeer.BusinessLogicLayer</Name>
@@ -578,7 +583,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
+      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

@@ -22,7 +22,7 @@ namespace VolTeer.DomainModels.VT.Vol
 
         public virtual ICollection<sp_Availablity_DM> tblAvailability1 { get; set; }
         public virtual sp_Availablity_DM tblAvailability2 { get; set; }
-        public virtual sp_Vol_Address_DM tblVolAddress { get; set; }
+        public virtual sp_Vol_Addr_DM tblVolAddress { get; set; }
         public virtual sp_Volunteer_DM tblVolunteer { get; set; }
     }
 }

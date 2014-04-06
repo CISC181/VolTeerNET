@@ -1,7 +1,7 @@
 ﻿using VolTeer.DomainModels;
 using VolTeer.DomainModels.Service;
 
-namespace VolTeer.ExternalServiceLayer
+namespace VolTeer.GoogleAPI
 {
     public interface IGeocoder
     {

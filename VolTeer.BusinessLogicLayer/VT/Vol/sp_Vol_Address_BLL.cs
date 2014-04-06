@@ -22,19 +22,24 @@ namespace VolTeer.BusinessLogicLayer.VT.Vol
             return DAL.ListAddresses(VolID, Address).Single();
         }
 
-        public void InsertAddressContext(ref sp_Vol_Address_DM _cAddress)
+        public sp_Vol_Address_DM ListPrimaryAddress(sp_Vol_Address_DM cVolAddr)
         {
-            DAL.InsertAddressContext(ref _cAddress);
+            return DAL.ListPrimaryAddress(cVolAddr);
         }
 
-        public void UpdateAddressContext(sp_Vol_Address_DM _cAddress)
+        public void InsertAddressContext(ref sp_Vol_Address_DM _cAddress, ref sp_Vol_Addr_DM _cVolAddr)
         {
-            DAL.UpdateAddressContext(_cAddress);
+            DAL.InsertAddressContext(ref _cAddress, ref _cVolAddr);
         }
 
-        public void DeleteAddressContext(sp_Vol_Address_DM _cAddress)
+        public void UpdateAddressContext(sp_Vol_Address_DM _cAddress, sp_Vol_Addr_DM _cVolAddr)
         {
-            DAL.DeleteAddressContext(_cAddress);
+            DAL.UpdateAddressContext(_cAddress, _cVolAddr);
+        }
+
+        public void DeleteAddressContext(sp_Vol_Address_DM _cAddress, sp_Vol_Addr_DM _cVolAddr)
+        {
+            DAL.DeleteAddressContext(_cAddress, _cVolAddr);
         }
 
     }
