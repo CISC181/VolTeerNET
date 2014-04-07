@@ -15,6 +15,7 @@
             <telerik:AjaxSetting AjaxControlID="rTSVolunteer">
                 <UpdatedControls>
                     <telerik:AjaxUpdatedControl ControlID="rMPVolunteer" LoadingPanelID="RadAjaxLoadingPanel1" />
+                    <telerik:AjaxUpdatedControl ControlID="rGridAddress" LoadingPanelID="RadAjaxLoadingPanel1" />
 
                 </UpdatedControls>
             </telerik:AjaxSetting>
@@ -22,7 +23,6 @@
     </telerik:RadAjaxManager>
 
     <telerik:RadAjaxLoadingPanel ID="RadAjaxLoadingPanel1" runat="server" />
-
     <telerik:RadTabStrip runat="server"
         ID="rTSVolunteer" Width="90%"
         AutoPostBack="True"
@@ -35,29 +35,25 @@
         </Tabs>
     </telerik:RadTabStrip>
     <telerik:RadMultiPage runat="server" ID="rMPVolunteer" SelectedIndex="0">
-
         <telerik:RadPageView runat="server" ID="rPVBasic" Height="400px" BorderStyle="Solid" BorderWidth="1px">
-            <asp:HiddenField ID="hdVolID"  runat="server" />
+            <asp:HiddenField ID="hdVolID" runat="server" />
             <asp:HiddenField ID="hdEditView" runat="server" />
-
             <uc:VolBasicInfo ID="ucVolBasicInfo" runat="server" />
             <uc:VolAddress ID="ucVolAddress" runat="server" />
-
-
         </telerik:RadPageView>
-
         <telerik:RadPageView runat="server" ID="rPVSkills" Height="400px" BorderStyle="Solid" BorderWidth="1px">
             Skills
-
-
         </telerik:RadPageView>
-
         <telerik:RadPageView runat="server" ID="rPVHistory" Height="400px" BorderStyle="Solid" BorderWidth="1px">
             History
         </telerik:RadPageView>
-
     </telerik:RadMultiPage>
     <telerik:RadButton ID="RadButton1" runat="server" OnClick="RadButton1_Click" Text="RadButton"></telerik:RadButton>
 
+
+    <asp:Panel ID="pnlError" runat="server" Visible="false">
+        <table id="tblError" runat="server" visible="false">
+        </table>
+    </asp:Panel>
 
 </asp:Content>

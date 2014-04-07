@@ -34,7 +34,8 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                                 St = result.St,
                                 Zip = result.Zip,
                                 Zip4 = result.Zip4,
-                                GeoCodeGetSet = result.GeoCodeGetSet
+                                GeoCodeGetSet = result.GeoCodeGetSet,
+                                PrimaryAddr = result.PrimaryAddr
 
                             }).ToList();
                 } // Guaranteed to close the Connection
@@ -67,7 +68,8 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                                 St = result.St,
                                 Zip = result.Zip,
                                 Zip4 = result.Zip4,
-                                GeoCodeGetSet = result.GeoCodeGetSet
+                                GeoCodeGetSet = result.GeoCodeGetSet,
+                                PrimaryAddr = result.PrimaryAddr
                             }).ToList();
                 } // Guaranteed to close the Connection
             }
@@ -99,8 +101,8 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                                 St = result.St,
                                 Zip = result.Zip,
                                 Zip4 = result.Zip4,
-                                GeoCodeGetSet = result.GeoCodeGetSet
-
+                                GeoCodeGetSet = result.GeoCodeGetSet,
+                                PrimaryAddr = result.PrimaryAddr
                             }).FirstOrDefault();
                 } // Guaranteed to close the Connection
             }
@@ -175,33 +177,41 @@ namespace VolTeer.DataAccessLayer.VT.Vol
         /// <param name="_cAddress"></param>
         public void UpdateAddressContext(sp_Vol_Address_DM _cAddress, sp_Vol_Addr_DM _cVolAddr)
         {
-            using (VolTeerEntities context = new VolTeerEntities())
+            try
             {
-                var cAddress = context.tblVolAddresses.Find(_cAddress.AddrID);
-                var cVolAddr = context.tblVolAddrs.Find(_cVolAddr.AddrID);
-
-                if (cAddress != null)
+                using (VolTeerEntities context = new VolTeerEntities())
                 {
-                    cAddress.AddrLine1 = _cAddress.AddrLine1;
-                    cAddress.AddrLine2 = _cAddress.AddrLine2;
-                    cAddress.AddrLine3 = _cAddress.AddrLine3;
-                    cAddress.City = _cAddress.City;
-                    cAddress.St = _cAddress.St;
-                    cAddress.Zip = _cAddress.Zip;
-                    cAddress.Zip4 = _cAddress.Zip4;
-                    cAddress.ActiveFlg = _cAddress.ActiveFlg;
-                    cAddress.GeoCodeGetSet = _cAddress.GeoCodeGetSet;
-                }
+                    var cAddress = context.tblVolAddresses.Find(_cAddress.AddrID);
+                    var cVolAddr = context.tblVolAddrs.Find(_cVolAddr.VolID,_cVolAddr.AddrID);
 
-                if (cVolAddr != null)
-                {
-                    cVolAddr.VolID = _cVolAddr.VolID;
-                    cVolAddr.AddrID = _cVolAddr.AddrID;
-                    cVolAddr.PrimaryAddr = _cVolAddr.PrimaryAddr;
-                }
+                    if (cAddress != null)
+                    {
+                        cAddress.AddrLine1 = _cAddress.AddrLine1;
+                        cAddress.AddrLine2 = _cAddress.AddrLine2;
+                        cAddress.AddrLine3 = _cAddress.AddrLine3;
+                        cAddress.City = _cAddress.City;
+                        cAddress.St = _cAddress.St;
+                        cAddress.Zip = _cAddress.Zip;
+                        cAddress.Zip4 = _cAddress.Zip4;
+                        cAddress.ActiveFlg = _cAddress.ActiveFlg;
+                        cAddress.GeoCodeGetSet = _cAddress.GeoCodeGetSet;
+                    }
 
-                context.SaveChanges();
+                    if (cVolAddr != null)
+                    {
+                        cVolAddr.VolID = _cVolAddr.VolID;
+                        cVolAddr.AddrID = _cVolAddr.AddrID;
+                        cVolAddr.PrimaryAddr = _cVolAddr.PrimaryAddr;
+                    }
+
+                    context.SaveChanges();
+                }
             }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+
 
 
         }
@@ -227,7 +237,7 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                     context.tblVolAddresses.Remove(AddressToRemove);
                     context.SaveChanges();
 
-                }                
+                }
                 catch (Exception ex)
                 {
                     throw (ex);

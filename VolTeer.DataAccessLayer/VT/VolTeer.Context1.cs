@@ -1006,5 +1006,22 @@ namespace VolTeer.DataAccessLayer.VT
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Vol_Address_Update", addrIdParameter, activeFlgParameter, addrLine1Parameter, addrLine2Parameter, addrLine3Parameter, cityParameter, stParameter, zipParameter, zip4Parameter, geoCodeGetSetParameter);
         }
+    
+        public virtual int sp_Vol_Addr_Update(Nullable<System.Guid> volID, Nullable<int> addrID, Nullable<bool> primaryAddr)
+        {
+            var volIDParameter = volID.HasValue ?
+                new ObjectParameter("VolID", volID) :
+                new ObjectParameter("VolID", typeof(System.Guid));
+    
+            var addrIDParameter = addrID.HasValue ?
+                new ObjectParameter("AddrID", addrID) :
+                new ObjectParameter("AddrID", typeof(int));
+    
+            var primaryAddrParameter = primaryAddr.HasValue ?
+                new ObjectParameter("PrimaryAddr", primaryAddr) :
+                new ObjectParameter("PrimaryAddr", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Vol_Addr_Update", volIDParameter, addrIDParameter, primaryAddrParameter);
+        }
     }
 }

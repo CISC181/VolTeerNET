@@ -139,6 +139,7 @@
     <Compile Include="App_Code\cEnums.cs" />
     <Compile Include="App_Code\cMail.cs" />
     <Compile Include="App_Code\cValidations.cs" />
+    <Compile Include="App_Code\ExceptionUtility.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Common\WebControls\ucAddress.ascx.cs">
@@ -203,6 +204,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="ErrorPage.aspx.cs">
+      <DependentUpon>ErrorPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="ErrorPage.aspx.designer.cs">
+      <DependentUpon>ErrorPage.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -493,6 +501,7 @@
     <Content Include="App_Data\RadSpell\fr-FR.tdf" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="ErrorPage.aspx" />
     <Content Include="Global.asax" />
     <Content Include="Org\ManageOrg.aspx" />
     <Content Include="SampleControls\DataManipulation.aspx" />
@@ -583,7 +592,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
+      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

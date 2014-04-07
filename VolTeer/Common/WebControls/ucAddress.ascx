@@ -1,6 +1,20 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ucAddress.ascx.cs" Inherits="VolTeer.Common.WebControls.ucAddress" %>
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 
+
+<%--<telerik:RadAjaxManager ID="ucAddrAjaxManager" runat="server">
+    <AjaxSettings>
+        <telerik:AjaxSetting AjaxControlID="rTSVolunteer">
+            <UpdatedControls>
+                <telerik:AjaxUpdatedControl ControlID="rGridAddress" LoadingPanelID="ucAddrAjaxLoadingPanel" />
+
+            </UpdatedControls>
+        </telerik:AjaxSetting>
+    </AjaxSettings>
+</telerik:RadAjaxManager>
+
+<telerik:RadAjaxLoadingPanel ID="ucAddrAjaxLoadingPanel" runat="server" />--%>
+
 <asp:Panel ID="pnlSingleAddress" runat="server" Width="90%" BorderWidth="1px">
     <asp:Table ID="tblMainTable" runat="server">
         <asp:TableRow>
@@ -43,7 +57,7 @@
         OnNeedDataSource="rGridAddress_NeedDataSource"
         OnItemDataBound="rGridAddress_ItemDataBound"
         OnUpdateCommand="rGridAddress_UpdateCommand"
-        OnInsertCommand="rGridAddress_InsertCommand" 
+        OnInsertCommand="rGridAddress_InsertCommand"
         OnDeleteCommand="rGridAddress_DeleteCommand"
         AutoGenerateColumns="False"
         BorderWidth="1px"
@@ -80,36 +94,29 @@
                 <telerik:GridCheckBoxColumn DataField="ActiveFlg" HeaderText="Active" DataType="System.Boolean" FilterControlAltText="Filter column1 column" UniqueName="ActiveFlg">
                 </telerik:GridCheckBoxColumn>
 
+                <telerik:GridTemplateColumn FilterControlAltText="Filter TemplateColumn column" HeaderText="Primary Addr" DataField="PrimaryAddr" UniqueName="PrimaryAddr">
+                    <ItemTemplate>
+                        <asp:CheckBox ID="chkPrimaryAddr" runat="server" Checked='<%# DataBinder.Eval(Container, "DataItem.PrimaryAddr") %>'></asp:CheckBox>
+                    </ItemTemplate>
+                </telerik:GridTemplateColumn>
+
                 <telerik:GridTemplateColumn FilterControlAltText="Filter TemplateColumn column" HeaderText="Address 1" DataField="AddrLine1" UniqueName="AddrLine1">
                     <ItemTemplate>
                         <asp:Label ID="lblAddressLine1" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.AddrLine1") %>'>
                         </asp:Label>
                     </ItemTemplate>
-                    <EditItemTemplate>
-                        <asp:Label ID="rTBAddressLine1" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.AddrLine1") %>'>
-                        </asp:Label>
-                    </EditItemTemplate>
                 </telerik:GridTemplateColumn>
                 <telerik:GridTemplateColumn FilterControlAltText="Filter TemplateColumn column" HeaderText="Address 2" DataField="AddrLine2" UniqueName="AddrLine2">
                     <ItemTemplate>
                         <asp:Label ID="lblAddressLine2" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.AddrLine2") %>'>
                         </asp:Label>
                     </ItemTemplate>
-                    <EditItemTemplate>
-                        <asp:Label ID="rTBAddressLine2" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.AddrLine2") %>'>
-                        </asp:Label>
-                    </EditItemTemplate>
                 </telerik:GridTemplateColumn>
                 <telerik:GridTemplateColumn FilterControlAltText="Filter TemplateColumn column" HeaderText="Address 3" DataField="AddrLine3" UniqueName="AddrLine3">
                     <ItemTemplate>
                         <asp:Label ID="lblAddressLine3" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.AddrLine3") %>'>
                         </asp:Label>
                     </ItemTemplate>
-                    <EditItemTemplate>
-                        <asp:Label ID="rTBAddressLine3" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.AddrLine3") %>'>
-                        </asp:Label>
-
-                    </EditItemTemplate>
                 </telerik:GridTemplateColumn>
 
                 <telerik:GridTemplateColumn FilterControlAltText="Filter TemplateColumn column" HeaderText="City" DataField="City" UniqueName="City">
@@ -117,11 +124,6 @@
                         <asp:Label ID="lblCity" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.City") %>'>
                         </asp:Label>
                     </ItemTemplate>
-                    <EditItemTemplate>
-                        <asp:Label ID="rTBCity" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.City") %>'>
-                        </asp:Label>
-
-                    </EditItemTemplate>
                 </telerik:GridTemplateColumn>
 
                 <telerik:GridTemplateColumn FilterControlAltText="Filter TemplateColumn column" HeaderText="State" DataField="ST" UniqueName="ST">
@@ -129,11 +131,6 @@
                         <asp:Label ID="lblST" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.ST") %>'>
                         </asp:Label>
                     </ItemTemplate>
-                    <EditItemTemplate>
-                        <asp:Label ID="rTBST" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.St") %>'>
-                        </asp:Label>
-
-                    </EditItemTemplate>
                 </telerik:GridTemplateColumn>
 
                 <telerik:GridTemplateColumn FilterControlAltText="Filter TemplateColumn column" HeaderText="ZIP" DataField="ZIP" UniqueName="ZIP">
@@ -141,11 +138,6 @@
                         <asp:Label ID="lblZIP" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.ZIP") %>'>
                         </asp:Label>
                     </ItemTemplate>
-                    <EditItemTemplate>
-                        <asp:Label ID="rTBZIP" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.ZIP") %>'>
-                        </asp:Label>
-
-                    </EditItemTemplate>
                 </telerik:GridTemplateColumn>
 
                 <telerik:GridTemplateColumn FilterControlAltText="Filter TemplateColumn column" HeaderText="ZIP4" DataField="ZIP4" UniqueName="ZIP4">
@@ -153,13 +145,8 @@
                         <asp:Label ID="lblZIP4" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.ZIP4") %>'>
                         </asp:Label>
                     </ItemTemplate>
-                    <EditItemTemplate>
-                        <asp:Label ID="rTBZIP4" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.ZIP4") %>'>
-                        </asp:Label>
-
-                    </EditItemTemplate>
                 </telerik:GridTemplateColumn>
-                <telerik:GridButtonColumn Text="Delete" CommandName="Delete" ConfirmText="Are you sure you want to delete this?" ButtonType="ImageButton" />
+                <telerik:GridButtonColumn Text="Delete" CommandName="Delete" UniqueName="Delete" ConfirmText="Are you sure you want to delete this?" ButtonType="ImageButton" />
 
             </Columns>
             <EditFormSettings EditFormType="Template">
@@ -173,10 +160,18 @@
                                 </asp:Label>
                             </asp:TableCell>
                             <asp:TableCell>
-                                <asp:CheckBox ID="chkActive" runat="server" Text='<%# DataBinder.Eval(Container, "DataItem.ActiveFlg") %>'></asp:CheckBox>
+                                <asp:CheckBox ID="chkActive" runat="server" Checked='<%# DataBinder.Eval(Container, "DataItem.ActiveFlg") %>'></asp:CheckBox>
                             </asp:TableCell>
                         </asp:TableRow>
-
+                        <asp:TableRow>
+                            <asp:TableCell Width="10%">
+                                <asp:Label ID="lblPrimary" runat="server" Text="Primary Address">
+                                </asp:Label>
+                            </asp:TableCell>
+                            <asp:TableCell>
+                                <asp:CheckBox ID="chkPrimaryAddr" runat="server" Checked='<%# DataBinder.Eval(Container, "DataItem.PrimaryAddr") %>'></asp:CheckBox>
+                            </asp:TableCell>
+                        </asp:TableRow>
                         <asp:TableRow>
                             <asp:TableCell Width="10%">
                                 <asp:Label ID="lblAddressLine1" runat="server" Text="Address Line">
@@ -223,9 +218,7 @@
                                 <telerik:RadNumericTextBox ID="rNTBZip" runat="server" Type="Number" MinValue="0" MaxValue="99999" Width="45px"
                                     ValidationGroup="Group1" Text='<%# DataBinder.Eval(Container, "DataItem.Zip") %>'>
                                     <NumberFormat GroupSeparator="" DecimalDigits="0" />
-
                                 </telerik:RadNumericTextBox>
-
                                 &nbsp;
                                 <telerik:RadNumericTextBox ID="rNTBZip4" runat="server" MaxValue="9999" Type="Number" Width="40px"
                                     ValidationGroup="Group1" Text='<%# DataBinder.Eval(Container, "DataItem.Zip4") %>'>
