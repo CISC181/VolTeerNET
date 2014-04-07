@@ -17,10 +17,10 @@ namespace VolTeer.BusinessLogicLayer.VT.Vol
             return DAL.ListAddresses(cVolAddr);
         }
 
-        public sp_Vol_Address_DM ListAddresses(Guid? VolID, int? Address)
-        {
-            return DAL.ListAddresses(VolID, Address).Single();
-        }
+        //public sp_Vol_Address_DM ListAddresses(Guid? VolID, int? Address)
+        //{
+        //    return DAL.ListAddresses(VolID, Address).Single();
+        //}
 
         public sp_Vol_Address_DM ListPrimaryAddress(sp_Vol_Address_DM cVolAddr)
         {

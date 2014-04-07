@@ -2,19 +2,6 @@
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 
 
-<%--<telerik:RadAjaxManager ID="ucAddrAjaxManager" runat="server">
-    <AjaxSettings>
-        <telerik:AjaxSetting AjaxControlID="rTSVolunteer">
-            <UpdatedControls>
-                <telerik:AjaxUpdatedControl ControlID="rGridAddress" LoadingPanelID="ucAddrAjaxLoadingPanel" />
-
-            </UpdatedControls>
-        </telerik:AjaxSetting>
-    </AjaxSettings>
-</telerik:RadAjaxManager>
-
-<telerik:RadAjaxLoadingPanel ID="ucAddrAjaxLoadingPanel" runat="server" />--%>
-
 <asp:Panel ID="pnlSingleAddress" runat="server" Width="90%" BorderWidth="1px">
     <asp:Table ID="tblMainTable" runat="server">
         <asp:TableRow>

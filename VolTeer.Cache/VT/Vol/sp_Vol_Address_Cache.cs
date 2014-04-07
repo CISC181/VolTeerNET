@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Linq;
-
 using VolTeer.DomainModels.VT.Vol;
 using VolTeer.BusinessLogicLayer.VT.Vol;
 using System.Collections.Generic;
-
 using System.Web;
 using System.Web.Caching;
 
@@ -17,40 +15,52 @@ namespace VolTeer.Cache.VT.Vol
     {
         sp_Vol_Address_BLL BLL = new sp_Vol_Address_BLL();
 
-        //public List<sp_Vol_Address_DM> ListAddresses()
-        //{
-        //    return BLL.ListAddresses();
-        //}
+        public List<sp_Vol_Address_DM> ListAddresses(sp_Vol_Address_DM cVolAddr)
+        {
+            List<sp_Vol_Address_DM> cAddress = new List<sp_Vol_Address_DM>();
 
-        /// <summary>
-        /// ListAddress - There's a good chance the same record may be requested often.  Cache the address object...
-        /// 
-        /// </summary>
-        /// <param name="Address"></param>
-        /// <returns></returns>
-        //public sp_Vol_Address_DM ListAddresses(int? Address)
-        //{
-        //    sp_Vol_Address_DM cAddress = new sp_Vol_Address_DM();
+            //Cache cache = HttpRuntime.Cache;
+            System.Web.Caching.Cache cache = HttpRuntime.Cache;
 
-        //    //Cache cache = HttpRuntime.Cache;
-        //    System.Web.Caching.Cache cache = HttpRuntime.Cache;
+            List<sp_Vol_Address_DM> cacheAddress;
+            cacheAddress = (List<sp_Vol_Address_DM>)cache["VolAddrs"];
 
-        //    sp_Vol_Address_DM cacheAddress;
-        //    cacheAddress = (sp_Vol_Address_DM)cache[Address.ToString()];
-
-        //    if (cacheAddress == null)
-        //    {
-        //        cAddress = BLL.ListAddresses(Address);
-        //        cache.Insert(cAddress.AddrID.ToString(), cAddress, null, DateTime.Now.AddSeconds(60), System.Web.Caching.Cache.NoSlidingExpiration, CacheItemPriority.High, null);
-        //    }
-        //    else
-        //    {
-        //        cAddress = cacheAddress;
-        //    }
+            if (cacheAddress == null)
+            {
+                cAddress = BLL.ListAddresses(cVolAddr);
+                cache.Insert("VolAddrs", cAddress, null, DateTime.Now.AddSeconds(60), System.Web.Caching.Cache.NoSlidingExpiration, CacheItemPriority.High, null);
+            }
+            else
+            {
+                cAddress = cacheAddress;
+            }
+            return cAddress;
+        }
 
 
-        //    return cAddress;
-        //}
+        public sp_Vol_Address_DM ListPrimaryAddress(sp_Vol_Address_DM cVolAddr)
+        {
+            
+
+            sp_Vol_Address_DM cAddress = new sp_Vol_Address_DM();
+
+            //Cache cache = HttpRuntime.Cache;
+            System.Web.Caching.Cache cache = HttpRuntime.Cache;
+
+            sp_Vol_Address_DM cacheAddress;
+            cacheAddress = (sp_Vol_Address_DM)cache[cVolAddr.AddrID.ToString()];
+
+            if (cacheAddress == null)
+            {
+                cAddress = BLL.ListPrimaryAddress(cVolAddr);
+                cache.Insert(cVolAddr.AddrID.ToString(), cAddress, null, DateTime.Now.AddSeconds(60), System.Web.Caching.Cache.NoSlidingExpiration, CacheItemPriority.High, null);
+            }
+            else
+            {
+                cAddress = cacheAddress;
+            }
+            return cAddress;
+        }
 
         public void InsertAddressContext(sp_Vol_Address_DM _cAddress, ref sp_Vol_Addr_DM _cVolAddr)
         {

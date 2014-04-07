@@ -51,9 +51,4 @@
     <telerik:RadButton ID="RadButton1" runat="server" OnClick="RadButton1_Click" Text="RadButton"></telerik:RadButton>
 
 
-    <asp:Panel ID="pnlError" runat="server" Visible="false">
-        <table id="tblError" runat="server" visible="false">
-        </table>
-    </asp:Panel>
-
 </asp:Content>

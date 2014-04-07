@@ -12,6 +12,7 @@ using VolTeer.App_Code;
 using VolTeer.BusinessLogicLayer.VT.Vol;
 using VolTeer.DomainModels.VT.Vol;
 using VolTeer.BusinessLogicLayer.VT.Other;
+using VolTeer.Cache.VT.Vol;
 
 
 using VolTeer.DomainModels.Service;
@@ -31,6 +32,7 @@ namespace VolTeer.Common.WebControls
 
         //  Object References
         private sp_Vol_Address_BLL VolAddrBLL = new sp_Vol_Address_BLL();
+        private sp_Vol_Address_Cache VolAddrCash = new sp_Vol_Address_Cache();
         private sp_State_BLL stBLL = new sp_State_BLL();
 
         protected void Page_Load(object sender, EventArgs e)
@@ -61,7 +63,9 @@ namespace VolTeer.Common.WebControls
                 pnlAddressGrid.Visible = true;
                 sp_Vol_Address_DM VolDM = new sp_Vol_Address_DM();
                 VolDM.VolID = gAddrOwner;
-                rGridAddress.DataSource = VolAddrBLL.ListAddresses(VolDM);
+                //rGridAddress.DataSource = VolAddrBLL.ListAddresses(VolDM);
+
+                rGridAddress.DataSource = VolAddrCash.ListAddresses(VolDM);
                 rGridAddress.DataBind();
             }
         }
@@ -77,7 +81,7 @@ namespace VolTeer.Common.WebControls
             try
             {
                 VolDM.VolID = gAddrOwner;
-                VolDM = VolAddrBLL.ListPrimaryAddress(VolDM);
+                VolDM = VolAddrCash.ListPrimaryAddress(VolDM);
 
                 lblAddr1.Text = VolDM.AddrLine1;
                 lblAddr2.Text = VolDM.AddrLine2;
@@ -191,7 +195,9 @@ namespace VolTeer.Common.WebControls
             {
                 sp_Vol_Address_DM VolDM = new sp_Vol_Address_DM();
                 VolDM.VolID = gAddrOwner;
-                rGridAddress.DataSource = VolAddrBLL.ListAddresses(VolDM);
+                //rGridAddress.DataSource = VolAddrBLL.ListAddresses(VolDM);
+
+                rGridAddress.DataSource = VolAddrCash.ListAddresses(VolDM);
             }
             catch (Exception ex)
             {
