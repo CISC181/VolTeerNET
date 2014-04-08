@@ -13,7 +13,7 @@
             <telerik:RadScriptManager runat="server" ID="RadScriptManager1" />
 
             
-            <telerik:RadTextBox ID="rTbST" runat="server"></telerik:RadTextBox>
+            <telerik:RadTextBox ID="rTbST" runat="server" MaxLength="2" ></telerik:RadTextBox>
             <asp:PlaceHolder ID="PlaceHolder1" runat="server"></asp:PlaceHolder>
             <br />
             <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>

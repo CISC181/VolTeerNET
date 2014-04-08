@@ -8,6 +8,10 @@ namespace VolTeer.DataAccessLayer.Describe
 {
     public class DescribeDAL
     {
+        /// <summary>
+        /// ListTableColumns - This method will list all table columns
+        /// </summary>
+        /// <returns></returns>
         public List<TableColumnDM> ListTableColumns()
         {
             List<TableColumnDM> list = new List<TableColumnDM>();
