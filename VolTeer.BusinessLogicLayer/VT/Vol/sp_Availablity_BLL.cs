@@ -72,6 +72,14 @@ namespace VolTeer.BusinessLogicLayer.VT.Vol
             DAL.InsertVolunteerAvailability(shedulerInfo, appointmentToInsert, cAvail);
         }
 
+
+        public override  void Delete(Telerik.Web.UI.RadScheduler owner, Telerik.Web.UI.Appointment appointmentToDelete) 
+        
+        { 
+        
+        }
+
+
         public override void Delete(ISchedulerInfo shedulerInfo, Appointment appointmentToDelete)
         {
             if (!PersistChanges)

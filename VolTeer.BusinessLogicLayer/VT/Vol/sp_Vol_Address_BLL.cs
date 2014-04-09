@@ -22,6 +22,11 @@ namespace VolTeer.BusinessLogicLayer.VT.Vol
         //    return DAL.ListAddresses(VolID, Address).Single();
         //}
 
+        /// <summary>
+        /// ListPrimaryAddress - List the Primary address
+        /// </summary>
+        /// <param name="cVolAddr"></param>
+        /// <returns></returns>
         public sp_Vol_Address_DM ListPrimaryAddress(sp_Vol_Address_DM cVolAddr)
         {
             return DAL.ListPrimaryAddress(cVolAddr);

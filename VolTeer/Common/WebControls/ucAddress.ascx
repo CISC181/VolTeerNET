@@ -147,7 +147,7 @@
                                 </asp:Label>
                             </asp:TableCell>
                             <asp:TableCell>
-                                <asp:CheckBox ID="chkActive" runat="server" Checked='<%# DataBinder.Eval(Container, "DataItem.ActiveFlg") %>'></asp:CheckBox>
+                                <asp:CheckBox ID="chkActive" runat="server" ></asp:CheckBox>
                             </asp:TableCell>
                         </asp:TableRow>
                         <asp:TableRow>
@@ -156,7 +156,7 @@
                                 </asp:Label>
                             </asp:TableCell>
                             <asp:TableCell>
-                                <asp:CheckBox ID="chkPrimaryAddr" runat="server" Checked='<%# DataBinder.Eval(Container, "DataItem.PrimaryAddr") %>'></asp:CheckBox>
+                                <asp:CheckBox ID="chkPrimaryAddr" runat="server" ></asp:CheckBox>
                             </asp:TableCell>
                         </asp:TableRow>
                         <asp:TableRow>

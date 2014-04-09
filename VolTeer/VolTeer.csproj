@@ -366,6 +366,13 @@
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Volunteer\ManageVolunteer.aspx.cs">
+      <DependentUpon>ManageVolunteer.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Volunteer\ManageVolunteer.aspx.designer.cs">
+      <DependentUpon>ManageVolunteer.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Volunteer\VolunterInfo.aspx.cs">
       <DependentUpon>VolunterInfo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -522,6 +529,7 @@
     <Content Include="Skills\ManageSkills.aspx" />
     <Content Include="Skills\SkillSearch.aspx" />
     <Content Include="ViewSwitcher.ascx" />
+    <Content Include="Volunteer\ManageVolunteer.aspx" />
     <Content Include="Volunteer\VolunterInfo.aspx" />
     <Content Include="web.config">
       <SubType>Designer</SubType>
@@ -592,7 +600,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
+      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
