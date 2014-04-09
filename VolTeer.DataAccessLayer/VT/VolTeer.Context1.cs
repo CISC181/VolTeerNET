@@ -895,47 +895,6 @@ namespace VolTeer.DataAccessLayer.VT
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Vol_Address_Delete", addrIDParameter);
         }
     
-        public virtual ObjectResult<Nullable<decimal>> sp_Vol_Address_Insert(string addrLine1, string addrLine2, string addrLine3, string city, string st, Nullable<int> zip, Nullable<int> zip4, string geoCodeGetSet, Nullable<bool> activeFlg)
-        {
-            var addrLine1Parameter = addrLine1 != null ?
-                new ObjectParameter("AddrLine1", addrLine1) :
-                new ObjectParameter("AddrLine1", typeof(string));
-    
-            var addrLine2Parameter = addrLine2 != null ?
-                new ObjectParameter("AddrLine2", addrLine2) :
-                new ObjectParameter("AddrLine2", typeof(string));
-    
-            var addrLine3Parameter = addrLine3 != null ?
-                new ObjectParameter("AddrLine3", addrLine3) :
-                new ObjectParameter("AddrLine3", typeof(string));
-    
-            var cityParameter = city != null ?
-                new ObjectParameter("City", city) :
-                new ObjectParameter("City", typeof(string));
-    
-            var stParameter = st != null ?
-                new ObjectParameter("St", st) :
-                new ObjectParameter("St", typeof(string));
-    
-            var zipParameter = zip.HasValue ?
-                new ObjectParameter("Zip", zip) :
-                new ObjectParameter("Zip", typeof(int));
-    
-            var zip4Parameter = zip4.HasValue ?
-                new ObjectParameter("Zip4", zip4) :
-                new ObjectParameter("Zip4", typeof(int));
-    
-            var geoCodeGetSetParameter = geoCodeGetSet != null ?
-                new ObjectParameter("GeoCodeGetSet", geoCodeGetSet) :
-                new ObjectParameter("GeoCodeGetSet", typeof(string));
-    
-            var activeFlgParameter = activeFlg.HasValue ?
-                new ObjectParameter("ActiveFlg", activeFlg) :
-                new ObjectParameter("ActiveFlg", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<decimal>>("sp_Vol_Address_Insert", addrLine1Parameter, addrLine2Parameter, addrLine3Parameter, cityParameter, stParameter, zipParameter, zip4Parameter, geoCodeGetSetParameter, activeFlgParameter);
-        }
-    
         public virtual int sp_Vol_Address_MassUpdate(string xML_IN)
         {
             var xML_INParameter = xML_IN != null ?
@@ -1022,6 +981,23 @@ namespace VolTeer.DataAccessLayer.VT
                 new ObjectParameter("PrimaryAddr", typeof(bool));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Vol_Addr_Update", volIDParameter, addrIDParameter, primaryAddrParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<System.Guid>> sp_Volunteer_Insert1(string volFirstName, string volMiddleName, string volLastName)
+        {
+            var volFirstNameParameter = volFirstName != null ?
+                new ObjectParameter("VolFirstName", volFirstName) :
+                new ObjectParameter("VolFirstName", typeof(string));
+    
+            var volMiddleNameParameter = volMiddleName != null ?
+                new ObjectParameter("VolMiddleName", volMiddleName) :
+                new ObjectParameter("VolMiddleName", typeof(string));
+    
+            var volLastNameParameter = volLastName != null ?
+                new ObjectParameter("VolLastName", volLastName) :
+                new ObjectParameter("VolLastName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("sp_Volunteer_Insert1", volFirstNameParameter, volMiddleNameParameter, volLastNameParameter);
         }
     }
 }

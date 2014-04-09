@@ -40,7 +40,7 @@ namespace VolTeer.Account
             vol.ActiveFlg = true;
 
 
-            BLL.InsertVolunteerContext(vol);
+            vol = BLL.InsertVolunteerContext(vol);
 
             cMail.SendMessage("test@test.com", (CreateUserWizardStep1.ContentTemplateContainer.FindControl("Email") as RadTextBox).Text.Trim(), "VolTeer Registration", "Please click link to confirm");
 

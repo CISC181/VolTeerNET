@@ -22,9 +22,9 @@ namespace VolTeer.BusinessLogicLayer.VT.Vol
             return DAL.ListVolunteers(Volunteer).Single();
         }
 
-        public void InsertVolunteerContext(sp_Volunteer_DM _cVolunteer)
+        public sp_Volunteer_DM InsertVolunteerContext(sp_Volunteer_DM _cVolunteer)
         {
-            DAL.InsertVolunteerContext(ref _cVolunteer);
+            return DAL.InsertVolunteerContext(ref _cVolunteer);
         }
 
         public void UpdateVolunteerContext(sp_Volunteer_DM _cVolunteer)

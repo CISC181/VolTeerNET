@@ -14,13 +14,14 @@ namespace UT.Volteer.BLL
             sp_Volunteer_DM VOL = new sp_Volunteer_DM();
             sp_Volunteer_BLL VOlBll = new sp_Volunteer_BLL();
 
-            VOL.VolFirstName = "FNTest";
-            VOL.VolMiddleName = "MNTest";
-            VOL.VolLastName = "LNTest";
+            VOL.VolFirstName = "Jim";
+            VOL.VolMiddleName = "";
+            VOL.VolLastName = "Morrison";
 
-            VOlBll.InsertVolunteerContext(VOL);
+            VOL = VOlBll.InsertVolunteerContext(VOL);
 
-
+            Console.WriteLine(VOL.VolID);
+            System.Diagnostics.Debug.Write(VOL.VolID);
         }
     }
 }
