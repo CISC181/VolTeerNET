@@ -94,10 +94,6 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\GoogleAPI\GoogleAPI.csproj">
-      <Project>{f4ef7342-0228-4811-8e3d-0311f0608629}</Project>
-      <Name>GoogleAPI</Name>
-    </ProjectReference>
     <ProjectReference Include="..\VolTeer.DataAccessLayer\VolTeer.DataAccessLayer.csproj">
       <Project>{bf6a3d20-8004-4274-84f9-1cbff4436c61}</Project>
       <Name>VolTeer.DataAccessLayer</Name>
