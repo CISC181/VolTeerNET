@@ -2,6 +2,7 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VolTeer.DomainModels.VT.Vol;
 using VolTeer.BusinessLogicLayer.VT.Vol;
+using UT.Volteer.BLL.HelperMethods;
 
 namespace UT.Volteer.BLL
 {
@@ -11,17 +12,22 @@ namespace UT.Volteer.BLL
         [TestMethod]
         public void CreateVolunteer()
         {
-            sp_Volunteer_DM VOL = new sp_Volunteer_DM();
-            sp_Volunteer_BLL VOlBll = new sp_Volunteer_BLL();
+            sp_Volunteer_DM insertVol = new sp_Volunteer_DM();
+            sp_Volunteer_DM selectVol = new sp_Volunteer_DM();
 
-            VOL.VolFirstName = "Jim";
-            VOL.VolMiddleName = "";
-            VOL.VolLastName = "Morrison";
+            hVolunteer hVol = new hVolunteer();
+            insertVol = hVol.hCreateVolunteer("New", "Test", "User");
 
-            VOL = VOlBll.InsertVolunteerContext(VOL);
 
-            Console.WriteLine(VOL.VolID);
-            System.Diagnostics.Debug.Write(VOL.VolID);
+            selectVol = hVol.hSelectVolunteer(insertVol.VolID);
+
+            Assert.AreEqual(insertVol.VolFirstName, selectVol.VolFirstName);
+            Assert.AreEqual(insertVol.VolMiddleName, selectVol.VolMiddleName);
+            Assert.AreEqual(insertVol.VolLastName, selectVol.VolMiddleName);
+
+            
+            Console.WriteLine(insertVol.VolID);
+            System.Diagnostics.Debug.Write(insertVol.VolID);
         }
     }
 }

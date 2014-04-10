@@ -142,6 +142,13 @@
     <Compile Include="App_Code\ExceptionUtility.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Common\WebControls\ucAccountMaint.ascx.cs">
+      <DependentUpon>ucAccountMaint.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Common\WebControls\ucAccountMaint.ascx.designer.cs">
+      <DependentUpon>ucAccountMaint.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Common\WebControls\ucAddress.ascx.cs">
       <DependentUpon>ucAddress.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -169,6 +176,20 @@
     </Compile>
     <Compile Include="Common\WebControls\ucEmail.ascx.designer.cs">
       <DependentUpon>ucEmail.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Common\WebControls\ucGroups.ascx.cs">
+      <DependentUpon>ucGroups.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Common\WebControls\ucGroups.ascx.designer.cs">
+      <DependentUpon>ucGroups.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Common\WebControls\ucHistory.ascx.cs">
+      <DependentUpon>ucHistory.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Common\WebControls\ucHistory.ascx.designer.cs">
+      <DependentUpon>ucHistory.ascx</DependentUpon>
     </Compile>
     <Compile Include="Common\WebControls\ucPhone.ascx.cs">
       <DependentUpon>ucPhone.ascx</DependentUpon>
@@ -425,10 +446,13 @@
     <Content Include="App_Data\RadCaptcha\Y.wav" />
     <Content Include="App_Data\RadCaptcha\Z.wav" />
     <Content Include="Common\JavaScripts\TreeScripts.js" />
+    <Content Include="Common\WebControls\ucAccountMaint.ascx" />
     <Content Include="Common\WebControls\ucAddress.ascx" />
     <Content Include="Common\WebControls\ucAvailability.ascx" />
     <Content Include="Common\WebControls\ucEditSkill.ascx" />
     <Content Include="Common\WebControls\ucEmail.ascx" />
+    <Content Include="Common\WebControls\ucGroups.ascx" />
+    <Content Include="Common\WebControls\ucHistory.ascx" />
     <Content Include="Common\WebControls\ucPhone.ascx" />
     <Content Include="Common\WebControls\ucSkill.ascx" />
     <Content Include="Common\WebControls\ucSkillSearch.ascx" />
@@ -600,7 +624,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
+      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

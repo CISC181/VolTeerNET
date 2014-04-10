@@ -12,6 +12,9 @@
         AllowCustomEntry="true" 
         EmptyMessage="Enter Skills"
         Height="35px">
+<%--        <DropDownItemTemplate>
+
+        </DropDownItemTemplate>--%>
     </telerik:RadAutoCompleteBox>
     <br />
     <input type="button" name="Text2" value="Clear All Entries" onclick="ClearAllEntries()" />

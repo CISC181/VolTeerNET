@@ -7,9 +7,10 @@ namespace VolTeer.App_Code
 {
     public enum RecordType
     {
-        Volunteer = 1,
-        Group = 2,
-        Contact = 3
+        Volunteer,
+        Group,
+        Contact,
+        VolAddr
     }
 
     public enum RecordAction
