@@ -115,7 +115,7 @@ h5, h6 {
 }
 
 .main-content {
-    background: url("../Images/accent.png") no-repeat;
+    background: url("~/Content/images/accent.png") no-repeat;
     padding-left: 5px;
     padding-top: 5px;
 }
@@ -1102,4 +1102,96 @@ tr.pager td {
 .dragDropCheckBox
 {
     margin-top:15px;
+}
+
+.exampleWrapper {
+     background: url('../Content/images/background_image.png') 0 20px no-repeat;
+     width: 600px;
+     padding: 125px 120px 0 20px;
+     height: 500px;
+     float: left;
+}
+ 
+     .exampleWrapper .outerMultiPage {
+          height: 387px;
+          width: 593px;
+          margin-left: 15px;
+          margin-top: 30px;
+     }
+ 
+     .exampleWrapper .innerMultiPage {
+          display: -moz-inline-box;
+          display: inline-block;
+          zoom: 1;
+          *display: inline;
+          position: relative;
+          margin-bottom: -3px;
+     }
+ 
+.ingredients.qsf-ib {
+     vertical-align: top;
+     position: relative;
+     top: -19px;
+     *top: 0px;
+}
+ 
+.ingredients p {
+     font: Segoe UI;
+     color: #d80033;
+     text-transform: uppercase;
+     font-size: 18px;
+     white-space: normal;
+     word-wrap: break-word;
+     width: 230px;
+     margin-top: 13px;
+     *margin-top: -7px;
+}
+ 
+.ingredients ul {
+     font: Segoe UI;
+     color: #444444;
+     font-size: 13px;
+     list-style-type: none;
+     margin-left: -40px;
+     *margin-left: 0px;
+}
+ 
+.recipeImage.qsf-ib {
+     vertical-align: top;
+     margin: 0 15px;
+}
+ 
+html .subtitle {
+     font: Segoe UI;
+     color: #444444;
+     font-size: 13px;
+     text-transform: uppercase;
+}
+ 
+.disclaimer p {
+     font: Segoe UI;
+     color: #888888;
+     font-size: 12px;
+     left: 1px;
+     margin: 0;
+     position: relative;
+     top: -12px;
+     width: 390px;
+     word-wrap: break-word;
+     white-space: normal;
+}
+ 
+html .RadTabStrip .rtsImg,
+html .RadTabStripVertical .rtsImg {
+     border: 0 none;
+     margin-left: -2px;
+     margin-top: 7px;
+     vertical-align: middle;
+}
+ 
+html .RadRating {
+     margin-bottom: 22px;
+     position: relative;
+     top: 15px;
+     *top: -3px;
 }

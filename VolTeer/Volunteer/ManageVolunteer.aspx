@@ -20,16 +20,16 @@
                     <telerik:RadTabStrip runat="server" ID="RadTabStrip2" MultiPageID="RadMultiPage2"
                         Orientation="VerticalLeft" Skin="Silk" Width="50px" Height="355px" SelectedIndex="0">
                         <Tabs>
-                            <telerik:RadTab ImageUrl="Images/icon_AllRecipes.png" ToolTip="Main Course" SelectedImageUrl="Images/icon_AllRecipes_hover.png" HoveredImageUrl="Images/icon_AllRecipes_hover.png" Height="40px"></telerik:RadTab>
-                            <telerik:RadTab ImageUrl="Images/icon_Desserts.png" ToolTip="Desserts" SelectedImageUrl="Images/icon_Desserts_hover.png" HoveredImageUrl="Images/icon_Desserts_hover.png" Height="40px"></telerik:RadTab>
-                            <telerik:RadTab ImageUrl="Images/icon_Soups.png" ToolTip="Soups" SelectedImageUrl="Images/icon_Soups_hover.png" HoveredImageUrl="Images/icon_Soups_hover.png" Height="40px"></telerik:RadTab>
-                            <telerik:RadTab ImageUrl="Images/icon_Seafood.png" ToolTip="Seafood" SelectedImageUrl="Images/icon_Seafood_hover.png" HoveredImageUrl="Images/icon_Seafood_hover.png" Height="40px"></telerik:RadTab>
+                            <telerik:RadTab ImageUrl="../Content/images/icon_AllRecipes.png" ToolTip="Main Course" SelectedImageUrl="../Content/images/icon_AllRecipes_hover.png" HoveredImageUrl="../Content/images/icon_AllRecipes_hover.png" Height="40px"></telerik:RadTab>
+                            <telerik:RadTab ImageUrl="../Content/images/icon_Desserts.png" ToolTip="Desserts" SelectedImageUrl="../Content/images/icon_Desserts_hover.png" HoveredImageUrl="../Content/images/icon_Desserts_hover.png" Height="40px"></telerik:RadTab>
+                            <telerik:RadTab ImageUrl="../Content/images/icon_Soups.png" ToolTip="Soups" SelectedImageUrl="../Content/images/icon_Soups_hover.png" HoveredImageUrl="../Content/images/icon_Soups_hover.png" Height="40px"></telerik:RadTab>
+                            <telerik:RadTab ImageUrl="../Content/images/icon_Seafood.png" ToolTip="Seafood" SelectedImageUrl="../Content/images/icon_Seafood_hover.png" HoveredImageUrl="../Content/images/icon_Seafood_hover.png" Height="40px"></telerik:RadTab>
                         </Tabs>
                     </telerik:RadTabStrip>
                     <telerik:RadMultiPage runat="server" ID="RadMultiPage2" SelectedIndex="0" CssClass="innerMultiPage">
                         <telerik:RadPageView runat="server" ID="PageView1">
                             <div class="recipeImage qsf-ib">
-                                <img src="Images/Beef_Stewed.png" alt="image" />
+                                <img src="../Content/images/Beef_Stewed.png" alt="image" />
                             </div>
                             <div class="ingredients qsf-ib">
                                 <p>Beef Stewed in a Salty Herb Crust</p>
@@ -52,7 +52,7 @@
                         </telerik:RadPageView>
                         <telerik:RadPageView runat="server" ID="PageView2">
                             <div class="recipeImage qsf-ib">
-                                <img src="Images/Lavender_Ice_Cream.png" alt="image" />
+                                <img src="../Content/images/Lavender_Ice_Cream.png" alt="image" />
                             </div>
                             <div class="ingredients qsf-ib">
                                 <p>Lavender Ice Cream</p>
@@ -67,7 +67,7 @@
                         </telerik:RadPageView>
                         <telerik:RadPageView runat="server" ID="PageView3">
                             <div class="recipeImage qsf-ib">
-                                <img src="Images/Creamy_Soup.png" alt="image" />
+                                <img src="../Content/images/Creamy_Soup.png" alt="image" />
                             </div>
                             <div class="ingredients qsf-ib">
                                 <p>Creamy Soup with Port Wine and Cheese</p>
@@ -84,7 +84,7 @@
                         </telerik:RadPageView>
                         <telerik:RadPageView runat="server" ID="PageView4">
                             <div class="recipeImage qsf-ib">
-                                <img src="Images/Clam_Spinach_and_Peanut_Stew.png" alt="image" />
+                                <img src="../Content/images/Clam_Spinach_and_Peanut_Stew.png" alt="image" />
                             </div>
                             <div class="ingredients qsf-ib">
                                 <p>Clam, Spinach and Peanut Stew</p>
@@ -104,7 +104,7 @@
                 </telerik:RadPageView>
                 <telerik:RadPageView runat="server" ID="RadPageView2">
                     <div class="recipeImage qsf-ib">
-                        <img src="Images/Greek_Moussaka.png" alt="image" />
+                        <img src="../Content/images/Greek_Moussaka.png" alt="image" />
                     </div>
                     <div class="ingredients qsf-ib">
                         <p>Greek Moussaka </p>
@@ -123,7 +123,7 @@
                 </telerik:RadPageView>
                 <telerik:RadPageView runat="server" ID="RadPageView3">
                     <div class="recipeImage qsf-ib">
-                        <img src="Images/Chocolate_Cheesecake.png" alt="image" />
+                        <img src="../Content/images/Chocolate_Cheesecake.png" alt="image" />
                     </div>
                     <div class="ingredients qsf-ib">
                         <telerik:RadRating ID="RadRating" Skin="Silk" Value="5" runat="server"></telerik:RadRating>

@@ -459,10 +459,26 @@
     <Content Include="Common\WebControls\ucVolBasicInfo.ascx" />
     <Content Include="Content\button\ButtonSprites.png" />
     <Content Include="Content\GridStyleSheet.css" />
+    <Content Include="Content\images\background_image.png" />
+    <Content Include="Content\images\Beef_Stewed.png" />
+    <Content Include="Content\images\Chocolate_Cheesecake.png" />
+    <Content Include="Content\images\Clam_Spinach_and_Peanut_Stew.png" />
+    <Content Include="Content\images\Creamy_Soup.png" />
+    <Content Include="Content\images\Greek_Moussaka.png" />
     <Content Include="Content\images\Green.png" />
+    <Content Include="Content\images\icon_AllRecipes.png" />
+    <Content Include="Content\images\icon_AllRecipes_hover.png" />
+    <Content Include="Content\images\icon_Desserts.png" />
+    <Content Include="Content\images\icon_Desserts_hover.png" />
+    <Content Include="Content\images\icon_Seafood.png" />
+    <Content Include="Content\images\icon_Seafood_hover.png" />
+    <Content Include="Content\images\icon_Soups.png" />
+    <Content Include="Content\images\icon_Soups_hover.png" />
+    <Content Include="Content\images\Lavender_Ice_Cream.png" />
     <Content Include="Content\images\Red.png" />
     <Content Include="Content\button\ToggleSprite.png" />
     <Content Include="Content\EmailTemplates\ForgotUserName.html" />
+    <Content Include="Content\images\Stuffed_Onion.png" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\Telerik.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
@@ -624,7 +640,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
+      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
