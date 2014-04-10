@@ -41,12 +41,17 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VT\Vend\sp_VendEmail_Cache.cs" />
     <Compile Include="VT\Vend\sp_EventRating_Cache.cs" />
     <Compile Include="VT\Vol\sp_Volunteer_Cache.cs" />
     <Compile Include="VT\Vol\sp_Vol_Address_Cache.cs" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
+    <ProjectReference Include="..\GoogleAPI\GoogleAPI.csproj">
+      <Project>{f4ef7342-0228-4811-8e3d-0311f0608629}</Project>
+      <Name>GoogleAPI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VolTeer.BusinessLogicLayer\VolTeer.BusinessLogicLayer.csproj">
       <Project>{81446b41-8d0a-4e58-a275-1578c7f536f2}</Project>
       <Name>VolTeer.BusinessLogicLayer</Name>
