@@ -47,6 +47,8 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.XML" />
   </ItemGroup>
   <Choose>
     <When Condition="('$(VisualStudioVersion)' == '10.0' or '$(VisualStudioVersion)' == '') and '$(TargetFrameworkVersion)' == 'v3.5'">
@@ -61,6 +63,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="HelperMethods\cExcel.cs" />
     <Compile Include="HelperMethods\hVolunteer.cs" />
     <Compile Include="utVolunteer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -77,6 +80,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="HelperFiles\Volunteer.xlsx" />
     <None Include="packages.config" />
   </ItemGroup>
   <Choose>
