@@ -22,7 +22,7 @@ namespace VolTeer.BusinessLogicLayer.VT.Vol
             return DAL.ListPhones(PhoneIds).Single();
         }
 
-        public void InsertPhoneContext(sp_Phone_DM _cPhone)
+        public void InsertPhonesContext(sp_Phone_DM _cPhone)
         {
             DAL.InsertPhoneContext(_cPhone);
         }
