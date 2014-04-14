@@ -7,16 +7,19 @@ using System.Diagnostics;
 using System.Text;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using System.Xml;
 using Telerik.Web.UI;
 using VolTeer.App_Code;
 using VolTeer.BusinessLogicLayer.VT.Vol;
 using VolTeer.DomainModels.VT.Vol;
 using VolTeer.BusinessLogicLayer.VT.Other;
 using VolTeer.Cache.VT.Vol;
+using VolTeer.GoogleAPI;
 
 
 using VolTeer.DomainModels.Service;
 using VolTeer.GoogleAPI;
+using System.IO;
 
 
 namespace VolTeer.Common.WebControls
@@ -332,7 +335,9 @@ namespace VolTeer.Common.WebControls
                 {
                     VolAddressDM.Zip4 = Convert.ToInt32(strZip4.ToString());
                 }
-                //TODO - Implement GEO CODE!!!!!
+                //TODO - Test to see if GeoCode works without USA at end
+                VolAddressDM.GeoCodeGetSet = GetGeoCode(VolAddressDM);
+
                 if (iAction == (int)RecordAction.Update)
                 {
                     VolAddrBLL.UpdateAddressContext(VolAddressDM, VolAddrDM);
@@ -409,12 +414,37 @@ namespace VolTeer.Common.WebControls
 
         protected string GetGeoCode(sp_Vol_Address_DM VolAddr)
         {
-            GoogleAddress GC = new GoogleAddress();
-            GoogleGeocoder GCoder = new GoogleGeocoder(true);
+            GoogleAddress googleAddress = new GoogleAddress();
+            googleAddress.FormattedAddress = VolAddr.AddrLine1 + ", " +
+               VolAddr.City + ", " + VolAddr.St + " " + VolAddr.Zip;
+            //Assume we want to send the request to Google using SSL
+            IGeocoder geoCoder = new GoogleGeocoder(true);
+            String geoCoderXML = geoCoder.GetLatLongFromAddress(googleAddress);
+            String latitude;
+            String longitude;
 
-            return string.Empty;
+            using (XmlReader reader = XmlReader.Create(new StringReader(geoCoderXML)))
+            {
+                reader.ReadToFollowing("lat");
+                reader.MoveToFirstAttribute();
+                latitude = reader.Value;
+
+                reader.ReadToFollowing("lon");
+                longitude = reader.Value;
+            }
+
+            String gcReturn;
+            if (latitude.Contains("unknown") || longitude.Contains("unknown"))
+            {
+                gcReturn = null;
+            }
+            else
+            {
+                gcReturn = "'POINT(" + longitude + " " + latitude + ")'";
+            }
+
+            return gcReturn;
         }
-
 
         /// <summary>
         /// DisplayError - Pass the exception to the main page.
