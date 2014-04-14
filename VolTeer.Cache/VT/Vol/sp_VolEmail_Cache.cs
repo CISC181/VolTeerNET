@@ -30,7 +30,6 @@ namespace VolTeer.Cache.VT.Vol
             {
                 cacheEmails = BLL.ListEmails();
                 cache.Insert("" + EmailType.VolEmailList, cacheEmails, null, DateTime.Now.AddSeconds(1), System.Web.Caching.Cache.NoSlidingExpiration, CacheItemPriority.High, callback);
-                return cacheEmails;
             }
             return cacheEmails;                       
         }
@@ -44,7 +43,6 @@ namespace VolTeer.Cache.VT.Vol
             {
                 cacheEmails = BLL.ListEmails(EmailIds);
                 cache.Insert("" + EmailType.VolEmailDM + "|" + EmailIds, cacheEmails, null, DateTime.Now.AddSeconds(1), System.Web.Caching.Cache.NoSlidingExpiration, CacheItemPriority.High, callback);
-                return cacheEmails;
             }
             return cacheEmails;
         }
