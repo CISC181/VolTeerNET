@@ -195,24 +195,6 @@
       <DependentUpon>DescribeDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="VT\ControlProperty.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VT\Describe_CheckConstraints_Result.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VT\Describe_TableColumns_Result.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VT\Order.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VT\Product.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VT\RegisteredControl.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
     <Compile Include="VT\SpatialTable.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
@@ -336,16 +318,10 @@
     <Compile Include="VT\tblVolunteer.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
-    <Compile Include="VT\UIProperty.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
     <Compile Include="VT\Vend\sp_VendAddress_DAL.cs" />
     <Compile Include="VT\Vend\sp_Event_Rating_DAL.cs" />
     <Compile Include="VT\Vend\sp_VendContact_DAL.cs" />
     <Compile Include="VT\Vend\sp_VendEmail_DAL.cs" />
-    <Compile Include="VT\Vend_tblUserCred.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
     <Compile Include="VT\VolTeer.Context1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -369,12 +345,6 @@
     <Compile Include="VT\Vol\sp_VolEmail_DAL.cs" />
     <Compile Include="VT\Vol\sp_Volunteer_DAL.cs" />
     <Compile Include="VT\Vol\sp_Vol_Address_DAL.cs" />
-    <Compile Include="VT\v_CheckConstraints.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
-    <Compile Include="VT\v_TableColumns.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />

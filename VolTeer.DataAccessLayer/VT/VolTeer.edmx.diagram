@@ -49,19 +49,10 @@
         <AssociationConnector Association="VolTeerModel.FK_tblVolAddr_tblVolunteer" />
         <AssociationConnector Association="VolTeerModel.tblGroupAddr" />
         <AssociationConnector Association="VolTeerModel.tblGroupVol" />
-        <EntityTypeShape EntityType="VolTeerModel.ControlProperty" Width="1.5" PointX="5.4566318865197854" PointY="17.794460796655372" />
-        <EntityTypeShape EntityType="VolTeerModel.Order" Width="1.5" PointX="2.4962022744567145" PointY="29.362168266140934" />
-        <EntityTypeShape EntityType="VolTeerModel.Product" Width="1.5" PointX="0.250672169146441" PointY="13.967900729723228" />
-        <EntityTypeShape EntityType="VolTeerModel.RegisteredControl" Width="1.5" PointX="10.2334764051407" PointY="7.52649143688683" />
         <EntityTypeShape EntityType="VolTeerModel.SpatialTable" Width="1.5" PointX="10.809225936797088" PointY="18.443728440647817" />
         <EntityTypeShape EntityType="VolTeerModel.sysdiagram" Width="1.5" PointX="3.5633915679358834" PointY="27.149092493182557" />
-        <EntityTypeShape EntityType="VolTeerModel.UIProperty" Width="1.5" PointX="5.6350400194688888" PointY="25.840459224693692" />
-        <EntityTypeShape EntityType="VolTeerModel.Vend_tblUserCred" Width="1.5" PointX="8.8246905714388433" PointY="14.365233308805728" />
         <EntityTypeShape EntityType="VolTeerModel.tblVendState" Width="1.5" PointX="4.4390858842241983" PointY="4.8263085655990565" />
         <EntityTypeShape EntityType="VolTeerModel.tblVolPhone" Width="1.5" PointX="7.875" PointY="8.25" FillColor="0, 192, 0" />
-        <EntityTypeShape EntityType="VolTeerModel.v_CheckConstraints" Width="1.5" PointX="4.3173260951029722" PointY="14.877650834097365" />
-        <EntityTypeShape EntityType="VolTeerModel.v_TableColumns" Width="1.5" PointX="2.7243686535974816" PointY="16.793344878029703" />
-        <AssociationConnector Association="VolTeerModel.FK_Order_Product" />
         <AssociationConnector Association="VolTeerModel.FK_tblPhone_tblVolunteer" />
       </Diagram>
     </edmx:Diagrams>

@@ -50,18 +50,10 @@ namespace VolTeer.DataAccessLayer.VT
         public DbSet<tblGroup> tblGroups { get; set; }
         public DbSet<tblVolAddr> tblVolAddrs { get; set; }
         public DbSet<tblVolAddress> tblVolAddresses { get; set; }
-        public DbSet<ControlProperty> ControlProperties { get; set; }
-        public DbSet<Order> Orders { get; set; }
-        public DbSet<Product> Products { get; set; }
-        public DbSet<RegisteredControl> RegisteredControls { get; set; }
         public DbSet<SpatialTable> SpatialTables { get; set; }
         public DbSet<sysdiagram> sysdiagrams { get; set; }
-        public DbSet<UIProperty> UIProperties { get; set; }
-        public DbSet<Vend_tblUserCred> Vend_tblUserCred { get; set; }
         public DbSet<tblVendState> tblVendStates { get; set; }
         public DbSet<tblVolPhone> tblVolPhones { get; set; }
-        public DbSet<v_CheckConstraints> v_CheckConstraints { get; set; }
-        public DbSet<v_TableColumns> v_TableColumns { get; set; }
     
         public virtual int sp_Contact_Delete(Nullable<System.Guid> contactID)
         {
@@ -991,37 +983,6 @@ namespace VolTeer.DataAccessLayer.VT
                 new ObjectParameter("PrimaryAddr", typeof(bool));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Vol_Addr_Update", volIDParameter, addrIDParameter, primaryAddrParameter);
-        }
-    
-        public virtual ObjectResult<Nullable<System.Guid>> sp_Volunteer_Insert1(string volFirstName, string volMiddleName, string volLastName, Nullable<bool> activeFlg)
-        {
-            var volFirstNameParameter = volFirstName != null ?
-                new ObjectParameter("VolFirstName", volFirstName) :
-                new ObjectParameter("VolFirstName", typeof(string));
-    
-            var volMiddleNameParameter = volMiddleName != null ?
-                new ObjectParameter("VolMiddleName", volMiddleName) :
-                new ObjectParameter("VolMiddleName", typeof(string));
-    
-            var volLastNameParameter = volLastName != null ?
-                new ObjectParameter("VolLastName", volLastName) :
-                new ObjectParameter("VolLastName", typeof(string));
-    
-            var activeFlgParameter = activeFlg.HasValue ?
-                new ObjectParameter("ActiveFlg", activeFlg) :
-                new ObjectParameter("ActiveFlg", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("sp_Volunteer_Insert1", volFirstNameParameter, volMiddleNameParameter, volLastNameParameter, activeFlgParameter);
-        }
-    
-        public virtual ObjectResult<Describe_CheckConstraints_Result> Describe_CheckConstraints()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Describe_CheckConstraints_Result>("Describe_CheckConstraints");
-        }
-    
-        public virtual ObjectResult<Describe_TableColumns_Result> Describe_TableColumns()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Describe_TableColumns_Result>("Describe_TableColumns");
         }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
