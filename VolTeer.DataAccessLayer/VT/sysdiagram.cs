@@ -12,14 +12,12 @@ namespace VolTeer.DataAccessLayer.VT
     using System;
     using System.Collections.Generic;
     
-    public partial class tblVolEmail
+    public partial class sysdiagram
     {
-        public int EmailID { get; set; }
-        public System.Guid VolID { get; set; }
-        public string EmailAddr { get; set; }
-        public Nullable<bool> ActiveFlg { get; set; }
-        public bool PrimaryFlg { get; set; }
-    
-        public virtual tblVolunteer tblVolunteer { get; set; }
+        public string name { get; set; }
+        public int principal_id { get; set; }
+        public int diagram_id { get; set; }
+        public Nullable<int> version { get; set; }
+        public byte[] definition { get; set; }
     }
 }

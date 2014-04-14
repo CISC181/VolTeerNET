@@ -12,14 +12,9 @@ namespace VolTeer.DataAccessLayer.VT
     using System;
     using System.Collections.Generic;
     
-    public partial class tblVolEmail
+    public partial class UIProperty
     {
-        public int EmailID { get; set; }
-        public System.Guid VolID { get; set; }
-        public string EmailAddr { get; set; }
-        public Nullable<bool> ActiveFlg { get; set; }
-        public bool PrimaryFlg { get; set; }
-    
-        public virtual tblVolunteer tblVolunteer { get; set; }
+        public int PropertyID { get; set; }
+        public string PropertyDescr { get; set; }
     }
 }

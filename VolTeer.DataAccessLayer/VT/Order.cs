@@ -12,14 +12,13 @@ namespace VolTeer.DataAccessLayer.VT
     using System;
     using System.Collections.Generic;
     
-    public partial class tblVolEmail
+    public partial class Order
     {
-        public int EmailID { get; set; }
-        public System.Guid VolID { get; set; }
-        public string EmailAddr { get; set; }
-        public Nullable<bool> ActiveFlg { get; set; }
-        public bool PrimaryFlg { get; set; }
+        public int id { get; set; }
+        public int productId { get; set; }
+        public int quantity { get; set; }
+        public byte[] timestamp { get; set; }
     
-        public virtual tblVolunteer tblVolunteer { get; set; }
+        public virtual Product Product { get; set; }
     }
 }

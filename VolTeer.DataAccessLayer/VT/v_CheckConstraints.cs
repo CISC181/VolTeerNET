@@ -12,14 +12,14 @@ namespace VolTeer.DataAccessLayer.VT
     using System;
     using System.Collections.Generic;
     
-    public partial class tblVolEmail
+    public partial class v_CheckConstraints
     {
-        public int EmailID { get; set; }
-        public System.Guid VolID { get; set; }
-        public string EmailAddr { get; set; }
-        public Nullable<bool> ActiveFlg { get; set; }
-        public bool PrimaryFlg { get; set; }
-    
-        public virtual tblVolunteer tblVolunteer { get; set; }
+        public string Table_Catalog { get; set; }
+        public string Table_Schema { get; set; }
+        public string table_name { get; set; }
+        public string column_name { get; set; }
+        public string constraint_catalog { get; set; }
+        public string Constraint_name { get; set; }
+        public string check_clause { get; set; }
     }
 }
