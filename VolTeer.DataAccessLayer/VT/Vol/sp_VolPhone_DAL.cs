@@ -73,7 +73,7 @@ namespace VolTeer.DataAccessLayer.VT.Vol
 
 
         /// <summary>
-        /// InsertEmailContext - Will insert a record into Volunteer Phone table via SProc
+        /// InsertPhoneContext - Will insert a record into Volunteer Phone table via SProc
         /// </summary>
         /// <param name="_cVolunteer"></param>
         public void InsertPhoneContext(sp_Phone_DM _cPhone)
