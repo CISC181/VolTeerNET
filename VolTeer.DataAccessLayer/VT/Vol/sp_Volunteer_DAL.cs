@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using VolTeer.DomainModels.VT.Vol;
-
+using VolTeer.Contracts.VT.Vol;
 
 namespace VolTeer.DataAccessLayer.VT.Vol
 {
-    public class sp_Volunteer_DAL
+    public class sp_Volunteer_DAL : sp_Volunteer_CON
     {
 
         #region Select Statements
@@ -44,7 +44,7 @@ namespace VolTeer.DataAccessLayer.VT.Vol
 
         }
 
-        public List<sp_Volunteer_DM> ListVolunteers(Guid? Volunteer)
+        public sp_Volunteer_DM ListVolunteers(Guid? Volunteer)
         {
             List<sp_Volunteer_DM> list = new List<sp_Volunteer_DM>();
             try
@@ -67,7 +67,7 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                 throw (ex);
             }
 
-            return list;
+            return list.FirstOrDefault();
 
         }
 
@@ -146,5 +146,6 @@ namespace VolTeer.DataAccessLayer.VT.Vol
             }
         }
         #endregion
+
     }
 }

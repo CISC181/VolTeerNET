@@ -86,7 +86,7 @@
     <Compile Include="VT\Other\sp_Sample_Address_BLL.cs" />
     <Compile Include="VT\Other\sp_State_BLL.cs" />
     <Compile Include="VT\Vol\sp_VolEmail_BLL.cs" />
-    <Compile Include="VT\Vol\sp_VolSkill_BLL.cs" />
+    <Compile Include="VT\Vol\sp_VolPhone_BLL.cs" />
     <Compile Include="VT\Vol\sp_Volunteer_BLL.cs" />
     <Compile Include="VT\Vol\sp_Vol_Address_BLL.cs" />
   </ItemGroup>
@@ -95,6 +95,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\VolTeer.Contracts\VolTeer.Contracts.csproj">
+      <Project>{5f13362d-9df9-44fd-ae37-e54788d00972}</Project>
+      <Name>VolTeer.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VolTeer.DataAccessLayer\VolTeer.DataAccessLayer.csproj">
       <Project>{bf6a3d20-8004-4274-84f9-1cbff4436c61}</Project>
       <Name>VolTeer.DataAccessLayer</Name>

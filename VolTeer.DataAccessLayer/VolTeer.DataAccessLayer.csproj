@@ -195,6 +195,9 @@
       <DependentUpon>DescribeDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VT\SpatialTable.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
     <Compile Include="VT\sp_Availability_Select_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
@@ -228,9 +231,6 @@
     <Compile Include="VT\sp_Vend_Email_Select_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
-    <Compile Include="VT\sp_VolSkill_Select_Result.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
     <Compile Include="VT\sp_Volunteer_Select_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
@@ -244,6 +244,9 @@
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
     <Compile Include="VT\sp_Vol_State_Select_Result.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\sysdiagram.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
     <Compile Include="VT\tblAvailability.cs">
@@ -306,6 +309,9 @@
     <Compile Include="VT\tblVolEmail.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
+    <Compile Include="VT\tblVolPhone.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
     <Compile Include="VT\tblVolState.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
@@ -337,7 +343,7 @@
     <Compile Include="VT\Other\sp_Sample_Address_DAL.cs" />
     <Compile Include="VT\Other\sp_State_DAL.cs" />
     <Compile Include="VT\Vol\sp_VolEmail_DAL.cs" />
-    <Compile Include="VT\Vol\sp_VolSkill_DAL.cs" />
+    <Compile Include="VT\Vol\sp_VolPhone_DAL.cs" />
     <Compile Include="VT\Vol\sp_Volunteer_DAL.cs" />
     <Compile Include="VT\Vol\sp_Vol_Address_DAL.cs" />
   </ItemGroup>
@@ -400,6 +406,10 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\VolTeer.Contracts\VolTeer.Contracts.csproj">
+      <Project>{5f13362d-9df9-44fd-ae37-e54788d00972}</Project>
+      <Name>VolTeer.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VolTeer.DomainModels\VolTeer.DomainModels.csproj">
       <Project>{7919ce03-6597-4a4b-82e4-d73b7511ab7f}</Project>
       <Name>VolTeer.DomainModels</Name>

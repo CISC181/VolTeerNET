@@ -54,7 +54,7 @@ namespace VolTeer.Cache.VT.Vol
 
         public sp_Volunteer_DM InsertVolunteerContext(sp_Volunteer_DM _cVolunteer)
         {
-            BLL.InsertVolunteerContext(_cVolunteer);
+            BLL.InsertVolunteerContext(ref _cVolunteer);
             System.Web.Caching.Cache cache = HttpRuntime.Cache;
             cache.Insert(_cVolunteer.VolID.ToString(), _cVolunteer, null, DateTime.Now.AddSeconds(60), System.Web.Caching.Cache.NoSlidingExpiration, CacheItemPriority.High, null);
 

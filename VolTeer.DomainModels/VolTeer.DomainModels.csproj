@@ -77,6 +77,7 @@
     <Compile Include="VT\Vend\sp_VendAddress_DM.cs" />
     <Compile Include="VT\Vend\sp_EventRating_DM.cs" />
     <Compile Include="VT\Vend\sp_VendorContacts_DM.cs" />
+    <Compile Include="VT\Vol\sp_Phone_DM.cs" />
     <Compile Include="VT\Vol\sp_Skill_DM.cs" />
     <Compile Include="VT\Vol\sp_Availablity.cs" />
     <Compile Include="VT\Vol\sp_Email_DM.cs" />

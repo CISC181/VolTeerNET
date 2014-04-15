@@ -604,6 +604,10 @@
       <Project>{04a431b2-cd03-48f3-9a2c-6c3bed2cc93f}</Project>
       <Name>VolTeer.Cache</Name>
     </ProjectReference>
+    <ProjectReference Include="..\VolTeer.Contracts\VolTeer.Contracts.csproj">
+      <Project>{5f13362d-9df9-44fd-ae37-e54788d00972}</Project>
+      <Name>VolTeer.Contracts</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VolTeer.DomainModels\VolTeer.DomainModels.csproj">
       <Project>{7919ce03-6597-4a4b-82e4-d73b7511ab7f}</Project>
       <Name>VolTeer.DomainModels</Name>
@@ -640,7 +644,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
+      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
