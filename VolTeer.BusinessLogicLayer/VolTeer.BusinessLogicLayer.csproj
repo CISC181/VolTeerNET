@@ -86,6 +86,7 @@
     <Compile Include="VT\Other\sp_Sample_Address_BLL.cs" />
     <Compile Include="VT\Other\sp_State_BLL.cs" />
     <Compile Include="VT\Vol\sp_VolEmail_BLL.cs" />
+    <Compile Include="VT\Vol\sp_VolSkill_BLL.cs" />
     <Compile Include="VT\Vol\sp_Volunteer_BLL.cs" />
     <Compile Include="VT\Vol\sp_Vol_Address_BLL.cs" />
   </ItemGroup>

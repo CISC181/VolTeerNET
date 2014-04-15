@@ -20,9 +20,9 @@ namespace VolTeer.BusinessLogicLayer.VT.Vol
             return DAL.ListSkills(Skill).Single();
         }
 
-        public void InsertSkillContext(sp_Skill_DM _cSkill)
+        public void InsertSkillContext(ref sp_Skill_DM _cSkill)
         {
-            DAL.InsertSkillContext(_cSkill);
+            DAL.InsertSkillContext(ref _cSkill);
         }
 
         public void UpdateSampleAddressContext(sp_Skill_DM _cSkill)

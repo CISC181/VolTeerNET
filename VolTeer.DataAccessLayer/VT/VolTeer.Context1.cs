@@ -43,17 +43,14 @@ namespace VolTeer.DataAccessLayer.VT
         public DbSet<tblVendorProjContact> tblVendorProjContacts { get; set; }
         public DbSet<tblSampleAddress> tblSampleAddresses { get; set; }
         public DbSet<tblSkill> tblSkills { get; set; }
-        public DbSet<tblVolEmail> tblVolEmails { get; set; }
         public DbSet<tblVolState> tblVolStates { get; set; }
         public DbSet<tblVolunteer> tblVolunteers { get; set; }
         public DbSet<tblAvailability> tblAvailabilities { get; set; }
         public DbSet<tblGroup> tblGroups { get; set; }
         public DbSet<tblVolAddr> tblVolAddrs { get; set; }
         public DbSet<tblVolAddress> tblVolAddresses { get; set; }
-        public DbSet<SpatialTable> SpatialTables { get; set; }
-        public DbSet<sysdiagram> sysdiagrams { get; set; }
         public DbSet<tblVendState> tblVendStates { get; set; }
-        public DbSet<tblVolPhone> tblVolPhones { get; set; }
+        public DbSet<tblVolEmail> tblVolEmails { get; set; }
     
         public virtual int sp_Contact_Delete(Nullable<System.Guid> contactID)
         {
@@ -1147,6 +1144,37 @@ namespace VolTeer.DataAccessLayer.VT
                 new ObjectParameter("PhoneNbr", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Vol_Phone_Update", phoneIDParameter, phoneNbrParameter);
+        }
+    
+        public virtual int sp_VolSkill_DeleteAll(Nullable<System.Guid> volID)
+        {
+            var volIDParameter = volID.HasValue ?
+                new ObjectParameter("VolID", volID) :
+                new ObjectParameter("VolID", typeof(System.Guid));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_VolSkill_DeleteAll", volIDParameter);
+        }
+    
+        public virtual int sp_VolSkill_Insert(Nullable<System.Guid> volID, Nullable<System.Guid> skillID)
+        {
+            var volIDParameter = volID.HasValue ?
+                new ObjectParameter("VolID", volID) :
+                new ObjectParameter("VolID", typeof(System.Guid));
+    
+            var skillIDParameter = skillID.HasValue ?
+                new ObjectParameter("SkillID", skillID) :
+                new ObjectParameter("SkillID", typeof(System.Guid));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_VolSkill_Insert", volIDParameter, skillIDParameter);
+        }
+    
+        public virtual ObjectResult<sp_VolSkill_Select_Result> sp_VolSkill_Select(Nullable<System.Guid> volID)
+        {
+            var volIDParameter = volID.HasValue ?
+                new ObjectParameter("VolID", volID) :
+                new ObjectParameter("VolID", typeof(System.Guid));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_VolSkill_Select_Result>("sp_VolSkill_Select", volIDParameter);
         }
     }
 }

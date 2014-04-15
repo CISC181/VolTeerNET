@@ -10,11 +10,11 @@
 namespace VolTeer.DataAccessLayer.VT
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class SpatialTable
+    public partial class sp_VolSkill_Select_Result
     {
-        public int id { get; set; }
-        public string GeogCol2 { get; set; }
+        public System.Guid SkillID { get; set; }
+        public Nullable<System.Guid> MstrSkillID { get; set; }
+        public string SkillName { get; set; }
     }
 }

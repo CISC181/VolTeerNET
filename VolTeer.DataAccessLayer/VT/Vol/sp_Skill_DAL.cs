@@ -62,19 +62,18 @@ namespace VolTeer.DataAccessLayer.VT.Vol
         /// InsertSkillContext - Will insert a record into Skill table via SProc
         /// </summary>
         /// <param name="_cSkill"></param>
-        public void InsertSkillContext(sp_Skill_DM _cSkill)
+        public void InsertSkillContext(ref sp_Skill_DM _cSkill)
         {
             using (VolTeerEntities context = new VolTeerEntities())
             {
                 var cSkill = new tblSkill
                 {
-                    SkillID = _cSkill.SkillID,
                     SkillName = _cSkill.SkillName,
                     MstrSkillID = _cSkill.MstrSkillID
-
                 };
                 context.tblSkills.Add(cSkill);
                 context.SaveChanges();
+                _cSkill.SkillID = cSkill.SkillID;
             }
         }
         #endregion

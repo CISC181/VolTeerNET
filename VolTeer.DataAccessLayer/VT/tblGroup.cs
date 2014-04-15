@@ -24,6 +24,8 @@ namespace VolTeer.DataAccessLayer.VT
         public string GroupName { get; set; }
         public Nullable<int> ParticipationLevelID { get; set; }
         public Nullable<bool> ActiveFlg { get; set; }
+        public byte[] Photo { get; set; }
+        public string Description { get; set; }
     
         public virtual ICollection<tblVolAddress> tblVolAddresses { get; set; }
         public virtual ICollection<tblVolunteer> tblVolunteers { get; set; }
