@@ -17,10 +17,10 @@ namespace VolTeer.BusinessLogicLayer.VT.Vol
             return DAL.ListVolunteers();
         }
 
-        //public sp_Volunteer_DM ListVolunteers(Guid? Volunteer)
-        //{
-        //    return DAL.ListVolunteers(Volunteer).Single();
-        //}
+        public sp_Volunteer_DM ListVolunteers(Guid? Volunteer)
+        {
+            return DAL.ListVolunteers(Volunteer);
+        }
 
         public sp_Volunteer_DM InsertVolunteerContext(ref sp_Volunteer_DM _cVolunteer)
         {

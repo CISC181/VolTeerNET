@@ -43,7 +43,6 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="VT\Vend\sp_VendEmail_Cache.cs" />
     <Compile Include="VT\Vend\sp_EventRating_Cache.cs" />
-    <Compile Include="VT\Vol\sp_VolPhone_Cache.cs" />
     <Compile Include="VT\Vol\sp_VolEmail_Cache.cs" />
     <Compile Include="VT\Vol\sp_Volunteer_Cache.cs" />
     <Compile Include="VT\Vol\sp_Vol_Address_Cache.cs" />
@@ -57,6 +56,10 @@
     <ProjectReference Include="..\VolTeer.BusinessLogicLayer\VolTeer.BusinessLogicLayer.csproj">
       <Project>{81446b41-8d0a-4e58-a275-1578c7f536f2}</Project>
       <Name>VolTeer.BusinessLogicLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VolTeer.Contracts\VolTeer.Contracts.csproj">
+      <Project>{5f13362d-9df9-44fd-ae37-e54788d00972}</Project>
+      <Name>VolTeer.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\VolTeer.DomainModels\VolTeer.DomainModels.csproj">
       <Project>{7919ce03-6597-4a4b-82e4-d73b7511ab7f}</Project>

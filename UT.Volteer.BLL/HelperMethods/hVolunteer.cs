@@ -19,7 +19,7 @@ namespace UT.Volteer.BLL.HelperMethods
             VOL.VolMiddleName = strMiddleName;
             VOL.VolLastName = strLastName;
 
-            VOL = VOlBll.InsertVolunteerContext(VOL);
+            VOL = VOlBll.InsertVolunteerContext(ref VOL);
 
             //Console.WriteLine(VOL.VolID);
             //System.Diagnostics.Debug.Write(VOL.VolID);

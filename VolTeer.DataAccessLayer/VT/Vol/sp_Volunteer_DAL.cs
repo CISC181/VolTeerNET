@@ -44,32 +44,32 @@ namespace VolTeer.DataAccessLayer.VT.Vol
 
         }
 
-        //public List<sp_Volunteer_DM> ListVolunteers(Guid? Volunteer)
-        //{
-        //    List<sp_Volunteer_DM> list = new List<sp_Volunteer_DM>();
-        //    try
-        //    {
-        //        using (VolTeerEntities context = new VolTeerEntities())
-        //        {
-        //            list = (from result in context.sp_Volunteer_Select(Volunteer)
-        //                    select new sp_Volunteer_DM
-        //                    {
-        //                        VolFirstName = result.VolFirstName,
-        //                        VolID = result.VolID,
-        //                        VolMiddleName = result.VolMiddleName,
-        //                        VolLastName = result.VolLastName,
-        //                        ActiveFlg = result.ActiveFlg
-        //                    }).ToList();
-        //        } // Guaranteed to close the Connection
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw (ex);
-        //    }
+        public sp_Volunteer_DM ListVolunteers(Guid? Volunteer)
+        {
+            List<sp_Volunteer_DM> list = new List<sp_Volunteer_DM>();
+            try
+            {
+                using (VolTeerEntities context = new VolTeerEntities())
+                {
+                    list = (from result in context.sp_Volunteer_Select(Volunteer)
+                            select new sp_Volunteer_DM
+                            {
+                                VolFirstName = result.VolFirstName,
+                                VolID = result.VolID,
+                                VolMiddleName = result.VolMiddleName,
+                                VolLastName = result.VolLastName,
+                                ActiveFlg = result.ActiveFlg
+                            }).ToList();
+                } // Guaranteed to close the Connection
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
 
-        //    return list;
+            return list.FirstOrDefault();
 
-        //}
+        }
 
         #endregion
 
