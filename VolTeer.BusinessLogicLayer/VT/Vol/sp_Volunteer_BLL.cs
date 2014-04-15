@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using VolTeer.DomainModels.VT.Vol;
 using VolTeer.DataAccessLayer.VT.Vol;
-
+using VolTeer.Contracts.VT.Vol;
 
 namespace VolTeer.BusinessLogicLayer.VT.Vol
 {
-    public class sp_Volunteer_BLL
+    public class sp_Volunteer_BLL : sp_Volunteer_CON
     {
         sp_Volunteer_DAL DAL = new sp_Volunteer_DAL();
         
@@ -17,12 +17,12 @@ namespace VolTeer.BusinessLogicLayer.VT.Vol
             return DAL.ListVolunteers();
         }
 
-        public sp_Volunteer_DM ListVolunteers(Guid? Volunteer)
-        {
-            return DAL.ListVolunteers(Volunteer).Single();
-        }
+        //public sp_Volunteer_DM ListVolunteers(Guid? Volunteer)
+        //{
+        //    return DAL.ListVolunteers(Volunteer).Single();
+        //}
 
-        public sp_Volunteer_DM InsertVolunteerContext(sp_Volunteer_DM _cVolunteer)
+        public sp_Volunteer_DM InsertVolunteerContext(ref sp_Volunteer_DM _cVolunteer)
         {
             return DAL.InsertVolunteerContext(ref _cVolunteer);
         }

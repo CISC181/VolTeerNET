@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using VolTeer.DomainModels.VT.Vol;
-
+using VolTeer.Contracts.VT.Vol;
 
 namespace VolTeer.DataAccessLayer.VT.Vol
 {
-    public class sp_Volunteer_DAL
+    public class sp_Volunteer_DAL : sp_Volunteer_CON
     {
 
         #region Select Statements
@@ -44,32 +44,32 @@ namespace VolTeer.DataAccessLayer.VT.Vol
 
         }
 
-        public List<sp_Volunteer_DM> ListVolunteers(Guid? Volunteer)
-        {
-            List<sp_Volunteer_DM> list = new List<sp_Volunteer_DM>();
-            try
-            {
-                using (VolTeerEntities context = new VolTeerEntities())
-                {
-                    list = (from result in context.sp_Volunteer_Select(Volunteer)
-                            select new sp_Volunteer_DM
-                            {
-                                VolFirstName = result.VolFirstName,
-                                VolID = result.VolID,
-                                VolMiddleName = result.VolMiddleName,
-                                VolLastName = result.VolLastName,
-                                ActiveFlg = result.ActiveFlg
-                            }).ToList();
-                } // Guaranteed to close the Connection
-            }
-            catch (Exception ex)
-            {
-                throw (ex);
-            }
+        //public List<sp_Volunteer_DM> ListVolunteers(Guid? Volunteer)
+        //{
+        //    List<sp_Volunteer_DM> list = new List<sp_Volunteer_DM>();
+        //    try
+        //    {
+        //        using (VolTeerEntities context = new VolTeerEntities())
+        //        {
+        //            list = (from result in context.sp_Volunteer_Select(Volunteer)
+        //                    select new sp_Volunteer_DM
+        //                    {
+        //                        VolFirstName = result.VolFirstName,
+        //                        VolID = result.VolID,
+        //                        VolMiddleName = result.VolMiddleName,
+        //                        VolLastName = result.VolLastName,
+        //                        ActiveFlg = result.ActiveFlg
+        //                    }).ToList();
+        //        } // Guaranteed to close the Connection
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw (ex);
+        //    }
 
-            return list;
+        //    return list;
 
-        }
+        //}
 
         #endregion
 
@@ -146,5 +146,6 @@ namespace VolTeer.DataAccessLayer.VT.Vol
             }
         }
         #endregion
+
     }
 }
