@@ -24,16 +24,16 @@ namespace VolTeer
             //AuthConfig.RegisterOpenAuth();
             RouteConfig.RegisterRoutes(RouteTable.Routes);
 
-            DescribeBLL BLL = new DescribeBLL();
+            //DescribeBLL BLL = new DescribeBLL();
 
-            List<TableColumnDM> ListTableColumns = new List<TableColumnDM>();
-            List<CheckConstraintsDM> ListCheckConstraints = new List<CheckConstraintsDM>();
+            //List<TableColumnDM> ListTableColumns = new List<TableColumnDM>();
+            //List<CheckConstraintsDM> ListCheckConstraints = new List<CheckConstraintsDM>();
 
-            ListTableColumns = BLL.ListTableColumns();
-            ListCheckConstraints = BLL.ListCheckConstraints();
+            //ListTableColumns = BLL.ListTableColumns();
+            //ListCheckConstraints = BLL.ListCheckConstraints();
 
-            Application["ListTableColumns"] = ListTableColumns;
-            Application["ListCheckConstraints"] = ListCheckConstraints;
+            //Application["ListTableColumns"] = ListTableColumns;
+            //Application["ListCheckConstraints"] = ListCheckConstraints;
 
 
         }

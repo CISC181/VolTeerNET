@@ -10,16 +10,13 @@
 namespace VolTeer.DataAccessLayer.VT
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class tblVolEmail
+    public partial class sp_helpdiagrams_Result
     {
-        public int EmailID { get; set; }
-        public System.Guid VolID { get; set; }
-        public string EmailAddr { get; set; }
-        public Nullable<bool> ActiveFlg { get; set; }
-        public bool PrimaryFlg { get; set; }
-    
-        public virtual tblVolunteer tblVolunteer { get; set; }
+        public string Database { get; set; }
+        public string Name { get; set; }
+        public int ID { get; set; }
+        public string Owner { get; set; }
+        public int OwnerID { get; set; }
     }
 }

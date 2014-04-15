@@ -12,11 +12,11 @@ namespace VolTeer.DataAccessLayer.VT
     using System;
     using System.Collections.Generic;
     
-    public partial class tblVolEmail
+    public partial class tblVolPhone
     {
-        public int EmailID { get; set; }
+        public int PhoneID { get; set; }
         public System.Guid VolID { get; set; }
-        public string EmailAddr { get; set; }
+        public string PhoneNbr { get; set; }
         public Nullable<bool> ActiveFlg { get; set; }
         public bool PrimaryFlg { get; set; }
     

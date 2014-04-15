@@ -50,6 +50,10 @@ namespace VolTeer.DataAccessLayer.VT
         public DbSet<tblGroup> tblGroups { get; set; }
         public DbSet<tblVolAddr> tblVolAddrs { get; set; }
         public DbSet<tblVolAddress> tblVolAddresses { get; set; }
+        public DbSet<SpatialTable> SpatialTables { get; set; }
+        public DbSet<sysdiagram> sysdiagrams { get; set; }
+        public DbSet<tblVendState> tblVendStates { get; set; }
+        public DbSet<tblVolPhone> tblVolPhones { get; set; }
     
         public virtual int sp_Contact_Delete(Nullable<System.Guid> contactID)
         {
@@ -981,21 +985,168 @@ namespace VolTeer.DataAccessLayer.VT
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Vol_Addr_Update", volIDParameter, addrIDParameter, primaryAddrParameter);
         }
     
-        public virtual ObjectResult<Nullable<System.Guid>> sp_Volunteer_Insert1(string volFirstName, string volMiddleName, string volLastName)
+        public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
-            var volFirstNameParameter = volFirstName != null ?
-                new ObjectParameter("VolFirstName", volFirstName) :
-                new ObjectParameter("VolFirstName", typeof(string));
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
     
-            var volMiddleNameParameter = volMiddleName != null ?
-                new ObjectParameter("VolMiddleName", volMiddleName) :
-                new ObjectParameter("VolMiddleName", typeof(string));
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
     
-            var volLastNameParameter = volLastName != null ?
-                new ObjectParameter("VolLastName", volLastName) :
-                new ObjectParameter("VolLastName", typeof(string));
+            var versionParameter = version.HasValue ?
+                new ObjectParameter("version", version) :
+                new ObjectParameter("version", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("sp_Volunteer_Insert1", volFirstNameParameter, volMiddleNameParameter, volLastNameParameter);
+            var definitionParameter = definition != null ?
+                new ObjectParameter("definition", definition) :
+                new ObjectParameter("definition", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+        }
+    
+        public virtual int sp_creatediagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var versionParameter = version.HasValue ?
+                new ObjectParameter("version", version) :
+                new ObjectParameter("version", typeof(int));
+    
+            var definitionParameter = definition != null ?
+                new ObjectParameter("definition", definition) :
+                new ObjectParameter("definition", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_creatediagram", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+        }
+    
+        public virtual int sp_dropdiagram(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual ObjectResult<sp_helpdiagramdefinition_Result> sp_helpdiagramdefinition(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagramdefinition_Result>("sp_helpdiagramdefinition", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual ObjectResult<sp_helpdiagrams_Result> sp_helpdiagrams(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagrams_Result>("sp_helpdiagrams", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual int sp_renamediagram(string diagramname, Nullable<int> owner_id, string new_diagramname)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var new_diagramnameParameter = new_diagramname != null ?
+                new ObjectParameter("new_diagramname", new_diagramname) :
+                new ObjectParameter("new_diagramname", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
+        }
+    
+        public virtual int sp_SpatialTable_Insert(string pointLongLat, Nullable<int> mapNumber)
+        {
+            var pointLongLatParameter = pointLongLat != null ?
+                new ObjectParameter("PointLongLat", pointLongLat) :
+                new ObjectParameter("PointLongLat", typeof(string));
+    
+            var mapNumberParameter = mapNumber.HasValue ?
+                new ObjectParameter("MapNumber", mapNumber) :
+                new ObjectParameter("MapNumber", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_SpatialTable_Insert", pointLongLatParameter, mapNumberParameter);
+        }
+    
+        public virtual int sp_upgraddiagrams()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
+        }
+    
+        public virtual int sp_Vol_Phone_Delete(Nullable<int> phoneID, string phoneNbr, Nullable<bool> activeFlg)
+        {
+            var phoneIDParameter = phoneID.HasValue ?
+                new ObjectParameter("PhoneID", phoneID) :
+                new ObjectParameter("PhoneID", typeof(int));
+    
+            var phoneNbrParameter = phoneNbr != null ?
+                new ObjectParameter("PhoneNbr", phoneNbr) :
+                new ObjectParameter("PhoneNbr", typeof(string));
+    
+            var activeFlgParameter = activeFlg.HasValue ?
+                new ObjectParameter("ActiveFlg", activeFlg) :
+                new ObjectParameter("ActiveFlg", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Vol_Phone_Delete", phoneIDParameter, phoneNbrParameter, activeFlgParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<int>> sp_Vol_Phone_Insert(string phoneNbr)
+        {
+            var phoneNbrParameter = phoneNbr != null ?
+                new ObjectParameter("PhoneNbr", phoneNbr) :
+                new ObjectParameter("PhoneNbr", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_Vol_Phone_Insert", phoneNbrParameter);
+        }
+    
+        public virtual ObjectResult<sp_Vol_Phone_Select_Result> sp_Vol_Phone_Select(Nullable<int> phoneID)
+        {
+            var phoneIDParameter = phoneID.HasValue ?
+                new ObjectParameter("PhoneID", phoneID) :
+                new ObjectParameter("PhoneID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Vol_Phone_Select_Result>("sp_Vol_Phone_Select", phoneIDParameter);
+        }
+    
+        public virtual int sp_Vol_Phone_Update(Nullable<int> phoneID, string phoneNbr)
+        {
+            var phoneIDParameter = phoneID.HasValue ?
+                new ObjectParameter("PhoneID", phoneID) :
+                new ObjectParameter("PhoneID", typeof(int));
+    
+            var phoneNbrParameter = phoneNbr != null ?
+                new ObjectParameter("PhoneNbr", phoneNbr) :
+                new ObjectParameter("PhoneNbr", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Vol_Phone_Update", phoneIDParameter, phoneNbrParameter);
         }
     }
 }
