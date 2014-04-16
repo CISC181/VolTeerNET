@@ -17,6 +17,6 @@ namespace VolTeer.DataAccessLayer.VT
         public System.Guid VolID { get; set; }
         public string EmailAddr { get; set; }
         public Nullable<bool> ActiveFlg { get; set; }
-        public bool PrimaryFlg { get; set; }
+        public Nullable<bool> PrimaryFlg { get; set; }
     }
 }

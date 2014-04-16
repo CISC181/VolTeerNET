@@ -28,6 +28,7 @@
           <EntitySet Name="tblVolAddr" EntityType="VolTeerModel.Store.tblVolAddr" store:Type="Tables" Schema="Vol" />
           <EntitySet Name="tblVolAddress" EntityType="VolTeerModel.Store.tblVolAddress" store:Type="Tables" Schema="Vol" />
           <EntitySet Name="tblVolEmail" EntityType="VolTeerModel.Store.tblVolEmail" store:Type="Tables" Schema="Vol" />
+          <EntitySet Name="tblVolPhone" EntityType="VolTeerModel.Store.tblVolPhone" store:Type="Tables" Schema="Vol" />
           <EntitySet Name="tblVolSkill" EntityType="VolTeerModel.Store.tblVolSkill" store:Type="Tables" Schema="Vol" />
           <EntitySet Name="tblVolState" EntityType="VolTeerModel.Store.tblVolState" store:Type="Tables" Schema="Vol" />
           <EntitySet Name="tblVolunteer" EntityType="VolTeerModel.Store.tblVolunteer" store:Type="Tables" Schema="Vol" />
@@ -78,6 +79,10 @@
           <AssociationSet Name="FK_tblGroupVol_tblVolunteer" Association="VolTeerModel.Store.FK_tblGroupVol_tblVolunteer">
             <End Role="tblVolunteer" EntitySet="tblVolunteer" />
             <End Role="tblGroupVol" EntitySet="tblGroupVol" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPhone_tblVolunteer" Association="VolTeerModel.Store.FK_tblPhone_tblVolunteer">
+            <End Role="tblVolunteer" EntitySet="tblVolunteer" />
+            <End Role="tblVolPhone" EntitySet="tblVolPhone" />
           </AssociationSet>
           <AssociationSet Name="FK_tblProject_tblAddress" Association="VolTeerModel.Store.FK_tblProject_tblAddress">
             <End Role="tblVendAddress" EntitySet="tblVendAddress" />
@@ -382,6 +387,17 @@
           <Property Name="ActiveFlg" Type="bit" />
           <Property Name="PrimaryFlg" Type="bit" />
         </EntityType>
+        <EntityType Name="tblVolPhone">
+          <Key>
+            <PropertyRef Name="PhoneID" />
+            <PropertyRef Name="VolID" />
+          </Key>
+          <Property Name="PhoneID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="VolID" Type="uniqueidentifier" Nullable="false" />
+          <Property Name="PhoneNbr" Type="nvarchar" MaxLength="20" />
+          <Property Name="ActiveFlg" Type="bit" />
+          <Property Name="PrimaryFlg" Type="bit" Nullable="false" />
+        </EntityType>
         <EntityType Name="tblVolSkill">
           <Key>
             <PropertyRef Name="VolID" />
@@ -562,6 +578,18 @@
               <PropertyRef Name="VolID" />
             </Principal>
             <Dependent Role="tblGroupVol">
+              <PropertyRef Name="VolID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblPhone_tblVolunteer">
+          <End Role="tblVolunteer" Type="VolTeerModel.Store.tblVolunteer" Multiplicity="1" />
+          <End Role="tblVolPhone" Type="VolTeerModel.Store.tblVolPhone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblVolunteer">
+              <PropertyRef Name="VolID" />
+            </Principal>
+            <Dependent Role="tblVolPhone">
               <PropertyRef Name="VolID" />
             </Dependent>
           </ReferentialConstraint>
@@ -1014,6 +1042,9 @@
         <Function Name="sp_Vol_Email_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="EmailID" Type="int" Mode="In" />
         </Function>
+        <Function Name="sp_Vol_Email_SelectAlt" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
+          <Parameter Name="VolID" Type="uniqueidentifier" Mode="In" />
+        </Function>
         <Function Name="sp_Vol_Email_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="EmailID" Type="int" Mode="In" />
           <Parameter Name="EmailAddr" Type="nvarchar" Mode="In" />
@@ -1065,7 +1096,6 @@
           <EntitySet Name="tblVendorAddrs" EntityType="VolTeerModel.tblVendorAddr" />
           <EntitySet Name="tblVendorProjContacts" EntityType="VolTeerModel.tblVendorProjContact" />
           <EntitySet Name="tblSampleAddresses" EntityType="VolTeerModel.tblSampleAddress" />
-          <EntitySet Name="tblSkills" EntityType="VolTeerModel.tblSkill" />
           <EntitySet Name="tblVolStates" EntityType="VolTeerModel.tblVolState" />
           <EntitySet Name="tblVolunteers" EntityType="VolTeerModel.tblVolunteer" />
           <AssociationSet Name="FK_tblContactEmail_tblContact" Association="VolTeerModel.FK_tblContactEmail_tblContact">
@@ -1119,14 +1149,6 @@
           <AssociationSet Name="FK_tblVendorProj_tblVendor" Association="VolTeerModel.FK_tblVendorProj_tblVendor">
             <End Role="tblVendor" EntitySet="tblVendors" />
             <End Role="tblVendorProjContact" EntitySet="tblVendorProjContacts" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Skill_Skill" Association="VolTeerModel.FK_Skill_Skill">
-            <End Role="tblSkill" EntitySet="tblSkills" />
-            <End Role="tblSkill1" EntitySet="tblSkills" />
-          </AssociationSet>
-          <AssociationSet Name="tblVolSkill" Association="VolTeerModel.tblVolSkill">
-            <End Role="tblSkill" EntitySet="tblSkills" />
-            <End Role="tblVolunteer" EntitySet="tblVolunteers" />
           </AssociationSet>
           <FunctionImport Name="sp_Contact_Delete">
           <Parameter Name="ContactID" Mode="In" Type="Guid" />
@@ -1350,9 +1372,6 @@
           <FunctionImport Name="sp_Vol_Email_Insert" ReturnType="Collection(Int32)">
           <Parameter Name="EmailAddr" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="sp_Vol_Email_Select" ReturnType="Collection(VolTeerModel.sp_Vol_Email_Select_Result)">
-          <Parameter Name="EmailID" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="sp_Vol_Email_Update">
             <Parameter Name="EmailID" Mode="In" Type="Int32" />
             <Parameter Name="EmailAddr" Mode="In" Type="String" />
@@ -1490,6 +1509,20 @@
             <Parameter Name="PhoneID" Mode="In" Type="Int32" />
             <Parameter Name="PhoneNbr" Mode="In" Type="String" />
           </FunctionImport>
+          <EntitySet Name="tblVolEmails" EntityType="VolTeerModel.tblVolEmail" />
+          <AssociationSet Name="FK_tblEmail_tblVolunteer" Association="VolTeerModel.FK_tblEmail_tblVolunteer">
+            <End Role="tblVolunteer" EntitySet="tblVolunteers" />
+            <End Role="tblVolEmail" EntitySet="tblVolEmails" />
+          </AssociationSet>
+          <EntitySet Name="tblSkills" EntityType="VolTeerModel.tblSkill" />
+          <AssociationSet Name="FK_Skill_Skill" Association="VolTeerModel.FK_Skill_Skill">
+            <End Role="tblSkill" EntitySet="tblSkills" />
+            <End Role="tblSkill1" EntitySet="tblSkills" />
+          </AssociationSet>
+          <AssociationSet Name="tblVolSkill" Association="VolTeerModel.tblVolSkill">
+            <End Role="tblSkill" EntitySet="tblSkills" />
+            <End Role="tblVolunteer" EntitySet="tblVolunteers" />
+          </AssociationSet>
           <FunctionImport Name="sp_VolSkill_DeleteAll">
           <Parameter Name="VolID" Mode="In" Type="Guid" />
           </FunctionImport>
@@ -1497,12 +1530,18 @@
             <Parameter Name="VolID" Mode="In" Type="Guid" />
             <Parameter Name="SkillID" Mode="In" Type="Guid" />
           </FunctionImport>
-          <EntitySet Name="tblVolEmails" EntityType="VolTeerModel.tblVolEmail" />
-          <AssociationSet Name="FK_tblEmail_tblVolunteer" Association="VolTeerModel.FK_tblEmail_tblVolunteer">
-            <End Role="tblVolunteer" EntitySet="tblVolunteers" />
-            <End Role="tblVolEmail" EntitySet="tblVolEmails" />
-          </AssociationSet>
           <FunctionImport Name="sp_VolSkill_Select" ReturnType="Collection(VolTeerModel.sp_VolSkill_Select_Result)">
+          <Parameter Name="VolID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Vol_Email_Select" ReturnType="Collection(VolTeerModel.sp_Vol_Email_Select_Result)">
+          <Parameter Name="EmailID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="tblVolPhones" EntityType="VolTeerModel.tblVolPhone" />
+          <AssociationSet Name="FK_tblPhone_tblVolunteer" Association="VolTeerModel.FK_tblPhone_tblVolunteer">
+            <End Role="tblVolunteer" EntitySet="tblVolunteers" />
+            <End Role="tblVolPhone" EntitySet="tblVolPhones" />
+          </AssociationSet>
+          <FunctionImport Name="sp_Vol_Email_SelectAlt" ReturnType="Collection(VolTeerModel.sp_Vol_Email_SelectAlt_Result)">
             <Parameter Name="VolID" Mode="In" Type="Guid" />
           </FunctionImport>
         </EntityContainer>
@@ -1663,19 +1702,6 @@
           <Property Name="Zip" Type="Int32" />
           <Property Name="Zip4" Type="Int32" />
         </EntityType>
-        <EntityType Name="tblSkill">
-          <Key>
-            <PropertyRef Name="SkillID" />
-          </Key>
-          <Property Name="SkillID" Type="Guid" Nullable="false" />
-          <Property Name="SkillName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="MstrSkillID" Type="Guid" />
-          <Property Name="ReqCert" Type="Boolean" />
-          <Property Name="ActiveFlg" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="tblSkill1" Relationship="VolTeerModel.FK_Skill_Skill" FromRole="tblSkill" ToRole="tblSkill1" />
-          <NavigationProperty Name="tblSkill2" Relationship="VolTeerModel.FK_Skill_Skill" FromRole="tblSkill1" ToRole="tblSkill" />
-          <NavigationProperty Name="tblVolunteers" Relationship="VolTeerModel.tblVolSkill" FromRole="tblSkill" ToRole="tblVolunteer" />
-        </EntityType>
         <EntityType Name="tblVolState">
           <Key>
             <PropertyRef Name="StateID" />
@@ -1707,11 +1733,12 @@
           <Property Name="VolFirstName" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
           <Property Name="VolMiddleName" Type="String" MaxLength="20" Unicode="true" FixedLength="false" />
           <Property Name="VolLastName" Type="String" MaxLength="30" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="tblSkills" Relationship="VolTeerModel.tblVolSkill" FromRole="tblVolunteer" ToRole="tblSkill" />
           <NavigationProperty Name="tblAvailabilities" Relationship="VolTeerModel.FK_tblAvailability_tblVolunteer" FromRole="tblVolunteer" ToRole="tblAvailability" />
           <NavigationProperty Name="tblVolAddrs" Relationship="VolTeerModel.FK_tblVolAddr_tblVolunteer" FromRole="tblVolunteer" ToRole="tblVolAddr" />
           <NavigationProperty Name="tblGroups" Relationship="VolTeerModel.tblGroupVol" FromRole="tblVolunteer" ToRole="tblGroup" />
           <NavigationProperty Name="tblVolEmails" Relationship="VolTeerModel.FK_tblEmail_tblVolunteer" FromRole="tblVolunteer" ToRole="tblVolEmail" />
+          <NavigationProperty Name="tblSkills" Relationship="VolTeerModel.tblVolSkill" FromRole="tblVolunteer" ToRole="tblSkill" />
+          <NavigationProperty Name="tblVolPhones" Relationship="VolTeerModel.FK_tblPhone_tblVolunteer" FromRole="tblVolunteer" ToRole="tblVolPhone" />
         </EntityType>
         <Association Name="FK_tblContactEmail_tblContact">
           <End Role="tblContact" Type="VolTeerModel.tblContact" Multiplicity="1" />
@@ -1868,22 +1895,6 @@
               <PropertyRef Name="VendorID" />
             </Dependent>
           </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Skill_Skill">
-          <End Role="tblSkill" Type="VolTeerModel.tblSkill" Multiplicity="0..1" />
-          <End Role="tblSkill1" Type="VolTeerModel.tblSkill" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblSkill">
-              <PropertyRef Name="SkillID" />
-            </Principal>
-            <Dependent Role="tblSkill1">
-              <PropertyRef Name="MstrSkillID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="tblVolSkill">
-          <End Role="tblSkill" Type="VolTeerModel.tblSkill" Multiplicity="*" />
-          <End Role="tblVolunteer" Type="VolTeerModel.tblVolunteer" Multiplicity="*" />
         </Association>
         <ComplexType Name="sp_Contact_Select_Result">
           <Property Type="Guid" Name="ContactID" Nullable="false" />
@@ -2086,12 +2097,6 @@
           <End Type="VolTeerModel.tblGroup" Role="tblGroup" Multiplicity="*" />
           <End Type="VolTeerModel.tblVolunteer" Role="tblVolunteer" Multiplicity="*" />
         </Association>
-        <ComplexType Name="sp_Vol_Email_Select_Result">
-          <Property Type="Int32" Name="EmailID" Nullable="false" />
-          <Property Type="Guid" Name="VolID" Nullable="false" />
-          <Property Type="String" Name="EmailAddr" Nullable="true" MaxLength="100" />
-          <Property Type="Boolean" Name="ActiveFlg" Nullable="true" />
-        </ComplexType>
         <ComplexType Name="sp_Vol_State_Select_Result">
           <Property Type="Int32" Name="StateID" Nullable="false" />
           <Property Type="String" Name="StateName" Nullable="true" MaxLength="255" />
@@ -2181,10 +2186,77 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="tblSkill">
+          <Key>
+            <PropertyRef Name="SkillID" />
+          </Key>
+          <Property Type="Guid" Name="SkillID" Nullable="false" />
+          <Property Type="String" Name="SkillName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Guid" Name="MstrSkillID" />
+          <Property Type="Boolean" Name="ReqCert" />
+          <Property Type="Int32" Name="ActiveFlg" Nullable="false" />
+          <NavigationProperty Name="tblSkill1" Relationship="VolTeerModel.FK_Skill_Skill" FromRole="tblSkill" ToRole="tblSkill1" />
+          <NavigationProperty Name="tblSkill2" Relationship="VolTeerModel.FK_Skill_Skill" FromRole="tblSkill1" ToRole="tblSkill" />
+          <NavigationProperty Name="tblVolunteers" Relationship="VolTeerModel.tblVolSkill" FromRole="tblSkill" ToRole="tblVolunteer" />
+        </EntityType>
+        <Association Name="FK_Skill_Skill">
+          <End Type="VolTeerModel.tblSkill" Role="tblSkill" Multiplicity="0..1" />
+          <End Type="VolTeerModel.tblSkill" Role="tblSkill1" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblSkill">
+              <PropertyRef Name="SkillID" />
+            </Principal>
+            <Dependent Role="tblSkill1">
+              <PropertyRef Name="MstrSkillID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="tblVolSkill">
+          <End Type="VolTeerModel.tblSkill" Role="tblSkill" Multiplicity="*" />
+          <End Type="VolTeerModel.tblVolunteer" Role="tblVolunteer" Multiplicity="*" />
+        </Association>
         <ComplexType Name="sp_VolSkill_Select_Result">
           <Property Type="Guid" Name="SkillID" Nullable="false" />
           <Property Type="Guid" Name="MstrSkillID" Nullable="true" />
           <Property Type="String" Name="SkillName" Nullable="true" MaxLength="50" />
+        </ComplexType>
+        <ComplexType Name="sp_Vol_Email_Select_Result">
+          <Property Type="Int32" Name="EmailID" Nullable="false" />
+          <Property Type="Guid" Name="VolID" Nullable="false" />
+          <Property Type="String" Name="EmailAddr" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="ActiveFlg" Nullable="true" />
+          <Property Type="Boolean" Name="PrimaryFlg" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="tblVolPhone">
+          <Key>
+            <PropertyRef Name="PhoneID" />
+            <PropertyRef Name="VolID" />
+          </Key>
+          <Property Type="Int32" Name="PhoneID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Guid" Name="VolID" Nullable="false" />
+          <Property Type="String" Name="PhoneNbr" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Type="Boolean" Name="ActiveFlg" />
+          <Property Type="Boolean" Name="PrimaryFlg" Nullable="false" />
+          <NavigationProperty Name="tblVolunteer" Relationship="VolTeerModel.FK_tblPhone_tblVolunteer" FromRole="tblVolPhone" ToRole="tblVolunteer" />
+        </EntityType>
+        <Association Name="FK_tblPhone_tblVolunteer">
+          <End Type="VolTeerModel.tblVolunteer" Role="tblVolunteer" Multiplicity="1" />
+          <End Type="VolTeerModel.tblVolPhone" Role="tblVolPhone" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblVolunteer">
+              <PropertyRef Name="VolID" />
+            </Principal>
+            <Dependent Role="tblVolPhone">
+              <PropertyRef Name="VolID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="sp_Vol_Email_SelectAlt_Result">
+          <Property Type="Int32" Name="EmailID" Nullable="false" />
+          <Property Type="Guid" Name="VolID" Nullable="false" />
+          <Property Type="String" Name="EmailAddr" Nullable="true" MaxLength="100" />
+          <Property Type="Boolean" Name="ActiveFlg" Nullable="true" />
+          <Property Type="Boolean" Name="PrimaryFlg" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2410,37 +2482,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblSkills">
-            <EntityTypeMapping TypeName="VolTeerModel.tblSkill">
-              <MappingFragment StoreEntitySet="tblSkill">
-                <ScalarProperty Name="SkillID" ColumnName="SkillID" />
-                <ScalarProperty Name="SkillName" ColumnName="SkillName" />
-                <ScalarProperty Name="MstrSkillID" ColumnName="MstrSkillID" />
-                <ScalarProperty Name="ReqCert" ColumnName="ReqCert" />
-                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
-              </MappingFragment>
-            </EntityTypeMapping>
-            <EntityTypeMapping TypeName="VolTeerModel.tblSkill">
-              <ModificationFunctionMapping>
-                <InsertFunction FunctionName="VolTeerModel.Store.sp_Skill_Insert">
-                  <ScalarProperty Name="ReqCert" ParameterName="ReqCert" />
-                  <ScalarProperty Name="MstrSkillID" ParameterName="MstrSkillID" />
-                  <ScalarProperty Name="SkillName" ParameterName="SkillName" />
-                  <ResultBinding Name="SkillID" ColumnName="SkillID" />
-                </InsertFunction>
-                <UpdateFunction FunctionName="VolTeerModel.Store.sp_Skill_Update">
-                  <ScalarProperty Name="ReqCert" ParameterName="ReqCert" Version="Current" />
-                  <ScalarProperty Name="MstrSkillID" ParameterName="MstrSkillID" Version="Current" />
-                  <ScalarProperty Name="SkillName" ParameterName="SkillName" Version="Current" />
-                  <ScalarProperty Name="SkillID" ParameterName="SkillID" Version="Current" />
-                </UpdateFunction>
-                <DeleteFunction FunctionName="VolTeerModel.Store.sp_Skill_Delete">
-                  <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" />
-                  <ScalarProperty Name="SkillID" ParameterName="SkillID" />
-                </DeleteFunction>
-              </ModificationFunctionMapping>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tblVolStates">
             <EntityTypeMapping TypeName="VolTeerModel.tblVolState">
               <MappingFragment StoreEntitySet="tblVolState">
@@ -2495,14 +2536,6 @@
               </ModificationFunctionMapping>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="tblVolSkill" TypeName="VolTeerModel.tblVolSkill" StoreEntitySet="tblVolSkill">
-            <EndProperty Name="tblSkill">
-              <ScalarProperty Name="SkillID" ColumnName="SkillID" />
-            </EndProperty>
-            <EndProperty Name="tblVolunteer">
-              <ScalarProperty Name="VolID" ColumnName="VolID" />
-            </EndProperty>
-          </AssociationSetMapping>
           <FunctionImportMapping FunctionImportName="sp_Contact_Delete" FunctionName="VolTeerModel.Store.sp_Contact_Delete" />
           <FunctionImportMapping FunctionImportName="sp_Contact_Insert" FunctionName="VolTeerModel.Store.sp_Contact_Insert" />
           <FunctionImportMapping FunctionImportName="sp_Contact_MassUpdate" FunctionName="VolTeerModel.Store.sp_Contact_MassUpdate" />
@@ -2797,16 +2830,6 @@
           </AssociationSetMapping>
           <FunctionImportMapping FunctionImportName="sp_Vol_Email_Delete" FunctionName="VolTeerModel.Store.sp_Vol_Email_Delete" />
           <FunctionImportMapping FunctionImportName="sp_Vol_Email_Insert" FunctionName="VolTeerModel.Store.sp_Vol_Email_Insert" />
-          <FunctionImportMapping FunctionImportName="sp_Vol_Email_Select" FunctionName="VolTeerModel.Store.sp_Vol_Email_Select">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="VolTeerModel.sp_Vol_Email_Select_Result">
-                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
-                <ScalarProperty Name="VolID" ColumnName="VolID" />
-                <ScalarProperty Name="EmailAddr" ColumnName="EmailAddr" />
-                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_Vol_Email_Update" FunctionName="VolTeerModel.Store.sp_Vol_Email_Update" />
           <FunctionImportMapping FunctionImportName="sp_Vol_State_Select" FunctionName="VolTeerModel.Store.sp_Vol_State_Select">
             <ResultMapping>
@@ -2878,8 +2901,6 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="sp_SpatialTable_Insert" FunctionName="VolTeerModel.Store.sp_SpatialTable_Insert" />
-          <FunctionImportMapping FunctionImportName="sp_VolSkill_DeleteAll" FunctionName="VolTeerModel.Store.sp_VolSkill_DeleteAll" />
-          <FunctionImportMapping FunctionImportName="sp_VolSkill_Insert" FunctionName="VolTeerModel.Store.sp_VolSkill_Insert" />
           <EntitySetMapping Name="tblVolEmails">
             <EntityTypeMapping TypeName="VolTeerModel.tblVolEmail">
               <MappingFragment StoreEntitySet="tblVolEmail">
@@ -2891,12 +2912,86 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="tblSkills">
+            <EntityTypeMapping TypeName="VolTeerModel.tblSkill">
+              <MappingFragment StoreEntitySet="tblSkill">
+                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
+                <ScalarProperty Name="ReqCert" ColumnName="ReqCert" />
+                <ScalarProperty Name="MstrSkillID" ColumnName="MstrSkillID" />
+                <ScalarProperty Name="SkillName" ColumnName="SkillName" />
+                <ScalarProperty Name="SkillID" ColumnName="SkillID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="VolTeerModel.tblSkill">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="VolTeerModel.Store.sp_Skill_Insert">
+                  <ScalarProperty Name="ReqCert" ParameterName="ReqCert" />
+                  <ScalarProperty Name="MstrSkillID" ParameterName="MstrSkillID" />
+                  <ScalarProperty Name="SkillName" ParameterName="SkillName" />
+                  <ResultBinding Name="SkillID" ColumnName="SkillID" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="VolTeerModel.Store.sp_Skill_Update">
+                  <ScalarProperty Name="ReqCert" ParameterName="ReqCert" Version="Current" />
+                  <ScalarProperty Name="MstrSkillID" ParameterName="MstrSkillID" Version="Current" />
+                  <ScalarProperty Name="SkillName" ParameterName="SkillName" Version="Current" />
+                  <ScalarProperty Name="SkillID" ParameterName="SkillID" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="VolTeerModel.Store.sp_Skill_Delete">
+                  <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" />
+                  <ScalarProperty Name="SkillID" ParameterName="SkillID" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="tblVolSkill" TypeName="VolTeerModel.tblVolSkill" StoreEntitySet="tblVolSkill">
+            <EndProperty Name="tblVolunteer">
+              <ScalarProperty Name="VolID" ColumnName="VolID" />
+            </EndProperty>
+            <EndProperty Name="tblSkill">
+              <ScalarProperty Name="SkillID" ColumnName="SkillID" />
+            </EndProperty>
+          </AssociationSetMapping>
+          <FunctionImportMapping FunctionImportName="sp_VolSkill_DeleteAll" FunctionName="VolTeerModel.Store.sp_VolSkill_DeleteAll" />
+          <FunctionImportMapping FunctionImportName="sp_VolSkill_Insert" FunctionName="VolTeerModel.Store.sp_VolSkill_Insert" />
           <FunctionImportMapping FunctionImportName="sp_VolSkill_Select" FunctionName="VolTeerModel.Store.sp_VolSkill_Select">
             <ResultMapping>
               <ComplexTypeMapping TypeName="VolTeerModel.sp_VolSkill_Select_Result">
                 <ScalarProperty Name="SkillID" ColumnName="SkillID" />
                 <ScalarProperty Name="MstrSkillID" ColumnName="MstrSkillID" />
                 <ScalarProperty Name="SkillName" ColumnName="SkillName" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Vol_Email_Select" FunctionName="VolTeerModel.Store.sp_Vol_Email_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VolTeerModel.sp_Vol_Email_Select_Result">
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+                <ScalarProperty Name="VolID" ColumnName="VolID" />
+                <ScalarProperty Name="EmailAddr" ColumnName="EmailAddr" />
+                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
+                <ScalarProperty Name="PrimaryFlg" ColumnName="PrimaryFlg" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <EntitySetMapping Name="tblVolPhones">
+            <EntityTypeMapping TypeName="VolTeerModel.tblVolPhone">
+              <MappingFragment StoreEntitySet="tblVolPhone">
+                <ScalarProperty Name="PrimaryFlg" ColumnName="PrimaryFlg" />
+                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
+                <ScalarProperty Name="PhoneNbr" ColumnName="PhoneNbr" />
+                <ScalarProperty Name="VolID" ColumnName="VolID" />
+                <ScalarProperty Name="PhoneID" ColumnName="PhoneID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_Vol_Email_SelectAlt" FunctionName="VolTeerModel.Store.sp_Vol_Email_SelectAlt">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VolTeerModel.sp_Vol_Email_SelectAlt_Result">
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+                <ScalarProperty Name="VolID" ColumnName="VolID" />
+                <ScalarProperty Name="EmailAddr" ColumnName="EmailAddr" />
+                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
+                <ScalarProperty Name="PrimaryFlg" ColumnName="PrimaryFlg" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>

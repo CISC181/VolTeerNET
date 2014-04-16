@@ -58,7 +58,7 @@
       <Name>VolTeer.BusinessLogicLayer</Name>
     </ProjectReference>
     <ProjectReference Include="..\VolTeer.Contracts\VolTeer.Contracts.csproj">
-      <Project>{5f13362d-9df9-44fd-ae37-e54788d00972}</Project>
+      <Project>{1d640f5e-1b69-44fe-839a-a66a65e7d3c4}</Project>
       <Name>VolTeer.Contracts</Name>
     </ProjectReference>
     <ProjectReference Include="..\VolTeer.DomainModels\VolTeer.DomainModels.csproj">

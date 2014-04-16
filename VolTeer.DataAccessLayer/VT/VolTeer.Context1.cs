@@ -42,7 +42,6 @@ namespace VolTeer.DataAccessLayer.VT
         public DbSet<tblVendorAddr> tblVendorAddrs { get; set; }
         public DbSet<tblVendorProjContact> tblVendorProjContacts { get; set; }
         public DbSet<tblSampleAddress> tblSampleAddresses { get; set; }
-        public DbSet<tblSkill> tblSkills { get; set; }
         public DbSet<tblVolState> tblVolStates { get; set; }
         public DbSet<tblVolunteer> tblVolunteers { get; set; }
         public DbSet<tblAvailability> tblAvailabilities { get; set; }
@@ -51,6 +50,8 @@ namespace VolTeer.DataAccessLayer.VT
         public DbSet<tblVolAddress> tblVolAddresses { get; set; }
         public DbSet<tblVendState> tblVendStates { get; set; }
         public DbSet<tblVolEmail> tblVolEmails { get; set; }
+        public DbSet<tblSkill> tblSkills { get; set; }
+        public DbSet<tblVolPhone> tblVolPhones { get; set; }
     
         public virtual int sp_Contact_Delete(Nullable<System.Guid> contactID)
         {
@@ -678,24 +679,6 @@ namespace VolTeer.DataAccessLayer.VT
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_Vol_Email_Insert", emailAddrParameter);
         }
     
-        public virtual ObjectResult<sp_Vol_Email_Select_Result> sp_Vol_Email_Select(Nullable<int> emailID)
-        {
-            var emailIDParameter = emailID.HasValue ?
-                new ObjectParameter("EmailID", emailID) :
-                new ObjectParameter("EmailID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Vol_Email_Select_Result>("sp_Vol_Email_Select", emailIDParameter);
-        }
-
-        public virtual ObjectResult<sp_Vol_Email_Select_Result> sp_Vol_Email_SelectAlt(Nullable<System.Guid> volID)
-        {
-            var volIDParameter = volID.HasValue ?
-                new ObjectParameter("VolID", volID) :
-                new ObjectParameter("VolID", typeof(System.Guid));
-
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Vol_Email_Select_Result>("sp_Vol_Email_Select", volIDParameter);
-        }
-    
         public virtual int sp_Vol_Email_Update(Nullable<int> emailID, string emailAddr)
         {
             var emailIDParameter = emailID.HasValue ?
@@ -1184,6 +1167,24 @@ namespace VolTeer.DataAccessLayer.VT
                 new ObjectParameter("VolID", typeof(System.Guid));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_VolSkill_Select_Result>("sp_VolSkill_Select", volIDParameter);
+        }
+    
+        public virtual ObjectResult<sp_Vol_Email_Select_Result> sp_Vol_Email_Select(Nullable<int> emailID)
+        {
+            var emailIDParameter = emailID.HasValue ?
+                new ObjectParameter("EmailID", emailID) :
+                new ObjectParameter("EmailID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Vol_Email_Select_Result>("sp_Vol_Email_Select", emailIDParameter);
+        }
+    
+        public virtual ObjectResult<sp_Vol_Email_SelectAlt_Result> sp_Vol_Email_SelectAlt(Nullable<System.Guid> volID)
+        {
+            var volIDParameter = volID.HasValue ?
+                new ObjectParameter("VolID", volID) :
+                new ObjectParameter("VolID", typeof(System.Guid));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Vol_Email_SelectAlt_Result>("sp_Vol_Email_SelectAlt", volIDParameter);
         }
     }
 }
