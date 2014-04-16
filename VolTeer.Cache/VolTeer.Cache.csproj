@@ -44,7 +44,6 @@
     <Compile Include="VT\Vend\sp_VendEmail_Cache.cs" />
     <Compile Include="VT\Vend\sp_EventRating_Cache.cs" />
     <Compile Include="VT\Vol\sp_VolEmail_Cache.cs" />
-    <Compile Include="VT\Vol\sp_VolPhone_Cache.cs" />
     <Compile Include="VT\Vol\sp_Volunteer_Cache.cs" />
     <Compile Include="VT\Vol\sp_Vol_Address_Cache.cs" />
   </ItemGroup>
