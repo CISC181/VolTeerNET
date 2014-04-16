@@ -13,6 +13,42 @@ namespace VolTeer.Common.WebControls {
     public partial class ucSkillSearch {
         
         /// <summary>
+        /// pnlSkills control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlSkills;
+        
+        /// <summary>
+        /// rbAutoComplete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbAutoComplete;
+        
+        /// <summary>
+        /// rbTreeControl control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButton rbTreeControl;
+        
+        /// <summary>
+        /// pnlAutoComplete control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlAutoComplete;
+        
+        /// <summary>
         /// RadAjaxPanel1 control.
         /// </summary>
         /// <remarks>
@@ -38,6 +74,15 @@ namespace VolTeer.Common.WebControls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadButton rBTNProcess;
+        
+        /// <summary>
+        /// pnlTree control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlTree;
         
         /// <summary>
         /// CodeBlock1 control.

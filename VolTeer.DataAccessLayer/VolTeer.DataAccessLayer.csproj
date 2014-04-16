@@ -337,6 +337,8 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>VolTeer.edmx</DependentUpon>
     </Compile>
+    <Compile Include="VT\Vol\sp_GroupAddr_DAL.cs" />
+    <Compile Include="VT\Vol\sp_GroupVol_DAL.cs" />
     <Compile Include="VT\Vol\sp_Skill_DAL.cs" />
     <Compile Include="VT\Vol\sp_Availability_DAL.cs" />
     <Compile Include="VT\Vol\sp_Group_DAL.cs" />

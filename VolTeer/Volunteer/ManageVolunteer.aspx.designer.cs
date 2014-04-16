@@ -76,6 +76,15 @@ namespace VolTeer.Volunteer {
         protected global::Telerik.Web.UI.RadPageView PageView1;
         
         /// <summary>
+        /// lblFixEmail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblFixEmail;
+        
+        /// <summary>
         /// PageView2 control.
         /// </summary>
         /// <remarks>
@@ -83,6 +92,15 @@ namespace VolTeer.Volunteer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadPageView PageView2;
+        
+        /// <summary>
+        /// Label1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
         /// PageView3 control.
@@ -94,6 +112,15 @@ namespace VolTeer.Volunteer {
         protected global::Telerik.Web.UI.RadPageView PageView3;
         
         /// <summary>
+        /// Label2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label2;
+        
+        /// <summary>
         /// PageView4 control.
         /// </summary>
         /// <remarks>
@@ -101,6 +128,15 @@ namespace VolTeer.Volunteer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadPageView PageView4;
+        
+        /// <summary>
+        /// Label3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label Label3;
         
         /// <summary>
         /// RadPageView2 control.
@@ -112,6 +148,51 @@ namespace VolTeer.Volunteer {
         protected global::Telerik.Web.UI.RadPageView RadPageView2;
         
         /// <summary>
+        /// RadTabStrip3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadTabStrip RadTabStrip3;
+        
+        /// <summary>
+        /// RadMultiPage5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadMultiPage RadMultiPage5;
+        
+        /// <summary>
+        /// RadPageView5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadPageView RadPageView5;
+        
+        /// <summary>
+        /// RadPageView6 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadPageView RadPageView6;
+        
+        /// <summary>
+        /// RadPageView7 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadPageView RadPageView7;
+        
+        /// <summary>
         /// RadPageView3 control.
         /// </summary>
         /// <remarks>
@@ -121,12 +202,21 @@ namespace VolTeer.Volunteer {
         protected global::Telerik.Web.UI.RadPageView RadPageView3;
         
         /// <summary>
-        /// RadRating control.
+        /// ucSkills control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadRating RadRating;
+        protected global::VolTeer.Common.WebControls.ucSkillSearch ucSkills;
+        
+        /// <summary>
+        /// RadPageView4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadPageView RadPageView4;
     }
 }

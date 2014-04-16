@@ -16,21 +16,15 @@ namespace VolTeer.Common.WebControls
         sp_Skill_BLL SkillsBLL = new sp_Skill_BLL();
         sp_VolSkill_BLL VolSkillBLL = new sp_VolSkill_BLL();
 
-        
-
         protected void Page_Load(object sender, EventArgs e)
         {
             SetDataSource();
-
             if (!IsPostBack)
             {
+                pnlAutoComplete.Visible = true;
+                pnlTree.Visible = false;
                 PaintAutoComplete();
             }
-
-
-            
-
-
         }
 
         private void SetDataSource()
@@ -38,10 +32,9 @@ namespace VolTeer.Common.WebControls
             rACSkills.DataSource = SkillsBLL.ListSkills();
             rACSkills.DataTextField = "SkillName";
             rACSkills.DataValueField = "SkillID";
-
         }
 
-        protected void  PaintAutoComplete()
+        protected void PaintAutoComplete()
         {
             MembershipUser currentUser = Membership.GetUser();
             Guid VolID = (Guid)currentUser.ProviderUserKey;
@@ -50,24 +43,10 @@ namespace VolTeer.Common.WebControls
             foreach (sp_VolSkill_DM item in dt)
             {
                 AutoCompleteBoxEntry autoItem = new AutoCompleteBoxEntry();
-
                 autoItem.Value = item.SkillID.ToString();
                 autoItem.Text = item.SkillName.ToString();
                 rACSkills.Entries.Add(autoItem);
             }
-
-
-            //AutoCompleteBoxEntry item = new AutoCompleteBoxEntry();
-
-            //item.Text = "xxx";
-            //item.Value = "yyy";
-
-            //rACSkills.Entries.Add(item);
-
-
-
-
-
         }
 
         protected void rBTNProcess_Click(object sender, EventArgs e)
@@ -77,11 +56,6 @@ namespace VolTeer.Common.WebControls
 
             //Delete all associated VolSkills for the given volid
             VolSkillBLL.DeleteVolSkillALL(VolID);
-
-
-
-
-
 
             AutoCompleteBoxEntryCollection entries = this.rACSkills.Entries;
             for (int i = 0; i < entries.Count; i++)
@@ -109,6 +83,19 @@ namespace VolTeer.Common.WebControls
                     //Response.Write("Existing Skill: " + entries[i].Text + entries[i].Value);
                 }
             }
+        }
+
+        protected void rbAutoComplete_CheckedChanged(object sender, EventArgs e)
+        {
+            pnlAutoComplete.Visible = true;
+            pnlTree.Visible = false;
+
+        }
+
+        protected void rbTreeControl_CheckedChanged(object sender, EventArgs e)
+        {
+            pnlTree.Visible = true;
+            pnlAutoComplete.Visible = false;
         }
 
 
