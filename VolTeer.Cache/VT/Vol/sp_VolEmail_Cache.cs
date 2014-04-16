@@ -17,6 +17,8 @@ namespace VolTeer.Cache.VT.Vol
         {
             VolEmailList,
             VolEmailDM,
+            VolEmailGUID,
+            VolEmailPrimary,
             VolEmail
         }
         sp_VolEmail_BLL BLL = new sp_VolEmail_BLL();
@@ -34,6 +36,19 @@ namespace VolTeer.Cache.VT.Vol
             return cacheEmails;                       
         }
 
+        public sp_Email_DM ListEmails(Guid? Volunteer)
+        {
+            System.Web.Caching.Cache cache = HttpRuntime.Cache;
+            sp_Email_DM cacheEmails = (sp_Email_DM)cache[EmailType.VolEmailGUID + "|" + Volunteer];
+
+            if (cacheEmails == null)
+            {
+                cacheEmails = BLL.ListEmails(Volunteer);
+                cache.Insert("" + EmailType.VolEmailGUID + "|" + Volunteer, cacheEmails, null, DateTime.Now.AddSeconds(1), System.Web.Caching.Cache.NoSlidingExpiration, CacheItemPriority.High, callback);
+            }
+            return cacheEmails;
+        }
+
         public sp_Email_DM ListEmails(int EmailIds)
         {
             System.Web.Caching.Cache cache = HttpRuntime.Cache;
@@ -43,6 +58,19 @@ namespace VolTeer.Cache.VT.Vol
             {
                 cacheEmails = BLL.ListEmails(EmailIds);
                 cache.Insert("" + EmailType.VolEmailDM + "|" + EmailIds, cacheEmails, null, DateTime.Now.AddSeconds(1), System.Web.Caching.Cache.NoSlidingExpiration, CacheItemPriority.High, callback);
+            }
+            return cacheEmails;
+        }
+
+        public sp_Email_DM ListPrimaryEmail(int EmailIds)
+        {
+            System.Web.Caching.Cache cache = HttpRuntime.Cache;
+            sp_Email_DM cacheEmails = (sp_Email_DM)cache[EmailType.VolEmailPrimary + "|" + EmailIds];
+
+            if (cacheEmails == null)
+            {
+                cacheEmails = BLL.ListPrimaryEmail(EmailIds);
+                cache.Insert("" + EmailType.VolEmailPrimary + "|" + EmailIds, cacheEmails, null, DateTime.Now.AddSeconds(1), System.Web.Caching.Cache.NoSlidingExpiration, CacheItemPriority.High, callback);
             }
             return cacheEmails;
         }

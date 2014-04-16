@@ -26,8 +26,8 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                                 EmailID = result.EmailID,
                                 EmailAddr = result.EmailAddr,
                                 VolID = result.VolID,
-                                ActiveFlg = result.ActiveFlg
-
+                                ActiveFlg = result.ActiveFlg,
+                                PrimaryFlg = result.PrimaryFlg
 
                             }).ToList();
                 } // Guaranteed to close the Connection
@@ -54,7 +54,8 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                                 EmailID = result.EmailID,
                                 EmailAddr = result.EmailAddr,
                                 VolID = result.VolID,
-                                ActiveFlg = result.ActiveFlg
+                                ActiveFlg = result.ActiveFlg,
+                                PrimaryFlg = result.PrimaryFlg
                             }).ToList();
                 } // Guaranteed to close the Connection
             }
@@ -64,6 +65,61 @@ namespace VolTeer.DataAccessLayer.VT.Vol
             }
 
             return list;
+
+        }
+
+        public sp_Email_DM ListEmails(Guid? Volunteer)
+        {
+            List<sp_Email_DM> list = new List<sp_Email_DM>();
+            try
+            {
+                using (VolTeerEntities context = new VolTeerEntities())
+                {
+                    list = (from result in context.sp_Vol_Email_SelectAlt(Volunteer)
+                            select new sp_Email_DM
+                            {
+                                EmailID = result.EmailID,
+                                EmailAddr = result.EmailAddr,
+                                VolID = result.VolID,
+                                ActiveFlg = result.ActiveFlg,
+                                PrimaryFlg = result.PrimaryFlg
+
+                            }).ToList();
+                } // Guaranteed to close the Connection
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+
+            return list.FirstOrDefault();
+
+        }
+
+        public sp_Email_DM ListPrimaryEmail(int EmailIds)
+        {
+            sp_Email_DM item = new sp_Email_DM();            
+            try
+            {
+                using (VolTeerEntities context = new VolTeerEntities())
+                {
+                    item = (from result in context.sp_Vol_Email_Select(EmailIds)
+                            select new sp_Email_DM
+                            {
+                                EmailID = result.EmailID,
+                                EmailAddr = result.EmailAddr,
+                                VolID = result.VolID,
+                                ActiveFlg = result.ActiveFlg,
+                                PrimaryFlg = result.PrimaryFlg
+                            }).FirstOrDefault();
+                } // Guaranteed to close the Connection
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+
+            return item;
 
         }
 
@@ -86,7 +142,8 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                     VolID = _cEmail.VolID,
                     EmailID = _cEmail.EmailID,
                     EmailAddr = _cEmail.EmailAddr,
-                    ActiveFlg = _cEmail.ActiveFlg
+                    ActiveFlg = _cEmail.ActiveFlg,
+                    PrimaryFlg = _cEmail.PrimaryFlg
                     
                 };
                 context.tblVolEmails.Add(cEmail);
@@ -112,6 +169,7 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                     cEmail.EmailAddr = _cEmail.EmailAddr;
                     cEmail.VolID = _cEmail.VolID;
                     cEmail.ActiveFlg = _cEmail.ActiveFlg;
+                    cEmail.PrimaryFlg = _cEmail.PrimaryFlg;
                     context.SaveChanges();
                 }
             }

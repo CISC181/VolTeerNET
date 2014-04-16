@@ -686,6 +686,15 @@ namespace VolTeer.DataAccessLayer.VT
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Vol_Email_Select_Result>("sp_Vol_Email_Select", emailIDParameter);
         }
+
+        public virtual ObjectResult<sp_Vol_Email_Select_Result> sp_Vol_Email_SelectAlt(Nullable<System.Guid> volID)
+        {
+            var volIDParameter = volID.HasValue ?
+                new ObjectParameter("VolID", volID) :
+                new ObjectParameter("VolID", typeof(System.Guid));
+
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Vol_Email_Select_Result>("sp_Vol_Email_Select", volIDParameter);
+        }
     
         public virtual int sp_Vol_Email_Update(Nullable<int> emailID, string emailAddr)
         {

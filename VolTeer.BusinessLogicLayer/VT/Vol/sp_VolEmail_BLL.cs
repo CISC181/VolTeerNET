@@ -17,9 +17,19 @@ namespace VolTeer.BusinessLogicLayer.VT.Vol
             return DAL.ListEmails();
         }
 
+        public sp_Email_DM ListEmails(Guid? Volunteer)
+        {
+            return DAL.ListEmails(Volunteer);
+        }
+
         public sp_Email_DM ListEmails(int EmailIds)
         {
             return DAL.ListEmails(EmailIds).Single();
+        }
+
+        public sp_Email_DM ListPrimaryEmail(int EmailIds)
+        {
+            return DAL.ListPrimaryEmail(EmailIds);
         }
 
         public void InsertEmailContext(sp_Email_DM _cEmail)
