@@ -558,78 +558,71 @@ tr.pager td {
 }
 
 
-.Base
-    {
-      display: inline-block;
-      font: 12px/18px "segoe ui" ,arial,sans-serif;
-      height: 20px;
-      overflow: hidden;
-      text-align: center;
-      vertical-align: middle;
-      width: 121px;
-      color: #fff;
-      border: 1px solid #333;
+.Base {
+    display: inline-block;
+    font: 12px/18px "segoe ui",arial,sans-serif;
+    height: 20px;
+    overflow: hidden;
+    text-align: center;
+    vertical-align: middle;
+    width: 121px;
+    color: #fff;
+    border: 1px solid #333;
+}
+
+.L0 {
+    border: 0 none;
+}
+
+.L1 {
+    background-color: #ff3933;
+}
+
+.L2 {
+    background-color: #ff6633;
+}
+
+.L3 {
+    background-color: #ff3399;
+}
+
+.L4 {
+    background-color: #cccc33;
+}
+
+.L5 {
+    background-color: #33cc00;
+}
+
+.cfgContent .RadComboBox {
+    margin-bottom: 10px;
+    width: 298px;
+}
+
+.cfgContent .RadComboBoxWithLabel .rcbLabel {
+    width: 210px;
+    display: inline-block;
+}
+
+
+.checkboxes {
+    line-height: 30px;
+}
+
+.customizedInd .RadInput {
+    margin-bottom: 5px;
+}
+
+    .customizedInd .RadInput .riLabel {
+        width: 100px;
+        display: inline-block;
     }
-    .L0
-    {
-      border: 0 none;
-    }
-    .L1
-    {
-      background-color: #ff3933;
-    }
-    .L2
-    {
-      background-color: #ff6633;
-    }
-    .L3
-    {
-      background-color: #ff3399;
-    }
-    .L4
-    {
-      background-color: #cccc33;
-    }
-    .L5
-    {
-      background-color: #33cc00;
-    }
-     
-    .cfgContent .RadComboBox
-    {
-      margin-bottom: 10px;
-      width: 298px;
-    }
-     
-    .cfgContent .RadComboBoxWithLabel .rcbLabel
-    {
-      width: 210px;
-      display: inline-block;
-    }
- 
-     
-    .checkboxes
-    {
-      line-height: 30px;
-    }
-     
-    .customizedInd .RadInput
-    {
-      margin-bottom: 5px;
-    }
-     
-    .customizedInd .RadInput .riLabel
-    {
-      width: 100px;
-      display: inline-block;
-    }
-     
-    .customizedInd h2
-    {
-      font-weight: normal;
-      font-size: 14px;
-      color: #666;
-    }
+
+.customizedInd h2 {
+    font-weight: normal;
+    font-size: 14px;
+    color: #666;
+}
 
 
 
@@ -665,316 +658,321 @@ tr.pager td {
 
 
 .RadButton_MySkin {
-	font-family: "Segoe UI" , Arial, Helvetica, sans-serif;
-	font-size: 12px; 
+    font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+    font-size: 12px;
 }
 
-.RadButton_MySkin .rbDecorated {
-	font-family: "Segoe UI" , Arial, Helvetica, sans-serif;
-	font-size: 12px;
-}
+    .RadButton_MySkin .rbDecorated {
+        font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+        font-size: 12px;
+    }
 
-.RadButton_MySkin.rbSkinnedButton, 
-.RadButton_MySkin .rbDecorated, 
-.RadButton_MySkin.rbVerticalButton,
-.RadButton_MySkin.rbVerticalButton .rbDecorated, 
-.RadButton_MySkin .rbSplitRight, 
-.RadButton_MySkin .rbSplitLeft {
-	background-image: url('Button/ButtonSprites.png');
-	color: #5b5a48;
-}
+    .RadButton_MySkin.rbSkinnedButton,
+    .RadButton_MySkin .rbDecorated,
+    .RadButton_MySkin.rbVerticalButton,
+    .RadButton_MySkin.rbVerticalButton .rbDecorated,
+    .RadButton_MySkin .rbSplitRight,
+    .RadButton_MySkin .rbSplitLeft {
+        background-image: url('Button/ButtonSprites.png');
+        color: #5b5a48;
+    }
 
-.RadButton_MySkin .rbToggleCheckbox, 
-.RadButton_MySkin .rbToggleCheckboxChecked, 
-.RadButton_MySkin .rbToggleCheckboxFilled, 
-.RadButton_MySkin .rbToggleRadio, 
-.RadButton_MySkin .rbToggleRadioChecked {
-	background-image: url('Button/ToggleSprite.png');
-}
+    .RadButton_MySkin .rbToggleCheckbox,
+    .RadButton_MySkin .rbToggleCheckboxChecked,
+    .RadButton_MySkin .rbToggleCheckboxFilled,
+    .RadButton_MySkin .rbToggleRadio,
+    .RadButton_MySkin .rbToggleRadioChecked {
+        background-image: url('Button/ToggleSprite.png');
+    }
 
-.RadButton_MySkin.rbToggleButton, 
-.RadButton_MySkin.rbToggleButton.rbDisabled:hover {
-	color: #272722;
-}
+    .RadButton_MySkin.rbToggleButton,
+    .RadButton_MySkin.rbToggleButton.rbDisabled:hover {
+        color: #272722;
+    }
 
-.RadButton_MySkin.rbToggleButton:hover {
-	color: #279500;
-}
-.RadButton_MySkin.RadButton.rbLinkButton {
-	background-color: #e0e2cb;
-	border: 1px solid #898772;
-	_border: 1px solid #898772 !important;
-	color: #5b5a48;
-}
+        .RadButton_MySkin.rbToggleButton:hover {
+            color: #279500;
+        }
 
-.RadButton_MySkin.RadButton.rbLinkButton:hover {
-	background-color: #b0e67b;
-	_border: 1px solid #898772 !important;
-	color: #279500;
-}
+    .RadButton_MySkin.RadButton.rbLinkButton {
+        background-color: #e0e2cb;
+        border: 1px solid #898772;
+        _border: 1px solid #898772 !important;
+        color: #5b5a48;
+    }
 
-.RadButton_MySkin.rbLinkButtonChecked, 
-.RadButton_MySkin.rbLinkButtonChecked:hover {
-	background-color: #e0e2cb;
-	color: #5b5a48;
-	border: 1px solid #898772;
-}
+        .RadButton_MySkin.RadButton.rbLinkButton:hover {
+            background-color: #b0e67b;
+            _border: 1px solid #898772 !important;
+            color: #279500;
+        }
 
-.RadButton_MySkin.rbLinkButton.rbDisabled, 
-.RadButton_MySkin.rbLinkButton.rbDisabled:hover {
-	background-color: #f0f0f0;
-	border: 1px solid #c5c3ad;
-	color: #777777;
-}
+    .RadButton_MySkin.rbLinkButtonChecked,
+    .RadButton_MySkin.rbLinkButtonChecked:hover {
+        background-color: #e0e2cb;
+        color: #5b5a48;
+        border: 1px solid #898772;
+    }
 
-.RadButton_MySkin.rbLinkButton:hover .rbSplitLeft, 
-.RadButton_MySkin.rbLinkButton:hover .rbSplitRight {
-	background-color: #e0e2cb;
-}
+    .RadButton_MySkin.rbLinkButton.rbDisabled,
+    .RadButton_MySkin.rbLinkButton.rbDisabled:hover {
+        background-color: #f0f0f0;
+        border: 1px solid #c5c3ad;
+        color: #777777;
+    }
 
-.RadButton_MySkin.rbLinkButton .rbSplitRight {
-	border-left: 1px solid #898772;
-}
-.RadButton_MySkin.rbLinkButton .rbSplitRight:hover {
-	background-color: #b0e67b;
-	border-left: 1px solid #6ec64d;
-}
+    .RadButton_MySkin.rbLinkButton:hover .rbSplitLeft,
+    .RadButton_MySkin.rbLinkButton:hover .rbSplitRight {
+        background-color: #e0e2cb;
+    }
 
-.RadButton_MySkin.rbLinkButton .rbSplitRight:active, 
-.RadButton_MySkin.rbLinkButton .rbSplitRight:focus {
-	background-color: #58b41a;
-	border-left: 1px solid #6ec64d;
-}
+    .RadButton_MySkin.rbLinkButton .rbSplitRight {
+        border-left: 1px solid #898772;
+    }
 
-.RadButton_MySkin.rbLinkButton .rbSplitLeft {
-	border-right: 1px solid #898772;
-}
+        .RadButton_MySkin.rbLinkButton .rbSplitRight:hover {
+            background-color: #b0e67b;
+            border-left: 1px solid #6ec64d;
+        }
 
-.RadButton_MySkin.rbLinkButton .rbSplitLeft:hover {
-	background-color: #b0e67b;
-	border-right: 1px solid #6ec64d;
-}
+        .RadButton_MySkin.rbLinkButton .rbSplitRight:active,
+        .RadButton_MySkin.rbLinkButton .rbSplitRight:focus {
+            background-color: #58b41a;
+            border-left: 1px solid #6ec64d;
+        }
 
-.RadButton_MySkin.rbLinkButton .rbSplitLeft:active, 
-.RadButton_MySkin.rbLinkButton .rbSplitLeft:focus {
-	background-color: #58b41a;
-	border-right: 1px solid #6ec64d;
-}
-.RadButton_MySkin.rbLinkButton.rbDisabled .rbSplitLeft, 
-.RadButton_MySkin.rbLinkButton.rbDisabled .rbSplitLeft:hover, 
-.RadButton_MySkin.rbLinkButton.rbDisabled .rbSplitLeft:active, 
-.RadButton_MySkin.rbLinkButton.rbDisabled .rbSplitLeft:focus {
-	border-right: 1px solid #c5c3ad;
-}
+    .RadButton_MySkin.rbLinkButton .rbSplitLeft {
+        border-right: 1px solid #898772;
+    }
 
-.RadButton_MySkin.rbLinkButton.rbDisabled .rbSplitRight, 
-.RadButton_MySkin.rbLinkButton.rbDisabled .rbSplitRight:hover, 
-.RadButton_MySkin.rbLinkButton.rbDisabled .rbSplitRight:active, 
-.RadButton_MySkin.rbLinkButton.rbDisabled .rbSplitRight:focus {
-	border-left: 1px solid #c5c3ad;
-}
+        .RadButton_MySkin.rbLinkButton .rbSplitLeft:hover {
+            background-color: #b0e67b;
+            border-right: 1px solid #6ec64d;
+        }
+
+        .RadButton_MySkin.rbLinkButton .rbSplitLeft:active,
+        .RadButton_MySkin.rbLinkButton .rbSplitLeft:focus {
+            background-color: #58b41a;
+            border-right: 1px solid #6ec64d;
+        }
+
+    .RadButton_MySkin.rbLinkButton.rbDisabled .rbSplitLeft,
+    .RadButton_MySkin.rbLinkButton.rbDisabled .rbSplitLeft:hover,
+    .RadButton_MySkin.rbLinkButton.rbDisabled .rbSplitLeft:active,
+    .RadButton_MySkin.rbLinkButton.rbDisabled .rbSplitLeft:focus {
+        border-right: 1px solid #c5c3ad;
+    }
+
+    .RadButton_MySkin.rbLinkButton.rbDisabled .rbSplitRight,
+    .RadButton_MySkin.rbLinkButton.rbDisabled .rbSplitRight:hover,
+    .RadButton_MySkin.rbLinkButton.rbDisabled .rbSplitRight:active,
+    .RadButton_MySkin.rbLinkButton.rbDisabled .rbSplitRight:focus {
+        border-left: 1px solid #c5c3ad;
+    }
 
 /* CSS Base overrides for skins using old sprite structure */
 
 .RadButton.RadButton_MySkin.rbSkinnedButton {
-	background-position: right 0;
-	padding-right: 4px;
+    background-position: right 0;
+    padding-right: 4px;
 }
 
 
 .RadButton.RadButton_MySkin .rbDecorated {
-	background-position: left -22px;
-	padding-right: 6px;
-	*padding-right: 8px;
-	padding-left: 10px;
+    background-position: left -22px;
+    padding-right: 6px;
+    *padding-right: 8px;
+    padding-left: 10px;
 }
 
 .RadButton.RadButton_MySkin.rbSkinnedButton:hover {
-	background-position: right -44px;
+    background-position: right -44px;
 }
 
-.RadButton.RadButton_MySkin.rbSkinnedButton:hover .rbDecorated {
-	background-position: left -66px; 
-}
+    .RadButton.RadButton_MySkin.rbSkinnedButton:hover .rbDecorated {
+        background-position: left -66px;
+    }
 
 .RadButton.RadButton_MySkin.rbSkinnedButton:focus,
 .RadButton.RadButton_MySkin.rbSkinnedButton:active,
 .RadButton.RadButton_MySkin.rbSkinnedButtonChecked,
 .RadButton.RadButton_MySkin.rbSkinnedButtonChecked:hover {
-	background-position: right -88px; 
+    background-position: right -88px;
 }
 
-.RadButton.RadButton_MySkin.rbSkinnedButton:focus .rbDecorated,
-.RadButton.RadButton_MySkin.rbSkinnedButton:active .rbDecorated,
-.RadButton.RadButton_MySkin.rbSkinnedButtonChecked .rbDecorated,
-.RadButton.RadButton_MySkin.rbSkinnedButtonChecked:hover .rbDecorated {
-	background-position: left -110px;
-}
+    .RadButton.RadButton_MySkin.rbSkinnedButton:focus .rbDecorated,
+    .RadButton.RadButton_MySkin.rbSkinnedButton:active .rbDecorated,
+    .RadButton.RadButton_MySkin.rbSkinnedButtonChecked .rbDecorated,
+    .RadButton.RadButton_MySkin.rbSkinnedButtonChecked:hover .rbDecorated {
+        background-position: left -110px;
+    }
 
 /* IE and Opera Focus and Active state fix with additional class, should be used !important */
 .RadButton.RadButton_MySkin.rbPressedButton {
-	background-position: right -88px !important; 
+    background-position: right -88px !important;
 }
 
-.RadButton.RadButton_MySkin.rbPressedButton .rbDecorated {
-	background-position: left -110px !important;
-}
+    .RadButton.RadButton_MySkin.rbPressedButton .rbDecorated {
+        background-position: left -110px !important;
+    }
 
 /* IE8 Onclickg filckering Bug fix */
 .RadButton.RadButton_MySkin.rbSkinnedButton.rbPressedIE8 .rbDecorated,
 .RadButton.RadButton_MySkin.rbSkinnedButton.rbPressedIE8Rtl .rbDecorated {
-	-ms-background-position-x: 1px !important;
-	-ms-background-position-y: -109px !important;
+    -ms-background-position-x: 1px !important;
+    -ms-background-position-y: -109px !important;
 }
 
 .RadButton.RadButton_MySkin.rbSkinnedButton.rbPressedIE8Rtl .rbDecorated {
-  -ms-background-position-x: -1px !important;
+    -ms-background-position-x: -1px !important;
 }
 
 .rbSkinnedButton.rbPressedIE8,
 .rbSkinnedButton.rbPressedIE8Rtl {
-	background-position: right -88px !important;
+    background-position: right -88px !important;
 }
 /* fix end */
 
 /* Vertical Buttons overrides */
 .RadButton.RadButton_MySkin.rbVerticalButton {
-	background-position: right -155px;
-	padding-right: 4px;
+    background-position: right -155px;
+    padding-right: 4px;
 }
 
-.RadButton.RadButton_MySkin.rbVerticalButton .rbDecorated {
-	padding-right: 6px;
-	padding-left: 10px;
-	background-position: left -220px;
-}
+    .RadButton.RadButton_MySkin.rbVerticalButton .rbDecorated {
+        padding-right: 6px;
+        padding-left: 10px;
+        background-position: left -220px;
+    }
 
-.RadButton.RadButton_MySkin.rbVerticalButton:hover {
-	background-position: right -285px;
-}
+    .RadButton.RadButton_MySkin.rbVerticalButton:hover {
+        background-position: right -285px;
+    }
 
-.RadButton.RadButton_MySkin.rbVerticalButton:hover .rbDecorated {
-	background-position: left -350px;
-}
+        .RadButton.RadButton_MySkin.rbVerticalButton:hover .rbDecorated {
+            background-position: left -350px;
+        }
 
-.RadButton.RadButton_MySkin.rbVerticalButton:focus,
-.RadButton.RadButton_MySkin.rbVerticalButton:active,
-.RadButton.RadButton_MySkin.rbVerticalButtonChecked,
-.RadButton.RadButton_MySkin.rbVerticalButtonChecked:hover {
-	background-position: right -415px;
-}
+    .RadButton.RadButton_MySkin.rbVerticalButton:focus,
+    .RadButton.RadButton_MySkin.rbVerticalButton:active,
+    .RadButton.RadButton_MySkin.rbVerticalButtonChecked,
+    .RadButton.RadButton_MySkin.rbVerticalButtonChecked:hover {
+        background-position: right -415px;
+    }
 
-.RadButton.RadButton_MySkin.rbVerticalButton:focus .rbDecorated,
-.RadButton.RadButton_MySkin.rbVerticalButton:active .rbDecorated,
-.RadButton.RadButton_MySkin.rbVerticalButtonChecked .rbDecorated,
-.RadButton.RadButton_MySkin.rbVerticalButtonChecked:hover .rbDecorated {
-	background-position: left -480px;
-}
+        .RadButton.RadButton_MySkin.rbVerticalButton:focus .rbDecorated,
+        .RadButton.RadButton_MySkin.rbVerticalButton:active .rbDecorated,
+        .RadButton.RadButton_MySkin.rbVerticalButtonChecked .rbDecorated,
+        .RadButton.RadButton_MySkin.rbVerticalButtonChecked:hover .rbDecorated {
+            background-position: left -480px;
+        }
 
-/* IE and Opera Focus and Active state fix with additional class, should be used !important */
-.RadButton.RadButton_MySkin.rbVerticalButton.rbPressedButton {
-	background-position: right -415px !important;
-}
+    /* IE and Opera Focus and Active state fix with additional class, should be used !important */
+    .RadButton.RadButton_MySkin.rbVerticalButton.rbPressedButton {
+        background-position: right -415px !important;
+    }
 
-.RadButton.RadButton_MySkin.rbVerticalButton.rbPressedButton .rbDecorated {
-	background-position: left -480px !important;
-}
+        .RadButton.RadButton_MySkin.rbVerticalButton.rbPressedButton .rbDecorated {
+            background-position: left -480px !important;
+        }
 
-/* IE8 Onclickg filckering Bug fix */
-.RadButton.RadButton_MySkin.rbVerticalButton.rbPressedIE8 .rbDecorated,
-.RadButton.RadButton_MySkin.rbVerticalButton.rbPressedIE8Rtl .rbDecorated {
-	-ms-background-position-x: 1px !important;
-	-ms-background-position-y: -479px !important;
-}
+    /* IE8 Onclickg filckering Bug fix */
+    .RadButton.RadButton_MySkin.rbVerticalButton.rbPressedIE8 .rbDecorated,
+    .RadButton.RadButton_MySkin.rbVerticalButton.rbPressedIE8Rtl .rbDecorated {
+        -ms-background-position-x: 1px !important;
+        -ms-background-position-y: -479px !important;
+    }
 
-.RadButton.RadButton_MySkin.rbVerticalButton.rbPressedIE8Rtl .rbDecorated {
-	-ms-background-position-x: -1px !important;
-}
+    .RadButton.RadButton_MySkin.rbVerticalButton.rbPressedIE8Rtl .rbDecorated {
+        -ms-background-position-x: -1px !important;
+    }
 
-.RadButton.RadButton_MySkin.rbVerticalButton.rbPressedIE8,
-.RadButton.RadButton_MySkin.rbVerticalButton.rbPressedIE8Rtl {
-	background-position: right -415px !important;
-}
+    .RadButton.RadButton_MySkin.rbVerticalButton.rbPressedIE8,
+    .RadButton.RadButton_MySkin.rbVerticalButton.rbPressedIE8Rtl {
+        background-position: right -415px !important;
+    }
 /* fix end */
 
 /* Checkboxes override */
 .RadButton.RadButton_MySkin .rbToggleCheckbox {
-	background-position: -4px 0;
+    background-position: -4px 0;
 }
 
-.RadButton.RadButton_MySkin .rbToggleCheckbox:hover,
-.RadButton.RadButton_MySkin.rbToggleButton:hover .rbToggleCheckbox,
-.RadButton.RadButton_MySkin.rbSkinnedButton .rbToggleCheckbox:hover,
-.RadButton.RadButton_MySkin.rbLinkButton .rbToggleCheckbox:hover {
-	background-position: -4px -20px;
-}
+    .RadButton.RadButton_MySkin .rbToggleCheckbox:hover,
+    .RadButton.RadButton_MySkin.rbToggleButton:hover .rbToggleCheckbox,
+    .RadButton.RadButton_MySkin.rbSkinnedButton .rbToggleCheckbox:hover,
+    .RadButton.RadButton_MySkin.rbLinkButton .rbToggleCheckbox:hover {
+        background-position: -4px -20px;
+    }
 
 .RadButton.RadButton_MySkin .rbToggleCheckboxChecked {
-  background-position: -4px -40px;
- }
-
-.RadButton.RadButton_MySkin .rbToggleCheckboxChecked:hover,
-.RadButton.RadButton_MySkin.rbToggleButton:hover .rbToggleCheckboxChecked,
-.RadButton.RadButton_MySkin.rbSkinnedButton .rbToggleCheckboxChecked:hover,
-.RadButton.RadButton_MySkin.rbLinkButton .rbToggleCheckboxChecked:hover {
-	background-position: -4px -60px;
+    background-position: -4px -40px;
 }
 
+    .RadButton.RadButton_MySkin .rbToggleCheckboxChecked:hover,
+    .RadButton.RadButton_MySkin.rbToggleButton:hover .rbToggleCheckboxChecked,
+    .RadButton.RadButton_MySkin.rbSkinnedButton .rbToggleCheckboxChecked:hover,
+    .RadButton.RadButton_MySkin.rbLinkButton .rbToggleCheckboxChecked:hover {
+        background-position: -4px -60px;
+    }
+
 .RadButton.RadButton_MySkin .rbToggleCheckboxFilled {
-  background-position: -4px -80px;
+    background-position: -4px -80px;
 }
 
 .RadButton.RadButton_MySkin .rbToggleCheckbox:hover,
 .RadButton.RadButton_MySkin.rbToggleButton:hover .rbToggleCheckboxFilled,
 .RadButton.RadButton_MySkin.rbSkinnedButton .rbToggleCheckboxFilled:hover,
 .RadButton.RadButton_MySkin.rbLinkButton .rbToggleCheckboxFilled:hover {
-	background-position: -4px -100px;
+    background-position: -4px -100px;
 }
 
 .RadButton.RadButton_MySkin .rbToggleRadio {
-	background-position: -24px 0;
+    background-position: -24px 0;
 }
 
-.RadButton.RadButton_MySkin .rbToggleRadio:hover,
-.RadButton.RadButton_MySkin.rbToggleButton:hover .rbToggleRadio {
-  background-position: -24px -20px;
-}
+    .RadButton.RadButton_MySkin .rbToggleRadio:hover,
+    .RadButton.RadButton_MySkin.rbToggleButton:hover .rbToggleRadio {
+        background-position: -24px -20px;
+    }
 
 .RadButton.RadButton_MySkin .rbToggleRadioChecked {
-	background-position: -24px -40px;
+    background-position: -24px -40px;
 }
 
-.RadButton.RadButton_MySkin .rbToggleRadioChecked:hover,
-.RadButton.RadButton_MySkin.rbToggleButton:hover .rbToggleRadioChecked {
-	background-position: -24px -60px;
-}
+    .RadButton.RadButton_MySkin .rbToggleRadioChecked:hover,
+    .RadButton.RadButton_MySkin.rbToggleButton:hover .rbToggleRadioChecked {
+        background-position: -24px -60px;
+    }
 
 /* SplitButton Overrides */
 .RadButton.RadButton_MySkin .rbSplitRight {
-  right: 0;
-  background-position: 0 -137px; }
-
-.RadButton.RadButton_MySkin .rbSplitRight:hover {
-	background-position: -18px -137px;
+    right: 0;
+    background-position: 0 -137px;
 }
 
-.RadButton.RadButton_MySkin .rbSplitRight:focus,
-.RadButton.RadButton_MySkin .rbSplitRight:active {
-	background-position: -36px -137px;
-}
+    .RadButton.RadButton_MySkin .rbSplitRight:hover {
+        background-position: -18px -137px;
+    }
+
+    .RadButton.RadButton_MySkin .rbSplitRight:focus,
+    .RadButton.RadButton_MySkin .rbSplitRight:active {
+        background-position: -36px -137px;
+    }
 
 .RadButton.RadButton_MySkin .rbSplitLeft {
-	left: 0;
-	background-position: -54px -137px;
+    left: 0;
+    background-position: -54px -137px;
 }
 
-.RadButton.RadButton_MySkin .rbSplitLeft:hover {
-  background-position: -72px -137px; }
+    .RadButton.RadButton_MySkin .rbSplitLeft:hover {
+        background-position: -72px -137px;
+    }
 
-.RadButton.RadButton_MySkin .rbSplitLeft:focus,
-.RadButton.RadButton_MySkin .rbSplitLeft:active {
-	background-position: -90px -137px;
-}
+    .RadButton.RadButton_MySkin .rbSplitLeft:focus,
+    .RadButton.RadButton_MySkin .rbSplitLeft:active {
+        background-position: -90px -137px;
+    }
 
 /* Split Button Link Button */
 .RadButton.RadButton_MySkin.rbLinkButton .rbSplitRight,
@@ -985,7 +983,7 @@ tr.pager td {
 .RadButton.RadButton_MySkin.rbLinkButton .rbSplitLeft:hover,
 .RadButton.RadButton_MySkin.rbLinkButton .rbSplitLeft:active,
 .RadButton.RadButton_MySkin.rbLinkButton .rbSplitLeft:focus {
-	background-position: -108px -137px;
+    background-position: -108px -137px;
 }
 
 .RadButton.RadButton_MySkin.rbLinkButton.rbDisabled .rbSplitLeft,
@@ -998,29 +996,30 @@ tr.pager td {
 .RadButton.RadButton_MySkin.rbLinkButton.rbDisabled .rbSplitRight:focus,
 .RadButton.RadButton_MySkin.rbLinkButton.rbDisabled:hover .rbSplitRight,
 .RadButton.RadButton_MySkin.rbLinkButton.rbDisabled:hover .rbSplitLeft {
-	background-color: inherit;
-	background-position: -108px -137px;
+    background-color: inherit;
+    background-position: -108px -137px;
 }
 
 .RadButton.RadButton_MySkin.rbSkinnedButton .rbDecorated.rbPrimary {
-	padding-left: 20px;
+    padding-left: 20px;
 }
 
 .RadButton.RadButton_MySkin.rbSkinnedButton .rbDecorated.rbSecondary {
-	padding-right: 25px;
+    padding-right: 25px;
 }
 
 /* Disabled split buttons */
 .RadButton.RadButton_MySkin.rbDisabled .rbSplitRight:hover,
 .RadButton.RadButton_MySkin.rbDisabled .rbSplitRight:active,
 .RadButton.RadButton_MySkin.rbDisabled .rbSplitRight:focus {
-	background-position: 0 -137px;
+    background-position: 0 -137px;
 }
 
 .RadButton.RadButton_MySkin.rbDisabled .rbSplitLeft:hover,
 .RadButton.RadButton_MySkin.rbDisabled .rbSplitLeft:active,
 .RadButton.RadButton_MySkin.rbDisabled .rbSplitLeft:focus {
-	background-position: -54px -137px; }
+    background-position: -54px -137px;
+}
 
 .RadButton.RadButton_MySkin.rbLinkButton.rbDisabled .rbSplitRight,
 .RadButton.RadButton_MySkin.rbLinkButton.rbDisabled .rbSplitRight:hover,
@@ -1030,168 +1029,168 @@ tr.pager td {
 .RadButton.RadButton_MySkin.rbLinkButton.rbDisabled .rbSplitLeft:hover,
 .RadButton.RadButton_MySkin.rbLinkButton.rbDisabled .rbSplitLeft:focus,
 .RadButton.RadButton_MySkin.rbLinkButton.rbDisabled .rbSplitLeft:active {
-	background-position: -108px -137px;
+    background-position: -108px -137px;
 }
 
 .RadButton.RadButton_MySkin.rbDisabled:hover,
 .RadButton.RadButton_MySkin.rbDisabled:focus,
 .RadButton.RadButton_MySkin.rbDisabled:active {
-	background-position: right 0; 
+    background-position: right 0;
 }
 
-.RadButton.RadButton_MySkin.rbDisabled:hover .rbDecorated,
-.RadButton.RadButton_MySkin.rbDisabled:focus .rbDecorated,
-.RadButton.RadButton_MySkin.rbDisabled:active .rbDecorated {
-	background-position: left -22px;
-}
+    .RadButton.RadButton_MySkin.rbDisabled:hover .rbDecorated,
+    .RadButton.RadButton_MySkin.rbDisabled:focus .rbDecorated,
+    .RadButton.RadButton_MySkin.rbDisabled:active .rbDecorated {
+        background-position: left -22px;
+    }
 
 .RadButton.RadButton_MySkin.rbVerticalButton.rbDisabled:hover,
 .RadButton.RadButton_MySkin.rbVerticalButton.rbDisabled:focus,
 .RadButton.RadButton_MySkin.rbVerticalButton.rbDisabled:active {
-	background-position: right -155px;
+    background-position: right -155px;
 }
 
-.RadButton.RadButton_MySkin.rbVerticalButton.rbDisabled:hover .rbDecorated,
-.RadButton.RadButton_MySkin.rbVerticalButton.rbDisabled:focus .rbDecorated,
-.RadButton.RadButton_MySkin.rbVerticalButton.rbDisabled:active .rbDecorated {
-	background-position: left -220px;
-}
+    .RadButton.RadButton_MySkin.rbVerticalButton.rbDisabled:hover .rbDecorated,
+    .RadButton.RadButton_MySkin.rbVerticalButton.rbDisabled:focus .rbDecorated,
+    .RadButton.RadButton_MySkin.rbVerticalButton.rbDisabled:active .rbDecorated {
+        background-position: left -220px;
+    }
 
 /* Toggle checkboxes disabled ovverides need to be here */
 .RadButton.RadButton_MySkin.rbDisabled .rbToggleCheckbox:hover,
 .RadButton.RadButton_MySkin.rbDisabled:hover .rbToggleCheckbox {
-	background-position: -4px 0;
+    background-position: -4px 0;
 }
 
 .RadButton.RadButton_MySkin.rbDisabled .rbToggleCheckboxChecked:hover,
 .RadButton.RadButton_MySkin.rbDisabled:hover .rbToggleCheckboxChecked {
-	background-position: -4px -40px;
+    background-position: -4px -40px;
 }
 
 .RadButton.RadButton_MySkin.rbDisabled .rbToggleCheckboxFilled:hover,
 .RadButton.RadButton_MySkin.rbDisabled.rbToggleButton:hover .rbToggleCheckboxFilled {
-	background-position: -4px -80px;
+    background-position: -4px -80px;
 }
 
 /* Toggle radio disabled */
 .RadButton.RadButton_MySkin.rbDisabled .rbToggleRadio:hover,
 .RadButton.RadButton_MySkin.rbDisabled:hover .rbToggleRadio {
-	background-position: -24px 0;
+    background-position: -24px 0;
 }
 
 .RadButton.RadButton_MySkin.rbDisabled .rbToggleRadioChecked:hover,
 .RadButton.RadButton_MySkin.rbDisabled:hover .rbToggleRadioChecked {
-	background-position: -24px -40px; 
+    background-position: -24px -40px;
 }
 
 .dropClue {
-	width: 24px;
-	height: 24px;
-	position: absolute;
-	left: -10px;
-	top: -10px;
+    width: 24px;
+    height: 24px;
+    position: absolute;
+    left: -10px;
+    top: -10px;
 }
 
 .dropEnabled {
-	background-image: url('images/Green.png');
+    background-image: url('images/Green.png');
 }
 
 .dropDisabled {
-	background-image: url('images/Red.png');
+    background-image: url('images/Red.png');
 }
-.dragDropCheckBox
-{
-    margin-top:15px;
+
+.dragDropCheckBox {
+    margin-top: 15px;
 }
 
 .exampleWrapper {
-     background: url('../Content/images/background_image.png') 0 20px no-repeat;
-     width: 600px;
-     padding: 125px 120px 0 20px;
-     height: 500px;
-     float: left;
+    /*background: url('../Content/images/background_image.png') 0 20px no-repeat;*/
+    width: 1200px;
+    /*padding: 125px 120px 0 20px;*/
+    height: 600px;
+    float: left;
 }
- 
-     .exampleWrapper .outerMultiPage {
-          height: 387px;
-          width: 593px;
-          margin-left: 15px;
-          margin-top: 30px;
-     }
- 
-     .exampleWrapper .innerMultiPage {
-          display: -moz-inline-box;
-          display: inline-block;
-          zoom: 1;
-          *display: inline;
-          position: relative;
-          margin-bottom: -3px;
-     }
- 
+
+    .exampleWrapper .outerMultiPage {
+        height: 387px;
+        width: 593px;
+        margin-left: 15px;
+        margin-top: 30px;
+    }
+
+    .exampleWrapper .innerMultiPage {
+        display: -moz-inline-box;
+        display: inline-block;
+        zoom: 1;
+        *display: inline;
+        position: relative;
+        margin-bottom: -3px;
+    }
+
 .ingredients.qsf-ib {
-     vertical-align: top;
-     position: relative;
-     top: -19px;
-     *top: 0px;
+    vertical-align: top;
+    position: relative;
+    top: -19px;
+    *top: 0px;
 }
- 
+
 .ingredients p {
-     font: Segoe UI;
-     color: #d80033;
-     text-transform: uppercase;
-     font-size: 18px;
-     white-space: normal;
-     word-wrap: break-word;
-     width: 230px;
-     margin-top: 13px;
-     *margin-top: -7px;
+    font: Segoe UI;
+    color: #d80033;
+    text-transform: uppercase;
+    font-size: 18px;
+    white-space: normal;
+    word-wrap: break-word;
+    width: 230px;
+    margin-top: 13px;
+    *margin-top: -7px;
 }
- 
+
 .ingredients ul {
-     font: Segoe UI;
-     color: #444444;
-     font-size: 13px;
-     list-style-type: none;
-     margin-left: -40px;
-     *margin-left: 0px;
+    font: Segoe UI;
+    color: #444444;
+    font-size: 13px;
+    list-style-type: none;
+    margin-left: -40px;
+    *margin-left: 0px;
 }
- 
+
 .recipeImage.qsf-ib {
-     vertical-align: top;
-     margin: 0 15px;
+    vertical-align: top;
+    margin: 0 15px;
 }
- 
+
 html .subtitle {
-     font: Segoe UI;
-     color: #444444;
-     font-size: 13px;
-     text-transform: uppercase;
+    font: Segoe UI;
+    color: #444444;
+    font-size: 13px;
+    text-transform: uppercase;
 }
- 
+
 .disclaimer p {
-     font: Segoe UI;
-     color: #888888;
-     font-size: 12px;
-     left: 1px;
-     margin: 0;
-     position: relative;
-     top: -12px;
-     width: 390px;
-     word-wrap: break-word;
-     white-space: normal;
+    font: Segoe UI;
+    color: #888888;
+    font-size: 12px;
+    left: 1px;
+    margin: 0;
+    position: relative;
+    top: -12px;
+    width: 390px;
+    word-wrap: break-word;
+    white-space: normal;
 }
- 
+
 html .RadTabStrip .rtsImg,
 html .RadTabStripVertical .rtsImg {
-     border: 0 none;
-     margin-left: -2px;
-     margin-top: 7px;
-     vertical-align: middle;
+    border: 0 none;
+    margin-left: -2px;
+    margin-top: 7px;
+    vertical-align: middle;
 }
- 
+
 html .RadRating {
-     margin-bottom: 22px;
-     position: relative;
-     top: 15px;
-     *top: -3px;
+    margin-bottom: 22px;
+    position: relative;
+    top: 15px;
+    *top: -3px;
 }
