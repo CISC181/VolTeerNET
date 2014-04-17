@@ -64,6 +64,9 @@
   </Choose>
   <ItemGroup>
     <Compile Include="HelperMethods\cExcel.cs" />
+    <Compile Include="HelperMethods\hVolAddress.cs" />
+    <Compile Include="HelperMethods\hVolEmail.cs" />
+    <Compile Include="HelperMethods\hVolPhone.cs" />
     <Compile Include="HelperMethods\hVolunteer.cs" />
     <Compile Include="utVolunteer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

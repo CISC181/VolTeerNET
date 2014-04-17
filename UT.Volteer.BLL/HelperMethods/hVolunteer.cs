@@ -28,6 +28,14 @@ namespace UT.Volteer.BLL.HelperMethods
 
         }
 
+        public List<sp_Volunteer_DM> hSelectVolunteer()
+        {
+            List<sp_Volunteer_DM> VOLList = null;
+            sp_Volunteer_BLL VOlBll = new sp_Volunteer_BLL();
+            VOLList = VOlBll.ListVolunteers();
+            return VOLList;
+        }
+
         public sp_Volunteer_DM hSelectVolunteer(Guid VolID)
         {
             sp_Volunteer_DM VOL = new sp_Volunteer_DM();
@@ -35,6 +43,25 @@ namespace UT.Volteer.BLL.HelperMethods
             VOL = VOlBll.ListVolunteers(VolID);
             return VOL;
         }
+
+        public void hUpdateVolunteer(sp_Volunteer_DM VOL, string strFirstName, string strMiddleName, string strLastName)
+        {
+            sp_Volunteer_BLL VOlBll = new sp_Volunteer_BLL();
+
+            VOL.VolFirstName = strFirstName;
+            VOL.VolMiddleName = strMiddleName;
+            VOL.VolLastName = strLastName;
+
+            VOlBll.UpdateVolunteerContext(VOL);
+        }
+
+        public void hDeleteVolunteer(sp_Volunteer_DM VOL)
+        {
+            sp_Volunteer_BLL VOlBll = new sp_Volunteer_BLL();
+
+            VOlBll.DeleteVolunteerContext(VOL);
+        }
+
     }
 
 }
