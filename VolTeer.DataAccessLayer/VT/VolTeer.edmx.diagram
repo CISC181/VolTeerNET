@@ -45,8 +45,14 @@
         <EntityTypeShape EntityType="VolTeerModel.tblSkill" Width="1.5" PointX="11.75" PointY="0.625" FillColor="0, 192, 0" />
         <AssociationConnector Association="VolTeerModel.FK_Skill_Skill" />
         <AssociationConnector Association="VolTeerModel.tblVolSkill" />
-        <EntityTypeShape EntityType="VolTeerModel.tblVolPhone" Width="1.5" PointX="10.256735264443204" PointY="8.51305266121079" />
-        <AssociationConnector Association="VolTeerModel.FK_tblPhone_tblVolunteer" />
+        <EntityTypeShape EntityType="VolTeerModel.tblVolPhone" Width="1.5" PointX="10.256735264443204" PointY="8.51305266121079" FillColor="0, 192, 0" />
+        <AssociationConnector Association="VolTeerModel.FK_tblPhone_tblVolunteer" ManuallyRouted="true" >
+          <ConnectorPoint PointX="7.75" PointY="3.1438477148437434" />
+          <ConnectorPoint PointX="8.8121875" PointY="3.1438477148437434" />
+          <ConnectorPoint PointX="8.8121875" PointY="3.2463067288344187" />
+          <ConnectorPoint PointX="10.96875" PointY="3.2463067288344187" />
+          <ConnectorPoint PointX="10.96875" PointY="8.5" />
+        </AssociationConnector>
         <EntityTypeShape EntityType="VolTeerModel.tblGroup" Width="1.5" PointX="4.25" PointY="0.875" />
         <EntityTypeShape EntityType="VolTeerModel.tblGroupVol" Width="1.5" PointX="7.9416747186061354" PointY="20.538075799373015" />
         <AssociationConnector Association="VolTeerModel.FK_tblGroupVol_tblGroup" />

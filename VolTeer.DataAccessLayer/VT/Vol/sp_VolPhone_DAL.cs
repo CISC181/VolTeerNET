@@ -10,17 +10,17 @@ namespace VolTeer.DataAccessLayer.VT.Vol
     {
         #region Select Statements
         /// <summary>
-        /// Return a list of PhoneNbr using LINQ to SQL
+        /// Returns all or a phone number for the given volunteer
         /// </summary>
         /// <returns></returns>
-        public List<sp_Phone_DM> ListPhones()
+        public List<sp_Phone_DM> ListPhones(sp_Phone_DM cVolPhone)
         {
             List<sp_Phone_DM> list = new List<sp_Phone_DM>();
             try
             {
                 using (VolTeerEntities context = new VolTeerEntities())
                 {
-                    list = (from result in context.sp_Vol_Phone_Select(null)
+                    list = (from result in context.sp_Vol_Phone_Select(cVolPhone.VolID, cVolPhone.PhoneID, null)
                             select new sp_Phone_DM
                             {
                                 PhoneID = result.PhoneID,
@@ -40,14 +40,14 @@ namespace VolTeer.DataAccessLayer.VT.Vol
 
         }
 
-        public List<sp_Phone_DM> ListPhones(int PhoneID)
+        public List<sp_Phone_DM> ListPrimaryPhone(sp_Phone_DM cVolPhone)
         {
             List<sp_Phone_DM> list = new List<sp_Phone_DM>();
             try
             {
                 using (VolTeerEntities context = new VolTeerEntities())
                 {
-                    list = (from result in context.sp_Vol_Phone_Select(PhoneID)
+                    list = (from result in context.sp_Vol_Phone_Select(cVolPhone.VolID, cVolPhone.PhoneID,true)
                             select new sp_Phone_DM
                             {
                                 PhoneID = result.PhoneID,

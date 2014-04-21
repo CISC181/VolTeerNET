@@ -11,12 +11,8 @@ namespace VolTeer.DataAccessLayer.VT
 {
     using System;
     
-    public partial class sp_Vol_Phone_Select_Result
+    public partial class sp_Vol_Phone_Insert_Result
     {
-        public int PhoneID { get; set; }
-        public System.Guid VolID { get; set; }
-        public string PhoneNbr { get; set; }
-        public Nullable<bool> ActiveFlg { get; set; }
-        public bool PrimaryFlg { get; set; }
+        public Nullable<int> PhoneID { get; set; }
     }
 }

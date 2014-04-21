@@ -760,6 +760,8 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="Describe_CheckConstraints" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
+        <Function Name="Describe_TableColumns" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_SpatialTable_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="PointLongLat" Type="nvarchar" Mode="In" />
           <Parameter Name="MapNumber" Type="int" Mode="In" />
@@ -1043,6 +1045,23 @@
         <Function Name="sp_Vol_Email_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="EmailID" Type="int" Mode="In" />
           <Parameter Name="EmailAddr" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_Vol_Phone_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
+          <Parameter Name="PhoneID" Type="int" Mode="In" />
+          <Parameter Name="PhoneNbr" Type="nvarchar" Mode="In" />
+          <Parameter Name="ActiveFlg" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="sp_Vol_Phone_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
+          <Parameter Name="PhoneNbr" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_Vol_Phone_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
+          <Parameter Name="VolID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="PhoneID" Type="int" Mode="In" />
+          <Parameter Name="PrimaryFlg" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="sp_Vol_Phone_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
+          <Parameter Name="PhoneID" Type="int" Mode="In" />
+          <Parameter Name="PhoneNbr" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="sp_Vol_State_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol" />
         <Function Name="sp_VolSkill_DeleteAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
@@ -1480,21 +1499,6 @@
             <Parameter Name="MapNumber" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
-          <FunctionImport Name="sp_Vol_Phone_Delete">
-            <Parameter Name="PhoneID" Mode="In" Type="Int32" />
-            <Parameter Name="PhoneNbr" Mode="In" Type="String" />
-            <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
-          </FunctionImport>
-          <FunctionImport Name="sp_Vol_Phone_Insert" ReturnType="Collection(Int32)">
-          <Parameter Name="PhoneNbr" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="sp_Vol_Phone_Select" ReturnType="Collection(VolTeerModel.sp_Vol_Phone_Select_Result)">
-          <Parameter Name="PhoneID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_Vol_Phone_Update">
-            <Parameter Name="PhoneID" Mode="In" Type="Int32" />
-            <Parameter Name="PhoneNbr" Mode="In" Type="String" />
-          </FunctionImport>
           <EntitySet Name="tblSkills" EntityType="VolTeerModel.tblSkill" />
           <AssociationSet Name="FK_Skill_Skill" Association="VolTeerModel.FK_Skill_Skill">
             <End Role="tblSkill" EntitySet="tblSkills" />
@@ -1539,7 +1543,26 @@
             <End Role="tblVolEmail" EntitySet="tblVolEmails" />
           </AssociationSet>
           <FunctionImport Name="sp_Vol_Email_Select" ReturnType="Collection(VolTeerModel.sp_Vol_Email_Select_Result)">
-            <Parameter Name="EmailID" Mode="In" Type="Int32" />
+          <Parameter Name="EmailID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="Describe_CheckConstraints" ReturnType="Collection(VolTeerModel.Describe_CheckConstraints_Result)" />
+          <FunctionImport Name="Describe_TableColumns" ReturnType="Collection(VolTeerModel.Describe_TableColumns_Result)" />
+          <FunctionImport Name="sp_Vol_Phone_Update">
+            <Parameter Name="PhoneID" Mode="In" Type="Int32" />
+            <Parameter Name="PhoneNbr" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Vol_Phone_Insert" ReturnType="Collection(VolTeerModel.sp_Vol_Phone_Insert_Result)">
+            <Parameter Name="PhoneNbr" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Vol_Phone_Delete">
+            <Parameter Name="PhoneID" Mode="In" Type="Int32" />
+            <Parameter Name="PhoneNbr" Mode="In" Type="String" />
+            <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Vol_Phone_Select" ReturnType="Collection(VolTeerModel.sp_Vol_Phone_Select_Result)">
+            <Parameter Name="VolID" Mode="In" Type="Guid" />
+            <Parameter Name="PhoneID" Mode="In" Type="Int32" />
+            <Parameter Name="PrimaryFlg" Mode="In" Type="Boolean" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="tblContact">
@@ -2132,12 +2155,6 @@
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
         </ComplexType>
-        <ComplexType Name="sp_Vol_Phone_Select_Result">
-          <Property Type="Int32" Name="PhoneID" Nullable="false" />
-          <Property Type="Guid" Name="VolID" Nullable="false" />
-          <Property Type="String" Name="PhoneNbr" Nullable="true" MaxLength="20" />
-          <Property Type="Boolean" Name="ActiveFlg" Nullable="true" />
-        </ComplexType>
         <EntityType Name="tblSkill">
           <Key>
             <PropertyRef Name="SkillID" />
@@ -2276,6 +2293,41 @@
           <Property Type="Guid" Name="VolID" Nullable="false" />
           <Property Type="String" Name="EmailAddr" Nullable="true" MaxLength="100" />
           <Property Type="Boolean" Name="ActiveFlg" Nullable="false" />
+          <Property Type="Boolean" Name="PrimaryFlg" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="Describe_CheckConstraints_Result">
+          <Property Type="String" Name="Table_Catalog" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Table_Schema" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="table_name" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="column_name" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="constraint_catalog" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="Constraint_name" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="check_clause" Nullable="true" MaxLength="4000" />
+        </ComplexType>
+        <ComplexType Name="Describe_TableColumns_Result">
+          <Property Type="String" Name="table_catalog" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="table_schema" Nullable="true" MaxLength="128" />
+          <Property Type="String" Name="table_name" Nullable="false" MaxLength="128" />
+          <Property Type="String" Name="column_name" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="ordinal_position" Nullable="true" />
+          <Property Type="String" Name="Column_Default" Nullable="true" MaxLength="4000" />
+          <Property Type="String" Name="is_nullable" Nullable="true" MaxLength="3" />
+          <Property Type="String" Name="Data_type" Nullable="true" MaxLength="128" />
+          <Property Type="Int32" Name="character_maximum_length" Nullable="true" />
+          <Property Type="Byte" Name="numeric_precision" Nullable="true" />
+          <Property Type="Int32" Name="numeric_scale" Nullable="true" />
+          <Property Type="Int16" Name="datetime_precision" Nullable="true" />
+          <Property Type="String" Name="container_name" Nullable="true" MaxLength="255" />
+          <Property Type="String" Name="control_name" Nullable="true" MaxLength="255" />
+        </ComplexType>
+        <ComplexType Name="sp_Vol_Phone_Insert_Result">
+          <Property Type="Int32" Name="PhoneID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_Vol_Phone_Select_Result">
+          <Property Type="Int32" Name="PhoneID" Nullable="false" />
+          <Property Type="Guid" Name="VolID" Nullable="false" />
+          <Property Type="String" Name="PhoneNbr" Nullable="true" MaxLength="20" />
+          <Property Type="Boolean" Name="ActiveFlg" Nullable="true" />
           <Property Type="Boolean" Name="PrimaryFlg" Nullable="false" />
         </ComplexType>
       </Schema>
@@ -2953,6 +3005,23 @@
                 <ScalarProperty Name="PhoneID" ColumnName="PhoneID" />
               </MappingFragment>
             </EntityTypeMapping>
+            <EntityTypeMapping TypeName="VolTeerModel.tblVolPhone">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="VolTeerModel.Store.sp_Vol_Phone_Insert">
+                  <ScalarProperty Name="PhoneNbr" ParameterName="PhoneNbr" />
+                  <ResultBinding Name="PhoneID" ColumnName="PhoneId" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="VolTeerModel.Store.sp_Vol_Phone_Update">
+                  <ScalarProperty Name="PhoneNbr" ParameterName="PhoneNbr" Version="Current" />
+                  <ScalarProperty Name="PhoneID" ParameterName="PhoneID" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="VolTeerModel.Store.sp_Vol_Phone_Delete">
+                  <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" />
+                  <ScalarProperty Name="PhoneNbr" ParameterName="PhoneNbr" />
+                  <ScalarProperty Name="PhoneID" ParameterName="PhoneID" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblGroups">
             <EntityTypeMapping TypeName="VolTeerModel.tblGroup">
@@ -2999,6 +3068,59 @@
                 <ScalarProperty Name="EmailID" ColumnName="EmailID" />
                 <ScalarProperty Name="VolID" ColumnName="VolID" />
                 <ScalarProperty Name="EmailAddr" ColumnName="EmailAddr" />
+                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
+                <ScalarProperty Name="PrimaryFlg" ColumnName="PrimaryFlg" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Describe_CheckConstraints" FunctionName="VolTeerModel.Store.Describe_CheckConstraints">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VolTeerModel.Describe_CheckConstraints_Result">
+                <ScalarProperty Name="Table_Catalog" ColumnName="Table_Catalog" />
+                <ScalarProperty Name="Table_Schema" ColumnName="Table_Schema" />
+                <ScalarProperty Name="table_name" ColumnName="table_name" />
+                <ScalarProperty Name="column_name" ColumnName="column_name" />
+                <ScalarProperty Name="constraint_catalog" ColumnName="constraint_catalog" />
+                <ScalarProperty Name="Constraint_name" ColumnName="Constraint_name" />
+                <ScalarProperty Name="check_clause" ColumnName="check_clause" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="Describe_TableColumns" FunctionName="VolTeerModel.Store.Describe_TableColumns">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VolTeerModel.Describe_TableColumns_Result">
+                <ScalarProperty Name="table_catalog" ColumnName="table_catalog" />
+                <ScalarProperty Name="table_schema" ColumnName="table_schema" />
+                <ScalarProperty Name="table_name" ColumnName="table_name" />
+                <ScalarProperty Name="column_name" ColumnName="column_name" />
+                <ScalarProperty Name="ordinal_position" ColumnName="ordinal_position" />
+                <ScalarProperty Name="Column_Default" ColumnName="Column_Default" />
+                <ScalarProperty Name="is_nullable" ColumnName="is_nullable" />
+                <ScalarProperty Name="Data_type" ColumnName="Data_type" />
+                <ScalarProperty Name="character_maximum_length" ColumnName="character_maximum_length" />
+                <ScalarProperty Name="numeric_precision" ColumnName="numeric_precision" />
+                <ScalarProperty Name="numeric_scale" ColumnName="numeric_scale" />
+                <ScalarProperty Name="datetime_precision" ColumnName="datetime_precision" />
+                <ScalarProperty Name="container_name" ColumnName="container_name" />
+                <ScalarProperty Name="control_name" ColumnName="control_name" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Vol_Phone_Update" FunctionName="VolTeerModel.Store.sp_Vol_Phone_Update" />
+          <FunctionImportMapping FunctionImportName="sp_Vol_Phone_Insert" FunctionName="VolTeerModel.Store.sp_Vol_Phone_Insert">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VolTeerModel.sp_Vol_Phone_Insert_Result">
+                <ScalarProperty Name="PhoneID" ColumnName="PhoneID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Vol_Phone_Delete" FunctionName="VolTeerModel.Store.sp_Vol_Phone_Delete" />
+          <FunctionImportMapping FunctionImportName="sp_Vol_Phone_Select" FunctionName="VolTeerModel.Store.sp_Vol_Phone_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VolTeerModel.sp_Vol_Phone_Select_Result">
+                <ScalarProperty Name="PhoneID" ColumnName="PhoneID" />
+                <ScalarProperty Name="VolID" ColumnName="VolID" />
+                <ScalarProperty Name="PhoneNbr" ColumnName="PhoneNbr" />
                 <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
                 <ScalarProperty Name="PrimaryFlg" ColumnName="PrimaryFlg" />
               </ComplexTypeMapping>
