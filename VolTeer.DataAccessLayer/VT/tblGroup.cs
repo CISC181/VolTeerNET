@@ -16,18 +16,16 @@ namespace VolTeer.DataAccessLayer.VT
     {
         public tblGroup()
         {
+            this.tblGroupVols = new HashSet<tblGroupVol>();
             this.tblVolAddresses = new HashSet<tblVolAddress>();
-            this.tblVolunteers = new HashSet<tblVolunteer>();
         }
     
         public int GroupID { get; set; }
         public string GroupName { get; set; }
         public Nullable<int> ParticipationLevelID { get; set; }
         public Nullable<bool> ActiveFlg { get; set; }
-        public byte[] Photo { get; set; }
-        public string Description { get; set; }
     
+        public virtual ICollection<tblGroupVol> tblGroupVols { get; set; }
         public virtual ICollection<tblVolAddress> tblVolAddresses { get; set; }
-        public virtual ICollection<tblVolunteer> tblVolunteers { get; set; }
     }
 }

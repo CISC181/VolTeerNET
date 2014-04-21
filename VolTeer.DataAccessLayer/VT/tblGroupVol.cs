@@ -10,13 +10,16 @@
 namespace VolTeer.DataAccessLayer.VT
 {
     using System;
+    using System.Collections.Generic;
     
-    public partial class sp_Vol_Email_SelectAlt_Result
+    public partial class tblGroupVol
     {
-        public int EmailID { get; set; }
+        public int GroupID { get; set; }
         public System.Guid VolID { get; set; }
-        public string EmailAddr { get; set; }
-        public Nullable<bool> ActiveFlg { get; set; }
-        public Nullable<bool> PrimaryFlg { get; set; }
+        public Nullable<bool> PrimaryVolID { get; set; }
+        public Nullable<bool> Admin { get; set; }
+    
+        public virtual tblGroup tblGroup { get; set; }
+        public virtual tblVolunteer tblVolunteer { get; set; }
     }
 }

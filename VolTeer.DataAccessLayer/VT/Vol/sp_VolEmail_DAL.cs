@@ -67,7 +67,7 @@ namespace VolTeer.DataAccessLayer.VT.Vol
             return list;
 
         }
-
+        /*
         public sp_Email_DM ListEmails(Guid? Volunteer)
         {
             List<sp_Email_DM> list = new List<sp_Email_DM>();
@@ -75,7 +75,7 @@ namespace VolTeer.DataAccessLayer.VT.Vol
             {
                 using (VolTeerEntities context = new VolTeerEntities())
                 {
-                    list = (from result in context.sp_Vol_Email_SelectAlt(Volunteer)
+                    list = (from result in context.sp_Vol_Email_Select(Volunteer)
                             select new sp_Email_DM
                             {
                                 EmailID = result.EmailID,
@@ -95,7 +95,7 @@ namespace VolTeer.DataAccessLayer.VT.Vol
             return list.FirstOrDefault();
 
         }
-
+        */
         public sp_Email_DM ListPrimaryEmail(int EmailIds)
         {
             sp_Email_DM item = new sp_Email_DM();            

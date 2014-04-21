@@ -45,13 +45,14 @@ namespace VolTeer.DataAccessLayer.VT
         public DbSet<tblVolState> tblVolStates { get; set; }
         public DbSet<tblVolunteer> tblVolunteers { get; set; }
         public DbSet<tblAvailability> tblAvailabilities { get; set; }
-        public DbSet<tblGroup> tblGroups { get; set; }
         public DbSet<tblVolAddr> tblVolAddrs { get; set; }
         public DbSet<tblVolAddress> tblVolAddresses { get; set; }
         public DbSet<tblVendState> tblVendStates { get; set; }
-        public DbSet<tblVolEmail> tblVolEmails { get; set; }
         public DbSet<tblSkill> tblSkills { get; set; }
         public DbSet<tblVolPhone> tblVolPhones { get; set; }
+        public DbSet<tblGroup> tblGroups { get; set; }
+        public DbSet<tblGroupVol> tblGroupVols { get; set; }
+        public DbSet<tblVolEmail> tblVolEmails { get; set; }
     
         public virtual int sp_Contact_Delete(Nullable<System.Guid> contactID)
         {
@@ -1176,15 +1177,6 @@ namespace VolTeer.DataAccessLayer.VT
                 new ObjectParameter("EmailID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Vol_Email_Select_Result>("sp_Vol_Email_Select", emailIDParameter);
-        }
-    
-        public virtual ObjectResult<sp_Vol_Email_SelectAlt_Result> sp_Vol_Email_SelectAlt(Nullable<System.Guid> volID)
-        {
-            var volIDParameter = volID.HasValue ?
-                new ObjectParameter("VolID", volID) :
-                new ObjectParameter("VolID", typeof(System.Guid));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Vol_Email_SelectAlt_Result>("sp_Vol_Email_SelectAlt", volIDParameter);
         }
     }
 }
