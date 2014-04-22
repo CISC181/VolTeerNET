@@ -24,20 +24,15 @@ namespace UT.Volteer.BLL.HelperMethods
 
         }
 
-        public List<sp_Phone_DM> hSelectVolPhone()
-        {
-            List<sp_Phone_DM> PhoneList = null;
-            sp_VolPhone_BLL VolPhoneBll = new sp_VolPhone_BLL();
-            PhoneList = VolPhoneBll.ListPhones();
-            return PhoneList;
-        }
-
-        public sp_Phone_DM hSelectVolPhone(int phoneID)
+        public List<sp_Phone_DM> hSelectVolPhone(int phoneID)
         {
             sp_Phone_DM Phone = new sp_Phone_DM();
+            List<sp_Phone_DM> PhoneList = new List<sp_Phone_DM>();
             sp_VolPhone_BLL VolPhoneBll = new sp_VolPhone_BLL();
-            Phone = VolPhoneBll.ListPhones(phoneID);
-            return Phone;
+
+            Phone.PhoneID = phoneID;
+            PhoneList = VolPhoneBll.ListPhones(Phone);
+            return PhoneList;
         }
 
         public void hUpdateVolPhone(sp_Phone_DM Phone, string phoneNumber)

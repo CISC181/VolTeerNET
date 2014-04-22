@@ -128,17 +128,17 @@ namespace UT.Volteer.BLL
                 hVolPhone hPhone = new hVolPhone();
                 insertPhone = hPhone.hCreateVolPhone(phoneNumber, testVol.VolID);
 
-                selectPhone = hPhone.hSelectVolPhone(insertPhone.PhoneID);
+                selectPhone = hPhone.hSelectVolPhone(insertPhone.PhoneID)[0];
 
                 Assert.AreEqual(insertPhone.PhoneNbr, selectPhone.PhoneNbr);
 
                 hPhone.hUpdateVolPhone(insertPhone, "3335557777");
-                selectPhone = hPhone.hSelectVolPhone(insertPhone.PhoneID);
+                selectPhone = hPhone.hSelectVolPhone(insertPhone.PhoneID)[0];
 
                 Assert.AreEqual(selectPhone.PhoneNbr, "3335557777");
 
                 hPhone.hDeleteVolPhone(insertPhone);
-                selectPhone = hPhone.hSelectVolPhone(insertPhone.PhoneID);
+                selectPhone = hPhone.hSelectVolPhone(insertPhone.PhoneID)[0];
 
                 Assert.AreEqual(selectPhone.ActiveFlg, false);
 

@@ -33,7 +33,7 @@ namespace UT.Volteer.BLL.HelperMethods
 
         }
 
-        public sp_Vol_Address_DM hSelectVolAddress(int emailID)
+        public sp_Email_DM hSelectVolAddress(int emailID)
         {
             sp_Email_DM Email = new sp_Email_DM();
             sp_VolEmail_BLL VolEmailBll = new sp_VolEmail_BLL();
