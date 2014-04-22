@@ -10,8 +10,7 @@ namespace UT.Volteer.BLL
     [TestClass]
     public class utVolunteer
     {
-        //const string CWorkbook = "C:\\Users\\Dad\\Source\\Repos\\VolTeerNET\\UT.Volteer.BLL\\UTTestFiles\\Volunteer.xlsx";
-        const string CWorkbook = "C:\\Users\\Kyle\\Source\\Repos\\VolTeerNET\\UT.Volteer.BLL\\HelperFiles\\Volunteer.xlsx";
+        const string CWorkbook = "C:\\Users\\Dad\\Source\\Repos\\VolTeerNET\\UT.Volteer.BLL\\UTTestFiles\\Volunteer.xlsx";
 
         [TestMethod]
         public void CreateVolunteer()
