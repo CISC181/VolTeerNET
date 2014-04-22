@@ -12,20 +12,14 @@ namespace VolTeer.DataAccessLayer.VT
     using System;
     using System.Collections.Generic;
     
-    public partial class tblGroup
+    public partial class tblGroupVol
     {
-        public tblGroup()
-        {
-            this.tblGroupVols = new HashSet<tblGroupVol>();
-            this.tblVolAddresses = new HashSet<tblVolAddress>();
-        }
-    
         public int GroupID { get; set; }
-        public string GroupName { get; set; }
-        public Nullable<int> ParticipationLevelID { get; set; }
-        public Nullable<bool> ActiveFlg { get; set; }
+        public System.Guid VolID { get; set; }
+        public Nullable<bool> PrimaryVolID { get; set; }
+        public Nullable<bool> Admin { get; set; }
     
-        public virtual ICollection<tblGroupVol> tblGroupVols { get; set; }
-        public virtual ICollection<tblVolAddress> tblVolAddresses { get; set; }
+        public virtual tblGroup tblGroup { get; set; }
+        public virtual tblVolunteer tblVolunteer { get; set; }
     }
 }

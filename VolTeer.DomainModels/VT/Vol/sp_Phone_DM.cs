@@ -14,7 +14,7 @@ namespace VolTeer.DomainModels.VT.Vol
         public System.Guid VolID { get; set; }
         public string PhoneNbr { get; set; }
         public Nullable<bool> ActiveFlg { get; set; }
+        public bool PrimaryFlg { get; set; }
 
-        
     }
 }

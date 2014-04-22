@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="de7d2e7369884abba3d8e072ac7271eb" Name="Diagram1" ZoomLevel="63">
+      <Diagram DiagramId="de7d2e7369884abba3d8e072ac7271eb" Name="Diagram1" ZoomLevel="61">
         <EntityTypeShape EntityType="VolTeerModel.tblContact" Width="1.5" PointX="11.875" PointY="9.625" IsExpanded="true" FillColor="0, 192, 0" />
         <EntityTypeShape EntityType="VolTeerModel.tblContactEmail" Width="1.5" PointX="17.375" PointY="9.375" IsExpanded="true" />
         <EntityTypeShape EntityType="VolTeerModel.tblEventRating" Width="1.5" PointX="17.125" PointY="3.75" IsExpanded="true" FillColor="0, 192, 0" />
@@ -36,22 +36,30 @@
         <EntityTypeShape EntityType="VolTeerModel.tblAvailability" Width="1.5" PointX="5.125" PointY="7.25" FillColor="0, 192, 0" />
         <AssociationConnector Association="VolTeerModel.FK_Appointments_ParentAppointments" />
         <AssociationConnector Association="VolTeerModel.FK_tblAvailability_tblVolunteer" />
-        <EntityTypeShape EntityType="VolTeerModel.tblGroup" Width="1.5" PointX="2" PointY="7.75" />
         <EntityTypeShape EntityType="VolTeerModel.tblVolAddr" Width="1.5" PointX="3.375" PointY="3.25" FillColor="0, 192, 0" />
         <EntityTypeShape EntityType="VolTeerModel.tblVolAddress" Width="1.5" PointX="0.75" PointY="3.125" FillColor="0, 192, 0" />
         <AssociationConnector Association="VolTeerModel.FK_tblAvailability_tblVolAddress" />
         <AssociationConnector Association="VolTeerModel.FK_tblVolAddr_tblAddress" />
         <AssociationConnector Association="VolTeerModel.FK_tblVolAddr_tblVolunteer" />
-        <AssociationConnector Association="VolTeerModel.tblGroupAddr" />
-        <AssociationConnector Association="VolTeerModel.tblGroupVol" />
-        <EntityTypeShape EntityType="VolTeerModel.tblVendState" Width="1.5" PointX="4.4390858842241983" PointY="4.8263085655990565" />
-        <EntityTypeShape EntityType="VolTeerModel.tblVolEmail" Width="1.5" PointX="0.16565936439002835" PointY="21.392268980570261" />
-        <AssociationConnector Association="VolTeerModel.FK_tblEmail_tblVolunteer" />
+        <EntityTypeShape EntityType="VolTeerModel.tblVendState" Width="1.5" PointX="7.875" PointY="5" />
         <EntityTypeShape EntityType="VolTeerModel.tblSkill" Width="1.5" PointX="11.75" PointY="0.625" FillColor="0, 192, 0" />
         <AssociationConnector Association="VolTeerModel.FK_Skill_Skill" />
         <AssociationConnector Association="VolTeerModel.tblVolSkill" />
-        <EntityTypeShape EntityType="VolTeerModel.tblVolPhone" Width="1.5" PointX="10.256735264443204" PointY="8.51305266121079" />
-        <AssociationConnector Association="VolTeerModel.FK_tblPhone_tblVolunteer" />
+        <EntityTypeShape EntityType="VolTeerModel.tblVolPhone" Width="1.5" PointX="10.256735264443204" PointY="8.51305266121079" FillColor="0, 192, 0" />
+        <AssociationConnector Association="VolTeerModel.FK_tblPhone_tblVolunteer" ManuallyRouted="true" >
+          <ConnectorPoint PointX="7.75" PointY="3.1438477148437434" />
+          <ConnectorPoint PointX="8.8121875" PointY="3.1438477148437434" />
+          <ConnectorPoint PointX="8.8121875" PointY="3.2463067288344187" />
+          <ConnectorPoint PointX="10.96875" PointY="3.2463067288344187" />
+          <ConnectorPoint PointX="10.96875" PointY="8.5" />
+        </AssociationConnector>
+        <EntityTypeShape EntityType="VolTeerModel.tblGroup" Width="1.5" PointX="4.25" PointY="0.875" />
+        <EntityTypeShape EntityType="VolTeerModel.tblGroupVol" Width="1.5" PointX="7.9416747186061354" PointY="20.538075799373015" />
+        <AssociationConnector Association="VolTeerModel.FK_tblGroupVol_tblGroup" />
+        <AssociationConnector Association="VolTeerModel.FK_tblGroupVol_tblVolunteer" />
+        <AssociationConnector Association="VolTeerModel.tblGroupAddr" />
+        <EntityTypeShape EntityType="VolTeerModel.tblVolEmail" Width="1.5" PointX="2.125" PointY="9.625" IsExpanded="true" />
+        <AssociationConnector Association="VolTeerModel.FK_tblEmail_tblVolunteer" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

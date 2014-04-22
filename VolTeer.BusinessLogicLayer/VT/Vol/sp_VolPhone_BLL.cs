@@ -12,14 +12,14 @@ namespace VolTeer.BusinessLogicLayer.VT.Vol
     {
         sp_VolPhone_DAL DAL = new sp_VolPhone_DAL();
 
-        public List<sp_Phone_DM> ListPhones()
+        public List<sp_Phone_DM> ListPhones(sp_Phone_DM cVolPhone)
         {
-            return DAL.ListPhones();
+            return DAL.ListPhones(cVolPhone);
         }
 
-        public sp_Phone_DM ListPhones(int PhoneIds)
+        public sp_Phone_DM ListPrimaryPhones(sp_Phone_DM cVolPhone)
         {
-            return DAL.ListPhones(PhoneIds).Single();
+            return DAL.ListPrimaryPhone(cVolPhone).Single();
         }
 
         public void InsertPhonesContext(sp_Phone_DM _cPhone)

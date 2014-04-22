@@ -45,13 +45,14 @@ namespace VolTeer.DataAccessLayer.VT
         public DbSet<tblVolState> tblVolStates { get; set; }
         public DbSet<tblVolunteer> tblVolunteers { get; set; }
         public DbSet<tblAvailability> tblAvailabilities { get; set; }
-        public DbSet<tblGroup> tblGroups { get; set; }
         public DbSet<tblVolAddr> tblVolAddrs { get; set; }
         public DbSet<tblVolAddress> tblVolAddresses { get; set; }
         public DbSet<tblVendState> tblVendStates { get; set; }
-        public DbSet<tblVolEmail> tblVolEmails { get; set; }
         public DbSet<tblSkill> tblSkills { get; set; }
         public DbSet<tblVolPhone> tblVolPhones { get; set; }
+        public DbSet<tblGroup> tblGroups { get; set; }
+        public DbSet<tblGroupVol> tblGroupVols { get; set; }
+        public DbSet<tblVolEmail> tblVolEmails { get; set; }
     
         public virtual int sp_Contact_Delete(Nullable<System.Guid> contactID)
         {
@@ -1090,54 +1091,6 @@ namespace VolTeer.DataAccessLayer.VT
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
     
-        public virtual int sp_Vol_Phone_Delete(Nullable<int> phoneID, string phoneNbr, Nullable<bool> activeFlg)
-        {
-            var phoneIDParameter = phoneID.HasValue ?
-                new ObjectParameter("PhoneID", phoneID) :
-                new ObjectParameter("PhoneID", typeof(int));
-    
-            var phoneNbrParameter = phoneNbr != null ?
-                new ObjectParameter("PhoneNbr", phoneNbr) :
-                new ObjectParameter("PhoneNbr", typeof(string));
-    
-            var activeFlgParameter = activeFlg.HasValue ?
-                new ObjectParameter("ActiveFlg", activeFlg) :
-                new ObjectParameter("ActiveFlg", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Vol_Phone_Delete", phoneIDParameter, phoneNbrParameter, activeFlgParameter);
-        }
-    
-        public virtual ObjectResult<Nullable<int>> sp_Vol_Phone_Insert(string phoneNbr)
-        {
-            var phoneNbrParameter = phoneNbr != null ?
-                new ObjectParameter("PhoneNbr", phoneNbr) :
-                new ObjectParameter("PhoneNbr", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_Vol_Phone_Insert", phoneNbrParameter);
-        }
-    
-        public virtual ObjectResult<sp_Vol_Phone_Select_Result> sp_Vol_Phone_Select(Nullable<int> phoneID)
-        {
-            var phoneIDParameter = phoneID.HasValue ?
-                new ObjectParameter("PhoneID", phoneID) :
-                new ObjectParameter("PhoneID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Vol_Phone_Select_Result>("sp_Vol_Phone_Select", phoneIDParameter);
-        }
-    
-        public virtual int sp_Vol_Phone_Update(Nullable<int> phoneID, string phoneNbr)
-        {
-            var phoneIDParameter = phoneID.HasValue ?
-                new ObjectParameter("PhoneID", phoneID) :
-                new ObjectParameter("PhoneID", typeof(int));
-    
-            var phoneNbrParameter = phoneNbr != null ?
-                new ObjectParameter("PhoneNbr", phoneNbr) :
-                new ObjectParameter("PhoneNbr", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Vol_Phone_Update", phoneIDParameter, phoneNbrParameter);
-        }
-    
         public virtual int sp_VolSkill_DeleteAll(Nullable<System.Guid> volID)
         {
             var volIDParameter = volID.HasValue ?
@@ -1178,13 +1131,70 @@ namespace VolTeer.DataAccessLayer.VT
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Vol_Email_Select_Result>("sp_Vol_Email_Select", emailIDParameter);
         }
     
-        public virtual ObjectResult<sp_Vol_Email_SelectAlt_Result> sp_Vol_Email_SelectAlt(Nullable<System.Guid> volID)
+        public virtual ObjectResult<Describe_CheckConstraints_Result> Describe_CheckConstraints()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Describe_CheckConstraints_Result>("Describe_CheckConstraints");
+        }
+    
+        public virtual ObjectResult<Describe_TableColumns_Result> Describe_TableColumns()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Describe_TableColumns_Result>("Describe_TableColumns");
+        }
+    
+        public virtual int sp_Vol_Phone_Update(Nullable<int> phoneID, string phoneNbr)
+        {
+            var phoneIDParameter = phoneID.HasValue ?
+                new ObjectParameter("PhoneID", phoneID) :
+                new ObjectParameter("PhoneID", typeof(int));
+    
+            var phoneNbrParameter = phoneNbr != null ?
+                new ObjectParameter("PhoneNbr", phoneNbr) :
+                new ObjectParameter("PhoneNbr", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Vol_Phone_Update", phoneIDParameter, phoneNbrParameter);
+        }
+    
+        public virtual ObjectResult<sp_Vol_Phone_Insert_Result> sp_Vol_Phone_Insert(string phoneNbr)
+        {
+            var phoneNbrParameter = phoneNbr != null ?
+                new ObjectParameter("PhoneNbr", phoneNbr) :
+                new ObjectParameter("PhoneNbr", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Vol_Phone_Insert_Result>("sp_Vol_Phone_Insert", phoneNbrParameter);
+        }
+    
+        public virtual int sp_Vol_Phone_Delete(Nullable<int> phoneID, string phoneNbr, Nullable<bool> activeFlg)
+        {
+            var phoneIDParameter = phoneID.HasValue ?
+                new ObjectParameter("PhoneID", phoneID) :
+                new ObjectParameter("PhoneID", typeof(int));
+    
+            var phoneNbrParameter = phoneNbr != null ?
+                new ObjectParameter("PhoneNbr", phoneNbr) :
+                new ObjectParameter("PhoneNbr", typeof(string));
+    
+            var activeFlgParameter = activeFlg.HasValue ?
+                new ObjectParameter("ActiveFlg", activeFlg) :
+                new ObjectParameter("ActiveFlg", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Vol_Phone_Delete", phoneIDParameter, phoneNbrParameter, activeFlgParameter);
+        }
+    
+        public virtual ObjectResult<sp_Vol_Phone_Select_Result> sp_Vol_Phone_Select(Nullable<System.Guid> volID, Nullable<int> phoneID, Nullable<bool> primaryFlg)
         {
             var volIDParameter = volID.HasValue ?
                 new ObjectParameter("VolID", volID) :
                 new ObjectParameter("VolID", typeof(System.Guid));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Vol_Email_SelectAlt_Result>("sp_Vol_Email_SelectAlt", volIDParameter);
+            var phoneIDParameter = phoneID.HasValue ?
+                new ObjectParameter("PhoneID", phoneID) :
+                new ObjectParameter("PhoneID", typeof(int));
+    
+            var primaryFlgParameter = primaryFlg.HasValue ?
+                new ObjectParameter("PrimaryFlg", primaryFlg) :
+                new ObjectParameter("PrimaryFlg", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Vol_Phone_Select_Result>("sp_Vol_Phone_Select", volIDParameter, phoneIDParameter, primaryFlgParameter);
         }
     }
 }

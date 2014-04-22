@@ -36,6 +36,7 @@ namespace VolTeer.Cache.VT.Vol
             return cacheEmails;                       
         }
 
+        /*
         public sp_Email_DM ListEmails(Guid? Volunteer)
         {
             System.Web.Caching.Cache cache = HttpRuntime.Cache;
@@ -48,6 +49,7 @@ namespace VolTeer.Cache.VT.Vol
             }
             return cacheEmails;
         }
+         */
 
         public sp_Email_DM ListEmails(int EmailIds)
         {
