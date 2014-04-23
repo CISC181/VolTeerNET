@@ -34,43 +34,7 @@ namespace VolTeer.Cache.VT.Vol
             return cachePhones;
         }
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> a09d8748a32add4edb9b63f0291d50d87afa34a9
-        /*
-        public sp_Email_DM ListEmails(Guid? Volunteer)
-        {
-            System.Web.Caching.Cache cache = HttpRuntime.Cache;
-            sp_Email_DM cacheEmails = (sp_Email_DM)cache[EmailType.VolEmailGUID + "|" + Volunteer];
 
-            if (cacheEmails == null)
-            {
-                cacheEmails = BLL.ListEmails(Volunteer);
-                cache.Insert("" + EmailType.VolEmailGUID + "|" + Volunteer, cacheEmails, null, DateTime.Now.AddSeconds(1), System.Web.Caching.Cache.NoSlidingExpiration, CacheItemPriority.High, callback);
-            }
-            return cacheEmails;
-        }
-         */
-        /*
-        public sp_Phone_DM ListPhone(sp_Phone_DM cPhone)
-        {
-            System.Web.Caching.Cache cache = HttpRuntime.Cache;
-            sp_Phone_DM cacheEmails = (sp_Phone_DM)cache[EmailType.VolEmailDM + "|" + EmailIds];
-
-            if (cacheEmails == null)
-            {
-                cacheEmails = BLL.ListEmails(EmailIds);
-                cache.Insert("" + EmailType.VolEmailDM + "|" + EmailIds, cacheEmails, null, DateTime.Now.AddSeconds(1), System.Web.Caching.Cache.NoSlidingExpiration, CacheItemPriority.High, callback);
-            }
-            return cacheEmails;
-        }
-        */
-<<<<<<< HEAD
->>>>>>> a09d8748a32add4edb9b63f0291d50d87afa34a9
-=======
->>>>>>> a09d8748a32add4edb9b63f0291d50d87afa34a9
         public sp_Phone_DM ListPrimaryPhone(sp_Phone_DM cPhone)
         {
             System.Web.Caching.Cache cache = HttpRuntime.Cache;
