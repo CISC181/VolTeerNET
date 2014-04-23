@@ -3032,6 +3032,23 @@
                 <ScalarProperty Name="GroupID" ColumnName="GroupID" />
               </MappingFragment>
             </EntityTypeMapping>
+            <EntityTypeMapping TypeName="VolTeerModel.tblGroup">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="VolTeerModel.Store.sp_Group_Insert">
+                  <ScalarProperty Name="ParticipationLevelID" ParameterName="ParticipationLevelID" />
+                  <ScalarProperty Name="GroupName" ParameterName="GroupName" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="VolTeerModel.Store.sp_Group_Update">
+                  <ScalarProperty Name="ParticipationLevelID" ParameterName="ParticipationLevelID" Version="Current" />
+                  <ScalarProperty Name="GroupName" ParameterName="GroupName" Version="Current" />
+                  <ScalarProperty Name="GroupID" ParameterName="GroupID" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="VolTeerModel.Store.sp_Group_Delete">
+                  <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" />
+                  <ScalarProperty Name="GroupID" ParameterName="GroupID" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblGroupVols">
             <EntityTypeMapping TypeName="VolTeerModel.tblGroupVol">
@@ -3060,6 +3077,22 @@
                 <ScalarProperty Name="VolID" ColumnName="VolID" />
                 <ScalarProperty Name="EmailID" ColumnName="EmailID" />
               </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="VolTeerModel.tblVolEmail">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="VolTeerModel.Store.sp_Vol_Email_Insert">
+                  <ScalarProperty Name="EmailAddr" ParameterName="EmailAddr" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="VolTeerModel.Store.sp_Vol_Email_Update">
+                  <ScalarProperty Name="EmailAddr" ParameterName="EmailAddr" Version="Current" />
+                  <ScalarProperty Name="EmailID" ParameterName="EmailID" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="VolTeerModel.Store.sp_Vol_Email_Delete">
+                  <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" />
+                  <ScalarProperty Name="EmailAddr" ParameterName="EmailAddr" />
+                  <ScalarProperty Name="EmailID" ParameterName="EmailID" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="sp_Vol_Email_Select" FunctionName="VolTeerModel.Store.sp_Vol_Email_Select">
