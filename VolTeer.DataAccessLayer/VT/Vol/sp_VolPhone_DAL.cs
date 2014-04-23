@@ -111,6 +111,7 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                     cPhone.PhoneNbr = _cPhone.PhoneNbr;
                     cPhone.VolID = _cPhone.VolID;
                     cPhone.ActiveFlg = _cPhone.ActiveFlg;
+                    cPhone.PrimaryFlg = _cPhone.PrimaryFlg;
                     context.SaveChanges();
                 }
             }

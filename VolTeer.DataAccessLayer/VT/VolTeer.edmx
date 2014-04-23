@@ -199,6 +199,9 @@
           <Property Name="ContactID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="PrimaryContact" Type="bit" />
         </EntityType>
+        <!--Errors Found During Generation:
+      warning 6005: The data type 'geography' is not supported for the target .NET Framework version. The column 'GeoCode' in the table 'VolTeer.Vend.tblVendAddress' was excluded from the model. To use the data type 'geography', target the .NET Framework 4.5 or higher.
+      -->
         <EntityType Name="tblVendAddress">
           <Key>
             <PropertyRef Name="AddrID" />
@@ -212,6 +215,7 @@
           <Property Name="Zip" Type="int" />
           <Property Name="Zip4" Type="int" />
           <Property Name="ActiveFlg" Type="bit" Nullable="false" />
+          <Property Name="GeoCodeGetSet" Type="nvarchar(max)" StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="tblVendContact">
           <Key>
@@ -876,10 +880,8 @@
         </Function>
         <Function Name="sp_Vendor_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
           <Parameter Name="VendorID" Type="uniqueidentifier" Mode="In" />
-          <Parameter Name="flag" Type="bit" Mode="InOut" />
         </Function>
         <Function Name="sp_Vendor_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
-          <Parameter Name="VendorID" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="VendorName" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="sp_Vendor_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
@@ -931,6 +933,7 @@
         <Function Name="sp_Group_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="GroupName" Type="nvarchar" Mode="In" />
           <Parameter Name="ParticipationLevelID" Type="int" Mode="In" />
+          <Parameter Name="ActiveFlg" Type="bit" Mode="In" />
         </Function>
         <Function Name="sp_Group_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="GroupID" Type="int" Mode="In" />
@@ -939,6 +942,7 @@
           <Parameter Name="GroupID" Type="int" Mode="In" />
           <Parameter Name="GroupName" Type="nvarchar" Mode="In" />
           <Parameter Name="ParticipationLevelID" Type="int" Mode="In" />
+          <Parameter Name="ActiveFlg" Type="bit" Mode="In" />
         </Function>
         <Function Name="sp_Sample_Address_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="AddrID" Type="int" Mode="In" />
@@ -1033,18 +1037,28 @@
         </Function>
         <Function Name="sp_Vol_Email_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="EmailID" Type="int" Mode="In" />
+          <Parameter Name="VolID" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="EmailAddr" Type="nvarchar" Mode="In" />
           <Parameter Name="ActiveFlg" Type="bit" Mode="In" />
+          <Parameter Name="PrimaryFlg" Type="bit" Mode="In" />
         </Function>
         <Function Name="sp_Vol_Email_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
+          <Parameter Name="VolID" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="EmailAddr" Type="nvarchar" Mode="In" />
+          <Parameter Name="ActiveFlg" Type="bit" Mode="In" />
+          <Parameter Name="PrimaryFlg" Type="bit" Mode="In" />
         </Function>
         <Function Name="sp_Vol_Email_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
+          <Parameter Name="VolID" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="EmailID" Type="int" Mode="In" />
+          <Parameter Name="PrimaryFlg" Type="bit" Mode="In" />
         </Function>
         <Function Name="sp_Vol_Email_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="EmailID" Type="int" Mode="In" />
+          <Parameter Name="VolID" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="EmailAddr" Type="nvarchar" Mode="In" />
+          <Parameter Name="ActiveFlg" Type="bit" Mode="In" />
+          <Parameter Name="PrimaryFlg" Type="bit" Mode="In" />
         </Function>
         <Function Name="sp_Vol_Phone_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="PhoneID" Type="int" Mode="In" />
@@ -1052,7 +1066,10 @@
           <Parameter Name="ActiveFlg" Type="bit" Mode="In" />
         </Function>
         <Function Name="sp_Vol_Phone_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
+          <Parameter Name="VolID" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="PhoneNbr" Type="nvarchar" Mode="In" />
+          <Parameter Name="ActiveFlg" Type="bit" Mode="In" />
+          <Parameter Name="PrimaryFlg" Type="bit" Mode="In" />
         </Function>
         <Function Name="sp_Vol_Phone_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="VolID" Type="uniqueidentifier" Mode="In" />
@@ -1062,6 +1079,8 @@
         <Function Name="sp_Vol_Phone_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="PhoneID" Type="int" Mode="In" />
           <Parameter Name="PhoneNbr" Type="nvarchar" Mode="In" />
+          <Parameter Name="ActiveFlg" Type="bit" Mode="In" />
+          <Parameter Name="PrimaryFlg" Type="bit" Mode="In" />
         </Function>
         <Function Name="sp_Vol_State_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol" />
         <Function Name="sp_VolSkill_DeleteAll" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
@@ -1273,12 +1292,10 @@
             <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="sp_Vendor_Delete">
-            <Parameter Name="VendorID" Mode="In" Type="Guid" />
-            <Parameter Name="flag" Mode="InOut" Type="Boolean" />
+          <Parameter Name="VendorID" Mode="In" Type="Guid" />
           </FunctionImport>
           <FunctionImport Name="sp_Vendor_Insert">
-            <Parameter Name="VendorID" Mode="In" Type="Guid" />
-            <Parameter Name="VendorName" Mode="In" Type="String" />
+          <Parameter Name="VendorName" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_Vendor_Select">
           <Parameter Name="VendorID" Mode="In" Type="Guid" />
@@ -1290,6 +1307,7 @@
           <FunctionImport Name="sp_Group_Insert" ReturnType="Collection(Int32)">
             <Parameter Name="GroupName" Mode="In" Type="String" />
             <Parameter Name="ParticipationLevelID" Mode="In" Type="Int32" />
+            <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="sp_Group_Select" ReturnType="Collection(VolTeerModel.sp_Group_Select_Result)">
           <Parameter Name="GroupID" Mode="In" Type="Int32" />
@@ -1298,6 +1316,7 @@
             <Parameter Name="GroupID" Mode="In" Type="Int32" />
             <Parameter Name="GroupName" Mode="In" Type="String" />
             <Parameter Name="ParticipationLevelID" Mode="In" Type="Int32" />
+            <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="sp_Sample_Address_Delete">
           <Parameter Name="AddrID" Mode="In" Type="Int32" />
@@ -1371,15 +1390,23 @@
           </AssociationSet>
           <FunctionImport Name="sp_Vol_Email_Delete">
             <Parameter Name="EmailID" Mode="In" Type="Int32" />
+            <Parameter Name="VolID" Mode="In" Type="Guid" />
             <Parameter Name="EmailAddr" Mode="In" Type="String" />
             <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
+            <Parameter Name="PrimaryFlg" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="sp_Vol_Email_Insert" ReturnType="Collection(Int32)">
-          <Parameter Name="EmailAddr" Mode="In" Type="String" />
+            <Parameter Name="VolID" Mode="In" Type="Guid" />
+            <Parameter Name="EmailAddr" Mode="In" Type="String" />
+            <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
+            <Parameter Name="PrimaryFlg" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="sp_Vol_Email_Update">
             <Parameter Name="EmailID" Mode="In" Type="Int32" />
+            <Parameter Name="VolID" Mode="In" Type="Guid" />
             <Parameter Name="EmailAddr" Mode="In" Type="String" />
+            <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
+            <Parameter Name="PrimaryFlg" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="sp_Vol_State_Select" ReturnType="Collection(VolTeerModel.sp_Vol_State_Select_Result)" />
           <FunctionImport Name="sp_Volunteer_Delete">
@@ -1543,16 +1570,23 @@
             <End Role="tblVolEmail" EntitySet="tblVolEmails" />
           </AssociationSet>
           <FunctionImport Name="sp_Vol_Email_Select" ReturnType="Collection(VolTeerModel.sp_Vol_Email_Select_Result)">
-          <Parameter Name="EmailID" Mode="In" Type="Int32" />
+            <Parameter Name="VolID" Mode="In" Type="Guid" />
+            <Parameter Name="EmailID" Mode="In" Type="Int32" />
+            <Parameter Name="PrimaryFlg" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="Describe_CheckConstraints" ReturnType="Collection(VolTeerModel.Describe_CheckConstraints_Result)" />
           <FunctionImport Name="Describe_TableColumns" ReturnType="Collection(VolTeerModel.Describe_TableColumns_Result)" />
           <FunctionImport Name="sp_Vol_Phone_Update">
             <Parameter Name="PhoneID" Mode="In" Type="Int32" />
             <Parameter Name="PhoneNbr" Mode="In" Type="String" />
+            <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
+            <Parameter Name="PrimaryFlg" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="sp_Vol_Phone_Insert" ReturnType="Collection(VolTeerModel.sp_Vol_Phone_Insert_Result)">
+          <Parameter Name="VolID" Mode="In" Type="Guid" />
             <Parameter Name="PhoneNbr" Mode="In" Type="String" />
+            <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
+            <Parameter Name="PrimaryFlg" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="sp_Vol_Phone_Delete">
             <Parameter Name="PhoneID" Mode="In" Type="Int32" />
@@ -1651,6 +1685,7 @@
           <Property Name="ActiveFlg" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="tblProjects" Relationship="VolTeerModel.FK_tblProject_tblAddress" FromRole="tblVendAddress" ToRole="tblProject" />
           <NavigationProperty Name="tblVendorAddrs" Relationship="VolTeerModel.FK_tblVendorAddr_tblAddress" FromRole="tblVendAddress" ToRole="tblVendorAddr" />
+          <Property Type="String" Name="GeoCodeGetSet" MaxLength="Max" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="tblVendContact">
           <Key>
@@ -2439,6 +2474,7 @@
           <EntitySetMapping Name="tblVendAddresses">
             <EntityTypeMapping TypeName="VolTeerModel.tblVendAddress">
               <MappingFragment StoreEntitySet="tblVendAddress">
+                <ScalarProperty Name="GeoCodeGetSet" ColumnName="GeoCodeGetSet" />
                 <ScalarProperty Name="AddrID" ColumnName="AddrID" />
                 <ScalarProperty Name="AddrLine1" ColumnName="AddrLine1" />
                 <ScalarProperty Name="AddrLine2" ColumnName="AddrLine2" />
@@ -3008,10 +3044,15 @@
             <EntityTypeMapping TypeName="VolTeerModel.tblVolPhone">
               <ModificationFunctionMapping>
                 <InsertFunction FunctionName="VolTeerModel.Store.sp_Vol_Phone_Insert">
+                  <ScalarProperty Name="PrimaryFlg" ParameterName="PrimaryFlg" />
+                  <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" />
+                  <ScalarProperty Name="VolID" ParameterName="VolID" />
                   <ScalarProperty Name="PhoneNbr" ParameterName="PhoneNbr" />
                   <ResultBinding Name="PhoneID" ColumnName="PhoneId" />
                 </InsertFunction>
                 <UpdateFunction FunctionName="VolTeerModel.Store.sp_Vol_Phone_Update">
+                  <ScalarProperty Name="PrimaryFlg" ParameterName="PrimaryFlg" Version="Current" />
+                  <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" Version="Current" />
                   <ScalarProperty Name="PhoneNbr" ParameterName="PhoneNbr" Version="Current" />
                   <ScalarProperty Name="PhoneID" ParameterName="PhoneID" Version="Current" />
                 </UpdateFunction>
@@ -3035,10 +3076,13 @@
             <EntityTypeMapping TypeName="VolTeerModel.tblGroup">
               <ModificationFunctionMapping>
                 <InsertFunction FunctionName="VolTeerModel.Store.sp_Group_Insert">
+                  <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" />
                   <ScalarProperty Name="ParticipationLevelID" ParameterName="ParticipationLevelID" />
                   <ScalarProperty Name="GroupName" ParameterName="GroupName" />
+                  <ResultBinding Name="GroupID" ColumnName="GroupID" />
                 </InsertFunction>
                 <UpdateFunction FunctionName="VolTeerModel.Store.sp_Group_Update">
+                  <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" Version="Current" />
                   <ScalarProperty Name="ParticipationLevelID" ParameterName="ParticipationLevelID" Version="Current" />
                   <ScalarProperty Name="GroupName" ParameterName="GroupName" Version="Current" />
                   <ScalarProperty Name="GroupID" ParameterName="GroupID" Version="Current" />
@@ -3081,13 +3125,22 @@
             <EntityTypeMapping TypeName="VolTeerModel.tblVolEmail">
               <ModificationFunctionMapping>
                 <InsertFunction FunctionName="VolTeerModel.Store.sp_Vol_Email_Insert">
+                  <ScalarProperty Name="PrimaryFlg" ParameterName="PrimaryFlg" />
+                  <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" />
+                  <ScalarProperty Name="VolID" ParameterName="VolID" />
                   <ScalarProperty Name="EmailAddr" ParameterName="EmailAddr" />
+                  <ResultBinding Name="EmailID" ColumnName="EmailID" />
                 </InsertFunction>
                 <UpdateFunction FunctionName="VolTeerModel.Store.sp_Vol_Email_Update">
+                  <ScalarProperty Name="VolID" ParameterName="VolID" Version="Current" />
+                  <ScalarProperty Name="PrimaryFlg" ParameterName="PrimaryFlg" Version="Current" />
+                  <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" Version="Current" />
                   <ScalarProperty Name="EmailAddr" ParameterName="EmailAddr" Version="Current" />
                   <ScalarProperty Name="EmailID" ParameterName="EmailID" Version="Current" />
                 </UpdateFunction>
                 <DeleteFunction FunctionName="VolTeerModel.Store.sp_Vol_Email_Delete">
+                  <ScalarProperty Name="VolID" ParameterName="VolID" />
+                  <ScalarProperty Name="PrimaryFlg" ParameterName="PrimaryFlg" />
                   <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" />
                   <ScalarProperty Name="EmailAddr" ParameterName="EmailAddr" />
                   <ScalarProperty Name="EmailID" ParameterName="EmailID" />

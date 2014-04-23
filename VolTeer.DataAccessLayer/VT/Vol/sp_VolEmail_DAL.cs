@@ -10,17 +10,17 @@ namespace VolTeer.DataAccessLayer.VT.Vol
     {
         #region Select Statements
         /// <summary>
-        /// Return a list of Sample addresses using LINQ to SQL
+        /// Return a list or single email for a given volunteer 
         /// </summary>
         /// <returns></returns>
-        public List<sp_Email_DM> ListEmails()
+        public List<sp_Email_DM> ListEmails(sp_Email_DM cVolEmail)
         {
             List<sp_Email_DM> list = new List<sp_Email_DM>();
             try
             {
                 using (VolTeerEntities context = new VolTeerEntities())
                 {
-                    list = (from result in context.sp_Vol_Email_Select(null)
+                    list = (from result in context.sp_Vol_Email_Select(cVolEmail.VolID, cVolEmail.EmailID, null)
                             select new sp_Email_DM
                             {
                                 EmailID = result.EmailID,
@@ -41,69 +41,15 @@ namespace VolTeer.DataAccessLayer.VT.Vol
 
         }
 
-        public List<sp_Email_DM> ListEmails(int EmailIds)
-        {
-            List<sp_Email_DM> list = new List<sp_Email_DM>();
-            try
-            {
-                using (VolTeerEntities context = new VolTeerEntities())
-                {
-                    list = (from result in context.sp_Vol_Email_Select(EmailIds)
-                            select new sp_Email_DM
-                            {
-                                EmailID = result.EmailID,
-                                EmailAddr = result.EmailAddr,
-                                VolID = result.VolID,
-                                ActiveFlg = result.ActiveFlg,
-                                PrimaryFlg = result.PrimaryFlg
-                            }).ToList();
-                } // Guaranteed to close the Connection
-            }
-            catch (Exception ex)
-            {
-                throw (ex);
-            }
 
-            return list;
-
-        }
-        /*
-        public sp_Email_DM ListEmails(Guid? Volunteer)
-        {
-            List<sp_Email_DM> list = new List<sp_Email_DM>();
-            try
-            {
-                using (VolTeerEntities context = new VolTeerEntities())
-                {
-                    list = (from result in context.sp_Vol_Email_Select(Volunteer)
-                            select new sp_Email_DM
-                            {
-                                EmailID = result.EmailID,
-                                EmailAddr = result.EmailAddr,
-                                VolID = result.VolID,
-                                ActiveFlg = result.ActiveFlg,
-                                PrimaryFlg = result.PrimaryFlg
-
-                            }).ToList();
-                } // Guaranteed to close the Connection
-            }
-            catch (Exception ex)
-            {
-                throw (ex);
-            }
-
-            return list.FirstOrDefault();
-
-        }
-        */
-        public sp_Email_DM ListPrimaryEmail(int EmailIds)
+        public sp_Email_DM ListPrimaryEmail(sp_Email_DM cVolEmail)
         {
             sp_Email_DM item = new sp_Email_DM();            
             try
             {
                 using (VolTeerEntities context = new VolTeerEntities())
                 {
-                    item = (from result in context.sp_Vol_Email_Select(EmailIds)
+                    item = (from result in context.sp_Vol_Email_Select(cVolEmail.VolID, cVolEmail.EmailID, true)
                             select new sp_Email_DM
                             {
                                 EmailID = result.EmailID,

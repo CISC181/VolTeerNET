@@ -33,7 +33,7 @@ namespace VolTeer.DataAccessLayer.VT.Vol
 
             using (VolTeerEntities context = new VolTeerEntities())
             {
-                list = (from result in context.sp_Group_Insert(GroupName_IN, participationLevelID_IN)
+                list = (from result in context.sp_Group_Insert(GroupName_IN, participationLevelID_IN, true)
                         select new sp_Group_DM
                         { 
                         }).ToList();
@@ -42,12 +42,12 @@ namespace VolTeer.DataAccessLayer.VT.Vol
             return list;
         }
 
-        public void UpdateGroup(int GroupID_IN, string GroupName_IN, int participationLevelID_IN)
+        public void UpdateGroup(int GroupID_IN, string GroupName_IN, int participationLevelID_IN, bool activeFlg)
         {
 
             using (VolTeerEntities context = new VolTeerEntities())
             {
-                context.sp_Group_Update(GroupID_IN, GroupName_IN, participationLevelID_IN);
+                context.sp_Group_Update(GroupID_IN, GroupName_IN, participationLevelID_IN, activeFlg);
 
             }
 
