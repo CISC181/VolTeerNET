@@ -24,55 +24,27 @@ namespace VolTeer.Cache.VT.Vol
         sp_VolEmail_BLL BLL = new sp_VolEmail_BLL();
         System.Web.Caching.CacheItemRemovedCallback callback = new System.Web.Caching.CacheItemRemovedCallback(OnRemove);
 
-        public List<sp_Email_DM> ListEmails()
+        public List<sp_Email_DM> ListEmails(sp_Email_DM cVolEmail)
         {
             System.Web.Caching.Cache cache = HttpRuntime.Cache;
             List<sp_Email_DM> cacheEmails = (List<sp_Email_DM>)cache["" + EmailType.VolEmailList];
             if (cacheEmails == null)
             {
-                cacheEmails = BLL.ListEmails();
+                cacheEmails = BLL.ListEmails(cVolEmail);
                 cache.Insert("" + EmailType.VolEmailList, cacheEmails, null, DateTime.Now.AddSeconds(1), System.Web.Caching.Cache.NoSlidingExpiration, CacheItemPriority.High, callback);
             }
             return cacheEmails;                       
         }
 
-        /*
-        public sp_Email_DM ListEmails(Guid? Volunteer)
+        public sp_Email_DM ListPrimaryEmail(sp_Email_DM cVolEmail)
         {
             System.Web.Caching.Cache cache = HttpRuntime.Cache;
-            sp_Email_DM cacheEmails = (sp_Email_DM)cache[EmailType.VolEmailGUID + "|" + Volunteer];
+            sp_Email_DM cacheEmails = (sp_Email_DM)cache[EmailType.VolEmailPrimary + "|" + cVolEmail.EmailID];
 
             if (cacheEmails == null)
             {
-                cacheEmails = BLL.ListEmails(Volunteer);
-                cache.Insert("" + EmailType.VolEmailGUID + "|" + Volunteer, cacheEmails, null, DateTime.Now.AddSeconds(1), System.Web.Caching.Cache.NoSlidingExpiration, CacheItemPriority.High, callback);
-            }
-            return cacheEmails;
-        }
-         */
-
-        public sp_Email_DM ListEmails(int EmailIds)
-        {
-            System.Web.Caching.Cache cache = HttpRuntime.Cache;
-            sp_Email_DM cacheEmails = (sp_Email_DM)cache[EmailType.VolEmailDM + "|"+ EmailIds];
-
-            if (cacheEmails == null)
-            {
-                cacheEmails = BLL.ListEmails(EmailIds);
-                cache.Insert("" + EmailType.VolEmailDM + "|" + EmailIds, cacheEmails, null, DateTime.Now.AddSeconds(1), System.Web.Caching.Cache.NoSlidingExpiration, CacheItemPriority.High, callback);
-            }
-            return cacheEmails;
-        }
-
-        public sp_Email_DM ListPrimaryEmail(int EmailIds)
-        {
-            System.Web.Caching.Cache cache = HttpRuntime.Cache;
-            sp_Email_DM cacheEmails = (sp_Email_DM)cache[EmailType.VolEmailPrimary + "|" + EmailIds];
-
-            if (cacheEmails == null)
-            {
-                cacheEmails = BLL.ListPrimaryEmail(EmailIds);
-                cache.Insert("" + EmailType.VolEmailPrimary + "|" + EmailIds, cacheEmails, null, DateTime.Now.AddSeconds(1), System.Web.Caching.Cache.NoSlidingExpiration, CacheItemPriority.High, callback);
+                cacheEmails = BLL.ListPrimaryEmail(cVolEmail);
+                cache.Insert("" + EmailType.VolEmailPrimary + "|" + cVolEmail.EmailID, cacheEmails, null, DateTime.Now.AddSeconds(1), System.Web.Caching.Cache.NoSlidingExpiration, CacheItemPriority.High, callback);
             }
             return cacheEmails;
         }

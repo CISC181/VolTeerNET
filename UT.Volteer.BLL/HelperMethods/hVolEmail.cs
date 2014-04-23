@@ -24,19 +24,25 @@ namespace UT.Volteer.BLL.HelperMethods
 
         }
 
-        public List<sp_Email_DM> hSelectVolEmail()
+        public List<sp_Email_DM> hSelectVolEmail(Guid VolID, int emailID)
         {
             List<sp_Email_DM> EmailList = null;
             sp_VolEmail_BLL VolEmailBll = new sp_VolEmail_BLL();
-            EmailList = VolEmailBll.ListEmails();
+            sp_Email_DM cVolEmail = new sp_Email_DM();
+            cVolEmail.VolID = VolID;
+            cVolEmail.EmailID = emailID;
+            EmailList = VolEmailBll.ListEmails(cVolEmail);
             return EmailList;
         }
 
-        public sp_Email_DM hSelectVolEmail(int emailID)
+        public sp_Email_DM hSelectPrimaryVolEmail(Guid VolID )
         {
             sp_Email_DM Email = new sp_Email_DM();
             sp_VolEmail_BLL VolEmailBll = new sp_VolEmail_BLL();
-            Email = VolEmailBll.ListEmails(emailID);
+            sp_Email_DM cVolEmail = new sp_Email_DM();
+            cVolEmail.VolID = VolID;
+            cVolEmail.EmailID = 0;
+            Email = VolEmailBll.ListPrimaryEmail(cVolEmail);
             return Email;
         }
 

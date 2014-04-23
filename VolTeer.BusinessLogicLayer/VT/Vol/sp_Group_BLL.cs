@@ -34,9 +34,9 @@ namespace VolTeer.BusinessLogicLayer.VT.Vol
         }
 
 
-        public void UpdateGroup(int GroupID, string GroupName, int participationLevelID)
+        public void UpdateGroup(int GroupID, string GroupName, int participationLevelID, bool ActiveFlg)
         {
-            DAL.UpdateGroup(GroupID, GroupName, participationLevelID);
+            DAL.UpdateGroup(GroupID, GroupName, participationLevelID, ActiveFlg);
 
         }
 

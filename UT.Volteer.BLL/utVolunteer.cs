@@ -176,17 +176,17 @@ namespace UT.Volteer.BLL
                 hVolEmail hEmail = new hVolEmail();
                 insertEmail = hEmail.hCreateVolEmail(emailAddress, testVol.VolID);
 
-                selectEmail = hEmail.hSelectVolEmail(insertEmail.EmailID);
+               // selectEmail = hEmail.hSelectVolEmail(insertEmail.EmailID);
 
                 Assert.AreEqual(insertEmail.EmailAddr, selectEmail.EmailAddr);
 
                 hEmail.hUpdateVolEmail(insertEmail, "testing@tes.test");
-                selectEmail = hEmail.hSelectVolEmail(insertEmail.EmailID);
+               // selectEmail = hEmail.hSelectVolEmail(insertEmail.EmailID);
 
                 Assert.AreEqual(selectEmail.EmailAddr, "testing@tes.test");
 
                 hEmail.hDeleteVolEmail(insertEmail);
-                selectEmail = hEmail.hSelectVolEmail(insertEmail.EmailID);
+               // selectEmail = hEmail.hSelectVolEmail(insertEmail.EmailID);
 
                 Assert.AreEqual(selectEmail.ActiveFlg, false);
 

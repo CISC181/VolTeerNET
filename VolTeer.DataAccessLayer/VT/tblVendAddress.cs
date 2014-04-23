@@ -29,6 +29,7 @@ namespace VolTeer.DataAccessLayer.VT
         public Nullable<int> Zip { get; set; }
         public Nullable<int> Zip4 { get; set; }
         public bool ActiveFlg { get; set; }
+        public string GeoCodeGetSet { get; set; }
     
         public virtual ICollection<tblProject> tblProjects { get; set; }
         public virtual ICollection<tblVendorAddr> tblVendorAddrs { get; set; }
