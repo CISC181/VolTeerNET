@@ -35,7 +35,10 @@ namespace VolTeer.Cache.VT.Vol
         }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> a09d8748a32add4edb9b63f0291d50d87afa34a9
         /*
         public sp_Email_DM ListEmails(Guid? Volunteer)
         {
@@ -64,6 +67,9 @@ namespace VolTeer.Cache.VT.Vol
             return cacheEmails;
         }
         */
+<<<<<<< HEAD
+>>>>>>> a09d8748a32add4edb9b63f0291d50d87afa34a9
+=======
 >>>>>>> a09d8748a32add4edb9b63f0291d50d87afa34a9
         public sp_Phone_DM ListPrimaryPhone(sp_Phone_DM cPhone)
         {
