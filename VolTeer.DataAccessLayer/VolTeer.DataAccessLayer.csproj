@@ -255,6 +255,9 @@
     <Compile Include="VT\sp_Vend_Address_Select_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
+    <Compile Include="VT\sp_Vend_Contact_Select_Result.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
     <Compile Include="VT\sp_Vend_Email_Select_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
