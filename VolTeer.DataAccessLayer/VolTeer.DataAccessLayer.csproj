@@ -195,10 +195,25 @@
       <DependentUpon>DescribeDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VT\ControlProperty.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
     <Compile Include="VT\Describe_CheckConstraints_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
     <Compile Include="VT\Describe_TableColumns_Result.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\Order.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\Product.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\RegisteredControl.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\SpatialTable.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
     <Compile Include="VT\sp_Availability_Select_Result.cs">
@@ -210,10 +225,19 @@
     <Compile Include="VT\sp_EventRating_Select_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
+    <Compile Include="VT\sp_GroupVol_Select_Result.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
     <Compile Include="VT\sp_Group_Select_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
+    <Compile Include="VT\sp_helpdiagramdefinition1_Result.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
     <Compile Include="VT\sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\sp_helpdiagrams1_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
     <Compile Include="VT\sp_helpdiagrams_Result.cs">
@@ -253,6 +277,9 @@
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
     <Compile Include="VT\sp_Vol_State_Select_Result.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\sysdiagram.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
     <Compile Include="VT\tblAvailability.cs">
@@ -327,10 +354,16 @@
     <Compile Include="VT\tblVolunteer.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
+    <Compile Include="VT\UIProperty.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
     <Compile Include="VT\Vend\sp_VendAddress_DAL.cs" />
     <Compile Include="VT\Vend\sp_Event_Rating_DAL.cs" />
     <Compile Include="VT\Vend\sp_VendContact_DAL.cs" />
     <Compile Include="VT\Vend\sp_VendEmail_DAL.cs" />
+    <Compile Include="VT\Vend_tblUserCred.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
     <Compile Include="VT\VolTeer.Context1.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

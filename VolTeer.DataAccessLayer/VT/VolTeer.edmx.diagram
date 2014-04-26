@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="de7d2e7369884abba3d8e072ac7271eb" Name="Diagram1" ZoomLevel="45">
+      <Diagram DiagramId="de7d2e7369884abba3d8e072ac7271eb" Name="Diagram1" ZoomLevel="66">
         <EntityTypeShape EntityType="VolTeerModel.tblContact" Width="1.5" PointX="11.875" PointY="9.625" IsExpanded="true" FillColor="0, 192, 0" />
         <EntityTypeShape EntityType="VolTeerModel.tblContactEmail" Width="1.5" PointX="17.375" PointY="9.375" IsExpanded="true" />
         <EntityTypeShape EntityType="VolTeerModel.tblEventRating" Width="1.5" PointX="17.125" PointY="3.75" IsExpanded="true" FillColor="0, 192, 0" />
@@ -60,6 +60,15 @@
         <AssociationConnector Association="VolTeerModel.tblGroupAddr" />
         <EntityTypeShape EntityType="VolTeerModel.tblVolEmail" Width="1.5" PointX="2.125" PointY="9.625" IsExpanded="true" FillColor="0, 192, 0" />
         <AssociationConnector Association="VolTeerModel.FK_tblEmail_tblVolunteer" />
+        <EntityTypeShape EntityType="VolTeerModel.ControlProperty" Width="1.5" PointX="4.2226359863870941" PointY="14.444982878139701" />
+        <EntityTypeShape EntityType="VolTeerModel.Order" Width="1.5" PointX="4.8246271334703206" PointY="13.555282047742644" />
+        <EntityTypeShape EntityType="VolTeerModel.Product" Width="1.5" PointX="10.881156222373786" PointY="12.296028977397842" />
+        <EntityTypeShape EntityType="VolTeerModel.RegisteredControl" Width="1.5" PointX="6.098178436094047" PointY="2.3020461957445582" />
+        <EntityTypeShape EntityType="VolTeerModel.SpatialTable" Width="1.5" PointX="4.1105905660011759" PointY="23.22679008134957" />
+        <EntityTypeShape EntityType="VolTeerModel.sysdiagram" Width="1.5" PointX="9.5823152873582735" PointY="27.994885159654025" />
+        <EntityTypeShape EntityType="VolTeerModel.UIProperty" Width="1.5" PointX="11.039732649475212" PointY="26.915574056522722" />
+        <EntityTypeShape EntityType="VolTeerModel.Vend_tblUserCred" Width="1.5" PointX="0.055196464087439917" PointY="9.2869907213780056" />
+        <AssociationConnector Association="VolTeerModel.FK_Order_Product" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

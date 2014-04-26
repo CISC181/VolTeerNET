@@ -53,6 +53,14 @@ namespace VolTeer.DataAccessLayer.VT
         public DbSet<tblGroup> tblGroups { get; set; }
         public DbSet<tblGroupVol> tblGroupVols { get; set; }
         public DbSet<tblVolEmail> tblVolEmails { get; set; }
+        public DbSet<ControlProperty> ControlProperties { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<Product> Products { get; set; }
+        public DbSet<RegisteredControl> RegisteredControls { get; set; }
+        public DbSet<SpatialTable> SpatialTables { get; set; }
+        public DbSet<sysdiagram> sysdiagrams { get; set; }
+        public DbSet<UIProperty> UIProperties { get; set; }
+        public DbSet<Vend_tblUserCred> Vend_tblUserCred { get; set; }
     
         public virtual int sp_Contact_Delete(Nullable<System.Guid> contactID)
         {
@@ -192,13 +200,13 @@ namespace VolTeer.DataAccessLayer.VT
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_EventRating_Update", ratingIDParameter, eventIDParameter, volIDParameter, ratingValueParameter, activeFlgParameter);
         }
     
-        public virtual int sp_Project_Delete(Nullable<System.Guid> projectID, ObjectParameter flag)
+        public virtual int sp_Project_Delete(Nullable<System.Guid> projectID)
         {
             var projectIDParameter = projectID.HasValue ?
                 new ObjectParameter("ProjectID", projectID) :
                 new ObjectParameter("ProjectID", typeof(System.Guid));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Project_Delete", projectIDParameter, flag);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Project_Delete", projectIDParameter);
         }
     
         public virtual int sp_Project_Insert(Nullable<System.Guid> projectID, string projectName, string projectDesc, Nullable<int> addrID)
@@ -1259,6 +1267,203 @@ namespace VolTeer.DataAccessLayer.VT
                 new ObjectParameter("PrimaryFlg", typeof(bool));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Vol_Phone_Select_Result>("sp_Vol_Phone_Select", volIDParameter, phoneIDParameter, primaryFlgParameter);
+        }
+    
+        public virtual int sp_alterdiagram1(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var versionParameter = version.HasValue ?
+                new ObjectParameter("version", version) :
+                new ObjectParameter("version", typeof(int));
+    
+            var definitionParameter = definition != null ?
+                new ObjectParameter("definition", definition) :
+                new ObjectParameter("definition", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_alterdiagram1", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+        }
+    
+        public virtual int sp_creatediagram1(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var versionParameter = version.HasValue ?
+                new ObjectParameter("version", version) :
+                new ObjectParameter("version", typeof(int));
+    
+            var definitionParameter = definition != null ?
+                new ObjectParameter("definition", definition) :
+                new ObjectParameter("definition", typeof(byte[]));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_creatediagram1", diagramnameParameter, owner_idParameter, versionParameter, definitionParameter);
+        }
+    
+        public virtual int sp_dropdiagram1(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_dropdiagram1", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual ObjectResult<sp_helpdiagramdefinition1_Result> sp_helpdiagramdefinition1(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagramdefinition1_Result>("sp_helpdiagramdefinition1", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual ObjectResult<sp_helpdiagrams1_Result> sp_helpdiagrams1(string diagramname, Nullable<int> owner_id)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_helpdiagrams1_Result>("sp_helpdiagrams1", diagramnameParameter, owner_idParameter);
+        }
+    
+        public virtual int sp_renamediagram1(string diagramname, Nullable<int> owner_id, string new_diagramname)
+        {
+            var diagramnameParameter = diagramname != null ?
+                new ObjectParameter("diagramname", diagramname) :
+                new ObjectParameter("diagramname", typeof(string));
+    
+            var owner_idParameter = owner_id.HasValue ?
+                new ObjectParameter("owner_id", owner_id) :
+                new ObjectParameter("owner_id", typeof(int));
+    
+            var new_diagramnameParameter = new_diagramname != null ?
+                new ObjectParameter("new_diagramname", new_diagramname) :
+                new ObjectParameter("new_diagramname", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_renamediagram1", diagramnameParameter, owner_idParameter, new_diagramnameParameter);
+        }
+    
+        public virtual int sp_upgraddiagrams1()
+        {
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams1");
+        }
+    
+        public virtual ObjectResult<Nullable<int>> sp_GroupVol_Insert(Nullable<int> groupID, Nullable<System.Guid> volID, Nullable<bool> primaryVolID, Nullable<bool> admin)
+        {
+            var groupIDParameter = groupID.HasValue ?
+                new ObjectParameter("GroupID", groupID) :
+                new ObjectParameter("GroupID", typeof(int));
+    
+            var volIDParameter = volID.HasValue ?
+                new ObjectParameter("VolID", volID) :
+                new ObjectParameter("VolID", typeof(System.Guid));
+    
+            var primaryVolIDParameter = primaryVolID.HasValue ?
+                new ObjectParameter("PrimaryVolID", primaryVolID) :
+                new ObjectParameter("PrimaryVolID", typeof(bool));
+    
+            var adminParameter = admin.HasValue ?
+                new ObjectParameter("Admin", admin) :
+                new ObjectParameter("Admin", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_GroupVol_Insert", groupIDParameter, volIDParameter, primaryVolIDParameter, adminParameter);
+        }
+    
+        public virtual ObjectResult<sp_GroupVol_Select_Result> sp_GroupVol_Select(Nullable<int> groupID)
+        {
+            var groupIDParameter = groupID.HasValue ?
+                new ObjectParameter("GroupID", groupID) :
+                new ObjectParameter("GroupID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GroupVol_Select_Result>("sp_GroupVol_Select", groupIDParameter);
+        }
+    
+        public virtual int sp_GroupVol_Update(Nullable<int> groupID, Nullable<System.Guid> volID, Nullable<bool> primaryVolID, Nullable<bool> admin)
+        {
+            var groupIDParameter = groupID.HasValue ?
+                new ObjectParameter("GroupID", groupID) :
+                new ObjectParameter("GroupID", typeof(int));
+    
+            var volIDParameter = volID.HasValue ?
+                new ObjectParameter("VolID", volID) :
+                new ObjectParameter("VolID", typeof(System.Guid));
+    
+            var primaryVolIDParameter = primaryVolID.HasValue ?
+                new ObjectParameter("PrimaryVolID", primaryVolID) :
+                new ObjectParameter("PrimaryVolID", typeof(bool));
+    
+            var adminParameter = admin.HasValue ?
+                new ObjectParameter("Admin", admin) :
+                new ObjectParameter("Admin", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_GroupVol_Update", groupIDParameter, volIDParameter, primaryVolIDParameter, adminParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<System.Guid>> sp_Vend_Contact_Insert(Nullable<System.Guid> vendorID, Nullable<System.Guid> contactID, Nullable<bool> primaryContact)
+        {
+            var vendorIDParameter = vendorID.HasValue ?
+                new ObjectParameter("VendorID", vendorID) :
+                new ObjectParameter("VendorID", typeof(System.Guid));
+    
+            var contactIDParameter = contactID.HasValue ?
+                new ObjectParameter("ContactID", contactID) :
+                new ObjectParameter("ContactID", typeof(System.Guid));
+    
+            var primaryContactParameter = primaryContact.HasValue ?
+                new ObjectParameter("PrimaryContact", primaryContact) :
+                new ObjectParameter("PrimaryContact", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("sp_Vend_Contact_Insert", vendorIDParameter, contactIDParameter, primaryContactParameter);
+        }
+    
+        public virtual ObjectResult<sp_Vend_Contact_Select_Result> sp_Vend_Contact_Select(Nullable<System.Guid> contactID)
+        {
+            var contactIDParameter = contactID.HasValue ?
+                new ObjectParameter("ContactID", contactID) :
+                new ObjectParameter("ContactID", typeof(System.Guid));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Vend_Contact_Select_Result>("sp_Vend_Contact_Select", contactIDParameter);
+        }
+    
+        public virtual int sp_Vend_Contact_Update(Nullable<System.Guid> vendorID, Nullable<System.Guid> contactID, Nullable<bool> primaryContact)
+        {
+            var vendorIDParameter = vendorID.HasValue ?
+                new ObjectParameter("VendorID", vendorID) :
+                new ObjectParameter("VendorID", typeof(System.Guid));
+    
+            var contactIDParameter = contactID.HasValue ?
+                new ObjectParameter("ContactID", contactID) :
+                new ObjectParameter("ContactID", typeof(System.Guid));
+    
+            var primaryContactParameter = primaryContact.HasValue ?
+                new ObjectParameter("PrimaryContact", primaryContact) :
+                new ObjectParameter("PrimaryContact", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Vend_Contact_Update", vendorIDParameter, contactIDParameter, primaryContactParameter);
         }
     }
 }
