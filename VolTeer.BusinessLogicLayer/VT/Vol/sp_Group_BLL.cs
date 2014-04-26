@@ -40,9 +40,9 @@ namespace VolTeer.BusinessLogicLayer.VT.Vol
 
         }
 
-        public void DeleteGroup(int GroupID, bool ActiveFlg)
+        public void DeleteGroup(int GroupID)
         {
-            DAL.DeleteGroup(GroupID, ActiveFlg);
+            DAL.DeleteGroup(GroupID);
         }
 
 

@@ -53,7 +53,7 @@
           <ConnectorPoint PointX="10.96875" PointY="3.2463067288344187" />
           <ConnectorPoint PointX="10.96875" PointY="8.5" />
         </AssociationConnector>
-        <EntityTypeShape EntityType="VolTeerModel.tblGroup" Width="1.5" PointX="4.25" PointY="0.875" />
+        <EntityTypeShape EntityType="VolTeerModel.tblGroup" Width="1.5" PointX="4.25" PointY="0.875" FillColor="0, 192, 0" />
         <EntityTypeShape EntityType="VolTeerModel.tblGroupVol" Width="1.5" PointX="7.9416747186061354" PointY="20.538075799373015" />
         <AssociationConnector Association="VolTeerModel.FK_tblGroupVol_tblGroup" />
         <AssociationConnector Association="VolTeerModel.FK_tblGroupVol_tblVolunteer" />

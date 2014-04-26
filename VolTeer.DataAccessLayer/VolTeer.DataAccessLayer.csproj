@@ -225,9 +225,6 @@
     <Compile Include="VT\sp_EventRating_Select_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
-    <Compile Include="VT\sp_GroupVol_Select_Result.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
     <Compile Include="VT\sp_Group_Select_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>

@@ -16,5 +16,6 @@ namespace VolTeer.DataAccessLayer.VT
         public int GroupID { get; set; }
         public string GroupName { get; set; }
         public Nullable<int> ParticipationLevelID { get; set; }
+        public Nullable<bool> ActiveFlg { get; set; }
     }
 }

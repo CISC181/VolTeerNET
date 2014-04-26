@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using VolTeer.DomainModels.VT.Vol;
+using VolTeer.Contracts.VT.Vol;
 
 namespace VolTeer.DataAccessLayer.VT.Vol
 {
-    public class sp_Group_DAL
+    public class sp_Group_DAL: sp_Group_Con
     {
         public List<sp_Group_DM> ListGroups(int iGroupID)
         {
@@ -53,15 +54,16 @@ namespace VolTeer.DataAccessLayer.VT.Vol
 
         }
 
-        public void DeleteGroup(int GroupID_IN, bool ActiveFlg_IN)
+        public void DeleteGroup(int GroupID_IN)
         {
             using (VolTeerEntities context = new VolTeerEntities())
             {
-                context.sp_Group_Delete(GroupID_IN,ActiveFlg_IN);
+                context.sp_Group_Delete(GroupID_IN);
 
             }
 
         }
+
 
     }
 }
