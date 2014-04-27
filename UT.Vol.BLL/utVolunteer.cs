@@ -2,15 +2,24 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VolTeer.DomainModels.VT.Vol;
 using VolTeer.BusinessLogicLayer.VT.Vol;
-using UT.Volteer.BLL.HelperMethods;
+using UT.Vol.BLL.HelperMethods;
 using System.Data;
+using System.IO;
 
-namespace UT.Volteer.BLL
+namespace UT.Vol.BLL
 {
     [TestClass]
     public class utVolunteer
     {
-        const string CWorkbook = "C:\\Users\\Dad\\Source\\Repos\\VolTeerNET\\UT.Volteer.BLL\\UTTestFiles\\Volunteer.xlsx";
+        static string CWorkbook = "Volunteer.xlsx";
+
+        [ClassInitialize]
+        public static void GetCWorkbook(TestContext testContext)
+        {
+            string exeDir = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            string helperFilesDir = Path.GetFullPath(Path.Combine(exeDir, "..\\..\\HelperFiles\\"));
+            CWorkbook = Path.Combine(helperFilesDir, CWorkbook);
+        }
 
         [TestMethod]
         public void CreateVolunteer()

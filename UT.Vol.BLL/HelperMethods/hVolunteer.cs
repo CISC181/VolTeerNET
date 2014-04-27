@@ -6,7 +6,7 @@ using VolTeer.DomainModels.VT.Vol;
 using VolTeer.BusinessLogicLayer.VT.Vol;
 
 
-namespace UT.Volteer.BLL.HelperMethods
+namespace UT.Vol.BLL.HelperMethods
 {
     public class hVolunteer
     {

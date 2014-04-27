@@ -6,18 +6,6 @@
     <edmx:StorageModels>
     <Schema Namespace="VolTeerModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="VolTeerModelStoreContainer">
-          <EntitySet Name="ControlProperty" EntityType="VolTeerModel.Store.ControlProperty" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Order" EntityType="VolTeerModel.Store.Order" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Product" EntityType="VolTeerModel.Store.Product" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="RegisteredControls" EntityType="VolTeerModel.Store.RegisteredControls" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="SpatialTable" EntityType="VolTeerModel.Store.SpatialTable" store:Type="Tables" store:Schema="dbo" store:Name="SpatialTable">
-            <DefiningQuery>SELECT 
-      [SpatialTable].[id] AS [id], 
-      [SpatialTable].[GeogCol2] AS [GeogCol2]
-      FROM [dbo].[SpatialTable] AS [SpatialTable]</DefiningQuery>
-          </EntitySet>
-          <EntitySet Name="sysdiagrams" EntityType="VolTeerModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="UIProperties" EntityType="VolTeerModel.Store.UIProperties" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Vend_tblUserCred" EntityType="VolTeerModel.Store.Vend_tblUserCred" store:Type="Tables" store:Schema="dbo" store:Name="Vend.tblUserCred">
             <DefiningQuery>SELECT 
       [Vend_tblUserCred].[ContactID] AS [ContactID], 
@@ -54,10 +42,6 @@
           <AssociationSet Name="FK_Appointments_ParentAppointments" Association="VolTeerModel.Store.FK_Appointments_ParentAppointments">
             <End Role="tblAvailability" EntitySet="tblAvailability" />
             <End Role="tblAvailability1" EntitySet="tblAvailability" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Order_Product" Association="VolTeerModel.Store.FK_Order_Product">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="Order" EntitySet="Order" />
           </AssociationSet>
           <AssociationSet Name="FK_Skill_Skill" Association="VolTeerModel.Store.FK_Skill_Skill">
             <End Role="tblSkill" EntitySet="tblSkill" />
@@ -164,73 +148,10 @@
             <End Role="tblVolSkill" EntitySet="tblVolSkill" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="ControlProperty">
-          <Key>
-            <PropertyRef Name="RegsisterControlID" />
-            <PropertyRef Name="RegisterPropertyID" />
-          </Key>
-          <Property Name="RegsisterControlID" Type="int" Nullable="false" />
-          <Property Name="RegisterPropertyID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="PropertyID" Type="int" />
-          <Property Name="PropertValueID" Type="int" />
-        </EntityType>
-        <EntityType Name="Order">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="productId" Type="int" Nullable="false" />
-          <Property Name="quantity" Type="int" Nullable="false" />
-          <Property Name="timestamp" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
-        </EntityType>
-        <EntityType Name="Product">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="price" Type="float" Nullable="false" />
-        </EntityType>
-        <EntityType Name="RegisteredControls">
-          <Key>
-            <PropertyRef Name="RegisterControlID" />
-          </Key>
-          <Property Name="RegisterControlID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="table_catalog" Type="nvarchar" MaxLength="128" />
-          <Property Name="table_schema" Type="nvarchar" MaxLength="128" />
-          <Property Name="table_name" Type="nvarchar" MaxLength="128" />
-          <Property Name="column_name" Type="nvarchar" MaxLength="255" />
-          <Property Name="container_name" Type="nvarchar" MaxLength="255" />
-          <Property Name="control_name" Type="nvarchar" MaxLength="255" />
-        </EntityType>
         <!--Errors Found During Generation:
       warning 6002: The table/view 'VolTeer.dbo.SpatialTable' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       warning 6005: The data type 'geography' is not supported for the target .NET Framework version. The column 'GeogCol1' in the table 'VolTeer.dbo.SpatialTable' was excluded from the model. To use the data type 'geography', target the .NET Framework 4.5 or higher.
       -->
-        <EntityType Name="SpatialTable">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="GeogCol2" Type="nvarchar(max)" StoreGeneratedPattern="Computed" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
-        <EntityType Name="UIProperties">
-          <Key>
-            <PropertyRef Name="PropertyID" />
-          </Key>
-          <Property Name="PropertyID" Type="int" Nullable="false" />
-          <Property Name="PropertyDescr" Type="varchar" MaxLength="75" />
-        </EntityType>
         <!--Errors Found During Generation:
       warning 6002: The table/view 'VolTeer.dbo.Vend.tblUserCred' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
@@ -555,18 +476,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_Order_Product">
-          <End Role="Product" Type="VolTeerModel.Store.Product" Multiplicity="1" />
-          <End Role="Order" Type="VolTeerModel.Store.Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Order">
-              <PropertyRef Name="productId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_Skill_Skill">
           <End Role="tblSkill" Type="VolTeerModel.Store.tblSkill" Multiplicity="0..1" />
           <End Role="tblSkill1" Type="VolTeerModel.Store.tblSkill" Multiplicity="*" />
@@ -879,43 +788,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="Describe_CheckConstraints" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="Describe_TableColumns" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="fn_diagramobjects" ReturnType="int" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
-        </Function>
         <Function Name="sp_SpatialTable_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="PointLongLat" Type="nvarchar" Mode="In" />
           <Parameter Name="MapNumber" Type="int" Mode="In" />
         </Function>
-        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_Contact_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
           <Parameter Name="ContactID" Type="uniqueidentifier" Mode="In" />
         </Function>
@@ -1589,32 +1465,6 @@
             <Parameter Name="AddrID" Mode="In" Type="Int32" />
             <Parameter Name="PrimaryAddr" Mode="In" Type="Boolean" />
           </FunctionImport>
-          <FunctionImport Name="Order_Delete">
-            <Parameter Name="id" Mode="In" Type="Int32" />
-            <Parameter Name="productId" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="Order_Insert" ReturnType="Collection(Decimal)">
-            <Parameter Name="productId" Mode="In" Type="Int32" />
-            <Parameter Name="quantity" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="Order_Update">
-            <Parameter Name="id" Mode="In" Type="Int32" />
-            <Parameter Name="productId" Mode="In" Type="Int32" />
-            <Parameter Name="quantity" Mode="In" Type="Int32" />
-            <Parameter Name="originalTimestamp" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="Product_Delete">
-          <Parameter Name="id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="Product_Insert" ReturnType="Collection(Decimal)">
-            <Parameter Name="name" Mode="In" Type="String" />
-            <Parameter Name="price" Mode="In" Type="Double" />
-          </FunctionImport>
-          <FunctionImport Name="Product_Update">
-            <Parameter Name="id" Mode="In" Type="Int32" />
-            <Parameter Name="name" Mode="In" Type="String" />
-            <Parameter Name="price" Mode="In" Type="Double" />
-          </FunctionImport>
           <FunctionImport Name="sp_Vol_Address_Delete">
           <Parameter Name="AddrID" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -1644,40 +1494,6 @@
             <Parameter Name="PrimaryAddr" Mode="In" Type="Boolean" />
           </FunctionImport>
           <EntitySet Name="tblVendStates" EntityType="VolTeerModel.tblVendState" />
-          <FunctionImport Name="sp_alterdiagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="version" Mode="In" Type="Int32" />
-            <Parameter Name="definition" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="sp_creatediagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="version" Mode="In" Type="Int32" />
-            <Parameter Name="definition" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="sp_dropdiagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_helpdiagramdefinition" ReturnType="Collection(VolTeerModel.sp_helpdiagramdefinition_Result)">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_helpdiagrams" ReturnType="Collection(VolTeerModel.sp_helpdiagrams_Result)">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_renamediagram">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="new_diagramname" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="sp_SpatialTable_Insert">
-            <Parameter Name="PointLongLat" Mode="In" Type="String" />
-            <Parameter Name="MapNumber" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_upgraddiagrams" />
           <EntitySet Name="tblSkills" EntityType="VolTeerModel.tblSkill" />
           <AssociationSet Name="FK_Skill_Skill" Association="VolTeerModel.FK_Skill_Skill">
             <End Role="tblSkill" EntitySet="tblSkills" />
@@ -1726,8 +1542,6 @@
             <Parameter Name="EmailID" Mode="In" Type="Int32" />
             <Parameter Name="PrimaryFlg" Mode="In" Type="Boolean" />
           </FunctionImport>
-          <FunctionImport Name="Describe_CheckConstraints" ReturnType="Collection(VolTeerModel.Describe_CheckConstraints_Result)" />
-          <FunctionImport Name="Describe_TableColumns" ReturnType="Collection(VolTeerModel.Describe_TableColumns_Result)" />
           <FunctionImport Name="sp_Vol_Phone_Update">
             <Parameter Name="PhoneID" Mode="In" Type="Int32" />
             <Parameter Name="PhoneNbr" Mode="In" Type="String" />
@@ -1750,36 +1564,6 @@
             <Parameter Name="PhoneID" Mode="In" Type="Int32" />
             <Parameter Name="PrimaryFlg" Mode="In" Type="Boolean" />
           </FunctionImport>
-          <FunctionImport Name="sp_alterdiagram1">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="version" Mode="In" Type="Int32" />
-            <Parameter Name="definition" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="sp_creatediagram1">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="version" Mode="In" Type="Int32" />
-            <Parameter Name="definition" Mode="In" Type="Binary" />
-          </FunctionImport>
-          <FunctionImport Name="sp_dropdiagram1">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_helpdiagramdefinition1" ReturnType="Collection(VolTeerModel.sp_helpdiagramdefinition1_Result)">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_helpdiagrams1" ReturnType="Collection(VolTeerModel.sp_helpdiagrams1_Result)">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_renamediagram1">
-            <Parameter Name="diagramname" Mode="In" Type="String" />
-            <Parameter Name="owner_id" Mode="In" Type="Int32" />
-            <Parameter Name="new_diagramname" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="sp_upgraddiagrams1" />
           <FunctionImport Name="sp_GroupVol_Insert" ReturnType="Collection(Int32)">
             <Parameter Name="GroupID" Mode="In" Type="Int32" />
             <Parameter Name="VolID" Mode="In" Type="Guid" />
@@ -1795,18 +1579,7 @@
             <Parameter Name="PrimaryVolID" Mode="In" Type="Boolean" />
             <Parameter Name="Admin" Mode="In" Type="Boolean" />
           </FunctionImport>
-          <EntitySet Name="ControlProperties" EntityType="VolTeerModel.ControlProperty" />
-          <EntitySet Name="Orders" EntityType="VolTeerModel.Order" />
-          <EntitySet Name="Products" EntityType="VolTeerModel.Product" />
-          <EntitySet Name="RegisteredControls" EntityType="VolTeerModel.RegisteredControl" />
-          <EntitySet Name="SpatialTables" EntityType="VolTeerModel.SpatialTable" />
-          <EntitySet Name="sysdiagrams" EntityType="VolTeerModel.sysdiagram" />
-          <EntitySet Name="UIProperties" EntityType="VolTeerModel.UIProperty" />
           <EntitySet Name="Vend_tblUserCred" EntityType="VolTeerModel.Vend_tblUserCred" />
-          <AssociationSet Name="FK_Order_Product" Association="VolTeerModel.FK_Order_Product">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="Order" EntitySet="Orders" />
-          </AssociationSet>
           <FunctionImport Name="sp_Vend_Contact_Insert" ReturnType="Collection(Guid)">
             <Parameter Name="VendorID" Mode="In" Type="Guid" />
             <Parameter Name="ContactID" Mode="In" Type="Guid" />
@@ -2413,17 +2186,6 @@
           <Property Type="String" Name="census_devision_name" MaxLength="255" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="circuit_court" MaxLength="255" FixedLength="false" Unicode="false" />
         </EntityType>
-        <ComplexType Name="sp_helpdiagramdefinition_Result">
-          <Property Type="Int32" Name="version" Nullable="true" />
-          <Property Type="Binary" Name="definition" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="sp_helpdiagrams_Result">
-          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
-          <Property Type="Int32" Name="ID" Nullable="false" />
-          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
-          <Property Type="Int32" Name="OwnerID" Nullable="false" />
-        </ComplexType>
         <EntityType Name="tblSkill">
           <Key>
             <PropertyRef Name="SkillID" />
@@ -2564,31 +2326,6 @@
           <Property Type="Boolean" Name="ActiveFlg" Nullable="false" />
           <Property Type="Boolean" Name="PrimaryFlg" Nullable="false" />
         </ComplexType>
-        <ComplexType Name="Describe_CheckConstraints_Result">
-          <Property Type="String" Name="Table_Catalog" Nullable="true" MaxLength="128" />
-          <Property Type="String" Name="Table_Schema" Nullable="true" MaxLength="128" />
-          <Property Type="String" Name="table_name" Nullable="false" MaxLength="128" />
-          <Property Type="String" Name="column_name" Nullable="true" MaxLength="128" />
-          <Property Type="String" Name="constraint_catalog" Nullable="true" MaxLength="128" />
-          <Property Type="String" Name="Constraint_name" Nullable="false" MaxLength="128" />
-          <Property Type="String" Name="check_clause" Nullable="true" MaxLength="4000" />
-        </ComplexType>
-        <ComplexType Name="Describe_TableColumns_Result">
-          <Property Type="String" Name="table_catalog" Nullable="true" MaxLength="128" />
-          <Property Type="String" Name="table_schema" Nullable="true" MaxLength="128" />
-          <Property Type="String" Name="table_name" Nullable="false" MaxLength="128" />
-          <Property Type="String" Name="column_name" Nullable="true" MaxLength="128" />
-          <Property Type="Int32" Name="ordinal_position" Nullable="true" />
-          <Property Type="String" Name="Column_Default" Nullable="true" MaxLength="4000" />
-          <Property Type="String" Name="is_nullable" Nullable="true" MaxLength="3" />
-          <Property Type="String" Name="Data_type" Nullable="true" MaxLength="128" />
-          <Property Type="Int32" Name="character_maximum_length" Nullable="true" />
-          <Property Type="Byte" Name="numeric_precision" Nullable="true" />
-          <Property Type="Int32" Name="numeric_scale" Nullable="true" />
-          <Property Type="Int16" Name="datetime_precision" Nullable="true" />
-          <Property Type="String" Name="container_name" Nullable="true" MaxLength="255" />
-          <Property Type="String" Name="control_name" Nullable="true" MaxLength="255" />
-        </ComplexType>
         <ComplexType Name="sp_Vol_Phone_Insert_Result">
           <Property Type="Int32" Name="PhoneID" Nullable="true" />
         </ComplexType>
@@ -2599,82 +2336,6 @@
           <Property Type="Boolean" Name="ActiveFlg" Nullable="true" />
           <Property Type="Boolean" Name="PrimaryFlg" Nullable="false" />
         </ComplexType>
-        <ComplexType Name="sp_helpdiagramdefinition1_Result">
-          <Property Type="Int32" Name="version" Nullable="true" />
-          <Property Type="Binary" Name="definition" Nullable="true" />
-        </ComplexType>
-        <ComplexType Name="sp_helpdiagrams1_Result">
-          <Property Type="String" Name="Database" Nullable="true" MaxLength="128" />
-          <Property Type="String" Name="Name" Nullable="false" MaxLength="128" />
-          <Property Type="Int32" Name="ID" Nullable="false" />
-          <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
-          <Property Type="Int32" Name="OwnerID" Nullable="false" />
-        </ComplexType>
-        <EntityType Name="ControlProperty">
-          <Key>
-            <PropertyRef Name="RegsisterControlID" />
-            <PropertyRef Name="RegisterPropertyID" />
-          </Key>
-          <Property Type="Int32" Name="RegsisterControlID" Nullable="false" />
-          <Property Type="Int32" Name="RegisterPropertyID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="PropertyID" />
-          <Property Type="Int32" Name="PropertValueID" />
-        </EntityType>
-        <EntityType Name="Order">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="productId" Nullable="false" />
-          <Property Type="Int32" Name="quantity" Nullable="false" />
-          <Property Type="Binary" Name="timestamp" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
-          <NavigationProperty Name="Product" Relationship="VolTeerModel.FK_Order_Product" FromRole="Order" ToRole="Product" />
-        </EntityType>
-        <EntityType Name="Product">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Double" Name="price" Nullable="false" />
-          <NavigationProperty Name="Orders" Relationship="VolTeerModel.FK_Order_Product" FromRole="Product" ToRole="Order" />
-        </EntityType>
-        <EntityType Name="RegisteredControl">
-          <Key>
-            <PropertyRef Name="RegisterControlID" />
-          </Key>
-          <Property Type="Int32" Name="RegisterControlID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="table_catalog" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="table_schema" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="table_name" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="column_name" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="container_name" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="control_name" MaxLength="255" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="SpatialTable">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="GeogCol2" MaxLength="Max" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="Computed" />
-        </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Type="String" Name="name" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="principal_id" Nullable="false" />
-          <Property Type="Int32" Name="diagram_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="version" />
-          <Property Type="Binary" Name="definition" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="UIProperty">
-          <Key>
-            <PropertyRef Name="PropertyID" />
-          </Key>
-          <Property Type="Int32" Name="PropertyID" Nullable="false" />
-          <Property Type="String" Name="PropertyDescr" MaxLength="75" FixedLength="false" Unicode="false" />
-        </EntityType>
         <EntityType Name="Vend_tblUserCred">
           <Key>
             <PropertyRef Name="ContactID" />
@@ -2685,18 +2346,6 @@
           <Property Type="String" Name="Password" Nullable="false" MaxLength="32" FixedLength="true" Unicode="false" />
           <Property Type="Guid" Name="UserID" Nullable="false" />
         </EntityType>
-        <Association Name="FK_Order_Product">
-          <End Type="VolTeerModel.Product" Role="Product" Multiplicity="1" />
-          <End Type="VolTeerModel.Order" Role="Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Order">
-              <PropertyRef Name="productId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <ComplexType Name="sp_Vend_Contact_Select_Result">
           <Property Type="Guid" Name="VendorID" Nullable="false" />
           <Property Type="Guid" Name="ContactID" Nullable="false" />
@@ -3311,7 +2960,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_SpatialTable_Insert" FunctionName="VolTeerModel.Store.sp_SpatialTable_Insert" />
           <EntitySetMapping Name="tblSkills">
             <EntityTypeMapping TypeName="VolTeerModel.tblSkill">
               <MappingFragment StoreEntitySet="tblSkill">
@@ -3505,39 +3153,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Describe_CheckConstraints" FunctionName="VolTeerModel.Store.Describe_CheckConstraints">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="VolTeerModel.Describe_CheckConstraints_Result">
-                <ScalarProperty Name="Table_Catalog" ColumnName="Table_Catalog" />
-                <ScalarProperty Name="Table_Schema" ColumnName="Table_Schema" />
-                <ScalarProperty Name="table_name" ColumnName="table_name" />
-                <ScalarProperty Name="column_name" ColumnName="column_name" />
-                <ScalarProperty Name="constraint_catalog" ColumnName="constraint_catalog" />
-                <ScalarProperty Name="Constraint_name" ColumnName="Constraint_name" />
-                <ScalarProperty Name="check_clause" ColumnName="check_clause" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Describe_TableColumns" FunctionName="VolTeerModel.Store.Describe_TableColumns">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="VolTeerModel.Describe_TableColumns_Result">
-                <ScalarProperty Name="table_catalog" ColumnName="table_catalog" />
-                <ScalarProperty Name="table_schema" ColumnName="table_schema" />
-                <ScalarProperty Name="table_name" ColumnName="table_name" />
-                <ScalarProperty Name="column_name" ColumnName="column_name" />
-                <ScalarProperty Name="ordinal_position" ColumnName="ordinal_position" />
-                <ScalarProperty Name="Column_Default" ColumnName="Column_Default" />
-                <ScalarProperty Name="is_nullable" ColumnName="is_nullable" />
-                <ScalarProperty Name="Data_type" ColumnName="Data_type" />
-                <ScalarProperty Name="character_maximum_length" ColumnName="character_maximum_length" />
-                <ScalarProperty Name="numeric_precision" ColumnName="numeric_precision" />
-                <ScalarProperty Name="numeric_scale" ColumnName="numeric_scale" />
-                <ScalarProperty Name="datetime_precision" ColumnName="datetime_precision" />
-                <ScalarProperty Name="container_name" ColumnName="container_name" />
-                <ScalarProperty Name="control_name" ColumnName="control_name" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_Vol_Phone_Update" FunctionName="VolTeerModel.Store.sp_Vol_Phone_Update" />
           <FunctionImportMapping FunctionImportName="sp_Vol_Phone_Insert" FunctionName="VolTeerModel.Store.sp_Vol_Phone_Insert">
             <ResultMapping>
@@ -3558,103 +3173,10 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_alterdiagram1" FunctionName="VolTeerModel.Store.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_creatediagram1" FunctionName="VolTeerModel.Store.sp_creatediagram" />
-          <FunctionImportMapping FunctionImportName="sp_dropdiagram1" FunctionName="VolTeerModel.Store.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition1" FunctionName="VolTeerModel.Store.sp_helpdiagramdefinition">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="VolTeerModel.sp_helpdiagramdefinition1_Result">
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams1" FunctionName="VolTeerModel.Store.sp_helpdiagrams">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="VolTeerModel.sp_helpdiagrams1_Result">
-                <ScalarProperty Name="Database" ColumnName="Database" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Owner" ColumnName="Owner" />
-                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_renamediagram1" FunctionName="VolTeerModel.Store.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams1" FunctionName="VolTeerModel.Store.sp_upgraddiagrams" />
           <FunctionImportMapping FunctionImportName="sp_GroupVol_Insert" FunctionName="VolTeerModel.Store.sp_GroupVol_Insert" />
           <FunctionImportMapping FunctionImportName="sp_GroupVol_Select" FunctionName="VolTeerModel.Store.sp_GroupVol_Select">
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_GroupVol_Update" FunctionName="VolTeerModel.Store.sp_GroupVol_Update" />
-          <EntitySetMapping Name="ControlProperties">
-            <EntityTypeMapping TypeName="VolTeerModel.ControlProperty">
-              <MappingFragment StoreEntitySet="ControlProperty">
-                <ScalarProperty Name="PropertValueID" ColumnName="PropertValueID" />
-                <ScalarProperty Name="PropertyID" ColumnName="PropertyID" />
-                <ScalarProperty Name="RegisterPropertyID" ColumnName="RegisterPropertyID" />
-                <ScalarProperty Name="RegsisterControlID" ColumnName="RegsisterControlID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Orders">
-            <EntityTypeMapping TypeName="VolTeerModel.Order">
-              <MappingFragment StoreEntitySet="Order">
-                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
-                <ScalarProperty Name="quantity" ColumnName="quantity" />
-                <ScalarProperty Name="productId" ColumnName="productId" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Products">
-            <EntityTypeMapping TypeName="VolTeerModel.Product">
-              <MappingFragment StoreEntitySet="Product">
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RegisteredControls">
-            <EntityTypeMapping TypeName="VolTeerModel.RegisteredControl">
-              <MappingFragment StoreEntitySet="RegisteredControls">
-                <ScalarProperty Name="control_name" ColumnName="control_name" />
-                <ScalarProperty Name="container_name" ColumnName="container_name" />
-                <ScalarProperty Name="column_name" ColumnName="column_name" />
-                <ScalarProperty Name="table_name" ColumnName="table_name" />
-                <ScalarProperty Name="table_schema" ColumnName="table_schema" />
-                <ScalarProperty Name="table_catalog" ColumnName="table_catalog" />
-                <ScalarProperty Name="RegisterControlID" ColumnName="RegisterControlID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="SpatialTables">
-            <EntityTypeMapping TypeName="VolTeerModel.SpatialTable">
-              <MappingFragment StoreEntitySet="SpatialTable">
-                <ScalarProperty Name="GeogCol2" ColumnName="GeogCol2" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="VolTeerModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UIProperties">
-            <EntityTypeMapping TypeName="VolTeerModel.UIProperty">
-              <MappingFragment StoreEntitySet="UIProperties">
-                <ScalarProperty Name="PropertyDescr" ColumnName="PropertyDescr" />
-                <ScalarProperty Name="PropertyID" ColumnName="PropertyID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="Vend_tblUserCred">
             <EntityTypeMapping TypeName="VolTeerModel.Vend_tblUserCred">
               <MappingFragment StoreEntitySet="Vend_tblUserCred">
