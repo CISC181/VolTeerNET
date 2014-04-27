@@ -9,7 +9,7 @@ namespace VolTeer.DomainModels.VT.Vol
     {
         public Guid VolID { get; set; }
         public Guid SkillID { get; set; }
-        public Guid? MstrSkilID { get; set; }
+        public Guid? MstrSkillID { get; set; }
         public string SkillName { get; set; }
     }
 }

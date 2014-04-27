@@ -62,9 +62,9 @@
     </Columns>
 </telerik:RadTreeList>
             <br />
-            <input type="button" name="Text2" value="Clear All Entries" onclick="ClearAllEntries()" />
+            <input type="button" name="Text2" value="Clear All Entries" onclick="ClearAllTreeEntries()" />
             <br />
-            <telerik:RadButton ID="RadButton1" runat="server" Text="Process" OnClick="rBTNProcess_Click">
+            <telerik:RadButton ID="RadButton1" runat="server" Text="Process" OnClick="rBTNProcessTree_Click">
             </telerik:RadButton>
 
     </asp:Panel>
@@ -97,6 +97,10 @@
             autoCompleteBox.get_entries().clear();
         }
 
+        function ClearAllTreeEntries() {
+            var radTreeList = $find("<%= rTLSkills.ClientID %>");
+            radTreeList.get_entries().clear();
+        }
 
         //]]>
     </script>

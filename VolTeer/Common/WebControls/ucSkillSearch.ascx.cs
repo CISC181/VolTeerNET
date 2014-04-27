@@ -58,6 +58,7 @@ namespace VolTeer.Common.WebControls
             VolSkillBLL.DeleteVolSkillALL(VolID);
 
             AutoCompleteBoxEntryCollection entries = this.rACSkills.Entries;
+
             for (int i = 0; i < entries.Count; i++)
             {
                 if (entries[i].Value == string.Empty)
@@ -85,6 +86,19 @@ namespace VolTeer.Common.WebControls
             }
         }
 
+        protected void rBTNProcessTree_Click(object sender, EventArgs e)
+        {
+            MembershipUser currentUser = Membership.GetUser();
+            Guid? VolID = (Guid)currentUser.ProviderUserKey;
+
+            //Delete all associated VolSkills for the given volid
+            VolSkillBLL.DeleteVolSkillALL(VolID);
+
+            TreeListColumnsCollection entries = this.rTLSkills.Columns;
+           
+          
+        }
+
 
         protected void rbAutoComplete_CheckedChanged(object sender, EventArgs e)
         {
@@ -97,12 +111,21 @@ namespace VolTeer.Common.WebControls
         {
             pnlTree.Visible = true;
             pnlAutoComplete.Visible = false;
+
+            MembershipUser currentUser = Membership.GetUser();
+            Guid VolID = (Guid)currentUser.ProviderUserKey;
+            List<sp_VolSkill_DM> dt = VolSkillBLL.ListVolSkills(VolID);
+            rTLSkills.DataSource = dt;
+ 
         }
 
         protected void rTLSkills_NeedDataSource(object sender, TreeListNeedDataSourceEventArgs e)
         {
-            rTLSkills.DataSource = SkillsBLL.ListSkills();
-
+            
+            MembershipUser currentUser = Membership.GetUser();
+            Guid VolID = (Guid)currentUser.ProviderUserKey;
+            List<sp_VolSkill_DM> dt = VolSkillBLL.ListVolSkills(VolID);
+            rTLSkills.DataSource = dt;
         }
 
 

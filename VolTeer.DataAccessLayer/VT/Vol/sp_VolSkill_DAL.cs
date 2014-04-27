@@ -21,7 +21,7 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                             select new sp_VolSkill_DM
                             {
                                 SkillID = result.SkillID,
-                                MstrSkilID = result.MstrSkillID,
+                                MstrSkillID = result.MstrSkillID,
                                 SkillName = result.SkillName
 
                             }).ToList();
