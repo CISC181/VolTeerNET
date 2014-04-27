@@ -13,7 +13,7 @@ namespace VolTeer.Common.WebControls
 {
     public partial class ucSkillSearch : System.Web.UI.UserControl
     {
-        sp_Skill_BLL SkillsBLL = new sp_Skill_BLL();
+        private sp_Skill_BLL SkillsBLL = new sp_Skill_BLL();
         sp_VolSkill_BLL VolSkillBLL = new sp_VolSkill_BLL();
 
         protected void Page_Load(object sender, EventArgs e)
@@ -85,6 +85,7 @@ namespace VolTeer.Common.WebControls
             }
         }
 
+
         protected void rbAutoComplete_CheckedChanged(object sender, EventArgs e)
         {
             pnlAutoComplete.Visible = true;
@@ -98,6 +99,11 @@ namespace VolTeer.Common.WebControls
             pnlAutoComplete.Visible = false;
         }
 
+        protected void rTLSkills_NeedDataSource(object sender, TreeListNeedDataSourceEventArgs e)
+        {
+            rTLSkills.DataSource = SkillsBLL.ListSkills();
+
+        }
 
 
     }

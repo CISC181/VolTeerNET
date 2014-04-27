@@ -85,6 +85,24 @@ namespace VolTeer.Common.WebControls {
         protected global::System.Web.UI.WebControls.Panel pnlTree;
         
         /// <summary>
+        /// rTLSkills control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadTreeList rTLSkills;
+        
+        /// <summary>
+        /// RadButton1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadButton RadButton1;
+        
+        /// <summary>
         /// CodeBlock1 control.
         /// </summary>
         /// <remarks>
