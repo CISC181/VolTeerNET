@@ -41,14 +41,7 @@ namespace UT.Vend.BLL
                 DataTable dt = new DataTable();
                 cExcel _cExcel = new cExcel();
                 string strSheetName = "Sheet1";
-                try
-                {
-                    dt = _cExcel.ReadExcelFile(strSheetName, excelFile);
-                }
-                catch(Exception e)
-                {
-                    Console.WriteLine(e.ToString());
-                }
+                dt = _cExcel.ReadExcelFile(strSheetName, excelFile);
 
                 foreach (DataRow row in dt.Rows) // Loop over the rows.
                 {
