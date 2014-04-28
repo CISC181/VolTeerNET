@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using VolTeer.DomainModels.VT.Vol;
 using VolTeer.DataAccessLayer.VT.Vol;
+using VolTeer.Contracts.VT.Vol;
 
 namespace VolTeer.BusinessLogicLayer.VT.Vol
 {
-    public class sp_Skill_BLL
+    public class sp_Skill_BLL : sp_Skills_CON 
     {
          sp_Skill_DAL DAL = new sp_Skill_DAL();
 
@@ -33,6 +34,12 @@ namespace VolTeer.BusinessLogicLayer.VT.Vol
         public void DeleteSkillContext(sp_Skill_DM _cSkill)
         {
             DAL.DeleteSkillContext(_cSkill);
+        }
+
+
+        List<sp_Skill_DM> sp_Skills_CON.ListSkills(Guid? Skill)
+        {
+            throw new NotImplementedException();
         }
     }
 }

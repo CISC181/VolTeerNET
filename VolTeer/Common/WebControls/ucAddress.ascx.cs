@@ -15,7 +15,8 @@ using VolTeer.DomainModels.VT.Vol;
 using VolTeer.BusinessLogicLayer.VT.Other;
 using VolTeer.Cache.VT.Vol;
 using VolTeer.GoogleAPI;
-
+using System.Web.ApplicationServices;
+using System.Web.Security;
 
 using VolTeer.DomainModels.Service;
 using VolTeer.GoogleAPI;
@@ -30,7 +31,7 @@ namespace VolTeer.Common.WebControls
         public event EventHandler ShowErrorOccurs;
 
         // Pass in the AddrOwner (VolID, GroupID, etc) and the RecordType (what kind of record it is)
-        private Guid gAddrOwner;
+        MembershipUser currentUser;
         public int iRecordTypeID;
 
         //  Object References
@@ -40,7 +41,7 @@ namespace VolTeer.Common.WebControls
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            gAddrOwner = new Guid(((HiddenField)Parent.FindControl("hdVolID")).Value);
+            currentUser = Membership.GetUser();
 
             if (!IsPostBack)
             {
@@ -51,26 +52,18 @@ namespace VolTeer.Common.WebControls
         #region Screen Setup
         protected void HandleScreenLoad()
         {
-            var hdEditView = (HiddenField)Parent.FindControl("hdEditView");
-            gAddrOwner = new Guid(((HiddenField)Parent.FindControl("hdVolID")).Value);
-            if (hdEditView.Value == "1")
-            {
-                pnlSingleAddress.Visible = true;
-                pnlAddressGrid.Visible = false;
-                SetPrimaryValues();
 
-            }
-            else if (hdEditView.Value == "2")
-            {
-                pnlSingleAddress.Visible = false;
-                pnlAddressGrid.Visible = true;
-                sp_Vol_Address_DM VolDM = new sp_Vol_Address_DM();
-                VolDM.VolID = gAddrOwner;
-                //rGridAddress.DataSource = VolAddrBLL.ListAddresses(VolDM);
+            currentUser = Membership.GetUser();
+            
+            pnlSingleAddress.Visible = false;
+            pnlAddressGrid.Visible = true;
+            sp_Vol_Address_DM VolDM = new sp_Vol_Address_DM();
+            VolDM.VolID = (Guid)currentUser.ProviderUserKey;
+            //rGridAddress.DataSource = VolAddrBLL.ListAddresses(VolDM);
 
-                rGridAddress.DataSource = VolAddrCash.ListAddresses(VolDM);
-                rGridAddress.DataBind();
-            }
+            rGridAddress.DataSource = VolAddrCash.ListAddresses(VolDM);
+            rGridAddress.DataBind();
+            
         }
 
         /// <summary>
@@ -83,7 +76,7 @@ namespace VolTeer.Common.WebControls
             
             try
             {
-                VolDM.VolID = gAddrOwner;
+                VolDM.VolID = (Guid)currentUser.ProviderUserKey;
                 VolDM = VolAddrCash.ListPrimaryAddress(VolDM);
 
                 lblAddr1.Text = VolDM.AddrLine1;
@@ -197,7 +190,7 @@ namespace VolTeer.Common.WebControls
             try
             {
                 sp_Vol_Address_DM VolDM = new sp_Vol_Address_DM();
-                VolDM.VolID = gAddrOwner;
+                VolDM.VolID = (Guid)currentUser.ProviderUserKey;
                 //rGridAddress.DataSource = VolAddrBLL.ListAddresses(VolDM);
 
                 rGridAddress.DataSource = VolAddrCash.ListAddresses(VolDM);
@@ -310,9 +303,9 @@ namespace VolTeer.Common.WebControls
                 sp_Vol_Address_DM VolAddressDM = new sp_Vol_Address_DM();
                 sp_Vol_Addr_DM VolAddrDM = new sp_Vol_Addr_DM();
 
-                VolAddrDM.VolID = gAddrOwner;
+                VolAddrDM.VolID = (Guid)currentUser.ProviderUserKey; ;
 
-                VolAddressDM.VolID = gAddrOwner;
+                VolAddressDM.VolID = (Guid)currentUser.ProviderUserKey; 
                 if (iAction == (int)RecordAction.Update)
                 {
                     VolAddressDM.AddrID = Convert.ToInt32(eeditedItem.OwnerTableView.DataKeyValues[eeditedItem.ItemIndex]["AddrID"]);
@@ -390,10 +383,10 @@ namespace VolTeer.Common.WebControls
 
             try
             {
-                VolAddressDM.VolID = gAddrOwner;
+                VolAddressDM.VolID = (Guid)currentUser.ProviderUserKey;
                 VolAddressDM.AddrID = (int)e.Item.OwnerTableView.DataKeyValues[e.Item.ItemIndex]["AddrID"];
 
-                VolAddrDM.VolID = gAddrOwner;
+                VolAddrDM.VolID = (Guid)currentUser.ProviderUserKey;
                 VolAddrDM.AddrID = (int)e.Item.OwnerTableView.DataKeyValues[e.Item.ItemIndex]["AddrID"];
 
                 VolAddrBLL.DeleteAddressContext(VolAddressDM, VolAddrDM);

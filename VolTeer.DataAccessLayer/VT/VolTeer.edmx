@@ -149,10 +149,6 @@
           </AssociationSet>
         </EntityContainer>
         <!--Errors Found During Generation:
-      warning 6002: The table/view 'VolTeer.dbo.SpatialTable' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      warning 6005: The data type 'geography' is not supported for the target .NET Framework version. The column 'GeogCol1' in the table 'VolTeer.dbo.SpatialTable' was excluded from the model. To use the data type 'geography', target the .NET Framework 4.5 or higher.
-      -->
-        <!--Errors Found During Generation:
       warning 6002: The table/view 'VolTeer.dbo.Vend.tblUserCred' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
         <EntityType Name="Vend_tblUserCred">
@@ -924,6 +920,7 @@
         <Function Name="sp_Vendor_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
           <Parameter Name="VendorID" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="VendorName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ActiveFlg" Type="bit" Mode="In" />
         </Function>
         <Function Name="sp_Availability_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="VolID" Type="uniqueidentifier" Mode="In" />
@@ -1340,9 +1337,6 @@
           <FunctionImport Name="sp_Vendor_Delete">
           <Parameter Name="VendorID" Mode="In" Type="Guid" />
           </FunctionImport>
-          <FunctionImport Name="sp_Vendor_Insert">
-          <Parameter Name="VendorName" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="sp_Vendor_Select">
           <Parameter Name="VendorID" Mode="In" Type="Guid" />
           </FunctionImport>
@@ -1594,7 +1588,7 @@
             <Parameter Name="PrimaryContact" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="sp_Group_Delete">
-            <Parameter Name="GroupID" Mode="In" Type="Int32" />
+          <Parameter Name="GroupID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Group_Insert" ReturnType="Collection(Int32)">
             <Parameter Name="GroupName" Mode="In" Type="String" />
@@ -1602,13 +1596,16 @@
             <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="sp_Group_Select" ReturnType="Collection(VolTeerModel.sp_Group_Select_Result)">
-            <Parameter Name="GroupID" Mode="In" Type="Int32" />
+          <Parameter Name="GroupID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Group_Update">
             <Parameter Name="GroupID" Mode="In" Type="Int32" />
             <Parameter Name="GroupName" Mode="In" Type="String" />
             <Parameter Name="ParticipationLevelID" Mode="In" Type="Int32" />
             <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Vendor_Insert" ReturnType="Collection(Guid)">
+            <Parameter Name="VendorName" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="tblContact">
@@ -2547,6 +2544,24 @@
                 <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
               </MappingFragment>
             </EntityTypeMapping>
+            <EntityTypeMapping TypeName="VolTeerModel.tblVendor">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="VolTeerModel.Store.sp_Vendor_Insert">
+                  <ScalarProperty Name="VendorName" ParameterName="VendorName" />
+                  <ResultBinding Name="VendorID" ColumnName="VendorID" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="VolTeerModel.Store.sp_Vendor_Update">
+                  <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" Version="Current" />
+                  <ScalarProperty Name="VendorName" ParameterName="VendorName" Version="Current" />
+                  <ScalarProperty Name="VendorID" ParameterName="VendorID" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="VolTeerModel.Store.sp_Vendor_Update">
+                  <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" />
+                  <ScalarProperty Name="VendorName" ParameterName="VendorName" />
+                  <ScalarProperty Name="VendorID" ParameterName="VendorID" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblVendorAddrs">
             <EntityTypeMapping TypeName="VolTeerModel.tblVendorAddr">
@@ -2713,7 +2728,6 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_Vend_Email_Update" FunctionName="VolTeerModel.Store.sp_Vend_Email_Update" />
           <FunctionImportMapping FunctionImportName="sp_Vendor_Delete" FunctionName="VolTeerModel.Store.sp_Vendor_Delete" />
-          <FunctionImportMapping FunctionImportName="sp_Vendor_Insert" FunctionName="VolTeerModel.Store.sp_Vendor_Insert" />
           <FunctionImportMapping FunctionImportName="sp_Vendor_Select" FunctionName="VolTeerModel.Store.sp_Vendor_Select">
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_Sample_Address_Delete" FunctionName="VolTeerModel.Store.sp_Sample_Address_Delete" />
@@ -3210,6 +3224,7 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_Group_Update" FunctionName="VolTeerModel.Store.sp_Group_Update" />
+          <FunctionImportMapping FunctionImportName="sp_Vendor_Insert" FunctionName="VolTeerModel.Store.sp_Vendor_Insert" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
