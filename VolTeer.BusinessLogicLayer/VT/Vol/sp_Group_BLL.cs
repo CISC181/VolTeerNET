@@ -12,38 +12,31 @@ namespace VolTeer.BusinessLogicLayer.VT.Vol
 
         private sp_Group_DAL DAL = new sp_Group_DAL();
 
+        public List<sp_Group_DM> ListGroups()
+        {
+            return DAL.ListGroups();
+        }
+       
         public List<sp_Group_DM> ListGroups(int IGroupID)
         {            
             return DAL.ListGroups(IGroupID);
         }
 
-        public void InsertGroup(string GroupName, int participationLevelID)
+        public sp_Group_DM InsertGroupContext(ref sp_Group_DM _cGroup)
         {
-            List<sp_Group_DM> list = new List<sp_Group_DM>();
-
-            try
-            {
-                list = DAL.InsertGroup(GroupName, participationLevelID);
-            }
-
-            catch (Exception e)
-            {
-                Console.WriteLine("{0} First exception caught.", e);
-            }         
-
+            return DAL.InsertGroupContext(ref _cGroup);
         }
 
-
-        public void UpdateGroup(int GroupID, string GroupName, int participationLevelID, bool ActiveFlg)
+        public void UpdateGroupContext(sp_Group_DM _cGroup)
         {
-            DAL.UpdateGroup(GroupID, GroupName, participationLevelID, ActiveFlg);
-
+            DAL.UpdateGroupContext(_cGroup);
         }
 
-        public void DeleteGroup(int GroupID)
+        public void DeleteGroupContext(sp_Group_DM _cGroup)
         {
-            DAL.DeleteGroup(GroupID);
+            DAL.DeleteGroupContext(_cGroup);
         }
+
 
 
     }

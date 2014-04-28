@@ -9,61 +9,115 @@ namespace VolTeer.DataAccessLayer.VT.Vol
 {
     public class sp_Group_DAL: sp_Group_Con
     {
-        public List<sp_Group_DM> ListGroups(int iGroupID)
+        #region Select Statements
+        public List<sp_Group_DM> ListGroups()
         {
             List<sp_Group_DM> list = new List<sp_Group_DM>();
-            using (VolTeerEntities context = new VolTeerEntities())
+            try
             {
-                list = (from result in context.sp_Group_Select(iGroupID)
-                        select new sp_Group_DM
-                        {
-                            GroupID = result.GroupID,
-                            GroupName = result.GroupName,
-                            ParticipationLevelID = result.ParticipationLevelID
-                        }).ToList();
-            } // Guaranteed to close the Connection
+                using (VolTeerEntities context = new VolTeerEntities())
+                {
+                    list = (from result in context.sp_Group_Select(null)
+                            select new sp_Group_DM
+                            {
+                                GroupID = result.GroupID,
+                                GroupName = result.GroupName,
+                                ParticipationLevelID = result.ParticipationLevelID,
+                                ActiveFlg = result.ActiveFlg
+
+
+                            }).ToList();
+                } // Guaranteed to close the Connection
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
 
             return list;
 
         }
-
-
-        public List<sp_Group_DM> InsertGroup(string GroupName_IN, int participationLevelID_IN)
+        public List<sp_Group_DM> ListGroups(int? groupID)
         {
             List<sp_Group_DM> list = new List<sp_Group_DM>();
-
-            using (VolTeerEntities context = new VolTeerEntities())
+            try
             {
-                list = (from result in context.sp_Group_Insert(GroupName_IN, participationLevelID_IN, true)
-                        select new sp_Group_DM
-                        { 
-                        }).ToList();
-            } // Guaranteed to close the Connection
+                using (VolTeerEntities context = new VolTeerEntities())
+                {
+                    list = (from result in context.sp_Group_Select(groupID)
+                            select new sp_Group_DM
+                            {
+                                GroupName = result.GroupName,
+                                ParticipationLevelID = result.ParticipationLevelID,
+                                ActiveFlg = result.ActiveFlg
+                            }).ToList();
+                } // Guaranteed to close the Connection
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
 
             return list;
-        }
-
-        public void UpdateGroup(int GroupID_IN, string GroupName_IN, int participationLevelID_IN, bool activeFlg)
-        {
-
-            using (VolTeerEntities context = new VolTeerEntities())
-            {
-                context.sp_Group_Update(GroupID_IN, GroupName_IN, participationLevelID_IN, activeFlg);
-
-            }
+            //return list.FirstOrDefault();
 
         }
+        #endregion
 
-        public void DeleteGroup(int GroupID_IN)
+        # region Inserts
+
+        public sp_Group_DM InsertGroupContext(ref sp_Group_DM _cGroup)
         {
             using (VolTeerEntities context = new VolTeerEntities())
             {
-                context.sp_Group_Delete(GroupID_IN);
+                var cGroup = new tblGroup
+                {
+                    GroupID = _cGroup.GroupID,
+                    GroupName = _cGroup.GroupName,
+                    ParticipationLevelID = _cGroup.ParticipationLevelID,
+                    ActiveFlg = _cGroup.ActiveFlg
+
+                };
+                context.tblGroups.Add(cGroup);
+                context.SaveChanges();
+
+                // pass VolID back to BLL
+                _cGroup.GroupID = cGroup.GroupID;
+
+                return _cGroup;
+            }
+        }
+        #endregion
+
+        #region Updates
+        public void UpdateGroupContext(sp_Group_DM _cGroup)
+        {
+            using (VolTeerEntities context = new VolTeerEntities())
+            {
+                var cGroup = context.tblGroups.Find(_cGroup.GroupID);
+
+                if (cGroup != null)
+                {
+                    cGroup.GroupName = _cGroup.GroupName;
+                    cGroup.ParticipationLevelID = _cGroup.ParticipationLevelID;
+                    cGroup.ActiveFlg = _cGroup.ActiveFlg;
+                    context.SaveChanges();
+                }
+            }
+        }
+        #endregion
+        #region Deletes
+        public void DeleteGroupContext(sp_Group_DM _cGroup)
+        {
+            using (VolTeerEntities context = new VolTeerEntities())
+            {
+                var GroupToRemove = (from n in context.tblGroups where n.GroupID == _cGroup.GroupID select n).FirstOrDefault();
+                context.tblGroups.Remove(GroupToRemove);
+                context.SaveChanges();
 
             }
-
         }
-
+        #endregion
 
     }
 }
