@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using VolTeer.DomainModels.VT.Vol;
+using VolTeer.Contracts.VT.Vol;
 
 
 namespace VolTeer.DataAccessLayer.VT.Vol
 {
-    public class sp_Skill_DAL
+    public class sp_Skill_DAL : sp_Skills_CON 
     {
         #region Select Statements
         public List<sp_Skill_DM> ListSkills()
