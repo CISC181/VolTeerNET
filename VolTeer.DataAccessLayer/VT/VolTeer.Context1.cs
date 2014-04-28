@@ -416,15 +416,6 @@ namespace VolTeer.DataAccessLayer.VT
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Vendor_Delete", vendorIDParameter);
         }
     
-        public virtual int sp_Vendor_Insert(string vendorName)
-        {
-            var vendorNameParameter = vendorName != null ?
-                new ObjectParameter("VendorName", vendorName) :
-                new ObjectParameter("VendorName", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Vendor_Insert", vendorNameParameter);
-        }
-    
         public virtual int sp_Vendor_Select(Nullable<System.Guid> vendorID)
         {
             var vendorIDParameter = vendorID.HasValue ?
@@ -1138,6 +1129,15 @@ namespace VolTeer.DataAccessLayer.VT
                 new ObjectParameter("ActiveFlg", typeof(bool));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Group_Update", groupIDParameter, groupNameParameter, participationLevelIDParameter, activeFlgParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<System.Guid>> sp_Vendor_Insert(string vendorName)
+        {
+            var vendorNameParameter = vendorName != null ?
+                new ObjectParameter("VendorName", vendorName) :
+                new ObjectParameter("VendorName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("sp_Vendor_Insert", vendorNameParameter);
         }
     }
 }
