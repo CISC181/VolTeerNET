@@ -149,10 +149,6 @@
           </AssociationSet>
         </EntityContainer>
         <!--Errors Found During Generation:
-      warning 6002: The table/view 'VolTeer.dbo.SpatialTable' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      warning 6005: The data type 'geography' is not supported for the target .NET Framework version. The column 'GeogCol1' in the table 'VolTeer.dbo.SpatialTable' was excluded from the model. To use the data type 'geography', target the .NET Framework 4.5 or higher.
-      -->
-        <!--Errors Found During Generation:
       warning 6002: The table/view 'VolTeer.dbo.Vend.tblUserCred' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
         <EntityType Name="Vend_tblUserCred">
@@ -924,6 +920,7 @@
         <Function Name="sp_Vendor_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
           <Parameter Name="VendorID" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="VendorName" Type="nvarchar" Mode="In" />
+          <Parameter Name="ActiveFlg" Type="bit" Mode="In" />
         </Function>
         <Function Name="sp_Availability_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="VolID" Type="uniqueidentifier" Mode="In" />
@@ -1594,7 +1591,7 @@
             <Parameter Name="PrimaryContact" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="sp_Group_Delete">
-            <Parameter Name="GroupID" Mode="In" Type="Int32" />
+          <Parameter Name="GroupID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Group_Insert" ReturnType="Collection(Int32)">
             <Parameter Name="GroupName" Mode="In" Type="String" />
@@ -1602,7 +1599,7 @@
             <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="sp_Group_Select" ReturnType="Collection(VolTeerModel.sp_Group_Select_Result)">
-            <Parameter Name="GroupID" Mode="In" Type="Int32" />
+          <Parameter Name="GroupID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Group_Update">
             <Parameter Name="GroupID" Mode="In" Type="Int32" />
