@@ -2,6 +2,8 @@
 
 <%@ Register TagPrefix="uc" TagName="ucSkill"
     Src="~/Common/WebControls/ucSkillSearch.ascx" %>
+<%@ Register Src="~/Common/WebControls/ucAddress.ascx" TagPrefix="uc" TagName="ucAddress" %>
+
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
@@ -51,7 +53,7 @@
                         <asp:Label ID="Label1" runat="server" Text="Fix Phone"></asp:Label>
                     </telerik:RadPageView>
                     <telerik:RadPageView runat="server" ID="PageView3">
-                        <asp:Label ID="Label2" runat="server" Text="Fix Address"></asp:Label>
+                        <uc:ucAddress runat="server" ID="ucAddress" />
                     </telerik:RadPageView>
                     <telerik:RadPageView runat="server" ID="PageView4">
                         <asp:Label ID="Label3" runat="server" Text="Fix Account"></asp:Label>
