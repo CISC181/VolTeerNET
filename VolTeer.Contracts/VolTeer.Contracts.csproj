@@ -44,7 +44,10 @@
     <Compile Include="VT\Vol\sp_Group_Con.cs" />
     <Compile Include="VT\Vol\sp_Skills_CON.cs" />
     <Compile Include="VT\Vol\sp_VolSkill_CON.cs" />
+    <Compile Include="VT\Vol\sp_VolEmail_CON.cs" />
+    <Compile Include="VT\Vol\sp_VolPhone_CON.cs" />
     <Compile Include="VT\Vol\sp_Volunteer_CON.cs" />
+    <Compile Include="VT\Vol\sp_Vol_Address_CON.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VolTeer.DomainModels\VolTeer.DomainModels.csproj">

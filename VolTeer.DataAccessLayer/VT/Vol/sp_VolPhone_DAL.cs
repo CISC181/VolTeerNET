@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using VolTeer.DomainModels.VT.Vol;
+using VolTeer.Contracts.VT.Vol;
 
 namespace VolTeer.DataAccessLayer.VT.Vol
 {
-    public class sp_VolPhone_DAL
+    public class sp_VolPhone_DAL : sp_VolPhone_CON
     {
         #region Select Statements
         /// <summary>
@@ -40,7 +41,7 @@ namespace VolTeer.DataAccessLayer.VT.Vol
 
         }
 
-        public List<sp_Phone_DM> ListPrimaryPhone(sp_Phone_DM cVolPhone)
+        public sp_Phone_DM ListPrimaryPhone(sp_Phone_DM cVolPhone)
         {
             List<sp_Phone_DM> list = new List<sp_Phone_DM>();
             try
@@ -62,7 +63,7 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                 throw (ex);
             }
 
-            return list;
+            return list.Single();
 
         }
 

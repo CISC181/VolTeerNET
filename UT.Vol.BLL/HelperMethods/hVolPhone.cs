@@ -18,7 +18,7 @@ namespace UT.Vol.BLL.HelperMethods
             Phone.PhoneNbr = PhoneNbr;
             Phone.VolID = VolID;
 
-            VolPhoneBll.InsertPhonesContext(Phone);
+            VolPhoneBll.InsertPhoneContext(Phone);
 
             return Phone;
 

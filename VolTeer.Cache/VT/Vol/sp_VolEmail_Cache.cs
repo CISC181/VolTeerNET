@@ -5,13 +5,14 @@ using System.Text;
 
 using VolTeer.DomainModels.VT.Vol;
 using VolTeer.BusinessLogicLayer.VT.Vol;
+using VolTeer.Contracts.VT.Vol;
 
 using System.Web;
 using System.Web.Caching;
 
 namespace VolTeer.Cache.VT.Vol
 {
-    public class sp_VolEmail_Cache
+    public class sp_VolEmail_Cache : sp_VolEmail_CON
     {
         enum EmailType
         {
