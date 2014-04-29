@@ -6,10 +6,11 @@ using VolTeer.DomainModels.VT.Vol;
 using VolTeer.BusinessLogicLayer.VT.Vol;
 using System.Web;
 using System.Web.Caching;
+using VolTeer.Contracts.VT.Vol;
 
 namespace VolTeer.Cache.VT.Vol
 {
-    public class sp_VolPhone_Cache
+    public class sp_VolPhone_Cache : sp_VolPhone_CON
     {
         enum RecordType
         {
@@ -42,15 +43,15 @@ namespace VolTeer.Cache.VT.Vol
 
             if (cachePhones == null) 
             {
-                cachePhones = BLL.ListPrimaryPhones(cPhone);
+                cachePhones = BLL.ListPrimaryPhone(cPhone);
                 cache.Insert("" + RecordType.VolPhonePrimary + "|" + cPhone.VolID.ToString(), cPhone, null, DateTime.Now.AddSeconds(1), System.Web.Caching.Cache.NoSlidingExpiration, CacheItemPriority.High, callback);
             }
             return cachePhones;
         }
 
-        public void InsertEmailContext(sp_Phone_DM cPhone)
+        public void InsertPhoneContext(sp_Phone_DM cPhone)
         {
-            BLL.InsertPhonesContext(cPhone);
+            BLL.InsertPhoneContext(cPhone);
             System.Web.Caching.Cache cache = HttpRuntime.Cache;
             cache.Insert(RecordType.VolPhone + "|" + cPhone.VolID, cPhone, null, DateTime.Now.AddSeconds(1), System.Web.Caching.Cache.NoSlidingExpiration, CacheItemPriority.High, callback);
         }
