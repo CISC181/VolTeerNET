@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using VolTeer.DomainModels.VT.Vol;
+using VolTeer.Contracts.VT.Vol;
 
 
 namespace VolTeer.DataAccessLayer.VT.Vol
 {
-    public class sp_Vol_Address_DAL
+    public class sp_Vol_Address_DAL : sp_Vol_Address_CON
     {
 
         #region Select Statements
@@ -47,6 +48,11 @@ namespace VolTeer.DataAccessLayer.VT.Vol
 
             return list;
 
+        }
+
+        public sp_Vol_Address_DM ListAddress(sp_Vol_Address_DM cVolAddr)
+        {
+            return ListAddresses(cVolAddr).Single();
         }
 
         public List<sp_Vol_Address_DM> ListAddresses(Guid? VolID, int? Address)
