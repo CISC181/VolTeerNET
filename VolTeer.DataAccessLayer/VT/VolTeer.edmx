@@ -336,6 +336,8 @@
           </Key>
           <Property Name="GroupID" Type="int" Nullable="false" />
           <Property Name="AddrID" Type="int" Nullable="false" />
+          <Property Name="PrimaryAddrID" Type="bit" Nullable="false" />
+          <Property Name="ActiveFlg" Type="bit" Nullable="false" />
         </EntityType>
         <EntityType Name="tblGroupVol">
           <Key>
@@ -1015,7 +1017,6 @@
         </Function>
         <Function Name="sp_Skill_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="SkillID" Type="uniqueidentifier" Mode="In" />
-          <Parameter Name="ActiveFlg" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_Skill_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="SkillName" Type="nvarchar" Mode="In" />
@@ -1367,7 +1368,6 @@
           </FunctionImport>
           <FunctionImport Name="sp_Skill_Delete">
             <Parameter Name="SkillID" Mode="In" Type="Guid" />
-            <Parameter Name="ActiveFlg" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Skill_Insert" ReturnType="Collection(Guid)">
             <Parameter Name="SkillName" Mode="In" Type="String" />
@@ -1605,7 +1605,7 @@
             <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="sp_Vendor_Insert" ReturnType="Collection(Guid)">
-            <Parameter Name="VendorName" Mode="In" Type="String" />
+          <Parameter Name="VendorName" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="tblContact">
@@ -2999,7 +2999,6 @@
                   <ScalarProperty Name="SkillID" ParameterName="SkillID" Version="Current" />
                 </UpdateFunction>
                 <DeleteFunction FunctionName="VolTeerModel.Store.sp_Skill_Delete">
-                  <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" />
                   <ScalarProperty Name="SkillID" ParameterName="SkillID" />
                 </DeleteFunction>
               </ModificationFunctionMapping>

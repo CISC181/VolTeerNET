@@ -517,17 +517,13 @@ namespace VolTeer.DataAccessLayer.VT
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Sample_Address_Update", addrIDParameter, addrLine1Parameter, addrLine2Parameter, addrLine3Parameter, cityParameter, stParameter, zipParameter, zip4Parameter, activeFlgParameter);
         }
     
-        public virtual int sp_Skill_Delete(Nullable<System.Guid> skillID, Nullable<int> activeFlg)
+        public virtual int sp_Skill_Delete(Nullable<System.Guid> skillID)
         {
             var skillIDParameter = skillID.HasValue ?
                 new ObjectParameter("SkillID", skillID) :
                 new ObjectParameter("SkillID", typeof(System.Guid));
     
-            var activeFlgParameter = activeFlg.HasValue ?
-                new ObjectParameter("ActiveFlg", activeFlg) :
-                new ObjectParameter("ActiveFlg", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Skill_Delete", skillIDParameter, activeFlgParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Skill_Delete", skillIDParameter);
         }
     
         public virtual ObjectResult<Nullable<System.Guid>> sp_Skill_Insert(string skillName, Nullable<System.Guid> mstrSkillID, Nullable<bool> reqCert)
