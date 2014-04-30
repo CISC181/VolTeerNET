@@ -429,6 +429,5 @@
     </Build>
     <Build Include="Security\Vend.sql" />
     <Build Include="Security\Vol.sql" />
-    <Build Include="Vend\Stored Procedures\sp_Vend_Contact_Insert.sql" />
   </ItemGroup>
 </Project>
