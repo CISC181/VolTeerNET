@@ -380,6 +380,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>VolTeer.edmx</DependentUpon>
     </Compile>
+    <Compile Include="VT\VolTeer1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VolTeer.edmx</DependentUpon>
+    </Compile>
     <Compile Include="VT\Vol\sp_GroupAddr_DAL.cs" />
     <Compile Include="VT\Vol\sp_GroupVol_DAL.cs" />
     <Compile Include="VT\Vol\sp_Skill_DAL.cs" />
@@ -432,6 +437,7 @@
     <None Include="packages.config" />
     <EntityDeploy Include="VT\VolTeer.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>VolTeer1.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <None Include="VT\VolTeer.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
