@@ -357,6 +357,7 @@
     <Compile Include="VT\tblVolunteer.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
+    <Compile Include="VT\Vend\sp_Contact_DAL.cs" />
     <Compile Include="VT\Vend\sp_VendAddress_DAL.cs" />
     <Compile Include="VT\Vend\sp_Event_Rating_DAL.cs" />
     <Compile Include="VT\Vend\sp_VendContact_DAL.cs" />
