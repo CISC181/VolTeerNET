@@ -957,8 +957,10 @@
           <Parameter Name="ProjectDesc" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="AddrID" Type="int" Mode="In" />
         </Function>
-        <Function Name="sp_ProjectEvent_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
+        <Function Name="sp_ProjectEvent_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
           <Parameter Name="EventID" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="sp_ProjectEvent_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
           <Parameter Name="ProjectID" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="StartDateTime" Type="datetime" Mode="In" />
           <Parameter Name="EndDateTime" Type="datetime" Mode="In" />
@@ -968,7 +970,6 @@
           <Parameter Name="EventID" Type="uniqueidentifier" Mode="In" />
         </Function>
         <Function Name="sp_ProjectEvent_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
-          <Parameter Name="flag" Type="bit" Mode="InOut" />
           <Parameter Name="EventID" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="ProjectID" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="StartDateTime" Type="datetime" Mode="In" />
@@ -1869,6 +1870,25 @@
             <Parameter Name="ProjectDesc" Mode="In" Type="String" />
             <Parameter Name="AddrID" Mode="In" Type="Int32" />
           </FunctionImport>
+          <FunctionImport Name="sp_ProjectEvent_Delete">
+            <Parameter Name="EventID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ProjectEvent_Insert1" ReturnType="Collection(Guid)">
+            <Parameter Name="ProjectID" Mode="In" Type="Guid" />
+            <Parameter Name="StartDateTime" Mode="In" Type="DateTime" />
+            <Parameter Name="EndDateTime" Mode="In" Type="DateTime" />
+            <Parameter Name="AddrID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ProjectEvent_Select1" ReturnType="Collection(VolTeerModel.sp_ProjectEvent_Select1_Result)">
+            <Parameter Name="EventID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ProjectEvent_Update1">
+            <Parameter Name="EventID" Mode="In" Type="Guid" />
+            <Parameter Name="ProjectID" Mode="In" Type="Guid" />
+            <Parameter Name="StartDateTime" Mode="In" Type="DateTime" />
+            <Parameter Name="EndDateTime" Mode="In" Type="DateTime" />
+            <Parameter Name="AddrID" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="tblContact">
           <Key>
@@ -2760,6 +2780,13 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="sp_ProjectEvent_Select1_Result">
+          <Property Type="Guid" Name="EventID" Nullable="false" />
+          <Property Type="Guid" Name="ProjectID" Nullable="false" />
+          <Property Type="DateTime" Name="StartDateTime" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="EndDateTime" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="AddrID" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2877,6 +2904,26 @@
                 <ScalarProperty Name="EndDateTime" ColumnName="EndDateTime" />
                 <ScalarProperty Name="AddrID" ColumnName="AddrID" />
               </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="VolTeerModel.tblProjectEvent">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="VolTeerModel.Store.sp_ProjectEvent_Insert">
+                  <ScalarProperty Name="AddrID" ParameterName="AddrID" />
+                  <ScalarProperty Name="EndDateTime" ParameterName="EndDateTime" />
+                  <ScalarProperty Name="StartDateTime" ParameterName="StartDateTime" />
+                  <ScalarProperty Name="ProjectID" ParameterName="ProjectID" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="VolTeerModel.Store.sp_ProjectEvent_Update">
+                  <ScalarProperty Name="AddrID" ParameterName="AddrID" Version="Current" />
+                  <ScalarProperty Name="EndDateTime" ParameterName="EndDateTime" Version="Current" />
+                  <ScalarProperty Name="StartDateTime" ParameterName="StartDateTime" Version="Current" />
+                  <ScalarProperty Name="ProjectID" ParameterName="ProjectID" Version="Current" />
+                  <ScalarProperty Name="EventID" ParameterName="EventID" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="VolTeerModel.Store.sp_ProjectEvent_Delete">
+                  <ScalarProperty Name="EventID" ParameterName="EventID" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblProjectEventContacts">
@@ -3761,19 +3808,6 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="VolTeerModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="VolTeerModel.Store.sp_upgraddiagrams" />
-          <FunctionImportMapping FunctionImportName="sp_ProjectEvent_Insert" FunctionName="VolTeerModel.Store.sp_ProjectEvent_Insert" />
-          <FunctionImportMapping FunctionImportName="sp_ProjectEvent_Select" FunctionName="VolTeerModel.Store.sp_ProjectEvent_Select">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="VolTeerModel.sp_ProjectEvent_Select_Result">
-                <ScalarProperty Name="EventID" ColumnName="EventID" />
-                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
-                <ScalarProperty Name="StartDateTime" ColumnName="StartDateTime" />
-                <ScalarProperty Name="EndDateTime" ColumnName="EndDateTime" />
-                <ScalarProperty Name="AddrID" ColumnName="AddrID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_ProjectEvent_Update" FunctionName="VolTeerModel.Store.sp_ProjectEvent_Update" />
           <FunctionImportMapping FunctionImportName="sp_GroupAddr_Delete" FunctionName="VolTeerModel.Store.sp_GroupAddr_Delete" />
           <FunctionImportMapping FunctionImportName="sp_GroupAddr_Insert" FunctionName="VolTeerModel.Store.sp_GroupAddr_Insert" />
           <FunctionImportMapping FunctionImportName="sp_GroupAddr_Select" FunctionName="VolTeerModel.Store.sp_GroupAddr_Select">
@@ -3800,6 +3834,20 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="sp_Project_Update1" FunctionName="VolTeerModel.Store.sp_Project_Update" />
+          <FunctionImportMapping FunctionImportName="sp_ProjectEvent_Delete" FunctionName="VolTeerModel.Store.sp_ProjectEvent_Delete" />
+          <FunctionImportMapping FunctionImportName="sp_ProjectEvent_Insert1" FunctionName="VolTeerModel.Store.sp_ProjectEvent_Insert" />
+          <FunctionImportMapping FunctionImportName="sp_ProjectEvent_Select1" FunctionName="VolTeerModel.Store.sp_ProjectEvent_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VolTeerModel.sp_ProjectEvent_Select1_Result">
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="StartDateTime" ColumnName="StartDateTime" />
+                <ScalarProperty Name="EndDateTime" ColumnName="EndDateTime" />
+                <ScalarProperty Name="AddrID" ColumnName="AddrID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_ProjectEvent_Update1" FunctionName="VolTeerModel.Store.sp_ProjectEvent_Update" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
