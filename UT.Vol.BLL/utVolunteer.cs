@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using VolTeer.DomainModels.VT.Vol;
 using VolTeer.BusinessLogicLayer.VT.Vol;
@@ -116,8 +117,6 @@ namespace UT.Vol.BLL
 
             dt = _cExcel.ReadExcelFile(strSheetName, CWorkbook);
 
-            // listVolPhones()
-
             foreach (DataRow row in dt.Rows) // Loop over the rows.
             {
 
@@ -125,31 +124,56 @@ namespace UT.Vol.BLL
                 string strMiddleName = row["MiddleName"].ToString();
                 string strLastName = row["LastName"].ToString();
                 string phoneNumber = row["PhoneNumber"].ToString();
+                string secondNumber = row["SecondPhone"].ToString();
+                string thirdNumber = row["ThirdPhone"].ToString();
 
                 sp_Volunteer_DM testVol = new sp_Volunteer_DM();
-                sp_Phone_DM insertPhone = new sp_Phone_DM();
+                sp_Phone_DM primaryPhone = new sp_Phone_DM();
+                sp_Phone_DM secondPhone = new sp_Phone_DM();
+                sp_Phone_DM thirdPhone = new sp_Phone_DM();
                 sp_Phone_DM selectPhone = new sp_Phone_DM();
+                List<sp_Phone_DM> phoneList = new List<sp_Phone_DM>();
 
                 hVolunteer hVol = new hVolunteer();
                 testVol = hVol.hCreateVolunteer(strFirstName, strMiddleName, strLastName);
 
                 hVolPhone hPhone = new hVolPhone();
-                insertPhone = hPhone.hCreateVolPhone(phoneNumber, testVol.VolID);
+                primaryPhone = hPhone.hCreateVolPhone(phoneNumber, testVol.VolID,true);
+                secondPhone = hPhone.hCreateVolPhone(secondNumber, testVol.VolID, false);
+                thirdPhone = hPhone.hCreateVolPhone(thirdNumber, testVol.VolID, false);
 
-                selectPhone = hPhone.hSelectVolPhone(insertPhone.PhoneID)[0];
+                phoneList = hPhone.hSelectVolPhone(testVol.VolID,primaryPhone.PhoneID);
+                Assert.IsTrue(phoneList.Contains(primaryPhone));
+                Assert.IsTrue(phoneList.Contains(secondPhone));
+                Assert.IsTrue(phoneList.Contains(thirdPhone));
 
-                Assert.AreEqual(insertPhone.PhoneNbr, selectPhone.PhoneNbr);
+                selectPhone = hPhone.hSelectPrimaryVolPhone(testVol.VolID,primaryPhone.PhoneID);
+                Assert.AreEqual(primaryPhone.PhoneNbr, selectPhone.PhoneNbr);
+                selectPhone = hPhone.hSelectPrimaryVolPhone(testVol.VolID,secondPhone.PhoneID);
+                Assert.AreEqual(primaryPhone.PhoneNbr, selectPhone.PhoneNbr);
+                selectPhone = hPhone.hSelectPrimaryVolPhone(testVol.VolID,thirdPhone.PhoneID);
+                Assert.AreEqual(primaryPhone.PhoneNbr, selectPhone.PhoneNbr);
 
-                hPhone.hUpdateVolPhone(insertPhone, "3335557777");
-                selectPhone = hPhone.hSelectVolPhone(insertPhone.PhoneID)[0];
-
+                hPhone.hUpdateVolPhone(primaryPhone, "3335557777",true);
+                selectPhone = hPhone.hSelectPrimaryVolPhone(testVol.VolID,primaryPhone.PhoneID);
                 Assert.AreEqual(selectPhone.PhoneNbr, "3335557777");
 
-                hPhone.hDeleteVolPhone(insertPhone);
-                selectPhone = hPhone.hSelectVolPhone(insertPhone.PhoneID)[0];
+                hPhone.hUpdateVolPhone(primaryPhone, primaryPhone.PhoneNbr, false);
+                hPhone.hUpdateVolPhone(secondPhone, secondPhone.PhoneNbr, true);
+                selectPhone = hPhone.hSelectPrimaryVolPhone(testVol.VolID, thirdPhone.PhoneID);
+                Assert.AreEqual(selectPhone.PhoneNbr, secondPhone.PhoneNbr);
 
+                hPhone.hUpdateVolPhone(primaryPhone, primaryPhone.PhoneNbr, true);
+                hPhone.hUpdateVolPhone(secondPhone, secondPhone.PhoneNbr, false);
+                selectPhone = hPhone.hSelectPrimaryVolPhone(testVol.VolID, thirdPhone.PhoneID);
+                Assert.AreEqual(selectPhone.PhoneNbr, primaryPhone.PhoneNbr);
+
+                hPhone.hDeleteVolPhone(primaryPhone);
+                selectPhone = hPhone.hSelectPrimaryVolPhone(testVol.VolID,primaryPhone.PhoneID);
                 Assert.AreEqual(selectPhone.ActiveFlg, false);
 
+                hPhone.hDeleteVolPhone(secondPhone);
+                hPhone.hDeleteVolPhone(thirdPhone);
                 hVol.hDeleteVolunteer(testVol);
 
             }
