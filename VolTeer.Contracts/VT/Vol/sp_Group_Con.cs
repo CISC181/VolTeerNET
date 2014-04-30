@@ -9,7 +9,7 @@ namespace VolTeer.Contracts.VT.Vol
     public interface sp_Group_Con
     {
         List<sp_Group_DM> ListGroups();
-        List<sp_Group_DM> ListGroups(int? groupID);
+        sp_Group_DM ListGroups(int? groupID);
         sp_Group_DM InsertGroupContext(ref sp_Group_DM _cGroup);
         void UpdateGroupContext(sp_Group_DM _cGroup);
         void DeleteGroupContext(sp_Group_DM _cGroup);

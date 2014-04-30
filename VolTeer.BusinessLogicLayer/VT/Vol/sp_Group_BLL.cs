@@ -17,7 +17,7 @@ namespace VolTeer.BusinessLogicLayer.VT.Vol
             return DAL.ListGroups();
         }
        
-        public List<sp_Group_DM> ListGroups(int IGroupID)
+        public sp_Group_DM ListGroups(int IGroupID)
         {            
             return DAL.ListGroups(IGroupID);
         }
