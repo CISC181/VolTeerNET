@@ -10,11 +10,13 @@
 namespace VolTeer.DataAccessLayer.VT
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class UIProperty
+    public partial class sp_ProjectEvent_Select1_Result
     {
-        public int PropertyID { get; set; }
-        public string PropertyDescr { get; set; }
+        public System.Guid EventID { get; set; }
+        public System.Guid ProjectID { get; set; }
+        public Nullable<System.DateTime> StartDateTime { get; set; }
+        public Nullable<System.DateTime> EndDateTime { get; set; }
+        public Nullable<int> AddrID { get; set; }
     }
 }

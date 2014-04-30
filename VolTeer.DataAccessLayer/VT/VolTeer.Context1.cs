@@ -50,7 +50,6 @@ namespace VolTeer.DataAccessLayer.VT
         public DbSet<tblVendState> tblVendStates { get; set; }
         public DbSet<tblSkill> tblSkills { get; set; }
         public DbSet<tblVolPhone> tblVolPhones { get; set; }
-        public DbSet<tblGroup> tblGroups { get; set; }
         public DbSet<tblGroupVol> tblGroupVols { get; set; }
         public DbSet<tblVolEmail> tblVolEmails { get; set; }
         public DbSet<Vend_tblUserCred> Vend_tblUserCred { get; set; }
@@ -58,9 +57,9 @@ namespace VolTeer.DataAccessLayer.VT
         public DbSet<Order> Orders { get; set; }
         public DbSet<Product> Products { get; set; }
         public DbSet<RegisteredControl> RegisteredControls { get; set; }
-        public DbSet<SpatialTable> SpatialTables { get; set; }
         public DbSet<sysdiagram> sysdiagrams { get; set; }
-        public DbSet<UIProperty> UIProperties { get; set; }
+        public DbSet<tblGroupAddr> tblGroupAddrs { get; set; }
+        public DbSet<tblGroup> tblGroups { get; set; }
     
         public virtual int sp_Contact_Delete(Nullable<System.Guid> contactID)
         {
@@ -221,12 +220,8 @@ namespace VolTeer.DataAccessLayer.VT
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Project_Delete", projectIDParameter);
         }
     
-        public virtual int sp_Project_Insert(Nullable<System.Guid> projectID, string projectName, string projectDesc, Nullable<int> addrID)
+        public virtual int sp_Project_Insert(string projectName, string projectDesc, Nullable<int> addrID, Nullable<int> activeFlg)
         {
-            var projectIDParameter = projectID.HasValue ?
-                new ObjectParameter("ProjectID", projectID) :
-                new ObjectParameter("ProjectID", typeof(System.Guid));
-    
             var projectNameParameter = projectName != null ?
                 new ObjectParameter("ProjectName", projectName) :
                 new ObjectParameter("ProjectName", typeof(string));
@@ -239,7 +234,11 @@ namespace VolTeer.DataAccessLayer.VT
                 new ObjectParameter("AddrID", addrID) :
                 new ObjectParameter("AddrID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Project_Insert", projectIDParameter, projectNameParameter, projectDescParameter, addrIDParameter);
+            var activeFlgParameter = activeFlg.HasValue ?
+                new ObjectParameter("ActiveFlg", activeFlg) :
+                new ObjectParameter("ActiveFlg", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Project_Insert", projectNameParameter, projectDescParameter, addrIDParameter, activeFlgParameter);
         }
     
         public virtual ObjectResult<sp_Project_Select_Result> sp_Project_Select(Nullable<System.Guid> projectID)
@@ -383,23 +382,6 @@ namespace VolTeer.DataAccessLayer.VT
                 new ObjectParameter("GeoCodeGetSet", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Vend_Address_Update", addrIdParameter, activeFlgParameter, addrLine1Parameter, addrLine2Parameter, addrLine3Parameter, cityParameter, stParameter, zipParameter, zip4Parameter, geoCodeGetSetParameter);
-        }
-    
-        public virtual int sp_Vend_Email_Delete(Nullable<int> emailID, string emailAddr, Nullable<bool> activeFlg)
-        {
-            var emailIDParameter = emailID.HasValue ?
-                new ObjectParameter("EmailID", emailID) :
-                new ObjectParameter("EmailID", typeof(int));
-    
-            var emailAddrParameter = emailAddr != null ?
-                new ObjectParameter("EmailAddr", emailAddr) :
-                new ObjectParameter("EmailAddr", typeof(string));
-    
-            var activeFlgParameter = activeFlg.HasValue ?
-                new ObjectParameter("ActiveFlg", activeFlg) :
-                new ObjectParameter("ActiveFlg", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Vend_Email_Delete", emailIDParameter, emailAddrParameter, activeFlgParameter);
         }
     
         public virtual int sp_Vend_Email_Insert(Nullable<int> emailID, string emailAddr, Nullable<bool> activeFlg)
@@ -1446,6 +1428,100 @@ namespace VolTeer.DataAccessLayer.VT
                 new ObjectParameter("VolID", typeof(System.Guid));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_GroupVol_Delete", groupIDParameter, volIDParameter);
+        }
+    
+        public virtual int sp_Vend_Email_Delete(Nullable<int> emailID)
+        {
+            var emailIDParameter = emailID.HasValue ?
+                new ObjectParameter("EmailID", emailID) :
+                new ObjectParameter("EmailID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Vend_Email_Delete", emailIDParameter);
+        }
+    
+        public virtual int sp_Project_Update1(ObjectParameter flag, Nullable<System.Guid> projectID, string projectName, string projectDesc, Nullable<int> addrID)
+        {
+            var projectIDParameter = projectID.HasValue ?
+                new ObjectParameter("ProjectID", projectID) :
+                new ObjectParameter("ProjectID", typeof(System.Guid));
+    
+            var projectNameParameter = projectName != null ?
+                new ObjectParameter("ProjectName", projectName) :
+                new ObjectParameter("ProjectName", typeof(string));
+    
+            var projectDescParameter = projectDesc != null ?
+                new ObjectParameter("ProjectDesc", projectDesc) :
+                new ObjectParameter("ProjectDesc", typeof(string));
+    
+            var addrIDParameter = addrID.HasValue ?
+                new ObjectParameter("AddrID", addrID) :
+                new ObjectParameter("AddrID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Project_Update1", flag, projectIDParameter, projectNameParameter, projectDescParameter, addrIDParameter);
+        }
+    
+        public virtual int sp_ProjectEvent_Delete(Nullable<System.Guid> eventID)
+        {
+            var eventIDParameter = eventID.HasValue ?
+                new ObjectParameter("EventID", eventID) :
+                new ObjectParameter("EventID", typeof(System.Guid));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ProjectEvent_Delete", eventIDParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<System.Guid>> sp_ProjectEvent_Insert1(Nullable<System.Guid> projectID, Nullable<System.DateTime> startDateTime, Nullable<System.DateTime> endDateTime, Nullable<int> addrID)
+        {
+            var projectIDParameter = projectID.HasValue ?
+                new ObjectParameter("ProjectID", projectID) :
+                new ObjectParameter("ProjectID", typeof(System.Guid));
+    
+            var startDateTimeParameter = startDateTime.HasValue ?
+                new ObjectParameter("StartDateTime", startDateTime) :
+                new ObjectParameter("StartDateTime", typeof(System.DateTime));
+    
+            var endDateTimeParameter = endDateTime.HasValue ?
+                new ObjectParameter("EndDateTime", endDateTime) :
+                new ObjectParameter("EndDateTime", typeof(System.DateTime));
+    
+            var addrIDParameter = addrID.HasValue ?
+                new ObjectParameter("AddrID", addrID) :
+                new ObjectParameter("AddrID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("sp_ProjectEvent_Insert1", projectIDParameter, startDateTimeParameter, endDateTimeParameter, addrIDParameter);
+        }
+    
+        public virtual ObjectResult<sp_ProjectEvent_Select1_Result> sp_ProjectEvent_Select1(Nullable<System.Guid> eventID)
+        {
+            var eventIDParameter = eventID.HasValue ?
+                new ObjectParameter("EventID", eventID) :
+                new ObjectParameter("EventID", typeof(System.Guid));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ProjectEvent_Select1_Result>("sp_ProjectEvent_Select1", eventIDParameter);
+        }
+    
+        public virtual int sp_ProjectEvent_Update1(Nullable<System.Guid> eventID, Nullable<System.Guid> projectID, Nullable<System.DateTime> startDateTime, Nullable<System.DateTime> endDateTime, Nullable<int> addrID)
+        {
+            var eventIDParameter = eventID.HasValue ?
+                new ObjectParameter("EventID", eventID) :
+                new ObjectParameter("EventID", typeof(System.Guid));
+    
+            var projectIDParameter = projectID.HasValue ?
+                new ObjectParameter("ProjectID", projectID) :
+                new ObjectParameter("ProjectID", typeof(System.Guid));
+    
+            var startDateTimeParameter = startDateTime.HasValue ?
+                new ObjectParameter("StartDateTime", startDateTime) :
+                new ObjectParameter("StartDateTime", typeof(System.DateTime));
+    
+            var endDateTimeParameter = endDateTime.HasValue ?
+                new ObjectParameter("EndDateTime", endDateTime) :
+                new ObjectParameter("EndDateTime", typeof(System.DateTime));
+    
+            var addrIDParameter = addrID.HasValue ?
+                new ObjectParameter("AddrID", addrID) :
+                new ObjectParameter("AddrID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ProjectEvent_Update1", eventIDParameter, projectIDParameter, startDateTimeParameter, endDateTimeParameter, addrIDParameter);
         }
     }
 }

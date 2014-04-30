@@ -37,7 +37,7 @@ namespace VolTeer.DataAccessLayer.VT.Vol
             return list;
 
         }
-        public List<sp_Group_DM> ListGroups(int? groupID)
+        public sp_Group_DM ListGroups(int? groupID)
         {
             List<sp_Group_DM> list = new List<sp_Group_DM>();
             try
@@ -58,7 +58,7 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                 throw (ex);
             }
 
-            return list;
+            return list.FirstOrDefault();
             //return list.FirstOrDefault();
 
         }

@@ -12,9 +12,14 @@ namespace VolTeer.DataAccessLayer.VT
     using System;
     using System.Collections.Generic;
     
-    public partial class SpatialTable
+    public partial class tblGroupAddr
     {
-        public int id { get; set; }
-        public string GeogCol2 { get; set; }
+        public int GroupID { get; set; }
+        public int AddrID { get; set; }
+        public bool PrimaryAddrID { get; set; }
+        public bool ActiveFlg { get; set; }
+    
+        public virtual tblVolAddress tblVolAddress { get; set; }
+        public virtual tblGroup tblGroup { get; set; }
     }
 }

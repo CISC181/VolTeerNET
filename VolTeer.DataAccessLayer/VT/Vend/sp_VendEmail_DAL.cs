@@ -17,7 +17,7 @@ namespace VolTeer.DataAccessLayer.VT.Vend
             {
                 using (VolTeerEntities context = new VolTeerEntities())
                 {
-                    list = (from result in context.sp_Vend_Email_Select(EmailID)
+                    list = (from result in context.sp_Vend_Email_Select(EmailID,true)
                             select new sp_VendEmail_DM
                             {
                                 EmailID = result.EmailID,
