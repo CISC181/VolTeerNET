@@ -22,6 +22,7 @@ namespace VolTeer.DomainModels.VT.Vend
         public Nullable<int> Zip { get; set; }
         public Nullable<int> Zip4 { get; set; }
         public bool ActiveFlg { get; set; }
+        public string GeoCodeGetSet { get; set; }
 
         public virtual ICollection<sp_Project_DM> sp_Projects_DMs { get; set; }
         public virtual ICollection<sp_VendorAddr_DM> sp_VendorAddrs_DMs { get; set; }

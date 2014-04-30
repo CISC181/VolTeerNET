@@ -12,9 +12,14 @@ namespace VolTeer.DataAccessLayer.VT
     using System;
     using System.Collections.Generic;
     
-    public partial class UIProperty
+    public partial class tblGroupAddr
     {
-        public int PropertyID { get; set; }
-        public string PropertyDescr { get; set; }
+        public int GroupID { get; set; }
+        public int AddrID { get; set; }
+        public bool PrimaryAddrID { get; set; }
+        public bool ActiveFlg { get; set; }
+    
+        public virtual tblGroup tblGroup { get; set; }
+        public virtual tblVolAddress tblVolAddress { get; set; }
     }
 }
