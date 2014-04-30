@@ -1675,12 +1675,7 @@
             <End Role="tblVolunteer" EntitySet="tblVolunteers" />
             <End Role="tblVolPhone" EntitySet="tblVolPhones" />
           </AssociationSet>
-          <EntitySet Name="tblGroups" EntityType="VolTeerModel.tblGroup" />
           <EntitySet Name="tblGroupVols" EntityType="VolTeerModel.tblGroupVol" />
-          <AssociationSet Name="FK_tblGroupVol_tblGroup" Association="VolTeerModel.FK_tblGroupVol_tblGroup">
-            <End Role="tblGroup" EntitySet="tblGroups" />
-            <End Role="tblGroupVol" EntitySet="tblGroupVols" />
-          </AssociationSet>
           <AssociationSet Name="FK_tblGroupVol_tblVolunteer" Association="VolTeerModel.FK_tblGroupVol_tblVolunteer">
             <End Role="tblVolunteer" EntitySet="tblVolunteers" />
             <End Role="tblGroupVol" EntitySet="tblGroupVols" />
@@ -1855,10 +1850,6 @@
           <Parameter Name="EmailID" Mode="In" Type="Int32" />
           </FunctionImport>
           <EntitySet Name="tblGroupAddrs" EntityType="VolTeerModel.tblGroupAddr" />
-          <AssociationSet Name="FK_tblGroupAddr_tblGroup" Association="VolTeerModel.FK_tblGroupAddr_tblGroup">
-            <End Role="tblGroup" EntitySet="tblGroups" />
-            <End Role="tblGroupAddr" EntitySet="tblGroupAddrs" />
-          </AssociationSet>
           <AssociationSet Name="FK_tblGroupAddr_tblAddress" Association="VolTeerModel.FK_tblGroupAddr_tblAddress">
             <End Role="tblVolAddress" EntitySet="tblVolAddresses" />
             <End Role="tblGroupAddr" EntitySet="tblGroupAddrs" />
@@ -1871,7 +1862,7 @@
             <Parameter Name="AddrID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_ProjectEvent_Delete">
-            <Parameter Name="EventID" Mode="In" Type="Guid" />
+          <Parameter Name="EventID" Mode="In" Type="Guid" />
           </FunctionImport>
           <FunctionImport Name="sp_ProjectEvent_Insert1" ReturnType="Collection(Guid)">
             <Parameter Name="ProjectID" Mode="In" Type="Guid" />
@@ -1880,7 +1871,7 @@
             <Parameter Name="AddrID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_ProjectEvent_Select1" ReturnType="Collection(VolTeerModel.sp_ProjectEvent_Select1_Result)">
-            <Parameter Name="EventID" Mode="In" Type="Guid" />
+          <Parameter Name="EventID" Mode="In" Type="Guid" />
           </FunctionImport>
           <FunctionImport Name="sp_ProjectEvent_Update1">
             <Parameter Name="EventID" Mode="In" Type="Guid" />
@@ -1889,6 +1880,15 @@
             <Parameter Name="EndDateTime" Mode="In" Type="DateTime" />
             <Parameter Name="AddrID" Mode="In" Type="Int32" />
           </FunctionImport>
+          <EntitySet Name="tblGroups" EntityType="VolTeerModel.tblGroup" />
+          <AssociationSet Name="FK_tblGroupAddr_tblGroup" Association="VolTeerModel.FK_tblGroupAddr_tblGroup">
+            <End Role="tblGroup" EntitySet="tblGroups" />
+            <End Role="tblGroupAddr" EntitySet="tblGroupAddrs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblGroupVol_tblGroup" Association="VolTeerModel.FK_tblGroupVol_tblGroup">
+            <End Role="tblGroup" EntitySet="tblGroups" />
+            <End Role="tblGroupVol" EntitySet="tblGroupVols" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="tblContact">
           <Key>
@@ -2523,17 +2523,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="tblGroup">
-          <Key>
-            <PropertyRef Name="GroupID" />
-          </Key>
-          <Property Type="Int32" Name="GroupID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="GroupName" MaxLength="50" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="ParticipationLevelID" />
-          <Property Type="Boolean" Name="ActiveFlg" />
-          <NavigationProperty Name="tblGroupVols" Relationship="VolTeerModel.FK_tblGroupVol_tblGroup" FromRole="tblGroup" ToRole="tblGroupVol" />
-          <NavigationProperty Name="tblGroupAddrs" Relationship="VolTeerModel.FK_tblGroupAddr_tblGroup" FromRole="tblGroup" ToRole="tblGroupAddr" />
-        </EntityType>
         <EntityType Name="tblGroupVol">
           <Key>
             <PropertyRef Name="GroupID" />
@@ -2543,21 +2532,9 @@
           <Property Type="Guid" Name="VolID" Nullable="false" />
           <Property Type="Boolean" Name="PrimaryVolID" />
           <Property Type="Boolean" Name="Admin" />
-          <NavigationProperty Name="tblGroup" Relationship="VolTeerModel.FK_tblGroupVol_tblGroup" FromRole="tblGroupVol" ToRole="tblGroup" />
           <NavigationProperty Name="tblVolunteer" Relationship="VolTeerModel.FK_tblGroupVol_tblVolunteer" FromRole="tblGroupVol" ToRole="tblVolunteer" />
+          <NavigationProperty Name="tblGroup" Relationship="VolTeerModel.FK_tblGroupVol_tblGroup" FromRole="tblGroupVol" ToRole="tblGroup" />
         </EntityType>
-        <Association Name="FK_tblGroupVol_tblGroup">
-          <End Type="VolTeerModel.tblGroup" Role="tblGroup" Multiplicity="1" />
-          <End Type="VolTeerModel.tblGroupVol" Role="tblGroupVol" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblGroup">
-              <PropertyRef Name="GroupID" />
-            </Principal>
-            <Dependent Role="tblGroupVol">
-              <PropertyRef Name="GroupID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_tblGroupVol_tblVolunteer">
           <End Type="VolTeerModel.tblVolunteer" Role="tblVolunteer" Multiplicity="1" />
           <End Type="VolTeerModel.tblGroupVol" Role="tblGroupVol" Multiplicity="*" />
@@ -2753,21 +2730,9 @@
           <Property Type="Int32" Name="AddrID" Nullable="false" />
           <Property Type="Boolean" Name="PrimaryAddrID" Nullable="false" />
           <Property Type="Boolean" Name="ActiveFlg" Nullable="false" />
-          <NavigationProperty Name="tblGroup" Relationship="VolTeerModel.FK_tblGroupAddr_tblGroup" FromRole="tblGroupAddr" ToRole="tblGroup" />
           <NavigationProperty Name="tblVolAddress" Relationship="VolTeerModel.FK_tblGroupAddr_tblAddress" FromRole="tblGroupAddr" ToRole="tblVolAddress" />
+          <NavigationProperty Name="tblGroup" Relationship="VolTeerModel.FK_tblGroupAddr_tblGroup" FromRole="tblGroupAddr" ToRole="tblGroup" />
         </EntityType>
-        <Association Name="FK_tblGroupAddr_tblGroup">
-          <End Type="VolTeerModel.tblGroup" Role="tblGroup" Multiplicity="1" />
-          <End Type="VolTeerModel.tblGroupAddr" Role="tblGroupAddr" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblGroup">
-              <PropertyRef Name="GroupID" />
-            </Principal>
-            <Dependent Role="tblGroupAddr">
-              <PropertyRef Name="GroupID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_tblGroupAddr_tblAddress">
           <End Type="VolTeerModel.tblVolAddress" Role="tblVolAddress" Multiplicity="1" />
           <End Type="VolTeerModel.tblGroupAddr" Role="tblGroupAddr" Multiplicity="*" />
@@ -2787,6 +2752,41 @@
           <Property Type="DateTime" Name="EndDateTime" Nullable="true" Precision="23" />
           <Property Type="Int32" Name="AddrID" Nullable="true" />
         </ComplexType>
+        <EntityType Name="tblGroup">
+          <Key>
+            <PropertyRef Name="GroupID" />
+          </Key>
+          <Property Type="Int32" Name="GroupID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="GroupName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="ParticipationLevelID" />
+          <Property Type="Boolean" Name="ActiveFlg" />
+          <NavigationProperty Name="tblGroupAddrs" Relationship="VolTeerModel.FK_tblGroupAddr_tblGroup" FromRole="tblGroup" ToRole="tblGroupAddr" />
+          <NavigationProperty Name="tblGroupVols" Relationship="VolTeerModel.FK_tblGroupVol_tblGroup" FromRole="tblGroup" ToRole="tblGroupVol" />
+        </EntityType>
+        <Association Name="FK_tblGroupAddr_tblGroup">
+          <End Type="VolTeerModel.tblGroup" Role="tblGroup" Multiplicity="1" />
+          <End Type="VolTeerModel.tblGroupAddr" Role="tblGroupAddr" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblGroup">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="tblGroupAddr">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblGroupVol_tblGroup">
+          <End Type="VolTeerModel.tblGroup" Role="tblGroup" Multiplicity="1" />
+          <End Type="VolTeerModel.tblGroupVol" Role="tblGroupVol" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblGroup">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="tblGroupVol">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3534,35 +3534,6 @@
               </ModificationFunctionMapping>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblGroups">
-            <EntityTypeMapping TypeName="VolTeerModel.tblGroup">
-              <MappingFragment StoreEntitySet="tblGroup">
-                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
-                <ScalarProperty Name="ParticipationLevelID" ColumnName="ParticipationLevelID" />
-                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
-                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-            <EntityTypeMapping TypeName="VolTeerModel.tblGroup">
-              <ModificationFunctionMapping>
-                <InsertFunction FunctionName="VolTeerModel.Store.sp_Group_Insert">
-                  <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" />
-                  <ScalarProperty Name="ParticipationLevelID" ParameterName="ParticipationLevelID" />
-                  <ScalarProperty Name="GroupName" ParameterName="GroupName" />
-                  <ResultBinding Name="GroupID" ColumnName="GroupID" />
-                </InsertFunction>
-                <UpdateFunction FunctionName="VolTeerModel.Store.sp_Group_Update">
-                  <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" Version="Current" />
-                  <ScalarProperty Name="ParticipationLevelID" ParameterName="ParticipationLevelID" Version="Current" />
-                  <ScalarProperty Name="GroupName" ParameterName="GroupName" Version="Current" />
-                  <ScalarProperty Name="GroupID" ParameterName="GroupID" Version="Current" />
-                </UpdateFunction>
-                <DeleteFunction FunctionName="VolTeerModel.Store.sp_Group_Delete">
-                  <ScalarProperty Name="GroupID" ParameterName="GroupID" />
-                </DeleteFunction>
-              </ModificationFunctionMapping>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tblGroupVols">
             <EntityTypeMapping TypeName="VolTeerModel.tblGroupVol">
               <ModificationFunctionMapping>
@@ -3832,6 +3803,26 @@
                 <ScalarProperty Name="GroupID" ColumnName="GroupID" />
               </MappingFragment>
             </EntityTypeMapping>
+            <EntityTypeMapping TypeName="VolTeerModel.tblGroupAddr">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="VolTeerModel.Store.sp_GroupAddr_Insert">
+                  <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" />
+                  <ScalarProperty Name="PrimaryAddrID" ParameterName="PrimaryAddrID" />
+                  <ScalarProperty Name="AddrID" ParameterName="AddrID" />
+                  <ScalarProperty Name="GroupID" ParameterName="GroupID" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="VolTeerModel.Store.sp_GroupAddr_Update">
+                  <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" Version="Current" />
+                  <ScalarProperty Name="PrimaryAddrID" ParameterName="PrimaryAddrID" Version="Current" />
+                  <ScalarProperty Name="AddrID" ParameterName="AddrID" Version="Current" />
+                  <ScalarProperty Name="GroupID" ParameterName="GroupID" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="VolTeerModel.Store.sp_GroupAddr_Delete">
+                  <ScalarProperty Name="AddrID" ParameterName="AddrID" />
+                  <ScalarProperty Name="GroupID" ParameterName="GroupID" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="sp_Project_Update1" FunctionName="VolTeerModel.Store.sp_Project_Update" />
           <FunctionImportMapping FunctionImportName="sp_ProjectEvent_Delete" FunctionName="VolTeerModel.Store.sp_ProjectEvent_Delete" />
@@ -3848,6 +3839,35 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_ProjectEvent_Update1" FunctionName="VolTeerModel.Store.sp_ProjectEvent_Update" />
+          <EntitySetMapping Name="tblGroups">
+            <EntityTypeMapping TypeName="VolTeerModel.tblGroup">
+              <MappingFragment StoreEntitySet="tblGroup">
+                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
+                <ScalarProperty Name="ParticipationLevelID" ColumnName="ParticipationLevelID" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="VolTeerModel.tblGroup">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="VolTeerModel.Store.sp_Group_Insert">
+                  <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" />
+                  <ScalarProperty Name="ParticipationLevelID" ParameterName="ParticipationLevelID" />
+                  <ScalarProperty Name="GroupName" ParameterName="GroupName" />
+                  <ResultBinding Name="GroupID" ColumnName="GroupID" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="VolTeerModel.Store.sp_Group_Update">
+                  <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" Version="Current" />
+                  <ScalarProperty Name="ParticipationLevelID" ParameterName="ParticipationLevelID" Version="Current" />
+                  <ScalarProperty Name="GroupName" ParameterName="GroupName" Version="Current" />
+                  <ScalarProperty Name="GroupID" ParameterName="GroupID" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="VolTeerModel.Store.sp_Group_Delete">
+                  <ScalarProperty Name="GroupID" ParameterName="GroupID" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

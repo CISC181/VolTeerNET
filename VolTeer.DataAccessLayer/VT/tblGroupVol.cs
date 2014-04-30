@@ -19,7 +19,7 @@ namespace VolTeer.DataAccessLayer.VT
         public Nullable<bool> PrimaryVolID { get; set; }
         public Nullable<bool> Admin { get; set; }
     
-        public virtual tblGroup tblGroup { get; set; }
         public virtual tblVolunteer tblVolunteer { get; set; }
+        public virtual tblGroup tblGroup { get; set; }
     }
 }

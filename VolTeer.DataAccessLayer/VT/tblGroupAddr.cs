@@ -19,7 +19,7 @@ namespace VolTeer.DataAccessLayer.VT
         public bool PrimaryAddrID { get; set; }
         public bool ActiveFlg { get; set; }
     
-        public virtual tblGroup tblGroup { get; set; }
         public virtual tblVolAddress tblVolAddress { get; set; }
+        public virtual tblGroup tblGroup { get; set; }
     }
 }

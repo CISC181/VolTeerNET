@@ -50,7 +50,6 @@ namespace VolTeer.DataAccessLayer.VT
         public DbSet<tblVendState> tblVendStates { get; set; }
         public DbSet<tblSkill> tblSkills { get; set; }
         public DbSet<tblVolPhone> tblVolPhones { get; set; }
-        public DbSet<tblGroup> tblGroups { get; set; }
         public DbSet<tblGroupVol> tblGroupVols { get; set; }
         public DbSet<tblVolEmail> tblVolEmails { get; set; }
         public DbSet<Vend_tblUserCred> Vend_tblUserCred { get; set; }
@@ -60,6 +59,7 @@ namespace VolTeer.DataAccessLayer.VT
         public DbSet<RegisteredControl> RegisteredControls { get; set; }
         public DbSet<sysdiagram> sysdiagrams { get; set; }
         public DbSet<tblGroupAddr> tblGroupAddrs { get; set; }
+        public DbSet<tblGroup> tblGroups { get; set; }
     
         public virtual int sp_Contact_Delete(Nullable<System.Guid> contactID)
         {
