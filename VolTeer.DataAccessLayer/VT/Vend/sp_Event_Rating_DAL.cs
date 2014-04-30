@@ -18,7 +18,7 @@ namespace VolTeer.DataAccessLayer.VT.Vend
             {
                 using (VolTeerEntities context = new VolTeerEntities())
                 {
-                    list = (from result in context.sp_EventRating_Select(null)
+                    list = (from result in context.sp_EventRating_Select(null,null)
                             select new sp_EventRating_DM
                             {
                                 RatingID = result.RatingID,
@@ -45,7 +45,7 @@ namespace VolTeer.DataAccessLayer.VT.Vend
             {
                 using (VolTeerEntities context = new VolTeerEntities())
                 {
-                    list = (from result in context.sp_EventRating_Select(RatingID)
+                    list = (from result in context.sp_EventRating_Select(RatingID,null)
                             select new sp_EventRating_DM
                             {
                                 RatingID = result.RatingID,

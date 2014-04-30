@@ -10,14 +10,7 @@
           <EntitySet Name="Order" EntityType="VolTeerModel.Store.Order" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Product" EntityType="VolTeerModel.Store.Product" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="RegisteredControls" EntityType="VolTeerModel.Store.RegisteredControls" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="SpatialTable" EntityType="VolTeerModel.Store.SpatialTable" store:Type="Tables" store:Schema="dbo" store:Name="SpatialTable">
-            <DefiningQuery>SELECT 
-      [SpatialTable].[id] AS [id], 
-      [SpatialTable].[GeogCol2] AS [GeogCol2]
-      FROM [dbo].[SpatialTable] AS [SpatialTable]</DefiningQuery>
-          </EntitySet>
           <EntitySet Name="sysdiagrams" EntityType="VolTeerModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="UIProperties" EntityType="VolTeerModel.Store.UIProperties" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Vend_tblUserCred" EntityType="VolTeerModel.Store.Vend_tblUserCred" store:Type="Tables" store:Schema="dbo" store:Name="Vend.tblUserCred">
             <DefiningQuery>SELECT 
       [Vend_tblUserCred].[ContactID] AS [ContactID], 
@@ -203,17 +196,6 @@
           <Property Name="container_name" Type="nvarchar" MaxLength="255" />
           <Property Name="control_name" Type="nvarchar" MaxLength="255" />
         </EntityType>
-        <!--Errors Found During Generation:
-      warning 6002: The table/view 'VolTeer.dbo.SpatialTable' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
-      warning 6005: The data type 'geography' is not supported for the target .NET Framework version. The column 'GeogCol1' in the table 'VolTeer.dbo.SpatialTable' was excluded from the model. To use the data type 'geography', target the .NET Framework 4.5 or higher.
-      -->
-        <EntityType Name="SpatialTable">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="GeogCol2" Type="nvarchar(max)" StoreGeneratedPattern="Computed" />
-        </EntityType>
         <EntityType Name="sysdiagrams">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -223,13 +205,6 @@
           <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
-        <EntityType Name="UIProperties">
-          <Key>
-            <PropertyRef Name="PropertyID" />
-          </Key>
-          <Property Name="PropertyID" Type="int" Nullable="false" />
-          <Property Name="PropertyDescr" Type="varchar" MaxLength="75" />
         </EntityType>
         <!--Errors Found During Generation:
       warning 6002: The table/view 'VolTeer.dbo.Vend.tblUserCred' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
@@ -343,7 +318,7 @@
           </Key>
           <Property Name="VendorID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="VendorName" Type="nvarchar" MaxLength="50" />
-          <Property Name="ActiveFlg" Type="int" />
+          <Property Name="ActiveFlg" Type="bit" />
         </EntityType>
         <EntityType Name="tblVendorAddr">
           <Key>
@@ -967,10 +942,10 @@
           <Parameter Name="ProjectID" Type="uniqueidentifier" Mode="In" />
         </Function>
         <Function Name="sp_Project_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
-          <Parameter Name="ProjectID" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="ProjectName" Type="nvarchar" Mode="In" />
           <Parameter Name="ProjectDesc" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="AddrID" Type="int" Mode="In" />
+          <Parameter Name="ActiveFlg" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_Project_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
           <Parameter Name="ProjectID" Type="uniqueidentifier" Mode="In" />
@@ -1047,8 +1022,6 @@
         </Function>
         <Function Name="sp_Vend_Email_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
           <Parameter Name="EmailID" Type="int" Mode="In" />
-          <Parameter Name="EmailAddr" Type="nvarchar" Mode="In" />
-          <Parameter Name="ActiveFlg" Type="bit" Mode="In" />
         </Function>
         <Function Name="sp_Vend_Email_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
           <Parameter Name="EmailID" Type="int" Mode="In" />
@@ -1460,10 +1433,10 @@
           <Parameter Name="ProjectID" Mode="In" Type="Guid" />
           </FunctionImport>
           <FunctionImport Name="sp_Project_Insert">
-            <Parameter Name="ProjectID" Mode="In" Type="Guid" />
             <Parameter Name="ProjectName" Mode="In" Type="String" />
             <Parameter Name="ProjectDesc" Mode="In" Type="String" />
             <Parameter Name="AddrID" Mode="In" Type="Int32" />
+            <Parameter Name="ActiveFlg" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Project_Select" ReturnType="Collection(VolTeerModel.sp_Project_Select_Result)">
           <Parameter Name="ProjectID" Mode="In" Type="Guid" />
@@ -1506,11 +1479,6 @@
             <Parameter Name="Zip" Mode="In" Type="Int32" />
             <Parameter Name="Zip4" Mode="In" Type="Int32" />
             <Parameter Name="GeoCodeGetSet" Mode="In" Type="String" />
-          </FunctionImport>
-          <FunctionImport Name="sp_Vend_Email_Delete">
-            <Parameter Name="EmailID" Mode="In" Type="Int32" />
-            <Parameter Name="EmailAddr" Mode="In" Type="String" />
-            <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="sp_Vend_Email_Insert">
             <Parameter Name="EmailID" Mode="In" Type="Int32" />
@@ -1716,10 +1684,6 @@
             <End Role="tblVolunteer" EntitySet="tblVolunteers" />
             <End Role="tblGroupVol" EntitySet="tblGroupVols" />
           </AssociationSet>
-          <AssociationSet Name="tblGroupAddr" Association="VolTeerModel.tblGroupAddr">
-            <End Role="tblVolAddress" EntitySet="tblVolAddresses" />
-            <End Role="tblGroup" EntitySet="tblGroups" />
-          </AssociationSet>
           <EntitySet Name="tblVolEmails" EntityType="VolTeerModel.tblVolEmail" />
           <AssociationSet Name="FK_tblEmail_tblVolunteer" Association="VolTeerModel.FK_tblEmail_tblVolunteer">
             <End Role="tblVolunteer" EntitySet="tblVolunteers" />
@@ -1805,9 +1769,7 @@
           <EntitySet Name="Orders" EntityType="VolTeerModel.Order" />
           <EntitySet Name="Products" EntityType="VolTeerModel.Product" />
           <EntitySet Name="RegisteredControls" EntityType="VolTeerModel.RegisteredControl" />
-          <EntitySet Name="SpatialTables" EntityType="VolTeerModel.SpatialTable" />
           <EntitySet Name="sysdiagrams" EntityType="VolTeerModel.sysdiagram" />
-          <EntitySet Name="UIProperties" EntityType="VolTeerModel.UIProperty" />
           <AssociationSet Name="FK_Order_Product" Association="VolTeerModel.FK_Order_Product">
             <End Role="Product" EntitySet="Products" />
             <End Role="Order" EntitySet="Orders" />
@@ -1888,6 +1850,18 @@
             <Parameter Name="GroupID" Mode="In" Type="Int32" />
             <Parameter Name="VolID" Mode="In" Type="Guid" />
           </FunctionImport>
+          <FunctionImport Name="sp_Vend_Email_Delete">
+          <Parameter Name="EmailID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <EntitySet Name="tblGroupAddrs" EntityType="VolTeerModel.tblGroupAddr" />
+          <AssociationSet Name="FK_tblGroupAddr_tblGroup" Association="VolTeerModel.FK_tblGroupAddr_tblGroup">
+            <End Role="tblGroup" EntitySet="tblGroups" />
+            <End Role="tblGroupAddr" EntitySet="tblGroupAddrs" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblGroupAddr_tblAddress" Association="VolTeerModel.FK_tblGroupAddr_tblAddress">
+            <End Role="tblVolAddress" EntitySet="tblVolAddresses" />
+            <End Role="tblGroupAddr" EntitySet="tblGroupAddrs" />
+          </AssociationSet>
         </EntityContainer>
         <EntityType Name="tblContact">
           <Key>
@@ -2378,7 +2352,7 @@
           <Property Type="String" Name="GeoCodeGetSet" MaxLength="Max" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="Computed" />
           <NavigationProperty Name="tblAvailabilities" Relationship="VolTeerModel.FK_tblAvailability_tblVolAddress" FromRole="tblVolAddress" ToRole="tblAvailability" />
           <NavigationProperty Name="tblVolAddrs" Relationship="VolTeerModel.FK_tblVolAddr_tblAddress" FromRole="tblVolAddress" ToRole="tblVolAddr" />
-          <NavigationProperty Name="tblGroups" Relationship="VolTeerModel.tblGroupAddr" FromRole="tblVolAddress" ToRole="tblGroup" />
+          <NavigationProperty Name="tblGroupAddrs" Relationship="VolTeerModel.FK_tblGroupAddr_tblAddress" FromRole="tblVolAddress" ToRole="tblGroupAddr" />
         </EntityType>
         <Association Name="FK_tblAvailability_tblVolAddress">
           <End Type="VolTeerModel.tblVolAddress" Role="tblVolAddress" Multiplicity="1" />
@@ -2531,7 +2505,7 @@
           <Property Type="Int32" Name="ParticipationLevelID" />
           <Property Type="Boolean" Name="ActiveFlg" />
           <NavigationProperty Name="tblGroupVols" Relationship="VolTeerModel.FK_tblGroupVol_tblGroup" FromRole="tblGroup" ToRole="tblGroupVol" />
-          <NavigationProperty Name="tblVolAddresses" Relationship="VolTeerModel.tblGroupAddr" FromRole="tblGroup" ToRole="tblVolAddress" />
+          <NavigationProperty Name="tblGroupAddrs" Relationship="VolTeerModel.FK_tblGroupAddr_tblGroup" FromRole="tblGroup" ToRole="tblGroupAddr" />
         </EntityType>
         <EntityType Name="tblGroupVol">
           <Key>
@@ -2568,10 +2542,6 @@
               <PropertyRef Name="VolID" />
             </Dependent>
           </ReferentialConstraint>
-        </Association>
-        <Association Name="tblGroupAddr">
-          <End Type="VolTeerModel.tblVolAddress" Role="tblVolAddress" Multiplicity="*" />
-          <End Type="VolTeerModel.tblGroup" Role="tblGroup" Multiplicity="*" />
         </Association>
         <EntityType Name="tblVolEmail">
           <Key>
@@ -2676,13 +2646,6 @@
           <Property Type="String" Name="container_name" MaxLength="255" FixedLength="false" Unicode="true" />
           <Property Type="String" Name="control_name" MaxLength="255" FixedLength="false" Unicode="true" />
         </EntityType>
-        <EntityType Name="SpatialTable">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="GeogCol2" MaxLength="Max" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="Computed" />
-        </EntityType>
         <EntityType Name="sysdiagram">
           <Key>
             <PropertyRef Name="diagram_id" />
@@ -2692,13 +2655,6 @@
           <Property Type="Int32" Name="diagram_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Int32" Name="version" />
           <Property Type="Binary" Name="definition" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <EntityType Name="UIProperty">
-          <Key>
-            <PropertyRef Name="PropertyID" />
-          </Key>
-          <Property Type="Int32" Name="PropertyID" Nullable="false" />
-          <Property Type="String" Name="PropertyDescr" MaxLength="75" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_Order_Product">
           <End Type="VolTeerModel.Product" Role="Product" Multiplicity="1" />
@@ -2761,6 +2717,42 @@
           <Property Type="Boolean" Name="PrimaryAddrID" Nullable="false" />
           <Property Type="Boolean" Name="ActiveFlg" Nullable="false" />
         </ComplexType>
+        <EntityType Name="tblGroupAddr">
+          <Key>
+            <PropertyRef Name="GroupID" />
+            <PropertyRef Name="AddrID" />
+          </Key>
+          <Property Type="Int32" Name="GroupID" Nullable="false" />
+          <Property Type="Int32" Name="AddrID" Nullable="false" />
+          <Property Type="Boolean" Name="PrimaryAddrID" Nullable="false" />
+          <Property Type="Boolean" Name="ActiveFlg" Nullable="false" />
+          <NavigationProperty Name="tblGroup" Relationship="VolTeerModel.FK_tblGroupAddr_tblGroup" FromRole="tblGroupAddr" ToRole="tblGroup" />
+          <NavigationProperty Name="tblVolAddress" Relationship="VolTeerModel.FK_tblGroupAddr_tblAddress" FromRole="tblGroupAddr" ToRole="tblVolAddress" />
+        </EntityType>
+        <Association Name="FK_tblGroupAddr_tblGroup">
+          <End Type="VolTeerModel.tblGroup" Role="tblGroup" Multiplicity="1" />
+          <End Type="VolTeerModel.tblGroupAddr" Role="tblGroupAddr" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblGroup">
+              <PropertyRef Name="GroupID" />
+            </Principal>
+            <Dependent Role="tblGroupAddr">
+              <PropertyRef Name="GroupID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblGroupAddr_tblAddress">
+          <End Type="VolTeerModel.tblVolAddress" Role="tblVolAddress" Multiplicity="1" />
+          <End Type="VolTeerModel.tblGroupAddr" Role="tblGroupAddr" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblVolAddress">
+              <PropertyRef Name="AddrID" />
+            </Principal>
+            <Dependent Role="tblGroupAddr">
+              <PropertyRef Name="AddrID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2819,6 +2811,7 @@
             <EntityTypeMapping TypeName="VolTeerModel.tblEventRating">
               <ModificationFunctionMapping>
                 <InsertFunction FunctionName="VolTeerModel.Store.sp_EventRating_Insert">
+                  <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" />
                   <ScalarProperty Name="RatingValue" ParameterName="RatingValue" />
                   <ScalarProperty Name="VolID" ParameterName="VolID" />
                   <ScalarProperty Name="EventID" ParameterName="EventID" />
@@ -2831,6 +2824,7 @@
                   <ScalarProperty Name="RatingID" ParameterName="RatingID" Version="Current" />
                 </UpdateFunction>
                 <DeleteFunction FunctionName="VolTeerModel.Store.sp_EventRating_Delete">
+                  <ScalarProperty Name="EventID" ParameterName="EventID" />
                   <ScalarProperty Name="RatingID" ParameterName="RatingID" />
                 </DeleteFunction>
               </ModificationFunctionMapping>
@@ -2885,6 +2879,8 @@
             <EntityTypeMapping TypeName="VolTeerModel.tblVendAddress">
               <ModificationFunctionMapping>
                 <InsertFunction FunctionName="VolTeerModel.Store.sp_Vend_Address_Insert">
+                  <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" />
+                  <ScalarProperty Name="GeoCodeGetSet" ParameterName="GeoCodeGetSet" />
                   <ScalarProperty Name="Zip4" ParameterName="Zip4" />
                   <ScalarProperty Name="Zip" ParameterName="Zip" />
                   <ScalarProperty Name="St" ParameterName="St" />
@@ -2894,6 +2890,7 @@
                   <ScalarProperty Name="AddrLine1" ParameterName="AddrLine1" />
                 </InsertFunction>
                 <UpdateFunction FunctionName="VolTeerModel.Store.sp_Vend_Address_Update">
+                  <ScalarProperty Name="GeoCodeGetSet" ParameterName="GeoCodeGetSet" Version="Current" />
                   <ScalarProperty Name="AddrID" ParameterName="AddrId" Version="Current" />
                   <ScalarProperty Name="Zip4" ParameterName="Zip4" Version="Current" />
                   <ScalarProperty Name="Zip" ParameterName="Zip" Version="Current" />
@@ -2930,6 +2927,8 @@
             <EntityTypeMapping TypeName="VolTeerModel.tblVendEmail">
               <ModificationFunctionMapping>
                 <InsertFunction FunctionName="VolTeerModel.Store.sp_Vend_Email_Insert">
+                  <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" />
+                  <ScalarProperty Name="EmailID" ParameterName="EmailID" />
                   <ScalarProperty Name="EmailAddr" ParameterName="EmailAddr" />
                 </InsertFunction>
                 <UpdateFunction FunctionName="VolTeerModel.Store.sp_Vend_Email_Update">
@@ -3121,7 +3120,6 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_Vend_Address_Update" FunctionName="VolTeerModel.Store.sp_Vend_Address_Update" />
-          <FunctionImportMapping FunctionImportName="sp_Vend_Email_Delete" FunctionName="VolTeerModel.Store.sp_Vend_Email_Delete" />
           <FunctionImportMapping FunctionImportName="sp_Vend_Email_Insert" FunctionName="VolTeerModel.Store.sp_Vend_Email_Insert" />
           <FunctionImportMapping FunctionImportName="sp_Vend_Email_MassUpdate" FunctionName="VolTeerModel.Store.sp_Vend_Email_MassUpdate" />
           <FunctionImportMapping FunctionImportName="sp_Vend_Email_Select" FunctionName="VolTeerModel.Store.sp_Vend_Email_Select">
@@ -3522,14 +3520,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <AssociationSetMapping Name="tblGroupAddr" TypeName="VolTeerModel.tblGroupAddr" StoreEntitySet="tblGroupAddr">
-            <EndProperty Name="tblGroup">
-              <ScalarProperty Name="GroupID" ColumnName="GroupID" />
-            </EndProperty>
-            <EndProperty Name="tblVolAddress">
-              <ScalarProperty Name="AddrID" ColumnName="AddrID" />
-            </EndProperty>
-          </AssociationSetMapping>
           <EntitySetMapping Name="tblVolEmails">
             <EntityTypeMapping TypeName="VolTeerModel.tblVolEmail">
               <MappingFragment StoreEntitySet="tblVolEmail">
@@ -3677,14 +3667,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SpatialTables">
-            <EntityTypeMapping TypeName="VolTeerModel.SpatialTable">
-              <MappingFragment StoreEntitySet="SpatialTable">
-                <ScalarProperty Name="GeogCol2" ColumnName="GeogCol2" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="sysdiagrams">
             <EntityTypeMapping TypeName="VolTeerModel.sysdiagram">
               <MappingFragment StoreEntitySet="sysdiagrams">
@@ -3693,14 +3675,6 @@
                 <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
                 <ScalarProperty Name="principal_id" ColumnName="principal_id" />
                 <ScalarProperty Name="name" ColumnName="name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="UIProperties">
-            <EntityTypeMapping TypeName="VolTeerModel.UIProperty">
-              <MappingFragment StoreEntitySet="UIProperties">
-                <ScalarProperty Name="PropertyDescr" ColumnName="PropertyDescr" />
-                <ScalarProperty Name="PropertyID" ColumnName="PropertyID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3788,6 +3762,17 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_GroupAddr_Update" FunctionName="VolTeerModel.Store.sp_GroupAddr_Update" />
           <FunctionImportMapping FunctionImportName="sp_GroupVol_Delete" FunctionName="VolTeerModel.Store.sp_GroupVol_Delete" />
+          <FunctionImportMapping FunctionImportName="sp_Vend_Email_Delete" FunctionName="VolTeerModel.Store.sp_Vend_Email_Delete" />
+          <EntitySetMapping Name="tblGroupAddrs">
+            <EntityTypeMapping TypeName="VolTeerModel.tblGroupAddr">
+              <MappingFragment StoreEntitySet="tblGroupAddr">
+                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
+                <ScalarProperty Name="PrimaryAddrID" ColumnName="PrimaryAddrID" />
+                <ScalarProperty Name="AddrID" ColumnName="AddrID" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
