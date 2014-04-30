@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using VolTeer.DomainModels.VT.Vol;
-
+using VolTeer.Contracts.VT.Vol;
 
 namespace VolTeer.DataAccessLayer.VT.Vol
 {
-    public class sp_VolSkill_DAL
+    public class sp_VolSkill_DAL : sp_VolSkill_CON
     {
 
         public List<sp_VolSkill_DM> ListVolSkills(Guid VolID)

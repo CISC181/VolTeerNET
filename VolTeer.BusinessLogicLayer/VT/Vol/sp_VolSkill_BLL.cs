@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using VolTeer.DomainModels.VT.Vol;
 using VolTeer.DataAccessLayer.VT.Vol;
+using VolTeer.Contracts.VT.Vol;
 
 namespace  VolTeer.BusinessLogicLayer.VT.Vol
 {
-    public class sp_VolSkill_BLL
+    public class sp_VolSkill_BLL : sp_VolSkill_CON 
     {
         sp_VolSkill_DAL DAL = new sp_VolSkill_DAL();
 

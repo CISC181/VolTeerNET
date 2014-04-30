@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using VolTeer.DomainModels.VT.Vol;
 using VolTeer.DataAccessLayer.VT.Vol;
+using VolTeer.Contracts.VT.Vol;
 
 
 namespace VolTeer.BusinessLogicLayer.VT.Vol
 {
-    public class sp_Vol_Address_BLL
+    public class sp_Vol_Address_BLL : sp_Vol_Address_CON
     {
         sp_Vol_Address_DAL DAL = new sp_Vol_Address_DAL();
 
@@ -25,6 +26,11 @@ namespace VolTeer.BusinessLogicLayer.VT.Vol
         public sp_Vol_Address_DM ListPrimaryAddress(sp_Vol_Address_DM cVolAddr)
         {
             return DAL.ListPrimaryAddress(cVolAddr);
+        }
+
+        public sp_Vol_Address_DM ListAddress(sp_Vol_Address_DM cVolAddr)
+        {
+            return ListAddresses(cVolAddr).Single();
         }
 
         public void InsertAddressContext(ref sp_Vol_Address_DM _cAddress, ref sp_Vol_Addr_DM _cVolAddr)

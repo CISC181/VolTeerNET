@@ -5,12 +5,13 @@ using VolTeer.BusinessLogicLayer.VT.Vol;
 using System.Collections.Generic;
 using System.Web;
 using System.Web.Caching;
+using VolTeer.Contracts.VT.Vol;
 
 
 
 namespace VolTeer.Cache.VT.Vol
 {
-    public class sp_Vol_Address_Cache
+    public class sp_Vol_Address_Cache : sp_Vol_Address_CON
     {
         enum RecordType
         {
@@ -52,6 +53,11 @@ namespace VolTeer.Cache.VT.Vol
             return cAddress;
         }
 
+        public sp_Vol_Address_DM ListAddress(sp_Vol_Address_DM _cAddress)
+        {
+            return ListAddresses(_cAddress).Single();
+        }
+
         /// <summary>
         /// ListPrimaryAddress - Check to see if the Primary Address record is in cache.. if it's not, get it and place into cache.
         /// </summary>
@@ -84,7 +90,7 @@ namespace VolTeer.Cache.VT.Vol
         /// </summary>
         /// <param name="_cAddress"></param>
         /// <param name="_cVolAddr"></param>
-        public void InsertAddressContext(sp_Vol_Address_DM _cAddress, ref sp_Vol_Addr_DM _cVolAddr)
+        public void InsertAddressContext(ref sp_Vol_Address_DM _cAddress, ref sp_Vol_Addr_DM _cVolAddr)
         {
             BLL.InsertAddressContext(ref _cAddress, ref _cVolAddr);
             System.Web.Caching.Cache cache = HttpRuntime.Cache;

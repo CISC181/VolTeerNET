@@ -23,7 +23,7 @@ namespace VolTeer.DataAccessLayer.VT
     
         public System.Guid VendorID { get; set; }
         public string VendorName { get; set; }
-        public Nullable<int> ActiveFlg { get; set; }
+        public Nullable<bool> ActiveFlg { get; set; }
     
         public virtual ICollection<tblVendContact> tblVendContacts { get; set; }
         public virtual ICollection<tblVendorAddr> tblVendorAddrs { get; set; }

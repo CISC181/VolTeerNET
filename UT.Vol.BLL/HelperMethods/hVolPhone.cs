@@ -19,7 +19,7 @@ namespace UT.Vol.BLL.HelperMethods
             Phone.VolID = VolID;
             Phone.PrimaryFlg = primaryPhone;
 
-            VolPhoneBll.InsertPhonesContext(Phone);
+            VolPhoneBll.InsertPhoneContext(Phone);
 
             return Phone;
 

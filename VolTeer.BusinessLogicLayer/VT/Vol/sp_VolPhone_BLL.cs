@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using VolTeer.DomainModels.VT.Vol;
 using VolTeer.DataAccessLayer.VT.Vol;
+using VolTeer.Contracts.VT.Vol;
 
 
 namespace VolTeer.BusinessLogicLayer.VT.Vol
 {
-    public class sp_VolPhone_BLL
+    public class sp_VolPhone_BLL : sp_VolPhone_CON
     {
         sp_VolPhone_DAL DAL = new sp_VolPhone_DAL();
 
@@ -17,12 +18,12 @@ namespace VolTeer.BusinessLogicLayer.VT.Vol
             return DAL.ListPhones(cVolPhone);
         }
 
-        public sp_Phone_DM ListPrimaryPhones(sp_Phone_DM cVolPhone)
+        public sp_Phone_DM ListPrimaryPhone(sp_Phone_DM cVolPhone)
         {
-            return DAL.ListPrimaryPhone(cVolPhone).Single();
+            return DAL.ListPrimaryPhone(cVolPhone);
         }
 
-        public void InsertPhonesContext(sp_Phone_DM _cPhone)
+        public void InsertPhoneContext(sp_Phone_DM _cPhone)
         {
             DAL.InsertPhoneContext(_cPhone);
         }
