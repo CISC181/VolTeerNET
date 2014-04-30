@@ -2003,7 +2003,7 @@
           </Key>
           <Property Name="VendorID" Type="Guid" Nullable="false" />
           <Property Name="VendorName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="ActiveFlg" Type="Int32" />
+          <Property Name="ActiveFlg" Type="Boolean" />
           <NavigationProperty Name="tblVendContacts" Relationship="VolTeerModel.FK_tblVendContact_tblVendor" FromRole="tblVendor" ToRole="tblVendContact" />
           <NavigationProperty Name="tblVendorAddrs" Relationship="VolTeerModel.FK_tblVendorAddr_tblVendor" FromRole="tblVendor" ToRole="tblVendorAddr" />
           <NavigationProperty Name="tblVendorProjContacts" Relationship="VolTeerModel.FK_tblVendorProj_tblVendor" FromRole="tblVendor" ToRole="tblVendorProjContact" />
