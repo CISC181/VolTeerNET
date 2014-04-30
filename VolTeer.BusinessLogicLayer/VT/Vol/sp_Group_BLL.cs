@@ -10,7 +10,7 @@ namespace VolTeer.BusinessLogicLayer.VT.Vol
     public class sp_Group_BLL
     {
 
-        private sp_Group_DAL DAL = new sp_Group_DAL();
+        sp_Group_DAL DAL = new sp_Group_DAL();
 
         public List<sp_Group_DM> ListGroups()
         {
