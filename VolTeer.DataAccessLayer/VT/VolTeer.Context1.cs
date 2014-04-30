@@ -1031,13 +1031,17 @@ namespace VolTeer.DataAccessLayer.VT
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_GroupVol_Insert", groupIDParameter, volIDParameter, primaryVolIDParameter, adminParameter);
         }
     
-        public virtual int sp_GroupVol_Select(Nullable<int> groupID)
+        public virtual int sp_GroupVol_Select(Nullable<int> groupID, Nullable<System.Guid> volID)
         {
             var groupIDParameter = groupID.HasValue ?
                 new ObjectParameter("GroupID", groupID) :
                 new ObjectParameter("GroupID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_GroupVol_Select", groupIDParameter);
+            var volIDParameter = volID.HasValue ?
+                new ObjectParameter("VolID", volID) :
+                new ObjectParameter("VolID", typeof(System.Guid));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_GroupVol_Select", groupIDParameter, volIDParameter);
         }
     
         public virtual int sp_GroupVol_Update(Nullable<int> groupID, Nullable<System.Guid> volID, Nullable<bool> primaryVolID, Nullable<bool> admin)
@@ -1522,6 +1526,32 @@ namespace VolTeer.DataAccessLayer.VT
                 new ObjectParameter("AddrID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ProjectEvent_Update1", eventIDParameter, projectIDParameter, startDateTimeParameter, endDateTimeParameter, addrIDParameter);
+        }
+    
+        public virtual int sp_ProjectEventContact_Delete(Nullable<System.Guid> eventID, Nullable<System.Guid> contactID)
+        {
+            var eventIDParameter = eventID.HasValue ?
+                new ObjectParameter("EventID", eventID) :
+                new ObjectParameter("EventID", typeof(System.Guid));
+    
+            var contactIDParameter = contactID.HasValue ?
+                new ObjectParameter("ContactID", contactID) :
+                new ObjectParameter("ContactID", typeof(System.Guid));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ProjectEventContact_Delete", eventIDParameter, contactIDParameter);
+        }
+    
+        public virtual int sp_Vend_Contact_Delete(Nullable<System.Guid> vendorID, Nullable<System.Guid> contactID)
+        {
+            var vendorIDParameter = vendorID.HasValue ?
+                new ObjectParameter("VendorID", vendorID) :
+                new ObjectParameter("VendorID", typeof(System.Guid));
+    
+            var contactIDParameter = contactID.HasValue ?
+                new ObjectParameter("ContactID", contactID) :
+                new ObjectParameter("ContactID", typeof(System.Guid));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Vend_Contact_Delete", vendorIDParameter, contactIDParameter);
         }
     }
 }
