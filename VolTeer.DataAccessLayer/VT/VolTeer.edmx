@@ -951,7 +951,7 @@
           <Parameter Name="ProjectID" Type="uniqueidentifier" Mode="In" />
         </Function>
         <Function Name="sp_Project_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
-          <Parameter Name="flag" Type="bit" Mode="InOut" />
+          <Parameter Name="flag" Type="int" Mode="InOut" />
           <Parameter Name="ProjectID" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="ProjectName" Type="nvarchar" Mode="In" />
           <Parameter Name="ProjectDesc" Type="nvarchar(max)" Mode="In" />
@@ -1862,6 +1862,13 @@
             <End Role="tblVolAddress" EntitySet="tblVolAddresses" />
             <End Role="tblGroupAddr" EntitySet="tblGroupAddrs" />
           </AssociationSet>
+          <FunctionImport Name="sp_Project_Update1">
+            <Parameter Name="flag" Mode="InOut" Type="Int32" />
+            <Parameter Name="ProjectID" Mode="In" Type="Guid" />
+            <Parameter Name="ProjectName" Mode="In" Type="String" />
+            <Parameter Name="ProjectDesc" Mode="In" Type="String" />
+            <Parameter Name="AddrID" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="tblContact">
           <Key>
@@ -2840,6 +2847,26 @@
                 <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
               </MappingFragment>
             </EntityTypeMapping>
+            <EntityTypeMapping TypeName="VolTeerModel.tblProject">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="VolTeerModel.Store.sp_Project_Insert">
+                  <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" />
+                  <ScalarProperty Name="AddrID" ParameterName="AddrID" />
+                  <ScalarProperty Name="ProjectDesc" ParameterName="ProjectDesc" />
+                  <ScalarProperty Name="ProjectName" ParameterName="ProjectName" />
+                </InsertFunction>
+                <DeleteFunction FunctionName="VolTeerModel.Store.sp_Project_Delete">
+                  <ScalarProperty Name="ProjectID" ParameterName="ProjectID" />
+                </DeleteFunction>
+                <UpdateFunction FunctionName="VolTeerModel.Store.sp_Project_Update">
+                  <ScalarProperty Name="ActiveFlg" ParameterName="flag" Version="Current" />
+                  <ScalarProperty Name="AddrID" ParameterName="AddrID" Version="Current" />
+                  <ScalarProperty Name="ProjectDesc" ParameterName="ProjectDesc" Version="Current" />
+                  <ScalarProperty Name="ProjectName" ParameterName="ProjectName" Version="Current" />
+                  <ScalarProperty Name="ProjectID" ParameterName="ProjectID" Version="Current" />
+                </UpdateFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblProjectEvents">
             <EntityTypeMapping TypeName="VolTeerModel.tblProjectEvent">
@@ -3100,7 +3127,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_Project_Update" FunctionName="VolTeerModel.Store.sp_Project_Update" />
           <FunctionImportMapping FunctionImportName="sp_Vend_Address_Delete" FunctionName="VolTeerModel.Store.sp_Vend_Address_Delete" />
           <FunctionImportMapping FunctionImportName="sp_Vend_Address_Insert" FunctionName="VolTeerModel.Store.sp_Vend_Address_Insert" />
           <FunctionImportMapping FunctionImportName="sp_Vend_Address_MassUpdate" FunctionName="VolTeerModel.Store.sp_Vend_Address_MassUpdate" />
@@ -3773,6 +3799,7 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_Project_Update1" FunctionName="VolTeerModel.Store.sp_Project_Update" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

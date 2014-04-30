@@ -1438,5 +1438,26 @@ namespace VolTeer.DataAccessLayer.VT
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Vend_Email_Delete", emailIDParameter);
         }
+    
+        public virtual int sp_Project_Update1(ObjectParameter flag, Nullable<System.Guid> projectID, string projectName, string projectDesc, Nullable<int> addrID)
+        {
+            var projectIDParameter = projectID.HasValue ?
+                new ObjectParameter("ProjectID", projectID) :
+                new ObjectParameter("ProjectID", typeof(System.Guid));
+    
+            var projectNameParameter = projectName != null ?
+                new ObjectParameter("ProjectName", projectName) :
+                new ObjectParameter("ProjectName", typeof(string));
+    
+            var projectDescParameter = projectDesc != null ?
+                new ObjectParameter("ProjectDesc", projectDesc) :
+                new ObjectParameter("ProjectDesc", typeof(string));
+    
+            var addrIDParameter = addrID.HasValue ?
+                new ObjectParameter("AddrID", addrID) :
+                new ObjectParameter("AddrID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Project_Update1", flag, projectIDParameter, projectNameParameter, projectDescParameter, addrIDParameter);
+        }
     }
 }
