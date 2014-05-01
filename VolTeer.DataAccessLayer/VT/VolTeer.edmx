@@ -4,14 +4,166 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-    <Schema Namespace="VolTeerModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+    <Schema Namespace="VolTeerModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="VolTeerModelStoreContainer">
+          <EntitySet Name="ControlProperty" EntityType="VolTeerModel.Store.ControlProperty" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Order" EntityType="VolTeerModel.Store.Order" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Product" EntityType="VolTeerModel.Store.Product" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="RegisteredControls" EntityType="VolTeerModel.Store.RegisteredControls" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="sysdiagrams" EntityType="VolTeerModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="Vend_tblUserCred" EntityType="VolTeerModel.Store.Vend_tblUserCred" store:Type="Tables" store:Schema="dbo" store:Name="Vend.tblUserCred">
+            <DefiningQuery>SELECT 
+      [Vend_tblUserCred].[ContactID] AS [ContactID], 
+      [Vend_tblUserCred].[Password] AS [Password], 
+      [Vend_tblUserCred].[UserID] AS [UserID]
+      FROM [dbo].[Vend.tblUserCred] AS [Vend_tblUserCred]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="tblContact" EntityType="VolTeerModel.Store.tblContact" store:Type="Tables" Schema="Vend" />
+          <EntitySet Name="tblContactEmail" EntityType="VolTeerModel.Store.tblContactEmail" store:Type="Tables" Schema="Vend" />
+          <EntitySet Name="tblEventRating" EntityType="VolTeerModel.Store.tblEventRating" store:Type="Tables" Schema="Vend" />
+          <EntitySet Name="tblProject" EntityType="VolTeerModel.Store.tblProject" store:Type="Tables" Schema="Vend" />
+          <EntitySet Name="tblProjectEvent" EntityType="VolTeerModel.Store.tblProjectEvent" store:Type="Tables" Schema="Vend" />
+          <EntitySet Name="tblProjectEventContact" EntityType="VolTeerModel.Store.tblProjectEventContact" store:Type="Tables" Schema="Vend" />
+          <EntitySet Name="tblVendAddress" EntityType="VolTeerModel.Store.tblVendAddress" store:Type="Tables" Schema="Vend" />
+          <EntitySet Name="tblVendContact" EntityType="VolTeerModel.Store.tblVendContact" store:Type="Tables" Schema="Vend" />
+          <EntitySet Name="tblVendEmail" EntityType="VolTeerModel.Store.tblVendEmail" store:Type="Tables" Schema="Vend" />
+          <EntitySet Name="tblVendor" EntityType="VolTeerModel.Store.tblVendor" store:Type="Tables" Schema="Vend" />
+          <EntitySet Name="tblVendorAddr" EntityType="VolTeerModel.Store.tblVendorAddr" store:Type="Tables" Schema="Vend" />
+          <EntitySet Name="tblVendorProjContact" EntityType="VolTeerModel.Store.tblVendorProjContact" store:Type="Tables" Schema="Vend" />
+          <EntitySet Name="tblVendState" EntityType="VolTeerModel.Store.tblVendState" store:Type="Tables" Schema="Vend" />
+          <EntitySet Name="tblAvailability" EntityType="VolTeerModel.Store.tblAvailability" store:Type="Tables" Schema="Vol" />
+          <EntitySet Name="tblGroup" EntityType="VolTeerModel.Store.tblGroup" store:Type="Tables" Schema="Vol" />
+          <EntitySet Name="tblGroupAddr" EntityType="VolTeerModel.Store.tblGroupAddr" store:Type="Tables" Schema="Vol" />
+          <EntitySet Name="tblGroupVol" EntityType="VolTeerModel.Store.tblGroupVol" store:Type="Tables" Schema="Vol" />
+          <EntitySet Name="tblSampleAddress" EntityType="VolTeerModel.Store.tblSampleAddress" store:Type="Tables" Schema="Vol" />
+          <EntitySet Name="tblSkill" EntityType="VolTeerModel.Store.tblSkill" store:Type="Tables" Schema="Vol" />
+          <EntitySet Name="tblVolAddr" EntityType="VolTeerModel.Store.tblVolAddr" store:Type="Tables" Schema="Vol" />
+          <EntitySet Name="tblVolAddress" EntityType="VolTeerModel.Store.tblVolAddress" store:Type="Tables" Schema="Vol" />
+          <EntitySet Name="tblVolEmail" EntityType="VolTeerModel.Store.tblVolEmail" store:Type="Tables" Schema="Vol" />
+          <EntitySet Name="tblVolPhone" EntityType="VolTeerModel.Store.tblVolPhone" store:Type="Tables" Schema="Vol" />
+          <EntitySet Name="tblVolSkill" EntityType="VolTeerModel.Store.tblVolSkill" store:Type="Tables" Schema="Vol" />
+          <EntitySet Name="tblVolState" EntityType="VolTeerModel.Store.tblVolState" store:Type="Tables" Schema="Vol" />
+          <EntitySet Name="tblVolunteer" EntityType="VolTeerModel.Store.tblVolunteer" store:Type="Tables" Schema="Vol" />
+          <AssociationSet Name="FK_Appointments_ParentAppointments" Association="VolTeerModel.Store.FK_Appointments_ParentAppointments">
+            <End Role="tblAvailability" EntitySet="tblAvailability" />
+            <End Role="tblAvailability1" EntitySet="tblAvailability" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Order_Product" Association="VolTeerModel.Store.FK_Order_Product">
+            <End Role="Product" EntitySet="Product" />
+            <End Role="Order" EntitySet="Order" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Skill_Skill" Association="VolTeerModel.Store.FK_Skill_Skill">
+            <End Role="tblSkill" EntitySet="tblSkill" />
+            <End Role="tblSkill1" EntitySet="tblSkill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblAvailability_tblVolAddress" Association="VolTeerModel.Store.FK_tblAvailability_tblVolAddress">
+            <End Role="tblVolAddress" EntitySet="tblVolAddress" />
+            <End Role="tblAvailability" EntitySet="tblAvailability" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblAvailability_tblVolunteer" Association="VolTeerModel.Store.FK_tblAvailability_tblVolunteer">
+            <End Role="tblVolunteer" EntitySet="tblVolunteer" />
+            <End Role="tblAvailability" EntitySet="tblAvailability" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblContactEmail_tblContact" Association="VolTeerModel.Store.FK_tblContactEmail_tblContact">
+            <End Role="tblContact" EntitySet="tblContact" />
+            <End Role="tblContactEmail" EntitySet="tblContactEmail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblContactEmail_tblEmail" Association="VolTeerModel.Store.FK_tblContactEmail_tblEmail">
+            <End Role="tblVendEmail" EntitySet="tblVendEmail" />
+            <End Role="tblContactEmail" EntitySet="tblContactEmail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEmail_tblVolunteer" Association="VolTeerModel.Store.FK_tblEmail_tblVolunteer">
+            <End Role="tblVolunteer" EntitySet="tblVolunteer" />
+            <End Role="tblVolEmail" EntitySet="tblVolEmail" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblEventRating_tblProjectEvent" Association="VolTeerModel.Store.FK_tblEventRating_tblProjectEvent">
+            <End Role="tblProjectEvent" EntitySet="tblProjectEvent" />
+            <End Role="tblEventRating" EntitySet="tblEventRating" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblGroupAddr_tblAddress" Association="VolTeerModel.Store.FK_tblGroupAddr_tblAddress">
+            <End Role="tblVolAddress" EntitySet="tblVolAddress" />
+            <End Role="tblGroupAddr" EntitySet="tblGroupAddr" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblGroupAddr_tblGroup" Association="VolTeerModel.Store.FK_tblGroupAddr_tblGroup">
+            <End Role="tblGroup" EntitySet="tblGroup" />
+            <End Role="tblGroupAddr" EntitySet="tblGroupAddr" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblGroupVol_tblGroup" Association="VolTeerModel.Store.FK_tblGroupVol_tblGroup">
+            <End Role="tblGroup" EntitySet="tblGroup" />
+            <End Role="tblGroupVol" EntitySet="tblGroupVol" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblGroupVol_tblVolunteer" Association="VolTeerModel.Store.FK_tblGroupVol_tblVolunteer">
+            <End Role="tblVolunteer" EntitySet="tblVolunteer" />
+            <End Role="tblGroupVol" EntitySet="tblGroupVol" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblPhone_tblVolunteer" Association="VolTeerModel.Store.FK_tblPhone_tblVolunteer">
+            <End Role="tblVolunteer" EntitySet="tblVolunteer" />
+            <End Role="tblVolPhone" EntitySet="tblVolPhone" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProject_tblAddress" Association="VolTeerModel.Store.FK_tblProject_tblAddress">
+            <End Role="tblVendAddress" EntitySet="tblVendAddress" />
+            <End Role="tblProject" EntitySet="tblProject" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProjectEventContact_tblContact" Association="VolTeerModel.Store.FK_tblProjectEventContact_tblContact">
+            <End Role="tblContact" EntitySet="tblContact" />
+            <End Role="tblProjectEventContact" EntitySet="tblProjectEventContact" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblProjectEventContact_tblProjectEvent" Association="VolTeerModel.Store.FK_tblProjectEventContact_tblProjectEvent">
+            <End Role="tblProjectEvent" EntitySet="tblProjectEvent" />
+            <End Role="tblProjectEventContact" EntitySet="tblProjectEventContact" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblVendContact_tblContact" Association="VolTeerModel.Store.FK_tblVendContact_tblContact">
+            <End Role="tblContact" EntitySet="tblContact" />
+            <End Role="tblVendContact" EntitySet="tblVendContact" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblVendContact_tblVendor" Association="VolTeerModel.Store.FK_tblVendContact_tblVendor">
+            <End Role="tblVendor" EntitySet="tblVendor" />
+            <End Role="tblVendContact" EntitySet="tblVendContact" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblVendorAddr_tblAddress" Association="VolTeerModel.Store.FK_tblVendorAddr_tblAddress">
+            <End Role="tblVendAddress" EntitySet="tblVendAddress" />
+            <End Role="tblVendorAddr" EntitySet="tblVendorAddr" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblVendorAddr_tblVendor" Association="VolTeerModel.Store.FK_tblVendorAddr_tblVendor">
+            <End Role="tblVendor" EntitySet="tblVendor" />
+            <End Role="tblVendorAddr" EntitySet="tblVendorAddr" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblVendorProj_tblContact" Association="VolTeerModel.Store.FK_tblVendorProj_tblContact">
+            <End Role="tblContact" EntitySet="tblContact" />
+            <End Role="tblVendorProjContact" EntitySet="tblVendorProjContact" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblVendorProj_tblProject" Association="VolTeerModel.Store.FK_tblVendorProj_tblProject">
+            <End Role="tblProject" EntitySet="tblProject" />
+            <End Role="tblVendorProjContact" EntitySet="tblVendorProjContact" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblVendorProj_tblVendor" Association="VolTeerModel.Store.FK_tblVendorProj_tblVendor">
+            <End Role="tblVendor" EntitySet="tblVendor" />
+            <End Role="tblVendorProjContact" EntitySet="tblVendorProjContact" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblVolAddr_tblAddress" Association="VolTeerModel.Store.FK_tblVolAddr_tblAddress">
+            <End Role="tblVolAddress" EntitySet="tblVolAddress" />
+            <End Role="tblVolAddr" EntitySet="tblVolAddr" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblVolAddr_tblVolunteer" Association="VolTeerModel.Store.FK_tblVolAddr_tblVolunteer">
+            <End Role="tblVolunteer" EntitySet="tblVolunteer" />
+            <End Role="tblVolAddr" EntitySet="tblVolAddr" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblVolSkill_tblSkill" Association="VolTeerModel.Store.FK_tblVolSkill_tblSkill">
+            <End Role="tblSkill" EntitySet="tblSkill" />
+            <End Role="tblVolSkill" EntitySet="tblVolSkill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblVolSkill_tblVolunteer" Association="VolTeerModel.Store.FK_tblVolSkill_tblVolunteer">
+            <End Role="tblVolunteer" EntitySet="tblVolunteer" />
+            <End Role="tblVolSkill" EntitySet="tblVolSkill" />
+          </AssociationSet>
+        </EntityContainer>
         <EntityType Name="ControlProperty">
           <Key>
             <PropertyRef Name="RegsisterControlID" />
             <PropertyRef Name="RegisterPropertyID" />
           </Key>
           <Property Name="RegsisterControlID" Type="int" Nullable="false" />
-          <Property Name="RegisterPropertyID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RegisterPropertyID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="PropertyID" Type="int" />
           <Property Name="PropertValueID" Type="int" />
         </EntityType>
@@ -19,24 +171,24 @@
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="productId" Type="int" Nullable="false" />
           <Property Name="quantity" Type="int" Nullable="false" />
-          <Property Name="timestamp" Type="timestamp" StoreGeneratedPattern="Computed" Nullable="false" />
+          <Property Name="timestamp" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
         </EntityType>
         <EntityType Name="Product">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="name" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="varchar" Nullable="false" MaxLength="50" />
           <Property Name="price" Type="float" Nullable="false" />
         </EntityType>
         <EntityType Name="RegisteredControls">
           <Key>
             <PropertyRef Name="RegisterControlID" />
           </Key>
-          <Property Name="RegisterControlID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RegisterControlID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="table_catalog" Type="nvarchar" MaxLength="128" />
           <Property Name="table_schema" Type="nvarchar" MaxLength="128" />
           <Property Name="table_name" Type="nvarchar" MaxLength="128" />
@@ -48,14 +200,15 @@
           <Key>
             <PropertyRef Name="diagram_id" />
           </Key>
-          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
           <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="version" Type="int" />
           <Property Name="definition" Type="varbinary(max)" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6002: The table/view 'VolTeer.dbo.Vend.tblUserCred' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+      warning 6002: The table/view 'VolTeer.dbo.Vend.tblUserCred' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
+      -->
         <EntityType Name="Vend_tblUserCred">
           <Key>
             <PropertyRef Name="ContactID" />
@@ -63,7 +216,7 @@ warning 6002: The table/view 'VolTeer.dbo.Vend.tblUserCred' does not have a prim
             <PropertyRef Name="UserID" />
           </Key>
           <Property Name="ContactID" Type="uniqueidentifier" Nullable="false" />
-          <Property Name="Password" Type="char" MaxLength="32" Nullable="false" />
+          <Property Name="Password" Type="char" Nullable="false" MaxLength="32" />
           <Property Name="UserID" Type="uniqueidentifier" Nullable="false" />
         </EntityType>
         <EntityType Name="tblContact">
@@ -125,12 +278,13 @@ warning 6002: The table/view 'VolTeer.dbo.Vend.tblUserCred' does not have a prim
           <Property Name="PrimaryContact" Type="bit" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6005: The data type 'geography' is not supported for the target Entity Framework version schema. The column 'VolTeer.Vend.tblVendAddress' in the table 'GeoCode' was excluded from the model. To use the data type 'geography', target the Entity Framework schema version 3.0 or higher.-->
+      warning 6005: The data type 'geography' is not supported for the target .NET Framework version. The column 'GeoCode' in the table 'VolTeer.Vend.tblVendAddress' was excluded from the model. To use the data type 'geography', target the .NET Framework 4.5 or higher.
+      -->
         <EntityType Name="tblVendAddress">
           <Key>
             <PropertyRef Name="AddrID" />
           </Key>
-          <Property Name="AddrID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AddrID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="AddrLine1" Type="nvarchar" MaxLength="50" />
           <Property Name="AddrLine2" Type="nvarchar" MaxLength="50" />
           <Property Name="AddrLine3" Type="nvarchar" MaxLength="50" />
@@ -154,7 +308,7 @@ warning 6005: The data type 'geography' is not supported for the target Entity F
           <Key>
             <PropertyRef Name="EmailID" />
           </Key>
-          <Property Name="EmailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmailID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="EmailAddr" Type="nvarchar" MaxLength="100" />
           <Property Name="ActiveFlg" Type="bit" Nullable="false" />
         </EntityType>
@@ -214,8 +368,8 @@ warning 6005: The data type 'geography' is not supported for the target Entity F
           </Key>
           <Property Name="VolID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="AddrID" Type="int" Nullable="false" />
-          <Property Name="AvailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Subject" Type="nvarchar" MaxLength="255" Nullable="false" />
+          <Property Name="AvailID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="Subject" Type="nvarchar" Nullable="false" MaxLength="255" />
           <Property Name="Description" Type="nvarchar" MaxLength="1024" />
           <Property Name="AvailStart" Type="datetime" Nullable="false" />
           <Property Name="AvailEnd" Type="datetime" Nullable="false" />
@@ -228,7 +382,7 @@ warning 6005: The data type 'geography' is not supported for the target Entity F
           <Key>
             <PropertyRef Name="GroupID" />
           </Key>
-          <Property Name="GroupID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GroupID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="GroupName" Type="nvarchar" MaxLength="50" />
           <Property Name="ParticipationLevelID" Type="int" />
           <Property Name="ActiveFlg" Type="bit" />
@@ -257,7 +411,7 @@ warning 6005: The data type 'geography' is not supported for the target Entity F
           <Key>
             <PropertyRef Name="AddrID" />
           </Key>
-          <Property Name="AddrID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AddrID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="ActiveFlg" Type="bit" />
           <Property Name="AddrLine1" Type="nvarchar" MaxLength="50" />
           <Property Name="AddrLine2" Type="nvarchar" MaxLength="50" />
@@ -287,12 +441,13 @@ warning 6005: The data type 'geography' is not supported for the target Entity F
           <Property Name="PrimaryAddr" Type="bit" Nullable="false" />
         </EntityType>
         <!--Errors Found During Generation:
-warning 6005: The data type 'geography' is not supported for the target Entity Framework version schema. The column 'VolTeer.Vol.tblVolAddress' in the table 'GeoCode' was excluded from the model. To use the data type 'geography', target the Entity Framework schema version 3.0 or higher.-->
+      warning 6005: The data type 'geography' is not supported for the target .NET Framework version. The column 'GeoCode' in the table 'VolTeer.Vol.tblVolAddress' was excluded from the model. To use the data type 'geography', target the .NET Framework 4.5 or higher.
+      -->
         <EntityType Name="tblVolAddress">
           <Key>
             <PropertyRef Name="AddrID" />
           </Key>
-          <Property Name="AddrID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AddrID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="ActiveFlg" Type="bit" />
           <Property Name="AddrLine1" Type="nvarchar" MaxLength="50" />
           <Property Name="AddrLine2" Type="nvarchar" MaxLength="50" />
@@ -308,7 +463,7 @@ warning 6005: The data type 'geography' is not supported for the target Entity F
             <PropertyRef Name="EmailID" />
             <PropertyRef Name="VolID" />
           </Key>
-          <Property Name="EmailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="EmailID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="VolID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="EmailAddr" Type="nvarchar" MaxLength="100" />
           <Property Name="ActiveFlg" Type="bit" Nullable="false" />
@@ -319,7 +474,7 @@ warning 6005: The data type 'geography' is not supported for the target Entity F
             <PropertyRef Name="PhoneID" />
             <PropertyRef Name="VolID" />
           </Key>
-          <Property Name="PhoneID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="PhoneID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="VolID" Type="uniqueidentifier" Nullable="false" />
           <Property Name="PhoneNbr" Type="nvarchar" MaxLength="20" />
           <Property Name="ActiveFlg" Type="bit" />
@@ -366,8 +521,8 @@ warning 6005: The data type 'geography' is not supported for the target Entity F
           <Property Name="VolLastName" Type="nvarchar" MaxLength="30" />
         </EntityType>
         <Association Name="FK_Appointments_ParentAppointments">
-          <End Role="tblAvailability" Type="Self.tblAvailability" Multiplicity="0..1" />
-          <End Role="tblAvailability1" Type="Self.tblAvailability" Multiplicity="*" />
+          <End Role="tblAvailability" Type="VolTeerModel.Store.tblAvailability" Multiplicity="0..1" />
+          <End Role="tblAvailability1" Type="VolTeerModel.Store.tblAvailability" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblAvailability">
               <PropertyRef Name="AvailID" />
@@ -378,8 +533,8 @@ warning 6005: The data type 'geography' is not supported for the target Entity F
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Order_Product">
-          <End Role="Product" Type="Self.Product" Multiplicity="1" />
-          <End Role="Order" Type="Self.Order" Multiplicity="*" />
+          <End Role="Product" Type="VolTeerModel.Store.Product" Multiplicity="1" />
+          <End Role="Order" Type="VolTeerModel.Store.Order" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Product">
               <PropertyRef Name="id" />
@@ -390,8 +545,8 @@ warning 6005: The data type 'geography' is not supported for the target Entity F
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_Skill_Skill">
-          <End Role="tblSkill" Type="Self.tblSkill" Multiplicity="0..1" />
-          <End Role="tblSkill1" Type="Self.tblSkill" Multiplicity="*" />
+          <End Role="tblSkill" Type="VolTeerModel.Store.tblSkill" Multiplicity="0..1" />
+          <End Role="tblSkill1" Type="VolTeerModel.Store.tblSkill" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblSkill">
               <PropertyRef Name="SkillID" />
@@ -402,8 +557,8 @@ warning 6005: The data type 'geography' is not supported for the target Entity F
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblAvailability_tblVolAddress">
-          <End Role="tblVolAddress" Type="Self.tblVolAddress" Multiplicity="1" />
-          <End Role="tblAvailability" Type="Self.tblAvailability" Multiplicity="*" />
+          <End Role="tblVolAddress" Type="VolTeerModel.Store.tblVolAddress" Multiplicity="1" />
+          <End Role="tblAvailability" Type="VolTeerModel.Store.tblAvailability" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblVolAddress">
               <PropertyRef Name="AddrID" />
@@ -414,8 +569,8 @@ warning 6005: The data type 'geography' is not supported for the target Entity F
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblAvailability_tblVolunteer">
-          <End Role="tblVolunteer" Type="Self.tblVolunteer" Multiplicity="1" />
-          <End Role="tblAvailability" Type="Self.tblAvailability" Multiplicity="*" />
+          <End Role="tblVolunteer" Type="VolTeerModel.Store.tblVolunteer" Multiplicity="1" />
+          <End Role="tblAvailability" Type="VolTeerModel.Store.tblAvailability" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblVolunteer">
               <PropertyRef Name="VolID" />
@@ -426,8 +581,8 @@ warning 6005: The data type 'geography' is not supported for the target Entity F
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblContactEmail_tblContact">
-          <End Role="tblContact" Type="Self.tblContact" Multiplicity="1" />
-          <End Role="tblContactEmail" Type="Self.tblContactEmail" Multiplicity="*" />
+          <End Role="tblContact" Type="VolTeerModel.Store.tblContact" Multiplicity="1" />
+          <End Role="tblContactEmail" Type="VolTeerModel.Store.tblContactEmail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblContact">
               <PropertyRef Name="ContactID" />
@@ -438,8 +593,8 @@ warning 6005: The data type 'geography' is not supported for the target Entity F
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblContactEmail_tblEmail">
-          <End Role="tblVendEmail" Type="Self.tblVendEmail" Multiplicity="1" />
-          <End Role="tblContactEmail" Type="Self.tblContactEmail" Multiplicity="*" />
+          <End Role="tblVendEmail" Type="VolTeerModel.Store.tblVendEmail" Multiplicity="1" />
+          <End Role="tblContactEmail" Type="VolTeerModel.Store.tblContactEmail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblVendEmail">
               <PropertyRef Name="EmailID" />
@@ -450,8 +605,8 @@ warning 6005: The data type 'geography' is not supported for the target Entity F
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblEmail_tblVolunteer">
-          <End Role="tblVolunteer" Type="Self.tblVolunteer" Multiplicity="1" />
-          <End Role="tblVolEmail" Type="Self.tblVolEmail" Multiplicity="*" />
+          <End Role="tblVolunteer" Type="VolTeerModel.Store.tblVolunteer" Multiplicity="1" />
+          <End Role="tblVolEmail" Type="VolTeerModel.Store.tblVolEmail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblVolunteer">
               <PropertyRef Name="VolID" />
@@ -462,8 +617,8 @@ warning 6005: The data type 'geography' is not supported for the target Entity F
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblEventRating_tblProjectEvent">
-          <End Role="tblProjectEvent" Type="Self.tblProjectEvent" Multiplicity="0..1" />
-          <End Role="tblEventRating" Type="Self.tblEventRating" Multiplicity="*" />
+          <End Role="tblProjectEvent" Type="VolTeerModel.Store.tblProjectEvent" Multiplicity="0..1" />
+          <End Role="tblEventRating" Type="VolTeerModel.Store.tblEventRating" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblProjectEvent">
               <PropertyRef Name="EventID" />
@@ -474,8 +629,8 @@ warning 6005: The data type 'geography' is not supported for the target Entity F
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblGroupAddr_tblAddress">
-          <End Role="tblVolAddress" Type="Self.tblVolAddress" Multiplicity="1" />
-          <End Role="tblGroupAddr" Type="Self.tblGroupAddr" Multiplicity="*" />
+          <End Role="tblVolAddress" Type="VolTeerModel.Store.tblVolAddress" Multiplicity="1" />
+          <End Role="tblGroupAddr" Type="VolTeerModel.Store.tblGroupAddr" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblVolAddress">
               <PropertyRef Name="AddrID" />
@@ -486,8 +641,8 @@ warning 6005: The data type 'geography' is not supported for the target Entity F
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblGroupAddr_tblGroup">
-          <End Role="tblGroup" Type="Self.tblGroup" Multiplicity="1" />
-          <End Role="tblGroupAddr" Type="Self.tblGroupAddr" Multiplicity="*" />
+          <End Role="tblGroup" Type="VolTeerModel.Store.tblGroup" Multiplicity="1" />
+          <End Role="tblGroupAddr" Type="VolTeerModel.Store.tblGroupAddr" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblGroup">
               <PropertyRef Name="GroupID" />
@@ -498,8 +653,8 @@ warning 6005: The data type 'geography' is not supported for the target Entity F
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblGroupVol_tblGroup">
-          <End Role="tblGroup" Type="Self.tblGroup" Multiplicity="1" />
-          <End Role="tblGroupVol" Type="Self.tblGroupVol" Multiplicity="*" />
+          <End Role="tblGroup" Type="VolTeerModel.Store.tblGroup" Multiplicity="1" />
+          <End Role="tblGroupVol" Type="VolTeerModel.Store.tblGroupVol" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblGroup">
               <PropertyRef Name="GroupID" />
@@ -510,8 +665,8 @@ warning 6005: The data type 'geography' is not supported for the target Entity F
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblGroupVol_tblVolunteer">
-          <End Role="tblVolunteer" Type="Self.tblVolunteer" Multiplicity="1" />
-          <End Role="tblGroupVol" Type="Self.tblGroupVol" Multiplicity="*" />
+          <End Role="tblVolunteer" Type="VolTeerModel.Store.tblVolunteer" Multiplicity="1" />
+          <End Role="tblGroupVol" Type="VolTeerModel.Store.tblGroupVol" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblVolunteer">
               <PropertyRef Name="VolID" />
@@ -522,8 +677,8 @@ warning 6005: The data type 'geography' is not supported for the target Entity F
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblPhone_tblVolunteer">
-          <End Role="tblVolunteer" Type="Self.tblVolunteer" Multiplicity="1" />
-          <End Role="tblVolPhone" Type="Self.tblVolPhone" Multiplicity="*" />
+          <End Role="tblVolunteer" Type="VolTeerModel.Store.tblVolunteer" Multiplicity="1" />
+          <End Role="tblVolPhone" Type="VolTeerModel.Store.tblVolPhone" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblVolunteer">
               <PropertyRef Name="VolID" />
@@ -534,8 +689,8 @@ warning 6005: The data type 'geography' is not supported for the target Entity F
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblProject_tblAddress">
-          <End Role="tblVendAddress" Type="Self.tblVendAddress" Multiplicity="0..1" />
-          <End Role="tblProject" Type="Self.tblProject" Multiplicity="*" />
+          <End Role="tblVendAddress" Type="VolTeerModel.Store.tblVendAddress" Multiplicity="0..1" />
+          <End Role="tblProject" Type="VolTeerModel.Store.tblProject" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblVendAddress">
               <PropertyRef Name="AddrID" />
@@ -546,8 +701,8 @@ warning 6005: The data type 'geography' is not supported for the target Entity F
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblProjectEventContact_tblContact">
-          <End Role="tblContact" Type="Self.tblContact" Multiplicity="1" />
-          <End Role="tblProjectEventContact" Type="Self.tblProjectEventContact" Multiplicity="*" />
+          <End Role="tblContact" Type="VolTeerModel.Store.tblContact" Multiplicity="1" />
+          <End Role="tblProjectEventContact" Type="VolTeerModel.Store.tblProjectEventContact" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblContact">
               <PropertyRef Name="ContactID" />
@@ -558,8 +713,8 @@ warning 6005: The data type 'geography' is not supported for the target Entity F
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblProjectEventContact_tblProjectEvent">
-          <End Role="tblProjectEvent" Type="Self.tblProjectEvent" Multiplicity="1" />
-          <End Role="tblProjectEventContact" Type="Self.tblProjectEventContact" Multiplicity="*" />
+          <End Role="tblProjectEvent" Type="VolTeerModel.Store.tblProjectEvent" Multiplicity="1" />
+          <End Role="tblProjectEventContact" Type="VolTeerModel.Store.tblProjectEventContact" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblProjectEvent">
               <PropertyRef Name="EventID" />
@@ -570,8 +725,8 @@ warning 6005: The data type 'geography' is not supported for the target Entity F
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblVendContact_tblContact">
-          <End Role="tblContact" Type="Self.tblContact" Multiplicity="1" />
-          <End Role="tblVendContact" Type="Self.tblVendContact" Multiplicity="*" />
+          <End Role="tblContact" Type="VolTeerModel.Store.tblContact" Multiplicity="1" />
+          <End Role="tblVendContact" Type="VolTeerModel.Store.tblVendContact" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblContact">
               <PropertyRef Name="ContactID" />
@@ -582,8 +737,8 @@ warning 6005: The data type 'geography' is not supported for the target Entity F
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblVendContact_tblVendor">
-          <End Role="tblVendor" Type="Self.tblVendor" Multiplicity="1" />
-          <End Role="tblVendContact" Type="Self.tblVendContact" Multiplicity="*" />
+          <End Role="tblVendor" Type="VolTeerModel.Store.tblVendor" Multiplicity="1" />
+          <End Role="tblVendContact" Type="VolTeerModel.Store.tblVendContact" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblVendor">
               <PropertyRef Name="VendorID" />
@@ -594,8 +749,8 @@ warning 6005: The data type 'geography' is not supported for the target Entity F
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblVendorAddr_tblAddress">
-          <End Role="tblVendAddress" Type="Self.tblVendAddress" Multiplicity="1" />
-          <End Role="tblVendorAddr" Type="Self.tblVendorAddr" Multiplicity="*" />
+          <End Role="tblVendAddress" Type="VolTeerModel.Store.tblVendAddress" Multiplicity="1" />
+          <End Role="tblVendorAddr" Type="VolTeerModel.Store.tblVendorAddr" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblVendAddress">
               <PropertyRef Name="AddrID" />
@@ -606,8 +761,8 @@ warning 6005: The data type 'geography' is not supported for the target Entity F
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblVendorAddr_tblVendor">
-          <End Role="tblVendor" Type="Self.tblVendor" Multiplicity="1" />
-          <End Role="tblVendorAddr" Type="Self.tblVendorAddr" Multiplicity="*" />
+          <End Role="tblVendor" Type="VolTeerModel.Store.tblVendor" Multiplicity="1" />
+          <End Role="tblVendorAddr" Type="VolTeerModel.Store.tblVendorAddr" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblVendor">
               <PropertyRef Name="VendorID" />
@@ -618,8 +773,8 @@ warning 6005: The data type 'geography' is not supported for the target Entity F
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblVendorProj_tblContact">
-          <End Role="tblContact" Type="Self.tblContact" Multiplicity="1" />
-          <End Role="tblVendorProjContact" Type="Self.tblVendorProjContact" Multiplicity="*" />
+          <End Role="tblContact" Type="VolTeerModel.Store.tblContact" Multiplicity="1" />
+          <End Role="tblVendorProjContact" Type="VolTeerModel.Store.tblVendorProjContact" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblContact">
               <PropertyRef Name="ContactID" />
@@ -630,8 +785,8 @@ warning 6005: The data type 'geography' is not supported for the target Entity F
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblVendorProj_tblProject">
-          <End Role="tblProject" Type="Self.tblProject" Multiplicity="1" />
-          <End Role="tblVendorProjContact" Type="Self.tblVendorProjContact" Multiplicity="*" />
+          <End Role="tblProject" Type="VolTeerModel.Store.tblProject" Multiplicity="1" />
+          <End Role="tblVendorProjContact" Type="VolTeerModel.Store.tblVendorProjContact" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblProject">
               <PropertyRef Name="ProjectID" />
@@ -642,8 +797,8 @@ warning 6005: The data type 'geography' is not supported for the target Entity F
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblVendorProj_tblVendor">
-          <End Role="tblVendor" Type="Self.tblVendor" Multiplicity="1" />
-          <End Role="tblVendorProjContact" Type="Self.tblVendorProjContact" Multiplicity="*" />
+          <End Role="tblVendor" Type="VolTeerModel.Store.tblVendor" Multiplicity="1" />
+          <End Role="tblVendorProjContact" Type="VolTeerModel.Store.tblVendorProjContact" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblVendor">
               <PropertyRef Name="VendorID" />
@@ -654,8 +809,8 @@ warning 6005: The data type 'geography' is not supported for the target Entity F
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblVolAddr_tblAddress">
-          <End Role="tblVolAddress" Type="Self.tblVolAddress" Multiplicity="1" />
-          <End Role="tblVolAddr" Type="Self.tblVolAddr" Multiplicity="*" />
+          <End Role="tblVolAddress" Type="VolTeerModel.Store.tblVolAddress" Multiplicity="1" />
+          <End Role="tblVolAddr" Type="VolTeerModel.Store.tblVolAddr" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblVolAddress">
               <PropertyRef Name="AddrID" />
@@ -666,8 +821,8 @@ warning 6005: The data type 'geography' is not supported for the target Entity F
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblVolAddr_tblVolunteer">
-          <End Role="tblVolunteer" Type="Self.tblVolunteer" Multiplicity="1" />
-          <End Role="tblVolAddr" Type="Self.tblVolAddr" Multiplicity="*" />
+          <End Role="tblVolunteer" Type="VolTeerModel.Store.tblVolunteer" Multiplicity="1" />
+          <End Role="tblVolAddr" Type="VolTeerModel.Store.tblVolAddr" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblVolunteer">
               <PropertyRef Name="VolID" />
@@ -678,8 +833,8 @@ warning 6005: The data type 'geography' is not supported for the target Entity F
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblVolSkill_tblSkill">
-          <End Role="tblSkill" Type="Self.tblSkill" Multiplicity="1" />
-          <End Role="tblVolSkill" Type="Self.tblVolSkill" Multiplicity="*" />
+          <End Role="tblSkill" Type="VolTeerModel.Store.tblSkill" Multiplicity="1" />
+          <End Role="tblVolSkill" Type="VolTeerModel.Store.tblVolSkill" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblSkill">
               <PropertyRef Name="SkillID" />
@@ -690,8 +845,8 @@ warning 6005: The data type 'geography' is not supported for the target Entity F
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_tblVolSkill_tblVolunteer">
-          <End Role="tblVolunteer" Type="Self.tblVolunteer" Multiplicity="1" />
-          <End Role="tblVolSkill" Type="Self.tblVolSkill" Multiplicity="*" />
+          <End Role="tblVolunteer" Type="VolTeerModel.Store.tblVolunteer" Multiplicity="1" />
+          <End Role="tblVolSkill" Type="VolTeerModel.Store.tblVolSkill" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="tblVolunteer">
               <PropertyRef Name="VolID" />
@@ -703,7 +858,7 @@ warning 6005: The data type 'geography' is not supported for the target Entity F
         </Association>
         <Function Name="Describe_CheckConstraints" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="Describe_TableColumns" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="fn_diagramobjects" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" ReturnType="int" />
+        <Function Name="fn_diagramobjects" ReturnType="int" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
@@ -907,6 +1062,28 @@ warning 6005: The data type 'geography' is not supported for the target Entity F
           <Parameter Name="VendorID" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="VendorName" Type="nvarchar" Mode="In" />
           <Parameter Name="ActiveFlg" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="sp_VendorProjContact_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
+          <Parameter Name="VendorID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ProjectID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ContactID" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="sp_VendorProjContact_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
+          <Parameter Name="VendorID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ProjectID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ContactID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="PrimaryContact" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="sp_VendorProjContact_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
+          <Parameter Name="VendorID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ProjectID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ContactID" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="sp_VendorProjContact_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
+          <Parameter Name="VendorID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ProjectID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ContactID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="PrimaryContact" Type="bit" Mode="In" />
         </Function>
         <Function Name="sp_Availability_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="VolID" Type="uniqueidentifier" Mode="In" />
@@ -1167,158 +1344,6 @@ warning 6005: The data type 'geography' is not supported for the target Entity F
           <Parameter Name="VolMiddleName" Type="nvarchar" Mode="In" />
           <Parameter Name="VolLastName" Type="nvarchar" Mode="In" />
         </Function>
-        <EntityContainer Name="VolTeerModelStoreContainer">
-          <EntitySet Name="ControlProperty" EntityType="Self.ControlProperty" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Order" EntityType="Self.Order" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="Product" EntityType="Self.Product" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="RegisteredControls" EntityType="Self.RegisteredControls" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
-          <EntitySet Name="tblContact" EntityType="Self.tblContact" Schema="Vend" store:Type="Tables" />
-          <EntitySet Name="tblContactEmail" EntityType="Self.tblContactEmail" Schema="Vend" store:Type="Tables" />
-          <EntitySet Name="tblEventRating" EntityType="Self.tblEventRating" Schema="Vend" store:Type="Tables" />
-          <EntitySet Name="tblProject" EntityType="Self.tblProject" Schema="Vend" store:Type="Tables" />
-          <EntitySet Name="tblProjectEvent" EntityType="Self.tblProjectEvent" Schema="Vend" store:Type="Tables" />
-          <EntitySet Name="tblProjectEventContact" EntityType="Self.tblProjectEventContact" Schema="Vend" store:Type="Tables" />
-          <EntitySet Name="tblVendAddress" EntityType="Self.tblVendAddress" Schema="Vend" store:Type="Tables" />
-          <EntitySet Name="tblVendContact" EntityType="Self.tblVendContact" Schema="Vend" store:Type="Tables" />
-          <EntitySet Name="tblVendEmail" EntityType="Self.tblVendEmail" Schema="Vend" store:Type="Tables" />
-          <EntitySet Name="tblVendor" EntityType="Self.tblVendor" Schema="Vend" store:Type="Tables" />
-          <EntitySet Name="tblVendorAddr" EntityType="Self.tblVendorAddr" Schema="Vend" store:Type="Tables" />
-          <EntitySet Name="tblVendorProjContact" EntityType="Self.tblVendorProjContact" Schema="Vend" store:Type="Tables" />
-          <EntitySet Name="tblVendState" EntityType="Self.tblVendState" Schema="Vend" store:Type="Tables" />
-          <EntitySet Name="tblAvailability" EntityType="Self.tblAvailability" Schema="Vol" store:Type="Tables" />
-          <EntitySet Name="tblGroup" EntityType="Self.tblGroup" Schema="Vol" store:Type="Tables" />
-          <EntitySet Name="tblGroupAddr" EntityType="Self.tblGroupAddr" Schema="Vol" store:Type="Tables" />
-          <EntitySet Name="tblGroupVol" EntityType="Self.tblGroupVol" Schema="Vol" store:Type="Tables" />
-          <EntitySet Name="tblSampleAddress" EntityType="Self.tblSampleAddress" Schema="Vol" store:Type="Tables" />
-          <EntitySet Name="tblSkill" EntityType="Self.tblSkill" Schema="Vol" store:Type="Tables" />
-          <EntitySet Name="tblVolAddr" EntityType="Self.tblVolAddr" Schema="Vol" store:Type="Tables" />
-          <EntitySet Name="tblVolAddress" EntityType="Self.tblVolAddress" Schema="Vol" store:Type="Tables" />
-          <EntitySet Name="tblVolEmail" EntityType="Self.tblVolEmail" Schema="Vol" store:Type="Tables" />
-          <EntitySet Name="tblVolPhone" EntityType="Self.tblVolPhone" Schema="Vol" store:Type="Tables" />
-          <EntitySet Name="tblVolSkill" EntityType="Self.tblVolSkill" Schema="Vol" store:Type="Tables" />
-          <EntitySet Name="tblVolState" EntityType="Self.tblVolState" Schema="Vol" store:Type="Tables" />
-          <EntitySet Name="tblVolunteer" EntityType="Self.tblVolunteer" Schema="Vol" store:Type="Tables" />
-          <EntitySet Name="Vend_tblUserCred" EntityType="Self.Vend_tblUserCred" store:Type="Tables" store:Schema="dbo" store:Name="Vend.tblUserCred">
-            <DefiningQuery>SELECT 
-[Vend_tblUserCred].[ContactID] AS [ContactID], 
-[Vend_tblUserCred].[Password] AS [Password], 
-[Vend_tblUserCred].[UserID] AS [UserID]
-FROM [dbo].[Vend.tblUserCred] AS [Vend_tblUserCred]</DefiningQuery>
-          </EntitySet>
-          <AssociationSet Name="FK_Appointments_ParentAppointments" Association="Self.FK_Appointments_ParentAppointments">
-            <End Role="tblAvailability" EntitySet="tblAvailability" />
-            <End Role="tblAvailability1" EntitySet="tblAvailability" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Order_Product" Association="Self.FK_Order_Product">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="Order" EntitySet="Order" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Skill_Skill" Association="Self.FK_Skill_Skill">
-            <End Role="tblSkill" EntitySet="tblSkill" />
-            <End Role="tblSkill1" EntitySet="tblSkill" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblAvailability_tblVolAddress" Association="Self.FK_tblAvailability_tblVolAddress">
-            <End Role="tblVolAddress" EntitySet="tblVolAddress" />
-            <End Role="tblAvailability" EntitySet="tblAvailability" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblAvailability_tblVolunteer" Association="Self.FK_tblAvailability_tblVolunteer">
-            <End Role="tblVolunteer" EntitySet="tblVolunteer" />
-            <End Role="tblAvailability" EntitySet="tblAvailability" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblContactEmail_tblContact" Association="Self.FK_tblContactEmail_tblContact">
-            <End Role="tblContact" EntitySet="tblContact" />
-            <End Role="tblContactEmail" EntitySet="tblContactEmail" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblContactEmail_tblEmail" Association="Self.FK_tblContactEmail_tblEmail">
-            <End Role="tblVendEmail" EntitySet="tblVendEmail" />
-            <End Role="tblContactEmail" EntitySet="tblContactEmail" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblEmail_tblVolunteer" Association="Self.FK_tblEmail_tblVolunteer">
-            <End Role="tblVolunteer" EntitySet="tblVolunteer" />
-            <End Role="tblVolEmail" EntitySet="tblVolEmail" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblEventRating_tblProjectEvent" Association="Self.FK_tblEventRating_tblProjectEvent">
-            <End Role="tblProjectEvent" EntitySet="tblProjectEvent" />
-            <End Role="tblEventRating" EntitySet="tblEventRating" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblGroupAddr_tblAddress" Association="Self.FK_tblGroupAddr_tblAddress">
-            <End Role="tblVolAddress" EntitySet="tblVolAddress" />
-            <End Role="tblGroupAddr" EntitySet="tblGroupAddr" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblGroupAddr_tblGroup" Association="Self.FK_tblGroupAddr_tblGroup">
-            <End Role="tblGroup" EntitySet="tblGroup" />
-            <End Role="tblGroupAddr" EntitySet="tblGroupAddr" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblGroupVol_tblGroup" Association="Self.FK_tblGroupVol_tblGroup">
-            <End Role="tblGroup" EntitySet="tblGroup" />
-            <End Role="tblGroupVol" EntitySet="tblGroupVol" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblGroupVol_tblVolunteer" Association="Self.FK_tblGroupVol_tblVolunteer">
-            <End Role="tblVolunteer" EntitySet="tblVolunteer" />
-            <End Role="tblGroupVol" EntitySet="tblGroupVol" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblPhone_tblVolunteer" Association="Self.FK_tblPhone_tblVolunteer">
-            <End Role="tblVolunteer" EntitySet="tblVolunteer" />
-            <End Role="tblVolPhone" EntitySet="tblVolPhone" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblProject_tblAddress" Association="Self.FK_tblProject_tblAddress">
-            <End Role="tblVendAddress" EntitySet="tblVendAddress" />
-            <End Role="tblProject" EntitySet="tblProject" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblProjectEventContact_tblContact" Association="Self.FK_tblProjectEventContact_tblContact">
-            <End Role="tblContact" EntitySet="tblContact" />
-            <End Role="tblProjectEventContact" EntitySet="tblProjectEventContact" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblProjectEventContact_tblProjectEvent" Association="Self.FK_tblProjectEventContact_tblProjectEvent">
-            <End Role="tblProjectEvent" EntitySet="tblProjectEvent" />
-            <End Role="tblProjectEventContact" EntitySet="tblProjectEventContact" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblVendContact_tblContact" Association="Self.FK_tblVendContact_tblContact">
-            <End Role="tblContact" EntitySet="tblContact" />
-            <End Role="tblVendContact" EntitySet="tblVendContact" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblVendContact_tblVendor" Association="Self.FK_tblVendContact_tblVendor">
-            <End Role="tblVendor" EntitySet="tblVendor" />
-            <End Role="tblVendContact" EntitySet="tblVendContact" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblVendorAddr_tblAddress" Association="Self.FK_tblVendorAddr_tblAddress">
-            <End Role="tblVendAddress" EntitySet="tblVendAddress" />
-            <End Role="tblVendorAddr" EntitySet="tblVendorAddr" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblVendorAddr_tblVendor" Association="Self.FK_tblVendorAddr_tblVendor">
-            <End Role="tblVendor" EntitySet="tblVendor" />
-            <End Role="tblVendorAddr" EntitySet="tblVendorAddr" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblVendorProj_tblContact" Association="Self.FK_tblVendorProj_tblContact">
-            <End Role="tblContact" EntitySet="tblContact" />
-            <End Role="tblVendorProjContact" EntitySet="tblVendorProjContact" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblVendorProj_tblProject" Association="Self.FK_tblVendorProj_tblProject">
-            <End Role="tblProject" EntitySet="tblProject" />
-            <End Role="tblVendorProjContact" EntitySet="tblVendorProjContact" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblVendorProj_tblVendor" Association="Self.FK_tblVendorProj_tblVendor">
-            <End Role="tblVendor" EntitySet="tblVendor" />
-            <End Role="tblVendorProjContact" EntitySet="tblVendorProjContact" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblVolAddr_tblAddress" Association="Self.FK_tblVolAddr_tblAddress">
-            <End Role="tblVolAddress" EntitySet="tblVolAddress" />
-            <End Role="tblVolAddr" EntitySet="tblVolAddr" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblVolAddr_tblVolunteer" Association="Self.FK_tblVolAddr_tblVolunteer">
-            <End Role="tblVolunteer" EntitySet="tblVolunteer" />
-            <End Role="tblVolAddr" EntitySet="tblVolAddr" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblVolSkill_tblSkill" Association="Self.FK_tblVolSkill_tblSkill">
-            <End Role="tblSkill" EntitySet="tblSkill" />
-            <End Role="tblVolSkill" EntitySet="tblVolSkill" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblVolSkill_tblVolunteer" Association="Self.FK_tblVolSkill_tblVolunteer">
-            <End Role="tblVolunteer" EntitySet="tblVolunteer" />
-            <End Role="tblVolSkill" EntitySet="tblVolSkill" />
-          </AssociationSet>
-        </EntityContainer>
       </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
@@ -1725,7 +1750,7 @@ FROM [dbo].[Vend.tblUserCred] AS [Vend_tblUserCred]</DefiningQuery>
             <Parameter Name="Admin" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="sp_GroupVol_Select">
-          <Parameter Name="GroupID" Mode="In" Type="Int32" />
+            <Parameter Name="GroupID" Mode="In" Type="Int32" />
             <Parameter Name="VolID" Mode="In" Type="Guid" />
           </FunctionImport>
           <FunctionImport Name="sp_GroupVol_Update">
@@ -1903,6 +1928,28 @@ FROM [dbo].[Vend.tblUserCred] AS [Vend_tblUserCred]</DefiningQuery>
           <FunctionImport Name="sp_Vend_Contact_Delete">
             <Parameter Name="VendorID" Mode="In" Type="Guid" />
             <Parameter Name="ContactID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="sp_VendorProjContact_Delete">
+            <Parameter Name="VendorID" Mode="In" Type="Guid" />
+            <Parameter Name="ProjectID" Mode="In" Type="Guid" />
+            <Parameter Name="ContactID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="sp_VendorProjContact_Insert">
+            <Parameter Name="VendorID" Mode="In" Type="Guid" />
+            <Parameter Name="ProjectID" Mode="In" Type="Guid" />
+            <Parameter Name="ContactID" Mode="In" Type="Guid" />
+            <Parameter Name="PrimaryContact" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="sp_VendorProjContact_Select" ReturnType="Collection(VolTeerModel.sp_VendorProjContact_Select_Result)">
+            <Parameter Name="VendorID" Mode="In" Type="Guid" />
+            <Parameter Name="ProjectID" Mode="In" Type="Guid" />
+            <Parameter Name="ContactID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="sp_VendorProjContact_Update">
+            <Parameter Name="VendorID" Mode="In" Type="Guid" />
+            <Parameter Name="ProjectID" Mode="In" Type="Guid" />
+            <Parameter Name="ContactID" Mode="In" Type="Guid" />
+            <Parameter Name="PrimaryContact" Mode="In" Type="Boolean" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="tblContact">
@@ -2802,6 +2849,12 @@ FROM [dbo].[Vend.tblUserCred] AS [Vend_tblUserCred]</DefiningQuery>
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="sp_VendorProjContact_Select_Result">
+          <Property Type="Guid" Name="VendorID" Nullable="false" />
+          <Property Type="Guid" Name="ProjectID" Nullable="false" />
+          <Property Type="Guid" Name="ContactID" Nullable="false" />
+          <Property Type="Boolean" Name="PrimaryContact" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3093,6 +3146,27 @@ FROM [dbo].[Vend.tblUserCred] AS [Vend_tblUserCred]</DefiningQuery>
                 <ScalarProperty Name="ContactID" ColumnName="ContactID" />
                 <ScalarProperty Name="PrimaryContact" ColumnName="PrimaryContact" />
               </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="VolTeerModel.tblVendorProjContact">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="VolTeerModel.Store.sp_VendorProjContact_Insert">
+                  <ScalarProperty Name="PrimaryContact" ParameterName="PrimaryContact" />
+                  <ScalarProperty Name="ContactID" ParameterName="ContactID" />
+                  <ScalarProperty Name="ProjectID" ParameterName="ProjectID" />
+                  <ScalarProperty Name="VendorID" ParameterName="VendorID" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="VolTeerModel.Store.sp_VendorProjContact_Update">
+                  <ScalarProperty Name="PrimaryContact" ParameterName="PrimaryContact" Version="Current" />
+                  <ScalarProperty Name="ContactID" ParameterName="ContactID" Version="Current" />
+                  <ScalarProperty Name="ProjectID" ParameterName="ProjectID" Version="Current" />
+                  <ScalarProperty Name="VendorID" ParameterName="VendorID" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="VolTeerModel.Store.sp_VendorProjContact_Delete">
+                  <ScalarProperty Name="ContactID" ParameterName="ContactID" />
+                  <ScalarProperty Name="ProjectID" ParameterName="ProjectID" />
+                  <ScalarProperty Name="VendorID" ParameterName="VendorID" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblSampleAddresses">
@@ -3903,6 +3977,19 @@ FROM [dbo].[Vend.tblUserCred] AS [Vend_tblUserCred]</DefiningQuery>
           </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="sp_ProjectEventContact_Delete" FunctionName="VolTeerModel.Store.sp_ProjectEventContact_Delete" />
           <FunctionImportMapping FunctionImportName="sp_Vend_Contact_Delete" FunctionName="VolTeerModel.Store.sp_Vend_Contact_Delete" />
+          <FunctionImportMapping FunctionImportName="sp_VendorProjContact_Delete" FunctionName="VolTeerModel.Store.sp_VendorProjContact_Delete" />
+          <FunctionImportMapping FunctionImportName="sp_VendorProjContact_Insert" FunctionName="VolTeerModel.Store.sp_VendorProjContact_Insert" />
+          <FunctionImportMapping FunctionImportName="sp_VendorProjContact_Select" FunctionName="VolTeerModel.Store.sp_VendorProjContact_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VolTeerModel.sp_VendorProjContact_Select_Result">
+                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+                <ScalarProperty Name="PrimaryContact" ColumnName="PrimaryContact" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_VendorProjContact_Update" FunctionName="VolTeerModel.Store.sp_VendorProjContact_Update" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

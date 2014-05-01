@@ -1553,5 +1553,81 @@ namespace VolTeer.DataAccessLayer.VT
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Vend_Contact_Delete", vendorIDParameter, contactIDParameter);
         }
+    
+        public virtual int sp_VendorProjContact_Delete(Nullable<System.Guid> vendorID, Nullable<System.Guid> projectID, Nullable<System.Guid> contactID)
+        {
+            var vendorIDParameter = vendorID.HasValue ?
+                new ObjectParameter("VendorID", vendorID) :
+                new ObjectParameter("VendorID", typeof(System.Guid));
+    
+            var projectIDParameter = projectID.HasValue ?
+                new ObjectParameter("ProjectID", projectID) :
+                new ObjectParameter("ProjectID", typeof(System.Guid));
+    
+            var contactIDParameter = contactID.HasValue ?
+                new ObjectParameter("ContactID", contactID) :
+                new ObjectParameter("ContactID", typeof(System.Guid));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_VendorProjContact_Delete", vendorIDParameter, projectIDParameter, contactIDParameter);
+        }
+    
+        public virtual int sp_VendorProjContact_Insert(Nullable<System.Guid> vendorID, Nullable<System.Guid> projectID, Nullable<System.Guid> contactID, Nullable<bool> primaryContact)
+        {
+            var vendorIDParameter = vendorID.HasValue ?
+                new ObjectParameter("VendorID", vendorID) :
+                new ObjectParameter("VendorID", typeof(System.Guid));
+    
+            var projectIDParameter = projectID.HasValue ?
+                new ObjectParameter("ProjectID", projectID) :
+                new ObjectParameter("ProjectID", typeof(System.Guid));
+    
+            var contactIDParameter = contactID.HasValue ?
+                new ObjectParameter("ContactID", contactID) :
+                new ObjectParameter("ContactID", typeof(System.Guid));
+    
+            var primaryContactParameter = primaryContact.HasValue ?
+                new ObjectParameter("PrimaryContact", primaryContact) :
+                new ObjectParameter("PrimaryContact", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_VendorProjContact_Insert", vendorIDParameter, projectIDParameter, contactIDParameter, primaryContactParameter);
+        }
+    
+        public virtual ObjectResult<sp_VendorProjContact_Select_Result> sp_VendorProjContact_Select(Nullable<System.Guid> vendorID, Nullable<System.Guid> projectID, Nullable<System.Guid> contactID)
+        {
+            var vendorIDParameter = vendorID.HasValue ?
+                new ObjectParameter("VendorID", vendorID) :
+                new ObjectParameter("VendorID", typeof(System.Guid));
+    
+            var projectIDParameter = projectID.HasValue ?
+                new ObjectParameter("ProjectID", projectID) :
+                new ObjectParameter("ProjectID", typeof(System.Guid));
+    
+            var contactIDParameter = contactID.HasValue ?
+                new ObjectParameter("ContactID", contactID) :
+                new ObjectParameter("ContactID", typeof(System.Guid));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_VendorProjContact_Select_Result>("sp_VendorProjContact_Select", vendorIDParameter, projectIDParameter, contactIDParameter);
+        }
+    
+        public virtual int sp_VendorProjContact_Update(Nullable<System.Guid> vendorID, Nullable<System.Guid> projectID, Nullable<System.Guid> contactID, Nullable<bool> primaryContact)
+        {
+            var vendorIDParameter = vendorID.HasValue ?
+                new ObjectParameter("VendorID", vendorID) :
+                new ObjectParameter("VendorID", typeof(System.Guid));
+    
+            var projectIDParameter = projectID.HasValue ?
+                new ObjectParameter("ProjectID", projectID) :
+                new ObjectParameter("ProjectID", typeof(System.Guid));
+    
+            var contactIDParameter = contactID.HasValue ?
+                new ObjectParameter("ContactID", contactID) :
+                new ObjectParameter("ContactID", typeof(System.Guid));
+    
+            var primaryContactParameter = primaryContact.HasValue ?
+                new ObjectParameter("PrimaryContact", primaryContact) :
+                new ObjectParameter("PrimaryContact", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_VendorProjContact_Update", vendorIDParameter, projectIDParameter, contactIDParameter, primaryContactParameter);
+        }
     }
 }
