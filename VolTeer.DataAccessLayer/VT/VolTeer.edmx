@@ -1064,6 +1064,21 @@
           <Parameter Name="VendorName" Type="nvarchar" Mode="In" />
           <Parameter Name="ActiveFlg" Type="bit" Mode="In" />
         </Function>
+        <Function Name="sp_VendorAddr_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
+          <Parameter Name="VendorID" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="sp_VendorAddr_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
+          <Parameter Name="AddrID" Type="int" Mode="In" />
+          <Parameter Name="HQ" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="sp_VendorAddr_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
+          <Parameter Name="VendorID" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="sp_VendorAddr_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
+          <Parameter Name="VendorID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AddrID" Type="int" Mode="In" />
+          <Parameter Name="HQ" Type="bit" Mode="In" />
+        </Function>
         <Function Name="sp_VendorProjContact_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
           <Parameter Name="VendorID" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="ProjectID" Type="uniqueidentifier" Mode="In" />
@@ -1955,6 +1970,21 @@
           <FunctionImport Name="sp_Vendor_Insert1" ReturnType="Collection(Guid)">
             <Parameter Name="VendorID" Mode="In" Type="Guid" />
             <Parameter Name="VendorName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_VendorAddr_Delete">
+            <Parameter Name="VendorID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="sp_VendorAddr_Insert" ReturnType="Collection(Guid)">
+            <Parameter Name="AddrID" Mode="In" Type="Int32" />
+            <Parameter Name="HQ" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="sp_VendorAddr_Select" ReturnType="Collection(VolTeerModel.sp_VendorAddr_Select_Result)">
+            <Parameter Name="VendorID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="sp_VendorAddr_Update">
+            <Parameter Name="VendorID" Mode="In" Type="Guid" />
+            <Parameter Name="AddrID" Mode="In" Type="Int32" />
+            <Parameter Name="HQ" Mode="In" Type="Boolean" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="tblContact">
@@ -2860,6 +2890,11 @@
           <Property Type="Guid" Name="ContactID" Nullable="false" />
           <Property Type="Boolean" Name="PrimaryContact" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="sp_VendorAddr_Select_Result">
+          <Property Type="Guid" Name="VendorID" Nullable="false" />
+          <Property Type="Int32" Name="AddrID" Nullable="false" />
+          <Property Type="Boolean" Name="HQ" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3142,6 +3177,23 @@
                 <ScalarProperty Name="AddrID" ColumnName="AddrID" />
                 <ScalarProperty Name="HQ" ColumnName="HQ" />
               </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="VolTeerModel.tblVendorAddr">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="VolTeerModel.Store.sp_VendorAddr_Insert">
+                  <ScalarProperty Name="HQ" ParameterName="HQ" />
+                  <ScalarProperty Name="AddrID" ParameterName="AddrID" />
+                  <ResultBinding Name="VendorID" ColumnName="VendorID" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="VolTeerModel.Store.sp_VendorAddr_Update">
+                  <ScalarProperty Name="HQ" ParameterName="HQ" Version="Current" />
+                  <ScalarProperty Name="AddrID" ParameterName="AddrID" Version="Current" />
+                  <ScalarProperty Name="VendorID" ParameterName="VendorID" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="VolTeerModel.Store.sp_VendorAddr_Delete">
+                  <ScalarProperty Name="VendorID" ParameterName="VendorID" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblVendorProjContacts">
@@ -3996,6 +4048,18 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_VendorProjContact_Update" FunctionName="VolTeerModel.Store.sp_VendorProjContact_Update" />
           <FunctionImportMapping FunctionImportName="sp_Vendor_Insert1" FunctionName="VolTeerModel.Store.sp_Vendor_Insert" />
+          <FunctionImportMapping FunctionImportName="sp_VendorAddr_Delete" FunctionName="VolTeerModel.Store.sp_VendorAddr_Delete" />
+          <FunctionImportMapping FunctionImportName="sp_VendorAddr_Insert" FunctionName="VolTeerModel.Store.sp_VendorAddr_Insert" />
+          <FunctionImportMapping FunctionImportName="sp_VendorAddr_Select" FunctionName="VolTeerModel.Store.sp_VendorAddr_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VolTeerModel.sp_VendorAddr_Select_Result">
+                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+                <ScalarProperty Name="AddrID" ColumnName="AddrID" />
+                <ScalarProperty Name="HQ" ColumnName="HQ" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_VendorAddr_Update" FunctionName="VolTeerModel.Store.sp_VendorAddr_Update" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

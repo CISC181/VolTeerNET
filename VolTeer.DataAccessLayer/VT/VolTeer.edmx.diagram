@@ -15,8 +15,8 @@
         <EntityTypeShape EntityType="VolTeerModel.tblVendContact" Width="1.5" PointX="17.375" PointY="12.375" IsExpanded="true" FillColor="0, 192, 0" />
         <EntityTypeShape EntityType="VolTeerModel.tblVendEmail" Width="1.5" PointX="15.125" PointY="13.5" IsExpanded="true" FillColor="0, 192, 0" />
         <EntityTypeShape EntityType="VolTeerModel.tblVendor" Width="1.5" PointX="18.125" PointY="20.25" IsExpanded="true" FillColor="0, 192, 0" />
-        <EntityTypeShape EntityType="VolTeerModel.tblVendorAddr" Width="1.5" PointX="20.375" PointY="18.375" IsExpanded="true" />
-        <EntityTypeShape EntityType="VolTeerModel.tblVendorProjContact" Width="1.5" PointX="20.375" PointY="9.25" IsExpanded="true" FillColor="Lime" />
+        <EntityTypeShape EntityType="VolTeerModel.tblVendorAddr" Width="1.5" PointX="20.375" PointY="18.375" IsExpanded="true" FillColor="0, 192, 0" />
+        <EntityTypeShape EntityType="VolTeerModel.tblVendorProjContact" Width="1.5" PointX="20.375" PointY="9.25" IsExpanded="true" FillColor="ForestGreen" />
         <EntityTypeShape EntityType="VolTeerModel.tblSampleAddress" Width="1.5" PointX="9.25" PointY="14.5" IsExpanded="true" />
         <EntityTypeShape EntityType="VolTeerModel.tblVolState" Width="1.5" PointX="19.125" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="VolTeerModel.tblVolunteer" Width="1.5" PointX="6.25" PointY="1" IsExpanded="true" FillColor="0, 192, 0" />

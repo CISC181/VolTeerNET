@@ -1642,5 +1642,53 @@ namespace VolTeer.DataAccessLayer.VT
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("sp_Vendor_Insert1", vendorIDParameter, vendorNameParameter);
         }
+    
+        public virtual int sp_VendorAddr_Delete(Nullable<System.Guid> vendorID)
+        {
+            var vendorIDParameter = vendorID.HasValue ?
+                new ObjectParameter("VendorID", vendorID) :
+                new ObjectParameter("VendorID", typeof(System.Guid));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_VendorAddr_Delete", vendorIDParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<System.Guid>> sp_VendorAddr_Insert(Nullable<int> addrID, Nullable<bool> hQ)
+        {
+            var addrIDParameter = addrID.HasValue ?
+                new ObjectParameter("AddrID", addrID) :
+                new ObjectParameter("AddrID", typeof(int));
+    
+            var hQParameter = hQ.HasValue ?
+                new ObjectParameter("HQ", hQ) :
+                new ObjectParameter("HQ", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("sp_VendorAddr_Insert", addrIDParameter, hQParameter);
+        }
+    
+        public virtual ObjectResult<sp_VendorAddr_Select_Result> sp_VendorAddr_Select(Nullable<System.Guid> vendorID)
+        {
+            var vendorIDParameter = vendorID.HasValue ?
+                new ObjectParameter("VendorID", vendorID) :
+                new ObjectParameter("VendorID", typeof(System.Guid));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_VendorAddr_Select_Result>("sp_VendorAddr_Select", vendorIDParameter);
+        }
+    
+        public virtual int sp_VendorAddr_Update(Nullable<System.Guid> vendorID, Nullable<int> addrID, Nullable<bool> hQ)
+        {
+            var vendorIDParameter = vendorID.HasValue ?
+                new ObjectParameter("VendorID", vendorID) :
+                new ObjectParameter("VendorID", typeof(System.Guid));
+    
+            var addrIDParameter = addrID.HasValue ?
+                new ObjectParameter("AddrID", addrID) :
+                new ObjectParameter("AddrID", typeof(int));
+    
+            var hQParameter = hQ.HasValue ?
+                new ObjectParameter("HQ", hQ) :
+                new ObjectParameter("HQ", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_VendorAddr_Update", vendorIDParameter, addrIDParameter, hQParameter);
+        }
     }
 }
