@@ -1629,5 +1629,18 @@ namespace VolTeer.DataAccessLayer.VT
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_VendorProjContact_Update", vendorIDParameter, projectIDParameter, contactIDParameter, primaryContactParameter);
         }
+    
+        public virtual ObjectResult<Nullable<System.Guid>> sp_Vendor_Insert1(Nullable<System.Guid> vendorID, string vendorName)
+        {
+            var vendorIDParameter = vendorID.HasValue ?
+                new ObjectParameter("VendorID", vendorID) :
+                new ObjectParameter("VendorID", typeof(System.Guid));
+    
+            var vendorNameParameter = vendorName != null ?
+                new ObjectParameter("VendorName", vendorName) :
+                new ObjectParameter("VendorName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("sp_Vendor_Insert1", vendorIDParameter, vendorNameParameter);
+        }
     }
 }

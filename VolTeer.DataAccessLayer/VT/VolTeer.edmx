@@ -1053,6 +1053,7 @@
           <Parameter Name="VendorID" Type="uniqueidentifier" Mode="In" />
         </Function>
         <Function Name="sp_Vendor_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
+          <Parameter Name="VendorID" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="VendorName" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="sp_Vendor_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
@@ -1950,6 +1951,10 @@
             <Parameter Name="ProjectID" Mode="In" Type="Guid" />
             <Parameter Name="ContactID" Mode="In" Type="Guid" />
             <Parameter Name="PrimaryContact" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Vendor_Insert1" ReturnType="Collection(Guid)">
+            <Parameter Name="VendorID" Mode="In" Type="Guid" />
+            <Parameter Name="VendorName" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="tblContact">
@@ -3112,10 +3117,6 @@
             </EntityTypeMapping>
             <EntityTypeMapping TypeName="VolTeerModel.tblVendor">
               <ModificationFunctionMapping>
-                <InsertFunction FunctionName="VolTeerModel.Store.sp_Vendor_Insert">
-                  <ScalarProperty Name="VendorName" ParameterName="VendorName" />
-                  <ResultBinding Name="VendorID" ColumnName="VendorID" />
-                </InsertFunction>
                 <UpdateFunction FunctionName="VolTeerModel.Store.sp_Vendor_Update">
                   <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" Version="Current" />
                   <ScalarProperty Name="VendorName" ParameterName="VendorName" Version="Current" />
@@ -3126,6 +3127,11 @@
                   <ScalarProperty Name="VendorName" ParameterName="VendorName" />
                   <ScalarProperty Name="VendorID" ParameterName="VendorID" />
                 </DeleteFunction>
+                <InsertFunction FunctionName="VolTeerModel.Store.sp_Vendor_Insert">
+                  <ScalarProperty Name="VendorName" ParameterName="VendorName" />
+                  <ScalarProperty Name="VendorID" ParameterName="VendorID" />
+                  <ResultBinding Name="VendorID" ColumnName="VendorID" />
+                </InsertFunction>
               </ModificationFunctionMapping>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -3775,7 +3781,6 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_Group_Update" FunctionName="VolTeerModel.Store.sp_Group_Update" />
-          <FunctionImportMapping FunctionImportName="sp_Vendor_Insert" FunctionName="VolTeerModel.Store.sp_Vendor_Insert" />
           <EntitySetMapping Name="ControlProperties">
             <EntityTypeMapping TypeName="VolTeerModel.ControlProperty">
               <MappingFragment StoreEntitySet="ControlProperty">
@@ -3990,6 +3995,7 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_VendorProjContact_Update" FunctionName="VolTeerModel.Store.sp_VendorProjContact_Update" />
+          <FunctionImportMapping FunctionImportName="sp_Vendor_Insert1" FunctionName="VolTeerModel.Store.sp_Vendor_Insert" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
