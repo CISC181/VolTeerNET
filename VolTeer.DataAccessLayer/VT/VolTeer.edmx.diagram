@@ -4,13 +4,13 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="de7d2e7369884abba3d8e072ac7271eb" Name="Diagram1" ZoomLevel="73">
+      <Diagram DiagramId="de7d2e7369884abba3d8e072ac7271eb" Name="Diagram1" ZoomLevel="82">
         <EntityTypeShape EntityType="VolTeerModel.tblContact" Width="1.5" PointX="11.875" PointY="9.625" IsExpanded="true" FillColor="0, 192, 0" />
         <EntityTypeShape EntityType="VolTeerModel.tblContactEmail" Width="1.5" PointX="17.375" PointY="9.375" IsExpanded="true" />
         <EntityTypeShape EntityType="VolTeerModel.tblEventRating" Width="1.5" PointX="17.125" PointY="3.75" IsExpanded="true" FillColor="0, 192, 0" />
         <EntityTypeShape EntityType="VolTeerModel.tblProject" Width="1.5" PointX="18.125" PointY="16.75" IsExpanded="true" FillColor="LimeGreen" />
         <EntityTypeShape EntityType="VolTeerModel.tblProjectEvent" Width="1.5" PointX="15.125" PointY="5.25" IsExpanded="true" FillColor="LimeGreen" />
-        <EntityTypeShape EntityType="VolTeerModel.tblProjectEventContact" Width="1.5" PointX="17.375" PointY="6.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolTeerModel.tblProjectEventContact" Width="1.5" PointX="17.375" PointY="6.375" IsExpanded="true" FillColor="0, 192, 0" />
         <EntityTypeShape EntityType="VolTeerModel.tblVendAddress" Width="1.5" PointX="15.875" PointY="16.375" IsExpanded="true" FillColor="0, 192, 0" />
         <EntityTypeShape EntityType="VolTeerModel.tblVendContact" Width="1.5" PointX="17.375" PointY="12.375" IsExpanded="true" FillColor="0, 192, 0" />
         <EntityTypeShape EntityType="VolTeerModel.tblVendEmail" Width="1.5" PointX="15.125" PointY="13.5" IsExpanded="true" FillColor="0, 192, 0" />

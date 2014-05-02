@@ -1690,5 +1690,52 @@ namespace VolTeer.DataAccessLayer.VT
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_VendorAddr_Update", vendorIDParameter, addrIDParameter, hQParameter);
         }
+    
+        public virtual int sp_ProjectEventContact_Insert(Nullable<System.Guid> eventID, Nullable<System.Guid> contactID, Nullable<bool> primaryContact)
+        {
+            var eventIDParameter = eventID.HasValue ?
+                new ObjectParameter("EventID", eventID) :
+                new ObjectParameter("EventID", typeof(System.Guid));
+    
+            var contactIDParameter = contactID.HasValue ?
+                new ObjectParameter("ContactID", contactID) :
+                new ObjectParameter("ContactID", typeof(System.Guid));
+    
+            var primaryContactParameter = primaryContact.HasValue ?
+                new ObjectParameter("PrimaryContact", primaryContact) :
+                new ObjectParameter("PrimaryContact", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ProjectEventContact_Insert", eventIDParameter, contactIDParameter, primaryContactParameter);
+        }
+    
+        public virtual ObjectResult<sp_ProjectEventContact_Select_Result> sp_ProjectEventContact_Select(Nullable<System.Guid> eventID, Nullable<System.Guid> contactID)
+        {
+            var eventIDParameter = eventID.HasValue ?
+                new ObjectParameter("EventID", eventID) :
+                new ObjectParameter("EventID", typeof(System.Guid));
+    
+            var contactIDParameter = contactID.HasValue ?
+                new ObjectParameter("ContactID", contactID) :
+                new ObjectParameter("ContactID", typeof(System.Guid));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ProjectEventContact_Select_Result>("sp_ProjectEventContact_Select", eventIDParameter, contactIDParameter);
+        }
+    
+        public virtual int sp_ProjectEventContact_Update(Nullable<System.Guid> eventID, Nullable<System.Guid> contactID, Nullable<bool> primaryContact)
+        {
+            var eventIDParameter = eventID.HasValue ?
+                new ObjectParameter("EventID", eventID) :
+                new ObjectParameter("EventID", typeof(System.Guid));
+    
+            var contactIDParameter = contactID.HasValue ?
+                new ObjectParameter("ContactID", contactID) :
+                new ObjectParameter("ContactID", typeof(System.Guid));
+    
+            var primaryContactParameter = primaryContact.HasValue ?
+                new ObjectParameter("PrimaryContact", primaryContact) :
+                new ObjectParameter("PrimaryContact", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ProjectEventContact_Update", eventIDParameter, contactIDParameter, primaryContactParameter);
+        }
     }
 }

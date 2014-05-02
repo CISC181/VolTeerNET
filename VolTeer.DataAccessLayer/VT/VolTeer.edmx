@@ -980,6 +980,20 @@
           <Parameter Name="EventID" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="ContactID" Type="uniqueidentifier" Mode="In" />
         </Function>
+        <Function Name="sp_ProjectEventContact_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
+          <Parameter Name="EventID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ContactID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="PrimaryContact" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="sp_ProjectEventContact_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
+          <Parameter Name="EventID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ContactID" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="sp_ProjectEventContact_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
+          <Parameter Name="EventID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ContactID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="PrimaryContact" Type="bit" Mode="In" />
+        </Function>
         <Function Name="sp_Vend_Address_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
           <Parameter Name="AddrID" Type="int" Mode="In" />
         </Function>
@@ -1972,19 +1986,33 @@
             <Parameter Name="VendorName" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_VendorAddr_Delete">
-            <Parameter Name="VendorID" Mode="In" Type="Guid" />
+          <Parameter Name="VendorID" Mode="In" Type="Guid" />
           </FunctionImport>
           <FunctionImport Name="sp_VendorAddr_Insert" ReturnType="Collection(Guid)">
             <Parameter Name="AddrID" Mode="In" Type="Int32" />
             <Parameter Name="HQ" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="sp_VendorAddr_Select" ReturnType="Collection(VolTeerModel.sp_VendorAddr_Select_Result)">
-            <Parameter Name="VendorID" Mode="In" Type="Guid" />
+          <Parameter Name="VendorID" Mode="In" Type="Guid" />
           </FunctionImport>
           <FunctionImport Name="sp_VendorAddr_Update">
             <Parameter Name="VendorID" Mode="In" Type="Guid" />
             <Parameter Name="AddrID" Mode="In" Type="Int32" />
             <Parameter Name="HQ" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ProjectEventContact_Insert">
+            <Parameter Name="EventID" Mode="In" Type="Guid" />
+            <Parameter Name="ContactID" Mode="In" Type="Guid" />
+            <Parameter Name="PrimaryContact" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ProjectEventContact_Select" ReturnType="Collection(VolTeerModel.sp_ProjectEventContact_Select_Result)">
+            <Parameter Name="EventID" Mode="In" Type="Guid" />
+            <Parameter Name="ContactID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ProjectEventContact_Update">
+            <Parameter Name="EventID" Mode="In" Type="Guid" />
+            <Parameter Name="ContactID" Mode="In" Type="Guid" />
+            <Parameter Name="PrimaryContact" Mode="In" Type="Boolean" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="tblContact">
@@ -2895,6 +2923,11 @@
           <Property Type="Int32" Name="AddrID" Nullable="false" />
           <Property Type="Boolean" Name="HQ" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="sp_ProjectEventContact_Select_Result">
+          <Property Type="Guid" Name="EventID" Nullable="false" />
+          <Property Type="Guid" Name="ContactID" Nullable="false" />
+          <Property Type="Boolean" Name="PrimaryContact" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3041,6 +3074,24 @@
                 <ScalarProperty Name="ContactID" ColumnName="ContactID" />
                 <ScalarProperty Name="PrimaryContact" ColumnName="PrimaryContact" />
               </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="VolTeerModel.tblProjectEventContact">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="VolTeerModel.Store.sp_ProjectEventContact_Insert">
+                  <ScalarProperty Name="PrimaryContact" ParameterName="PrimaryContact" />
+                  <ScalarProperty Name="ContactID" ParameterName="ContactID" />
+                  <ScalarProperty Name="EventID" ParameterName="EventID" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="VolTeerModel.Store.sp_ProjectEventContact_Update">
+                  <ScalarProperty Name="PrimaryContact" ParameterName="PrimaryContact" Version="Current" />
+                  <ScalarProperty Name="ContactID" ParameterName="ContactID" Version="Current" />
+                  <ScalarProperty Name="EventID" ParameterName="EventID" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="VolTeerModel.Store.sp_ProjectEventContact_Delete">
+                  <ScalarProperty Name="ContactID" ParameterName="ContactID" />
+                  <ScalarProperty Name="EventID" ParameterName="EventID" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblVendAddresses">
@@ -4060,6 +4111,17 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_VendorAddr_Update" FunctionName="VolTeerModel.Store.sp_VendorAddr_Update" />
+          <FunctionImportMapping FunctionImportName="sp_ProjectEventContact_Insert" FunctionName="VolTeerModel.Store.sp_ProjectEventContact_Insert" />
+          <FunctionImportMapping FunctionImportName="sp_ProjectEventContact_Select" FunctionName="VolTeerModel.Store.sp_ProjectEventContact_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VolTeerModel.sp_ProjectEventContact_Select_Result">
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+                <ScalarProperty Name="PrimaryContact" ColumnName="PrimaryContact" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_ProjectEventContact_Update" FunctionName="VolTeerModel.Store.sp_ProjectEventContact_Update" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
