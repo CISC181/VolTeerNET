@@ -16,8 +16,8 @@ namespace VolTeer.DataAccessLayer.VT
     {
         public tblVendAddress()
         {
-            this.tblProjects = new HashSet<tblProject>();
             this.tblVendorAddrs = new HashSet<tblVendorAddr>();
+            this.tblProjects = new HashSet<tblProject>();
         }
     
         public int AddrID { get; set; }
@@ -31,7 +31,7 @@ namespace VolTeer.DataAccessLayer.VT
         public bool ActiveFlg { get; set; }
         public string GeoCodeGetSet { get; set; }
     
-        public virtual ICollection<tblProject> tblProjects { get; set; }
         public virtual ICollection<tblVendorAddr> tblVendorAddrs { get; set; }
+        public virtual ICollection<tblProject> tblProjects { get; set; }
     }
 }

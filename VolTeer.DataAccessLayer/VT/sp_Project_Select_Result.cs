@@ -17,6 +17,6 @@ namespace VolTeer.DataAccessLayer.VT
         public string ProjectName { get; set; }
         public string ProjectDesc { get; set; }
         public Nullable<int> AddrID { get; set; }
-        public Nullable<int> ActiveFlg { get; set; }
+        public Nullable<bool> ActiveFlg { get; set; }
     }
 }
