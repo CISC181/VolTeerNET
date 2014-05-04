@@ -68,6 +68,7 @@
     </Compile>
     <Compile Include="ErrorPage.aspx.cs">
       <DependentUpon>ErrorPage.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="ErrorPage.aspx.designer.cs">
       <DependentUpon>ErrorPage.aspx</DependentUpon>
@@ -152,6 +153,24 @@
     <Folder Include="Content\images\" />
     <Folder Include="Content\themes\" />
     <Folder Include="Vendor\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\VolTeer.BusinessLogicLayer\VolTeer.BusinessLogicLayer.csproj">
+      <Project>{81446b41-8d0a-4e58-a275-1578c7f536f2}</Project>
+      <Name>VolTeer.BusinessLogicLayer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VolTeer.Cache\VolTeer.Cache.csproj">
+      <Project>{04a431b2-cd03-48f3-9a2c-6c3bed2cc93f}</Project>
+      <Name>VolTeer.Cache</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VolTeer.Contracts\VolTeer.Contracts.csproj">
+      <Project>{1d640f5e-1b69-44fe-839a-a66a65e7d3c4}</Project>
+      <Name>VolTeer.Contracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\VolTeer.DomainModels\VolTeer.DomainModels.csproj">
+      <Project>{7919ce03-6597-4a4b-82e4-d73b7511ab7f}</Project>
+      <Name>VolTeer.DomainModels</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
