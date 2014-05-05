@@ -198,6 +198,9 @@
     <Compile Include="VT\sp_Availability_Select_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
+    <Compile Include="VT\sp_ContactEmail_Select_Result.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
     <Compile Include="VT\sp_Contact_Select_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
