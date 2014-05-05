@@ -6,7 +6,7 @@
     <edmx:Diagrams>
       <Diagram DiagramId="de7d2e7369884abba3d8e072ac7271eb" Name="Diagram1" ZoomLevel="77">
         <EntityTypeShape EntityType="VolTeerModel.tblContact" Width="1.5" PointX="11.875" PointY="9.625" IsExpanded="true" FillColor="0, 192, 0" />
-        <EntityTypeShape EntityType="VolTeerModel.tblContactEmail" Width="1.5" PointX="17.375" PointY="9.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="VolTeerModel.tblContactEmail" Width="1.5" PointX="17.375" PointY="9.375" IsExpanded="true" FillColor="0, 192, 0" />
         <EntityTypeShape EntityType="VolTeerModel.tblEventRating" Width="1.5" PointX="17.125" PointY="3.75" IsExpanded="true" FillColor="0, 192, 0" />
         <EntityTypeShape EntityType="VolTeerModel.tblProjectEvent" Width="1.5" PointX="15.125" PointY="5.25" IsExpanded="true" FillColor="LimeGreen" />
         <EntityTypeShape EntityType="VolTeerModel.tblProjectEventContact" Width="1.5" PointX="17.375" PointY="6.375" IsExpanded="true" FillColor="0, 192, 0" />
