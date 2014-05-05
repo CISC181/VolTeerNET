@@ -198,6 +198,13 @@
     <Compile Include="Common\WebControls\ucPhone.ascx.designer.cs">
       <DependentUpon>ucPhone.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Common\WebControls\ucPrimary.ascx.cs">
+      <DependentUpon>ucPrimary.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Common\WebControls\ucPrimary.ascx.designer.cs">
+      <DependentUpon>ucPrimary.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Common\WebControls\ucSkill.ascx.cs">
       <DependentUpon>ucSkill.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -454,6 +461,7 @@
     <Content Include="Common\WebControls\ucGroups.ascx" />
     <Content Include="Common\WebControls\ucHistory.ascx" />
     <Content Include="Common\WebControls\ucPhone.ascx" />
+    <Content Include="Common\WebControls\ucPrimary.ascx" />
     <Content Include="Common\WebControls\ucSkill.ascx" />
     <Content Include="Common\WebControls\ucSkillSearch.ascx" />
     <Content Include="Common\WebControls\ucVolBasicInfo.ascx" />
@@ -644,7 +652,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
+      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

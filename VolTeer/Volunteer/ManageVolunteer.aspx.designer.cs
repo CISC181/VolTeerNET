@@ -76,13 +76,13 @@ namespace VolTeer.Volunteer {
         protected global::Telerik.Web.UI.RadPageView PageView1;
         
         /// <summary>
-        /// lblFixEmail control.
+        /// lblFixPrimary control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFixEmail;
+        protected global::System.Web.UI.WebControls.Label lblFixPrimary;
         
         /// <summary>
         /// PageView2 control.
@@ -94,13 +94,13 @@ namespace VolTeer.Volunteer {
         protected global::Telerik.Web.UI.RadPageView PageView2;
         
         /// <summary>
-        /// Label1 control.
+        /// lblFixEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label lblFixEmail;
         
         /// <summary>
         /// PageView3 control.
@@ -112,13 +112,13 @@ namespace VolTeer.Volunteer {
         protected global::Telerik.Web.UI.RadPageView PageView3;
         
         /// <summary>
-        /// ucAddress control.
+        /// Label1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::VolTeer.Common.WebControls.ucAddress ucAddress;
+        protected global::System.Web.UI.WebControls.Label Label1;
         
         /// <summary>
         /// PageView4 control.
@@ -128,6 +128,24 @@ namespace VolTeer.Volunteer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadPageView PageView4;
+        
+        /// <summary>
+        /// ucAddress control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::VolTeer.Common.WebControls.ucAddress ucAddress;
+        
+        /// <summary>
+        /// PageView5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadPageView PageView5;
         
         /// <summary>
         /// Label3 control.

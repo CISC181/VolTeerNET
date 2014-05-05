@@ -30,6 +30,7 @@
                 <telerik:RadTabStrip runat="server" ID="RadTabStrip2" MultiPageID="RadMultiPage2"
                     Orientation="VerticalLeft" Skin="Web20" Width="100px" Height="355px" SelectedIndex="0">
                     <Tabs>
+                        <telerik:RadTab Text="Primary"></telerik:RadTab>
                         <telerik:RadTab Text="Email"></telerik:RadTab>
                         <telerik:RadTab Text="Phone"></telerik:RadTab>
                         <telerik:RadTab Text="Address"></telerik:RadTab>
@@ -47,15 +48,18 @@
 
                 <telerik:RadMultiPage runat="server" ID="RadMultiPage2" SelectedIndex="0" CssClass="innerMultiPage">
                     <telerik:RadPageView runat="server" ID="PageView1">
-                        <asp:Label ID="lblFixEmail" runat="server" Text="Fix Email"></asp:Label>
+                        <asp:Label ID="lblFixPrimary" runat="server" Text="Fix Primary"></asp:Label>
                     </telerik:RadPageView>
                     <telerik:RadPageView runat="server" ID="PageView2">
+                        <asp:Label ID="lblFixEmail" runat="server" Text="Fix Email"></asp:Label>
+                    </telerik:RadPageView>
+                    <telerik:RadPageView runat="server" ID="PageView3">
                         <asp:Label ID="Label1" runat="server" Text="Fix Phone"></asp:Label>
                     </telerik:RadPageView>
-                    <telerik:RadPageView runat="server" ID="PageView3" BorderWidth="1px">
+                    <telerik:RadPageView runat="server" ID="PageView4">
                         <uc:ucAddress runat="server" ID="ucAddress" />
                     </telerik:RadPageView>
-                    <telerik:RadPageView runat="server" ID="PageView4">
+                    <telerik:RadPageView runat="server" ID="PageView5">
                         <asp:Label ID="Label3" runat="server" Text="Fix Account"></asp:Label>
                     </telerik:RadPageView>
                 </telerik:RadMultiPage>
