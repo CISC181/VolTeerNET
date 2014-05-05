@@ -52,11 +52,6 @@ namespace VolTeer.DataAccessLayer.VT
         public DbSet<tblGroupVol> tblGroupVols { get; set; }
         public DbSet<tblVolEmail> tblVolEmails { get; set; }
         public DbSet<Vend_tblUserCred> Vend_tblUserCred { get; set; }
-        public DbSet<ControlProperty> ControlProperties { get; set; }
-        public DbSet<Order> Orders { get; set; }
-        public DbSet<Product> Products { get; set; }
-        public DbSet<RegisteredControl> RegisteredControls { get; set; }
-        public DbSet<sysdiagram> sysdiagrams { get; set; }
         public DbSet<tblGroupAddr> tblGroupAddrs { get; set; }
         public DbSet<tblGroup> tblGroups { get; set; }
         public DbSet<tblProject> tblProjects { get; set; }
@@ -1111,16 +1106,6 @@ namespace VolTeer.DataAccessLayer.VT
                 new ObjectParameter("VendorName", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("sp_Vendor_Insert", vendorNameParameter);
-        }
-    
-        public virtual ObjectResult<Describe_CheckConstraints_Result> Describe_CheckConstraints()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Describe_CheckConstraints_Result>("Describe_CheckConstraints");
-        }
-    
-        public virtual ObjectResult<Describe_TableColumns_Result> Describe_TableColumns()
-        {
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Describe_TableColumns_Result>("Describe_TableColumns");
         }
     
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)

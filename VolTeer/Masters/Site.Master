@@ -85,13 +85,13 @@
                 <asp:ContentPlaceHolder runat="server" ID="MainContent" />
             </section>
         </div>
-        <footer>
+ <%--       <footer>
             <div class="content-wrapper">
                 <div class="float-left">
                     <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
                 </div>
             </div>
-        </footer>
+        </footer>--%>
     </form>
 
 </body>

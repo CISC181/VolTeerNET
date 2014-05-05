@@ -54,7 +54,7 @@ namespace VolTeer.Common.WebControls
         {
 
             currentUser = Membership.GetUser();
-            
+
             pnlSingleAddress.Visible = false;
             pnlAddressGrid.Visible = true;
             sp_Vol_Address_DM VolDM = new sp_Vol_Address_DM();
@@ -63,7 +63,7 @@ namespace VolTeer.Common.WebControls
 
             rGridAddress.DataSource = VolAddrCash.ListAddresses(VolDM);
             rGridAddress.DataBind();
-            
+
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace VolTeer.Common.WebControls
         {
             sp_Vol_Address_DM VolDM = new sp_Vol_Address_DM();
             StringBuilder sb = new StringBuilder();
-            
+
             try
             {
                 VolDM.VolID = (Guid)currentUser.ProviderUserKey;
@@ -141,16 +141,35 @@ namespace VolTeer.Common.WebControls
             {
                 if (e.Item is GridEditableItem && e.Item.IsInEditMode)
                 {
-                    GridEditableItem edtItem = (GridEditableItem)e.Item;
+                    if (e.Item is GridEditFormInsertItem)
+                    {
+                        GridEditableItem edtItem = (GridEditableItem)e.Item;
+                        CheckBox ckActive = (CheckBox)edtItem.FindControl("chkActive");
+                        ckActive.Checked = true;
+                    }
+                    else
+                    {
 
-                    RadDropDownList rDDSt = (RadDropDownList)edtItem.FindControl("rDDSt");
-                    rDDSt.DataSource = stBLL.ListStates();
-                    rDDSt.DataValueField = "StateAbbr";
-                    rDDSt.DataTextField = "StateName";
-                    rDDSt.DataBind();
+                        GridEditableItem edtItem = (GridEditableItem)e.Item;
 
-                    rDDSt.SelectedValue = DataBinder.Eval(edtItem.DataItem, "St").ToString();
+                        RadDropDownList rDDSt = (RadDropDownList)edtItem.FindControl("rDDSt");
+                        rDDSt.DataSource = stBLL.ListStates();
+                        rDDSt.DataValueField = "StateAbbr";
+                        rDDSt.DataTextField = "StateName";
+                        rDDSt.DataBind();
+
+                        rDDSt.SelectedValue = DataBinder.Eval(edtItem.DataItem, "St").ToString();
+
+                        CheckBox ckActive = (CheckBox)edtItem.FindControl("chkActive");
+                        ckActive.Checked = (bool)DataBinder.Eval(edtItem.DataItem, "ActiveFlg");
+
+                        CheckBox chkPrimaryAddr = (CheckBox)edtItem.FindControl("chkPrimaryAddr");
+                        chkPrimaryAddr.Checked = (bool)DataBinder.Eval(edtItem.DataItem, "PrimaryAddr");
+                    }
                 }
+
+
+
                 else if (e.Item is GridItem)
                 {
                     //  If the address is the primary address, don't let the user delete it
@@ -305,14 +324,15 @@ namespace VolTeer.Common.WebControls
 
                 VolAddrDM.VolID = (Guid)currentUser.ProviderUserKey; ;
 
-                VolAddressDM.VolID = (Guid)currentUser.ProviderUserKey; 
+                VolAddressDM.VolID = (Guid)currentUser.ProviderUserKey;
                 if (iAction == (int)RecordAction.Update)
                 {
                     VolAddressDM.AddrID = Convert.ToInt32(eeditedItem.OwnerTableView.DataKeyValues[eeditedItem.ItemIndex]["AddrID"]);
                     VolAddrDM.AddrID = Convert.ToInt32(eeditedItem.OwnerTableView.DataKeyValues[eeditedItem.ItemIndex]["AddrID"]);
                 }
                 VolAddressDM.ActiveFlg = (eeditedItem.FindControl("chkActive") as CheckBox).Checked;
-                VolAddressDM.PrimaryAddr = (eeditedItem.FindControl("chkPrimaryAddr") as CheckBox).Checked;
+                VolAddrDM.PrimaryAddr = (eeditedItem.FindControl("chkPrimaryAddr") as CheckBox).Checked;
+
                 VolAddressDM.AddrLine1 = (eeditedItem.FindControl("rTBAddr1") as RadTextBox).Text.ToString();
                 VolAddressDM.AddrLine2 = (eeditedItem.FindControl("rTBAddr2") as RadTextBox).Text.ToString();
                 VolAddressDM.AddrLine3 = (eeditedItem.FindControl("rTBAddr3") as RadTextBox).Text.ToString();
@@ -329,7 +349,7 @@ namespace VolTeer.Common.WebControls
                     VolAddressDM.Zip4 = Convert.ToInt32(strZip4.ToString());
                 }
                 //TODO - Test to see if GeoCode works without USA at end
-                VolAddressDM.GeoCodeGetSet = GetGeoCode(VolAddressDM);
+                //   VolAddressDM.GeoCodeGetSet = GetGeoCode(VolAddressDM);
 
                 if (iAction == (int)RecordAction.Update)
                 {
@@ -355,8 +375,6 @@ namespace VolTeer.Common.WebControls
 
             try
             {
-                var hdEditView = (HiddenField)Parent.FindControl("hdEditView");
-                hdEditView.Value = "1";
                 HandleScreenLoad();
             }
             catch (Exception ex)
