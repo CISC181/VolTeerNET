@@ -1534,9 +1534,6 @@
           <FunctionImport Name="sp_Vendor_Delete">
           <Parameter Name="VendorID" Mode="In" Type="Guid" />
           </FunctionImport>
-          <FunctionImport Name="sp_Vendor_Select">
-          <Parameter Name="VendorID" Mode="In" Type="Guid" />
-          </FunctionImport>
           <FunctionImport Name="sp_Sample_Address_Delete">
           <Parameter Name="AddrID" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -1989,7 +1986,7 @@
             <End Role="tblVendorProjContact" EntitySet="tblVendorProjContacts" />
           </AssociationSet>
           <FunctionImport Name="sp_Project_Delete">
-            <Parameter Name="ProjectID" Mode="In" Type="Guid" />
+          <Parameter Name="ProjectID" Mode="In" Type="Guid" />
           </FunctionImport>
           <FunctionImport Name="sp_Project_Insert" ReturnType="Collection(Guid)">
             <Parameter Name="ProjectName" Mode="In" Type="String" />
@@ -1998,7 +1995,7 @@
             <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="sp_Project_Select" ReturnType="Collection(VolTeerModel.sp_Project_Select_Result)">
-            <Parameter Name="ProjectID" Mode="In" Type="Guid" />
+          <Parameter Name="ProjectID" Mode="In" Type="Guid" />
           </FunctionImport>
           <FunctionImport Name="sp_Project_Update">
             <Parameter Name="ProjectID" Mode="In" Type="Guid" />
@@ -2008,7 +2005,7 @@
             <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="sp_ProjectEvent_Delete1">
-            <Parameter Name="EventID" Mode="In" Type="Guid" />
+          <Parameter Name="EventID" Mode="In" Type="Guid" />
           </FunctionImport>
           <FunctionImport Name="sp_ProjectEvent_Insert2" ReturnType="Collection(Guid)">
             <Parameter Name="ProjectID" Mode="In" Type="Guid" />
@@ -2017,7 +2014,7 @@
             <Parameter Name="AddrID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_ProjectEvent_Select2" ReturnType="Collection(VolTeerModel.sp_ProjectEvent_Select2_Result)">
-            <Parameter Name="EventID" Mode="In" Type="Guid" />
+          <Parameter Name="EventID" Mode="In" Type="Guid" />
           </FunctionImport>
           <FunctionImport Name="sp_ProjectEvent_Update2">
             <Parameter Name="EventID" Mode="In" Type="Guid" />
@@ -2025,6 +2022,9 @@
             <Parameter Name="StartDateTime" Mode="In" Type="DateTime" />
             <Parameter Name="EndDateTime" Mode="In" Type="DateTime" />
             <Parameter Name="AddrID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Vendor_Select" ReturnType="Collection(VolTeerModel.sp_Vendor_Select_Result)">
+            <Parameter Name="VendorID" Mode="In" Type="Guid" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="tblContact">
@@ -2933,6 +2933,11 @@
           <Property Type="DateTime" Name="EndDateTime" Nullable="true" Precision="23" />
           <Property Type="Int32" Name="AddrID" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="sp_Vendor_Select_Result">
+          <Property Type="Guid" Name="VendorID" Nullable="false" />
+          <Property Type="String" Name="VendorName" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="ActiveFlg" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3363,8 +3368,6 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_Vend_Email_Update" FunctionName="VolTeerModel.Store.sp_Vend_Email_Update" />
           <FunctionImportMapping FunctionImportName="sp_Vendor_Delete" FunctionName="VolTeerModel.Store.sp_Vendor_Delete" />
-          <FunctionImportMapping FunctionImportName="sp_Vendor_Select" FunctionName="VolTeerModel.Store.sp_Vendor_Select">
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_Sample_Address_Delete" FunctionName="VolTeerModel.Store.sp_Sample_Address_Delete" />
           <FunctionImportMapping FunctionImportName="sp_Sample_Address_Insert" FunctionName="VolTeerModel.Store.sp_Sample_Address_Insert" />
           <FunctionImportMapping FunctionImportName="sp_Sample_Address_Select" FunctionName="VolTeerModel.Store.sp_Sample_Address_Select">
@@ -4108,6 +4111,15 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_ProjectEvent_Update2" FunctionName="VolTeerModel.Store.sp_ProjectEvent_Update" />
+          <FunctionImportMapping FunctionImportName="sp_Vendor_Select" FunctionName="VolTeerModel.Store.sp_Vendor_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VolTeerModel.sp_Vendor_Select_Result">
+                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+                <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

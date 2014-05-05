@@ -255,6 +255,9 @@
     <Compile Include="VT\sp_VendorProjContact_Select_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
+    <Compile Include="VT\sp_Vendor_Select_Result.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
     <Compile Include="VT\sp_Vend_Address_Select_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
@@ -368,6 +371,7 @@
     <Compile Include="VT\Vend\sp_Event_Rating_DAL.cs" />
     <Compile Include="VT\Vend\sp_VendContact_DAL.cs" />
     <Compile Include="VT\Vend\sp_VendEmail_DAL.cs" />
+    <Compile Include="VT\Vend\sp_Vendor_DAL.cs" />
     <Compile Include="VT\Vend_tblUserCred.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
