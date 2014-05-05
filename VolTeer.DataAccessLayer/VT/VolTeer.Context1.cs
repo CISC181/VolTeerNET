@@ -1090,15 +1090,6 @@ namespace VolTeer.DataAccessLayer.VT
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Group_Update", groupIDParameter, groupNameParameter, participationLevelIDParameter, activeFlgParameter);
         }
     
-        public virtual ObjectResult<Nullable<System.Guid>> sp_Vendor_Insert(string vendorName)
-        {
-            var vendorNameParameter = vendorName != null ?
-                new ObjectParameter("VendorName", vendorName) :
-                new ObjectParameter("VendorName", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("sp_Vendor_Insert", vendorNameParameter);
-        }
-    
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
             var diagramnameParameter = diagramname != null ?
@@ -1525,19 +1516,6 @@ namespace VolTeer.DataAccessLayer.VT
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_VendorProjContact_Update", vendorIDParameter, projectIDParameter, contactIDParameter, primaryContactParameter);
         }
     
-        public virtual ObjectResult<Nullable<System.Guid>> sp_Vendor_Insert1(Nullable<System.Guid> vendorID, string vendorName)
-        {
-            var vendorIDParameter = vendorID.HasValue ?
-                new ObjectParameter("VendorID", vendorID) :
-                new ObjectParameter("VendorID", typeof(System.Guid));
-    
-            var vendorNameParameter = vendorName != null ?
-                new ObjectParameter("VendorName", vendorName) :
-                new ObjectParameter("VendorName", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("sp_Vendor_Insert1", vendorIDParameter, vendorNameParameter);
-        }
-    
         public virtual int sp_VendorAddr_Delete(Nullable<System.Guid> vendorID)
         {
             var vendorIDParameter = vendorID.HasValue ?
@@ -1768,6 +1746,19 @@ namespace VolTeer.DataAccessLayer.VT
                 new ObjectParameter("VendorID", typeof(System.Guid));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Vendor_Select_Result>("sp_Vendor_Select", vendorIDParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<System.Guid>> sp_Vendor_Insert(Nullable<System.Guid> vendorID, string vendorName)
+        {
+            var vendorIDParameter = vendorID.HasValue ?
+                new ObjectParameter("VendorID", vendorID) :
+                new ObjectParameter("VendorID", typeof(System.Guid));
+    
+            var vendorNameParameter = vendorName != null ?
+                new ObjectParameter("VendorName", vendorName) :
+                new ObjectParameter("VendorName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("sp_Vendor_Insert", vendorIDParameter, vendorNameParameter);
         }
     }
 }

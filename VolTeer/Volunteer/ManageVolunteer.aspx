@@ -52,7 +52,7 @@
                     <telerik:RadPageView runat="server" ID="PageView2">
                         <asp:Label ID="Label1" runat="server" Text="Fix Phone"></asp:Label>
                     </telerik:RadPageView>
-                    <telerik:RadPageView runat="server" ID="PageView3">
+                    <telerik:RadPageView runat="server" ID="PageView3" BorderWidth="1px">
                         <uc:ucAddress runat="server" ID="ucAddress" />
                     </telerik:RadPageView>
                     <telerik:RadPageView runat="server" ID="PageView4">
