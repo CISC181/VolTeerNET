@@ -30,6 +30,7 @@ namespace VolTeer.Account
             // Create Volunteer Record
             RadTextBox userNameTextBox = (RadTextBox)CreateUserWizardStep1.ContentTemplateContainer.FindControl("UserName");
             MembershipUser user = Membership.GetUser(userNameTextBox.Text);
+            
             sp_Volunteer_BLL BLL = new sp_Volunteer_BLL();
             sp_Volunteer_DM vol = new sp_Volunteer_DM();
 
