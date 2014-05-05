@@ -6,8 +6,8 @@ using System.Web.Security;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Configuration;
-using VolTeer.BusinessLogicLayer.VT.Vol;
-using VolTeer.DomainModels.VT.Vol;
+using VolTeer.BusinessLogicLayer.VT.Vend;
+using VolTeer.DomainModels.VT.Vend;
 using VolTeer.DomainModels.AspNet;
 using VolTeer.BusinessLogicLayer.AspNet;
 using Telerik.Web.UI;
@@ -30,17 +30,16 @@ namespace VolTeer.Account
             // Create Volunteer Record
             RadTextBox userNameTextBox = (RadTextBox)CreateUserWizardStep1.ContentTemplateContainer.FindControl("UserName");
             MembershipUser user = Membership.GetUser(userNameTextBox.Text);
-            
-            sp_Volunteer_BLL BLL = new sp_Volunteer_BLL();
-            sp_Volunteer_DM vol = new sp_Volunteer_DM();
 
-            vol.VolID = (Guid)user.ProviderUserKey;
-            vol.VolFirstName = (CreateUserWizardStep1.ContentTemplateContainer.FindControl("rTXTFirstName") as RadTextBox).Text.Trim();
-            vol.VolMiddleName  = (CreateUserWizardStep1.ContentTemplateContainer.FindControl("rTXTMiddleName") as RadTextBox).Text.Trim();
-            vol.VolLastName = (CreateUserWizardStep1.ContentTemplateContainer.FindControl("rTXTLastName") as RadTextBox).Text.Trim();
-            vol.ActiveFlg = true;
-            
-            vol = BLL.InsertVolunteerContext(ref vol);
+            sp_Vendor_BLL bll = new sp_Vendor_BLL();
+            sp_Vendor_DM venddm = new sp_Vendor_DM();
+
+
+            venddm.ActiveFlg = true;
+            venddm.VendorName = "test";
+            venddm.VendorID = (Guid)user.ProviderUserKey;
+            venddm = bll.InsertVendorContext(ref venddm);
+
 
             cMail.SendMessage("test@test.com", (CreateUserWizardStep1.ContentTemplateContainer.FindControl("Email") as RadTextBox).Text.Trim(), "VolTeer Registration", "Please click link to confirm");
 

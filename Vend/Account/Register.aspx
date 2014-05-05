@@ -44,20 +44,15 @@
 
                         <asp:TableRow>
                             <asp:TableCell>
-                                <asp:Label ID="lblName" runat="server" Text="Name">
+                                <asp:Label ID="lblName" runat="server" Text="Vendor Name">
 
                                 </asp:Label>
                             </asp:TableCell>
                             <asp:TableCell>
-                                <telerik:RadTextBox ID="rTXTFirstName" runat="server" EmptyMessage="First Name" Width="100px">
+                                <telerik:RadTextBox ID="rTXTVendorName" runat="server" EmptyMessage="Vendor Name" Width="300px">
                                 </telerik:RadTextBox>
                                 &nbsp;
-                                <telerik:RadTextBox ID="rTXTMiddleName" runat="server" EmptyMessage="Middle Name" Width="75px">
-                                </telerik:RadTextBox>
-                                &nbsp;
-                                <telerik:RadTextBox ID="rTXTLastName" runat="server" EmptyMessage="First Name" Width="100px">
-                                </telerik:RadTextBox>
-                                &nbsp;
+                               
 
                             </asp:TableCell>
                         </asp:TableRow>
@@ -127,78 +122,45 @@
                                 <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="Password" ValidationGroup="CreateUserWizard1" ControlToValidate="ConfirmPassword"
                                     CssClass="field-validation-error" Display="Static" ErrorMessage="The password and confirmation password do not match." />
 
-                            </asp:TableCell>
-                        </asp:TableRow>
-                        <asp:TableRow>
+                            </asp:TableCell></asp:TableRow><asp:TableRow>
                             <asp:TableCell>
                                 <asp:Label ID="EmailLabel" runat="server" AssociatedControlID="Email" Text="E-mail:">
 
                                 </asp:Label>
-                            </asp:TableCell>
-
-                            <asp:TableCell>
+                            </asp:TableCell><asp:TableCell>
                                 <telerik:RadTextBox ID="Email" runat="server" EnableSingleInputRendering="false" EmptyMessage="Email"></telerik:RadTextBox>
                                 <asp:RequiredFieldValidator ID="EmailRequired" runat="server" ControlToValidate="Email"
                                     ErrorMessage="E-mail is required." ToolTip="E-mail is required." ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator>
 
-                            </asp:TableCell>
-                        </asp:TableRow>
-
-                        <asp:TableRow>
+                            </asp:TableCell></asp:TableRow><asp:TableRow>
                             <asp:TableCell>
                                 <asp:Label ID="QuestionLabel" runat="server" AssociatedControlID="Question" Text="Security Question:"></asp:Label>
-                            </asp:TableCell>
-                            <asp:TableCell>
+                            </asp:TableCell><asp:TableCell>
                                 <telerik:RadTextBox ID="Question" runat="server" EnableSingleInputRendering="false" EmptyMessage="Security Question"></telerik:RadTextBox>
                                 <asp:RequiredFieldValidator ID="QuestionRequired" runat="server" ControlToValidate="Question"
                                     ErrorMessage="Security question is required." ToolTip="Security question is required."
                                     ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator>
-                            </asp:TableCell>
-                        </asp:TableRow>
-
-                        <asp:TableRow>
+                            </asp:TableCell></asp:TableRow><asp:TableRow>
                             <asp:TableCell>
                                 <asp:Label ID="Label1" runat="server" AssociatedControlID="Answer" Text="Security Answer:"></asp:Label>
-                            </asp:TableCell>
-                            <asp:TableCell>
+                            </asp:TableCell><asp:TableCell>
                                 <telerik:RadTextBox ID="Answer" runat="server" EnableSingleInputRendering="false" EmptyMessage="Security Answer"></telerik:RadTextBox>
                                 <asp:RequiredFieldValidator ID="AnswerRequired" runat="server" ControlToValidate="Answer"
                                     ErrorMessage="Security answer is required." ToolTip="Security answer is required."
                                     ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator>
-                            </asp:TableCell>
-                        </asp:TableRow>
-
-                        <asp:TableRow>
+                            </asp:TableCell></asp:TableRow><asp:TableRow>
                             <asp:TableCell ColumnSpan="2">
                                 <asp:Literal ID="Literal1" runat="server" EnableViewState="False"></asp:Literal>
-                            </asp:TableCell>
-                        </asp:TableRow>
-
-                        <asp:TableRow>
+                            </asp:TableCell></asp:TableRow><asp:TableRow>
                             <asp:TableCell ColumnSpan="2">
                                 <asp:ValidationSummary ID="ValidationSummary1" ValidationGroup="CreateUserWizard1" HeaderText="Validation Errors"
                                     DisplayMode="BulletList" ShowSummary="true" EnableClientScript="true" runat="server" />
-                            </asp:TableCell>
-                        </asp:TableRow>
-                    </asp:Table>
-                </ContentTemplate>
-            </asp:CreateUserWizardStep>
-
-
-            <asp:CompleteWizardStep ID="CompleteWizardStep1" runat="server">
+                            </asp:TableCell></asp:TableRow></asp:Table></ContentTemplate></asp:CreateUserWizardStep><asp:CompleteWizardStep ID="CompleteWizardStep1" runat="server">
                 <ContentTemplate>
                     <table border="0" style="font-size: 100%; font-family: Verdana" id="TABLE1">
                         <tr>
-                            <td align="center" colspan="2" style="font-weight: bold; color: white; background-color: #5d7b9d; height: 18px;">Complete</td>
-                        </tr>
-                        <tr>
-                            <td>Your account has been successfully created.<br />
-                                <br />
-                                <asp:Label ID="SubscribeLabel" runat="server" Text="You have elected to receive our monthly newsletter."></asp:Label><br />
-                                <br />
-                                <asp:Label ID="ShareInfoLabel" runat="server" Text="You have elected to share your information with partner sites."></asp:Label></td>
-                        </tr>
-                        <tr>
+                            <td align="center" colspan="2" style="font-weight: bold; color: white; background-color: #5d7b9d; height: 18px;">Complete</td></tr><tr>
+                            <td>Your account has been successfully created.<br /> <br /><asp:Label ID="SubscribeLabel" runat="server" Text="You have elected to receive our monthly newsletter."></asp:Label><br /><br /><asp:Label ID="ShareInfoLabel" runat="server" Text="You have elected to share your information with partner sites."></asp:Label></td></tr><tr>
                             <td align="right" colspan="2">&nbsp;<asp:Button ID="ContinueButton" runat="server" BackColor="#FFFBFF" BorderColor="#CCCCCC"
                                 BorderStyle="Solid" BorderWidth="1px" CausesValidation="False" CommandName="Continue"
                                 Font-Names="Verdana" ForeColor="#284775" Text="Continue" ValidationGroup="CreateUserWizard1" />

@@ -384,15 +384,6 @@ namespace VolTeer.DataAccessLayer.VT
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Vendor_Delete", vendorIDParameter);
         }
     
-        public virtual int sp_Vendor_Select(Nullable<System.Guid> vendorID)
-        {
-            var vendorIDParameter = vendorID.HasValue ?
-                new ObjectParameter("VendorID", vendorID) :
-                new ObjectParameter("VendorID", typeof(System.Guid));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Vendor_Select", vendorIDParameter);
-        }
-    
         public virtual int sp_Sample_Address_Delete(Nullable<int> addrID)
         {
             var addrIDParameter = addrID.HasValue ?
@@ -1768,6 +1759,15 @@ namespace VolTeer.DataAccessLayer.VT
                 new ObjectParameter("AddrID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ProjectEvent_Update2", eventIDParameter, projectIDParameter, startDateTimeParameter, endDateTimeParameter, addrIDParameter);
+        }
+    
+        public virtual ObjectResult<sp_Vendor_Select_Result> sp_Vendor_Select(Nullable<System.Guid> vendorID)
+        {
+            var vendorIDParameter = vendorID.HasValue ?
+                new ObjectParameter("VendorID", vendorID) :
+                new ObjectParameter("VendorID", typeof(System.Guid));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Vendor_Select_Result>("sp_Vendor_Select", vendorIDParameter);
         }
     }
 }
