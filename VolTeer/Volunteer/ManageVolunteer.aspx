@@ -3,6 +3,8 @@
 <%@ Register TagPrefix="uc" TagName="ucSkill"
     Src="~/Common/WebControls/ucSkillSearch.ascx" %>
 <%@ Register Src="~/Common/WebControls/ucAddress.ascx" TagPrefix="uc" TagName="ucAddress" %>
+<%@ Register Src="~/Common/WebControls/ucGroups.ascx" TagPrefix="uc" TagName="ucGroups" %>
+
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
@@ -77,7 +79,7 @@
 
                 <telerik:RadMultiPage runat="server" ID="RadMultiPage5" SelectedIndex="0" CssClass="innerMultiPage">
                     <telerik:RadPageView runat="server" ID="RadPageView5">
-                        My Groups
+                        <uc:ucGroups runat="server" id="ucGroups" />
                     </telerik:RadPageView>
                     <telerik:RadPageView runat="server" ID="RadPageView6">
                         Create a Group

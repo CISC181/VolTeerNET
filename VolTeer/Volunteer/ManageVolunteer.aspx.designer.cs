@@ -193,6 +193,15 @@ namespace VolTeer.Volunteer {
         protected global::Telerik.Web.UI.RadPageView RadPageView5;
         
         /// <summary>
+        /// ucGroups control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::VolTeer.Common.WebControls.ucGroups ucGroups;
+        
+        /// <summary>
         /// RadPageView6 control.
         /// </summary>
         /// <remarks>
