@@ -94,24 +94,6 @@ namespace VolTeer.Common.WebControls {
         protected global::System.Web.UI.WebControls.Label lblCityStZip;
         
         /// <summary>
-        /// pnlAddressGrid control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlAddressGrid;
-        
-        /// <summary>
-        /// rGridAddress control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadGrid rGridAddress;
-        
-        /// <summary>
         /// tblButtons control.
         /// </summary>
         /// <remarks>
@@ -137,5 +119,23 @@ namespace VolTeer.Common.WebControls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadButton btnCancel;
+        
+        /// <summary>
+        /// pnlAddressGrid control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlAddressGrid;
+        
+        /// <summary>
+        /// rGridAddress control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadGrid rGridAddress;
     }
 }

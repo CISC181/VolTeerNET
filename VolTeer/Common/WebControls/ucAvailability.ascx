@@ -1,7 +1,7 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ucAvailability.ascx.cs" Inherits="VolTeer.Common.WebControls.ucAvailability" %>
 
 
-<telerik:RadGrid ID="RadGrid1" runat="server" AutoGenerateColumns="False" Skin="Web20">
+<telerik:RadGrid ID="RadGrid1" runat="server" AutoGenerateColumns="False" Skin='<%$ AppSettings:Telerik.Skin %>'>
     <MasterTableView>
         <Columns>
 

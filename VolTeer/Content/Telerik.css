@@ -111,7 +111,7 @@ h5, h6 {
 #body {
     background-color: #efeeef;
     clear: both;
-    padding-bottom: 35px;
+    padding-bottom: 5px;
 }
 
 .main-content {
@@ -132,7 +132,7 @@ footer {
     bottom: 5px;
     position: relative;
     clear: both;
-    background-color: #e2e2e2;
+    background-color: black;
     font-size: .8em;
     height: 35px;
 }
@@ -1105,17 +1105,17 @@ tr.pager td {
 
 .exampleWrapper {
     /*background: url('../Content/images/background_image.png') 0 20px no-repeat;*/
-    width: 1200px;
+    width: 100%;
     /*padding: 125px 120px 0 20px;*/
-    height: 600px;
+    height: 100%;
     float: left;
 }
 
     .exampleWrapper .outerMultiPage {
-        height: 387px;
+        height: 100px;
         width: 593px;
-        margin-left: 15px;
-        margin-top: 30px;
+        /*margin-left: 15px;*/
+        /*margin-top: 30px;*/
     }
 
     .exampleWrapper .innerMultiPage {
