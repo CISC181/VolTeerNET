@@ -29,6 +29,11 @@ namespace VolTeer.BusinessLogicLayer.VT.Vol
             DAL.DeleteGroupContext(_cVolID);
         }
 
+        public void LeaveGroup(sp_Vol_GroupVol_DM GroupVol)
+        {
+            DAL.LeaveGroup(GroupVol);
+        }
+
 
         //TODO: Create a MakePrimary method passing in VolID
         public void MakePrimaryVolID(sp_Vol_GroupVol_DM _cGroup)

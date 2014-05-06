@@ -86,6 +86,27 @@ namespace VolTeer.DataAccessLayer.VT.Vol
 
             }
         }
+
+
+
+        public void LeaveGroup(sp_Vol_GroupVol_DM GroupVol)
+        {
+            using (VolTeerEntities context = new VolTeerEntities())
+            {
+                try
+                {
+                    var GroupToRemove = (from n in context.tblGroupVols where n.VolID == GroupVol.VolID && n.GroupID == GroupVol.GroupID select n).FirstOrDefault();
+                    context.tblGroupVols.Remove(GroupToRemove);
+                    context.SaveChanges();
+
+                }
+                catch (Exception ex)
+                {
+                    throw (ex);
+                }
+
+            }
+        }
         #endregion
 
 
