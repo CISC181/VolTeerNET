@@ -811,6 +811,24 @@
           <Parameter Name="ContactLastName" Type="nvarchar" Mode="In" />
           <Parameter Name="ActiveFlg" Type="bit" Mode="In" />
         </Function>
+        <Function Name="sp_ContactEmail_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
+          <Parameter Name="ContactID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="EmailID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_ContactEmail_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
+          <Parameter Name="ContactID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="EmailID" Type="int" Mode="In" />
+          <Parameter Name="PrimaryEmail" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="sp_ContactEmail_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
+          <Parameter Name="ContactID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="EmailID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_ContactEmail_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
+          <Parameter Name="ContactID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="EmailID" Type="int" Mode="In" />
+          <Parameter Name="PrimaryEmail" Type="bit" Mode="In" />
+        </Function>
         <Function Name="sp_EventRating_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
           <Parameter Name="RatingID" Type="int" Mode="In" />
           <Parameter Name="EventID" Type="uniqueidentifier" Mode="In" />
@@ -1345,9 +1363,6 @@
           <FunctionImport Name="sp_Contact_MassUpdate">
           <Parameter Name="XML_IN" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="sp_Contact_Select" ReturnType="Collection(VolTeerModel.sp_Contact_Select_Result)">
-          <Parameter Name="ContactID" Mode="In" Type="Guid" />
-          </FunctionImport>
           <FunctionImport Name="sp_Contact_Update">
             <Parameter Name="ContactID" Mode="In" Type="Guid" />
             <Parameter Name="ContactFirstName" Mode="In" Type="String" />
@@ -1645,10 +1660,6 @@
             <Parameter Name="PrimaryVolID" Mode="In" Type="Boolean" />
             <Parameter Name="Admin" Mode="In" Type="Boolean" />
           </FunctionImport>
-          <FunctionImport Name="sp_GroupVol_Select">
-            <Parameter Name="GroupID" Mode="In" Type="Int32" />
-            <Parameter Name="VolID" Mode="In" Type="Guid" />
-          </FunctionImport>
           <FunctionImport Name="sp_GroupVol_Update">
             <Parameter Name="GroupID" Mode="In" Type="Int32" />
             <Parameter Name="VolID" Mode="In" Type="Guid" />
@@ -1908,6 +1919,28 @@
           <FunctionImport Name="sp_Vendor_Insert" ReturnType="Collection(Guid)">
             <Parameter Name="VendorID" Mode="In" Type="Guid" />
             <Parameter Name="VendorName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ContactEmail_Delete">
+            <Parameter Name="ContactID" Mode="In" Type="Guid" />
+            <Parameter Name="EmailID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ContactEmail_Insert">
+            <Parameter Name="ContactID" Mode="In" Type="Guid" />
+            <Parameter Name="EmailID" Mode="In" Type="Int32" />
+            <Parameter Name="PrimaryEmail" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ContactEmail_Select" ReturnType="Collection(VolTeerModel.sp_ContactEmail_Select_Result)">
+            <Parameter Name="ContactID" Mode="In" Type="Guid" />
+            <Parameter Name="EmailID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ContactEmail_Update">
+            <Parameter Name="ContactID" Mode="In" Type="Guid" />
+            <Parameter Name="EmailID" Mode="In" Type="Int32" />
+            <Parameter Name="PrimaryEmail" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GroupVol_Select" ReturnType="Collection(VolTeerModel.sp_GroupVol_Select_Result)">
+            <Parameter Name="GroupID" Mode="In" Type="Int32" />
+            <Parameter Name="VolID" Mode="In" Type="Guid" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="tblContact">
@@ -2226,13 +2259,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <ComplexType Name="sp_Contact_Select_Result">
-          <Property Type="Guid" Name="ContactID" Nullable="false" />
-          <Property Type="String" Name="ContactFirstName" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="ContactMiddleName" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="ContactLastName" Nullable="true" MaxLength="50" />
-          <Property Type="Boolean" Name="ActiveFlg" Nullable="false" />
-        </ComplexType>
         <ComplexType Name="sp_EventRating_Select_Result">
           <Property Type="Int32" Name="RatingID" Nullable="false" />
           <Property Type="Guid" Name="EventID" Nullable="true" />
@@ -2733,6 +2759,24 @@
           <Property Type="String" Name="VendorName" Nullable="true" MaxLength="50" />
           <Property Type="Boolean" Name="ActiveFlg" Nullable="true" />
         </ComplexType>
+        <ComplexType Name="sp_ContactEmail_Select_Result">
+          <Property Type="Guid" Name="ContactID" Nullable="false" />
+          <Property Type="Int32" Name="EmailID" Nullable="false" />
+          <Property Type="Boolean" Name="PrimaryEmail" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_GroupVol_Select_Result">
+          <Property Type="String" Name="GroupName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ParticipationLevelID" Nullable="true" />
+          <Property Type="Boolean" Name="GroupActive" Nullable="true" />
+          <Property Type="Int32" Name="GroupID" Nullable="false" />
+          <Property Type="Guid" Name="VolID" Nullable="false" />
+          <Property Type="Boolean" Name="PrimaryVolID" Nullable="true" />
+          <Property Type="Boolean" Name="Admin" Nullable="true" />
+          <Property Type="String" Name="VolFirstName" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="VolMiddleName" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="VolLastName" Nullable="true" MaxLength="30" />
+          <Property Type="Boolean" Name="VolActive" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -3099,17 +3143,6 @@
           <FunctionImportMapping FunctionImportName="sp_Contact_Delete" FunctionName="VolTeerModel.Store.sp_Contact_Delete" />
           <FunctionImportMapping FunctionImportName="sp_Contact_Insert" FunctionName="VolTeerModel.Store.sp_Contact_Insert" />
           <FunctionImportMapping FunctionImportName="sp_Contact_MassUpdate" FunctionName="VolTeerModel.Store.sp_Contact_MassUpdate" />
-          <FunctionImportMapping FunctionImportName="sp_Contact_Select" FunctionName="VolTeerModel.Store.sp_Contact_Select">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="VolTeerModel.sp_Contact_Select_Result">
-                <ScalarProperty Name="ContactID" ColumnName="ContactID" />
-                <ScalarProperty Name="ContactFirstName" ColumnName="ContactFirstName" />
-                <ScalarProperty Name="ContactMiddleName" ColumnName="ContactMiddleName" />
-                <ScalarProperty Name="ContactLastName" ColumnName="ContactLastName" />
-                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_Contact_Update" FunctionName="VolTeerModel.Store.sp_Contact_Update" />
           <FunctionImportMapping FunctionImportName="sp_EventRating_Delete" FunctionName="VolTeerModel.Store.sp_EventRating_Delete" />
           <FunctionImportMapping FunctionImportName="sp_EventRating_Insert" FunctionName="VolTeerModel.Store.sp_EventRating_Insert" />
@@ -3582,8 +3615,6 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_GroupVol_Insert" FunctionName="VolTeerModel.Store.sp_GroupVol_Insert" />
-          <FunctionImportMapping FunctionImportName="sp_GroupVol_Select" FunctionName="VolTeerModel.Store.sp_GroupVol_Select">
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_GroupVol_Update" FunctionName="VolTeerModel.Store.sp_GroupVol_Update" />
           <EntitySetMapping Name="Vend_tblUserCred">
             <EntityTypeMapping TypeName="VolTeerModel.Vend_tblUserCred">
@@ -3800,6 +3831,35 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_Vendor_Insert" FunctionName="VolTeerModel.Store.sp_Vendor_Insert" />
+          <FunctionImportMapping FunctionImportName="sp_ContactEmail_Delete" FunctionName="VolTeerModel.Store.sp_ContactEmail_Delete" />
+          <FunctionImportMapping FunctionImportName="sp_ContactEmail_Insert" FunctionName="VolTeerModel.Store.sp_ContactEmail_Insert" />
+          <FunctionImportMapping FunctionImportName="sp_ContactEmail_Select" FunctionName="VolTeerModel.Store.sp_ContactEmail_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VolTeerModel.sp_ContactEmail_Select_Result">
+                <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+                <ScalarProperty Name="PrimaryEmail" ColumnName="PrimaryEmail" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_ContactEmail_Update" FunctionName="VolTeerModel.Store.sp_ContactEmail_Update" />
+          <FunctionImportMapping FunctionImportName="sp_GroupVol_Select" FunctionName="VolTeerModel.Store.sp_GroupVol_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VolTeerModel.sp_GroupVol_Select_Result">
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="ParticipationLevelID" ColumnName="ParticipationLevelID" />
+                <ScalarProperty Name="GroupActive" ColumnName="GroupActive" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="VolID" ColumnName="VolID" />
+                <ScalarProperty Name="PrimaryVolID" ColumnName="PrimaryVolID" />
+                <ScalarProperty Name="Admin" ColumnName="Admin" />
+                <ScalarProperty Name="VolFirstName" ColumnName="VolFirstName" />
+                <ScalarProperty Name="VolMiddleName" ColumnName="VolMiddleName" />
+                <ScalarProperty Name="VolLastName" ColumnName="VolLastName" />
+                <ScalarProperty Name="VolActive" ColumnName="VolActive" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
