@@ -12,6 +12,10 @@ namespace VolTeer.BusinessLogicLayer.VT.Vol
     {
         sp_GroupVol_DAL DAL = new sp_GroupVol_DAL();
 
+        public List<sp_Vol_GroupVol_DM> ListGroupVols(sp_Vol_GroupVol_DM GroupVol)
+        {
+            return DAL.ListGroupVols(GroupVol); 
+        }
 
         //TODO: Create an insert method passing in domain model
         public sp_Vol_GroupVol_DM InsertGroupContext(ref sp_Vol_GroupVol_DM _cGroup)
