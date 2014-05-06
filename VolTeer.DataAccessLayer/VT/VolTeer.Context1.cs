@@ -957,6 +957,19 @@ namespace VolTeer.DataAccessLayer.VT
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_GroupVol_Insert", groupIDParameter, volIDParameter, primaryVolIDParameter, adminParameter);
         }
     
+        public virtual int sp_GroupVol_Select(Nullable<int> groupID, Nullable<System.Guid> volID)
+        {
+            var groupIDParameter = groupID.HasValue ?
+                new ObjectParameter("GroupID", groupID) :
+                new ObjectParameter("GroupID", typeof(int));
+    
+            var volIDParameter = volID.HasValue ?
+                new ObjectParameter("VolID", volID) :
+                new ObjectParameter("VolID", typeof(System.Guid));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_GroupVol_Select", groupIDParameter, volIDParameter);
+        }
+    
         public virtual int sp_GroupVol_Update(Nullable<int> groupID, Nullable<System.Guid> volID, Nullable<bool> primaryVolID, Nullable<bool> admin)
         {
             var groupIDParameter = groupID.HasValue ?
@@ -1748,17 +1761,64 @@ namespace VolTeer.DataAccessLayer.VT
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("sp_Vendor_Insert", vendorIDParameter, vendorNameParameter);
         }
     
-        public virtual ObjectResult<sp_GroupVol_Select_Result> sp_GroupVol_Select(Nullable<int> groupID, Nullable<System.Guid> volID)
+        public virtual int sp_ContactEmail_Delete(Nullable<System.Guid> contactID, Nullable<int> emailID)
         {
-            var groupIDParameter = groupID.HasValue ?
-                new ObjectParameter("GroupID", groupID) :
-                new ObjectParameter("GroupID", typeof(int));
+            var contactIDParameter = contactID.HasValue ?
+                new ObjectParameter("ContactID", contactID) :
+                new ObjectParameter("ContactID", typeof(System.Guid));
     
-            var volIDParameter = volID.HasValue ?
-                new ObjectParameter("VolID", volID) :
-                new ObjectParameter("VolID", typeof(System.Guid));
+            var emailIDParameter = emailID.HasValue ?
+                new ObjectParameter("EmailID", emailID) :
+                new ObjectParameter("EmailID", typeof(int));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GroupVol_Select_Result>("sp_GroupVol_Select", groupIDParameter, volIDParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ContactEmail_Delete", contactIDParameter, emailIDParameter);
+        }
+    
+        public virtual int sp_ContactEmail_Insert(Nullable<System.Guid> contactID, Nullable<int> emailID, Nullable<bool> primaryEmail)
+        {
+            var contactIDParameter = contactID.HasValue ?
+                new ObjectParameter("ContactID", contactID) :
+                new ObjectParameter("ContactID", typeof(System.Guid));
+    
+            var emailIDParameter = emailID.HasValue ?
+                new ObjectParameter("EmailID", emailID) :
+                new ObjectParameter("EmailID", typeof(int));
+    
+            var primaryEmailParameter = primaryEmail.HasValue ?
+                new ObjectParameter("PrimaryEmail", primaryEmail) :
+                new ObjectParameter("PrimaryEmail", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ContactEmail_Insert", contactIDParameter, emailIDParameter, primaryEmailParameter);
+        }
+    
+        public virtual ObjectResult<sp_ContactEmail_Select_Result> sp_ContactEmail_Select(Nullable<System.Guid> contactID, Nullable<int> emailID)
+        {
+            var contactIDParameter = contactID.HasValue ?
+                new ObjectParameter("ContactID", contactID) :
+                new ObjectParameter("ContactID", typeof(System.Guid));
+    
+            var emailIDParameter = emailID.HasValue ?
+                new ObjectParameter("EmailID", emailID) :
+                new ObjectParameter("EmailID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ContactEmail_Select_Result>("sp_ContactEmail_Select", contactIDParameter, emailIDParameter);
+        }
+    
+        public virtual int sp_ContactEmail_Update(Nullable<System.Guid> contactID, Nullable<int> emailID, Nullable<bool> primaryEmail)
+        {
+            var contactIDParameter = contactID.HasValue ?
+                new ObjectParameter("ContactID", contactID) :
+                new ObjectParameter("ContactID", typeof(System.Guid));
+    
+            var emailIDParameter = emailID.HasValue ?
+                new ObjectParameter("EmailID", emailID) :
+                new ObjectParameter("EmailID", typeof(int));
+    
+            var primaryEmailParameter = primaryEmail.HasValue ?
+                new ObjectParameter("PrimaryEmail", primaryEmail) :
+                new ObjectParameter("PrimaryEmail", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ContactEmail_Update", contactIDParameter, emailIDParameter, primaryEmailParameter);
         }
     }
 }

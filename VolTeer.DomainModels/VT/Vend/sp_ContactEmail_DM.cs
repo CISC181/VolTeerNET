@@ -14,6 +14,6 @@ namespace VolTeer.DomainModels.VT.Vend
 
         public Guid ContactID { get; set; }
         public int EmailID { get; set; }
-        public bool PrimaryEmail { get; set; }
+        public bool? PrimaryEmail { get; set; }
     }
 }
