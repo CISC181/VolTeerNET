@@ -15,7 +15,7 @@
         <asp:Label ID="lblUserNotFound" runat="server" Text="User Not Found" Visible="false">
         </asp:Label>
         <br />
-        <telerik:RadButton ID="rBTNContinue" runat="server" PostBackUrl="Login.aspx" Text="Login" Visible="false"  Skin="Office2010Silver">
+        <telerik:RadButton ID="rBTNContinue" runat="server" PostBackUrl="Login.aspx" Text="Login" Visible="false"  Skin='<%$ AppSettings:Telerik.Skin %>'>
         </telerik:RadButton>
     </asp:Panel>
 </asp:Content>

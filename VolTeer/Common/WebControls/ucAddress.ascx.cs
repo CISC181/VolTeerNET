@@ -141,22 +141,21 @@ namespace VolTeer.Common.WebControls
             {
                 if (e.Item is GridEditableItem && e.Item.IsInEditMode)
                 {
+                    GridEditableItem edtItem = (GridEditableItem)e.Item;
+
+                    RadDropDownList rDDSt = (RadDropDownList)edtItem.FindControl("rDDSt");
+                    rDDSt.DataSource = stBLL.ListStates();
+                    rDDSt.DataValueField = "StateAbbr";
+                    rDDSt.DataTextField = "StateName";
+                    rDDSt.DataBind();
+
                     if (e.Item is GridEditFormInsertItem)
                     {
-                        GridEditableItem edtItem = (GridEditableItem)e.Item;
                         CheckBox ckActive = (CheckBox)edtItem.FindControl("chkActive");
                         ckActive.Checked = true;
                     }
                     else
                     {
-
-                        GridEditableItem edtItem = (GridEditableItem)e.Item;
-
-                        RadDropDownList rDDSt = (RadDropDownList)edtItem.FindControl("rDDSt");
-                        rDDSt.DataSource = stBLL.ListStates();
-                        rDDSt.DataValueField = "StateAbbr";
-                        rDDSt.DataTextField = "StateName";
-                        rDDSt.DataBind();
 
                         rDDSt.SelectedValue = DataBinder.Eval(edtItem.DataItem, "St").ToString();
 

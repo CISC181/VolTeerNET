@@ -2,7 +2,7 @@
 <%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 
 
-<asp:Panel ID="pnlSingleAddress" runat="server" Width="90%" BorderWidth="1px">
+<asp:Panel ID="pnlSingleAddress" runat="server" Width="90%" >
     <asp:Table ID="tblMainTable" runat="server">
         <asp:TableRow>
             <asp:TableCell runat="server" Width="40%">
@@ -32,12 +32,23 @@
             </asp:TableCell>
         </asp:TableRow>
     </asp:Table>
+    <asp:Table ID="tblButtons" runat="server">
+        <asp:TableRow>
+            <asp:TableCell>
+                <telerik:RadButton ID="btnEdit" Skin='<%$ AppSettings:Telerik.Skin %>' runat="server" Text="Edit" OnClick="btnEdit_Click">
+                </telerik:RadButton>
+                &nbsp;
+            <telerik:RadButton ID="btnCancel" Skin='<%$ AppSettings:Telerik.Skin %>' runat="server" Text="Cancel" OnClick="btnCancel_Click">
+            </telerik:RadButton>
+            </asp:TableCell>
+        </asp:TableRow>
+    </asp:Table>
 </asp:Panel>
 <%--        OnUpdateCommand="rGridAddress_UpdateCommand"
         OnInsertCommand="rGridAddress_InsertCommand"
         OnEditCommand="rGridAddress_EditCommand"
         OnItemCommand="rGridAddress_ItemCommand"--%>
-<asp:Panel ID="pnlAddressGrid" runat="server" Width="90%">
+<asp:Panel ID="pnlAddressGrid" runat="server" CssClass="exampleWrapper" Width="90%" Height="200px">
 
     <telerik:RadGrid ID="rGridAddress"
         runat="server"
@@ -47,10 +58,9 @@
         OnInsertCommand="rGridAddress_InsertCommand"
         OnDeleteCommand="rGridAddress_DeleteCommand"
         AutoGenerateColumns="False"
-        BorderWidth="1px"
-        AllowFilteringByColumn="True"
+        AllowFilteringByColumn="False"
         AllowSorting="True"
-        Skin="Vista"
+        Skin='<%$ AppSettings:Telerik.Skin %>'
         CellSpacing="0"
         GridLines="None"
         AllowMultiRowEdit="True"
@@ -147,7 +157,7 @@
                                 </asp:Label>
                             </asp:TableCell>
                             <asp:TableCell>
-                                <asp:CheckBox ID="chkActive" runat="server" ></asp:CheckBox>
+                                <asp:CheckBox ID="chkActive" runat="server"></asp:CheckBox>
                             </asp:TableCell>
                         </asp:TableRow>
                         <asp:TableRow>
@@ -156,7 +166,7 @@
                                 </asp:Label>
                             </asp:TableCell>
                             <asp:TableCell>
-                                <asp:CheckBox ID="chkPrimaryAddr" runat="server" ></asp:CheckBox>
+                                <asp:CheckBox ID="chkPrimaryAddr" runat="server"></asp:CheckBox>
                             </asp:TableCell>
                         </asp:TableRow>
                         <asp:TableRow>
@@ -235,16 +245,6 @@
     </telerik:RadGrid>
 </asp:Panel>
 
-<asp:Table ID="tblButtons" runat="server">
-    <asp:TableRow>
-        <asp:TableCell>
-            <telerik:RadButton ID="btnEdit" Skin="Office2010Silver" runat="server" Text="Edit" OnClick="btnEdit_Click">
-            </telerik:RadButton>
-            &nbsp;
-            <telerik:RadButton ID="btnCancel" Skin="Office2010Silver" runat="server" Text="Cancel" OnClick="btnCancel_Click">
-            </telerik:RadButton>
-        </asp:TableCell>
-    </asp:TableRow>
-</asp:Table>
+
 
 

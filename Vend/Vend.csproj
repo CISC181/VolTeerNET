@@ -74,6 +74,39 @@
     <Compile Include="Account\Register.aspx.designer.cs">
       <DependentUpon>Register.aspx</DependentUpon>
     </Compile>
+    <Compile Include="App_Code\cCommonFunctions.cs" />
+    <Compile Include="App_Code\cEnums.cs" />
+    <Compile Include="App_Code\cMail.cs" />
+    <Compile Include="App_Code\cValidations.cs" />
+    <Compile Include="App_Code\ExceptionUtility.cs" />
+    <Compile Include="Common\WebControls\ucAccountMaint.ascx.cs">
+      <DependentUpon>ucAccountMaint.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Common\WebControls\ucAccountMaint.ascx.designer.cs">
+      <DependentUpon>ucAccountMaint.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Common\WebControls\ucVendorContacts.ascx.cs">
+      <DependentUpon>ucVendorContacts.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Common\WebControls\ucVendorContacts.ascx.designer.cs">
+      <DependentUpon>ucVendorContacts.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Common\WebControls\ucVendorProjects.ascx.cs">
+      <DependentUpon>ucVendorProjects.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Common\WebControls\ucVendorProjects.ascx.designer.cs">
+      <DependentUpon>ucVendorProjects.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Common\WebControls\ucVendorSearch.ascx.cs">
+      <DependentUpon>ucVendorSearch.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Common\WebControls\ucVendorSearch.ascx.designer.cs">
+      <DependentUpon>ucVendorSearch.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -96,6 +129,13 @@
       <DependentUpon>Site.Master</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Vendor\ManageVendor.aspx.cs">
+      <DependentUpon>ManageVendor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Vendor\ManageVendor.aspx.designer.cs">
+      <DependentUpon>ManageVendor.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="Account\Login.aspx" />
@@ -136,6 +176,10 @@
     <Content Include="App_Data\RadCaptcha\X.wav" />
     <Content Include="App_Data\RadCaptcha\Y.wav" />
     <Content Include="App_Data\RadCaptcha\Z.wav" />
+    <Content Include="Common\WebControls\ucAccountMaint.ascx" />
+    <Content Include="Common\WebControls\ucVendorContacts.ascx" />
+    <Content Include="Common\WebControls\ucVendorProjects.ascx" />
+    <Content Include="Common\WebControls\ucVendorSearch.ascx" />
     <Content Include="Content\GridStyleSheet.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\Telerik.css" />
@@ -152,6 +196,7 @@
     <Content Include="App_Data\RadSpell\fr-FR.tdf" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Vendor\ManageVendor.aspx" />
     <Content Include="web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -164,12 +209,9 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="App_Code\" />
     <Folder Include="Common\JavaScripts\" />
-    <Folder Include="Common\WebControls\" />
     <Folder Include="Content\images\" />
     <Folder Include="Content\themes\" />
-    <Folder Include="Vendor\" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\VolTeer.BusinessLogicLayer\VolTeer.BusinessLogicLayer.csproj">
@@ -187,10 +229,6 @@
     <ProjectReference Include="..\VolTeer.DomainModels\VolTeer.DomainModels.csproj">
       <Project>{7919ce03-6597-4a4b-82e4-d73b7511ab7f}</Project>
       <Name>VolTeer.DomainModels</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\VolTeer\VolTeer.csproj">
-      <Project>{0be36127-23cb-4c74-85de-89d8a0490c83}</Project>
-      <Name>VolTeer</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
@@ -226,7 +264,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
+      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

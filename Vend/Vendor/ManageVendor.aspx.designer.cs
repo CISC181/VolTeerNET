@@ -7,135 +7,108 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace VolTeer.Common.WebControls {
+namespace VolTeer.Volunteer {
     
     
-    public partial class ucAddress {
+    public partial class ManageVendor {
         
         /// <summary>
-        /// pnlSingleAddress control.
+        /// QsfFromDecorator control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlSingleAddress;
+        protected global::Telerik.Web.UI.RadFormDecorator QsfFromDecorator;
         
         /// <summary>
-        /// tblMainTable control.
+        /// RadTabStrip1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table tblMainTable;
+        protected global::Telerik.Web.UI.RadTabStrip RadTabStrip1;
         
         /// <summary>
-        /// tblViewPrimAddr control.
+        /// RadMultiPage1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table tblViewPrimAddr;
+        protected global::Telerik.Web.UI.RadMultiPage RadMultiPage1;
         
         /// <summary>
-        /// lblAddr1 control.
+        /// RadPageView1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAddr1;
+        protected global::Telerik.Web.UI.RadPageView RadPageView1;
         
         /// <summary>
-        /// rowAddr2 control.
+        /// ucVendorProjects control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableRow rowAddr2;
+        protected global::Vend.Common.WebControls.ucVendorProjects ucVendorProjects;
         
         /// <summary>
-        /// lblAddr2 control.
+        /// RadPageView2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAddr2;
+        protected global::Telerik.Web.UI.RadPageView RadPageView2;
         
         /// <summary>
-        /// rowAddr3 control.
+        /// ucVendorContacts control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TableCell rowAddr3;
+        protected global::Vend.Common.WebControls.ucVendorContacts ucVendorContacts;
         
         /// <summary>
-        /// lblAddr3 control.
+        /// RadPageView3 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblAddr3;
+        protected global::Telerik.Web.UI.RadPageView RadPageView3;
         
         /// <summary>
-        /// lblCityStZip control.
+        /// ucVendorSearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblCityStZip;
+        protected global::Vend.Common.WebControls.ucVendorSearch ucVendorSearch;
         
         /// <summary>
-        /// tblButtons control.
+        /// RadPageView4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Table tblButtons;
+        protected global::Telerik.Web.UI.RadPageView RadPageView4;
         
         /// <summary>
-        /// btnEdit control.
+        /// ucAccountMaint control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadButton btnEdit;
-        
-        /// <summary>
-        /// btnCancel control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadButton btnCancel;
-        
-        /// <summary>
-        /// pnlAddressGrid control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlAddressGrid;
-        
-        /// <summary>
-        /// rGridAddress control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadGrid rGridAddress;
+        protected global::Vend.Common.WebControls.ucAccountMaint ucAccountMaint;
     }
 }

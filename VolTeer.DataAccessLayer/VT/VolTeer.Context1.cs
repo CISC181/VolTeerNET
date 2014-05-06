@@ -1090,15 +1090,6 @@ namespace VolTeer.DataAccessLayer.VT
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Group_Update", groupIDParameter, groupNameParameter, participationLevelIDParameter, activeFlgParameter);
         }
     
-        public virtual ObjectResult<Nullable<System.Guid>> sp_Vendor_Insert(string vendorName)
-        {
-            var vendorNameParameter = vendorName != null ?
-                new ObjectParameter("VendorName", vendorName) :
-                new ObjectParameter("VendorName", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("sp_Vendor_Insert", vendorNameParameter);
-        }
-    
         public virtual int sp_alterdiagram(string diagramname, Nullable<int> owner_id, Nullable<int> version, byte[] definition)
         {
             var diagramnameParameter = diagramname != null ?
@@ -1525,19 +1516,6 @@ namespace VolTeer.DataAccessLayer.VT
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_VendorProjContact_Update", vendorIDParameter, projectIDParameter, contactIDParameter, primaryContactParameter);
         }
     
-        public virtual ObjectResult<Nullable<System.Guid>> sp_Vendor_Insert1(Nullable<System.Guid> vendorID, string vendorName)
-        {
-            var vendorIDParameter = vendorID.HasValue ?
-                new ObjectParameter("VendorID", vendorID) :
-                new ObjectParameter("VendorID", typeof(System.Guid));
-    
-            var vendorNameParameter = vendorName != null ?
-                new ObjectParameter("VendorName", vendorName) :
-                new ObjectParameter("VendorName", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("sp_Vendor_Insert1", vendorIDParameter, vendorNameParameter);
-        }
-    
         public virtual int sp_VendorAddr_Delete(Nullable<System.Guid> vendorID)
         {
             var vendorIDParameter = vendorID.HasValue ?
@@ -1770,64 +1748,17 @@ namespace VolTeer.DataAccessLayer.VT
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Vendor_Select_Result>("sp_Vendor_Select", vendorIDParameter);
         }
     
-        public virtual int sp_ContactEmail_Delete(Nullable<System.Guid> contactID, Nullable<int> emailID)
+        public virtual ObjectResult<Nullable<System.Guid>> sp_Vendor_Insert(Nullable<System.Guid> vendorID, string vendorName)
         {
-            var contactIDParameter = contactID.HasValue ?
-                new ObjectParameter("ContactID", contactID) :
-                new ObjectParameter("ContactID", typeof(System.Guid));
+            var vendorIDParameter = vendorID.HasValue ?
+                new ObjectParameter("VendorID", vendorID) :
+                new ObjectParameter("VendorID", typeof(System.Guid));
     
-            var emailIDParameter = emailID.HasValue ?
-                new ObjectParameter("EmailID", emailID) :
-                new ObjectParameter("EmailID", typeof(int));
+            var vendorNameParameter = vendorName != null ?
+                new ObjectParameter("VendorName", vendorName) :
+                new ObjectParameter("VendorName", typeof(string));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ContactEmail_Delete", contactIDParameter, emailIDParameter);
-        }
-    
-        public virtual int sp_ContactEmail_Insert(Nullable<System.Guid> contactID, Nullable<int> emailID, Nullable<bool> primaryEmail)
-        {
-            var contactIDParameter = contactID.HasValue ?
-                new ObjectParameter("ContactID", contactID) :
-                new ObjectParameter("ContactID", typeof(System.Guid));
-    
-            var emailIDParameter = emailID.HasValue ?
-                new ObjectParameter("EmailID", emailID) :
-                new ObjectParameter("EmailID", typeof(int));
-    
-            var primaryEmailParameter = primaryEmail.HasValue ?
-                new ObjectParameter("PrimaryEmail", primaryEmail) :
-                new ObjectParameter("PrimaryEmail", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ContactEmail_Insert", contactIDParameter, emailIDParameter, primaryEmailParameter);
-        }
-    
-        public virtual ObjectResult<sp_ContactEmail_Select_Result> sp_ContactEmail_Select(Nullable<System.Guid> contactID, Nullable<int> emailID)
-        {
-            var contactIDParameter = contactID.HasValue ?
-                new ObjectParameter("ContactID", contactID) :
-                new ObjectParameter("ContactID", typeof(System.Guid));
-    
-            var emailIDParameter = emailID.HasValue ?
-                new ObjectParameter("EmailID", emailID) :
-                new ObjectParameter("EmailID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ContactEmail_Select_Result>("sp_ContactEmail_Select", contactIDParameter, emailIDParameter);
-        }
-    
-        public virtual int sp_ContactEmail_Update(Nullable<System.Guid> contactID, Nullable<int> emailID, Nullable<bool> primaryEmail)
-        {
-            var contactIDParameter = contactID.HasValue ?
-                new ObjectParameter("ContactID", contactID) :
-                new ObjectParameter("ContactID", typeof(System.Guid));
-    
-            var emailIDParameter = emailID.HasValue ?
-                new ObjectParameter("EmailID", emailID) :
-                new ObjectParameter("EmailID", typeof(int));
-    
-            var primaryEmailParameter = primaryEmail.HasValue ?
-                new ObjectParameter("PrimaryEmail", primaryEmail) :
-                new ObjectParameter("PrimaryEmail", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ContactEmail_Update", contactIDParameter, emailIDParameter, primaryEmailParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("sp_Vendor_Insert", vendorIDParameter, vendorNameParameter);
         }
     }
 }

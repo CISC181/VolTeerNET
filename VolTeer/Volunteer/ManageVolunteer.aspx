@@ -13,22 +13,21 @@
 
     <telerik:RadFormDecorator ID="QsfFromDecorator" runat="server" DecoratedControls="All" EnableRoundedCorners="false" />
     <div class="exampleWrapper">
-        <telerik:RadTabStrip runat="server" ID="RadTabStrip1" MultiPageID="RadMultiPage1" SelectedIndex="0" Skin="Web20">
+        <telerik:RadTabStrip runat="server" ID="RadTabStrip1" MultiPageID="RadMultiPage1" SelectedIndex="0"  Skin='<%$ AppSettings:Telerik.Skin %>'>
             <Tabs>
                 <telerik:RadTab Text="Primary Info" Width="200px"></telerik:RadTab>
                 <telerik:RadTab Text="Groups" Width="200px"></telerik:RadTab>
                 <telerik:RadTab Text="Skills" Width="200px"></telerik:RadTab>
                 <telerik:RadTab Text="History" Width="200px" ></telerik:RadTab>
-
             </Tabs>
         </telerik:RadTabStrip>
 
 
-        <telerik:RadMultiPage runat="server" ID="RadMultiPage1" SelectedIndex="0" CssClass="outerMultiPage">
+        <telerik:RadMultiPage runat="server" ID="RadMultiPage1" SelectedIndex="0" Width="95%" Height="95%" CssClass="outerMultiPage">
             <telerik:RadPageView runat="server" ID="RadPageView1">
-
+ 
                 <telerik:RadTabStrip runat="server" ID="RadTabStrip2" MultiPageID="RadMultiPage2"
-                    Orientation="VerticalLeft" Skin="Web20" Width="100px" Height="355px" SelectedIndex="0">
+                    Orientation="VerticalLeft" Skin='<%$ AppSettings:Telerik.Skin %>' Width="100px" Height="355px" SelectedIndex="0">
                     <Tabs>
                         <telerik:RadTab Text="Primary"></telerik:RadTab>
                         <telerik:RadTab Text="Email"></telerik:RadTab>
@@ -46,20 +45,20 @@
 
 
 
-                <telerik:RadMultiPage runat="server" ID="RadMultiPage2" SelectedIndex="0" CssClass="innerMultiPage">
-                    <telerik:RadPageView runat="server" ID="PageView1">
+                <telerik:RadMultiPage runat="server"  ID="RadMultiPage2" SelectedIndex="0" CssClass="innerMultiPage" Height="100%" Width="90%">
+                    <telerik:RadPageView runat="server" ID="PageView1"   Height="100%" Width="100%">
                         <asp:Label ID="lblFixPrimary" runat="server" Text="Fix Primary"></asp:Label>
                     </telerik:RadPageView>
-                    <telerik:RadPageView runat="server" ID="PageView2">
+                    <telerik:RadPageView runat="server" ID="PageView2"  Height="100%" Width="100%">
                         <asp:Label ID="lblFixEmail" runat="server" Text="Fix Email"></asp:Label>
                     </telerik:RadPageView>
-                    <telerik:RadPageView runat="server" ID="PageView3">
+                    <telerik:RadPageView runat="server" ID="PageView3"   Height="100%" Width="100%">
                         <asp:Label ID="Label1" runat="server" Text="Fix Phone"></asp:Label>
                     </telerik:RadPageView>
-                    <telerik:RadPageView runat="server" ID="PageView4">
-                        <uc:ucAddress runat="server" ID="ucAddress" />
+                    <telerik:RadPageView runat="server" ID="PageView4"  Height="100%" Width="100%">                        
+                        <uc:ucAddress runat="server" ID="ucAddress"  />
                     </telerik:RadPageView>
-                    <telerik:RadPageView runat="server" ID="PageView5">
+                    <telerik:RadPageView runat="server" ID="PageView5"   Height="100%" Width="100%">
                         <asp:Label ID="Label3" runat="server" Text="Fix Account"></asp:Label>
                     </telerik:RadPageView>
                 </telerik:RadMultiPage>
@@ -68,7 +67,7 @@
 
             <telerik:RadPageView runat="server" ID="RadPageView2">
                 <telerik:RadTabStrip runat="server" ID="RadTabStrip3" MultiPageID="RadMultiPage5"
-                    Orientation="VerticalLeft" Skin="Web20" Width="150px" Height="125px" SelectedIndex="0">
+                    Orientation="VerticalLeft" Skin='<%$ AppSettings:Telerik.Skin %>' Width="150px" Height="125px" SelectedIndex="0">
                     <Tabs>
                         <telerik:RadTab Text="My Groups"></telerik:RadTab>
                         <telerik:RadTab Text="Create Group"></telerik:RadTab>
