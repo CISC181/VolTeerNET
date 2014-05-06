@@ -76,13 +76,13 @@ namespace VolTeer.Volunteer {
         protected global::Telerik.Web.UI.RadPageView PageView1;
         
         /// <summary>
-        /// lblFixPrimary control.
+        /// ucPrimary control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFixPrimary;
+        protected global::VolTeer.Common.WebControls.ucPrimary ucPrimary;
         
         /// <summary>
         /// PageView2 control.

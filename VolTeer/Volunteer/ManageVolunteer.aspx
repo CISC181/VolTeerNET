@@ -3,6 +3,8 @@
 <%@ Register TagPrefix="uc" TagName="ucSkill"
     Src="~/Common/WebControls/ucSkillSearch.ascx" %>
 <%@ Register Src="~/Common/WebControls/ucAddress.ascx" TagPrefix="uc" TagName="ucAddress" %>
+<%@ Register Src="~/Common/WebControls/ucPrimary.ascx" TagPrefix="uc" TagName="ucPrimary" %>
+
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
@@ -47,7 +49,7 @@
 
                 <telerik:RadMultiPage runat="server"  ID="RadMultiPage2" SelectedIndex="0" CssClass="innerMultiPage" Height="100%" Width="90%">
                     <telerik:RadPageView runat="server" ID="PageView1"   Height="100%" Width="100%">
-                        <asp:Label ID="lblFixPrimary" runat="server" Text="Fix Primary"></asp:Label>
+                        <uc:ucPrimary runat="server" ID="ucPrimary" />
                     </telerik:RadPageView>
                     <telerik:RadPageView runat="server" ID="PageView2"  Height="100%" Width="100%">
                         <asp:Label ID="lblFixEmail" runat="server" Text="Fix Email"></asp:Label>
