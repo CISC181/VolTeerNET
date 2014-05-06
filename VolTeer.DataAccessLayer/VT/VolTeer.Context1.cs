@@ -957,19 +957,6 @@ namespace VolTeer.DataAccessLayer.VT
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_GroupVol_Insert", groupIDParameter, volIDParameter, primaryVolIDParameter, adminParameter);
         }
     
-        public virtual int sp_GroupVol_Select(Nullable<int> groupID, Nullable<System.Guid> volID)
-        {
-            var groupIDParameter = groupID.HasValue ?
-                new ObjectParameter("GroupID", groupID) :
-                new ObjectParameter("GroupID", typeof(int));
-    
-            var volIDParameter = volID.HasValue ?
-                new ObjectParameter("VolID", volID) :
-                new ObjectParameter("VolID", typeof(System.Guid));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_GroupVol_Select", groupIDParameter, volIDParameter);
-        }
-    
         public virtual int sp_GroupVol_Update(Nullable<int> groupID, Nullable<System.Guid> volID, Nullable<bool> primaryVolID, Nullable<bool> admin)
         {
             var groupIDParameter = groupID.HasValue ?
@@ -1759,6 +1746,19 @@ namespace VolTeer.DataAccessLayer.VT
                 new ObjectParameter("VendorName", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("sp_Vendor_Insert", vendorIDParameter, vendorNameParameter);
+        }
+    
+        public virtual ObjectResult<sp_GroupVol_Select_Result> sp_GroupVol_Select(Nullable<int> groupID, Nullable<System.Guid> volID)
+        {
+            var groupIDParameter = groupID.HasValue ?
+                new ObjectParameter("GroupID", groupID) :
+                new ObjectParameter("GroupID", typeof(int));
+    
+            var volIDParameter = volID.HasValue ?
+                new ObjectParameter("VolID", volID) :
+                new ObjectParameter("VolID", typeof(System.Guid));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GroupVol_Select_Result>("sp_GroupVol_Select", groupIDParameter, volIDParameter);
         }
     }
 }

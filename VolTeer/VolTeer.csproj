@@ -401,13 +401,6 @@
     <Compile Include="Volunteer\ManageVolunteer.aspx.designer.cs">
       <DependentUpon>ManageVolunteer.aspx</DependentUpon>
     </Compile>
-    <Compile Include="Volunteer\ToolStrip.aspx.cs">
-      <DependentUpon>ToolStrip.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Volunteer\ToolStrip.aspx.designer.cs">
-      <DependentUpon>ToolStrip.aspx</DependentUpon>
-    </Compile>
     <Compile Include="Volunteer\VolunterInfo.aspx.cs">
       <DependentUpon>VolunterInfo.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -551,7 +544,6 @@
     <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
     <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
-    <Content Include="Content\TS.css" />
     <Content Include="Default.aspx" />
   </ItemGroup>
   <ItemGroup>
@@ -586,7 +578,6 @@
     <Content Include="Skills\SkillSearch.aspx" />
     <Content Include="ViewSwitcher.ascx" />
     <Content Include="Volunteer\ManageVolunteer.aspx" />
-    <Content Include="Volunteer\ToolStrip.aspx" />
     <Content Include="Volunteer\VolunterInfo.aspx" />
     <Content Include="web.config">
       <SubType>Designer</SubType>

@@ -198,9 +198,6 @@
     <Compile Include="VT\sp_Availability_Select_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
-    <Compile Include="VT\sp_ContactEmail_Select_Result.cs">
-      <DependentUpon>VolTeer.tt</DependentUpon>
-    </Compile>
     <Compile Include="VT\sp_Contact_Select_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
@@ -208,6 +205,9 @@
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
     <Compile Include="VT\sp_GroupAddr_Select_Result.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
+    <Compile Include="VT\sp_GroupVol_Select_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
     <Compile Include="VT\sp_Group_Select_Result.cs">

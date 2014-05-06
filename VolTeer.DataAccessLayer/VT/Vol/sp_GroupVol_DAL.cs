@@ -8,7 +8,39 @@ namespace VolTeer.DataAccessLayer.VT.Vol
 {
     public class sp_GroupVol_DAL
     {
-        //TODO: Create an insert method passing in domain model
+        public List<sp_Vol_GroupVol_DM> ListGroupVols(sp_Vol_GroupVol_DM GroupVol)
+        {
+            List<sp_Vol_GroupVol_DM> list = new List<sp_Vol_GroupVol_DM>();
+            try
+            {
+                using (VolTeerEntities context = new VolTeerEntities())
+                {
+                    list = (from result in context.sp_GroupVol_Select(GroupVol.GroupID, GroupVol.VolID)
+                            select new sp_Vol_GroupVol_DM
+                            {
+                                GroupName = result.GroupName,
+                                ParticipationLevelID = result.ParticipationLevelID,
+                                Admin = result.Admin,
+                                GroupActive = result.GroupActive,
+                                GroupID = result.GroupID,
+                                PrimaryVolID = result.PrimaryVolID,
+                                VolActive = result.VolActive,
+                                VolFirstName = result.VolFirstName,
+                                VolMiddleName = result.VolMiddleName,
+                                VolLastName = result.VolLastName,
+                                VolID = result.VolID
+                            }).ToList();
+                } // Guaranteed to close the Connection
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+
+            return list;
+
+        }
+
         # region Inserts
 
         public sp_Vol_GroupVol_DM InsertGroupContext(ref sp_Vol_GroupVol_DM _cGroup)
@@ -46,7 +78,7 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                     context.tblGroupVols.Remove(GroupToRemove);
                     context.SaveChanges();
 
-                 }
+                }
                 catch (Exception ex)
                 {
                     throw (ex);
@@ -55,8 +87,8 @@ namespace VolTeer.DataAccessLayer.VT.Vol
             }
         }
         #endregion
-       
-       
+
+
 
         //TODO: Create a MakePrimary method passing in VolID
         #region MakePrimary
