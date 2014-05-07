@@ -9,6 +9,7 @@ using System.Configuration;
 using System.IO;
 using System.Collections.Generic;
 using UT.Vol.BLL.HelperMethods;
+using UT.Helper;
 
 namespace UT.Vol.BLL
 {
@@ -20,18 +21,7 @@ namespace UT.Vol.BLL
             "Group.xlsx"
         };
 
-        public static List<string> GetExcelFiles()
-        {
-            //TODO: look into globbing helperFilesDir for all xlsx files
-            List<string> ExcelFiles = new List<string>();
-            string exeDir = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
-            string helperFilesDir = Path.GetFullPath(Path.Combine(exeDir, "..\\..\\HelperFiles\\"));
-            foreach (string excelFilename in ExcelFilenames)
-            {
-                ExcelFiles.Add(Path.Combine(helperFilesDir, excelFilename));
-            }
-            return ExcelFiles;
-        }
+       
 
         public static string getConnectionString()
         {
@@ -54,14 +44,13 @@ namespace UT.Vol.BLL
         public static void InsertGroupData(TestContext testContext)
         {
             RemoveAllData();
-            List<string> ExcelFiles = GetExcelFiles();
+            List<string> ExcelFiles = UT.Helper.cExcel.GetAllExcelFiles();
             foreach (string excelFile in ExcelFiles)
             {
                 Console.WriteLine(String.Format("{0} exists: {1}", excelFile, File.Exists(excelFile)));
                 DataTable dt = new DataTable();
-                cExcel _cExcel = new cExcel();
                 string strSheetName = "Sheet1";
-                dt = _cExcel.ReadExcelFile(strSheetName, excelFile);
+                dt = cExcel.ReadExcelFile(strSheetName, excelFile);
                 string connectionString = getConnectionString();
                 Console.WriteLine(String.Format("Connection String: {0}", connectionString));
                 using (SqlConnection connection = new SqlConnection(connectionString))
@@ -107,13 +96,13 @@ namespace UT.Vol.BLL
                 using (SqlCommand command = new SqlCommand())
                 {
                     command.Connection = connection;
-                    foreach (string excelFile in GetExcelFiles())
+                    foreach (string excelFile in cExcel.GetAllExcelFiles())
                     {
                         Console.WriteLine(String.Format("{0} exists: {1}", excelFile, File.Exists(excelFile)));
                         DataTable dt = new DataTable();
                         cExcel _cExcel = new cExcel();
                         string strSheetName = "Sheet1";
-                        dt = _cExcel.ReadExcelFile(strSheetName, excelFile);
+                        dt = cExcel.ReadExcelFile(strSheetName, excelFile);
                         string table = dt.Rows[0]["Table"].ToString();
                         string query = string.Format("DELETE FROM {0}", table);
                         Console.WriteLine(query);
