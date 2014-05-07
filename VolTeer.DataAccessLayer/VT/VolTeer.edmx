@@ -1275,6 +1275,7 @@
           <Parameter Name="VolID" Type="uniqueidentifier" Mode="In" />
         </Function>
         <Function Name="sp_Volunteer_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
+          <Parameter Name="VolID" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="VolFirstName" Type="nvarchar" Mode="In" />
           <Parameter Name="VolMiddleName" Type="nvarchar" Mode="In" />
           <Parameter Name="VolLastName" Type="nvarchar" Mode="In" />
@@ -1538,12 +1539,6 @@
           <FunctionImport Name="sp_Vol_State_Select" ReturnType="Collection(VolTeerModel.sp_Vol_State_Select_Result)" />
           <FunctionImport Name="sp_Volunteer_Delete">
           <Parameter Name="VolID" Mode="In" Type="Guid" />
-          </FunctionImport>
-          <FunctionImport Name="sp_Volunteer_Insert" ReturnType="Collection(Guid)">
-            <Parameter Name="VolID" Mode="In" Type="Guid" />
-            <Parameter Name="VolFirstName" Mode="In" Type="String" />
-            <Parameter Name="VolMiddleName" Mode="In" Type="String" />
-            <Parameter Name="VolLastName" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_Volunteer_Select" ReturnType="Collection(VolTeerModel.sp_Volunteer_Select_Result)">
           <Parameter Name="VolID" Mode="In" Type="Guid" />
@@ -1943,7 +1938,13 @@
             <Parameter Name="PrimaryEmail" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="sp_Contact_Select" ReturnType="Collection(VolTeerModel.sp_Contact_Select_Result)">
-            <Parameter Name="ContactID" Mode="In" Type="Guid" />
+          <Parameter Name="ContactID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Volunteer_Insert" ReturnType="Collection(Guid)">
+            <Parameter Name="VolID" Mode="In" Type="Guid" />
+            <Parameter Name="VolFirstName" Mode="In" Type="String" />
+            <Parameter Name="VolMiddleName" Mode="In" Type="String" />
+            <Parameter Name="VolLastName" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="tblContact">
@@ -3145,7 +3146,7 @@
                   <ScalarProperty Name="VolLastName" ParameterName="VolLastName" />
                   <ScalarProperty Name="VolMiddleName" ParameterName="VolMiddleName" />
                   <ScalarProperty Name="VolFirstName" ParameterName="VolFirstName" />
-                  <ResultBinding Name="VolID" ColumnName="VolID" />
+                  <ScalarProperty Name="VolID" ParameterName="VolID" />
                 </InsertFunction>
               </ModificationFunctionMapping>
             </EntityTypeMapping>
@@ -3881,6 +3882,7 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Volunteer_Insert" FunctionName="VolTeerModel.Store.sp_Volunteer_Insert" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

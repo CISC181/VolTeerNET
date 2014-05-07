@@ -48,6 +48,11 @@ namespace VolTeer.Account
             
         }
 
+        protected void RegisterUser_CreateUserError(object sender, CreateUserErrorEventArgs e)
+        {
+
+        }
+
 
     }
 }

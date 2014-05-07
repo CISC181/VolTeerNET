@@ -83,24 +83,31 @@ namespace VolTeer.DataAccessLayer.VT.Vol
         /// <param name="_cVolunteer"></param>
         public sp_Volunteer_DM  InsertVolunteerContext(ref sp_Volunteer_DM _cVolunteer)
         {
-            using (VolTeerEntities context = new VolTeerEntities())
+            try
             {
-                var cVolunteer = new tblVolunteer
+                using (VolTeerEntities context = new VolTeerEntities())
                 {
-                    VolID = _cVolunteer.VolID,
-                    VolFirstName = _cVolunteer.VolFirstName,
-                    VolMiddleName = _cVolunteer.VolMiddleName,
-                    VolLastName = _cVolunteer.VolLastName,
-                    ActiveFlg = _cVolunteer.ActiveFlg
+                    var cVolunteer = new tblVolunteer
+                    {
+                        VolID = _cVolunteer.VolID,
+                        VolFirstName = _cVolunteer.VolFirstName,
+                        VolMiddleName = _cVolunteer.VolMiddleName,
+                        VolLastName = _cVolunteer.VolLastName,
+                        ActiveFlg = _cVolunteer.ActiveFlg
 
-                };
-                context.tblVolunteers.Add(cVolunteer);
-                context.SaveChanges();
+                    };
+                    context.tblVolunteers.Add(cVolunteer);
+                    context.SaveChanges();
 
-                // pass VolID back to BLL
-                _cVolunteer.VolID = cVolunteer.VolID;
+                    // pass VolID back to BLL
+                    _cVolunteer.VolID = cVolunteer.VolID;
 
-                return _cVolunteer;
+                    return _cVolunteer;
+                }
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
             }
         }
         #endregion

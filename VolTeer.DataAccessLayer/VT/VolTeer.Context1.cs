@@ -621,27 +621,6 @@ namespace VolTeer.DataAccessLayer.VT
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Volunteer_Delete", volIDParameter);
         }
     
-        public virtual ObjectResult<Nullable<System.Guid>> sp_Volunteer_Insert(Nullable<System.Guid> volID, string volFirstName, string volMiddleName, string volLastName)
-        {
-            var volIDParameter = volID.HasValue ?
-                new ObjectParameter("VolID", volID) :
-                new ObjectParameter("VolID", typeof(System.Guid));
-    
-            var volFirstNameParameter = volFirstName != null ?
-                new ObjectParameter("VolFirstName", volFirstName) :
-                new ObjectParameter("VolFirstName", typeof(string));
-    
-            var volMiddleNameParameter = volMiddleName != null ?
-                new ObjectParameter("VolMiddleName", volMiddleName) :
-                new ObjectParameter("VolMiddleName", typeof(string));
-    
-            var volLastNameParameter = volLastName != null ?
-                new ObjectParameter("VolLastName", volLastName) :
-                new ObjectParameter("VolLastName", typeof(string));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("sp_Volunteer_Insert", volIDParameter, volFirstNameParameter, volMiddleNameParameter, volLastNameParameter);
-        }
-    
         public virtual ObjectResult<sp_Volunteer_Select_Result> sp_Volunteer_Select(Nullable<System.Guid> volID)
         {
             var volIDParameter = volID.HasValue ?
@@ -1819,6 +1798,27 @@ namespace VolTeer.DataAccessLayer.VT
                 new ObjectParameter("ContactID", typeof(System.Guid));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Contact_Select_Result>("sp_Contact_Select", contactIDParameter);
+        }
+    
+        public virtual ObjectResult<Nullable<System.Guid>> sp_Volunteer_Insert(Nullable<System.Guid> volID, string volFirstName, string volMiddleName, string volLastName)
+        {
+            var volIDParameter = volID.HasValue ?
+                new ObjectParameter("VolID", volID) :
+                new ObjectParameter("VolID", typeof(System.Guid));
+    
+            var volFirstNameParameter = volFirstName != null ?
+                new ObjectParameter("VolFirstName", volFirstName) :
+                new ObjectParameter("VolFirstName", typeof(string));
+    
+            var volMiddleNameParameter = volMiddleName != null ?
+                new ObjectParameter("VolMiddleName", volMiddleName) :
+                new ObjectParameter("VolMiddleName", typeof(string));
+    
+            var volLastNameParameter = volLastName != null ?
+                new ObjectParameter("VolLastName", volLastName) :
+                new ObjectParameter("VolLastName", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("sp_Volunteer_Insert", volIDParameter, volFirstNameParameter, volMiddleNameParameter, volLastNameParameter);
         }
     }
 }
