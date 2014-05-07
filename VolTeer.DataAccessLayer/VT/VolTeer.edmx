@@ -1254,6 +1254,7 @@
         </Function>
         <Function Name="sp_Vol_Phone_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="PhoneID" Type="int" Mode="In" />
+          <Parameter Name="VolID" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="PhoneNbr" Type="nvarchar" Mode="In" />
           <Parameter Name="ActiveFlg" Type="bit" Mode="In" />
           <Parameter Name="PrimaryFlg" Type="bit" Mode="In" />
@@ -1625,12 +1626,6 @@
             <Parameter Name="EmailID" Mode="In" Type="Int32" />
             <Parameter Name="PrimaryFlg" Mode="In" Type="Boolean" />
           </FunctionImport>
-          <FunctionImport Name="sp_Vol_Phone_Update">
-            <Parameter Name="PhoneID" Mode="In" Type="Int32" />
-            <Parameter Name="PhoneNbr" Mode="In" Type="String" />
-            <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
-            <Parameter Name="PrimaryFlg" Mode="In" Type="Boolean" />
-          </FunctionImport>
           <FunctionImport Name="sp_Vol_Phone_Insert" ReturnType="Collection(VolTeerModel.sp_Vol_Phone_Insert_Result)">
             <Parameter Name="VolID" Mode="In" Type="Guid" />
             <Parameter Name="PhoneNbr" Mode="In" Type="String" />
@@ -1941,6 +1936,13 @@
             <Parameter Name="VolFirstName" Mode="In" Type="String" />
             <Parameter Name="VolMiddleName" Mode="In" Type="String" />
             <Parameter Name="VolLastName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Vol_Phone_Update">
+            <Parameter Name="PhoneID" Mode="In" Type="Int32" />
+            <Parameter Name="VolID" Mode="In" Type="Guid" />
+            <Parameter Name="PhoneNbr" Mode="In" Type="String" />
+            <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
+            <Parameter Name="PrimaryFlg" Mode="In" Type="Boolean" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="tblContact">
@@ -3511,6 +3513,7 @@
                   <ResultBinding Name="PhoneID" ColumnName="PhoneId" />
                 </InsertFunction>
                 <UpdateFunction FunctionName="VolTeerModel.Store.sp_Vol_Phone_Update">
+                  <ScalarProperty Name="VolID" ParameterName="VolID" Version="Current" />
                   <ScalarProperty Name="PrimaryFlg" ParameterName="PrimaryFlg" Version="Current" />
                   <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" Version="Current" />
                   <ScalarProperty Name="PhoneNbr" ParameterName="PhoneNbr" Version="Current" />
@@ -3601,7 +3604,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_Vol_Phone_Update" FunctionName="VolTeerModel.Store.sp_Vol_Phone_Update" />
           <FunctionImportMapping FunctionImportName="sp_Vol_Phone_Insert" FunctionName="VolTeerModel.Store.sp_Vol_Phone_Insert">
             <ResultMapping>
               <ComplexTypeMapping TypeName="VolTeerModel.sp_Vol_Phone_Insert_Result">
@@ -3879,6 +3881,7 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_Volunteer_Insert" FunctionName="VolTeerModel.Store.sp_Volunteer_Insert" />
+          <FunctionImportMapping FunctionImportName="sp_Vol_Phone_Update" FunctionName="VolTeerModel.Store.sp_Vol_Phone_Update" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

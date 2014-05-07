@@ -17,7 +17,6 @@ using VolTeer.Cache.VT.Vol;
 using VolTeer.GoogleAPI;
 using System.Web.ApplicationServices;
 using System.Web.Security;
-
 using VolTeer.DomainModels.Service;
 using VolTeer.GoogleAPI;
 using System.IO;
