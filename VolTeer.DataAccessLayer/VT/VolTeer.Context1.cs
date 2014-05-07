@@ -1243,7 +1243,7 @@ namespace VolTeer.DataAccessLayer.VT
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_GroupAddr_Insert", groupIDParameter, addrIDParameter, primaryAddrIDParameter, activeFlgParameter);
         }
     
-        public virtual ObjectResult<sp_GroupAddr_Select_Result> sp_GroupAddr_Select(Nullable<int> groupID, Nullable<int> addrID, Nullable<bool> primaryAddrID, Nullable<bool> activeFlg)
+        public virtual ObjectResult<sp_GroupAddr_Select_Result> sp_GroupAddr_Select(Nullable<int> groupID, Nullable<int> addrID)
         {
             var groupIDParameter = groupID.HasValue ?
                 new ObjectParameter("GroupID", groupID) :
@@ -1253,15 +1253,7 @@ namespace VolTeer.DataAccessLayer.VT
                 new ObjectParameter("AddrID", addrID) :
                 new ObjectParameter("AddrID", typeof(int));
     
-            var primaryAddrIDParameter = primaryAddrID.HasValue ?
-                new ObjectParameter("PrimaryAddrID", primaryAddrID) :
-                new ObjectParameter("PrimaryAddrID", typeof(bool));
-    
-            var activeFlgParameter = activeFlg.HasValue ?
-                new ObjectParameter("ActiveFlg", activeFlg) :
-                new ObjectParameter("ActiveFlg", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GroupAddr_Select_Result>("sp_GroupAddr_Select", groupIDParameter, addrIDParameter, primaryAddrIDParameter, activeFlgParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GroupAddr_Select_Result>("sp_GroupAddr_Select", groupIDParameter, addrIDParameter);
         }
     
         public virtual int sp_GroupAddr_Update(Nullable<int> groupID, Nullable<int> addrID, Nullable<bool> primaryAddrID, Nullable<bool> activeFlg)

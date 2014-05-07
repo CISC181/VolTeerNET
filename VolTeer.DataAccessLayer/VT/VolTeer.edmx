@@ -1094,8 +1094,6 @@
         <Function Name="sp_GroupAddr_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="GroupID" Type="int" Mode="In" />
           <Parameter Name="AddrID" Type="int" Mode="In" />
-          <Parameter Name="PrimaryAddrID" Type="bit" Mode="In" />
-          <Parameter Name="ActiveFlg" Type="bit" Mode="In" />
         </Function>
         <Function Name="sp_GroupAddr_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="GroupID" Type="int" Mode="In" />
@@ -1753,8 +1751,6 @@
           <FunctionImport Name="sp_GroupAddr_Select" ReturnType="Collection(VolTeerModel.sp_GroupAddr_Select_Result)">
             <Parameter Name="GroupID" Mode="In" Type="Int32" />
             <Parameter Name="AddrID" Mode="In" Type="Int32" />
-            <Parameter Name="PrimaryAddrID" Mode="In" Type="Boolean" />
-            <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="sp_GroupAddr_Update">
             <Parameter Name="GroupID" Mode="In" Type="Int32" />

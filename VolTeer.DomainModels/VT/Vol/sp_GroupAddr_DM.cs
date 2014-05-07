@@ -5,7 +5,7 @@ using System.Text;
 
 namespace VolTeer.DomainModels.VT.Vol
 {
-    class sp_GroupAddr_DM
+    public class sp_GroupAddr_DM
     {
         public int GroupID { get; set; }
         public int AddrID { get; set; }
