@@ -13,5 +13,11 @@ namespace Vend.Common.WebControls
         {
 
         }
+
+
+        protected void rBTNSearch_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

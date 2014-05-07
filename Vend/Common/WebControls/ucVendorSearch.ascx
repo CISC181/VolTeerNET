@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ucVendorSearch.ascx.cs" Inherits="Vend.Common.WebControls.ucVendorSearch" %>
 
- <asp:Panel ID="pnlVendorSearch" Visible="false" runat="server">
+ <asp:Panel ID="pnlVendorSearch" Visible="true" runat="server">
         <telerik:RadAjaxPanel ID="RadAjaxPanel1" runat="server">
             <label for="RadAutoCompleteBox1">Find Volunteers:</label>
             <telerik:RadAutoCompleteBox ID="rACSkills"
