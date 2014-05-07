@@ -3,7 +3,7 @@
 
 <asp:Panel ID="pnlPrimaryInfo" runat="server" Width="90%">
     <asp:Table ID="tblMainTable" runat="server" CellSpacing="0" CellPadding="1" Width="100%"
-        Style="border-collapse: collapse;">
+        Style="border-collapse: collapse;" >
         <asp:TableRow ID="rowEmail">
             <asp:TableCell>
                 <asp:Label ID="PrimaryEmail" runat="server"></asp:Label>

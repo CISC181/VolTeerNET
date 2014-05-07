@@ -42,8 +42,20 @@ namespace VolTeer.Common.WebControls
 
 		protected void Page_Load(object sender, EventArgs e)
 		{
+            currentUser = Membership.GetUser();
 
+            if (!IsPostBack)
+            {
+                HandleScreenLoad();
+            }
 		}
+
+        protected void HandleScreenLoad()
+        {
+            SetPrimaryValues();
+            pnlPrimaryInfo.Visible = true;
+
+        }
 
 
         /// <summary>
@@ -52,6 +64,7 @@ namespace VolTeer.Common.WebControls
         protected void SetPrimaryValues()
         {
             //setup and bind all 3 primary values
+            currentUser = Membership.GetUser();
             sp_Vol_Address_DM address_DM = new sp_Vol_Address_DM();
             sp_Email_DM email_DM = new sp_Email_DM();
             sp_Phone_DM phone_DM = new sp_Phone_DM();
@@ -75,10 +88,23 @@ namespace VolTeer.Common.WebControls
                 address_DM = VolAddrCash.ListPrimaryAddress(address_DM);
 
                 sb.Clear();
-                sb.Append(address_DM.City.ToString());
+                sb.Append(address_DM.AddrLine1.ToString());
+                sb.Append(" ");
+                if(!string.IsNullOrEmpty(address_DM.AddrLine2))
+                {
+                    sb.Append(address_DM.AddrLine2.ToString());
+                    sb.Append(" ");
+                }
+                if (!string.IsNullOrEmpty(address_DM.AddrLine3))
+                {
+                    sb.Append(address_DM.AddrLine3.ToString());
+                    sb.Append(" ");
+                }
                 sb.Append(", ");
+                sb.Append(address_DM.City.ToString());
+                sb.Append(" "); 
                 sb.Append(address_DM.St.ToString());
-                sb.Append("   ");
+                sb.Append(",  ");
                 sb.Append(address_DM.Zip.ToString());
                 if (!string.IsNullOrEmpty(address_DM.Zip4.ToString()))
                 {
