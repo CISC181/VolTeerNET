@@ -70,6 +70,7 @@
     <Compile Include="HelperMethods\hVolEmail.cs" />
     <Compile Include="HelperMethods\hVolPhone.cs" />
     <Compile Include="HelperMethods\hVolunteer.cs" />
+    <Compile Include="utSkill.cs" />
     <Compile Include="utGroup.cs" />
     <Compile Include="utVolunteer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
