@@ -1739,6 +1739,19 @@ namespace VolTeer.DataAccessLayer.VT
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("sp_Vendor_Insert", vendorIDParameter, vendorNameParameter);
         }
     
+        public virtual ObjectResult<sp_GroupVol_Select_Result> sp_GroupVol_Select(Nullable<int> groupID, Nullable<System.Guid> volID)
+        {
+            var groupIDParameter = groupID.HasValue ?
+                new ObjectParameter("GroupID", groupID) :
+                new ObjectParameter("GroupID", typeof(int));
+    
+            var volIDParameter = volID.HasValue ?
+                new ObjectParameter("VolID", volID) :
+                new ObjectParameter("VolID", typeof(System.Guid));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GroupVol_Select_Result>("sp_GroupVol_Select", groupIDParameter, volIDParameter);
+        }
+    
         public virtual int sp_ContactEmail_Delete(Nullable<System.Guid> contactID, Nullable<int> emailID)
         {
             var contactIDParameter = contactID.HasValue ?
@@ -1799,17 +1812,13 @@ namespace VolTeer.DataAccessLayer.VT
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ContactEmail_Update", contactIDParameter, emailIDParameter, primaryEmailParameter);
         }
     
-        public virtual ObjectResult<sp_GroupVol_Select_Result> sp_GroupVol_Select(Nullable<int> groupID, Nullable<System.Guid> volID)
+        public virtual ObjectResult<sp_Contact_Select_Result> sp_Contact_Select(Nullable<System.Guid> contactID)
         {
-            var groupIDParameter = groupID.HasValue ?
-                new ObjectParameter("GroupID", groupID) :
-                new ObjectParameter("GroupID", typeof(int));
+            var contactIDParameter = contactID.HasValue ?
+                new ObjectParameter("ContactID", contactID) :
+                new ObjectParameter("ContactID", typeof(System.Guid));
     
-            var volIDParameter = volID.HasValue ?
-                new ObjectParameter("VolID", volID) :
-                new ObjectParameter("VolID", typeof(System.Guid));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GroupVol_Select_Result>("sp_GroupVol_Select", groupIDParameter, volIDParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Contact_Select_Result>("sp_Contact_Select", contactIDParameter);
         }
     }
 }

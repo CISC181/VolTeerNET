@@ -201,6 +201,9 @@
     <Compile Include="VT\sp_ContactEmail_Select_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
+    <Compile Include="VT\sp_Contact_Select_Result.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
     <Compile Include="VT\sp_EventRating_Select_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
@@ -378,6 +381,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>VolTeer.edmx</DependentUpon>
     </Compile>
+    <Compile Include="VT\VolTeer2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VolTeer.edmx</DependentUpon>
+    </Compile>
     <Compile Include="VT\Vol\sp_GroupAddr_DAL.cs" />
     <Compile Include="VT\Vol\sp_GroupVol_DAL.cs" />
     <Compile Include="VT\Vol\sp_Skill_DAL.cs" />
@@ -430,7 +438,7 @@
     <None Include="packages.config" />
     <EntityDeploy Include="VT\VolTeer.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>VolTeer1.Designer.cs</LastGenOutput>
+      <LastGenOutput>VolTeer2.Designer.cs</LastGenOutput>
     </EntityDeploy>
     <None Include="VT\VolTeer.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>

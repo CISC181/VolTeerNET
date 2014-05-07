@@ -14,16 +14,16 @@ namespace VolTeer.DataAccessLayer.VT.Vend
             List<sp_ContactEmail_DM> list = new List<sp_ContactEmail_DM>();
             try
             {
-                using (VolTeerEntities context = new VolTeerEntities())
-                {
-                    list = (from result in context.sp_ContactEmail_Select(null, null)
-                            select new sp_ContactEmail_DM
-                            {
-                                ContactID = result.ContactID,
-                                EmailID = result.EmailID,
-                                PrimaryEmail = result.PrimaryEmail
-                            }).ToList();
-                }
+                //using (VolTeerEntities context = new VolTeerEntities())
+                //{
+                //    list = (from result in context.sp_ContactEmail_Select(null, null)
+                //            select new sp_ContactEmail_DM
+                //            {
+                //                ContactID = result.ContactID,
+                //                EmailID = result.EmailID,
+                //                PrimaryEmail = result.PrimaryEmail
+                //            }).ToList();
+                //}
             }
             catch (Exception ex)
             {
@@ -107,35 +107,35 @@ namespace VolTeer.DataAccessLayer.VT.Vend
         #region Insert Statements
         public void insert(sp_ContactEmail_DM contactemail)
         {
-            using (VolTeerEntities context = new VolTeerEntities())
-            {
-                context.sp_ContactEmail_Insert(contactemail.ContactID, contactemail.EmailID, contactemail.PrimaryEmail);
-                context.SaveChanges();
-            }
+            //using (VolTeerEntities context = new VolTeerEntities())
+            //{
+            //    context.sp_ContactEmail_Insert(contactemail.ContactID, contactemail.EmailID, contactemail.PrimaryEmail);
+            //    context.SaveChanges();
+            //}
         }
         #endregion
 
         #region Update Statements
         public void update(sp_ContactEmail_DM contactemail)
         {
-            using (VolTeerEntities context = new VolTeerEntities())
-            {
-                context.sp_ContactEmail_Update(
-                    contactemail.ContactID, contactemail.EmailID, contactemail.PrimaryEmail);
-                context.SaveChanges();
-            }
+            //using (VolTeerEntities context = new VolTeerEntities())
+            //{
+            //    context.sp_ContactEmail_Update(
+            //        contactemail.ContactID, contactemail.EmailID, contactemail.PrimaryEmail);
+            //    context.SaveChanges();
+            //}
         }
         #endregion
 
         #region Delete Statements
         public void delete(sp_ContactEmail_DM contactemail)
         {
-            using (VolTeerEntities context = new VolTeerEntities())
-            {
-                context.sp_ContactEmail_Delete(
-                    contactemail.ContactID, contactemail.EmailID);
-                context.SaveChanges();
-            }
+            //using (VolTeerEntities context = new VolTeerEntities())
+            //{
+            //    context.sp_ContactEmail_Delete(
+            //        contactemail.ContactID, contactemail.EmailID);
+            //    context.SaveChanges();
+            //}
         }
         #endregion
     }
