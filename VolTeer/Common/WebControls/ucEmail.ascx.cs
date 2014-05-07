@@ -120,7 +120,7 @@ namespace VolTeer.Common.WebControls
                 {
                     //  If the Email is the primary Email, don't let the user delete it
                     GridItem Item = (GridItem)e.Item;
-                    CheckBox bPrimaryEmail = (CheckBox)Item.FindControl("chkPrimaryEmail");
+                    CheckBox bPrimaryEmail = (CheckBox)Item.FindControl("chkPrimaryFlg");
                     if (bPrimaryEmail != null)
                     {
                         if (bPrimaryEmail.Checked)

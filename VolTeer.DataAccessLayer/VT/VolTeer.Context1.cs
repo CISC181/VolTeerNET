@@ -830,27 +830,6 @@ namespace VolTeer.DataAccessLayer.VT
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Vol_Email_Select_Result>("sp_Vol_Email_Select", volIDParameter, emailIDParameter, primaryFlgParameter);
         }
     
-        public virtual int sp_Vol_Phone_Update(Nullable<int> phoneID, string phoneNbr, Nullable<bool> activeFlg, Nullable<bool> primaryFlg)
-        {
-            var phoneIDParameter = phoneID.HasValue ?
-                new ObjectParameter("PhoneID", phoneID) :
-                new ObjectParameter("PhoneID", typeof(int));
-    
-            var phoneNbrParameter = phoneNbr != null ?
-                new ObjectParameter("PhoneNbr", phoneNbr) :
-                new ObjectParameter("PhoneNbr", typeof(string));
-    
-            var activeFlgParameter = activeFlg.HasValue ?
-                new ObjectParameter("ActiveFlg", activeFlg) :
-                new ObjectParameter("ActiveFlg", typeof(bool));
-    
-            var primaryFlgParameter = primaryFlg.HasValue ?
-                new ObjectParameter("PrimaryFlg", primaryFlg) :
-                new ObjectParameter("PrimaryFlg", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Vol_Phone_Update", phoneIDParameter, phoneNbrParameter, activeFlgParameter, primaryFlgParameter);
-        }
-    
         public virtual ObjectResult<sp_Vol_Phone_Insert_Result> sp_Vol_Phone_Insert(Nullable<System.Guid> volID, string phoneNbr, Nullable<bool> activeFlg, Nullable<bool> primaryFlg)
         {
             var volIDParameter = volID.HasValue ?
@@ -1243,7 +1222,7 @@ namespace VolTeer.DataAccessLayer.VT
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<int>>("sp_GroupAddr_Insert", groupIDParameter, addrIDParameter, primaryAddrIDParameter, activeFlgParameter);
         }
     
-        public virtual ObjectResult<sp_GroupAddr_Select_Result> sp_GroupAddr_Select(Nullable<int> groupID, Nullable<int> addrID, Nullable<bool> primaryAddrID, Nullable<bool> activeFlg)
+        public virtual ObjectResult<sp_GroupAddr_Select_Result> sp_GroupAddr_Select(Nullable<int> groupID, Nullable<int> addrID)
         {
             var groupIDParameter = groupID.HasValue ?
                 new ObjectParameter("GroupID", groupID) :
@@ -1253,15 +1232,7 @@ namespace VolTeer.DataAccessLayer.VT
                 new ObjectParameter("AddrID", addrID) :
                 new ObjectParameter("AddrID", typeof(int));
     
-            var primaryAddrIDParameter = primaryAddrID.HasValue ?
-                new ObjectParameter("PrimaryAddrID", primaryAddrID) :
-                new ObjectParameter("PrimaryAddrID", typeof(bool));
-    
-            var activeFlgParameter = activeFlg.HasValue ?
-                new ObjectParameter("ActiveFlg", activeFlg) :
-                new ObjectParameter("ActiveFlg", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GroupAddr_Select_Result>("sp_GroupAddr_Select", groupIDParameter, addrIDParameter, primaryAddrIDParameter, activeFlgParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GroupAddr_Select_Result>("sp_GroupAddr_Select", groupIDParameter, addrIDParameter);
         }
     
         public virtual int sp_GroupAddr_Update(Nullable<int> groupID, Nullable<int> addrID, Nullable<bool> primaryAddrID, Nullable<bool> activeFlg)
@@ -1819,6 +1790,31 @@ namespace VolTeer.DataAccessLayer.VT
                 new ObjectParameter("VolLastName", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("sp_Volunteer_Insert", volIDParameter, volFirstNameParameter, volMiddleNameParameter, volLastNameParameter);
+        }
+    
+        public virtual int sp_Vol_Phone_Update(Nullable<int> phoneID, Nullable<System.Guid> volID, string phoneNbr, Nullable<bool> activeFlg, Nullable<bool> primaryFlg)
+        {
+            var phoneIDParameter = phoneID.HasValue ?
+                new ObjectParameter("PhoneID", phoneID) :
+                new ObjectParameter("PhoneID", typeof(int));
+    
+            var volIDParameter = volID.HasValue ?
+                new ObjectParameter("VolID", volID) :
+                new ObjectParameter("VolID", typeof(System.Guid));
+    
+            var phoneNbrParameter = phoneNbr != null ?
+                new ObjectParameter("PhoneNbr", phoneNbr) :
+                new ObjectParameter("PhoneNbr", typeof(string));
+    
+            var activeFlgParameter = activeFlg.HasValue ?
+                new ObjectParameter("ActiveFlg", activeFlg) :
+                new ObjectParameter("ActiveFlg", typeof(bool));
+    
+            var primaryFlgParameter = primaryFlg.HasValue ?
+                new ObjectParameter("PrimaryFlg", primaryFlg) :
+                new ObjectParameter("PrimaryFlg", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Vol_Phone_Update", phoneIDParameter, volIDParameter, phoneNbrParameter, activeFlgParameter, primaryFlgParameter);
         }
     }
 }
