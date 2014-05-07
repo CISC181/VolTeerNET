@@ -10,7 +10,7 @@ namespace VolTeer.Contracts.VT.Vol
     {
         List<sp_Email_DM> ListEmails(sp_Email_DM cVolEmail);
         sp_Email_DM ListPrimaryEmail(sp_Email_DM cVolEmail);
-        void InsertEmailContext(sp_Email_DM _cEmail);
+        void InsertEmailContext(ref sp_Email_DM _cEmail);
         void UpdateEmailAddr(sp_Email_DM _cEmail);
         void DeleteEmailsContext(sp_Email_DM _cEmail);
     }

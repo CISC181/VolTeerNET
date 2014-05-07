@@ -5,6 +5,7 @@
 <%@ Register Src="~/Common/WebControls/ucAddress.ascx" TagPrefix="uc" TagName="ucAddress" %>
 <%@ Register Src="~/Common/WebControls/ucPrimary.ascx" TagPrefix="uc" TagName="ucPrimary" %>
 <%@ Register Src="~/Common/WebControls/ucGroups.ascx" TagPrefix="uc" TagName="ucGroups" %>
+<%@ Register Src="~/Common/WebControls/ucEmail.ascx" TagPrefix="uc" TagName="ucEmail" %>
 
 
 
@@ -54,7 +55,7 @@
                         <uc:ucPrimary runat="server" ID="ucPrimary" />
                     </telerik:RadPageView>
                     <telerik:RadPageView runat="server" ID="PageView2"  Height="100%" Width="100%">
-                        <asp:Label ID="lblFixEmail" runat="server" Text="Fix Email"></asp:Label>
+                        <uc:ucEmail runat="server" id="ucEmail" />
                     </telerik:RadPageView>
                     <telerik:RadPageView runat="server" ID="PageView3"   Height="100%" Width="100%">
                         <asp:Label ID="Label1" runat="server" Text="Fix Phone"></asp:Label>

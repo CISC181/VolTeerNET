@@ -94,13 +94,13 @@ namespace VolTeer.Volunteer {
         protected global::Telerik.Web.UI.RadPageView PageView2;
         
         /// <summary>
-        /// lblFixEmail control.
+        /// ucEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblFixEmail;
+        protected global::VolTeer.Common.WebControls.ucEmail ucEmail;
         
         /// <summary>
         /// PageView3 control.
