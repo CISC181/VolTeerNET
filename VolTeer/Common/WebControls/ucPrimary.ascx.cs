@@ -75,43 +75,60 @@ namespace VolTeer.Common.WebControls
                 //email code
                 email_DM.VolID = (Guid)currentUser.ProviderUserKey;
                 email_DM = VolEmailCache.ListPrimaryEmail(email_DM);
-                PrimaryEmail.Text = email_DM.EmailAddr;
+                if (email_DM != null)
+                {
+                    PrimaryEmail.Text = email_DM.EmailAddr;
+                }
+                else
+                {
+                    PrimaryEmail.Text = "-- NONE --";
+                }
 
 
                 //phone code
                 phone_DM.VolID = (Guid)currentUser.ProviderUserKey;
                 phone_DM = VolPhoneCache.ListPrimaryPhone(phone_DM);
+
+                if (phone_DM != null)
+                {
                 PrimaryPhone.Text = phone_DM.PhoneNbr;
+                }
+                else
+                {
+                    PrimaryPhone.Text = "-- NONE --";
+                }
 
                 //address code
                 address_DM.VolID = (Guid)currentUser.ProviderUserKey;
                 address_DM = VolAddrCash.ListPrimaryAddress(address_DM);
 
                 sb.Clear();
-                sb.Append(address_DM.AddrLine1.ToString());
-                sb.Append(" ");
-                if(!string.IsNullOrEmpty(address_DM.AddrLine2))
+                if (address_DM != null)
                 {
-                    sb.Append(address_DM.AddrLine2.ToString());
+                    sb.Append(address_DM.AddrLine1.ToString());
                     sb.Append(" ");
-                }
-                if (!string.IsNullOrEmpty(address_DM.AddrLine3))
-                {
-                    sb.Append(address_DM.AddrLine3.ToString());
+                    if (!string.IsNullOrEmpty(address_DM.AddrLine2))
+                    {
+                        sb.Append(address_DM.AddrLine2.ToString());
+                        sb.Append(" ");
+                    }
+                    if (!string.IsNullOrEmpty(address_DM.AddrLine3))
+                    {
+                        sb.Append(address_DM.AddrLine3.ToString());
+                        sb.Append(" ");
+                    }
+                    sb.Append(", ");
+                    sb.Append(address_DM.City.ToString());
                     sb.Append(" ");
+                    sb.Append(address_DM.St.ToString());
+                    sb.Append(",  ");
+                    sb.Append(address_DM.Zip.ToString());
+                    if (!string.IsNullOrEmpty(address_DM.Zip4.ToString()))
+                    {
+                        sb.Append('-');
+                        sb.Append(address_DM.Zip4.ToString());
+                    }
                 }
-                sb.Append(", ");
-                sb.Append(address_DM.City.ToString());
-                sb.Append(" "); 
-                sb.Append(address_DM.St.ToString());
-                sb.Append(",  ");
-                sb.Append(address_DM.Zip.ToString());
-                if (!string.IsNullOrEmpty(address_DM.Zip4.ToString()))
-                {
-                    sb.Append('-');
-                    sb.Append(address_DM.Zip4.ToString());
-                }
-
                 PrimaryAddress.Text = sb.ToString();
 
 

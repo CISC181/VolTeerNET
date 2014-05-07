@@ -76,7 +76,10 @@ namespace VolTeer.Cache.VT.Vol
             if (cacheAddress == null)
             {
                 cAddress = BLL.ListPrimaryAddress(cVolAddr);
-                cache.Insert(RecordType.VolAddr + "|" + cVolAddr.VolID.ToString() + "|" + cAddress.AddrID.ToString(), cAddress, null, DateTime.Now.AddSeconds(1), System.Web.Caching.Cache.NoSlidingExpiration, CacheItemPriority.High, callback);
+                if (cacheAddress != null)
+                {
+                    cache.Insert(RecordType.VolAddr + "|" + cVolAddr.VolID.ToString() + "|" + cAddress.AddrID.ToString(), cAddress, null, DateTime.Now.AddSeconds(1), System.Web.Caching.Cache.NoSlidingExpiration, CacheItemPriority.High, callback);
+                }
             }
             else
             {

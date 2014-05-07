@@ -63,7 +63,7 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                 throw (ex);
             }
 
-            return list.Single();
+            return list.FirstOrDefault();
 
         }
 
