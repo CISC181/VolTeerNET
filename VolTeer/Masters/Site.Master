@@ -73,6 +73,7 @@
                                 <telerik:RadMenuItem Text="Register" NavigateUrl="~/Account/Register.aspx" EnableImageSprite="true" CssClass="icon-table"></telerik:RadMenuItem>
                             </Items>
                         </telerik:RadMenuItem>
+                        <telerik:RadMenuItem Text="Manage Volunteer" NavigateUrl="~/Volunteer/ManageVolunteer.aspx" />
                         <telerik:RadMenuItem Text="ManageSkills" NavigateUrl="~/Skills/ManageSkills.aspx" />
                         <telerik:RadMenuItem Text="About" NavigateUrl="DefaultCS.aspx?page=aboutus" />
                     </Items>

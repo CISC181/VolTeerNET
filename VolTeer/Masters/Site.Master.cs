@@ -23,7 +23,7 @@ namespace VolTeer.Masters
                     RadMenu1.Items[1].Items[3].Visible = true;
                     RadMenu1.Items[1].Items[4].Visible = false;
 
-                    RadMenu1.Height = 48;
+                    RadMenu1.Height = 100;
                 }
                 else
                 {
@@ -33,7 +33,7 @@ namespace VolTeer.Masters
                     RadMenu1.Items[1].Items[3].Visible = false;
                     RadMenu1.Items[1].Items[4].Visible = true;
 
-                    RadMenu1.Height = 80;
+                    RadMenu1.Height = 100;
                 }
 //                RadMenu1.Height = rHeight;
 
