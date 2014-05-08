@@ -6,6 +6,8 @@
 <%@ Register Src="~/Common/WebControls/ucPrimary.ascx" TagPrefix="uc" TagName="ucPrimary" %>
 <%@ Register Src="~/Common/WebControls/ucGroups.ascx" TagPrefix="uc" TagName="ucGroups" %>
 <%@ Register Src="~/Common/WebControls/ucEmail.ascx" TagPrefix="uc" TagName="ucEmail" %>
+<%@ Register Src="~/Common/WebControls/ucGroupVolInvite.ascx" TagPrefix="uc" TagName="ucGroupVolInvite" %>
+
 
 
 
@@ -76,6 +78,7 @@
                     <Tabs>
                         <telerik:RadTab Text="My Groups"></telerik:RadTab>
                         <telerik:RadTab Text="Create Group"></telerik:RadTab>
+                        <telerik:RadTab Text="Invite To Group"></telerik:RadTab>
                         <telerik:RadTab Text="Search for Groups"></telerik:RadTab>
                     </Tabs>
                 </telerik:RadTabStrip>
@@ -87,6 +90,12 @@
                     <telerik:RadPageView runat="server" ID="RadPageView6">
                         Create a Group
                     </telerik:RadPageView>
+                    <telerik:RadPageView runat="server" ID="RadPageView8">
+                        <uc:ucGroupVolInvite runat="server" id="ucGroupVolInvite" />
+                    </telerik:RadPageView>
+
+
+
                     <telerik:RadPageView runat="server" ID="RadPageView7">
                         Search for Groups
                     </telerik:RadPageView>

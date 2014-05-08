@@ -211,6 +211,24 @@ namespace VolTeer.Volunteer {
         protected global::Telerik.Web.UI.RadPageView RadPageView6;
         
         /// <summary>
+        /// RadPageView8 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadPageView RadPageView8;
+        
+        /// <summary>
+        /// ucGroupVolInvite control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::VolTeer.Common.WebControls.ucGroupVolInvite ucGroupVolInvite;
+        
+        /// <summary>
         /// RadPageView7 control.
         /// </summary>
         /// <remarks>
