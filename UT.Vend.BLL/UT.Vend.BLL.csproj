@@ -8,7 +8,7 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>UT.Vend.BLL</RootNamespace>
     <AssemblyName>UT.Vend.BLL</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
@@ -16,6 +16,7 @@
     <ReferencePath>$(ProgramFiles)\Common Files\microsoft shared\VSTT\$(VisualStudioVersion)\UITestExtensionPackages</ReferencePath>
     <IsCodedUITest>False</IsCodedUITest>
     <TestProjectType>UnitTest</TestProjectType>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -54,11 +55,14 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="HelperMethods\cExcel.cs" />
     <Compile Include="utProject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\UT.Helper\UT.Helper.csproj">
+      <Project>{eefaab9c-667d-4c18-9454-6c6725051620}</Project>
+      <Name>UT.Helper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VolTeer.BusinessLogicLayer\VolTeer.BusinessLogicLayer.csproj">
       <Project>{81446b41-8d0a-4e58-a275-1578c7f536f2}</Project>
       <Name>VolTeer.BusinessLogicLayer</Name>

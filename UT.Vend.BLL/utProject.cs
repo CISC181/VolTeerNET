@@ -8,7 +8,6 @@ using System.Data.EntityClient;
 using System.Configuration;
 using System.IO;
 using System.Collections.Generic;
-using UT.Vend.BLL.HelperMethods;
 
 namespace UT.Vend.BLL
 {

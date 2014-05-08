@@ -65,16 +65,22 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="HelperMethods\cExcel.cs" />
     <Compile Include="HelperMethods\hVolAddress.cs" />
     <Compile Include="HelperMethods\hVolEmail.cs" />
     <Compile Include="HelperMethods\hVolPhone.cs" />
     <Compile Include="HelperMethods\hVolunteer.cs" />
+    <Compile Include="utVolState.cs" />
+    <Compile Include="utVolSkill.cs" />
+    <Compile Include="utSkill.cs" />
     <Compile Include="utGroup.cs" />
     <Compile Include="utVolunteer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\UT.Helper\UT.Helper.csproj">
+      <Project>{eefaab9c-667d-4c18-9454-6c6725051620}</Project>
+      <Name>UT.Helper</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VolTeer.BusinessLogicLayer\VolTeer.BusinessLogicLayer.csproj">
       <Project>{81446b41-8d0a-4e58-a275-1578c7f536f2}</Project>
       <Name>VolTeer.BusinessLogicLayer</Name>

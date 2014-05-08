@@ -6,17 +6,15 @@ using System.Data;
 using System.Data.OleDb;
 using System.IO;
 using System.Data.SqlClient;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using VolTeer.DomainModels.VT.Vend;
-using VolTeer.BusinessLogicLayer.VT.Vend;
 using System.Data;
 using System.Data.SqlClient;
 using System.Data.EntityClient;
 using System.Configuration;
 using System.IO;
 using System.Collections.Generic;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace UT.Vend.BLL.HelperMethods
+namespace UT.Helper
 {
     public class cExcel
     {
