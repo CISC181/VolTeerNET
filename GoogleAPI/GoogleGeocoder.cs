@@ -26,7 +26,8 @@ namespace VolTeer.GoogleAPI
 
         protected string ApiGeoCode
         {
-            get { return Protocol + ConfigurationManager.AppSettings["API_GEOCODE"]; }
+            // @TODO: get the ConfigurationManager.AppSettings call to work
+            get { return Protocol + "maps.googleapis.com/maps/api/geocode/xml?address={0}&sensor=false&key=AIzaSyDSBBqZS-nRournmpfJJ4f2QhcXx3wOagk"; }// ConfigurationManager.AppSettings["API_GEOCODE"]; }
         }
 
         /// <summary>
@@ -41,25 +42,34 @@ namespace VolTeer.GoogleAPI
         /// <summary>
         /// Initializes a new instance of the <see cref="GoogleGeocoder"/> class and defaults to transmission over HTTP. 
         /// </summary>
-        public GoogleGeocoder() : this(false) { }
+        public GoogleGeocoder() : this(true) { }
 
         public string GetLatLongFromAddress(GoogleAddress address)
         {
-            // @TODO: get our own Google API key?
-            XDocument doc = XDocument.Load(String.Format(ApiGeoCode, address.FormattedAddress));
-
+            if (address.FormattedAddress == null)
+            {
+                return "<coordinate>\n" +
+                          "<lat>unknown</lat>\n" +
+                          "<lon>unknown</lon>\n" +
+                       "</coordinate>";
+            }
+            
+            XDocument doc = XDocument.Load(String.Format(ApiGeoCode, address.FormattedAddress.Replace(" ", "+")));
+          
             var result = doc.Descendants("result").Descendants("geometry").Descendants("location").FirstOrDefault();
-            string lat = result.Descendants("lat").FirstOrDefault().Value;
-            string lon = result.Descendants("lng").FirstOrDefault().Value;
-            return result != null
-                       ? "<coordinate>\n" +
-                            "<lat>" + (lat != null ? lat : "unknown") + "</lat>\n" +
-                            "<lon>" + (lon != null ? lon : "unknown") + "</lon>\n" +
-                         "</coordinate>"
-                       : "<coordinate>\n" +
-                            "<lat>unknown</lat>\n" +
-                            "<lon>unknown</lon>\n" +
-                         "</coordinate>";
+            if (result == null)
+            {
+                return "<coordinate>\n" +
+                          "<lat>unknown</lat>\n" +
+                          "<lon>unknown</lon>\n" +
+                       "</coordinate>";
+            }
+            XElement lat = result.Descendants("lat").FirstOrDefault();
+            XElement lon = result.Descendants("lng").FirstOrDefault();
+            return "<coordinate>\n" +
+                      "<lat>" + (lat != null ? lat.Value : "unknown") + "</lat>\n" +
+                      "<lon>" + (lon != null ? lon.Value : "unknown") + "</lon>\n" +
+                   "</coordinate>";
         }
 
     }

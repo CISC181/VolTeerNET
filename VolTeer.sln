@@ -31,7 +31,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleAPI", "GoogleAPI\Goog
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VolTeer.Contracts", "VolTeer.Contracts\VolTeer.Contracts.csproj", "{1D640F5E-1B69-44FE-839A-A66A65E7D3C4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GoogleAPITests", "GoogleGeocoder\GoogleAPITests.csproj", "{1889E2CB-5A60-44CC-8EB7-4FADA17E5550}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UT.GoogleAPI", "GoogleGeocoder\UT.GoogleAPI.csproj", "{1889E2CB-5A60-44CC-8EB7-4FADA17E5550}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UT.Vend.BLL", "UT.Vend.BLL\UT.Vend.BLL.csproj", "{DDC112DE-4265-42AE-A1EE-F2917F581EAF}"
 EndProject
