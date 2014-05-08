@@ -39,6 +39,7 @@ namespace UT.Helper
             }
         }
 
+        
 
         public static void InsertData(string[] ExcelFilenames)
         {
@@ -46,9 +47,7 @@ namespace UT.Helper
             string helperDir = cExcel.GetHelperFilesDir();
             foreach (string excelFile in ExcelFilenames)
             {
-                DataTable dt = new DataTable();
-                string strSheetName = "Sheet1";
-                dt = cExcel.ReadExcelFile(strSheetName, Path.Combine(helperDir, excelFile));
+                DataTable dt = ReadExcelFile("Sheet1", Path.Combine(helperDir, excelFile));
                 string connectionString = getConnectionString();
                 System.Diagnostics.Debug.WriteLine(String.Format("Connection String: {0}", connectionString));
                 using (SqlConnection connection = new SqlConnection(connectionString))
