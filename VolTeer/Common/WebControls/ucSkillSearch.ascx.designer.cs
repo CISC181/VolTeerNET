@@ -31,13 +31,13 @@ namespace VolTeer.Common.WebControls {
         protected global::System.Web.UI.WebControls.RadioButton rbAutoComplete;
         
         /// <summary>
-        /// rbTreeControl control.
+        /// rbTree control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.RadioButton rbTreeControl;
+        protected global::System.Web.UI.WebControls.RadioButton rbTree;
         
         /// <summary>
         /// pnlAutoComplete control.
@@ -47,15 +47,6 @@ namespace VolTeer.Common.WebControls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Panel pnlAutoComplete;
-        
-        /// <summary>
-        /// RadAjaxPanel1 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadAjaxPanel RadAjaxPanel1;
         
         /// <summary>
         /// rACSkills control.

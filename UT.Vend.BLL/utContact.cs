@@ -35,6 +35,17 @@ namespace UT.Vend.BLL
         [TestMethod]
         public void TestContact()
         {
+            //Test Our Read
+            DataTable dt = cExcel.ReadExcelFile("Sheet1", Path.Combine(cExcel.GetHelperFilesDir(), "Contact.xlsx"));
+            foreach (DataRow row in dt.Rows) // Loop over the rows.
+            {
+                string contactID = row["ContactID"].ToString();
+                sp_VendContact_BLL contact = new sp_VendContact_BLL();
+                contact.ListContacts(new Guid(contactID));
+
+
+            }
+
         }
 
         [ClassCleanup]
