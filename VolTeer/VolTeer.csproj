@@ -184,6 +184,13 @@
     <Compile Include="Common\WebControls\ucGroups.ascx.designer.cs">
       <DependentUpon>ucGroups.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Common\WebControls\ucGroupVolInvite.ascx.cs">
+      <DependentUpon>ucGroupVolInvite.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Common\WebControls\ucGroupVolInvite.ascx.designer.cs">
+      <DependentUpon>ucGroupVolInvite.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Common\WebControls\ucHistory.ascx.cs">
       <DependentUpon>ucHistory.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -459,6 +466,7 @@
     <Content Include="Common\WebControls\ucEditSkill.ascx" />
     <Content Include="Common\WebControls\ucEmail.ascx" />
     <Content Include="Common\WebControls\ucGroups.ascx" />
+    <Content Include="Common\WebControls\ucGroupVolInvite.ascx" />
     <Content Include="Common\WebControls\ucHistory.ascx" />
     <Content Include="Common\WebControls\ucPhone.ascx" />
     <Content Include="Common\WebControls\ucPrimary.ascx" />
@@ -652,7 +660,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
+      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

@@ -1816,5 +1816,14 @@ namespace VolTeer.DataAccessLayer.VT
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Vol_Phone_Update", phoneIDParameter, volIDParameter, phoneNbrParameter, activeFlgParameter, primaryFlgParameter);
         }
+    
+        public virtual ObjectResult<sp_GroupVol_Select_FindNewVols_Result> sp_GroupVol_Select_FindNewVols(Nullable<int> groupID)
+        {
+            var groupIDParameter = groupID.HasValue ?
+                new ObjectParameter("GroupID", groupID) :
+                new ObjectParameter("GroupID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GroupVol_Select_FindNewVols_Result>("sp_GroupVol_Select_FindNewVols", groupIDParameter);
+        }
     }
 }

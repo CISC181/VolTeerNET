@@ -72,7 +72,6 @@ namespace VolTeer.Common.WebControls
 
                     // write the existing skill to VolSkill
                     VolSkillBLL.InsertVolSkill(VolID, SkillsDM.SkillID);
-                    Response.Write("New Skill:" + entries[i].Text);
                 }
                 else
                 {
@@ -81,7 +80,6 @@ namespace VolTeer.Common.WebControls
 
                     // write the existing skill to VolSkill
                     VolSkillBLL.InsertVolSkill(VolID, SkillID);
-                    //Response.Write("Existing Skill: " + entries[i].Text + entries[i].Value);
                 }
             }
         }
@@ -95,15 +93,15 @@ namespace VolTeer.Common.WebControls
             VolSkillBLL.DeleteVolSkillALL(VolID);
 
             TreeListColumnsCollection entries = this.rTLSkills.Columns;
-           
-          
+
+
         }
 
 
         protected void rbAutoComplete_CheckedChanged(object sender, EventArgs e)
         {
             pnlAutoComplete.Visible = true;
-            pnlTree.Visible = false;
+            //pnlTree.Visible = false;
 
         }
 
@@ -116,7 +114,7 @@ namespace VolTeer.Common.WebControls
             Guid VolID = (Guid)currentUser.ProviderUserKey;
             List<sp_VolSkill_DM> dt = VolSkillBLL.ListVolSkills(VolID);
             rTLSkills.DataSource = dt;
- 
+
         }
 
         protected void rTLSkills_NeedDataSource(object sender, TreeListNeedDataSourceEventArgs e)

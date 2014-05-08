@@ -1115,6 +1115,9 @@
           <Parameter Name="GroupID" Type="int" Mode="In" />
           <Parameter Name="VolID" Type="uniqueidentifier" Mode="In" />
         </Function>
+        <Function Name="sp_GroupVol_Select_FindNewVols" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
+          <Parameter Name="GroupID" Type="int" Mode="In" />
+        </Function>
         <Function Name="sp_GroupVol_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="GroupID" Type="int" Mode="In" />
           <Parameter Name="VolID" Type="uniqueidentifier" Mode="In" />
@@ -1943,6 +1946,9 @@
             <Parameter Name="PhoneNbr" Mode="In" Type="String" />
             <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
             <Parameter Name="PrimaryFlg" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GroupVol_Select_FindNewVols" ReturnType="Collection(VolTeerModel.sp_GroupVol_Select_FindNewVols_Result)">
+            <Parameter Name="GroupID" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="tblContact">
@@ -2785,6 +2791,13 @@
           <Property Type="String" Name="ContactMiddleName" Nullable="true" MaxLength="50" />
           <Property Type="String" Name="ContactLastName" Nullable="true" MaxLength="50" />
           <Property Type="Boolean" Name="ActiveFlg" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_GroupVol_Select_FindNewVols_Result">
+          <Property Type="Guid" Name="VolID" Nullable="false" />
+          <Property Type="String" Name="VolFirstName" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="VolMiddleName" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="VolLastName" Nullable="true" MaxLength="30" />
+          <Property Type="Boolean" Name="VolActive" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -3882,6 +3895,17 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_Volunteer_Insert" FunctionName="VolTeerModel.Store.sp_Volunteer_Insert" />
           <FunctionImportMapping FunctionImportName="sp_Vol_Phone_Update" FunctionName="VolTeerModel.Store.sp_Vol_Phone_Update" />
+          <FunctionImportMapping FunctionImportName="sp_GroupVol_Select_FindNewVols" FunctionName="VolTeerModel.Store.sp_GroupVol_Select_FindNewVols">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VolTeerModel.sp_GroupVol_Select_FindNewVols_Result">
+                <ScalarProperty Name="VolID" ColumnName="VolID" />
+                <ScalarProperty Name="VolFirstName" ColumnName="VolFirstName" />
+                <ScalarProperty Name="VolMiddleName" ColumnName="VolMiddleName" />
+                <ScalarProperty Name="VolLastName" ColumnName="VolLastName" />
+                <ScalarProperty Name="VolActive" ColumnName="VolActive" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
