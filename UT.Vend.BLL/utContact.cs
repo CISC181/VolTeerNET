@@ -41,8 +41,7 @@ namespace UT.Vend.BLL
             {
                 string contactID = row["ContactID"].ToString();
                 sp_VendContact_BLL contact = new sp_VendContact_BLL();
-                contact.ListContacts(new Guid(contactID));
-
+                sp_VendContact_DM data = contact.ListContacts(new Guid(contactID));
 
             }
 
