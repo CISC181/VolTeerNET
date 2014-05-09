@@ -1160,6 +1160,9 @@
         <Function Name="sp_Skill_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="SkillID" Type="uniqueidentifier" Mode="In" />
         </Function>
+        <Function Name="sp_Skill_Select_Manage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
+          <Parameter Name="ShowNullMstrSkillItems" Type="bit" Mode="In" />
+        </Function>
         <Function Name="sp_Skill_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="SkillID" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="SkillName" Type="nvarchar" Mode="In" />
@@ -1948,7 +1951,10 @@
             <Parameter Name="PrimaryFlg" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="sp_GroupVol_Select_FindNewVols" ReturnType="Collection(VolTeerModel.sp_GroupVol_Select_FindNewVols_Result)">
-            <Parameter Name="GroupID" Mode="In" Type="Int32" />
+          <Parameter Name="GroupID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Skill_Select_Manage" ReturnType="Collection(VolTeerModel.sp_Skill_Select_Manage_Result)">
+            <Parameter Name="ShowNullMstrSkillItems" Mode="In" Type="Boolean" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="tblContact">
@@ -2798,6 +2804,12 @@
           <Property Type="String" Name="VolMiddleName" Nullable="true" MaxLength="20" />
           <Property Type="String" Name="VolLastName" Nullable="true" MaxLength="30" />
           <Property Type="Boolean" Name="VolActive" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_Skill_Select_Manage_Result">
+          <Property Type="Guid" Name="SkillID" Nullable="false" />
+          <Property Type="String" Name="SkillName" Nullable="true" MaxLength="50" />
+          <Property Type="Guid" Name="MstrSkillID" Nullable="true" />
+          <Property Type="Int32" Name="ActiveFlg" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -3903,6 +3915,16 @@
                 <ScalarProperty Name="VolMiddleName" ColumnName="VolMiddleName" />
                 <ScalarProperty Name="VolLastName" ColumnName="VolLastName" />
                 <ScalarProperty Name="VolActive" ColumnName="VolActive" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Skill_Select_Manage" FunctionName="VolTeerModel.Store.sp_Skill_Select_Manage">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VolTeerModel.sp_Skill_Select_Manage_Result">
+                <ScalarProperty Name="SkillID" ColumnName="SkillID" />
+                <ScalarProperty Name="SkillName" ColumnName="SkillName" />
+                <ScalarProperty Name="MstrSkillID" ColumnName="MstrSkillID" />
+                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
