@@ -9,8 +9,10 @@ namespace VolTeer.Contracts.VT.Vol
     public interface sp_GroupVol_CON
     {
         sp_Vol_GroupVol_DM InsertGroupContext(ref sp_Vol_GroupVol_DM _cGroup);
-        List<sp_Volunteer_DM> ListGroupFindVols(sp_Group_DM Group);
+        sp_Vol_GroupVol_DM ListGroupVols(ref sp_Vol_GroupVol_DM _cGroupVol);
+        List<sp_Volunteer_DM> ListGroupFindVols(sp_Group_DM _cGroup);
         void DeleteGroupContext(sp_Vol_GroupVol_DM _cVolID);
+        void LeaveGroup(sp_Vol_GroupVol_DM _cGroupVol);
         void MakePrimaryVolID(sp_Vol_GroupVol_DM _cGroup);
         void MakeAdminVolID(sp_Vol_GroupVol_DM _cGroup);
     }
