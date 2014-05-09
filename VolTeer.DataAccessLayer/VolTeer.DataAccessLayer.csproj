@@ -237,6 +237,9 @@
     <Compile Include="VT\sp_Sample_Address_Select_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
+    <Compile Include="VT\sp_Skill_Select_Manage_Result.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
     <Compile Include="VT\sp_Skill_Select_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>

@@ -10,6 +10,6 @@ namespace VolTeer.DomainModels.VT.Vol
         public Guid SkillID { get; set; }
         public string SkillName { get; set; }
         public Guid? MstrSkillID { get; set; }
-
+        public int ActiveFlg { get; set; }
     }
 }

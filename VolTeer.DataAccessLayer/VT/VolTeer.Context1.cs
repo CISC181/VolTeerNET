@@ -1825,5 +1825,14 @@ namespace VolTeer.DataAccessLayer.VT
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GroupVol_Select_FindNewVols_Result>("sp_GroupVol_Select_FindNewVols", groupIDParameter);
         }
+    
+        public virtual ObjectResult<sp_Skill_Select_Manage_Result> sp_Skill_Select_Manage(Nullable<bool> showNullMstrSkillItems)
+        {
+            var showNullMstrSkillItemsParameter = showNullMstrSkillItems.HasValue ?
+                new ObjectParameter("ShowNullMstrSkillItems", showNullMstrSkillItems) :
+                new ObjectParameter("ShowNullMstrSkillItems", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Skill_Select_Manage_Result>("sp_Skill_Select_Manage", showNullMstrSkillItemsParameter);
+        }
     }
 }

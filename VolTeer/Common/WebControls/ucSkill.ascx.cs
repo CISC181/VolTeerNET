@@ -38,7 +38,7 @@ namespace VolTeer.Common.WebControls
         }
         protected void rTLSkills_NeedDataSource(object sender, Telerik.Web.UI.TreeListNeedDataSourceEventArgs e)
         {
-            rTLSkills.DataSource = BLL.ListSkills();
+            rTLSkills.DataSource = BLL.ListSkills(true);
 
         }
     }
