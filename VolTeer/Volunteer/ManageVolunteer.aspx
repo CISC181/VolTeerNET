@@ -22,10 +22,10 @@
     <div class="exampleWrapper">
         <telerik:RadTabStrip runat="server" ID="RadTabStrip1" MultiPageID="RadMultiPage1" Height="26px" SelectedIndex="0" Skin='<%$ AppSettings:Telerik.Skin %>'>
             <Tabs>
-                <telerik:RadTab Text="Home" ImageUrl="../Content/imageLibrary/PNG/home_16.png" Height="26px"  Width="200px"></telerik:RadTab>
-                <telerik:RadTab Text="Groups" ImageUrl="../Content/imageLibrary/PNG/group_16.png" Height="26px"  Width="200px"></telerik:RadTab>
-                <telerik:RadTab Text="Skills" ImageUrl="../Content/imageLibrary/PNG/paint_16.png" Height="26px"  Width="200px"></telerik:RadTab>
-                <telerik:RadTab Text="History" ImageUrl="../Content/imageLibrary/PNG/hist_16.png" Height="26px"  Width="200px"></telerik:RadTab>
+                <telerik:RadTab Text="Home" ImageUrl="../Content/imageLibrary/PNG/home_16.png" Height="25px"  Width="200px"></telerik:RadTab>
+                <telerik:RadTab Text="Groups" ImageUrl="../Content/imageLibrary/PNG/group_16.png" Height="25px"  Width="200px"></telerik:RadTab>
+                <telerik:RadTab Text="Skills" ImageUrl="../Content/imageLibrary/PNG/paint_16.png" Height="25px"  Width="200px"></telerik:RadTab>
+                <telerik:RadTab Text="History" ImageUrl="../Content/imageLibrary/PNG/hist_16.png" Height="25px"  Width="200px"></telerik:RadTab>
             </Tabs>
         </telerik:RadTabStrip>
 
@@ -68,10 +68,10 @@
                 <telerik:RadTabStrip runat="server" ID="RadTabStrip3" MultiPageID="RadMultiPage5"
                     Orientation="VerticalLeft" Skin='<%$ AppSettings:Telerik.Skin %>' Width="150px" Height="475px" SelectedIndex="0">
                     <Tabs>
-                        <telerik:RadTab Text="My Groups"></telerik:RadTab>
-                        <telerik:RadTab Text="Create Group"></telerik:RadTab>
-                        <telerik:RadTab Text="Invite To Group"></telerik:RadTab>
-                        <telerik:RadTab Text="Search for Groups"></telerik:RadTab>
+                        <telerik:RadTab Height="90px"  ImageUrl="../Content/imageLibrary/PNG/apps_32.png" Text="My Groups" CssClass="TextPicture" ></telerik:RadTab>
+                        <telerik:RadTab Height="90px"  ImageUrl="../Content/imageLibrary/PNG/wiz_32.png" text="Create Group" ></telerik:RadTab>
+                        <telerik:RadTab Height="90px"  ImageUrl="../Content/imageLibrary/PNG/confg_32.png" Text="Admin Group" ></telerik:RadTab>
+                        <telerik:RadTab Height="90px"  ImageUrl="../Content/imageLibrary/PNG/web_32.png" Text="Search Group" ></telerik:RadTab>
                     </Tabs>
                 </telerik:RadTabStrip>
 
