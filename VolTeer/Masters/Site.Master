@@ -29,7 +29,7 @@
             <div class="content-wrapper">
                 <div class="float-right">
                     <p class="site-title">
-                        <asp:Image ID="Image1" runat="server" ImageUrl="~/Content/themes/base/images/volunteer-green-logo1.jpg" Height="61px" Width="107px" />
+                        <%--<asp:Image ID="Image1" runat="server" ImageUrl="~/Content/themes/base/images/volunteer-green-logo1.jpg" Height="61px" Width="107px" />--%>
                     </p>
 
                 </div>
@@ -57,10 +57,9 @@
 
             </div>
 
-            <div class="float-left">
 
 
-                <telerik:RadMenu ID="RadMenu1" CssClass="mainMenu" runat="server" Skin='<%$ AppSettings:Telerik.Skin %>'>
+                <telerik:RadMenu ID="RadMenu1" CssClass="TopMainMenu"  runat="server">
                     <Items>
                         <telerik:RadMenuItem Text="Home" NavigateUrl="~/Default.aspx" />
                         <telerik:RadMenuItem Text="Account">
@@ -78,7 +77,6 @@
                         <telerik:RadMenuItem Text="About" NavigateUrl="DefaultCS.aspx?page=aboutus" />
                     </Items>
                 </telerik:RadMenu>
-            </div>
         </header>
         <div id="body">
             <asp:ContentPlaceHolder runat="server" ID="FeaturedContent" />

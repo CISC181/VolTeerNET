@@ -15,7 +15,7 @@
         BorderWidth="1px"
         AllowFilteringByColumn="True"
         AllowSorting="True"
-        Skin="Vista"
+        Skin='<%$ AppSettings:Telerik.Skin %>'
         CellSpacing="0"
         GridLines="None"
         AllowMultiRowEdit="True"
