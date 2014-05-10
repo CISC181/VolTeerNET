@@ -6,7 +6,7 @@
 <head id="Head1" runat="server">
     <meta charset="utf-8" />
     <title><%: Page.Title %> - VolTeer</title>
-    <%--<link href="~/Content/Site.css" rel="stylesheet" />--%>
+    <link href="~/Content/Site.css" rel="stylesheet" />
     <link href="~/Content/Telerik.css" rel="stylesheet" />
     <link href="~/Content/GridStyleSheet.css" rel="stylesheet" />
     <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
