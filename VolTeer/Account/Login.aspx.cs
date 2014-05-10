@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
 using System.Web.Security;
+using System.Configuration;
 
 namespace VolTeer.Account
 {
@@ -12,31 +13,38 @@ namespace VolTeer.Account
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-
-            //FormsAuthentication.RedirectFromLoginPage(Login1.UserName, true);
-
-
-            //RegisterHyperLink.NavigateUrl = "Register";
-
-            //var returnUrl = HttpUtility.UrlEncode(Request.QueryString["ReturnUrl"]);
-            //if (!String.IsNullOrEmpty(returnUrl))
-            //{
-            //    RegisterHyperLink.NavigateUrl += "?ReturnUrl=" + returnUrl;
-            //}
-
-            //Response.Redirect("~/");
-
         }
 
-        //HowTo: http://forums.asp.net/t/1520434.aspx
 
         protected void btnLogin_Click(object sender, EventArgs e)
         {
             string uname = Login1.UserName.ToString();
             string pass = Login1.Password.ToString();
-            if (Membership.ValidateUser(uname, pass))
+            Label lblErrorMsg = Login1.FindControl("lblErrorMsg") as Label;
+
+            MembershipUser currentUser = Membership.GetUser(uname);
+
+            if (currentUser == null)
             {
-                if (Request.QueryString["ReturnUrl"] != null)
+                lblErrorMsg.Text = "User Does not Exist";
+            }
+            else if (currentUser.IsLockedOut)
+            {
+                lblErrorMsg.Text = "Account is locked";
+            }
+            else if (currentUser.IsApproved =false)
+            {
+                lblErrorMsg.Text = "Account is disabled";
+            }
+            else if (Membership.ValidateUser(uname, pass))
+            {
+                string continueUrl = ConfigurationManager.AppSettings["HomePage"].ToString();
+                if (continueUrl != null)
+                {
+                    FormsAuthentication.SetAuthCookie(uname, false);
+                    Response.Redirect(continueUrl);
+                }
+                else if (Request.QueryString["ReturnUrl"] != null)
                 {
                     FormsAuthentication.RedirectFromLoginPage(uname, false);
                 }
@@ -48,7 +56,7 @@ namespace VolTeer.Account
             }
             else
             {
-                Response.Write("Invalid Login");
+                lblErrorMsg.Text = "Invalid Password";
             }
         }
     }

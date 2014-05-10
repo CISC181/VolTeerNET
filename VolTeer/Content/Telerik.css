@@ -12,6 +12,17 @@
     color: #0066cc;
 }
 
+.groupWrapper {
+     width: 370px;
+     margin: 0 2%;
+     height: 350px;
+     float: left;
+}
+
+.PasswordChangeTitle {
+    font-size:xx-large;
+    font-weight:500;
+}
 
 html {
     background-color: #e2e2e2;

@@ -66,6 +66,7 @@
                             <GroupSettings Width="300px" />
                             <Items>
                                 <telerik:RadMenuItem Text="Login" NavigateUrl="~/Account/Login.aspx" EnableImageSprite="true" CssClass="icon-chair"></telerik:RadMenuItem>
+                                <telerik:RadMenuItem Text="Change Password" NavigateUrl="~/Account/ChangePassword.aspx" EnableImageSprite="true" CssClass="icon-chair"></telerik:RadMenuItem>
                                 <telerik:RadMenuItem Text="Forgot Password" NavigateUrl="~/Account/RecoverPassword.aspx" EnableImageSprite="true" CssClass="icon-sofa"></telerik:RadMenuItem>
                                 <telerik:RadMenuItem Text="Manage Roles" NavigateUrl="~/Account/ManageRole.aspx" EnableImageSprite="true" CssClass="icon-table"></telerik:RadMenuItem>
                                 <telerik:RadMenuItem Text="Manage Users" NavigateUrl="~/Account/ManageUser.aspx" EnableImageSprite="true" CssClass="icon-table"></telerik:RadMenuItem>
