@@ -328,6 +328,8 @@
           <Property Name="GroupName" Type="nvarchar" MaxLength="50" />
           <Property Name="ParticipationLevelID" Type="int" />
           <Property Name="ActiveFlg" Type="bit" />
+          <Property Name="ShortDesc" Type="varchar" MaxLength="200" />
+          <Property Name="LongDesc" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="tblGroupAddr">
           <Key>
@@ -1071,6 +1073,8 @@
           <Parameter Name="GroupName" Type="nvarchar" Mode="In" />
           <Parameter Name="ParticipationLevelID" Type="int" Mode="In" />
           <Parameter Name="ActiveFlg" Type="bit" Mode="In" />
+          <Parameter Name="ShortDesc" Type="varchar" Mode="In" />
+          <Parameter Name="LongDesc" Type="varchar(max)" Mode="In" />
         </Function>
         <Function Name="sp_Group_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="GroupID" Type="int" Mode="In" />
@@ -1080,6 +1084,8 @@
           <Parameter Name="GroupName" Type="nvarchar" Mode="In" />
           <Parameter Name="ParticipationLevelID" Type="int" Mode="In" />
           <Parameter Name="ActiveFlg" Type="bit" Mode="In" />
+          <Parameter Name="ShortDesc" Type="varchar" Mode="In" />
+          <Parameter Name="LongDesc" Type="varchar(max)" Mode="In" />
         </Function>
         <Function Name="sp_GroupAddr_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="GroupID" Type="int" Mode="In" />
@@ -1674,23 +1680,6 @@
             <Parameter Name="ContactID" Mode="In" Type="Guid" />
             <Parameter Name="PrimaryContact" Mode="In" Type="Boolean" />
           </FunctionImport>
-          <FunctionImport Name="sp_Group_Delete">
-          <Parameter Name="GroupID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_Group_Insert" ReturnType="Collection(Int32)">
-            <Parameter Name="GroupName" Mode="In" Type="String" />
-            <Parameter Name="ParticipationLevelID" Mode="In" Type="Int32" />
-            <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
-          </FunctionImport>
-          <FunctionImport Name="sp_Group_Select" ReturnType="Collection(VolTeerModel.sp_Group_Select_Result)">
-          <Parameter Name="GroupID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_Group_Update">
-            <Parameter Name="GroupID" Mode="In" Type="Int32" />
-            <Parameter Name="GroupName" Mode="In" Type="String" />
-            <Parameter Name="ParticipationLevelID" Mode="In" Type="Int32" />
-            <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
-          </FunctionImport>
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
@@ -1954,7 +1943,28 @@
           <Parameter Name="GroupID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Skill_Select_Manage" ReturnType="Collection(VolTeerModel.sp_Skill_Select_Manage_Result)">
-            <Parameter Name="ShowNullMstrSkillItems" Mode="In" Type="Boolean" />
+          <Parameter Name="ShowNullMstrSkillItems" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Group_Delete">
+            <Parameter Name="GroupID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Group_Insert" ReturnType="Collection(Int32)">
+            <Parameter Name="GroupName" Mode="In" Type="String" />
+            <Parameter Name="ParticipationLevelID" Mode="In" Type="Int32" />
+            <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
+            <Parameter Name="ShortDesc" Mode="In" Type="String" />
+            <Parameter Name="LongDesc" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Group_Select" ReturnType="Collection(VolTeerModel.sp_Group_Select_Result)">
+            <Parameter Name="GroupID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Group_Update">
+            <Parameter Name="GroupID" Mode="In" Type="Int32" />
+            <Parameter Name="GroupName" Mode="In" Type="String" />
+            <Parameter Name="ParticipationLevelID" Mode="In" Type="Int32" />
+            <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
+            <Parameter Name="ShortDesc" Mode="In" Type="String" />
+            <Parameter Name="LongDesc" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="tblContact">
@@ -2620,12 +2630,6 @@
           <Property Type="Guid" Name="ContactID" Nullable="false" />
           <Property Type="Boolean" Name="PrimaryContact" Nullable="true" />
         </ComplexType>
-        <ComplexType Name="sp_Group_Select_Result">
-          <Property Type="Int32" Name="GroupID" Nullable="false" />
-          <Property Type="String" Name="GroupName" Nullable="true" MaxLength="50" />
-          <Property Type="Int32" Name="ParticipationLevelID" Nullable="true" />
-          <Property Type="Boolean" Name="ActiveFlg" Nullable="true" />
-        </ComplexType>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
           <Property Type="Binary" Name="definition" Nullable="true" />
@@ -2677,6 +2681,8 @@
           <Property Type="Boolean" Name="ActiveFlg" />
           <NavigationProperty Name="tblGroupAddrs" Relationship="VolTeerModel.FK_tblGroupAddr_tblGroup" FromRole="tblGroup" ToRole="tblGroupAddr" />
           <NavigationProperty Name="tblGroupVols" Relationship="VolTeerModel.FK_tblGroupVol_tblGroup" FromRole="tblGroup" ToRole="tblGroupVol" />
+          <Property Type="String" Name="ShortDesc" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LongDesc" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_tblGroupAddr_tblGroup">
           <End Type="VolTeerModel.tblGroup" Role="tblGroup" Multiplicity="1" />
@@ -2810,6 +2816,14 @@
           <Property Type="String" Name="SkillName" Nullable="true" MaxLength="50" />
           <Property Type="Guid" Name="MstrSkillID" Nullable="true" />
           <Property Type="Int32" Name="ActiveFlg" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_Group_Select_Result">
+          <Property Type="Int32" Name="GroupID" Nullable="false" />
+          <Property Type="String" Name="GroupName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ParticipationLevelID" Nullable="true" />
+          <Property Type="Boolean" Name="ActiveFlg" Nullable="true" />
+          <Property Type="String" Name="ShortDesc" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="LongDesc" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -3670,19 +3684,6 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_Vend_Contact_Update" FunctionName="VolTeerModel.Store.sp_Vend_Contact_Update" />
-          <FunctionImportMapping FunctionImportName="sp_Group_Delete" FunctionName="VolTeerModel.Store.sp_Group_Delete" />
-          <FunctionImportMapping FunctionImportName="sp_Group_Insert" FunctionName="VolTeerModel.Store.sp_Group_Insert" />
-          <FunctionImportMapping FunctionImportName="sp_Group_Select" FunctionName="VolTeerModel.Store.sp_Group_Select">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="VolTeerModel.sp_Group_Select_Result">
-                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
-                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
-                <ScalarProperty Name="ParticipationLevelID" ColumnName="ParticipationLevelID" />
-                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_Group_Update" FunctionName="VolTeerModel.Store.sp_Group_Update" />
           <FunctionImportMapping FunctionImportName="sp_GroupAddr_Delete" FunctionName="VolTeerModel.Store.sp_GroupAddr_Delete" />
           <FunctionImportMapping FunctionImportName="sp_GroupAddr_Insert" FunctionName="VolTeerModel.Store.sp_GroupAddr_Insert" />
           <FunctionImportMapping FunctionImportName="sp_GroupAddr_Select" FunctionName="VolTeerModel.Store.sp_GroupAddr_Select">
@@ -3731,6 +3732,8 @@
           <EntitySetMapping Name="tblGroups">
             <EntityTypeMapping TypeName="VolTeerModel.tblGroup">
               <MappingFragment StoreEntitySet="tblGroup">
+                <ScalarProperty Name="LongDesc" ColumnName="LongDesc" />
+                <ScalarProperty Name="ShortDesc" ColumnName="ShortDesc" />
                 <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
                 <ScalarProperty Name="ParticipationLevelID" ColumnName="ParticipationLevelID" />
                 <ScalarProperty Name="GroupName" ColumnName="GroupName" />
@@ -3740,18 +3743,22 @@
             <EntityTypeMapping TypeName="VolTeerModel.tblGroup">
               <ModificationFunctionMapping>
                 <InsertFunction FunctionName="VolTeerModel.Store.sp_Group_Insert">
+                  <ScalarProperty Name="LongDesc" ParameterName="LongDesc" />
+                  <ScalarProperty Name="ShortDesc" ParameterName="ShortDesc" />
                   <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" />
                   <ScalarProperty Name="ParticipationLevelID" ParameterName="ParticipationLevelID" />
                   <ScalarProperty Name="GroupName" ParameterName="GroupName" />
                   <ResultBinding Name="GroupID" ColumnName="GroupID" />
                 </InsertFunction>
                 <UpdateFunction FunctionName="VolTeerModel.Store.sp_Group_Update">
+                  <ScalarProperty Name="LongDesc" ParameterName="LongDesc" Version="Current" />
+                  <ScalarProperty Name="ShortDesc" ParameterName="ShortDesc" Version="Current" />
                   <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" Version="Current" />
                   <ScalarProperty Name="ParticipationLevelID" ParameterName="ParticipationLevelID" Version="Current" />
                   <ScalarProperty Name="GroupName" ParameterName="GroupName" Version="Current" />
                   <ScalarProperty Name="GroupID" ParameterName="GroupID" Version="Current" />
                 </UpdateFunction>
-                <DeleteFunction FunctionName="VolTeerModel.Store.sp_Group_Delete">
+                <DeleteFunction FunctionName="VolTeerModel.Store.sp_Group_Select">
                   <ScalarProperty Name="GroupID" ParameterName="GroupID" />
                 </DeleteFunction>
               </ModificationFunctionMapping>
@@ -3928,6 +3935,21 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Group_Delete" FunctionName="VolTeerModel.Store.sp_Group_Delete" />
+          <FunctionImportMapping FunctionImportName="sp_Group_Insert" FunctionName="VolTeerModel.Store.sp_Group_Insert" />
+          <FunctionImportMapping FunctionImportName="sp_Group_Select" FunctionName="VolTeerModel.Store.sp_Group_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VolTeerModel.sp_Group_Select_Result">
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="ParticipationLevelID" ColumnName="ParticipationLevelID" />
+                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
+                <ScalarProperty Name="ShortDesc" ColumnName="ShortDesc" />
+                <ScalarProperty Name="LongDesc" ColumnName="LongDesc" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Group_Update" FunctionName="VolTeerModel.Store.sp_Group_Update" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

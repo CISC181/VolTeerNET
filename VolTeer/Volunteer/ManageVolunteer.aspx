@@ -8,10 +8,6 @@
 <%@ Register Src="~/Common/WebControls/ucEmail.ascx" TagPrefix="uc" TagName="ucEmail" %>
 <%@ Register Src="~/Common/WebControls/ucGroupVolInvite.ascx" TagPrefix="uc" TagName="ucGroupVolInvite" %>
 
-
-
-
-
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">
