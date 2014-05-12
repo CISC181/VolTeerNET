@@ -102,6 +102,7 @@
     <None Include="HelperFiles\Skill.xlsx" />
     <None Include="HelperFiles\VolSkill.xlsx" />
     <None Include="HelperFiles\VolState.xlsx" />
+    <None Include="HelperFiles\Volunteer-Kyle.xlsx" />
     <None Include="HelperFiles\Volunteer.xlsx" />
     <None Include="packages.config" />
   </ItemGroup>
