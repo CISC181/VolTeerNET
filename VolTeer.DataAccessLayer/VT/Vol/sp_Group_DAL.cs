@@ -49,6 +49,7 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                     list = (from result in context.sp_Group_Select(groupID)
                             select new sp_Group_DM
                             {
+                                GroupID = result.GroupID,
                                 GroupName = result.GroupName,
                                 ParticipationLevelID = result.ParticipationLevelID,
                                 ActiveFlg = result.ActiveFlg,

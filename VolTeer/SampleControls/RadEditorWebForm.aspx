@@ -7,7 +7,8 @@
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
 
-<%--    <telerik:RadAjaxManager ID="RadAjaxManager1" runat="server">
+    
+    <%--    <telerik:RadAjaxManager ID="RadAjaxManager1" runat="server">
         <AjaxSettings>
             <telerik:AjaxSetting AjaxControlID="Panel1">
                 <UpdatedControls>
@@ -107,13 +108,8 @@
                 </Tools>
             </telerik:RadEditor>
             <br />
-
-
             <asp:HiddenField ID="HDDGroupID" runat="server" />
-
-
-
-            <asp:Table runat="server">
+            <asp:Table ID="Table1" runat="server">
                 <asp:TableRow>
                     <asp:TableCell>
                         <asp:Label ID="lblGroupNameLit" runat="server" Text="Group Name"></asp:Label>
@@ -143,16 +139,15 @@
                         <asp:RequiredFieldValidator ID="ReqShortDescription" ControlToValidate="rTBShortDesc" CssClass="field-validation-error" runat="server" Text="* Required"></asp:RequiredFieldValidator>
                     </asp:TableCell>
                 </asp:TableRow>
-
                 <asp:TableRow>
                     <asp:TableCell>
                     </asp:TableCell>
                     <asp:TableCell>
-                        <telerik:RadButton ID="rBTNSave" 
-                            ButtonType="SkinnedButton" 
+                        <telerik:RadButton ID="rBTNSave"
+                            ButtonType="SkinnedButton"
                             Skin='<%$ AppSettings:Telerik.Skin %>'
-                            runat="server" Text="Save" OnClick="rBTNSave_Click"></telerik:RadButton>
-
+                            runat="server" Text="Save" OnClick="rBTNSave_Click">
+                        </telerik:RadButton>
                     </asp:TableCell>
                 </asp:TableRow>
 

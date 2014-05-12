@@ -7,12 +7,16 @@
 <%@ Register Src="~/Common/WebControls/ucGroups.ascx" TagPrefix="uc" TagName="ucGroups" %>
 <%@ Register Src="~/Common/WebControls/ucEmail.ascx" TagPrefix="uc" TagName="ucEmail" %>
 <%@ Register Src="~/Common/WebControls/ucGroupVolInvite.ascx" TagPrefix="uc" TagName="ucGroupVolInvite" %>
+<%@ Register Src="~/Common/WebControls/ucGroupInsertUpdate.ascx" TagPrefix="uc" TagName="ucGroupInsertUpdate" %>
+
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">
 </asp:Content>
 <asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
+
+    <asp:HiddenField ID="HDDGroupID" runat="server" />
 
     <telerik:RadFormDecorator ID="QsfFromDecorator" runat="server" DecoratedControls="All" EnableRoundedCorners="false" />
     <div class="exampleWrapper">
@@ -91,8 +95,9 @@
                         <uc:ucGroups runat="server" ID="ucGroups" />
                     </telerik:RadPageView>
                     <telerik:RadPageView runat="server" ID="RadPageView6">
-                        Create a Group
-                    </telerik:RadPageView>
+                        <uc:ucGroupInsertUpdate runat="server" ID="ucGroupInsertUpdate" />
+
+                        </telerik:RadPageView>
                     <telerik:RadPageView runat="server" ID="RadPageView8">
                         <uc:ucGroupVolInvite runat="server" ID="ucGroupVolInvite" />
                     </telerik:RadPageView>
