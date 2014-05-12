@@ -39,7 +39,41 @@ namespace UT.Helper
             }
         }
 
-        
+        public static DataTable QueryExcelFile(string path, string query)
+        {
+            using (OleDbConnection conn = new OleDbConnection())
+            {
+                DataTable dt = new DataTable();
+                string Import_FileName = path;
+                string fileExtension = Path.GetExtension(Import_FileName);
+                if (fileExtension == ".xls")
+                    conn.ConnectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + Import_FileName + ";" + "Extended Properties='Excel 8.0;HDR=YES;'";
+                if (fileExtension == ".xlsx")
+                    conn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + Import_FileName + ";" + "Extended Properties='Excel 12.0 Xml;HDR=YES;'";
+                using (OleDbDataAdapter da = new OleDbDataAdapter(query, conn))
+                {
+                    da.Fill(dt);
+                    return dt;
+                }
+            }
+        }
+
+        public static int getNumRecordsFromDB(string tableName)
+        {
+            int numRecords;
+            var connectionString = getConnectionString();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandText = String.Format("COUNT * from {0}", tableName);
+                    numRecords = (int)command.ExecuteScalar();
+                }
+            }
+            return numRecords;
+        }
 
         public static void InsertData(string[] ExcelFilenames)
         {
