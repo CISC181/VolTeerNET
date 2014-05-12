@@ -28,8 +28,10 @@ namespace UT.Helper
                 string fileExtension = Path.GetExtension(Import_FileName);
                 if (fileExtension == ".xls")
                     conn.ConnectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + Import_FileName + ";" + "Extended Properties='Excel 8.0;HDR=YES;'";
-                if (fileExtension == ".xlsx")
+                else if (fileExtension == ".xlsx")
                     conn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + Import_FileName + ";" + "Extended Properties='Excel 12.0 Xml;HDR=YES;'";
+                else
+                    throw new Exception("File extension not recognized");
                 string query = "Select * from [" + sheetName + "$]";
                 using (OleDbDataAdapter da = new OleDbDataAdapter(query, conn))
                 {
@@ -48,8 +50,10 @@ namespace UT.Helper
                 string fileExtension = Path.GetExtension(Import_FileName);
                 if (fileExtension == ".xls")
                     conn.ConnectionString = "Provider=Microsoft.Jet.OLEDB.4.0;Data Source=" + Import_FileName + ";" + "Extended Properties='Excel 8.0;HDR=YES;'";
-                if (fileExtension == ".xlsx")
+                else if (fileExtension == ".xlsx")
                     conn.ConnectionString = "Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" + Import_FileName + ";" + "Extended Properties='Excel 12.0 Xml;HDR=YES;'";
+                else
+                    throw new Exception("File extension not recognized");
                 using (OleDbDataAdapter da = new OleDbDataAdapter(query, conn))
                 {
                     da.Fill(dt);
