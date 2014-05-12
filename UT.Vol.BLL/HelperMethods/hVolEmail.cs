@@ -10,13 +10,17 @@ namespace UT.Vol.BLL.HelperMethods
 {
     public class hVolEmail
     {
-        public sp_Email_DM hCreateVolEmail(string EmailAddr,Guid VolID)
+        public sp_Email_DM hCreateVolEmail(string EmailAddr,Guid VolID,bool primaryEmail,ref int numberEmails)
         {
             sp_Email_DM Email = new sp_Email_DM();
             sp_VolEmail_BLL VolEmailBll = new sp_VolEmail_BLL();
 
+            numberEmails = numberEmails + 1;
+            Email.EmailID = numberEmails;
             Email.EmailAddr = EmailAddr;
             Email.VolID = VolID;
+            Email.PrimaryFlg = primaryEmail;
+            Email.ActiveFlg = true;
 
             VolEmailBll.InsertEmailContext(ref Email);
 
@@ -24,33 +28,28 @@ namespace UT.Vol.BLL.HelperMethods
 
         }
 
-        public List<sp_Email_DM> hSelectVolEmail(Guid VolID, int emailID)
+        public List<sp_Email_DM> hSelectVolEmail(sp_Email_DM givenEmail)
         {
             List<sp_Email_DM> EmailList = null;
             sp_VolEmail_BLL VolEmailBll = new sp_VolEmail_BLL();
-            sp_Email_DM cVolEmail = new sp_Email_DM();
-            cVolEmail.VolID = VolID;
-            cVolEmail.EmailID = emailID;
-            EmailList = VolEmailBll.ListEmails(cVolEmail);
+            EmailList = VolEmailBll.ListEmails(givenEmail);
             return EmailList;
         }
 
-        public sp_Email_DM hSelectPrimaryVolEmail(Guid VolID )
+        public sp_Email_DM hSelectPrimaryVolEmail(sp_Email_DM givenEmail)
         {
             sp_Email_DM Email = new sp_Email_DM();
             sp_VolEmail_BLL VolEmailBll = new sp_VolEmail_BLL();
-            sp_Email_DM cVolEmail = new sp_Email_DM();
-            cVolEmail.VolID = VolID;
-            cVolEmail.EmailID = 0;
-            Email = VolEmailBll.ListPrimaryEmail(cVolEmail);
+            Email = VolEmailBll.ListPrimaryEmail(givenEmail);
             return Email;
         }
 
-        public void hUpdateVolEmail(sp_Email_DM Email, string emailAddress)
+        public void hUpdateVolEmail(sp_Email_DM Email, string emailAddress, bool primaryFlg)
         {
             sp_VolEmail_BLL VolEmailBll = new sp_VolEmail_BLL();
 
             Email.EmailAddr = emailAddress;
+            Email.PrimaryFlg = primaryFlg;
 
             VolEmailBll.UpdateEmailAddr(Email);
         }
