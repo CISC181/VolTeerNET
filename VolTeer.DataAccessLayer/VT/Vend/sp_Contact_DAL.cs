@@ -14,20 +14,20 @@ namespace VolTeer.DataAccessLayer.VT.Vend
             List<sp_Contact_DM> list = new List<sp_Contact_DM>();
             try
             {
-                //using (VolTeerEntities context = new VolTeerEntities())
-                //{
-                //    list = (from result in context.sp_Contact_Select(null)
-                //                select new sp_Contact_DM
-                //                {
-                //                    ContactID = result.ContactID,
-                //                    ContactFirstName = result.ContactFirstName,
-                //                    ContactMiddleName = result.ContactMiddleName,
-                //                    ContactLastName = result.ContactLastName,
-                //                    ActiveFlg = result.ActiveFlg
+                using (VolTeerEntities context = new VolTeerEntities())
+                {
+                    list = (from result in context.sp_Contact_Select(null)
+                            select new sp_Contact_DM
+                            {
+                                ContactID = result.ContactID,
+                                ContactFirstName = result.ContactFirstName,
+                                ContactMiddleName = result.ContactMiddleName,
+                                ContactLastName = result.ContactLastName,
+                                ActiveFlg = result.ActiveFlg
 
-                //                }).ToList();
+                            }).ToList();
 
-                //}
+                }
             }
             catch (Exception ex)
             {
@@ -42,20 +42,20 @@ namespace VolTeer.DataAccessLayer.VT.Vend
             List<sp_Contact_DM> list = new List<sp_Contact_DM>();
             try
             {
-                //using (VolTeerEntities context = new VolTeerEntities())
-                //{
-                //    list = (from result in context.sp_Contact_Select(ContactID)
-                //            select new sp_Contact_DM
-                //            {
-                //                ContactID = result.ContactID,
-                //                ContactFirstName = result.ContactFirstName,
-                //                ContactMiddleName = result.ContactMiddleName,
-                //                ContactLastName = result.ContactLastName,
-                //                ActiveFlg = result.ActiveFlg
+                using (VolTeerEntities context = new VolTeerEntities())
+                {
+                    list = (from result in context.sp_Contact_Select(ContactID)
+                            select new sp_Contact_DM
+                            {
+                                ContactID = result.ContactID,
+                                ContactFirstName = result.ContactFirstName,
+                                ContactMiddleName = result.ContactMiddleName,
+                                ContactLastName = result.ContactLastName,
+                                ActiveFlg = result.ActiveFlg
 
-                //            }).ToList();
+                            }).ToList();
 
-                //}
+                }
             }
             catch (Exception ex)
             {

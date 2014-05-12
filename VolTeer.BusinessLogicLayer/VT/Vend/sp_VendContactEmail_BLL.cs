@@ -12,15 +12,15 @@ namespace VolTeer.BusinessLogicLayer.VT.Vend
     {
         sp_ContactEmail_DAL DAL = new sp_ContactEmail_DAL();
 
-        //public List<sp_ContactEmail_DM> ListContacts()
-        //{
-        //    return DAL.ListContacts();
-        //}
+        public List<sp_ContactEmail_DM> ListContacts()
+        {
+            return DAL.ListContacts(null, null);
+        }
 
-        //public sp_ContactEmail_DM ListContacts(Guid? VendContact)
-        //{
-        //    return DAL.ListContacts(VendContact).Single();
-        //}
+        public sp_ContactEmail_DM ListContacts(Guid? VendContact, int? EmailID)
+        {
+            return DAL.ListContacts(VendContact, EmailID).Single();
+        }
 
         public void InsertContactContext(sp_ContactEmail_DM _cVendContact)
         {
