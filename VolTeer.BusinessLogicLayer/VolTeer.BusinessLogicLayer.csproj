@@ -79,6 +79,7 @@
     <Compile Include="VT\Vend\sp_Project_BLL.cs" />
     <Compile Include="VT\Vend\sp_VendAddress_BLL.cs" />
     <Compile Include="VT\Vend\sp_EventRating_BLL.cs" />
+    <Compile Include="VT\Vend\sp_VendContactEmail_BLL.cs" />
     <Compile Include="VT\Vend\sp_VendContact_BLL.cs" />
     <Compile Include="VT\Vend\sp_VendEmail_BLL.cs" />
     <Compile Include="VT\Vend\sp_Vendor_BLL.cs" />

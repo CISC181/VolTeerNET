@@ -62,6 +62,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="utContact Email.cs" />
     <Compile Include="utContact.cs" />
     <Compile Include="utVendor.cs" />
     <Compile Include="utProject.cs" />
