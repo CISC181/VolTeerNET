@@ -47,9 +47,10 @@ namespace UT.Helper
             string helperDir = cExcel.GetHelperFilesDir();
             foreach (string excelFile in ExcelFilenames)
             {
+                System.Diagnostics.Debug.WriteLine(String.Format("{0}", excelFile));
                 DataTable dt = ReadExcelFile("Sheet1", Path.Combine(helperDir, excelFile));
                 string connectionString = getConnectionString();
-                System.Diagnostics.Debug.WriteLine(String.Format("Connection String: {0}", connectionString));
+                //System.Diagnostics.Debug.WriteLine(String.Format("Connection String: {0}", connectionString));
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
                     connection.Open();

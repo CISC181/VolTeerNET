@@ -17,68 +17,21 @@ namespace UT.Vol.BLL
     public class utGroup
     {
 
-        static string[] ExcelFilenames = new string[] {
-            "Group.xlsx"
+        static string[] ExcelFilenames = {
+            "Volunteer.xlsx",
+            "VolAddress.xlsx",
+            "VolAddr.xlsx",
+            "Group.xlsx",
+            "GroupVol.xlsx",
+            "GroupAddr.xlsx"
         };
-
-       
-
-        public static string getConnectionString()
-        {
-            return new EntityConnectionStringBuilder(ConfigurationManager.ConnectionStrings["VolTeerConnectionString"].ConnectionString).ProviderConnectionString;
-        }
-
-        public static void setIdentityInsert(SqlCommand command, string table, string value)
-        {
-            try
-            {
-                command.CommandText = string.Format("SET IDENTITY_INSERT {0} {1}", table, value);
-                command.ExecuteNonQuery();
-            }
-            catch
-            {
-            }
-        }
 
         [ClassInitialize]
         public static void InsertGroupData(TestContext testContext)
         {
-            RemoveAllData();
-            List<string> ExcelFiles = UT.Helper.cExcel.GetAllExcelFiles();
-            foreach (string excelFile in ExcelFiles)
-            {
-                Console.WriteLine(String.Format("{0} exists: {1}", excelFile, File.Exists(excelFile)));
-                DataTable dt = new DataTable();
-                string strSheetName = "Sheet1";
-                dt = cExcel.ReadExcelFile(strSheetName, excelFile);
-                string connectionString = getConnectionString();
-                Console.WriteLine(String.Format("Connection String: {0}", connectionString));
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    connection.Open();
-                    using (SqlCommand command = new SqlCommand())
-                    {
-                        command.Connection = connection;
-                        setIdentityInsert(command, dt.Rows[0]["Table"].ToString(), "ON");
-                        foreach (DataRow row in dt.Rows) // Loop over the rows.
-                        {
-                            string query = row["Query"].ToString();
-                            int numRowsAffected = 0;
-                            if (query.Length > 1)
-                            {
-                                Console.WriteLine(query);
-                                command.CommandText = query;
-                                numRowsAffected = command.ExecuteNonQuery();
-                                if (numRowsAffected != 1)
-                                {
-                                    Console.WriteLine(String.Format("Query affected {0} rows instead of the expected 1 row.", numRowsAffected));
-                                }
-                            }
-                        }
-                        setIdentityInsert(command, dt.Rows[0]["Table"].ToString(), "OFF");
-                    }
-                }
-            }
+            System.Diagnostics.Debug.WriteLine(String.Format("{0}", DateTime.Now));
+            cExcel.RemoveData(ExcelFilenames);
+            cExcel.InsertData(ExcelFilenames);
         }
 
         [TestMethod]
@@ -87,32 +40,9 @@ namespace UT.Vol.BLL
         }
 
         [ClassCleanup]
-        public static void RemoveAllData()
+        public static void ClassCleanup()
         {
-            string connectionString = getConnectionString();
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                using (SqlCommand command = new SqlCommand())
-                {
-                    command.Connection = connection;
-                    foreach (string excelFile in cExcel.GetAllExcelFiles())
-                    {
-                        Console.WriteLine(String.Format("{0} exists: {1}", excelFile, File.Exists(excelFile)));
-                        DataTable dt = new DataTable();
-                        cExcel _cExcel = new cExcel();
-                        string strSheetName = "Sheet1";
-                        dt = cExcel.ReadExcelFile(strSheetName, excelFile);
-                        string table = dt.Rows[0]["Table"].ToString();
-                        string query = string.Format("DELETE FROM {0}", table);
-                        Console.WriteLine(query);
-                        command.CommandText = query;
-                        int numRowsAffected = command.ExecuteNonQuery();
-                        Console.WriteLine(String.Format("\t{0} rows affected", numRowsAffected));
-                    }
-                }
-            }
-
+            cExcel.RemoveData(ExcelFilenames);
         }
     }
 }
