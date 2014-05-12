@@ -233,6 +233,13 @@
     <Compile Include="Common\WebControls\ucSkillSearch.ascx.designer.cs">
       <DependentUpon>ucSkillSearch.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Common\WebControls\ucSkillsManage.ascx.cs">
+      <DependentUpon>ucSkillsManage.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Common\WebControls\ucSkillsManage.ascx.designer.cs">
+      <DependentUpon>ucSkillsManage.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Common\WebControls\ucVolAddrSchedule.ascx.cs">
       <DependentUpon>ucVolAddrSchedule.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -311,6 +318,13 @@
     </Compile>
     <Compile Include="SampleControls\ListBox.aspx.designer.cs">
       <DependentUpon>ListBox.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="SampleControls\ManageSkills.aspx.cs">
+      <DependentUpon>ManageSkills.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SampleControls\ManageSkills.aspx.designer.cs">
+      <DependentUpon>ManageSkills.aspx</DependentUpon>
     </Compile>
     <Compile Include="SampleControls\RadEditorWebForm.aspx.cs">
       <DependentUpon>RadEditorWebForm.aspx</DependentUpon>
@@ -487,6 +501,7 @@
     <Content Include="Common\WebControls\ucPrimary.ascx" />
     <Content Include="Common\WebControls\ucSkill.ascx" />
     <Content Include="Common\WebControls\ucSkillSearch.ascx" />
+    <Content Include="Common\WebControls\ucSkillsManage.ascx" />
     <Content Include="Common\WebControls\ucVolAddrSchedule.ascx" />
     <Content Include="Common\WebControls\ucVolBasicInfo.ascx" />
     <Content Include="Content\button\ButtonSprites.png" />
@@ -827,6 +842,7 @@
     <Content Include="SampleControls\GeoCode.aspx" />
     <Content Include="SampleControls\InputControls.aspx" />
     <Content Include="SampleControls\ListBox.aspx" />
+    <Content Include="SampleControls\ManageSkills.aspx" />
     <Content Include="SampleControls\RadEditorWebForm.aspx" />
     <Content Include="SampleControls\RadScheduler.aspx" />
     <Content Include="SampleControls\SampleAddress.aspx" />
@@ -916,7 +932,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
+      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
