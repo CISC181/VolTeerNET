@@ -8,6 +8,7 @@ using System.Data.EntityClient;
 using System.Configuration;
 using System.IO;
 using System.Collections.Generic;
+using UT.Helper;
 
 namespace UT.Vend.BLL
 {
@@ -15,15 +16,21 @@ namespace UT.Vend.BLL
     public class utProject
     {
 
-        static string[] ExcelFilenames = new string[] {
+        static string[] ExcelFilenames = {
+            "Contact.xlsx",
+            "../../UT.Vol.BLL/HelperFiles/Volunteer.xlsx",
             "Project.xlsx",
-            "ProjectEvent.xlsx"
+            "ProjectEvent.xlsx",
+            "ProjectEventContact.xlsx",
+            "EventRating.xlsx"
         };
 
 
         [ClassInitialize]
-        public void initializeProject()
+        public static void initializeProject(TestContext testContext)
         {
+            cExcel.RemoveData(ExcelFilenames);
+            cExcel.InsertData(ExcelFilenames);
         }
 
         [TestMethod]
@@ -32,8 +39,9 @@ namespace UT.Vend.BLL
         }
 
         [ClassCleanup]
-        public void postRun()
+        public static void postRun()
         {
+            cExcel.RemoveData(ExcelFilenames);
         }
     }
 }
