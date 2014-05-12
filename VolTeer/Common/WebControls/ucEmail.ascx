@@ -36,11 +36,14 @@
                 <telerik:GridCheckBoxColumn DataField="ActiveFlg" HeaderText="Active" DataType="System.Boolean" FilterControlAltText="Filter column1 column" UniqueName="ActiveFlg">
                 </telerik:GridCheckBoxColumn>
 
-                <telerik:GridTemplateColumn FilterControlAltText="Filter TemplateColumn column" HeaderText="PrimaryFlg" DataField="PrimaryFlg" UniqueName="PrimaryFlg">
+                 <telerik:GridCheckBoxColumn DataField="PrimaryFlg" HeaderText="PrimaryFlg" DataType="System.Boolean" FilterControlAltText="Filter column2 column" UniqueName="PrimaryFlg">
+                </telerik:GridCheckBoxColumn>
+
+<%--                <telerik:GridTemplateColumn FilterControlAltText="Filter TemplateColumn column" HeaderText="PrimaryFlg" DataField="PrimaryFlg" UniqueName="PrimaryFlg">
                     <ItemTemplate>
                         <asp:CheckBox ID="chkPrimaryFlg" runat="server" Checked='<%# DataBinder.Eval(Container, "DataItem.PrimaryFlg") %>'></asp:CheckBox>
                     </ItemTemplate>
-                </telerik:GridTemplateColumn>
+                </telerik:GridTemplateColumn>--%>
 
                 <telerik:GridTemplateColumn FilterControlAltText="Filter TemplateColumn column" HeaderText="EmailAddr" DataField="EmailAddr" UniqueName="EmailAddr">
                     <ItemTemplate>

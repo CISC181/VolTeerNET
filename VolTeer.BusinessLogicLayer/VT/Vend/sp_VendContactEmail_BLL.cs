@@ -14,12 +14,12 @@ namespace VolTeer.BusinessLogicLayer.VT.Vend
 
         public List<sp_ContactEmail_DM> ListContacts()
         {
-            return DAL.ListContacts();
+            return DAL.ListContacts(null, null);
         }
 
-        public sp_ContactEmail_DM ListContacts(Guid? VendContact)
+        public sp_ContactEmail_DM ListContacts(Guid? VendContact, int? EmailID)
         {
-            return DAL.ListContacts(VendContact).Single();
+            return DAL.ListContacts(VendContact, EmailID).Single();
         }
 
         public void InsertContactContext(sp_ContactEmail_DM _cVendContact)

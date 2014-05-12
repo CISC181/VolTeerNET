@@ -22,40 +22,13 @@ namespace VolTeer.Common.WebControls {
         protected global::System.Web.UI.WebControls.Panel pnlPrimaryInfo;
         
         /// <summary>
-        /// tblMainTable control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Table tblMainTable;
-        
-        /// <summary>
-        /// rowEmail control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TableRow rowEmail;
-        
-        /// <summary>
         /// PrimaryEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label PrimaryEmail;
-        
-        /// <summary>
-        /// rowPhone control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TableRow rowPhone;
+        protected global::Telerik.Web.UI.RadButton PrimaryEmail;
         
         /// <summary>
         /// PrimaryPhone control.
@@ -64,16 +37,7 @@ namespace VolTeer.Common.WebControls {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label PrimaryPhone;
-        
-        /// <summary>
-        /// rowAddress control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.TableRow rowAddress;
+        protected global::Telerik.Web.UI.RadButton PrimaryPhone;
         
         /// <summary>
         /// PrimaryAddress control.
@@ -82,6 +46,6 @@ namespace VolTeer.Common.WebControls {
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label PrimaryAddress;
+        protected global::Telerik.Web.UI.RadButton PrimaryAddress;
     }
 }

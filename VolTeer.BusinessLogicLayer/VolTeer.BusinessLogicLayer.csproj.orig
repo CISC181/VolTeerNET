@@ -76,8 +76,11 @@
     <Compile Include="AspNet\AspNetViewsBLL.cs" />
     <Compile Include="Describe\DescribeBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="VT\Vend\sp_Contact_BLL.cs" />
+<<<<<<< Updated upstream
     <Compile Include="VT\Vend\sp_Project_BLL.cs" />
+=======
+    <Compile Include="VT\Vend\sp_Contact_BLL.cs" />
+>>>>>>> Stashed changes
     <Compile Include="VT\Vend\sp_VendAddress_BLL.cs" />
     <Compile Include="VT\Vend\sp_EventRating_BLL.cs" />
     <Compile Include="VT\Vend\sp_VendContactEmail_BLL.cs" />

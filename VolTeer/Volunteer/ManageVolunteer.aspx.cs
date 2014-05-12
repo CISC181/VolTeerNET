@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.UI;
 using System.Web.UI.WebControls;
+using Telerik.Web.UI;
 
 namespace VolTeer.Volunteer
 {
@@ -13,5 +14,12 @@ namespace VolTeer.Volunteer
         {
 
         }
+
+        public void EditGroup()
+        {
+
+        }
+
+
     }
 }
