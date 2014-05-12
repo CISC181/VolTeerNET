@@ -28,6 +28,10 @@ namespace VolTeer.Common.WebControls
 {
     public partial class ucGroups : System.Web.UI.UserControl
     {
+        public delegate void ButtonClickEventHandler(string data);
+        public event ButtonClickEventHandler ButtonClickEvent = null;
+
+
         sp_GroupVol_BLL GroupVolBLL = new sp_GroupVol_BLL();
         MembershipUser currentUser;
 
@@ -88,5 +92,38 @@ namespace VolTeer.Common.WebControls
 
             }
         }
+
+        protected void rGridGroupVol_ItemCommand(object sender, GridCommandEventArgs e)
+        {
+
+            if (e.CommandName == "UpdateGroup")
+            {
+                HiddenField HDDGroupID = (HiddenField)Parent.FindControl("HDDGroupID");
+                HDDGroupID.Value = e.CommandArgument.ToString();
+
+                RadTabStrip ParentRadTabStrip = (RadTabStrip)Parent.FindControl("RadTabStrip1");
+                ParentRadTabStrip.Tabs[1].Selected = true;
+
+                RadMultiPage ParentRadMultiPage = (RadMultiPage)Parent.FindControl("RadMultiPage1");
+                RadPageView pageview = (RadPageView)ParentRadMultiPage.FindPageViewByID("RadPageView2");
+                pageview.Selected = true;
+                RadTabStrip tabstrip = (RadTabStrip)pageview.FindControl("RadTabStrip3");
+                tabstrip.Tabs[1].Selected = true;
+
+                //  Select the correct multipage
+                RadMultiPage multipage = (RadMultiPage)pageview.FindControl("RadMultiPage5");
+                RadPageView rPageView = (RadPageView)multipage.FindPageViewByID("RadPageView6");
+                rPageView.Selected = true;
+            }
+
+
+        }
+
+        public void UpdateGroup(int GroupID)
+        {
+           
+
+        }
     }
+
 }

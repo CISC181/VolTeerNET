@@ -7,7 +7,9 @@
         runat="server"
         OnNeedDataSource="rGridGroupVol_NeedDataSource"
         OnItemDataBound="rGridGroupVol_ItemDataBound"
-        OnDeleteCommand="rGridGroupVol_DeleteCommand"
+        OnDeleteCommand="rGridGroupVol_DeleteCommand" 
+        OnItemCommand="rGridGroupVol_ItemCommand"
+        
         AutoGenerateColumns="False"
         AllowFilteringByColumn="False"
         AllowSorting="True"
@@ -24,15 +26,24 @@
             EnableHeaderContextFilterMenu="True"
             EnableHeaderContextMenu="True">
             <Columns>
-                <telerik:GridCheckBoxColumn DataField="GroupActive"  ItemStyle-Width="50px" HeaderText="Group Active" DataType="System.Boolean" FilterControlAltText="Filter column1 column" UniqueName="GroupActive">
-                </telerik:GridCheckBoxColumn>
-
-                <telerik:GridTemplateColumn FilterControlAltText="Filter TemplateColumn column" HeaderText="Group Name" DataField="GroupName" UniqueName="GroupName">
+                <telerik:GridTemplateColumn>
                     <ItemTemplate>
-                        <asp:Label ID="lblGroupName" runat="server" Width="150px" Text='<%# DataBinder.Eval(Container, "DataItem.GroupName") %>' ></asp:Label>
+                        <telerik:RadButton ID="rBTNUpdate" runat="server" 
+                            ButtonType="SkinnedButton" 
+                            Text="Update" 
+                            CommandName="UpdateGroup" 
+                            AutoPostBack="true"
+                            CommandArgument='<%# DataBinder.Eval(Container, "DataItem.GroupID") %>'>
+                        </telerik:RadButton>
                     </ItemTemplate>
                 </telerik:GridTemplateColumn>
-
+                <telerik:GridCheckBoxColumn DataField="GroupActive" ItemStyle-Width="50px" HeaderText="Group Active" DataType="System.Boolean" FilterControlAltText="Filter column1 column" UniqueName="GroupActive">
+                </telerik:GridCheckBoxColumn>
+                <telerik:GridTemplateColumn FilterControlAltText="Filter TemplateColumn column" HeaderText="Group Name" DataField="GroupName" UniqueName="GroupName">
+                    <ItemTemplate>
+                        <asp:Label ID="lblGroupName" runat="server" Width="150px" Text='<%# DataBinder.Eval(Container, "DataItem.GroupName") %>'></asp:Label>
+                    </ItemTemplate>
+                </telerik:GridTemplateColumn>
                 <telerik:GridButtonColumn Text="Delete" CommandName="Delete" ItemStyle-Width="50px" UniqueName="Delete" ConfirmText="Are you sure you leave this group?" ButtonType="ImageButton" />
 
             </Columns>

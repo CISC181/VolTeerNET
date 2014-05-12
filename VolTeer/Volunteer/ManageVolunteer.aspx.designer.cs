@@ -13,6 +13,15 @@ namespace VolTeer.Volunteer {
     public partial class ManageVolunteer {
         
         /// <summary>
+        /// HDDGroupID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HDDGroupID;
+        
+        /// <summary>
         /// QsfFromDecorator control.
         /// </summary>
         /// <remarks>
@@ -209,6 +218,15 @@ namespace VolTeer.Volunteer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadPageView RadPageView6;
+        
+        /// <summary>
+        /// ucGroupInsertUpdate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::VolTeer.Common.WebControls.ucGroupInsertUpdate ucGroupInsertUpdate;
         
         /// <summary>
         /// RadPageView8 control.

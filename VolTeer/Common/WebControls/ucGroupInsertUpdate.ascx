@@ -1,13 +1,5 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/Site.Master" AutoEventWireup="true" CodeBehind="RadEditorWebForm.aspx.cs" Inherits="RadEditorWebForm" %>
+﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ucGroupInsertUpdate.ascx.cs" Inherits="VolTeer.Common.WebControls.ucGroupInsertUpdate" %>
 
-
-<asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
-</asp:Content>
-<asp:Content ID="Content2" ContentPlaceHolderID="FeaturedContent" runat="server">
-</asp:Content>
-<asp:Content ID="Content3" ContentPlaceHolderID="MainContent" runat="server">
-
-    
     <%--    <telerik:RadAjaxManager ID="RadAjaxManager1" runat="server">
         <AjaxSettings>
             <telerik:AjaxSetting AjaxControlID="Panel1">
@@ -20,7 +12,7 @@
     <div>
         <asp:Panel ID="Panel1" runat="server">
             <telerik:RadEditor Height="300px" ID="RadEditor1" EnableResize="false"
-                Style="margin-top: 10px" ToolbarMode="Default" EnableViewState="false" Width="90%" runat="server">
+                Style="margin-top: 10px" ToolbarMode="Default" EnableViewState="false" Width="900px" runat="server">
                 <Modules>
                     <telerik:EditorModule Visible="false" />
                 </Modules>
@@ -108,7 +100,7 @@
                 </Tools>
             </telerik:RadEditor>
             <br />
-            <asp:HiddenField ID="HDDGroupID" runat="server" />
+            
             <asp:Table ID="Table1" runat="server">
                 <asp:TableRow>
                     <asp:TableCell>
@@ -155,5 +147,3 @@
             </asp:Table>
         </asp:Panel>
     </div>
-</asp:Content>
-

@@ -20,6 +20,7 @@ public partial class RadEditorWebForm : System.Web.UI.Page
 
     protected void Page_Load(object sender, EventArgs e)
     {
+        PassedGroupID = 1;
 
         if (!IsPostBack)
         {
@@ -39,6 +40,9 @@ public partial class RadEditorWebForm : System.Web.UI.Page
     protected void GetGroupData()
     {
         GroupDM = GroupBLL.ListGroups(Convert.ToInt32(PassedGroupID));
+
+        HDDGroupID.Value = GroupDM.GroupID.ToString();
+
         chkActive.Checked = (bool)GroupDM.ActiveFlg;
         rTBShortDesc.Text = GroupDM.ShortDesc;
         rTBGroupName.Text = GroupDM.GroupName;
