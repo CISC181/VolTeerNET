@@ -45,7 +45,7 @@ namespace UT.Vol.BLL.HelperMethods
 
             Phone.PhoneID = phoneID;
             Phone.VolID = volID;
-            Phone = VolPhoneBll.ListPrimaryPhones(Phone);
+            Phone = VolPhoneBll.ListPrimaryPhone(Phone);
             return Phone;
 
         }
