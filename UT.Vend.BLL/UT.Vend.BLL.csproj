@@ -62,7 +62,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="utContactEmail.cs" />
     <Compile Include="utContact.cs" />
+    <Compile Include="utVendAddress.cs" />
     <Compile Include="utVendor.cs" />
     <Compile Include="utProject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
