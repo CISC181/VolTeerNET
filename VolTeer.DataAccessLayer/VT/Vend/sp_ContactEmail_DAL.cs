@@ -9,76 +9,7 @@ namespace VolTeer.DataAccessLayer.VT.Vend
     public class sp_ContactEmail_DAL
     {
         #region Select Statements
-        public List<sp_ContactEmail_DM> ListContacts()
-        {
-            List<sp_ContactEmail_DM> list = new List<sp_ContactEmail_DM>();
-            try
-            {
-                //using (VolTeerEntities context = new VolTeerEntities())
-                //{
-                //    list = (from result in context.sp_ContactEmail_Select(null, null)
-                //            select new sp_ContactEmail_DM
-                //            {
-                //                ContactID = result.ContactID,
-                //                EmailID = result.EmailID,
-                //                PrimaryEmail = result.PrimaryEmail
-                //            }).ToList();
-                //}
-            }
-            catch (Exception ex)
-            {
-                throw (ex);
-            }
-            return list;
-        }
-
-        public List<sp_ContactEmail_DM> ListContacts(Guid? contactid)
-        {
-            List<sp_ContactEmail_DM> list = new List<sp_ContactEmail_DM>();
-            try
-            {
-                using (VolTeerEntities context = new VolTeerEntities())
-                {
-                    list = (from result in context.sp_ContactEmail_Select(contactid, null)
-                            select new sp_ContactEmail_DM
-                            {
-                                ContactID = result.ContactID,
-                                EmailID = result.EmailID,
-                                PrimaryEmail = result.PrimaryEmail
-                            }).ToList();
-                }
-            }
-            catch (Exception ex)
-            {
-                throw (ex);
-            }
-            return list;
-        }
-
-        public List<sp_ContactEmail_DM> ListContacts(int emailid)
-        {
-            List<sp_ContactEmail_DM> list = new List<sp_ContactEmail_DM>();
-            try
-            {
-                using (VolTeerEntities context = new VolTeerEntities())
-                {
-                    list = (from result in context.sp_ContactEmail_Select(null, emailid)
-                            select new sp_ContactEmail_DM
-                            {
-                                ContactID = result.ContactID,
-                                EmailID = result.EmailID,
-                                PrimaryEmail = result.PrimaryEmail
-                            }).ToList();
-                }
-            }
-            catch (Exception ex)
-            {
-                throw (ex);
-            }
-            return list;
-        }
-
-        public List<sp_ContactEmail_DM> ListContacts(Guid contactid, int emailid)
+        public List<sp_ContactEmail_DM> ListContacts(Guid? contactid, int? emailid)
         {
             List<sp_ContactEmail_DM> list = new List<sp_ContactEmail_DM>();
             try
