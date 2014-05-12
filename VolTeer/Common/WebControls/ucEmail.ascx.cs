@@ -115,7 +115,7 @@ namespace VolTeer.Common.WebControls
 
                         if (chkPrimaryAddr.Checked)
                         {
-                           // chkPrimaryAddr.
+                            chkPrimaryAddr.Enabled = false;
                             //Make control unclickable
                         }
                     }
