@@ -233,6 +233,13 @@
     <Compile Include="Common\WebControls\ucSkillSearch.ascx.designer.cs">
       <DependentUpon>ucSkillSearch.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Common\WebControls\ucVolAddrSchedule.ascx.cs">
+      <DependentUpon>ucVolAddrSchedule.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Common\WebControls\ucVolAddrSchedule.ascx.designer.cs">
+      <DependentUpon>ucVolAddrSchedule.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Common\WebControls\ucVolBasicInfo.ascx.cs">
       <DependentUpon>ucVolBasicInfo.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -480,6 +487,7 @@
     <Content Include="Common\WebControls\ucPrimary.ascx" />
     <Content Include="Common\WebControls\ucSkill.ascx" />
     <Content Include="Common\WebControls\ucSkillSearch.ascx" />
+    <Content Include="Common\WebControls\ucVolAddrSchedule.ascx" />
     <Content Include="Common\WebControls\ucVolBasicInfo.ascx" />
     <Content Include="Content\button\ButtonSprites.png" />
     <Content Include="Content\GridStyleSheet.css" />
@@ -908,7 +916,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
+      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
