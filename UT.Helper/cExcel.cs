@@ -72,7 +72,7 @@ namespace UT.Helper
                 using (SqlCommand command = new SqlCommand())
                 {
                     command.Connection = connection;
-                    command.CommandText = String.Format("COUNT * from {0}", tableName);
+                    command.CommandText = String.Format("SELECT COUNT(*) from {0}", tableName);
                     numRecords = (int)command.ExecuteScalar();
                 }
             }
