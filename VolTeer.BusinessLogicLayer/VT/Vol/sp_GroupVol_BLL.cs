@@ -4,11 +4,12 @@ using System.Linq;
 using System.Text;
 using VolTeer.DomainModels.VT.Vol;
 using VolTeer.DataAccessLayer.VT.Vol;
+using VolTeer.Contracts.VT.Vol;
 
 
 namespace VolTeer.BusinessLogicLayer.VT.Vol
 {
-    public class sp_GroupVol_BLL
+    public class sp_GroupVol_BLL: sp_GroupVol_CON 
     {
         sp_GroupVol_DAL DAL = new sp_GroupVol_DAL();
 
@@ -45,6 +46,12 @@ namespace VolTeer.BusinessLogicLayer.VT.Vol
         public void MakeAdminVolID(sp_Vol_GroupVol_DM _cGroup)
         {
             DAL.MakeAdminVolID(_cGroup);
+        }
+
+
+        public List<sp_Volunteer_DM> ListGroupFindVols(sp_Group_DM Group)
+        {
+            return DAL.ListGroupFindVols(Group);
         }
     }
 }

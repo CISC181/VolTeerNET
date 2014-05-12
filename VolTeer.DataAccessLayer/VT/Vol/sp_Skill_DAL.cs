@@ -54,6 +54,37 @@ namespace VolTeer.DataAccessLayer.VT.Vol
 
             return list;
 
+
+
+        }
+
+        public List<sp_Skill_DM> ListSkills(bool showNullMstrSkill)
+        {
+            List<sp_Skill_DM> list = new List<sp_Skill_DM>();
+            try
+            {
+                using (VolTeerEntities context = new VolTeerEntities())
+                {
+                    list = (from result in context.sp_Skill_Select_Manage(showNullMstrSkill)
+                            select new sp_Skill_DM
+                            {
+                                SkillID = result.SkillID,
+                                SkillName = result.SkillName,
+                                MstrSkillID = result.MstrSkillID,
+                                ActiveFlg = result.ActiveFlg
+
+                            }).ToList();
+                } // Guaranteed to close the Connection
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+
+            return list;
+
+
+
         }
 
         #endregion

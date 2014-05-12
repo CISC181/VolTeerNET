@@ -12,9 +12,7 @@
         <h2>Use a local account to log in.</h2>
         <asp:Login ID="Login1" runat="server" ViewStateMode="Disabled" RenderOuterTable="false">
             <LayoutTemplate>
-                <p class="validation-summary-errors">
-                    <asp:Literal runat="server" ID="FailureText" />
-                </p>
+
                 <fieldset>
                     <legend>Log in Form</legend>
                     <ol>
@@ -31,6 +29,11 @@
                         <li>
                             <asp:CheckBox runat="server" ID="RememberMe" />
                             <asp:Label ID="Label3" runat="server" AssociatedControlID="RememberMe" CssClass="checkbox">Remember me?</asp:Label>
+                        </li>
+                        <li>
+                            <p class="validation-summary-errors">
+                                <asp:Label ID="lblErrorMsg" ForeColor="red" runat="server" />
+                            </p>
                         </li>
                     </ol>
                     <asp:Button ID="btnLogin" runat="server" OnClick="btnLogin_Click" Text="Log in" />

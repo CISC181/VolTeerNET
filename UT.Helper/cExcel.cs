@@ -39,18 +39,87 @@ namespace UT.Helper
             }
         }
 
-        public static List<string> GetAllExcelFiles()
+        
+
+        public static void InsertData(string[] ExcelFilenames)
         {
-            //TODO: look into globbing helperFilesDir for all xlsx files
-            List<string> ExcelFiles = new List<string>();
+            RemoveData(ExcelFilenames);
+            string helperDir = cExcel.GetHelperFilesDir();
+            foreach (string excelFile in ExcelFilenames)
+            {
+                DataTable dt = ReadExcelFile("Sheet1", Path.Combine(helperDir, excelFile));
+                string connectionString = getConnectionString();
+                System.Diagnostics.Debug.WriteLine(String.Format("Connection String: {0}", connectionString));
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+                    using (SqlCommand command = new SqlCommand())
+                    {
+                        command.Connection = connection;
+                        setIdentityInsert(command, dt.Rows[0]["Table"].ToString(), "ON");
+                        foreach (DataRow row in dt.Rows) // Loop over the rows.
+                        {
+                            string query = row["Query"].ToString();
+                            int numRowsAffected = 0;
+                            if (query.Length > 1)
+                            {
+                                System.Diagnostics.Debug.WriteLine(query);
+                                command.CommandText = query;
+                                numRowsAffected = command.ExecuteNonQuery();
+                                if (numRowsAffected != 1)
+                                {
+                                    System.Diagnostics.Debug.WriteLine(String.Format("Query affected {0} rows instead of the expected 1 row.", numRowsAffected));
+                                }
+                            }
+                        }
+                        setIdentityInsert(command, dt.Rows[0]["Table"].ToString(), "OFF");
+                    }
+                }
+            }
+        }
+
+        public static void RemoveData(string[] ExcelFilenames)
+        {
+            string connectionString = getConnectionString();
+            string helperDir = cExcel.GetHelperFilesDir();
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = connection;
+                    foreach (string excelFile in ExcelFilenames.Reverse())
+                    {
+                        DataTable dt = new DataTable();
+                        cExcel _cExcel = new cExcel();
+                        string strSheetName = "Sheet1";
+                        dt = cExcel.ReadExcelFile(strSheetName, Path.Combine(helperDir, excelFile));
+                        string table = dt.Rows[0]["Table"].ToString();
+                        string query = string.Format("DELETE FROM {0}", table);
+                        System.Diagnostics.Debug.WriteLine(query);
+                        command.CommandText = query;
+                        int numRowsAffected = command.ExecuteNonQuery();
+                        System.Diagnostics.Debug.WriteLine(String.Format("\t{0} rows affected", numRowsAffected));
+                    }
+                }
+            }
+
+        }
+
+
+        public static String GetHelperFilesDir()
+        {
             string exeDir = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
             string helperFilesDir = Path.GetFullPath(Path.Combine(exeDir, "..\\..\\HelperFiles\\"));
-            //Go through each file in the directory and check to see if it is a xlsx file
-            foreach (var excelFilename in Directory.EnumerateDirectories(helperFilesDir))
-            {
-                if ("xlsx".Equals(Path.GetExtension(excelFilename)))
-                    ExcelFiles.Add(Path.Combine(helperFilesDir, excelFilename));
-            }
+            return helperFilesDir;
+        }
+
+        public static List<string> GetAllExcelFiles()
+        {
+            List<string> ExcelFiles = new List<string>();
+            string helperFilesDir = GetHelperFilesDir();
+            foreach (var excelFilename in Directory.GetFiles(helperFilesDir, "*.xlsx"))
+                ExcelFiles.Add(Path.Combine(helperFilesDir, excelFilename));
             return ExcelFiles;
         }
         public static void InsertProjectData(TestContext testContext)

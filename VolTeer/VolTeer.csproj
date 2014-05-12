@@ -93,6 +93,13 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Account\ChangePassword.aspx.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\ChangePassword.aspx.designer.cs">
+      <DependentUpon>ChangePassword.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Account\Login.aspx.cs">
       <DependentUpon>Login.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -184,6 +191,13 @@
     <Compile Include="Common\WebControls\ucGroups.ascx.designer.cs">
       <DependentUpon>ucGroups.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Common\WebControls\ucGroupVolInvite.ascx.cs">
+      <DependentUpon>ucGroupVolInvite.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Common\WebControls\ucGroupVolInvite.ascx.designer.cs">
+      <DependentUpon>ucGroupVolInvite.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Common\WebControls\ucHistory.ascx.cs">
       <DependentUpon>ucHistory.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -218,6 +232,13 @@
     </Compile>
     <Compile Include="Common\WebControls\ucSkillSearch.ascx.designer.cs">
       <DependentUpon>ucSkillSearch.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Common\WebControls\ucVolAddrSchedule.ascx.cs">
+      <DependentUpon>ucVolAddrSchedule.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Common\WebControls\ucVolAddrSchedule.ascx.designer.cs">
+      <DependentUpon>ucVolAddrSchedule.ascx</DependentUpon>
     </Compile>
     <Compile Include="Common\WebControls\ucVolBasicInfo.ascx.cs">
       <DependentUpon>ucVolBasicInfo.ascx</DependentUpon>
@@ -410,6 +431,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Account\ChangePassword.aspx" />
     <Content Include="Account\Login.aspx" />
     <Content Include="Account\ManageRole.aspx" />
     <Content Include="Account\ManageUser.aspx" />
@@ -459,14 +481,256 @@
     <Content Include="Common\WebControls\ucEditSkill.ascx" />
     <Content Include="Common\WebControls\ucEmail.ascx" />
     <Content Include="Common\WebControls\ucGroups.ascx" />
+    <Content Include="Common\WebControls\ucGroupVolInvite.ascx" />
     <Content Include="Common\WebControls\ucHistory.ascx" />
     <Content Include="Common\WebControls\ucPhone.ascx" />
     <Content Include="Common\WebControls\ucPrimary.ascx" />
     <Content Include="Common\WebControls\ucSkill.ascx" />
     <Content Include="Common\WebControls\ucSkillSearch.ascx" />
+    <Content Include="Common\WebControls\ucVolAddrSchedule.ascx" />
     <Content Include="Common\WebControls\ucVolBasicInfo.ascx" />
     <Content Include="Content\button\ButtonSprites.png" />
     <Content Include="Content\GridStyleSheet.css" />
+    <Content Include="Content\imageLibrary\PNG\about_16.png" />
+    <Content Include="Content\imageLibrary\PNG\about_24.png" />
+    <Content Include="Content\imageLibrary\PNG\about_32.png" />
+    <Content Include="Content\imageLibrary\PNG\addbk_16.png" />
+    <Content Include="Content\imageLibrary\PNG\addbk_24.png" />
+    <Content Include="Content\imageLibrary\PNG\addbk_32.png" />
+    <Content Include="Content\imageLibrary\PNG\add_16.png" />
+    <Content Include="Content\imageLibrary\PNG\add_24.png" />
+    <Content Include="Content\imageLibrary\PNG\add_32.png" />
+    <Content Include="Content\imageLibrary\PNG\adfav_16.png" />
+    <Content Include="Content\imageLibrary\PNG\adfav_24.png" />
+    <Content Include="Content\imageLibrary\PNG\adfav_32.png" />
+    <Content Include="Content\imageLibrary\PNG\apps_16.png" />
+    <Content Include="Content\imageLibrary\PNG\apps_24.png" />
+    <Content Include="Content\imageLibrary\PNG\apps_32.png" />
+    <Content Include="Content\imageLibrary\PNG\back_16.png" />
+    <Content Include="Content\imageLibrary\PNG\back_24.png" />
+    <Content Include="Content\imageLibrary\PNG\back_32.png" />
+    <Content Include="Content\imageLibrary\PNG\calc_16.png" />
+    <Content Include="Content\imageLibrary\PNG\calc_24.png" />
+    <Content Include="Content\imageLibrary\PNG\calc_32.png" />
+    <Content Include="Content\imageLibrary\PNG\cal_16.png" />
+    <Content Include="Content\imageLibrary\PNG\cal_24.png" />
+    <Content Include="Content\imageLibrary\PNG\cal_32.png" />
+    <Content Include="Content\imageLibrary\PNG\cancl_16.png" />
+    <Content Include="Content\imageLibrary\PNG\cancl_24.png" />
+    <Content Include="Content\imageLibrary\PNG\cancl_32.png" />
+    <Content Include="Content\imageLibrary\PNG\cart_16.png" />
+    <Content Include="Content\imageLibrary\PNG\cart_24.png" />
+    <Content Include="Content\imageLibrary\PNG\cart_32.png" />
+    <Content Include="Content\imageLibrary\PNG\cd_16.png" />
+    <Content Include="Content\imageLibrary\PNG\cd_24.png" />
+    <Content Include="Content\imageLibrary\PNG\cd_32.png" />
+    <Content Include="Content\imageLibrary\PNG\chart_16.png" />
+    <Content Include="Content\imageLibrary\PNG\chart_24.png" />
+    <Content Include="Content\imageLibrary\PNG\chart_32.png" />
+    <Content Include="Content\imageLibrary\PNG\close_16.png" />
+    <Content Include="Content\imageLibrary\PNG\close_24.png" />
+    <Content Include="Content\imageLibrary\PNG\close_32.png" />
+    <Content Include="Content\imageLibrary\PNG\confg_16.png" />
+    <Content Include="Content\imageLibrary\PNG\confg_24.png" />
+    <Content Include="Content\imageLibrary\PNG\confg_32.png" />
+    <Content Include="Content\imageLibrary\PNG\copy_16.png" />
+    <Content Include="Content\imageLibrary\PNG\copy_24.png" />
+    <Content Include="Content\imageLibrary\PNG\copy_32.png" />
+    <Content Include="Content\imageLibrary\PNG\cut_16.png" />
+    <Content Include="Content\imageLibrary\PNG\cut_24.png" />
+    <Content Include="Content\imageLibrary\PNG\cut_32.png" />
+    <Content Include="Content\imageLibrary\PNG\del_16.png" />
+    <Content Include="Content\imageLibrary\PNG\del_24.png" />
+    <Content Include="Content\imageLibrary\PNG\del_32.png" />
+    <Content Include="Content\imageLibrary\PNG\docs_16.png" />
+    <Content Include="Content\imageLibrary\PNG\docs_24.png" />
+    <Content Include="Content\imageLibrary\PNG\docs_32.png" />
+    <Content Include="Content\imageLibrary\PNG\down_16.png" />
+    <Content Include="Content\imageLibrary\PNG\down_24.png" />
+    <Content Include="Content\imageLibrary\PNG\down_32.png" />
+    <Content Include="Content\imageLibrary\PNG\edit_16.png" />
+    <Content Include="Content\imageLibrary\PNG\edit_24.png" />
+    <Content Include="Content\imageLibrary\PNG\edit_32.png" />
+    <Content Include="Content\imageLibrary\PNG\exp_16.png" />
+    <Content Include="Content\imageLibrary\PNG\exp_24.png" />
+    <Content Include="Content\imageLibrary\PNG\exp_32.png" />
+    <Content Include="Content\imageLibrary\PNG\fastf_16.png" />
+    <Content Include="Content\imageLibrary\PNG\fastf_24.png" />
+    <Content Include="Content\imageLibrary\PNG\fastf_32.png" />
+    <Content Include="Content\imageLibrary\PNG\favs_16.png" />
+    <Content Include="Content\imageLibrary\PNG\favs_24.png" />
+    <Content Include="Content\imageLibrary\PNG\favs_32.png" />
+    <Content Include="Content\imageLibrary\PNG\fax_16.png" />
+    <Content Include="Content\imageLibrary\PNG\fax_24.png" />
+    <Content Include="Content\imageLibrary\PNG\fax_32.png" />
+    <Content Include="Content\imageLibrary\PNG\flag_16.png" />
+    <Content Include="Content\imageLibrary\PNG\flag_24.png" />
+    <Content Include="Content\imageLibrary\PNG\flag_32.png" />
+    <Content Include="Content\imageLibrary\PNG\foldr_16.png" />
+    <Content Include="Content\imageLibrary\PNG\foldr_24.png" />
+    <Content Include="Content\imageLibrary\PNG\foldr_32.png" />
+    <Content Include="Content\imageLibrary\PNG\forwd_16.png" />
+    <Content Include="Content\imageLibrary\PNG\forwd_24.png" />
+    <Content Include="Content\imageLibrary\PNG\forwd_32.png" />
+    <Content Include="Content\imageLibrary\PNG\games_16.png" />
+    <Content Include="Content\imageLibrary\PNG\games_24.png" />
+    <Content Include="Content\imageLibrary\PNG\games_32.png" />
+    <Content Include="Content\imageLibrary\PNG\go_16.png" />
+    <Content Include="Content\imageLibrary\PNG\go_24.png" />
+    <Content Include="Content\imageLibrary\PNG\go_32.png" />
+    <Content Include="Content\imageLibrary\PNG\group_16.png" />
+    <Content Include="Content\imageLibrary\PNG\group_24.png" />
+    <Content Include="Content\imageLibrary\PNG\group_32.png" />
+    <Content Include="Content\imageLibrary\PNG\hd_16.png" />
+    <Content Include="Content\imageLibrary\PNG\hd_24.png" />
+    <Content Include="Content\imageLibrary\PNG\hd_32.png" />
+    <Content Include="Content\imageLibrary\PNG\help_16.png" />
+    <Content Include="Content\imageLibrary\PNG\help_24.png" />
+    <Content Include="Content\imageLibrary\PNG\help_32.png" />
+    <Content Include="Content\imageLibrary\PNG\hist_16.png" />
+    <Content Include="Content\imageLibrary\PNG\hist_24.png" />
+    <Content Include="Content\imageLibrary\PNG\hist_32.png" />
+    <Content Include="Content\imageLibrary\PNG\home_16.png" />
+    <Content Include="Content\imageLibrary\PNG\home_24.png" />
+    <Content Include="Content\imageLibrary\PNG\home_32.png" />
+    <Content Include="Content\imageLibrary\PNG\image_16.png" />
+    <Content Include="Content\imageLibrary\PNG\image_24.png" />
+    <Content Include="Content\imageLibrary\PNG\image_32.png" />
+    <Content Include="Content\imageLibrary\PNG\impt_16.png" />
+    <Content Include="Content\imageLibrary\PNG\impt_24.png" />
+    <Content Include="Content\imageLibrary\PNG\impt_32.png" />
+    <Content Include="Content\imageLibrary\PNG\lgicn_16.png" />
+    <Content Include="Content\imageLibrary\PNG\lgicn_24.png" />
+    <Content Include="Content\imageLibrary\PNG\lgicn_32.png" />
+    <Content Include="Content\imageLibrary\PNG\lock_16.png" />
+    <Content Include="Content\imageLibrary\PNG\lock_24.png" />
+    <Content Include="Content\imageLibrary\PNG\lock_32.png" />
+    <Content Include="Content\imageLibrary\PNG\mail_16.png" />
+    <Content Include="Content\imageLibrary\PNG\mail_24.png" />
+    <Content Include="Content\imageLibrary\PNG\mail_32.png" />
+    <Content Include="Content\imageLibrary\PNG\move_16.png" />
+    <Content Include="Content\imageLibrary\PNG\move_24.png" />
+    <Content Include="Content\imageLibrary\PNG\move_32.png" />
+    <Content Include="Content\imageLibrary\PNG\music_16.png" />
+    <Content Include="Content\imageLibrary\PNG\music_24.png" />
+    <Content Include="Content\imageLibrary\PNG\music_32.png" />
+    <Content Include="Content\imageLibrary\PNG\new_16.png" />
+    <Content Include="Content\imageLibrary\PNG\new_24.png" />
+    <Content Include="Content\imageLibrary\PNG\new_32.png" />
+    <Content Include="Content\imageLibrary\PNG\notep_16.png" />
+    <Content Include="Content\imageLibrary\PNG\notep_24.png" />
+    <Content Include="Content\imageLibrary\PNG\notep_32.png" />
+    <Content Include="Content\imageLibrary\PNG\ntwrk_16.png" />
+    <Content Include="Content\imageLibrary\PNG\ntwrk_24.png" />
+    <Content Include="Content\imageLibrary\PNG\ntwrk_32.png" />
+    <Content Include="Content\imageLibrary\PNG\open_16.png" />
+    <Content Include="Content\imageLibrary\PNG\open_24.png" />
+    <Content Include="Content\imageLibrary\PNG\open_32.png" />
+    <Content Include="Content\imageLibrary\PNG\opnbr_16.png" />
+    <Content Include="Content\imageLibrary\PNG\opnbr_24.png" />
+    <Content Include="Content\imageLibrary\PNG\opnbr_32.png" />
+    <Content Include="Content\imageLibrary\PNG\opts_16.png" />
+    <Content Include="Content\imageLibrary\PNG\opts_24.png" />
+    <Content Include="Content\imageLibrary\PNG\opts_32.png" />
+    <Content Include="Content\imageLibrary\PNG\paint_16.png" />
+    <Content Include="Content\imageLibrary\PNG\paint_24.png" />
+    <Content Include="Content\imageLibrary\PNG\paint_32.png" />
+    <Content Include="Content\imageLibrary\PNG\paste_16.png" />
+    <Content Include="Content\imageLibrary\PNG\paste_24.png" />
+    <Content Include="Content\imageLibrary\PNG\paste_32.png" />
+    <Content Include="Content\imageLibrary\PNG\pause_16.png" />
+    <Content Include="Content\imageLibrary\PNG\pause_24.png" />
+    <Content Include="Content\imageLibrary\PNG\pause_32.png" />
+    <Content Include="Content\imageLibrary\PNG\phone_16.png" />
+    <Content Include="Content\imageLibrary\PNG\phone_24.png" />
+    <Content Include="Content\imageLibrary\PNG\phone_32.png" />
+    <Content Include="Content\imageLibrary\PNG\picts_16.png" />
+    <Content Include="Content\imageLibrary\PNG\picts_24.png" />
+    <Content Include="Content\imageLibrary\PNG\picts_32.png" />
+    <Content Include="Content\imageLibrary\PNG\play_16.png" />
+    <Content Include="Content\imageLibrary\PNG\play_24.png" />
+    <Content Include="Content\imageLibrary\PNG\play_32.png" />
+    <Content Include="Content\imageLibrary\PNG\prefs_16.png" />
+    <Content Include="Content\imageLibrary\PNG\prefs_24.png" />
+    <Content Include="Content\imageLibrary\PNG\prefs_32.png" />
+    <Content Include="Content\imageLibrary\PNG\print_16.png" />
+    <Content Include="Content\imageLibrary\PNG\print_24.png" />
+    <Content Include="Content\imageLibrary\PNG\print_32.png" />
+    <Content Include="Content\imageLibrary\PNG\prtpv_16.png" />
+    <Content Include="Content\imageLibrary\PNG\prtpv_24.png" />
+    <Content Include="Content\imageLibrary\PNG\prtpv_32.png" />
+    <Content Include="Content\imageLibrary\PNG\redo_16.png" />
+    <Content Include="Content\imageLibrary\PNG\redo_24.png" />
+    <Content Include="Content\imageLibrary\PNG\redo_32.png" />
+    <Content Include="Content\imageLibrary\PNG\ref_16.png" />
+    <Content Include="Content\imageLibrary\PNG\ref_24.png" />
+    <Content Include="Content\imageLibrary\PNG\ref_32.png" />
+    <Content Include="Content\imageLibrary\PNG\remov_16.png" />
+    <Content Include="Content\imageLibrary\PNG\remov_24.png" />
+    <Content Include="Content\imageLibrary\PNG\remov_32.png" />
+    <Content Include="Content\imageLibrary\PNG\rewnd_16.png" />
+    <Content Include="Content\imageLibrary\PNG\rewnd_24.png" />
+    <Content Include="Content\imageLibrary\PNG\rewnd_32.png" />
+    <Content Include="Content\imageLibrary\PNG\savas_16.png" />
+    <Content Include="Content\imageLibrary\PNG\savas_24.png" />
+    <Content Include="Content\imageLibrary\PNG\savas_32.png" />
+    <Content Include="Content\imageLibrary\PNG\save_16.png" />
+    <Content Include="Content\imageLibrary\PNG\save_24.png" />
+    <Content Include="Content\imageLibrary\PNG\save_32.png" />
+    <Content Include="Content\imageLibrary\PNG\sinfo_16.png" />
+    <Content Include="Content\imageLibrary\PNG\sinfo_24.png" />
+    <Content Include="Content\imageLibrary\PNG\sinfo_32.png" />
+    <Content Include="Content\imageLibrary\PNG\skipb_16.png" />
+    <Content Include="Content\imageLibrary\PNG\skipb_24.png" />
+    <Content Include="Content\imageLibrary\PNG\skipb_32.png" />
+    <Content Include="Content\imageLibrary\PNG\skipf_16.png" />
+    <Content Include="Content\imageLibrary\PNG\skipf_24.png" />
+    <Content Include="Content\imageLibrary\PNG\skipf_32.png" />
+    <Content Include="Content\imageLibrary\PNG\smicn_16.png" />
+    <Content Include="Content\imageLibrary\PNG\smicn_24.png" />
+    <Content Include="Content\imageLibrary\PNG\smicn_32.png" />
+    <Content Include="Content\imageLibrary\PNG\splay_16.png" />
+    <Content Include="Content\imageLibrary\PNG\splay_24.png" />
+    <Content Include="Content\imageLibrary\PNG\splay_32.png" />
+    <Content Include="Content\imageLibrary\PNG\srch_16.png" />
+    <Content Include="Content\imageLibrary\PNG\srch_24.png" />
+    <Content Include="Content\imageLibrary\PNG\srch_32.png" />
+    <Content Include="Content\imageLibrary\PNG\stop_16.png" />
+    <Content Include="Content\imageLibrary\PNG\stop_24.png" />
+    <Content Include="Content\imageLibrary\PNG\stop_32.png" />
+    <Content Include="Content\imageLibrary\PNG\timer_16.png" />
+    <Content Include="Content\imageLibrary\PNG\timer_24.png" />
+    <Content Include="Content\imageLibrary\PNG\timer_32.png" />
+    <Content Include="Content\imageLibrary\PNG\tools_16.png" />
+    <Content Include="Content\imageLibrary\PNG\tools_24.png" />
+    <Content Include="Content\imageLibrary\PNG\tools_32.png" />
+    <Content Include="Content\imageLibrary\PNG\trash_16.png" />
+    <Content Include="Content\imageLibrary\PNG\trash_24.png" />
+    <Content Include="Content\imageLibrary\PNG\trash_32.png" />
+    <Content Include="Content\imageLibrary\PNG\ulock_16.png" />
+    <Content Include="Content\imageLibrary\PNG\ulock_24.png" />
+    <Content Include="Content\imageLibrary\PNG\ulock_32.png" />
+    <Content Include="Content\imageLibrary\PNG\undo_16.png" />
+    <Content Include="Content\imageLibrary\PNG\undo_24.png" />
+    <Content Include="Content\imageLibrary\PNG\undo_32.png" />
+    <Content Include="Content\imageLibrary\PNG\up_16.png" />
+    <Content Include="Content\imageLibrary\PNG\up_24.png" />
+    <Content Include="Content\imageLibrary\PNG\up_32.png" />
+    <Content Include="Content\imageLibrary\PNG\user_16.png" />
+    <Content Include="Content\imageLibrary\PNG\user_24.png" />
+    <Content Include="Content\imageLibrary\PNG\user_32.png" />
+    <Content Include="Content\imageLibrary\PNG\web_16.png" />
+    <Content Include="Content\imageLibrary\PNG\web_24.png" />
+    <Content Include="Content\imageLibrary\PNG\web_32.png" />
+    <Content Include="Content\imageLibrary\PNG\wiz_16.png" />
+    <Content Include="Content\imageLibrary\PNG\wiz_24.png" />
+    <Content Include="Content\imageLibrary\PNG\wiz_32.png" />
+    <Content Include="Content\imageLibrary\PNG\zoomi_16.png" />
+    <Content Include="Content\imageLibrary\PNG\zoomi_24.png" />
+    <Content Include="Content\imageLibrary\PNG\zoomi_32.png" />
+    <Content Include="Content\imageLibrary\PNG\zoomo_16.png" />
+    <Content Include="Content\imageLibrary\PNG\zoomo_24.png" />
+    <Content Include="Content\imageLibrary\PNG\zoomo_32.png" />
     <Content Include="Content\images\background_image.png" />
     <Content Include="Content\images\Beef_Stewed.png" />
     <Content Include="Content\images\Chocolate_Cheesecake.png" />

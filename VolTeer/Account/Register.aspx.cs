@@ -55,7 +55,7 @@ namespace VolTeer.Account
 
             cMail.SendMessage("test@test.com", (CreateUserWizardStep1.ContentTemplateContainer.FindControl("Email") as RadTextBox).Text.Trim(), "VolTeer Registration", "Please click link to confirm");
 
-            string continueUrl = "~/";
+            string continueUrl = ConfigurationManager.AppSettings["HomePage"].ToString();
             Response.Redirect(continueUrl);
 
         }

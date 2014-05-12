@@ -41,6 +41,33 @@ namespace VolTeer.DataAccessLayer.VT.Vol
 
         }
 
+        public List<sp_Volunteer_DM> ListGroupFindVols(sp_Group_DM Group)
+        {
+            List<sp_Volunteer_DM> list = new List<sp_Volunteer_DM>();
+            try
+            {
+                using (VolTeerEntities context = new VolTeerEntities())
+                {
+                    list = (from result in context.sp_GroupVol_Select_FindNewVols(Group.GroupID)
+                            select new sp_Volunteer_DM
+                            {
+                                ActiveFlg = result.VolActive,
+                                VolFirstName = result.VolFirstName,
+                                VolMiddleName = result.VolMiddleName,
+                                VolLastName = result.VolLastName,
+                                VolID = result.VolID
+                            }).ToList();
+                } // Guaranteed to close the Connection
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+
+            return list;
+
+        }
+
         # region Inserts
 
         public sp_Vol_GroupVol_DM InsertGroupContext(ref sp_Vol_GroupVol_DM _cGroup)
