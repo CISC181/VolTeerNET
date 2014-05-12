@@ -21,7 +21,8 @@
 
 .PasswordChangeTitle {
     font-size:xx-large;
-    font-weight:500;
+    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+    font-weight:bold;
 }
 
 html {

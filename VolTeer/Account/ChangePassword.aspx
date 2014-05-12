@@ -9,13 +9,13 @@
     <div class="groupWrapper">
         <asp:ChangePassword ID="ChangePassword1" 
             runat="server" 
-            Width="385px"  TitleTextStyle-CssClass="PasswordChangeTitle"
+            Width="385px" ChangePasswordTitleText="Change Password"
+            TitleTextStyle-CssClass="PasswordChangeTitle" 
+            SuccessTitleText="Your password has changed."
             EnableViewState="false" 
             OnContinueButtonClick="ChangePassword1_ContinueButtonClick" 
-            OnCancelButtonClick="ChangePassword1_CancelButtonClick"
-            
+            OnCancelButtonClick="ChangePassword1_CancelButtonClick"            
             OnChangingPassword="ChangePassword1_ChangingPassword">
-
         </asp:ChangePassword>
         <asp:Label ID="LabelChangePassword" Text="" Font-Size="Large" ForeColor="Green" runat="server"></asp:Label>
     </div>
