@@ -100,6 +100,7 @@
     <None Include="HelperFiles\GroupAddr.xlsx" />
     <None Include="HelperFiles\GroupVol.xlsx" />
     <None Include="HelperFiles\Skill.xlsx" />
+    <None Include="HelperFiles\VolAddr.xlsx" />
     <None Include="HelperFiles\VolAddress.xlsx" />
     <None Include="HelperFiles\VolEmail.xlsx" />
     <None Include="HelperFiles\VolPhone.xlsx" />
