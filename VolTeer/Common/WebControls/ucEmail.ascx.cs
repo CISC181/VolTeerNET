@@ -87,6 +87,7 @@ namespace VolTeer.Common.WebControls
             {
                 if (e.Item is GridEditableItem && e.Item.IsInEditMode)
                 {
+
                     if (e.Item is GridEditFormInsertItem)
                     {
                         GridEditableItem edtItem = (GridEditableItem)e.Item;
@@ -111,6 +112,12 @@ namespace VolTeer.Common.WebControls
 
                         CheckBox chkPrimaryAddr = (CheckBox)edtItem.FindControl("chkPrimaryFlg");
                         chkPrimaryAddr.Checked = (bool)DataBinder.Eval(edtItem.DataItem, "PrimaryFlg");
+
+                        if (chkPrimaryAddr.Checked)
+                        {
+                           // chkPrimaryAddr.
+                            //Make control unclickable
+                        }
                     }
                 }
 
