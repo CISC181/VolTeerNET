@@ -6,7 +6,7 @@ using VolTeer.DomainModels.VT.Vend;
 
 namespace VolTeer.DataAccessLayer.VT.Vend
 {
-    class sp_ContactEmail_DAL
+    public class sp_ContactEmail_DAL
     {
         #region Select Statements
         public List<sp_ContactEmail_DM> ListContacts()
@@ -32,7 +32,7 @@ namespace VolTeer.DataAccessLayer.VT.Vend
             return list;
         }
 
-        public List<sp_ContactEmail_DM> ListContacts(Guid contactid)
+        public List<sp_ContactEmail_DM> ListContacts(Guid? contactid)
         {
             List<sp_ContactEmail_DM> list = new List<sp_ContactEmail_DM>();
             try
