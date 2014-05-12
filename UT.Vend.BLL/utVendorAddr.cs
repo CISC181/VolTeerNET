@@ -15,7 +15,7 @@ using System.Linq;
 namespace UT.Vend.BLL
 {
     [TestClass]
-    public class utVendAddress
+    public class utVendorAddr
     {
         static string[] ExcelFilenames = new string[] {
             "VendAddress.xlsx", "Vendor.xlsx","VendorAddr.xlsx"
@@ -26,30 +26,46 @@ namespace UT.Vend.BLL
       
 
         [ClassInitialize]
-        public static void InsertVendAddressData(TestContext testContext)
+        public static void InsertVendorAddrData(TestContext testContext)
         {
             cExcel.InsertData(ExcelFilenames);
             
         }
 
         [TestMethod]
-        public void TestVendAddressRead()
+        public void TestVendorAddrRead()
         {
-            //Test Our Read
-            DataTable dt = cExcel.ReadExcelFile("Sheet1", Path.Combine(cExcel.GetHelperFilesDir(), "VendAddress.xlsx"));
-            foreach (DataRow row in dt.Rows) // Loop over the rows.
-            {
-                int AddrID = Convert.ToInt32(row["AddrID"].ToString());
-                sp_VendAddress_BLL vend = new sp_VendAddress_BLL();
-                sp_VendAddress_DM data = vend.ListAddresses(AddrID);
-                Assert.AreEqual(row["AddrLine1"].ToString(), data.AddrLine1, "AddrLine1 Not Set As Expected");
-                Assert.AreEqual(row["AddrLine2"].ToString(), data.AddrLine2, "AddrLine2 Not Set As Expected");
-                Assert.AreEqual(row["AddrLine3"].ToString(), data.AddrLine3, "AddrLine3 Not Set As Expected");
-                Assert.AreEqual(row["City"].ToString(), data.City, "City Not Set As Expected");
-                Assert.AreEqual(row["St"].ToString(), data.St, "St Not Set As Expected");
-                Assert.AreEqual(Convert.ToInt32(row["Zip"]), data.Zip, "Zip Not Set As Expected"); //Floats don't work
-                Assert.AreEqual(Convert.ToInt32(row["Zip4"]), data.Zip4, "Zip4 Not Set As Expected"); //Ints don't work
-            }
+            Assert.AreEqual(false, true, "VendorAddr DAL or BLL Not Implemented");
+            //@TODO - DAL or BLL Not Implemented
+        }
+
+        [TestMethod]
+        public void TestVendorAddrUpdate()
+        {
+            Assert.AreEqual(false, true, "VendorAddr DAL or BLL Not Implemented");
+            //@TODO - DAL or BLL Not Implemented
+        }
+
+
+        [TestMethod]
+        public void TestVendorAddrInsert()
+        {
+            Assert.AreEqual(false, true, "VendorAddr Update DAL Not Implemented");
+            //@TODO - DAL or BLL Not Implemented
+        }
+
+        [TestMethod]
+        public void TTestVendorAddrDelete()
+        {
+            Assert.AreEqual(false, true, "VendorAddr Delete DAL Not Implemented");
+            //@TODO - DAL or BLL Not Implemented
+        }
+
+        [TestMethod]
+        public void TestContactEmailInsert()
+        {
+            Assert.AreEqual(false, true, "Contact Email Insert DAL Not Implemented");
+            //@TODO - DAL Not Implemented
         }
 
 

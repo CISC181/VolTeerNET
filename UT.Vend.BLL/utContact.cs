@@ -74,28 +74,25 @@ namespace UT.Vend.BLL
             }
         }
 
-        [TestMethod]
-        public void TestContactDelete()
-        {
-            /*
-            DataTable dt = cExcel.ReadExcelFile("Sheet1", Path.Combine(cExcel.GetHelperFilesDir(), "Contact.xlsx"));
-            foreach (DataRow row in dt.Rows) // Loop over the rows.
+            [TestMethod]
+            public void TestContactDelete()
             {
-                string contactID = row["ContactID"].ToString();
-                sp_VendContact_DM data = new sp_VendContact_DM();
-                data.ContactID = new Guid(contactID);
-                sp_VendContact_BLL contact = new sp_VendContact_BLL();
-                contact.DeleteContactContext(data);
-                data = contact.ListContacts(new Guid(contactID));
-                Assert.AreEqual(false, data.ActiveFlg, "ActiveFlag not set as expected");
+                DataTable dt = cExcel.ReadExcelFile("Sheet1", Path.Combine(cExcel.GetHelperFilesDir(), "Contact.xlsx"));
+                foreach (DataRow row in dt.Rows) // Loop over the rows.
+                {
+                    string contactID = row["ContactID"].ToString();
+                    sp_VendContact_DM data = new sp_VendContact_DM();
+                    data.ContactID = new Guid(contactID);
+                    sp_VendContact_BLL contact = new sp_VendContact_BLL();
+                    contact.DeleteContactContext(data);
+                    data = contact.ListContacts(new Guid(contactID));
+                    Assert.AreEqual(false, data.ActiveFlg, "ActiveFlag not set as expected");
+                }
             }
-            */
-        }
 
         [TestMethod]
         public void TestContactInsert()
         {
-            //Test Our Read
             sp_VendContact_DM data = new sp_VendContact_DM();
             data.ContactID = new Guid();
             string insertFirstName = "A";

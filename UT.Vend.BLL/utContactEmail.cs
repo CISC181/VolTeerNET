@@ -51,19 +51,22 @@ namespace UT.Vend.BLL
         [TestMethod]
         public void TestContactEmailUpdate()
         {
-            //@TODO - DAL Implemented
+            Assert.AreEqual(false, true, "Contact Email Update DAL Not Implemented");
+            //@TODO - DAL Not Implemented
         }
 
         [TestMethod]
         public void TestContactEmailDelete()
         {
-            //@TODO - DAL Implemented
+            Assert.AreEqual(false, true, "Contact Email Delete DAL Not Implemented");
+            //@TODO - DAL Not Implemented
         }
 
         [TestMethod]
         public void TestContactEmailInsert()
         {
-            //@TODO - DAL Implemented
+            Assert.AreEqual(false, true, "Contact Email Insert DAL Not Implemented");
+            //@TODO - DAL Not Implemented
         }
 
 

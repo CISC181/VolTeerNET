@@ -1,0 +1,29 @@
+Contact
+	Create - Pass
+	Read - Pass
+	Update - Pass 
+	Delete - Fail (Uncaught exception in sp_VendContact_DAL.DeleteContactContext(sp_VendContact_DM InputContact))
+
+ContactEmail
+	Create - DAL Not Implemented
+	Read- Fail  (Uncaught exception in sp_ContactEmail_DAL.ListContacts(Guid? contactid))
+	Update - DAL Not Implemented
+	Delete - DAL Not Implemented
+
+VendAddress
+	Create -  Pass
+	Read - Pass
+	Update - Fail (Uncaught exception in sp_VendAddress_DAL.UpdateAddressContext(sp_VendAddress_DM InputAddress)
+	Delete - Pass	
+
+Vendor
+	Create - Fail (Uncaught exception in sp_Vendor_DAL.InsertVendorContext(ref sp_Vendor_DM _cVendor)
+	Read - Pass
+ 	Update - Fail (Uncaught exception in sp_Vendor_DAL.UpdateVolunteerContext(sp_Vendor_DM _cVendor))
+	Delete - Fail (Uncaught exception in sp_Vendor_DAL.DeleteVendorContext(sp_Vendor_DM _cVendor))
+
+VendorAddr
+	Create - BLL or DAL Not Implemented
+	Read - BLL or DAL Not Implemented
+	Update - BLL or DAL Not Implemented
+	Delete - BLL or DAL Not Implemented
