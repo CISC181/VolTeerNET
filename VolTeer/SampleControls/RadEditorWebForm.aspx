@@ -107,6 +107,12 @@
                 </Tools>
             </telerik:RadEditor>
             <br />
+
+
+            <asp:HiddenField ID="HDDGroupID" runat="server" />
+
+
+
             <asp:Table runat="server">
                 <asp:TableRow>
                     <asp:TableCell>
@@ -131,7 +137,7 @@
                         <asp:Label ID="lblShortDescLit" runat="server" Text="Short Description"></asp:Label>
                     </asp:TableCell>
                     <asp:TableCell>
-                        <telerik:RadTextBox ID="rTBShortDesc" runat="server" AutoCompleteType="None"
+                        <telerik:RadTextBox ID="rTBShortDesc" runat="server" AutoCompleteType="None" MaxLength="200"
                             EmptyMessage="Enter Short Description" Width="200px">
                         </telerik:RadTextBox>
                         <asp:RequiredFieldValidator ID="ReqShortDescription" ControlToValidate="rTBShortDesc" CssClass="field-validation-error" runat="server" Text="* Required"></asp:RequiredFieldValidator>
