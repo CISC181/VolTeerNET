@@ -6,6 +6,7 @@ using VolTeer.BusinessLogicLayer.VT.Vol;
 using UT.Vol.BLL.HelperMethods;
 using System.Data;
 using System.IO;
+using UT.Helper;
 
 namespace UT.Vol.BLL
 {
@@ -28,14 +29,14 @@ namespace UT.Vol.BLL
 
             DataTable dt = new DataTable();
             cExcel _cExcel = new cExcel();
-            string strSheetName = "Volunteer"; 
+            string strSheetName = "Volunteer";
 
-            dt = _cExcel.ReadExcelFile(strSheetName, CWorkbook);
+            dt = cExcel.ReadExcelFile(strSheetName, CWorkbook);
 
             foreach (DataRow row in dt.Rows) // Loop over the rows.
             {
 
-                Console.WriteLine("--- Row ---"); // Print separator.
+                System.Diagnostics.Debug.WriteLine("--- Row ---"); // Print separator.
                 string strFirstName = row["FirstName"].ToString();
                 string strMiddleName = row["MiddleName"].ToString();
                 string strLastName = row["LastName"].ToString();
@@ -53,7 +54,7 @@ namespace UT.Vol.BLL
                 Assert.AreEqual(insertVol.VolMiddleName, selectVol.VolMiddleName);
                 Assert.AreEqual(insertVol.VolLastName, selectVol.VolLastName);
 
-                Console.WriteLine(insertVol.VolID);
+                System.Diagnostics.Debug.WriteLine(insertVol.VolID);
                 System.Diagnostics.Debug.Write(insertVol.VolID);
             }
 
@@ -66,10 +67,9 @@ namespace UT.Vol.BLL
         {
 
             DataTable dt = new DataTable();
-            cExcel _cExcel = new cExcel();
             string strSheetName = "Volunteer";
 
-            dt = _cExcel.ReadExcelFile(strSheetName, CWorkbook);
+            dt = cExcel.ReadExcelFile(strSheetName, CWorkbook);
 
             // listVolunteers()
 
@@ -112,10 +112,9 @@ namespace UT.Vol.BLL
         {
 
             DataTable dt = new DataTable();
-            cExcel _cExcel = new cExcel();
             string strSheetName = "VolPhone";
 
-            dt = _cExcel.ReadExcelFile(strSheetName, CWorkbook);
+            dt = cExcel.ReadExcelFile(strSheetName, CWorkbook);
 
             foreach (DataRow row in dt.Rows) // Loop over the rows.
             {
@@ -184,10 +183,9 @@ namespace UT.Vol.BLL
         {
 
             DataTable dt = new DataTable();
-            cExcel _cExcel = new cExcel();
             string strSheetName = "VolEmail";
 
-            dt = _cExcel.ReadExcelFile(strSheetName, CWorkbook);
+            dt = cExcel.ReadExcelFile(strSheetName, CWorkbook);
 
             // listVolEmails()
 

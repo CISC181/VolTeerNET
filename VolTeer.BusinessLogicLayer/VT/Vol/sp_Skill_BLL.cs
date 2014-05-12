@@ -16,7 +16,7 @@ namespace VolTeer.BusinessLogicLayer.VT.Vol
         {
             return DAL.ListSkills();
         }
-        public sp_Skill_DM ListSkills(Guid? Skill)
+        public sp_Skill_DM ListSingleSkill(Guid? Skill)
         {
             return DAL.ListSkills(Skill).Single();
         }
@@ -36,6 +36,16 @@ namespace VolTeer.BusinessLogicLayer.VT.Vol
             DAL.DeleteSkillContext(_cSkill);
         }
 
+        public List<sp_Skill_DM> ListSkills(bool showNullMstrSkill)
+        {
+            return DAL.ListSkills(showNullMstrSkill);
+        }
+
+
+        List<sp_Skill_DM> sp_Skills_CON.ListSkills()
+        {
+            throw new NotImplementedException();
+        }
 
         List<sp_Skill_DM> sp_Skills_CON.ListSkills(Guid? Skill)
         {

@@ -80,7 +80,7 @@ namespace VolTeer.DataAccessLayer.VT.Vol
         /// InsertEmailContext - Will insert a record into Volunteer Email table via SProc
         /// </summary>
         /// <param name="_cVolunteer"></param>
-        public void InsertEmailContext(sp_Email_DM _cEmail)
+        public void InsertEmailContext(ref sp_Email_DM _cEmail)
         {
             using (VolTeerEntities context = new VolTeerEntities())
             {
@@ -109,10 +109,11 @@ namespace VolTeer.DataAccessLayer.VT.Vol
         {
             using (VolTeerEntities context = new VolTeerEntities())
             {
-                var cEmail = context.tblVolEmails.Find(_cEmail.EmailID);
+                var cEmail = context.tblVolEmails.Find(_cEmail.EmailID, _cEmail.VolID);
 
                 if (cEmail != null)
                 {
+                    cEmail.EmailID = _cEmail.EmailID;
                     cEmail.EmailAddr = _cEmail.EmailAddr;
                     cEmail.VolID = _cEmail.VolID;
                     cEmail.ActiveFlg = _cEmail.ActiveFlg;

@@ -20,7 +20,7 @@ namespace VolTeer.DataAccessLayer.VT
         public Nullable<bool> PrimaryContact { get; set; }
     
         public virtual tblContact tblContact { get; set; }
-        public virtual tblProject tblProject { get; set; }
         public virtual tblVendor tblVendor { get; set; }
+        public virtual tblProject tblProject { get; set; }
     }
 }

@@ -2,12 +2,28 @@
     cursor: auto;
 }
 
+.TextPicture {
+    vertical-align:bottom;
+    text-align:left;
+}
 .EditFormHeader td {
     font-size: 14px;
     padding: 4px !important;
     color: #0066cc;
 }
 
+.groupWrapper {
+     width: 370px;
+     margin: 0 2%;
+     height: 350px;
+     float: left;
+}
+
+.PasswordChangeTitle {
+    font-size:xx-large;
+    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+    font-weight:bold;
+}
 
 html {
     background-color: #e2e2e2;
@@ -45,6 +61,14 @@ a {
 header, footer, hgroup,
 nav, section {
     display: block;
+}
+
+.TopMainMenu {
+    height: 40px;
+    max-height: 26px;
+    padding-left: 30px;
+    float:left;
+   
 }
 
 mark {
@@ -108,13 +132,16 @@ h5, h6 {
     max-width: 95%;
 }
 
+#header {
+    height: 50px;
+    }
 #body {
-    background-color: #efeeef;
+    background-color: aliceblue;
     clear: both;
-    padding-bottom: 35px;
+    padding-bottom: 5px;
 }
 
-.main-content {
+/*.main-content {
     background: url("~/Content/images/accent.png") no-repeat;
     padding-left: 5px;
     padding-top: 5px;
@@ -122,7 +149,8 @@ h5, h6 {
 
 .featured + .main-content {
     background: url("../Images/heroAccent.png") no-repeat;
-}
+}*/
+
 
 header .content-wrapper {
     padding-top: 5px;
@@ -132,7 +160,6 @@ footer {
     bottom: 5px;
     position: relative;
     clear: both;
-    background-color: #e2e2e2;
     font-size: .8em;
     height: 35px;
 }
@@ -1105,17 +1132,19 @@ tr.pager td {
 
 .exampleWrapper {
     /*background: url('../Content/images/background_image.png') 0 20px no-repeat;*/
-    width: 1200px;
-    /*padding: 125px 120px 0 20px;*/
-    height: 600px;
+    width: 100%;
+    height: 100%;
     float: left;
 }
 
     .exampleWrapper .outerMultiPage {
-        height: 387px;
+        height: 600px;
         width: 593px;
-        margin-left: 15px;
-        margin-top: 30px;
+        border-color: darkblue;
+        border-width: 1px;
+        border-style: double;
+        /*margin-left: 15px;*/
+        /*margin-top: 30px;*/
     }
 
     .exampleWrapper .innerMultiPage {

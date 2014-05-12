@@ -6,7 +6,7 @@
 <head id="Head1" runat="server">
     <meta charset="utf-8" />
     <title><%: Page.Title %> - VolTeer</title>
-    <%--<link href="~/Content/Site.css" rel="stylesheet" />--%>
+    <link href="~/Content/Site.css" rel="stylesheet" />
     <link href="~/Content/Telerik.css" rel="stylesheet" />
     <link href="~/Content/GridStyleSheet.css" rel="stylesheet" />
     <link href="favicon.ico" rel="shortcut icon" type="image/x-icon" />
@@ -29,7 +29,7 @@
             <div class="content-wrapper">
                 <div class="float-right">
                     <p class="site-title">
-                        <asp:Image ID="Image1" runat="server" ImageUrl="~/Content/themes/base/images/volunteer-green-logo1.jpg" Height="61px" Width="107px" />
+                        <%--<asp:Image ID="Image1" runat="server" ImageUrl="~/Content/themes/base/images/volunteer-green-logo1.jpg" Height="61px" Width="107px" />--%>
                     </p>
 
                 </div>
@@ -57,27 +57,27 @@
 
             </div>
 
-            <div class="float-left">
 
 
-                <telerik:RadMenu ID="RadMenu1" CssClass="mainMenu" runat="server" Skin="Office2010Silver">
+                <telerik:RadMenu ID="RadMenu1" CssClass="TopMainMenu"  runat="server">
                     <Items>
                         <telerik:RadMenuItem Text="Home" NavigateUrl="~/Default.aspx" />
                         <telerik:RadMenuItem Text="Account">
                             <GroupSettings Width="300px" />
                             <Items>
                                 <telerik:RadMenuItem Text="Login" NavigateUrl="~/Account/Login.aspx" EnableImageSprite="true" CssClass="icon-chair"></telerik:RadMenuItem>
+                                <telerik:RadMenuItem Text="Change Password" NavigateUrl="~/Account/ChangePassword.aspx" EnableImageSprite="true" CssClass="icon-chair"></telerik:RadMenuItem>
                                 <telerik:RadMenuItem Text="Forgot Password" NavigateUrl="~/Account/RecoverPassword.aspx" EnableImageSprite="true" CssClass="icon-sofa"></telerik:RadMenuItem>
                                 <telerik:RadMenuItem Text="Manage Roles" NavigateUrl="~/Account/ManageRole.aspx" EnableImageSprite="true" CssClass="icon-table"></telerik:RadMenuItem>
                                 <telerik:RadMenuItem Text="Manage Users" NavigateUrl="~/Account/ManageUser.aspx" EnableImageSprite="true" CssClass="icon-table"></telerik:RadMenuItem>
                                 <telerik:RadMenuItem Text="Register" NavigateUrl="~/Account/Register.aspx" EnableImageSprite="true" CssClass="icon-table"></telerik:RadMenuItem>
                             </Items>
                         </telerik:RadMenuItem>
+                        <telerik:RadMenuItem Text="Manage Volunteer" NavigateUrl="~/Volunteer/ManageVolunteer.aspx" />
                         <telerik:RadMenuItem Text="ManageSkills" NavigateUrl="~/Skills/ManageSkills.aspx" />
                         <telerik:RadMenuItem Text="About" NavigateUrl="DefaultCS.aspx?page=aboutus" />
                     </Items>
                 </telerik:RadMenu>
-            </div>
         </header>
         <div id="body">
             <asp:ContentPlaceHolder runat="server" ID="FeaturedContent" />
@@ -85,13 +85,13 @@
                 <asp:ContentPlaceHolder runat="server" ID="MainContent" />
             </section>
         </div>
-        <footer>
+ <%--       <footer>
             <div class="content-wrapper">
                 <div class="float-left">
                     <p>&copy; <%: DateTime.Now.Year %> - My ASP.NET Application</p>
                 </div>
             </div>
-        </footer>
+        </footer>--%>
     </form>
 
 </body>

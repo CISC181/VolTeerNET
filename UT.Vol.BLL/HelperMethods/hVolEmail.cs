@@ -18,7 +18,7 @@ namespace UT.Vol.BLL.HelperMethods
             Email.EmailAddr = EmailAddr;
             Email.VolID = VolID;
 
-            VolEmailBll.InsertEmailContext(Email);
+            VolEmailBll.InsertEmailContext(ref Email);
 
             return Email;
 

@@ -13,39 +13,12 @@ namespace VolTeer.Account {
     public partial class RecoverPassword1 {
         
         /// <summary>
-        /// PasswordRecovery1 control.
+        /// PasswordRecovery2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.PasswordRecovery PasswordRecovery1;
-        
-        /// <summary>
-        /// pnlContinue control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlContinue;
-        
-        /// <summary>
-        /// lblUserNotFound control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblUserNotFound;
-        
-        /// <summary>
-        /// rBTNContinue control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadButton rBTNContinue;
+        protected global::System.Web.UI.WebControls.PasswordRecovery PasswordRecovery2;
     }
 }

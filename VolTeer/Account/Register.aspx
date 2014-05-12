@@ -25,23 +25,22 @@
         <h3>Use the form below to create a new account.</h3>
     </hgroup>
 
-    <asp:CreateUserWizard runat="server" ID="RegisterUser" Width="50%" CreateUserButtonText="Register"   Height="75px" ViewStateMode="Disabled" OnCreatedUser="RegisterUser_CreatedUser">
+    <asp:CreateUserWizard runat="server" ID="RegisterUser" Width="50%" CreateUserButtonText="Register" 
+        Height="75px" ViewStateMode="Disabled" OnCreateUserError="RegisterUser_CreateUserError" OnCreatedUser="RegisterUser_CreatedUser">
         <LayoutTemplate>
-            <asp:PlaceHolder runat="server" ID="wizardStepPlaceholder"  />
+            <asp:PlaceHolder runat="server" ID="wizardStepPlaceholder" />
             <asp:PlaceHolder runat="server" ID="navigationPlaceholder" />
         </LayoutTemplate>
         <WizardSteps>
 
             <asp:CreateUserWizardStep ID="CreateUserWizardStep1" runat="server">
                 <ContentTemplate>
-
                     <asp:Table HorizontalAlign="left" runat="server" ID="tbRegister" Font-Names="Verdana" Font-Size="X-Small">
                         <asp:TableHeaderRow>
                             <asp:TableCell ColumnSpan="2">
                                 <asp:Label ID="lblHeader" runat="server" Text="Sign Up for Your New Account"></asp:Label>
                             </asp:TableCell>
                         </asp:TableHeaderRow>
-
                         <asp:TableRow>
                             <asp:TableCell>
                                 <asp:Label ID="lblName" runat="server" Text="Name">
@@ -58,33 +57,19 @@
                                 <telerik:RadTextBox ID="rTXTLastName" runat="server" EmptyMessage="First Name" Width="100px">
                                 </telerik:RadTextBox>
                                 &nbsp;
-
                             </asp:TableCell>
                         </asp:TableRow>
-
                         <asp:TableRow>
                             <asp:TableCell>
                                 <asp:Label ID="UserNameLabel" runat="server" AssociatedControlID="UserName" Text="User Name:">
                                 </asp:Label>
                             </asp:TableCell>
                             <asp:TableCell>
-                                <telerik:RadTextBox ID="UserName" EmptyMessage="User Name" EnableSingleInputRendering="false"  runat="server"></telerik:RadTextBox>
+                                <telerik:RadTextBox ID="UserName" EmptyMessage="User Name" EnableSingleInputRendering="false" runat="server"></telerik:RadTextBox>
                                 <asp:RequiredFieldValidator ID="UserNameRequired" runat="server" ControlToValidate="UserName"
                                     ErrorMessage="User Name is required." ToolTip="User Name is required." ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator>
                             </asp:TableCell>
                         </asp:TableRow>
-
-
-
-
-
-
-
-
-
-
-
-
                         <asp:TableRow>
                             <asp:TableCell>
                                 <asp:Label ID="PasswordLabel" runat="server" AssociatedControlID="Password" Text="Password"></asp:Label>
@@ -95,14 +80,11 @@
                                     ErrorMessage="Password is required." ToolTip="Password is required." ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator>
                             </asp:TableCell>
                         </asp:TableRow>
-
                         <asp:TableRow>
                             <asp:TableCell>
                                 <asp:Label ID="ConfirmPasswordLabel" runat="server" AssociatedControlID="ConfirmPassword" Text="Confirm Password:"></asp:Label>
                             </asp:TableCell>
                             <asp:TableCell>
-
-
                                 <telerik:RadTextBox ID="ConfirmPassword" runat="server" Width="160px"
                                     TextMode="Password" EnableSingleInputRendering="false">
                                     <PasswordStrengthSettings
@@ -119,60 +101,37 @@
                                         TextStrengthDescriptionStyles="L0;L1;L2;L3;L4;L5"
                                         IndicatorElementID="CustomIndicator"></PasswordStrengthSettings>
                                 </telerik:RadTextBox>
-
                                 <span id="CustomIndicator">&nbsp;</span> <span id="PasswordRepeatedIndicator" class="Base L0">&nbsp;</span>
-
                                 <asp:RequiredFieldValidator ID="ConfirmPasswordRequired" runat="server" ControlToValidate="ConfirmPassword"
                                     ErrorMessage="Confirm Password is required." ToolTip="Confirm Password is required."
                                     ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator>
-
                             </asp:TableCell>
                         </asp:TableRow>
-
                         <asp:TableRow>
-
                             <asp:TableCell>
-
                             </asp:TableCell>
                             <asp:TableCell>
-
                                 <asp:CompareValidator ID="CompareValidator1" runat="server" ControlToCompare="Password" ValidationGroup="CreateUserWizard1" ControlToValidate="ConfirmPassword"
                                     CssClass="field-validation-error" Display="Static" ErrorMessage="The password and confirmation password do not match." />
-
-
                             </asp:TableCell>
                         </asp:TableRow>
-
-
-
-
-
-
-
-
-
-
                         <asp:TableRow>
                             <asp:TableCell>
                                 <asp:Label ID="EmailLabel" runat="server" AssociatedControlID="Email" Text="E-mail:">
-
                                 </asp:Label>
                             </asp:TableCell>
-
                             <asp:TableCell>
-                                <telerik:RadTextBox ID="Email" runat="server" EnableSingleInputRendering="false"  EmptyMessage="Email"></telerik:RadTextBox>
+                                <telerik:RadTextBox ID="Email" runat="server" EnableSingleInputRendering="false" EmptyMessage="Email"></telerik:RadTextBox>
                                 <asp:RequiredFieldValidator ID="EmailRequired" runat="server" ControlToValidate="Email"
                                     ErrorMessage="E-mail is required." ToolTip="E-mail is required." ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator>
-
                             </asp:TableCell>
                         </asp:TableRow>
-
                         <asp:TableRow>
                             <asp:TableCell>
                                 <asp:Label ID="QuestionLabel" runat="server" AssociatedControlID="Question" Text="Security Question:"></asp:Label>
                             </asp:TableCell>
                             <asp:TableCell>
-                                <telerik:RadTextBox ID="Question" runat="server" EnableSingleInputRendering="false"  EmptyMessage="Security Question"></telerik:RadTextBox>
+                                <telerik:RadTextBox ID="Question" runat="server" EnableSingleInputRendering="false" EmptyMessage="Security Question"></telerik:RadTextBox>
                                 <asp:RequiredFieldValidator ID="QuestionRequired" runat="server" ControlToValidate="Question"
                                     ErrorMessage="Security question is required." ToolTip="Security question is required."
                                     ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator>
@@ -184,7 +143,7 @@
                                 <asp:Label ID="Label1" runat="server" AssociatedControlID="Answer" Text="Security Answer:"></asp:Label>
                             </asp:TableCell>
                             <asp:TableCell>
-                                <telerik:RadTextBox ID="Answer" runat="server" EnableSingleInputRendering="false"  EmptyMessage="Security Answer"></telerik:RadTextBox>
+                                <telerik:RadTextBox ID="Answer" runat="server" EnableSingleInputRendering="false" EmptyMessage="Security Answer"></telerik:RadTextBox>
                                 <asp:RequiredFieldValidator ID="AnswerRequired" runat="server" ControlToValidate="Answer"
                                     ErrorMessage="Security answer is required." ToolTip="Security answer is required."
                                     ValidationGroup="CreateUserWizard1">*</asp:RequiredFieldValidator>
@@ -206,55 +165,6 @@
                     </asp:Table>
                 </ContentTemplate>
             </asp:CreateUserWizardStep>
-
-            <%--            <asp:CreateUserWizardStep runat="server" ID="RegisterUserWizardStep">
-                <ContentTemplate>
-                    <p class="message-info">
-                        Passwords are required to be a minimum of <%: Membership.MinRequiredPasswordLength %> characters in length.
-                    </p>
-
-                    <p class="validation-summary-errors">
-                        <asp:Literal runat="server" ID="ErrorMessage" />
-                    </p>
-
-                    <fieldset>
-                        <legend>Registration Form</legend>
-                        <ol>
-                            <li>
-                                <asp:Label runat="server" AssociatedControlID="UserName">User name</asp:Label>
-                                <asp:TextBox runat="server" ID="UserName" />
-                                <asp:RequiredFieldValidator runat="server" ControlToValidate="UserName"
-                                    CssClass="field-validation-error" ErrorMessage="The user name field is required." />
-                            </li>
-                            <li>
-                                <asp:Label runat="server" AssociatedControlID="Email">Email address</asp:Label>
-                                <asp:TextBox runat="server" ID="Email" />
-                                <asp:RequiredFieldValidator runat="server" ControlToValidate="Email"
-                                    CssClass="field-validation-error" ErrorMessage="The email address field is required." />
-                            </li>
-                            <li>
-                                <asp:Label runat="server" AssociatedControlID="Password">Password</asp:Label>
-                                <asp:TextBox runat="server" ID="Password" TextMode="Password" />
-                                <asp:RequiredFieldValidator runat="server" ControlToValidate="Password"
-                                    CssClass="field-validation-error" ErrorMessage="The password field is required." />
-                            </li>
-                            <li>
-                                <asp:Label runat="server" AssociatedControlID="ConfirmPassword">Confirm password</asp:Label>
-                                <asp:TextBox runat="server" ID="ConfirmPassword" TextMode="Password" />
-                                <asp:RequiredFieldValidator runat="server" ControlToValidate="ConfirmPassword"
-                                    CssClass="field-validation-error" Display="Dynamic" ErrorMessage="The confirm password field is required." />
-                                <asp:CompareValidator runat="server" ControlToCompare="Password" ControlToValidate="ConfirmPassword"
-                                    CssClass="field-validation-error" Display="Dynamic" ErrorMessage="The password and confirmation password do not match." />
-                            </li>
-                        </ol>
-                        <asp:Button runat="server" ID="btnRegisterUser" CommandName="CreateNewUser" Text="Register" OnClick="btnRegisterUser_Click" />
-                    </fieldset>
-                </ContentTemplate>
-                <CustomNavigationTemplate />
-            </asp:CreateUserWizardStep>--%>
-
-
-
             <asp:CompleteWizardStep ID="CompleteWizardStep1" runat="server">
                 <ContentTemplate>
                     <table border="0" style="font-size: 100%; font-family: Verdana" id="TABLE1">
@@ -280,4 +190,7 @@
         </WizardSteps>
     </asp:CreateUserWizard>
 
+    <asp:Label ID="lblError" runat="server" Visible="false" >
+
+    </asp:Label>
 </asp:Content>

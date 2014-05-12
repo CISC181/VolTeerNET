@@ -6,7 +6,7 @@ using System.Text;
 namespace VolTeer.DomainModels.VT.Vol
 {
 
-    public partial class sp_Availablity_DM
+    public  class sp_Availablity_DM
     {
         public System.Guid VolID { get; set; }
         public int AddrID { get; set; }
@@ -24,6 +24,25 @@ namespace VolTeer.DomainModels.VT.Vol
         public virtual sp_Availablity_DM tblAvailability2 { get; set; }
         public virtual sp_Vol_Addr_DM tblVolAddress { get; set; }
         public virtual sp_Volunteer_DM tblVolunteer { get; set; }
+
+
+        //public sp_Availablity_DM(string subject, DateTime start, DateTime end,
+        //       string recurrenceRule, string recurrenceParentID, string reminder, int? userID) : this()
+        //  {
+        //      Subject = subject;
+        //      AvailStart = start;
+        //      AvailEnd = end;
+        //      RecurrenceRule = recurrenceRule;
+        //      RecurrenceParentID = recurrenceParentID;
+        //      Reminder = reminder;
+
+        //  }
+
+        public sp_Availablity_DM()
+        {
+            // TODO: Complete member initialization
+        }
+ 
     }
 }
 

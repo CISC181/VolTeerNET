@@ -6,11 +6,6 @@
     <edmx:StorageModels>
     <Schema Namespace="VolTeerModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
         <EntityContainer Name="VolTeerModelStoreContainer">
-          <EntitySet Name="ControlProperty" EntityType="VolTeerModel.Store.ControlProperty" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Order" EntityType="VolTeerModel.Store.Order" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Product" EntityType="VolTeerModel.Store.Product" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="RegisteredControls" EntityType="VolTeerModel.Store.RegisteredControls" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="sysdiagrams" EntityType="VolTeerModel.Store.sysdiagrams" store:Type="Tables" Schema="dbo" />
           <EntitySet Name="Vend_tblUserCred" EntityType="VolTeerModel.Store.Vend_tblUserCred" store:Type="Tables" store:Schema="dbo" store:Name="Vend.tblUserCred">
             <DefiningQuery>SELECT 
       [Vend_tblUserCred].[ContactID] AS [ContactID], 
@@ -47,10 +42,6 @@
           <AssociationSet Name="FK_Appointments_ParentAppointments" Association="VolTeerModel.Store.FK_Appointments_ParentAppointments">
             <End Role="tblAvailability" EntitySet="tblAvailability" />
             <End Role="tblAvailability1" EntitySet="tblAvailability" />
-          </AssociationSet>
-          <AssociationSet Name="FK_Order_Product" Association="VolTeerModel.Store.FK_Order_Product">
-            <End Role="Product" EntitySet="Product" />
-            <End Role="Order" EntitySet="Order" />
           </AssociationSet>
           <AssociationSet Name="FK_Skill_Skill" Association="VolTeerModel.Store.FK_Skill_Skill">
             <End Role="tblSkill" EntitySet="tblSkill" />
@@ -157,55 +148,6 @@
             <End Role="tblVolSkill" EntitySet="tblVolSkill" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="ControlProperty">
-          <Key>
-            <PropertyRef Name="RegsisterControlID" />
-            <PropertyRef Name="RegisterPropertyID" />
-          </Key>
-          <Property Name="RegsisterControlID" Type="int" Nullable="false" />
-          <Property Name="RegisterPropertyID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="PropertyID" Type="int" />
-          <Property Name="PropertValueID" Type="int" />
-        </EntityType>
-        <EntityType Name="Order">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="productId" Type="int" Nullable="false" />
-          <Property Name="quantity" Type="int" Nullable="false" />
-          <Property Name="timestamp" Type="timestamp" Nullable="false" StoreGeneratedPattern="Computed" />
-        </EntityType>
-        <EntityType Name="Product">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="name" Type="varchar" Nullable="false" MaxLength="50" />
-          <Property Name="price" Type="float" Nullable="false" />
-        </EntityType>
-        <EntityType Name="RegisteredControls">
-          <Key>
-            <PropertyRef Name="RegisterControlID" />
-          </Key>
-          <Property Name="RegisterControlID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="table_catalog" Type="nvarchar" MaxLength="128" />
-          <Property Name="table_schema" Type="nvarchar" MaxLength="128" />
-          <Property Name="table_name" Type="nvarchar" MaxLength="128" />
-          <Property Name="column_name" Type="nvarchar" MaxLength="255" />
-          <Property Name="container_name" Type="nvarchar" MaxLength="255" />
-          <Property Name="control_name" Type="nvarchar" MaxLength="255" />
-        </EntityType>
-        <EntityType Name="sysdiagrams">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Name="name" Type="nvarchar" Nullable="false" MaxLength="128" />
-          <Property Name="principal_id" Type="int" Nullable="false" />
-          <Property Name="diagram_id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="version" Type="int" />
-          <Property Name="definition" Type="varbinary(max)" />
-        </EntityType>
         <!--Errors Found During Generation:
       warning 6002: The table/view 'VolTeer.dbo.Vend.tblUserCred' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.
       -->
@@ -256,7 +198,7 @@
           <Property Name="ProjectName" Type="nvarchar" MaxLength="50" />
           <Property Name="ProjectDesc" Type="nvarchar(max)" />
           <Property Name="AddrID" Type="int" />
-          <Property Name="ActiveFlg" Type="int" />
+          <Property Name="ActiveFlg" Type="bit" />
         </EntityType>
         <EntityType Name="tblProjectEvent">
           <Key>
@@ -386,6 +328,8 @@
           <Property Name="GroupName" Type="nvarchar" MaxLength="50" />
           <Property Name="ParticipationLevelID" Type="int" />
           <Property Name="ActiveFlg" Type="bit" />
+          <Property Name="ShortDesc" Type="varchar" MaxLength="200" />
+          <Property Name="LongDesc" Type="varchar(max)" />
         </EntityType>
         <EntityType Name="tblGroupAddr">
           <Key>
@@ -529,18 +473,6 @@
             </Principal>
             <Dependent Role="tblAvailability1">
               <PropertyRef Name="RecurrenceParentID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_Order_Product">
-          <End Role="Product" Type="VolTeerModel.Store.Product" Multiplicity="1" />
-          <End Role="Order" Type="VolTeerModel.Store.Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Order">
-              <PropertyRef Name="productId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -856,43 +788,10 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Function Name="Describe_CheckConstraints" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="Describe_TableColumns" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="fn_diagramobjects" ReturnType="int" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="true" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
-        <Function Name="sp_alterdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_creatediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="version" Type="int" Mode="In" />
-          <Parameter Name="definition" Type="varbinary(max)" Mode="In" />
-        </Function>
-        <Function Name="sp_dropdiagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagramdefinition" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-        </Function>
-        <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
-          <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
-          <Parameter Name="owner_id" Type="int" Mode="In" />
-          <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
-        </Function>
         <Function Name="sp_SpatialTable_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="PointLongLat" Type="nvarchar" Mode="In" />
           <Parameter Name="MapNumber" Type="int" Mode="In" />
         </Function>
-        <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <Function Name="sp_Contact_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
           <Parameter Name="ContactID" Type="uniqueidentifier" Mode="In" />
         </Function>
@@ -913,6 +812,24 @@
           <Parameter Name="ContactMiddleName" Type="nvarchar" Mode="In" />
           <Parameter Name="ContactLastName" Type="nvarchar" Mode="In" />
           <Parameter Name="ActiveFlg" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="sp_ContactEmail_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
+          <Parameter Name="ContactID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="EmailID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_ContactEmail_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
+          <Parameter Name="ContactID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="EmailID" Type="int" Mode="In" />
+          <Parameter Name="PrimaryEmail" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="sp_ContactEmail_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
+          <Parameter Name="ContactID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="EmailID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_ContactEmail_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
+          <Parameter Name="ContactID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="EmailID" Type="int" Mode="In" />
+          <Parameter Name="PrimaryEmail" Type="bit" Mode="In" />
         </Function>
         <Function Name="sp_EventRating_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
           <Parameter Name="RatingID" Type="int" Mode="In" />
@@ -945,17 +862,17 @@
           <Parameter Name="ProjectName" Type="nvarchar" Mode="In" />
           <Parameter Name="ProjectDesc" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="AddrID" Type="int" Mode="In" />
-          <Parameter Name="ActiveFlg" Type="int" Mode="In" />
+          <Parameter Name="ActiveFlg" Type="bit" Mode="In" />
         </Function>
         <Function Name="sp_Project_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
           <Parameter Name="ProjectID" Type="uniqueidentifier" Mode="In" />
         </Function>
         <Function Name="sp_Project_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
-          <Parameter Name="flag" Type="int" Mode="InOut" />
           <Parameter Name="ProjectID" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="ProjectName" Type="nvarchar" Mode="In" />
           <Parameter Name="ProjectDesc" Type="nvarchar(max)" Mode="In" />
           <Parameter Name="AddrID" Type="int" Mode="In" />
+          <Parameter Name="ActiveFlg" Type="bit" Mode="In" />
         </Function>
         <Function Name="sp_ProjectEvent_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
           <Parameter Name="EventID" Type="uniqueidentifier" Mode="In" />
@@ -975,6 +892,24 @@
           <Parameter Name="StartDateTime" Type="datetime" Mode="In" />
           <Parameter Name="EndDateTime" Type="datetime" Mode="In" />
           <Parameter Name="AddrID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_ProjectEventContact_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
+          <Parameter Name="EventID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ContactID" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="sp_ProjectEventContact_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
+          <Parameter Name="EventID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ContactID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="PrimaryContact" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="sp_ProjectEventContact_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
+          <Parameter Name="EventID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ContactID" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="sp_ProjectEventContact_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
+          <Parameter Name="EventID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ContactID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="PrimaryContact" Type="bit" Mode="In" />
         </Function>
         <Function Name="sp_Vend_Address_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
           <Parameter Name="AddrID" Type="int" Mode="In" />
@@ -1007,6 +942,10 @@
           <Parameter Name="Zip" Type="int" Mode="In" />
           <Parameter Name="Zip4" Type="int" Mode="In" />
           <Parameter Name="GeoCodeGetSet" Type="nvarchar" Mode="In" />
+        </Function>
+        <Function Name="sp_Vend_Contact_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
+          <Parameter Name="VendorID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ContactID" Type="uniqueidentifier" Mode="In" />
         </Function>
         <Function Name="sp_Vend_Contact_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
           <Parameter Name="VendorID" Type="uniqueidentifier" Mode="In" />
@@ -1045,6 +984,7 @@
           <Parameter Name="VendorID" Type="uniqueidentifier" Mode="In" />
         </Function>
         <Function Name="sp_Vendor_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
+          <Parameter Name="VendorID" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="VendorName" Type="nvarchar" Mode="In" />
         </Function>
         <Function Name="sp_Vendor_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
@@ -1054,6 +994,43 @@
           <Parameter Name="VendorID" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="VendorName" Type="nvarchar" Mode="In" />
           <Parameter Name="ActiveFlg" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="sp_VendorAddr_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
+          <Parameter Name="VendorID" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="sp_VendorAddr_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
+          <Parameter Name="AddrID" Type="int" Mode="In" />
+          <Parameter Name="HQ" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="sp_VendorAddr_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
+          <Parameter Name="VendorID" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="sp_VendorAddr_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
+          <Parameter Name="VendorID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="AddrID" Type="int" Mode="In" />
+          <Parameter Name="HQ" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="sp_VendorProjContact_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
+          <Parameter Name="VendorID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ProjectID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ContactID" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="sp_VendorProjContact_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
+          <Parameter Name="VendorID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ProjectID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ContactID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="PrimaryContact" Type="bit" Mode="In" />
+        </Function>
+        <Function Name="sp_VendorProjContact_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
+          <Parameter Name="VendorID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ProjectID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ContactID" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="sp_VendorProjContact_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vend">
+          <Parameter Name="VendorID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ProjectID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="ContactID" Type="uniqueidentifier" Mode="In" />
+          <Parameter Name="PrimaryContact" Type="bit" Mode="In" />
         </Function>
         <Function Name="sp_Availability_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="VolID" Type="uniqueidentifier" Mode="In" />
@@ -1096,6 +1073,8 @@
           <Parameter Name="GroupName" Type="nvarchar" Mode="In" />
           <Parameter Name="ParticipationLevelID" Type="int" Mode="In" />
           <Parameter Name="ActiveFlg" Type="bit" Mode="In" />
+          <Parameter Name="ShortDesc" Type="varchar" Mode="In" />
+          <Parameter Name="LongDesc" Type="varchar(max)" Mode="In" />
         </Function>
         <Function Name="sp_Group_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="GroupID" Type="int" Mode="In" />
@@ -1105,6 +1084,8 @@
           <Parameter Name="GroupName" Type="nvarchar" Mode="In" />
           <Parameter Name="ParticipationLevelID" Type="int" Mode="In" />
           <Parameter Name="ActiveFlg" Type="bit" Mode="In" />
+          <Parameter Name="ShortDesc" Type="varchar" Mode="In" />
+          <Parameter Name="LongDesc" Type="varchar(max)" Mode="In" />
         </Function>
         <Function Name="sp_GroupAddr_Delete" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="GroupID" Type="int" Mode="In" />
@@ -1119,8 +1100,6 @@
         <Function Name="sp_GroupAddr_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="GroupID" Type="int" Mode="In" />
           <Parameter Name="AddrID" Type="int" Mode="In" />
-          <Parameter Name="PrimaryAddrID" Type="bit" Mode="In" />
-          <Parameter Name="ActiveFlg" Type="bit" Mode="In" />
         </Function>
         <Function Name="sp_GroupAddr_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="GroupID" Type="int" Mode="In" />
@@ -1139,6 +1118,10 @@
           <Parameter Name="Admin" Type="bit" Mode="In" />
         </Function>
         <Function Name="sp_GroupVol_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
+          <Parameter Name="GroupID" Type="int" Mode="In" />
+          <Parameter Name="VolID" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="sp_GroupVol_Select_FindNewVols" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="GroupID" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_GroupVol_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
@@ -1182,6 +1165,9 @@
         </Function>
         <Function Name="sp_Skill_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="SkillID" Type="uniqueidentifier" Mode="In" />
+        </Function>
+        <Function Name="sp_Skill_Select_Manage" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
+          <Parameter Name="ShowNullMstrSkillItems" Type="bit" Mode="In" />
         </Function>
         <Function Name="sp_Skill_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="SkillID" Type="uniqueidentifier" Mode="In" />
@@ -1280,6 +1266,7 @@
         </Function>
         <Function Name="sp_Vol_Phone_Update" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="PhoneID" Type="int" Mode="In" />
+          <Parameter Name="VolID" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="PhoneNbr" Type="nvarchar" Mode="In" />
           <Parameter Name="ActiveFlg" Type="bit" Mode="In" />
           <Parameter Name="PrimaryFlg" Type="bit" Mode="In" />
@@ -1299,6 +1286,7 @@
           <Parameter Name="VolID" Type="uniqueidentifier" Mode="In" />
         </Function>
         <Function Name="sp_Volunteer_Insert" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
+          <Parameter Name="VolID" Type="uniqueidentifier" Mode="In" />
           <Parameter Name="VolFirstName" Type="nvarchar" Mode="In" />
           <Parameter Name="VolMiddleName" Type="nvarchar" Mode="In" />
           <Parameter Name="VolLastName" Type="nvarchar" Mode="In" />
@@ -1321,7 +1309,6 @@
           <EntitySet Name="tblContacts" EntityType="VolTeerModel.tblContact" />
           <EntitySet Name="tblContactEmails" EntityType="VolTeerModel.tblContactEmail" />
           <EntitySet Name="tblEventRatings" EntityType="VolTeerModel.tblEventRating" />
-          <EntitySet Name="tblProjects" EntityType="VolTeerModel.tblProject" />
           <EntitySet Name="tblProjectEvents" EntityType="VolTeerModel.tblProjectEvent" />
           <EntitySet Name="tblProjectEventContacts" EntityType="VolTeerModel.tblProjectEventContact" />
           <EntitySet Name="tblVendAddresses" EntityType="VolTeerModel.tblVendAddress" />
@@ -1357,14 +1344,6 @@
             <End Role="tblProjectEvent" EntitySet="tblProjectEvents" />
             <End Role="tblEventRating" EntitySet="tblEventRatings" />
           </AssociationSet>
-          <AssociationSet Name="FK_tblProject_tblAddress" Association="VolTeerModel.FK_tblProject_tblAddress">
-            <End Role="tblVendAddress" EntitySet="tblVendAddresses" />
-            <End Role="tblProject" EntitySet="tblProjects" />
-          </AssociationSet>
-          <AssociationSet Name="FK_tblVendorProj_tblProject" Association="VolTeerModel.FK_tblVendorProj_tblProject">
-            <End Role="tblProject" EntitySet="tblProjects" />
-            <End Role="tblVendorProjContact" EntitySet="tblVendorProjContacts" />
-          </AssociationSet>
           <AssociationSet Name="FK_tblProjectEventContact_tblProjectEvent" Association="VolTeerModel.FK_tblProjectEventContact_tblProjectEvent">
             <End Role="tblProjectEvent" EntitySet="tblProjectEvents" />
             <End Role="tblProjectEventContact" EntitySet="tblProjectEventContacts" />
@@ -1396,9 +1375,6 @@
           <FunctionImport Name="sp_Contact_MassUpdate">
           <Parameter Name="XML_IN" Mode="In" Type="String" />
           </FunctionImport>
-          <FunctionImport Name="sp_Contact_Select" ReturnType="Collection(VolTeerModel.sp_Contact_Select_Result)">
-          <Parameter Name="ContactID" Mode="In" Type="Guid" />
-          </FunctionImport>
           <FunctionImport Name="sp_Contact_Update">
             <Parameter Name="ContactID" Mode="In" Type="Guid" />
             <Parameter Name="ContactFirstName" Mode="In" Type="String" />
@@ -1429,25 +1405,6 @@
             <Parameter Name="VolID" Mode="In" Type="Guid" />
             <Parameter Name="RatingValue" Mode="In" Type="Int32" />
             <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
-          </FunctionImport>
-          <FunctionImport Name="sp_Project_Delete">
-          <Parameter Name="ProjectID" Mode="In" Type="Guid" />
-          </FunctionImport>
-          <FunctionImport Name="sp_Project_Insert">
-            <Parameter Name="ProjectName" Mode="In" Type="String" />
-            <Parameter Name="ProjectDesc" Mode="In" Type="String" />
-            <Parameter Name="AddrID" Mode="In" Type="Int32" />
-            <Parameter Name="ActiveFlg" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_Project_Select" ReturnType="Collection(VolTeerModel.sp_Project_Select_Result)">
-          <Parameter Name="ProjectID" Mode="In" Type="Guid" />
-          </FunctionImport>
-          <FunctionImport Name="sp_Project_Update">
-            <Parameter Name="flag" Mode="InOut" Type="Boolean" />
-            <Parameter Name="ProjectID" Mode="In" Type="Guid" />
-            <Parameter Name="ProjectName" Mode="In" Type="String" />
-            <Parameter Name="ProjectDesc" Mode="In" Type="String" />
-            <Parameter Name="AddrID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Vend_Address_Delete">
           <Parameter Name="AddrID" Mode="In" Type="Int32" />
@@ -1499,9 +1456,6 @@
             <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="sp_Vendor_Delete">
-          <Parameter Name="VendorID" Mode="In" Type="Guid" />
-          </FunctionImport>
-          <FunctionImport Name="sp_Vendor_Select">
           <Parameter Name="VendorID" Mode="In" Type="Guid" />
           </FunctionImport>
           <FunctionImport Name="sp_Sample_Address_Delete">
@@ -1597,12 +1551,6 @@
           <FunctionImport Name="sp_Volunteer_Delete">
           <Parameter Name="VolID" Mode="In" Type="Guid" />
           </FunctionImport>
-          <FunctionImport Name="sp_Volunteer_Insert" ReturnType="Collection(Guid)">
-            <Parameter Name="VolID" Mode="In" Type="Guid" />
-            <Parameter Name="VolFirstName" Mode="In" Type="String" />
-            <Parameter Name="VolMiddleName" Mode="In" Type="String" />
-            <Parameter Name="VolLastName" Mode="In" Type="String" />
-          </FunctionImport>
           <FunctionImport Name="sp_Volunteer_Select" ReturnType="Collection(VolTeerModel.sp_Volunteer_Select_Result)">
           <Parameter Name="VolID" Mode="In" Type="Guid" />
           </FunctionImport>
@@ -1690,12 +1638,6 @@
             <Parameter Name="EmailID" Mode="In" Type="Int32" />
             <Parameter Name="PrimaryFlg" Mode="In" Type="Boolean" />
           </FunctionImport>
-          <FunctionImport Name="sp_Vol_Phone_Update">
-            <Parameter Name="PhoneID" Mode="In" Type="Int32" />
-            <Parameter Name="PhoneNbr" Mode="In" Type="String" />
-            <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
-            <Parameter Name="PrimaryFlg" Mode="In" Type="Boolean" />
-          </FunctionImport>
           <FunctionImport Name="sp_Vol_Phone_Insert" ReturnType="Collection(VolTeerModel.sp_Vol_Phone_Insert_Result)">
             <Parameter Name="VolID" Mode="In" Type="Guid" />
             <Parameter Name="PhoneNbr" Mode="In" Type="String" />
@@ -1718,9 +1660,6 @@
             <Parameter Name="PrimaryVolID" Mode="In" Type="Boolean" />
             <Parameter Name="Admin" Mode="In" Type="Boolean" />
           </FunctionImport>
-          <FunctionImport Name="sp_GroupVol_Select">
-          <Parameter Name="GroupID" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="sp_GroupVol_Update">
             <Parameter Name="GroupID" Mode="In" Type="Int32" />
             <Parameter Name="VolID" Mode="In" Type="Guid" />
@@ -1741,37 +1680,6 @@
             <Parameter Name="ContactID" Mode="In" Type="Guid" />
             <Parameter Name="PrimaryContact" Mode="In" Type="Boolean" />
           </FunctionImport>
-          <FunctionImport Name="sp_Group_Delete">
-          <Parameter Name="GroupID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_Group_Insert" ReturnType="Collection(Int32)">
-            <Parameter Name="GroupName" Mode="In" Type="String" />
-            <Parameter Name="ParticipationLevelID" Mode="In" Type="Int32" />
-            <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
-          </FunctionImport>
-          <FunctionImport Name="sp_Group_Select" ReturnType="Collection(VolTeerModel.sp_Group_Select_Result)">
-          <Parameter Name="GroupID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_Group_Update">
-            <Parameter Name="GroupID" Mode="In" Type="Int32" />
-            <Parameter Name="GroupName" Mode="In" Type="String" />
-            <Parameter Name="ParticipationLevelID" Mode="In" Type="Int32" />
-            <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
-          </FunctionImport>
-          <FunctionImport Name="sp_Vendor_Insert" ReturnType="Collection(Guid)">
-          <Parameter Name="VendorName" Mode="In" Type="String" />
-          </FunctionImport>
-          <EntitySet Name="ControlProperties" EntityType="VolTeerModel.ControlProperty" />
-          <EntitySet Name="Orders" EntityType="VolTeerModel.Order" />
-          <EntitySet Name="Products" EntityType="VolTeerModel.Product" />
-          <EntitySet Name="RegisteredControls" EntityType="VolTeerModel.RegisteredControl" />
-          <EntitySet Name="sysdiagrams" EntityType="VolTeerModel.sysdiagram" />
-          <AssociationSet Name="FK_Order_Product" Association="VolTeerModel.FK_Order_Product">
-            <End Role="Product" EntitySet="Products" />
-            <End Role="Order" EntitySet="Orders" />
-          </AssociationSet>
-          <FunctionImport Name="Describe_CheckConstraints" ReturnType="Collection(VolTeerModel.Describe_CheckConstraints_Result)" />
-          <FunctionImport Name="Describe_TableColumns" ReturnType="Collection(VolTeerModel.Describe_TableColumns_Result)" />
           <FunctionImport Name="sp_alterdiagram">
             <Parameter Name="diagramname" Mode="In" Type="String" />
             <Parameter Name="owner_id" Mode="In" Type="Int32" />
@@ -1809,7 +1717,7 @@
             <Parameter Name="EndDateTime" Mode="In" Type="DateTime" />
             <Parameter Name="AddrID" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_ProjectEvent_Select" ReturnType="Collection(VolTeerModel.sp_ProjectEvent_Select_Result)">
+          <FunctionImport Name="sp_ProjectEvent_Select">
           <Parameter Name="EventID" Mode="In" Type="Guid" />
           </FunctionImport>
           <FunctionImport Name="sp_ProjectEvent_Update">
@@ -1833,8 +1741,6 @@
           <FunctionImport Name="sp_GroupAddr_Select" ReturnType="Collection(VolTeerModel.sp_GroupAddr_Select_Result)">
             <Parameter Name="GroupID" Mode="In" Type="Int32" />
             <Parameter Name="AddrID" Mode="In" Type="Int32" />
-            <Parameter Name="PrimaryAddrID" Mode="In" Type="Boolean" />
-            <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="sp_GroupAddr_Update">
             <Parameter Name="GroupID" Mode="In" Type="Int32" />
@@ -1854,13 +1760,6 @@
             <End Role="tblVolAddress" EntitySet="tblVolAddresses" />
             <End Role="tblGroupAddr" EntitySet="tblGroupAddrs" />
           </AssociationSet>
-          <FunctionImport Name="sp_Project_Update1">
-            <Parameter Name="flag" Mode="InOut" Type="Int32" />
-            <Parameter Name="ProjectID" Mode="In" Type="Guid" />
-            <Parameter Name="ProjectName" Mode="In" Type="String" />
-            <Parameter Name="ProjectDesc" Mode="In" Type="String" />
-            <Parameter Name="AddrID" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="sp_ProjectEvent_Delete">
           <Parameter Name="EventID" Mode="In" Type="Guid" />
           </FunctionImport>
@@ -1870,7 +1769,7 @@
             <Parameter Name="EndDateTime" Mode="In" Type="DateTime" />
             <Parameter Name="AddrID" Mode="In" Type="Int32" />
           </FunctionImport>
-          <FunctionImport Name="sp_ProjectEvent_Select1" ReturnType="Collection(VolTeerModel.sp_ProjectEvent_Select1_Result)">
+          <FunctionImport Name="sp_ProjectEvent_Select1">
           <Parameter Name="EventID" Mode="In" Type="Guid" />
           </FunctionImport>
           <FunctionImport Name="sp_ProjectEvent_Update1">
@@ -1889,6 +1788,184 @@
             <End Role="tblGroup" EntitySet="tblGroups" />
             <End Role="tblGroupVol" EntitySet="tblGroupVols" />
           </AssociationSet>
+          <FunctionImport Name="sp_ProjectEventContact_Delete">
+            <Parameter Name="EventID" Mode="In" Type="Guid" />
+            <Parameter Name="ContactID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Vend_Contact_Delete">
+            <Parameter Name="VendorID" Mode="In" Type="Guid" />
+            <Parameter Name="ContactID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="sp_VendorProjContact_Delete">
+            <Parameter Name="VendorID" Mode="In" Type="Guid" />
+            <Parameter Name="ProjectID" Mode="In" Type="Guid" />
+            <Parameter Name="ContactID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="sp_VendorProjContact_Insert">
+            <Parameter Name="VendorID" Mode="In" Type="Guid" />
+            <Parameter Name="ProjectID" Mode="In" Type="Guid" />
+            <Parameter Name="ContactID" Mode="In" Type="Guid" />
+            <Parameter Name="PrimaryContact" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="sp_VendorProjContact_Select" ReturnType="Collection(VolTeerModel.sp_VendorProjContact_Select_Result)">
+            <Parameter Name="VendorID" Mode="In" Type="Guid" />
+            <Parameter Name="ProjectID" Mode="In" Type="Guid" />
+            <Parameter Name="ContactID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="sp_VendorProjContact_Update">
+            <Parameter Name="VendorID" Mode="In" Type="Guid" />
+            <Parameter Name="ProjectID" Mode="In" Type="Guid" />
+            <Parameter Name="ContactID" Mode="In" Type="Guid" />
+            <Parameter Name="PrimaryContact" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="sp_VendorAddr_Delete">
+          <Parameter Name="VendorID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="sp_VendorAddr_Insert" ReturnType="Collection(Guid)">
+            <Parameter Name="AddrID" Mode="In" Type="Int32" />
+            <Parameter Name="HQ" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="sp_VendorAddr_Select" ReturnType="Collection(VolTeerModel.sp_VendorAddr_Select_Result)">
+          <Parameter Name="VendorID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="sp_VendorAddr_Update">
+            <Parameter Name="VendorID" Mode="In" Type="Guid" />
+            <Parameter Name="AddrID" Mode="In" Type="Int32" />
+            <Parameter Name="HQ" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ProjectEventContact_Insert">
+            <Parameter Name="EventID" Mode="In" Type="Guid" />
+            <Parameter Name="ContactID" Mode="In" Type="Guid" />
+            <Parameter Name="PrimaryContact" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ProjectEventContact_Select" ReturnType="Collection(VolTeerModel.sp_ProjectEventContact_Select_Result)">
+            <Parameter Name="EventID" Mode="In" Type="Guid" />
+            <Parameter Name="ContactID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ProjectEventContact_Update">
+            <Parameter Name="EventID" Mode="In" Type="Guid" />
+            <Parameter Name="ContactID" Mode="In" Type="Guid" />
+            <Parameter Name="PrimaryContact" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <EntitySet Name="tblProjects" EntityType="VolTeerModel.tblProject" />
+          <AssociationSet Name="FK_tblProject_tblAddress" Association="VolTeerModel.FK_tblProject_tblAddress">
+            <End Role="tblVendAddress" EntitySet="tblVendAddresses" />
+            <End Role="tblProject" EntitySet="tblProjects" />
+          </AssociationSet>
+          <AssociationSet Name="FK_tblVendorProj_tblProject" Association="VolTeerModel.FK_tblVendorProj_tblProject">
+            <End Role="tblProject" EntitySet="tblProjects" />
+            <End Role="tblVendorProjContact" EntitySet="tblVendorProjContacts" />
+          </AssociationSet>
+          <FunctionImport Name="sp_Project_Delete">
+          <Parameter Name="ProjectID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Project_Insert" ReturnType="Collection(Guid)">
+            <Parameter Name="ProjectName" Mode="In" Type="String" />
+            <Parameter Name="ProjectDesc" Mode="In" Type="String" />
+            <Parameter Name="AddrID" Mode="In" Type="Int32" />
+            <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Project_Select" ReturnType="Collection(VolTeerModel.sp_Project_Select_Result)">
+          <Parameter Name="ProjectID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Project_Update">
+            <Parameter Name="ProjectID" Mode="In" Type="Guid" />
+            <Parameter Name="ProjectName" Mode="In" Type="String" />
+            <Parameter Name="ProjectDesc" Mode="In" Type="String" />
+            <Parameter Name="AddrID" Mode="In" Type="Int32" />
+            <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ProjectEvent_Delete1">
+          <Parameter Name="EventID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ProjectEvent_Insert2" ReturnType="Collection(Guid)">
+            <Parameter Name="ProjectID" Mode="In" Type="Guid" />
+            <Parameter Name="StartDateTime" Mode="In" Type="DateTime" />
+            <Parameter Name="EndDateTime" Mode="In" Type="DateTime" />
+            <Parameter Name="AddrID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ProjectEvent_Select2" ReturnType="Collection(VolTeerModel.sp_ProjectEvent_Select2_Result)">
+          <Parameter Name="EventID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ProjectEvent_Update2">
+            <Parameter Name="EventID" Mode="In" Type="Guid" />
+            <Parameter Name="ProjectID" Mode="In" Type="Guid" />
+            <Parameter Name="StartDateTime" Mode="In" Type="DateTime" />
+            <Parameter Name="EndDateTime" Mode="In" Type="DateTime" />
+            <Parameter Name="AddrID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Vendor_Select" ReturnType="Collection(VolTeerModel.sp_Vendor_Select_Result)">
+          <Parameter Name="VendorID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Vendor_Insert" ReturnType="Collection(Guid)">
+            <Parameter Name="VendorID" Mode="In" Type="Guid" />
+            <Parameter Name="VendorName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GroupVol_Select" ReturnType="Collection(VolTeerModel.sp_GroupVol_Select_Result)">
+            <Parameter Name="GroupID" Mode="In" Type="Int32" />
+            <Parameter Name="VolID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ContactEmail_Delete">
+            <Parameter Name="ContactID" Mode="In" Type="Guid" />
+            <Parameter Name="EmailID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ContactEmail_Insert">
+            <Parameter Name="ContactID" Mode="In" Type="Guid" />
+            <Parameter Name="EmailID" Mode="In" Type="Int32" />
+            <Parameter Name="PrimaryEmail" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ContactEmail_Select" ReturnType="Collection(VolTeerModel.sp_ContactEmail_Select_Result)">
+            <Parameter Name="ContactID" Mode="In" Type="Guid" />
+            <Parameter Name="EmailID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ContactEmail_Update">
+            <Parameter Name="ContactID" Mode="In" Type="Guid" />
+            <Parameter Name="EmailID" Mode="In" Type="Int32" />
+            <Parameter Name="PrimaryEmail" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Contact_Select" ReturnType="Collection(VolTeerModel.sp_Contact_Select_Result)">
+          <Parameter Name="ContactID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Volunteer_Insert" ReturnType="Collection(Guid)">
+            <Parameter Name="VolID" Mode="In" Type="Guid" />
+            <Parameter Name="VolFirstName" Mode="In" Type="String" />
+            <Parameter Name="VolMiddleName" Mode="In" Type="String" />
+            <Parameter Name="VolLastName" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Vol_Phone_Update">
+            <Parameter Name="PhoneID" Mode="In" Type="Int32" />
+            <Parameter Name="VolID" Mode="In" Type="Guid" />
+            <Parameter Name="PhoneNbr" Mode="In" Type="String" />
+            <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
+            <Parameter Name="PrimaryFlg" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="sp_GroupVol_Select_FindNewVols" ReturnType="Collection(VolTeerModel.sp_GroupVol_Select_FindNewVols_Result)">
+          <Parameter Name="GroupID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Skill_Select_Manage" ReturnType="Collection(VolTeerModel.sp_Skill_Select_Manage_Result)">
+          <Parameter Name="ShowNullMstrSkillItems" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Group_Delete">
+            <Parameter Name="GroupID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Group_Insert" ReturnType="Collection(Int32)">
+            <Parameter Name="GroupName" Mode="In" Type="String" />
+            <Parameter Name="ParticipationLevelID" Mode="In" Type="Int32" />
+            <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
+            <Parameter Name="ShortDesc" Mode="In" Type="String" />
+            <Parameter Name="LongDesc" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Group_Select" ReturnType="Collection(VolTeerModel.sp_Group_Select_Result)">
+            <Parameter Name="GroupID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Group_Update">
+            <Parameter Name="GroupID" Mode="In" Type="Int32" />
+            <Parameter Name="GroupName" Mode="In" Type="String" />
+            <Parameter Name="ParticipationLevelID" Mode="In" Type="Int32" />
+            <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
+            <Parameter Name="ShortDesc" Mode="In" Type="String" />
+            <Parameter Name="LongDesc" Mode="In" Type="String" />
+          </FunctionImport>
         </EntityContainer>
         <EntityType Name="tblContact">
           <Key>
@@ -1926,18 +2003,6 @@
           <Property Name="ActiveFlg" Type="Boolean" Nullable="false" />
           <NavigationProperty Name="tblProjectEvent" Relationship="VolTeerModel.FK_tblEventRating_tblProjectEvent" FromRole="tblEventRating" ToRole="tblProjectEvent" />
         </EntityType>
-        <EntityType Name="tblProject">
-          <Key>
-            <PropertyRef Name="ProjectID" />
-          </Key>
-          <Property Name="ProjectID" Type="Guid" Nullable="false" />
-          <Property Name="ProjectName" Type="String" MaxLength="50" Unicode="true" FixedLength="false" />
-          <Property Name="ProjectDesc" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="AddrID" Type="Int32" />
-          <Property Name="ActiveFlg" Type="Int32" />
-          <NavigationProperty Name="tblVendAddress" Relationship="VolTeerModel.FK_tblProject_tblAddress" FromRole="tblProject" ToRole="tblVendAddress" />
-          <NavigationProperty Name="tblVendorProjContacts" Relationship="VolTeerModel.FK_tblVendorProj_tblProject" FromRole="tblProject" ToRole="tblVendorProjContact" />
-        </EntityType>
         <EntityType Name="tblProjectEvent">
           <Key>
             <PropertyRef Name="EventID" />
@@ -1974,9 +2039,9 @@
           <Property Name="Zip" Type="Int32" />
           <Property Name="Zip4" Type="Int32" />
           <Property Name="ActiveFlg" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="tblProjects" Relationship="VolTeerModel.FK_tblProject_tblAddress" FromRole="tblVendAddress" ToRole="tblProject" />
           <NavigationProperty Name="tblVendorAddrs" Relationship="VolTeerModel.FK_tblVendorAddr_tblAddress" FromRole="tblVendAddress" ToRole="tblVendorAddr" />
           <Property Type="String" Name="GeoCodeGetSet" MaxLength="Max" FixedLength="false" Unicode="true" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="tblProjects" Relationship="VolTeerModel.FK_tblProject_tblAddress" FromRole="tblVendAddress" ToRole="tblProject" />
         </EntityType>
         <EntityType Name="tblVendContact">
           <Key>
@@ -2031,8 +2096,8 @@
           <Property Name="ContactID" Type="Guid" Nullable="false" />
           <Property Name="PrimaryContact" Type="Boolean" />
           <NavigationProperty Name="tblContact" Relationship="VolTeerModel.FK_tblVendorProj_tblContact" FromRole="tblVendorProjContact" ToRole="tblContact" />
-          <NavigationProperty Name="tblProject" Relationship="VolTeerModel.FK_tblVendorProj_tblProject" FromRole="tblVendorProjContact" ToRole="tblProject" />
           <NavigationProperty Name="tblVendor" Relationship="VolTeerModel.FK_tblVendorProj_tblVendor" FromRole="tblVendorProjContact" ToRole="tblVendor" />
+          <NavigationProperty Name="tblProject" Relationship="VolTeerModel.FK_tblVendorProj_tblProject" FromRole="tblVendorProjContact" ToRole="tblProject" />
         </EntityType>
         <EntityType Name="tblSampleAddress">
           <Key>
@@ -2158,30 +2223,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_tblProject_tblAddress">
-          <End Role="tblVendAddress" Type="VolTeerModel.tblVendAddress" Multiplicity="0..1" />
-          <End Role="tblProject" Type="VolTeerModel.tblProject" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblVendAddress">
-              <PropertyRef Name="AddrID" />
-            </Principal>
-            <Dependent Role="tblProject">
-              <PropertyRef Name="AddrID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_tblVendorProj_tblProject">
-          <End Role="tblProject" Type="VolTeerModel.tblProject" Multiplicity="1" />
-          <End Role="tblVendorProjContact" Type="VolTeerModel.tblVendorProjContact" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="tblProject">
-              <PropertyRef Name="ProjectID" />
-            </Principal>
-            <Dependent Role="tblVendorProjContact">
-              <PropertyRef Name="ProjectID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <Association Name="FK_tblProjectEventContact_tblProjectEvent">
           <End Role="tblProjectEvent" Type="VolTeerModel.tblProjectEvent" Multiplicity="1" />
           <End Role="tblProjectEventContact" Type="VolTeerModel.tblProjectEventContact" Multiplicity="*" />
@@ -2242,26 +2283,12 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <ComplexType Name="sp_Contact_Select_Result">
-          <Property Type="Guid" Name="ContactID" Nullable="false" />
-          <Property Type="String" Name="ContactFirstName" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="ContactMiddleName" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="ContactLastName" Nullable="true" MaxLength="50" />
-          <Property Type="Boolean" Name="ActiveFlg" Nullable="false" />
-        </ComplexType>
         <ComplexType Name="sp_EventRating_Select_Result">
           <Property Type="Int32" Name="RatingID" Nullable="false" />
           <Property Type="Guid" Name="EventID" Nullable="true" />
           <Property Type="Guid" Name="VolID" Nullable="true" />
           <Property Type="Int32" Name="RatingValue" Nullable="true" />
           <Property Type="Boolean" Name="ActiveFlg" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="sp_Project_Select_Result">
-          <Property Type="Guid" Name="ProjectID" Nullable="false" />
-          <Property Type="String" Name="ProjectName" Nullable="true" MaxLength="50" />
-          <Property Type="String" Name="ProjectDesc" Nullable="true" />
-          <Property Type="Int32" Name="AddrID" Nullable="true" />
-          <Property Type="Int32" Name="ActiveFlg" Nullable="true" />
         </ComplexType>
         <ComplexType Name="sp_Vend_Address_Select_Result">
           <Property Type="Boolean" Name="ActiveFlg" Nullable="false" />
@@ -2603,100 +2630,6 @@
           <Property Type="Guid" Name="ContactID" Nullable="false" />
           <Property Type="Boolean" Name="PrimaryContact" Nullable="true" />
         </ComplexType>
-        <ComplexType Name="sp_Group_Select_Result">
-          <Property Type="Int32" Name="GroupID" Nullable="false" />
-          <Property Type="String" Name="GroupName" Nullable="true" MaxLength="50" />
-          <Property Type="Int32" Name="ParticipationLevelID" Nullable="true" />
-          <Property Type="Boolean" Name="ActiveFlg" Nullable="true" />
-        </ComplexType>
-        <EntityType Name="ControlProperty">
-          <Key>
-            <PropertyRef Name="RegsisterControlID" />
-            <PropertyRef Name="RegisterPropertyID" />
-          </Key>
-          <Property Type="Int32" Name="RegsisterControlID" Nullable="false" />
-          <Property Type="Int32" Name="RegisterPropertyID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="PropertyID" />
-          <Property Type="Int32" Name="PropertValueID" />
-        </EntityType>
-        <EntityType Name="Order">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="productId" Nullable="false" />
-          <Property Type="Int32" Name="quantity" Nullable="false" />
-          <Property Type="Binary" Name="timestamp" Nullable="false" MaxLength="8" FixedLength="true" annotation:StoreGeneratedPattern="Computed" />
-          <NavigationProperty Name="Product" Relationship="VolTeerModel.FK_Order_Product" FromRole="Order" ToRole="Product" />
-        </EntityType>
-        <EntityType Name="Product">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="name" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Double" Name="price" Nullable="false" />
-          <NavigationProperty Name="Orders" Relationship="VolTeerModel.FK_Order_Product" FromRole="Product" ToRole="Order" />
-        </EntityType>
-        <EntityType Name="RegisteredControl">
-          <Key>
-            <PropertyRef Name="RegisterControlID" />
-          </Key>
-          <Property Type="Int32" Name="RegisterControlID" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="table_catalog" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="table_schema" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="table_name" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="column_name" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="container_name" MaxLength="255" FixedLength="false" Unicode="true" />
-          <Property Type="String" Name="control_name" MaxLength="255" FixedLength="false" Unicode="true" />
-        </EntityType>
-        <EntityType Name="sysdiagram">
-          <Key>
-            <PropertyRef Name="diagram_id" />
-          </Key>
-          <Property Type="String" Name="name" Nullable="false" MaxLength="128" FixedLength="false" Unicode="true" />
-          <Property Type="Int32" Name="principal_id" Nullable="false" />
-          <Property Type="Int32" Name="diagram_id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int32" Name="version" />
-          <Property Type="Binary" Name="definition" MaxLength="Max" FixedLength="false" />
-        </EntityType>
-        <Association Name="FK_Order_Product">
-          <End Type="VolTeerModel.Product" Role="Product" Multiplicity="1" />
-          <End Type="VolTeerModel.Order" Role="Order" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="Product">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="Order">
-              <PropertyRef Name="productId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <ComplexType Name="Describe_CheckConstraints_Result">
-          <Property Type="String" Name="Table_Catalog" Nullable="true" MaxLength="128" />
-          <Property Type="String" Name="Table_Schema" Nullable="true" MaxLength="128" />
-          <Property Type="String" Name="table_name" Nullable="false" MaxLength="128" />
-          <Property Type="String" Name="column_name" Nullable="true" MaxLength="128" />
-          <Property Type="String" Name="constraint_catalog" Nullable="true" MaxLength="128" />
-          <Property Type="String" Name="Constraint_name" Nullable="false" MaxLength="128" />
-          <Property Type="String" Name="check_clause" Nullable="true" MaxLength="4000" />
-        </ComplexType>
-        <ComplexType Name="Describe_TableColumns_Result">
-          <Property Type="String" Name="table_catalog" Nullable="true" MaxLength="128" />
-          <Property Type="String" Name="table_schema" Nullable="true" MaxLength="128" />
-          <Property Type="String" Name="table_name" Nullable="false" MaxLength="128" />
-          <Property Type="String" Name="column_name" Nullable="true" MaxLength="128" />
-          <Property Type="Int32" Name="ordinal_position" Nullable="true" />
-          <Property Type="String" Name="Column_Default" Nullable="true" MaxLength="4000" />
-          <Property Type="String" Name="is_nullable" Nullable="true" MaxLength="3" />
-          <Property Type="String" Name="Data_type" Nullable="true" MaxLength="128" />
-          <Property Type="Int32" Name="character_maximum_length" Nullable="true" />
-          <Property Type="Byte" Name="numeric_precision" Nullable="true" />
-          <Property Type="Int32" Name="numeric_scale" Nullable="true" />
-          <Property Type="Int16" Name="datetime_precision" Nullable="true" />
-          <Property Type="String" Name="container_name" Nullable="true" MaxLength="255" />
-          <Property Type="String" Name="control_name" Nullable="true" MaxLength="255" />
-        </ComplexType>
         <ComplexType Name="sp_helpdiagramdefinition_Result">
           <Property Type="Int32" Name="version" Nullable="true" />
           <Property Type="Binary" Name="definition" Nullable="true" />
@@ -2707,13 +2640,6 @@
           <Property Type="Int32" Name="ID" Nullable="false" />
           <Property Type="String" Name="Owner" Nullable="true" MaxLength="128" />
           <Property Type="Int32" Name="OwnerID" Nullable="false" />
-        </ComplexType>
-        <ComplexType Name="sp_ProjectEvent_Select_Result">
-          <Property Type="Guid" Name="EventID" Nullable="false" />
-          <Property Type="Guid" Name="ProjectID" Nullable="false" />
-          <Property Type="DateTime" Name="StartDateTime" Nullable="true" Precision="23" />
-          <Property Type="DateTime" Name="EndDateTime" Nullable="true" Precision="23" />
-          <Property Type="Int32" Name="AddrID" Nullable="true" />
         </ComplexType>
         <ComplexType Name="sp_GroupAddr_Select_Result">
           <Property Type="Int32" Name="GroupID" Nullable="false" />
@@ -2745,13 +2671,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <ComplexType Name="sp_ProjectEvent_Select1_Result">
-          <Property Type="Guid" Name="EventID" Nullable="false" />
-          <Property Type="Guid" Name="ProjectID" Nullable="false" />
-          <Property Type="DateTime" Name="StartDateTime" Nullable="true" Precision="23" />
-          <Property Type="DateTime" Name="EndDateTime" Nullable="true" Precision="23" />
-          <Property Type="Int32" Name="AddrID" Nullable="true" />
-        </ComplexType>
         <EntityType Name="tblGroup">
           <Key>
             <PropertyRef Name="GroupID" />
@@ -2762,6 +2681,8 @@
           <Property Type="Boolean" Name="ActiveFlg" />
           <NavigationProperty Name="tblGroupAddrs" Relationship="VolTeerModel.FK_tblGroupAddr_tblGroup" FromRole="tblGroup" ToRole="tblGroupAddr" />
           <NavigationProperty Name="tblGroupVols" Relationship="VolTeerModel.FK_tblGroupVol_tblGroup" FromRole="tblGroup" ToRole="tblGroupVol" />
+          <Property Type="String" Name="ShortDesc" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="LongDesc" MaxLength="Max" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_tblGroupAddr_tblGroup">
           <End Type="VolTeerModel.tblGroup" Role="tblGroup" Multiplicity="1" />
@@ -2787,6 +2708,123 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="sp_VendorProjContact_Select_Result">
+          <Property Type="Guid" Name="VendorID" Nullable="false" />
+          <Property Type="Guid" Name="ProjectID" Nullable="false" />
+          <Property Type="Guid" Name="ContactID" Nullable="false" />
+          <Property Type="Boolean" Name="PrimaryContact" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_VendorAddr_Select_Result">
+          <Property Type="Guid" Name="VendorID" Nullable="false" />
+          <Property Type="Int32" Name="AddrID" Nullable="false" />
+          <Property Type="Boolean" Name="HQ" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_ProjectEventContact_Select_Result">
+          <Property Type="Guid" Name="EventID" Nullable="false" />
+          <Property Type="Guid" Name="ContactID" Nullable="false" />
+          <Property Type="Boolean" Name="PrimaryContact" Nullable="true" />
+        </ComplexType>
+        <EntityType Name="tblProject">
+          <Key>
+            <PropertyRef Name="ProjectID" />
+          </Key>
+          <Property Type="Guid" Name="ProjectID" Nullable="false" />
+          <Property Type="String" Name="ProjectName" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Type="String" Name="ProjectDesc" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Type="Int32" Name="AddrID" />
+          <Property Type="Boolean" Name="ActiveFlg" />
+          <NavigationProperty Name="tblVendAddress" Relationship="VolTeerModel.FK_tblProject_tblAddress" FromRole="tblProject" ToRole="tblVendAddress" />
+          <NavigationProperty Name="tblVendorProjContacts" Relationship="VolTeerModel.FK_tblVendorProj_tblProject" FromRole="tblProject" ToRole="tblVendorProjContact" />
+        </EntityType>
+        <Association Name="FK_tblProject_tblAddress">
+          <End Type="VolTeerModel.tblVendAddress" Role="tblVendAddress" Multiplicity="0..1" />
+          <End Type="VolTeerModel.tblProject" Role="tblProject" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblVendAddress">
+              <PropertyRef Name="AddrID" />
+            </Principal>
+            <Dependent Role="tblProject">
+              <PropertyRef Name="AddrID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_tblVendorProj_tblProject">
+          <End Type="VolTeerModel.tblProject" Role="tblProject" Multiplicity="1" />
+          <End Type="VolTeerModel.tblVendorProjContact" Role="tblVendorProjContact" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="tblProject">
+              <PropertyRef Name="ProjectID" />
+            </Principal>
+            <Dependent Role="tblVendorProjContact">
+              <PropertyRef Name="ProjectID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="sp_Project_Select_Result">
+          <Property Type="Guid" Name="ProjectID" Nullable="false" />
+          <Property Type="String" Name="ProjectName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ProjectDesc" Nullable="true" />
+          <Property Type="Int32" Name="AddrID" Nullable="true" />
+          <Property Type="Boolean" Name="ActiveFlg" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_ProjectEvent_Select2_Result">
+          <Property Type="Guid" Name="EventID" Nullable="false" />
+          <Property Type="Guid" Name="ProjectID" Nullable="false" />
+          <Property Type="DateTime" Name="StartDateTime" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="EndDateTime" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="AddrID" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_Vendor_Select_Result">
+          <Property Type="Guid" Name="VendorID" Nullable="false" />
+          <Property Type="String" Name="VendorName" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="ActiveFlg" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_GroupVol_Select_Result">
+          <Property Type="String" Name="GroupName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ParticipationLevelID" Nullable="true" />
+          <Property Type="Boolean" Name="GroupActive" Nullable="true" />
+          <Property Type="Int32" Name="GroupID" Nullable="false" />
+          <Property Type="Guid" Name="VolID" Nullable="false" />
+          <Property Type="Boolean" Name="PrimaryVolID" Nullable="true" />
+          <Property Type="Boolean" Name="Admin" Nullable="true" />
+          <Property Type="String" Name="VolFirstName" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="VolMiddleName" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="VolLastName" Nullable="true" MaxLength="30" />
+          <Property Type="Boolean" Name="VolActive" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_ContactEmail_Select_Result">
+          <Property Type="Guid" Name="ContactID" Nullable="false" />
+          <Property Type="Int32" Name="EmailID" Nullable="false" />
+          <Property Type="Boolean" Name="PrimaryEmail" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_Contact_Select_Result">
+          <Property Type="Guid" Name="ContactID" Nullable="false" />
+          <Property Type="String" Name="ContactFirstName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ContactMiddleName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ContactLastName" Nullable="true" MaxLength="50" />
+          <Property Type="Boolean" Name="ActiveFlg" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_GroupVol_Select_FindNewVols_Result">
+          <Property Type="Guid" Name="VolID" Nullable="false" />
+          <Property Type="String" Name="VolFirstName" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="VolMiddleName" Nullable="true" MaxLength="20" />
+          <Property Type="String" Name="VolLastName" Nullable="true" MaxLength="30" />
+          <Property Type="Boolean" Name="VolActive" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_Skill_Select_Manage_Result">
+          <Property Type="Guid" Name="SkillID" Nullable="false" />
+          <Property Type="String" Name="SkillName" Nullable="true" MaxLength="50" />
+          <Property Type="Guid" Name="MstrSkillID" Nullable="true" />
+          <Property Type="Int32" Name="ActiveFlg" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_Group_Select_Result">
+          <Property Type="Int32" Name="GroupID" Nullable="false" />
+          <Property Type="String" Name="GroupName" Nullable="true" MaxLength="50" />
+          <Property Type="Int32" Name="ParticipationLevelID" Nullable="true" />
+          <Property Type="Boolean" Name="ActiveFlg" Nullable="true" />
+          <Property Type="String" Name="ShortDesc" Nullable="true" MaxLength="200" />
+          <Property Type="String" Name="LongDesc" Nullable="true" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -2864,37 +2902,6 @@
               </ModificationFunctionMapping>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="tblProjects">
-            <EntityTypeMapping TypeName="VolTeerModel.tblProject">
-              <MappingFragment StoreEntitySet="tblProject">
-                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
-                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
-                <ScalarProperty Name="ProjectDesc" ColumnName="ProjectDesc" />
-                <ScalarProperty Name="AddrID" ColumnName="AddrID" />
-                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
-              </MappingFragment>
-            </EntityTypeMapping>
-            <EntityTypeMapping TypeName="VolTeerModel.tblProject">
-              <ModificationFunctionMapping>
-                <InsertFunction FunctionName="VolTeerModel.Store.sp_Project_Insert">
-                  <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" />
-                  <ScalarProperty Name="AddrID" ParameterName="AddrID" />
-                  <ScalarProperty Name="ProjectDesc" ParameterName="ProjectDesc" />
-                  <ScalarProperty Name="ProjectName" ParameterName="ProjectName" />
-                </InsertFunction>
-                <DeleteFunction FunctionName="VolTeerModel.Store.sp_Project_Delete">
-                  <ScalarProperty Name="ProjectID" ParameterName="ProjectID" />
-                </DeleteFunction>
-                <UpdateFunction FunctionName="VolTeerModel.Store.sp_Project_Update">
-                  <ScalarProperty Name="ActiveFlg" ParameterName="flag" Version="Current" />
-                  <ScalarProperty Name="AddrID" ParameterName="AddrID" Version="Current" />
-                  <ScalarProperty Name="ProjectDesc" ParameterName="ProjectDesc" Version="Current" />
-                  <ScalarProperty Name="ProjectName" ParameterName="ProjectName" Version="Current" />
-                  <ScalarProperty Name="ProjectID" ParameterName="ProjectID" Version="Current" />
-                </UpdateFunction>
-              </ModificationFunctionMapping>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="tblProjectEvents">
             <EntityTypeMapping TypeName="VolTeerModel.tblProjectEvent">
               <MappingFragment StoreEntitySet="tblProjectEvent">
@@ -2905,26 +2912,6 @@
                 <ScalarProperty Name="AddrID" ColumnName="AddrID" />
               </MappingFragment>
             </EntityTypeMapping>
-            <EntityTypeMapping TypeName="VolTeerModel.tblProjectEvent">
-              <ModificationFunctionMapping>
-                <InsertFunction FunctionName="VolTeerModel.Store.sp_ProjectEvent_Insert">
-                  <ScalarProperty Name="AddrID" ParameterName="AddrID" />
-                  <ScalarProperty Name="EndDateTime" ParameterName="EndDateTime" />
-                  <ScalarProperty Name="StartDateTime" ParameterName="StartDateTime" />
-                  <ScalarProperty Name="ProjectID" ParameterName="ProjectID" />
-                </InsertFunction>
-                <UpdateFunction FunctionName="VolTeerModel.Store.sp_ProjectEvent_Update">
-                  <ScalarProperty Name="AddrID" ParameterName="AddrID" Version="Current" />
-                  <ScalarProperty Name="EndDateTime" ParameterName="EndDateTime" Version="Current" />
-                  <ScalarProperty Name="StartDateTime" ParameterName="StartDateTime" Version="Current" />
-                  <ScalarProperty Name="ProjectID" ParameterName="ProjectID" Version="Current" />
-                  <ScalarProperty Name="EventID" ParameterName="EventID" Version="Current" />
-                </UpdateFunction>
-                <DeleteFunction FunctionName="VolTeerModel.Store.sp_ProjectEvent_Delete">
-                  <ScalarProperty Name="EventID" ParameterName="EventID" />
-                </DeleteFunction>
-              </ModificationFunctionMapping>
-            </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblProjectEventContacts">
             <EntityTypeMapping TypeName="VolTeerModel.tblProjectEventContact">
@@ -2933,6 +2920,24 @@
                 <ScalarProperty Name="ContactID" ColumnName="ContactID" />
                 <ScalarProperty Name="PrimaryContact" ColumnName="PrimaryContact" />
               </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="VolTeerModel.tblProjectEventContact">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="VolTeerModel.Store.sp_ProjectEventContact_Insert">
+                  <ScalarProperty Name="PrimaryContact" ParameterName="PrimaryContact" />
+                  <ScalarProperty Name="ContactID" ParameterName="ContactID" />
+                  <ScalarProperty Name="EventID" ParameterName="EventID" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="VolTeerModel.Store.sp_ProjectEventContact_Update">
+                  <ScalarProperty Name="PrimaryContact" ParameterName="PrimaryContact" Version="Current" />
+                  <ScalarProperty Name="ContactID" ParameterName="ContactID" Version="Current" />
+                  <ScalarProperty Name="EventID" ParameterName="EventID" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="VolTeerModel.Store.sp_ProjectEventContact_Delete">
+                  <ScalarProperty Name="ContactID" ParameterName="ContactID" />
+                  <ScalarProperty Name="EventID" ParameterName="EventID" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblVendAddresses">
@@ -2989,6 +2994,24 @@
                 <ScalarProperty Name="PrimaryContact" ColumnName="PrimaryContact" />
               </MappingFragment>
             </EntityTypeMapping>
+            <EntityTypeMapping TypeName="VolTeerModel.tblVendContact">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="VolTeerModel.Store.sp_Vend_Contact_Insert">
+                  <ScalarProperty Name="PrimaryContact" ParameterName="PrimaryContact" />
+                  <ScalarProperty Name="ContactID" ParameterName="ContactID" />
+                  <ScalarProperty Name="VendorID" ParameterName="VendorID" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="VolTeerModel.Store.sp_Vend_Contact_Update">
+                  <ScalarProperty Name="PrimaryContact" ParameterName="PrimaryContact" Version="Current" />
+                  <ScalarProperty Name="ContactID" ParameterName="ContactID" Version="Current" />
+                  <ScalarProperty Name="VendorID" ParameterName="VendorID" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="VolTeerModel.Store.sp_Vend_Contact_Delete">
+                  <ScalarProperty Name="ContactID" ParameterName="ContactID" />
+                  <ScalarProperty Name="VendorID" ParameterName="VendorID" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblVendEmails">
             <EntityTypeMapping TypeName="VolTeerModel.tblVendEmail">
@@ -3026,10 +3049,6 @@
             </EntityTypeMapping>
             <EntityTypeMapping TypeName="VolTeerModel.tblVendor">
               <ModificationFunctionMapping>
-                <InsertFunction FunctionName="VolTeerModel.Store.sp_Vendor_Insert">
-                  <ScalarProperty Name="VendorName" ParameterName="VendorName" />
-                  <ResultBinding Name="VendorID" ColumnName="VendorID" />
-                </InsertFunction>
                 <UpdateFunction FunctionName="VolTeerModel.Store.sp_Vendor_Update">
                   <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" Version="Current" />
                   <ScalarProperty Name="VendorName" ParameterName="VendorName" Version="Current" />
@@ -3051,6 +3070,23 @@
                 <ScalarProperty Name="HQ" ColumnName="HQ" />
               </MappingFragment>
             </EntityTypeMapping>
+            <EntityTypeMapping TypeName="VolTeerModel.tblVendorAddr">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="VolTeerModel.Store.sp_VendorAddr_Insert">
+                  <ScalarProperty Name="HQ" ParameterName="HQ" />
+                  <ScalarProperty Name="AddrID" ParameterName="AddrID" />
+                  <ResultBinding Name="VendorID" ColumnName="VendorID" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="VolTeerModel.Store.sp_VendorAddr_Update">
+                  <ScalarProperty Name="HQ" ParameterName="HQ" Version="Current" />
+                  <ScalarProperty Name="AddrID" ParameterName="AddrID" Version="Current" />
+                  <ScalarProperty Name="VendorID" ParameterName="VendorID" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="VolTeerModel.Store.sp_VendorAddr_Delete">
+                  <ScalarProperty Name="VendorID" ParameterName="VendorID" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblVendorProjContacts">
             <EntityTypeMapping TypeName="VolTeerModel.tblVendorProjContact">
@@ -3060,6 +3096,27 @@
                 <ScalarProperty Name="ContactID" ColumnName="ContactID" />
                 <ScalarProperty Name="PrimaryContact" ColumnName="PrimaryContact" />
               </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="VolTeerModel.tblVendorProjContact">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="VolTeerModel.Store.sp_VendorProjContact_Insert">
+                  <ScalarProperty Name="PrimaryContact" ParameterName="PrimaryContact" />
+                  <ScalarProperty Name="ContactID" ParameterName="ContactID" />
+                  <ScalarProperty Name="ProjectID" ParameterName="ProjectID" />
+                  <ScalarProperty Name="VendorID" ParameterName="VendorID" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="VolTeerModel.Store.sp_VendorProjContact_Update">
+                  <ScalarProperty Name="PrimaryContact" ParameterName="PrimaryContact" Version="Current" />
+                  <ScalarProperty Name="ContactID" ParameterName="ContactID" Version="Current" />
+                  <ScalarProperty Name="ProjectID" ParameterName="ProjectID" Version="Current" />
+                  <ScalarProperty Name="VendorID" ParameterName="VendorID" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="VolTeerModel.Store.sp_VendorProjContact_Delete">
+                  <ScalarProperty Name="ContactID" ParameterName="ContactID" />
+                  <ScalarProperty Name="ProjectID" ParameterName="ProjectID" />
+                  <ScalarProperty Name="VendorID" ParameterName="VendorID" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblSampleAddresses">
@@ -3126,7 +3183,7 @@
                   <ScalarProperty Name="VolLastName" ParameterName="VolLastName" />
                   <ScalarProperty Name="VolMiddleName" ParameterName="VolMiddleName" />
                   <ScalarProperty Name="VolFirstName" ParameterName="VolFirstName" />
-                  <ResultBinding Name="VolID" ColumnName="VolID" />
+                  <ScalarProperty Name="VolID" ParameterName="VolID" />
                 </InsertFunction>
               </ModificationFunctionMapping>
             </EntityTypeMapping>
@@ -3134,17 +3191,6 @@
           <FunctionImportMapping FunctionImportName="sp_Contact_Delete" FunctionName="VolTeerModel.Store.sp_Contact_Delete" />
           <FunctionImportMapping FunctionImportName="sp_Contact_Insert" FunctionName="VolTeerModel.Store.sp_Contact_Insert" />
           <FunctionImportMapping FunctionImportName="sp_Contact_MassUpdate" FunctionName="VolTeerModel.Store.sp_Contact_MassUpdate" />
-          <FunctionImportMapping FunctionImportName="sp_Contact_Select" FunctionName="VolTeerModel.Store.sp_Contact_Select">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="VolTeerModel.sp_Contact_Select_Result">
-                <ScalarProperty Name="ContactID" ColumnName="ContactID" />
-                <ScalarProperty Name="ContactFirstName" ColumnName="ContactFirstName" />
-                <ScalarProperty Name="ContactMiddleName" ColumnName="ContactMiddleName" />
-                <ScalarProperty Name="ContactLastName" ColumnName="ContactLastName" />
-                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_Contact_Update" FunctionName="VolTeerModel.Store.sp_Contact_Update" />
           <FunctionImportMapping FunctionImportName="sp_EventRating_Delete" FunctionName="VolTeerModel.Store.sp_EventRating_Delete" />
           <FunctionImportMapping FunctionImportName="sp_EventRating_Insert" FunctionName="VolTeerModel.Store.sp_EventRating_Insert" />
@@ -3161,19 +3207,6 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_EventRating_Update" FunctionName="VolTeerModel.Store.sp_EventRating_Update" />
-          <FunctionImportMapping FunctionImportName="sp_Project_Delete" FunctionName="VolTeerModel.Store.sp_Project_Delete" />
-          <FunctionImportMapping FunctionImportName="sp_Project_Insert" FunctionName="VolTeerModel.Store.sp_Project_Insert" />
-          <FunctionImportMapping FunctionImportName="sp_Project_Select" FunctionName="VolTeerModel.Store.sp_Project_Select">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="VolTeerModel.sp_Project_Select_Result">
-                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
-                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
-                <ScalarProperty Name="ProjectDesc" ColumnName="ProjectDesc" />
-                <ScalarProperty Name="AddrID" ColumnName="AddrID" />
-                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_Vend_Address_Delete" FunctionName="VolTeerModel.Store.sp_Vend_Address_Delete" />
           <FunctionImportMapping FunctionImportName="sp_Vend_Address_Insert" FunctionName="VolTeerModel.Store.sp_Vend_Address_Insert" />
           <FunctionImportMapping FunctionImportName="sp_Vend_Address_MassUpdate" FunctionName="VolTeerModel.Store.sp_Vend_Address_MassUpdate" />
@@ -3206,8 +3239,6 @@
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_Vend_Email_Update" FunctionName="VolTeerModel.Store.sp_Vend_Email_Update" />
           <FunctionImportMapping FunctionImportName="sp_Vendor_Delete" FunctionName="VolTeerModel.Store.sp_Vendor_Delete" />
-          <FunctionImportMapping FunctionImportName="sp_Vendor_Select" FunctionName="VolTeerModel.Store.sp_Vendor_Select">
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_Sample_Address_Delete" FunctionName="VolTeerModel.Store.sp_Sample_Address_Delete" />
           <FunctionImportMapping FunctionImportName="sp_Sample_Address_Insert" FunctionName="VolTeerModel.Store.sp_Sample_Address_Insert" />
           <FunctionImportMapping FunctionImportName="sp_Sample_Address_Select" FunctionName="VolTeerModel.Store.sp_Sample_Address_Select">
@@ -3521,6 +3552,7 @@
                   <ResultBinding Name="PhoneID" ColumnName="PhoneId" />
                 </InsertFunction>
                 <UpdateFunction FunctionName="VolTeerModel.Store.sp_Vol_Phone_Update">
+                  <ScalarProperty Name="VolID" ParameterName="VolID" Version="Current" />
                   <ScalarProperty Name="PrimaryFlg" ParameterName="PrimaryFlg" Version="Current" />
                   <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" Version="Current" />
                   <ScalarProperty Name="PhoneNbr" ParameterName="PhoneNbr" Version="Current" />
@@ -3611,7 +3643,6 @@
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_Vol_Phone_Update" FunctionName="VolTeerModel.Store.sp_Vol_Phone_Update" />
           <FunctionImportMapping FunctionImportName="sp_Vol_Phone_Insert" FunctionName="VolTeerModel.Store.sp_Vol_Phone_Insert">
             <ResultMapping>
               <ComplexTypeMapping TypeName="VolTeerModel.sp_Vol_Phone_Insert_Result">
@@ -3632,8 +3663,6 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_GroupVol_Insert" FunctionName="VolTeerModel.Store.sp_GroupVol_Insert" />
-          <FunctionImportMapping FunctionImportName="sp_GroupVol_Select" FunctionName="VolTeerModel.Store.sp_GroupVol_Select">
-          </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_GroupVol_Update" FunctionName="VolTeerModel.Store.sp_GroupVol_Update" />
           <EntitySetMapping Name="Vend_tblUserCred">
             <EntityTypeMapping TypeName="VolTeerModel.Vend_tblUserCred">
@@ -3655,130 +3684,6 @@
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_Vend_Contact_Update" FunctionName="VolTeerModel.Store.sp_Vend_Contact_Update" />
-          <FunctionImportMapping FunctionImportName="sp_Group_Delete" FunctionName="VolTeerModel.Store.sp_Group_Delete" />
-          <FunctionImportMapping FunctionImportName="sp_Group_Insert" FunctionName="VolTeerModel.Store.sp_Group_Insert" />
-          <FunctionImportMapping FunctionImportName="sp_Group_Select" FunctionName="VolTeerModel.Store.sp_Group_Select">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="VolTeerModel.sp_Group_Select_Result">
-                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
-                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
-                <ScalarProperty Name="ParticipationLevelID" ColumnName="ParticipationLevelID" />
-                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_Group_Update" FunctionName="VolTeerModel.Store.sp_Group_Update" />
-          <FunctionImportMapping FunctionImportName="sp_Vendor_Insert" FunctionName="VolTeerModel.Store.sp_Vendor_Insert" />
-          <EntitySetMapping Name="ControlProperties">
-            <EntityTypeMapping TypeName="VolTeerModel.ControlProperty">
-              <MappingFragment StoreEntitySet="ControlProperty">
-                <ScalarProperty Name="PropertValueID" ColumnName="PropertValueID" />
-                <ScalarProperty Name="PropertyID" ColumnName="PropertyID" />
-                <ScalarProperty Name="RegisterPropertyID" ColumnName="RegisterPropertyID" />
-                <ScalarProperty Name="RegsisterControlID" ColumnName="RegsisterControlID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Orders">
-            <EntityTypeMapping TypeName="VolTeerModel.Order">
-              <MappingFragment StoreEntitySet="Order">
-                <ScalarProperty Name="timestamp" ColumnName="timestamp" />
-                <ScalarProperty Name="quantity" ColumnName="quantity" />
-                <ScalarProperty Name="productId" ColumnName="productId" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="Products">
-            <EntityTypeMapping TypeName="VolTeerModel.Product">
-              <MappingFragment StoreEntitySet="Product">
-                <ScalarProperty Name="price" ColumnName="price" />
-                <ScalarProperty Name="name" ColumnName="name" />
-                <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="RegisteredControls">
-            <EntityTypeMapping TypeName="VolTeerModel.RegisteredControl">
-              <MappingFragment StoreEntitySet="RegisteredControls">
-                <ScalarProperty Name="control_name" ColumnName="control_name" />
-                <ScalarProperty Name="container_name" ColumnName="container_name" />
-                <ScalarProperty Name="column_name" ColumnName="column_name" />
-                <ScalarProperty Name="table_name" ColumnName="table_name" />
-                <ScalarProperty Name="table_schema" ColumnName="table_schema" />
-                <ScalarProperty Name="table_catalog" ColumnName="table_catalog" />
-                <ScalarProperty Name="RegisterControlID" ColumnName="RegisterControlID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="sysdiagrams">
-            <EntityTypeMapping TypeName="VolTeerModel.sysdiagram">
-              <MappingFragment StoreEntitySet="sysdiagrams">
-                <ScalarProperty Name="definition" ColumnName="definition" />
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
-                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
-                <ScalarProperty Name="name" ColumnName="name" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="Describe_CheckConstraints" FunctionName="VolTeerModel.Store.Describe_CheckConstraints">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="VolTeerModel.Describe_CheckConstraints_Result">
-                <ScalarProperty Name="Table_Catalog" ColumnName="Table_Catalog" />
-                <ScalarProperty Name="Table_Schema" ColumnName="Table_Schema" />
-                <ScalarProperty Name="table_name" ColumnName="table_name" />
-                <ScalarProperty Name="column_name" ColumnName="column_name" />
-                <ScalarProperty Name="constraint_catalog" ColumnName="constraint_catalog" />
-                <ScalarProperty Name="Constraint_name" ColumnName="Constraint_name" />
-                <ScalarProperty Name="check_clause" ColumnName="check_clause" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="Describe_TableColumns" FunctionName="VolTeerModel.Store.Describe_TableColumns">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="VolTeerModel.Describe_TableColumns_Result">
-                <ScalarProperty Name="table_catalog" ColumnName="table_catalog" />
-                <ScalarProperty Name="table_schema" ColumnName="table_schema" />
-                <ScalarProperty Name="table_name" ColumnName="table_name" />
-                <ScalarProperty Name="column_name" ColumnName="column_name" />
-                <ScalarProperty Name="ordinal_position" ColumnName="ordinal_position" />
-                <ScalarProperty Name="Column_Default" ColumnName="Column_Default" />
-                <ScalarProperty Name="is_nullable" ColumnName="is_nullable" />
-                <ScalarProperty Name="Data_type" ColumnName="Data_type" />
-                <ScalarProperty Name="character_maximum_length" ColumnName="character_maximum_length" />
-                <ScalarProperty Name="numeric_precision" ColumnName="numeric_precision" />
-                <ScalarProperty Name="numeric_scale" ColumnName="numeric_scale" />
-                <ScalarProperty Name="datetime_precision" ColumnName="datetime_precision" />
-                <ScalarProperty Name="container_name" ColumnName="container_name" />
-                <ScalarProperty Name="control_name" ColumnName="control_name" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_alterdiagram" FunctionName="VolTeerModel.Store.sp_alterdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_creatediagram" FunctionName="VolTeerModel.Store.sp_creatediagram" />
-          <FunctionImportMapping FunctionImportName="sp_dropdiagram" FunctionName="VolTeerModel.Store.sp_dropdiagram" />
-          <FunctionImportMapping FunctionImportName="sp_helpdiagramdefinition" FunctionName="VolTeerModel.Store.sp_helpdiagramdefinition">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="VolTeerModel.sp_helpdiagramdefinition_Result">
-                <ScalarProperty Name="version" ColumnName="version" />
-                <ScalarProperty Name="definition" ColumnName="definition" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_helpdiagrams" FunctionName="VolTeerModel.Store.sp_helpdiagrams">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="VolTeerModel.sp_helpdiagrams_Result">
-                <ScalarProperty Name="Database" ColumnName="Database" />
-                <ScalarProperty Name="Name" ColumnName="Name" />
-                <ScalarProperty Name="ID" ColumnName="ID" />
-                <ScalarProperty Name="Owner" ColumnName="Owner" />
-                <ScalarProperty Name="OwnerID" ColumnName="OwnerID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="VolTeerModel.Store.sp_renamediagram" />
-          <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="VolTeerModel.Store.sp_upgraddiagrams" />
           <FunctionImportMapping FunctionImportName="sp_GroupAddr_Delete" FunctionName="VolTeerModel.Store.sp_GroupAddr_Delete" />
           <FunctionImportMapping FunctionImportName="sp_GroupAddr_Insert" FunctionName="VolTeerModel.Store.sp_GroupAddr_Insert" />
           <FunctionImportMapping FunctionImportName="sp_GroupAddr_Select" FunctionName="VolTeerModel.Store.sp_GroupAddr_Select">
@@ -3824,24 +3729,11 @@
               </ModificationFunctionMapping>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <FunctionImportMapping FunctionImportName="sp_Project_Update1" FunctionName="VolTeerModel.Store.sp_Project_Update" />
-          <FunctionImportMapping FunctionImportName="sp_ProjectEvent_Delete" FunctionName="VolTeerModel.Store.sp_ProjectEvent_Delete" />
-          <FunctionImportMapping FunctionImportName="sp_ProjectEvent_Insert1" FunctionName="VolTeerModel.Store.sp_ProjectEvent_Insert" />
-          <FunctionImportMapping FunctionImportName="sp_ProjectEvent_Select1" FunctionName="VolTeerModel.Store.sp_ProjectEvent_Select">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="VolTeerModel.sp_ProjectEvent_Select1_Result">
-                <ScalarProperty Name="EventID" ColumnName="EventID" />
-                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
-                <ScalarProperty Name="StartDateTime" ColumnName="StartDateTime" />
-                <ScalarProperty Name="EndDateTime" ColumnName="EndDateTime" />
-                <ScalarProperty Name="AddrID" ColumnName="AddrID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_ProjectEvent_Update1" FunctionName="VolTeerModel.Store.sp_ProjectEvent_Update" />
           <EntitySetMapping Name="tblGroups">
             <EntityTypeMapping TypeName="VolTeerModel.tblGroup">
               <MappingFragment StoreEntitySet="tblGroup">
+                <ScalarProperty Name="LongDesc" ColumnName="LongDesc" />
+                <ScalarProperty Name="ShortDesc" ColumnName="ShortDesc" />
                 <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
                 <ScalarProperty Name="ParticipationLevelID" ColumnName="ParticipationLevelID" />
                 <ScalarProperty Name="GroupName" ColumnName="GroupName" />
@@ -3851,23 +3743,213 @@
             <EntityTypeMapping TypeName="VolTeerModel.tblGroup">
               <ModificationFunctionMapping>
                 <InsertFunction FunctionName="VolTeerModel.Store.sp_Group_Insert">
+                  <ScalarProperty Name="LongDesc" ParameterName="LongDesc" />
+                  <ScalarProperty Name="ShortDesc" ParameterName="ShortDesc" />
                   <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" />
                   <ScalarProperty Name="ParticipationLevelID" ParameterName="ParticipationLevelID" />
                   <ScalarProperty Name="GroupName" ParameterName="GroupName" />
                   <ResultBinding Name="GroupID" ColumnName="GroupID" />
                 </InsertFunction>
                 <UpdateFunction FunctionName="VolTeerModel.Store.sp_Group_Update">
+                  <ScalarProperty Name="LongDesc" ParameterName="LongDesc" Version="Current" />
+                  <ScalarProperty Name="ShortDesc" ParameterName="ShortDesc" Version="Current" />
                   <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" Version="Current" />
                   <ScalarProperty Name="ParticipationLevelID" ParameterName="ParticipationLevelID" Version="Current" />
                   <ScalarProperty Name="GroupName" ParameterName="GroupName" Version="Current" />
                   <ScalarProperty Name="GroupID" ParameterName="GroupID" Version="Current" />
                 </UpdateFunction>
-                <DeleteFunction FunctionName="VolTeerModel.Store.sp_Group_Delete">
+                <DeleteFunction FunctionName="VolTeerModel.Store.sp_Group_Select">
                   <ScalarProperty Name="GroupID" ParameterName="GroupID" />
                 </DeleteFunction>
               </ModificationFunctionMapping>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_ProjectEventContact_Delete" FunctionName="VolTeerModel.Store.sp_ProjectEventContact_Delete" />
+          <FunctionImportMapping FunctionImportName="sp_Vend_Contact_Delete" FunctionName="VolTeerModel.Store.sp_Vend_Contact_Delete" />
+          <FunctionImportMapping FunctionImportName="sp_VendorProjContact_Delete" FunctionName="VolTeerModel.Store.sp_VendorProjContact_Delete" />
+          <FunctionImportMapping FunctionImportName="sp_VendorProjContact_Insert" FunctionName="VolTeerModel.Store.sp_VendorProjContact_Insert" />
+          <FunctionImportMapping FunctionImportName="sp_VendorProjContact_Select" FunctionName="VolTeerModel.Store.sp_VendorProjContact_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VolTeerModel.sp_VendorProjContact_Select_Result">
+                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+                <ScalarProperty Name="PrimaryContact" ColumnName="PrimaryContact" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_VendorProjContact_Update" FunctionName="VolTeerModel.Store.sp_VendorProjContact_Update" />
+          <FunctionImportMapping FunctionImportName="sp_VendorAddr_Delete" FunctionName="VolTeerModel.Store.sp_VendorAddr_Delete" />
+          <FunctionImportMapping FunctionImportName="sp_VendorAddr_Insert" FunctionName="VolTeerModel.Store.sp_VendorAddr_Insert" />
+          <FunctionImportMapping FunctionImportName="sp_VendorAddr_Select" FunctionName="VolTeerModel.Store.sp_VendorAddr_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VolTeerModel.sp_VendorAddr_Select_Result">
+                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+                <ScalarProperty Name="AddrID" ColumnName="AddrID" />
+                <ScalarProperty Name="HQ" ColumnName="HQ" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_VendorAddr_Update" FunctionName="VolTeerModel.Store.sp_VendorAddr_Update" />
+          <FunctionImportMapping FunctionImportName="sp_ProjectEventContact_Insert" FunctionName="VolTeerModel.Store.sp_ProjectEventContact_Insert" />
+          <FunctionImportMapping FunctionImportName="sp_ProjectEventContact_Select" FunctionName="VolTeerModel.Store.sp_ProjectEventContact_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VolTeerModel.sp_ProjectEventContact_Select_Result">
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+                <ScalarProperty Name="PrimaryContact" ColumnName="PrimaryContact" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_ProjectEventContact_Update" FunctionName="VolTeerModel.Store.sp_ProjectEventContact_Update" />
+          <EntitySetMapping Name="tblProjects">
+            <EntityTypeMapping TypeName="VolTeerModel.tblProject">
+              <MappingFragment StoreEntitySet="tblProject">
+                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
+                <ScalarProperty Name="AddrID" ColumnName="AddrID" />
+                <ScalarProperty Name="ProjectDesc" ColumnName="ProjectDesc" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="VolTeerModel.tblProject">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="VolTeerModel.Store.sp_Project_Insert">
+                  <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" />
+                  <ScalarProperty Name="AddrID" ParameterName="AddrID" />
+                  <ScalarProperty Name="ProjectDesc" ParameterName="ProjectDesc" />
+                  <ScalarProperty Name="ProjectName" ParameterName="ProjectName" />
+                  <ResultBinding Name="ProjectID" ColumnName="ProjectID" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="VolTeerModel.Store.sp_Project_Update">
+                  <ScalarProperty Name="ActiveFlg" ParameterName="ActiveFlg" Version="Current" />
+                  <ScalarProperty Name="AddrID" ParameterName="AddrID" Version="Current" />
+                  <ScalarProperty Name="ProjectDesc" ParameterName="ProjectDesc" Version="Current" />
+                  <ScalarProperty Name="ProjectName" ParameterName="ProjectName" Version="Current" />
+                  <ScalarProperty Name="ProjectID" ParameterName="ProjectID" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="VolTeerModel.Store.sp_Project_Delete">
+                  <ScalarProperty Name="ProjectID" ParameterName="ProjectID" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="sp_Project_Delete" FunctionName="VolTeerModel.Store.sp_Project_Delete" />
+          <FunctionImportMapping FunctionImportName="sp_Project_Insert" FunctionName="VolTeerModel.Store.sp_Project_Insert" />
+          <FunctionImportMapping FunctionImportName="sp_Project_Select" FunctionName="VolTeerModel.Store.sp_Project_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VolTeerModel.sp_Project_Select_Result">
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="ProjectName" ColumnName="ProjectName" />
+                <ScalarProperty Name="ProjectDesc" ColumnName="ProjectDesc" />
+                <ScalarProperty Name="AddrID" ColumnName="AddrID" />
+                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Project_Update" FunctionName="VolTeerModel.Store.sp_Project_Update" />
+          <FunctionImportMapping FunctionImportName="sp_ProjectEvent_Delete1" FunctionName="VolTeerModel.Store.sp_ProjectEvent_Delete" />
+          <FunctionImportMapping FunctionImportName="sp_ProjectEvent_Insert2" FunctionName="VolTeerModel.Store.sp_ProjectEvent_Insert" />
+          <FunctionImportMapping FunctionImportName="sp_ProjectEvent_Select2" FunctionName="VolTeerModel.Store.sp_ProjectEvent_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VolTeerModel.sp_ProjectEvent_Select2_Result">
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="StartDateTime" ColumnName="StartDateTime" />
+                <ScalarProperty Name="EndDateTime" ColumnName="EndDateTime" />
+                <ScalarProperty Name="AddrID" ColumnName="AddrID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_ProjectEvent_Update2" FunctionName="VolTeerModel.Store.sp_ProjectEvent_Update" />
+          <FunctionImportMapping FunctionImportName="sp_Vendor_Select" FunctionName="VolTeerModel.Store.sp_Vendor_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VolTeerModel.sp_Vendor_Select_Result">
+                <ScalarProperty Name="VendorID" ColumnName="VendorID" />
+                <ScalarProperty Name="VendorName" ColumnName="VendorName" />
+                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Vendor_Insert" FunctionName="VolTeerModel.Store.sp_Vendor_Insert" />
+          <FunctionImportMapping FunctionImportName="sp_GroupVol_Select" FunctionName="VolTeerModel.Store.sp_GroupVol_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VolTeerModel.sp_GroupVol_Select_Result">
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="ParticipationLevelID" ColumnName="ParticipationLevelID" />
+                <ScalarProperty Name="GroupActive" ColumnName="GroupActive" />
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="VolID" ColumnName="VolID" />
+                <ScalarProperty Name="PrimaryVolID" ColumnName="PrimaryVolID" />
+                <ScalarProperty Name="Admin" ColumnName="Admin" />
+                <ScalarProperty Name="VolFirstName" ColumnName="VolFirstName" />
+                <ScalarProperty Name="VolMiddleName" ColumnName="VolMiddleName" />
+                <ScalarProperty Name="VolLastName" ColumnName="VolLastName" />
+                <ScalarProperty Name="VolActive" ColumnName="VolActive" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_ContactEmail_Delete" FunctionName="VolTeerModel.Store.sp_ContactEmail_Delete" />
+          <FunctionImportMapping FunctionImportName="sp_ContactEmail_Insert" FunctionName="VolTeerModel.Store.sp_ContactEmail_Insert" />
+          <FunctionImportMapping FunctionImportName="sp_ContactEmail_Select" FunctionName="VolTeerModel.Store.sp_ContactEmail_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VolTeerModel.sp_ContactEmail_Select_Result">
+                <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+                <ScalarProperty Name="EmailID" ColumnName="EmailID" />
+                <ScalarProperty Name="PrimaryEmail" ColumnName="PrimaryEmail" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_ContactEmail_Update" FunctionName="VolTeerModel.Store.sp_ContactEmail_Update" />
+          <FunctionImportMapping FunctionImportName="sp_Contact_Select" FunctionName="VolTeerModel.Store.sp_Contact_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VolTeerModel.sp_Contact_Select_Result">
+                <ScalarProperty Name="ContactID" ColumnName="ContactID" />
+                <ScalarProperty Name="ContactFirstName" ColumnName="ContactFirstName" />
+                <ScalarProperty Name="ContactMiddleName" ColumnName="ContactMiddleName" />
+                <ScalarProperty Name="ContactLastName" ColumnName="ContactLastName" />
+                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Volunteer_Insert" FunctionName="VolTeerModel.Store.sp_Volunteer_Insert" />
+          <FunctionImportMapping FunctionImportName="sp_Vol_Phone_Update" FunctionName="VolTeerModel.Store.sp_Vol_Phone_Update" />
+          <FunctionImportMapping FunctionImportName="sp_GroupVol_Select_FindNewVols" FunctionName="VolTeerModel.Store.sp_GroupVol_Select_FindNewVols">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VolTeerModel.sp_GroupVol_Select_FindNewVols_Result">
+                <ScalarProperty Name="VolID" ColumnName="VolID" />
+                <ScalarProperty Name="VolFirstName" ColumnName="VolFirstName" />
+                <ScalarProperty Name="VolMiddleName" ColumnName="VolMiddleName" />
+                <ScalarProperty Name="VolLastName" ColumnName="VolLastName" />
+                <ScalarProperty Name="VolActive" ColumnName="VolActive" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Skill_Select_Manage" FunctionName="VolTeerModel.Store.sp_Skill_Select_Manage">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VolTeerModel.sp_Skill_Select_Manage_Result">
+                <ScalarProperty Name="SkillID" ColumnName="SkillID" />
+                <ScalarProperty Name="SkillName" ColumnName="SkillName" />
+                <ScalarProperty Name="MstrSkillID" ColumnName="MstrSkillID" />
+                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Group_Delete" FunctionName="VolTeerModel.Store.sp_Group_Delete" />
+          <FunctionImportMapping FunctionImportName="sp_Group_Insert" FunctionName="VolTeerModel.Store.sp_Group_Insert" />
+          <FunctionImportMapping FunctionImportName="sp_Group_Select" FunctionName="VolTeerModel.Store.sp_Group_Select">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VolTeerModel.sp_Group_Select_Result">
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="ParticipationLevelID" ColumnName="ParticipationLevelID" />
+                <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
+                <ScalarProperty Name="ShortDesc" ColumnName="ShortDesc" />
+                <ScalarProperty Name="LongDesc" ColumnName="LongDesc" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Group_Update" FunctionName="VolTeerModel.Store.sp_Group_Update" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
@@ -3885,6 +3967,7 @@
         <DesignerProperty Name="EnablePluralization" Value="True" />
         <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
         <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+        <DesignerProperty Name="UseLegacyProvider" Value="True" />
       </DesignerInfoPropertySet>
     </Options>
     <!-- Diagram content (shape and connector positions) -->

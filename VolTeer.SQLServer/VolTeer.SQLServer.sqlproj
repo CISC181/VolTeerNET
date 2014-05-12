@@ -122,10 +122,6 @@
       <AnsiNulls>On</AnsiNulls>
       <QuotedIdentifier>On</QuotedIdentifier>
     </Build>
-    <Build Include="Vend\Tables\tblEventRating.sql">
-      <AnsiNulls>On</AnsiNulls>
-      <QuotedIdentifier>On</QuotedIdentifier>
-    </Build>
     <Build Include="Vend\Tables\tblProject.sql">
       <AnsiNulls>On</AnsiNulls>
       <QuotedIdentifier>On</QuotedIdentifier>
@@ -429,5 +425,9 @@
     </Build>
     <Build Include="Security\Vend.sql" />
     <Build Include="Security\Vol.sql" />
+    <Build Include="Vend\Stored Procedures\tblEventRating.sql">
+      <AnsiNulls>On</AnsiNulls>
+      <QuotedIdentifier>On</QuotedIdentifier>
+    </Build>
   </ItemGroup>
 </Project>

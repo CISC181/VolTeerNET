@@ -24,9 +24,9 @@ namespace VolTeer.BusinessLogicLayer.VT.Vol
             return DAL.ListPrimaryEmail(cVolEmail);
         }
 
-        public void InsertEmailContext(sp_Email_DM _cEmail)
+        public void InsertEmailContext(ref sp_Email_DM _cEmail)
         {
-            DAL.InsertEmailContext(_cEmail);
+            DAL.InsertEmailContext(ref _cEmail);
         }
 
         public void UpdateEmailAddr(sp_Email_DM _cEmail)

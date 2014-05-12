@@ -44,7 +44,10 @@ namespace VolTeer.Cache.VT.Vol
             if (cachePhones == null) 
             {
                 cachePhones = BLL.ListPrimaryPhone(cPhone);
-                cache.Insert("" + RecordType.VolPhonePrimary + "|" + cPhone.VolID.ToString(), cPhone, null, DateTime.Now.AddSeconds(1), System.Web.Caching.Cache.NoSlidingExpiration, CacheItemPriority.High, callback);
+                if (cachePhones != null)
+                {
+                    cache.Insert("" + RecordType.VolPhonePrimary + "|" + cPhone.VolID.ToString(), cPhone, null, DateTime.Now.AddSeconds(1), System.Web.Caching.Cache.NoSlidingExpiration, CacheItemPriority.High, callback);
+                }
             }
             return cachePhones;
         }
