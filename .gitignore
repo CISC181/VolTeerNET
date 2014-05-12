@@ -28,3 +28,5 @@ _ReSharper*/
 *.vssscc
 $tf*/
 *.dbmdl
+UT.Vol.BLL/App.config
+UT.Vend.BLL/App.config
