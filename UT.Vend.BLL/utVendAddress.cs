@@ -39,12 +39,110 @@ namespace UT.Vend.BLL
             DataTable dt = cExcel.ReadExcelFile("Sheet1", Path.Combine(cExcel.GetHelperFilesDir(), "VendAddress.xlsx"));
             foreach (DataRow row in dt.Rows) // Loop over the rows.
             {
-                int AddrID = (int)row["AddrID"];
+                int AddrID = Convert.ToInt32(row["AddrID"].ToString());
                 sp_VendAddress_BLL vend = new sp_VendAddress_BLL();
                 sp_VendAddress_DM data = vend.ListAddresses(AddrID);
-                Assert.AreEqual(row["[AddrLine1]"].ToString(), data.AddrLine1, "AddrLine1 Not Set As Expected");
+                Assert.AreEqual(row["AddrLine1"].ToString(), data.AddrLine1, "AddrLine1 Not Set As Expected");
+                Assert.AreEqual(row["AddrLine2"].ToString(), data.AddrLine2, "AddrLine2 Not Set As Expected");
+                Assert.AreEqual(row["AddrLine3"].ToString(), data.AddrLine3, "AddrLine3 Not Set As Expected");
+                Assert.AreEqual(row["City"].ToString(), data.City, "City Not Set As Expected");
+                Assert.AreEqual(row["St"].ToString(), data.St, "St Not Set As Expected");
+                Assert.AreEqual(row["Zip"].ToString(), data.Zip, "Zip Not Set As Expected"); //Floats don't work
+                Assert.AreEqual(row["Zip4"].ToString(), data.Zip4, "Zip4 Not Set As Expected"); //Ints don't work
             }
         }
+
+
+        [TestMethod]
+        public void TestVendAddressUpdate()
+        {
+            //Test Our Read
+            DataTable dt = cExcel.ReadExcelFile("Sheet1", Path.Combine(cExcel.GetHelperFilesDir(), "VendAddress.xlsx"));
+            foreach (DataRow row in dt.Rows) // Loop over the rows.
+            {
+                string AddrLine1 = "TestAddrLine1";
+                string AddrLine2 = "TestAddrLine2";
+                string AddrLine3 = "TestAddrLine3";
+                string City = "TestCity";
+                string St = "TestSt";
+                int Zip = 11111;
+                int Zip4 = 1111;
+
+                int AddrID = Convert.ToInt32(row["AddrID"].ToString());
+                sp_VendAddress_DM data = new sp_VendAddress_DM();
+                data.AddrID = AddrID;
+                data.AddrLine1 = AddrLine1;
+                data.AddrLine2 = AddrLine2;
+                data.AddrLine3 = AddrLine3;
+                data.City = City;
+                data.St = St;
+                data.Zip = Zip;
+                data.Zip4 = Zip4;
+                sp_VendAddress_BLL vend = new sp_VendAddress_BLL();
+                vend.UpdateAddressContext(data);
+                data = vend.ListAddresses(AddrID);
+                Assert.AreEqual(AddrLine1, data.AddrLine1, "AddrLine1 Not Set As Expected");
+                Assert.AreEqual(AddrLine2, data.AddrLine2, "AddrLine2 Not Set As Expected");
+                Assert.AreEqual(AddrLine3, data.AddrLine3, "AddrLine3 Not Set As Expected");
+                Assert.AreEqual(City, data.City, "City Not Set As Expected");
+                Assert.AreEqual(St, data.St, "St Not Set As Expected");
+                Assert.AreEqual(Zip, data.Zip, "Zip Not Set As Expected");
+                Assert.AreEqual(Zip4, data.Zip4, "Zip4 Not Set As Expected");
+
+            }
+        }
+
+        [TestMethod]
+        public void TestVendAddressDelete()
+        {
+
+            DataTable dt = cExcel.ReadExcelFile("Sheet1", Path.Combine(cExcel.GetHelperFilesDir(), "VendAddress.xlsx"));
+            foreach (DataRow row in dt.Rows) // Loop over the rows.
+            {
+                int AddrID = Convert.ToInt32(row["AddrID"].ToString());
+                sp_VendAddress_DM data = new sp_VendAddress_DM();
+                sp_VendAddress_BLL vend = new sp_VendAddress_BLL();
+                data.AddrID = AddrID;
+                vend.DeleteAddressContext(data);
+                data = vend.ListAddresses(AddrID);
+                Assert.AreEqual(false, data.ActiveFlg, "ActiveFlag not set as expected");
+            }
+        }
+
+        [TestMethod]
+        public void TestVendAddressInsert()
+        {
+            //Test Our Read
+            sp_VendAddress_DM data = new sp_VendAddress_DM();
+            string AddrLine1 = "Add1";
+            string AddrLine2 = "Add2";
+            string AddrLine3 = "Add3";
+            string City = "City";
+            string St = "St";
+            int Zip = 11111;
+            int Zip4 = 1111;
+
+            
+            data.AddrLine1 = AddrLine1;
+            data.AddrLine2 = AddrLine2;
+            data.AddrLine3 = AddrLine3;
+            data.City = City;
+            data.St = St;
+            data.Zip = Zip;
+            data.Zip4 = Zip4;
+            data.ActiveFlg = true;
+            sp_VendAddress_BLL vend = new sp_VendAddress_BLL();
+            vend.InsertAddressContext(data);
+            Assert.AreEqual(AddrLine1, data.AddrLine1, "AddrLine1 Not Set As Expected");
+            Assert.AreEqual(AddrLine2, data.AddrLine2, "AddrLine2 Not Set As Expected");
+            Assert.AreEqual(AddrLine3, data.AddrLine3, "AddrLine3 Not Set As Expected");
+            Assert.AreEqual(City, data.City, "City Not Set As Expected");
+            Assert.AreEqual(St, data.St, "St Not Set As Expected");
+            Assert.AreEqual(Zip, data.Zip, "Zip Not Set As Expected");
+            Assert.AreEqual(Zip4, data.Zip4, "Zip Not Set As Expected");
+
+        }
+
 
         [ClassCleanup]
         public static void RemoveVendAddressData()
