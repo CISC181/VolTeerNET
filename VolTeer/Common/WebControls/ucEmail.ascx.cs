@@ -131,6 +131,7 @@ namespace VolTeer.Common.WebControls
                     CheckBox bPrimaryEmail = (CheckBox)Item.FindControl("chkPrimaryFlg");
                     if (bPrimaryEmail != null)
                     {
+                        bPrimaryEmail.Enabled = false;
                         if (bPrimaryEmail.Checked)
                         {
                             GridDataItem ditem = (GridDataItem)e.Item;
