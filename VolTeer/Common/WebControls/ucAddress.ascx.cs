@@ -164,6 +164,14 @@ namespace VolTeer.Common.WebControls
 
                         CheckBox chkPrimaryAddr = (CheckBox)edtItem.FindControl("chkPrimaryAddr");
                         chkPrimaryAddr.Checked = (bool)DataBinder.Eval(edtItem.DataItem, "PrimaryAddr");
+
+                        if (chkPrimaryAddr.Checked)
+                        {
+                            //Make control unclickable
+                            chkPrimaryAddr.Enabled = false;
+
+                        }
+
                     }
                 }
 

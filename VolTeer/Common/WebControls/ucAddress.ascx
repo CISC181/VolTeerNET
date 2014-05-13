@@ -91,11 +91,14 @@
                 <telerik:GridCheckBoxColumn DataField="ActiveFlg" HeaderText="Active" DataType="System.Boolean" FilterControlAltText="Filter column1 column" UniqueName="ActiveFlg">
                 </telerik:GridCheckBoxColumn>
 
-                <telerik:GridTemplateColumn FilterControlAltText="Filter TemplateColumn column" HeaderText="Primary Addr" DataField="PrimaryAddr" UniqueName="PrimaryAddr">
+                <telerik:GridCheckBoxColumn DataField="PrimaryAddr" HeaderText="Primary Addr" DataType="System.Boolean" FilterControlAltText="Filter column1 column" UniqueName="PrimaryAddr">
+                </telerik:GridCheckBoxColumn>
+
+<%--                <telerik:GridTemplateColumn FilterControlAltText="Filter TemplateColumn column" HeaderText="Primary Addr" DataField="PrimaryAddr" UniqueName="PrimaryAddr">
                     <ItemTemplate>
                         <asp:CheckBox ID="chkPrimaryAddr" runat="server" Checked='<%# DataBinder.Eval(Container, "DataItem.PrimaryAddr") %>'></asp:CheckBox>
                     </ItemTemplate>
-                </telerik:GridTemplateColumn>
+                </telerik:GridTemplateColumn>--%>
 
                 <telerik:GridTemplateColumn FilterControlAltText="Filter TemplateColumn column" HeaderText="Address 1" DataField="AddrLine1" UniqueName="AddrLine1">
                     <ItemTemplate>
