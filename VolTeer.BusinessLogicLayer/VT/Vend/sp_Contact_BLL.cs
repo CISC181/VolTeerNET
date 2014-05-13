@@ -8,7 +8,7 @@ using VolTeer.Contracts.VT.Vend;
 
 namespace VolTeer.BusinessLogicLayer.VT.Vend
 {
-    public class sp_Contact_BLL
+    public class sp_Contact_BLL : sp_Contact_CON
     {
         sp_Contact_DAL dal = new sp_Contact_DAL();
 
@@ -17,24 +17,24 @@ namespace VolTeer.BusinessLogicLayer.VT.Vend
             return dal.ListContacts();
         }
 
-        public List<sp_Contact_DM> listContacts(Guid? contactid)
+        public sp_Contact_DM ListContacts(Guid? contactid)
         {
             return dal.ListContacts(contactid);
         }
 
-        public void InsertContactContext(sp_Contact_DM contact)
+        public void InsertContactContext(ref sp_Contact_DM contact)
         {
-            dal.insert(contact);
+            dal.InsertContactContext(ref contact);
         }
 
         public void UpdateContactContext(sp_Contact_DM contact)
         {
-            dal.update(contact);
+            dal.UpdateContactContext(contact);
         }
 
         public void DeleteContactContext(Guid? contactid)
         {
-            dal.delete(contactid);
+            dal.DeleteContactContext(contactid);
         }
     }
 }
