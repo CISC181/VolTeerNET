@@ -72,11 +72,9 @@ namespace VolTeer.DataAccessLayer.VT.Vend
         {
             using (VolTeerEntities context = new VolTeerEntities())
             {
-                var ContactEmailtoRemove = context.tblContactEmails.Find(contactemail.ContactID, contactemail.EmailID);
-                if (ContactEmailtoRemove != null) {
-                    context.tblContactEmails.Remove(ContactEmailtoRemove);
-                    context.SaveChanges();
-                }
+                var ContactEmailtoRemove = (from n in context.tblContactEmails where n.ContactID == contactemail.ContactID & n.EmailID == contactemail.EmailID select n).FirstOrDefault();
+                context.tblContactEmails.Remove(ContactEmailtoRemove);
+                context.SaveChanges();
             }
         }
         #endregion
