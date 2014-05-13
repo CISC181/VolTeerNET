@@ -121,13 +121,13 @@ namespace VolTeer.Volunteer {
         protected global::Telerik.Web.UI.RadPageView PageView3;
         
         /// <summary>
-        /// Label1 control.
+        /// ucPhone control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::VolTeer.Common.WebControls.ucPhone ucPhone;
         
         /// <summary>
         /// PageView4 control.
