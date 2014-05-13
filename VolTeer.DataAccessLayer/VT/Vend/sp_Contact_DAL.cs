@@ -6,7 +6,7 @@ using VolTeer.DomainModels.VT.Vend;
 
 namespace VolTeer.DataAccessLayer.VT.Vend
 {
-    class sp_Contact_DAL
+    public class sp_Contact_DAL
     {
         #region Select Statements
         public List<sp_Contact_DM> ListContacts()
@@ -37,7 +37,7 @@ namespace VolTeer.DataAccessLayer.VT.Vend
             return list;
 
         }        
-        public List<sp_Contact_DM> ListContacts(Guid ContactID)
+        public List<sp_Contact_DM> ListContacts(Guid? ContactID)
         {
             List<sp_Contact_DM> list = new List<sp_Contact_DM>();
             try
@@ -104,7 +104,7 @@ namespace VolTeer.DataAccessLayer.VT.Vend
         #endregion
 
         #region Delete Statement
-        public void delete(Guid ContactID)
+        public void delete(Guid? ContactID)
         {
             using (VolTeerEntities context = new VolTeerEntities())
             {
