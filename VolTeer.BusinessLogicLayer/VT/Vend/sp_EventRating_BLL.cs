@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using VolTeer.DomainModels.VT.Vend;
 using VolTeer.DataAccessLayer.VT.Vend;
-
+using VolTeer.Contracts.VT.Vend;
 
 namespace VolTeer.BusinessLogicLayer.VT.Vend
 {
-    public class sp_EventRating_BLL
+    public class sp_EventRating_BLL : sp_EventRating_CON
     {
         sp_EventRating_DAL DAL = new sp_EventRating_DAL();
         
