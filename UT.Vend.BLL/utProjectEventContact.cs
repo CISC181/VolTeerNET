@@ -13,15 +13,17 @@ using UT.Helper;
 namespace UT.Vend.BLL
 {
     [TestClass]
-    public class utProjectEvent
+    public class utProjectEventContact
     {
 
         static string[] ExcelFilenames = {
             "VendAddress.xlsx",
+            "Contact.xlsx",
             "Project.xlsx",
             "ProjectEvent.xlsx",
+            "ProjectEventContact.xlsx"
         };
-
+        /*
         private static bool Equals(sp_ProjectEvent_DM dm1, sp_ProjectEvent_DM dm2)
         {
             return (dm1.ProjectID == dm2.ProjectID &&
@@ -47,7 +49,7 @@ namespace UT.Vend.BLL
             }
             return DMs;
         }
-
+        */
         [ClassInitialize]
         public static void initializeClass(TestContext testContext)
         {
@@ -55,7 +57,7 @@ namespace UT.Vend.BLL
             cExcel.RemoveData(ExcelFilenames);
             cExcel.InsertData(ExcelFilenames);
         }
-
+        /*
         [TestMethod]
         public void TestProjectEventRead()
         {
@@ -141,7 +143,7 @@ namespace UT.Vend.BLL
 
             Assert.AreEqual(numRows - 1, numCurrRows);
         }
-
+        */
         [ClassCleanup]
         public static void postRun()
         {
