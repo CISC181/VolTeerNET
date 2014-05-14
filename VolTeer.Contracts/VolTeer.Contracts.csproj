@@ -44,6 +44,7 @@
     <Compile Include="VT\Vend\sp_Contact_CON.cs" />
     <Compile Include="VT\Vend\sp_ProjectEvent_CON.cs" />
     <Compile Include="VT\Vend\sp_Project_CON.cs" />
+    <Compile Include="VT\Vend\sp_VendEmail_CON.cs" />
     <Compile Include="VT\Vend\sp_Vendor_CON.cs" />
     <Compile Include="VT\Vol\sp_GroupAddr_CON.cs" />
     <Compile Include="VT\Vol\sp_GroupVol_CON.cs" />
