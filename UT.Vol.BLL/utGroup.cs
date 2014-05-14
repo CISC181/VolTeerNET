@@ -18,12 +18,7 @@ namespace UT.Vol.BLL
     {
 
         static string[] ExcelFilenames = {
-            "Volunteer.xlsx",
-            "VolAddress.xlsx",
-            "VolAddr.xlsx",
             "Group.xlsx",
-            "GroupVol.xlsx",
-            "GroupAddr.xlsx"
         };
 
         bool Equals(sp_Group_DM dm1, sp_Group_DM dm2)
@@ -48,6 +43,7 @@ namespace UT.Vol.BLL
                 returnGroup.LongDesc = (String)dataTable.Rows[i]["LongDesc"];
                 returnGroup.ShortDesc = (String)dataTable.Rows[i]["ShortDesc"];
                 returnGroup.ParticipationLevelID = Convert.ToInt32(dataTable.Rows[i]["ParticipationLevelID"]);
+                returnGroup.ActiveFlg = Convert.ToBoolean(dataTable.Rows[i]["ActiveFlg"]);
                 DMs.Add(returnGroup);
             }
             return DMs;
@@ -146,10 +142,7 @@ namespace UT.Vol.BLL
 
         //TODO: Write tests to check for expected failures
         //IDEAS:
-        //  Insert a NULL ActiveFlg, should error (won't)
-        //  Insert too long of a short desc
-        //  Insert too long of a Group Name
-        //  Insert a super large participationID
+        //  Insert a NULL ActiveFlg, should error
         //  Test for XACT rollback
 
         [ClassCleanup]

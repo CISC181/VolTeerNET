@@ -23,7 +23,7 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                             {
                                 GroupID = result.GroupID,
                                 AddrID = result.AddrID,
-                                PrimaryAddr = result.PrimaryAddrID,
+                                PrimaryAddrID = result.PrimaryAddrID,
                                 ActiveFlg = result.ActiveFlg
                             }).ToList();
                 } // Guaranteed to close the Connection
@@ -54,7 +54,7 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                             {
                                 GroupID = result.GroupID,
                                 AddrID = result.AddrID,
-                                PrimaryAddr = result.PrimaryAddrID,
+                                PrimaryAddrID = result.PrimaryAddrID,
                                 ActiveFlg = result.ActiveFlg
                             }).ToList();
                 } // Guaranteed to close the Connection
@@ -81,7 +81,7 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                             {
                                 GroupID = result.GroupID,
                                 AddrID = result.AddrID,
-                                PrimaryAddr = result.PrimaryAddrID,
+                                PrimaryAddrID = result.PrimaryAddrID,
                                 ActiveFlg = result.ActiveFlg
                             }).FirstOrDefault();
                 } // Guaranteed to close the Connection
@@ -143,7 +143,7 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                     {
                         GroupID = _cGroupAddr.GroupID,
                         AddrID = cAddress.AddrID,
-                        PrimaryAddrID = _cGroupAddr.PrimaryAddr
+                        PrimaryAddrID = _cGroupAddr.PrimaryAddrID
                     };
 
                     context.tblGroupAddrs.Add(cGroupAddr);
@@ -188,7 +188,7 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                     {
                         cGroupAddr.GroupID = _cGroupAddr.GroupID;
                         cGroupAddr.AddrID = _cGroupAddr.AddrID;
-                        cGroupAddr.PrimaryAddrID = _cGroupAddr.PrimaryAddr;
+                        cGroupAddr.PrimaryAddrID = _cGroupAddr.PrimaryAddrID;
                     }
 
                     context.SaveChanges();
