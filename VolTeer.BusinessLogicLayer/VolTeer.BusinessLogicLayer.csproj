@@ -76,6 +76,7 @@
     <Compile Include="AspNet\AspNetViewsBLL.cs" />
     <Compile Include="Describe\DescribeBLL.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="VT\Vend\sp_ContactEmail_BLL.cs" />
     <Compile Include="VT\Vend\sp_ProjectEvent_BLL.cs" />
     <Compile Include="VT\Vend\sp_Contact_BLL.cs" />
     <Compile Include="VT\Vend\sp_Project_BLL.cs" />
