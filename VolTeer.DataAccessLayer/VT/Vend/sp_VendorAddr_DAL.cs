@@ -11,7 +11,7 @@ namespace VolTeer.DataAccessLayer.VT.Vend
     {
 
         #region Select Statements
-        public List<sp_VendorAddr_DM> ListAddresses(Guid? VendorID)
+        public List<sp_VendorAddr_DM> ListAddresses(Guid VendorID)
         {
             List<sp_VendorAddr_DM> list = new List<sp_VendorAddr_DM>();
             try
@@ -37,7 +37,7 @@ namespace VolTeer.DataAccessLayer.VT.Vend
 
         public List<sp_VendorAddr_DM> ListAddresses()
         {
-            return ListAddresses(null);
+            return ListAddresses();
         }
         #endregion
 
@@ -64,7 +64,7 @@ namespace VolTeer.DataAccessLayer.VT.Vend
         {
             using (VolTeerEntities context = new VolTeerEntities())
             {
-                var existingAddress = context.tblVendorAddrs.Find(InputAddress.AddrID);
+                var existingAddress = context.tblVendorAddrs.Find(InputAddress.AddrID, InputAddress.VendorID, InputAddress.HQ);
 
                 if (InputAddress != null)
                 {

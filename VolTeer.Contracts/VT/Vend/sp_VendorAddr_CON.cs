@@ -8,7 +8,7 @@ namespace VolTeer.Contracts.VT.Vend
 {
     public interface sp_VendorAddr_CON
     {
-        List<sp_VendorAddr_DM> ListAddresses(Guid? VendorID);
+        List<sp_VendorAddr_DM> ListAddresses(Guid VendorID);
         List<sp_VendorAddr_DM> ListAddresses();
         int InsertAddressContext(sp_VendorAddr_DM InputAddress);
         void UpdateAddressContext(sp_VendorAddr_DM InputAddress);
