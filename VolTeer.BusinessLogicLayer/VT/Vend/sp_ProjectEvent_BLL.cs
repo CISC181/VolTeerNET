@@ -8,30 +8,30 @@ using VolTeer.DataAccessLayer.VT.Vend;
 
 namespace VolTeer.BusinessLogicLayer.VT.Vend
 {
-    public class sp_Project_BLL : sp_Project_CON
+    public class sp_ProjectEvent_BLL : sp_ProjectEvent_CON
     {
-        sp_Project_DAL dal = new sp_Project_DAL();
-        public List<sp_Project_DM> ListProjects()
+        sp_ProjectEvent_DAL dal = new sp_ProjectEvent_DAL();
+        public List<sp_ProjectEvent_DM> ListEvents()
         {
             throw new NotImplementedException();
         }
 
-        public sp_Project_DM ListProjects(Guid? ProjectID)
+        public sp_ProjectEvent_DM ListEvents(Guid? EventID)
         {
             throw new NotImplementedException();
         }
 
-        public sp_Project_DM InsertProjectContext(ref sp_Project_DM _cProject)
+        public sp_ProjectEvent_DM InsertEventContext(ref sp_ProjectEvent_DM _cEvent)
         {
             throw new NotImplementedException();
         }
 
-        public void UpdateProjectContext(sp_Project_DM _cProject)
+        public void UpdateEventContext(sp_ProjectEvent_DM _cEvent)
         {
             throw new NotImplementedException();
         }
 
-        public void DeleteProjectContext(sp_Project_DM _cProject)
+        public void DeleteEventContext(sp_ProjectEvent_DM _cEvent)
         {
             throw new NotImplementedException();
         }
