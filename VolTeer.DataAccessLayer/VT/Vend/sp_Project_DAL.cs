@@ -108,7 +108,7 @@ namespace VolTeer.DataAccessLayer.VT.Vend
         /// UpdateSampleAddressContext - Will update a given Volunteer record by VolID
         /// </summary>
         /// <param name="_cVolunteer"></param>
-        public void UpdateVolunteerContext(sp_Project_DM _cProject)
+        public void UpdateProjectContext(sp_Project_DM _cProject)
         {
             using (VolTeerEntities context = new VolTeerEntities())
             {
