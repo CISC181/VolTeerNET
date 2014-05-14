@@ -17,12 +17,8 @@ namespace UT.Vend.BLL
     {
 
         static string[] ExcelFilenames = {
-            "Contact.xlsx",
-            "../../UT.Vol.BLL/HelperFiles/Volunteer.xlsx",
-            "Project.xlsx",
-            "ProjectEvent.xlsx",
-            "ProjectEventContact.xlsx",
-            "EventRating.xlsx"
+            "VendAddress.xlsx",
+            "Project.xlsx"
         };
 
         private static bool Equals(sp_Project_DM dm1, sp_Project_DM dm2)
