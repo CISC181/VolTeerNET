@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using VolTeer.DomainModels.VT.Vend;
 using VolTeer.DataAccessLayer.VT.Vend;
+using VolTeer.Contracts.VT.Vend;
 
 namespace VolTeer.BusinessLogicLayer.VT.Vend
 {
-    public class sp_VendEmail_BLL
+    public class sp_VendEmail_BLL : sp_VendEmail_CON
     {
         sp_VendEmail_DAL DAL = new sp_VendEmail_DAL();
 
