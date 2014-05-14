@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using VolTeer.DomainModels.VT.Vend;
+using VolTeer.Contracts.VT.Vend;
 
 namespace VolTeer.DataAccessLayer.VT.Vend
 {
-    public class sp_VendAddress_DAL
+    public class sp_VendAddress_DAL : sp_VendAddress_CON
     {
 
         #region Select Statements
-        public List<sp_VendAddress_DM> ListAddresses(int? AddrID)
+        public List<sp_VendAddress_DM> ListAddresses(int AddrID)
         {
             List<sp_VendAddress_DM> list = new List<sp_VendAddress_DM>();
             try
@@ -42,7 +43,7 @@ namespace VolTeer.DataAccessLayer.VT.Vend
 
         public List<sp_VendAddress_DM> ListAddresses()
         {
-            return ListAddresses(null);
+            return ListAddresses();
         }
         #endregion
 
@@ -60,6 +61,7 @@ namespace VolTeer.DataAccessLayer.VT.Vend
                     St = InputAddress.St,
                     Zip = InputAddress.Zip,
                     Zip4 = InputAddress.Zip4,
+                    GeoCodeGetSet = InputAddress.GeoCodeGetSet,
                     ActiveFlg = InputAddress.ActiveFlg
                 };
                 context.tblVendAddresses.Add(NewAddress);
@@ -86,6 +88,7 @@ namespace VolTeer.DataAccessLayer.VT.Vend
                     existingAddress.St = InputAddress.St;
                     existingAddress.Zip = InputAddress.Zip;
                     existingAddress.Zip4 = InputAddress.Zip4;
+                    existingAddress.GeoCodeGetSet = InputAddress.GeoCodeGetSet;
                     existingAddress.ActiveFlg = InputAddress.ActiveFlg;
                     context.SaveChanges();
                 }
