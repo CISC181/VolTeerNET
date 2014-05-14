@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using VolTeer.DomainModels.VT.Vend;
 using VolTeer.DataAccessLayer.VT.Vend;
+using VolTeer.Contracts.VT.Vend;
 
 namespace VolTeer.BusinessLogicLayer.VT.Vend
 {
-    public class sp_VendorProjContact_BLL
+    public class sp_VendorProjContact_BLL : sp_VendorProjContact_CON
     {
         sp_VendorProjContact_DAL DAL = new sp_VendorProjContact_DAL();
 
