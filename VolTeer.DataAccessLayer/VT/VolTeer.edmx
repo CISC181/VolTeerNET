@@ -2869,6 +2869,24 @@
                 <ScalarProperty Name="PrimaryEmail" ColumnName="PrimaryEmail" />
               </MappingFragment>
             </EntityTypeMapping>
+            <EntityTypeMapping TypeName="VolTeerModel.tblContactEmail">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="VolTeerModel.Store.sp_ContactEmail_Insert">
+                  <ScalarProperty Name="PrimaryEmail" ParameterName="PrimaryEmail" />
+                  <ScalarProperty Name="EmailID" ParameterName="EmailID" />
+                  <ScalarProperty Name="ContactID" ParameterName="ContactID" />
+                </InsertFunction>
+                <UpdateFunction FunctionName="VolTeerModel.Store.sp_ContactEmail_Update">
+                  <ScalarProperty Name="PrimaryEmail" ParameterName="PrimaryEmail" Version="Current" />
+                  <ScalarProperty Name="EmailID" ParameterName="EmailID" Version="Current" />
+                  <ScalarProperty Name="ContactID" ParameterName="ContactID" Version="Current" />
+                </UpdateFunction>
+                <DeleteFunction FunctionName="VolTeerModel.Store.sp_ContactEmail_Delete">
+                  <ScalarProperty Name="EmailID" ParameterName="EmailID" />
+                  <ScalarProperty Name="ContactID" ParameterName="ContactID" />
+                </DeleteFunction>
+              </ModificationFunctionMapping>
+            </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblEventRatings">
             <EntityTypeMapping TypeName="VolTeerModel.tblEventRating">

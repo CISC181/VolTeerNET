@@ -8,6 +8,8 @@
 <%@ Register Src="~/Common/WebControls/ucEmail.ascx" TagPrefix="uc" TagName="ucEmail" %>
 <%@ Register Src="~/Common/WebControls/ucGroupVolInvite.ascx" TagPrefix="uc" TagName="ucGroupVolInvite" %>
 <%@ Register Src="~/Common/WebControls/ucGroupInsertUpdate.ascx" TagPrefix="uc" TagName="ucGroupInsertUpdate" %>
+<%@ Register Src="~/Common/WebControls/ucPhone.ascx" TagPrefix="uc" TagName="ucPhone" %>
+
 
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
@@ -53,7 +55,7 @@
                         <uc:ucEmail runat="server" ID="ucEmail" />
                     </telerik:RadPageView>
                     <telerik:RadPageView runat="server" ID="PageView3" Height="100%" Width="100%">
-                        <asp:Label ID="Label1" runat="server" Text="Fix Phone"></asp:Label>
+                        <uc:ucPhone runat="server" ID="ucPhone" />
                     </telerik:RadPageView>
                     <telerik:RadPageView runat="server" ID="PageView4" Height="100%" Width="100%">
                         <uc:ucAddress runat="server" ID="ucAddress" />

@@ -27,7 +27,8 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                                 PhoneID = result.PhoneID,
                                 PhoneNbr = result.PhoneNbr,
                                 VolID = result.VolID,
-                                ActiveFlg = result.ActiveFlg
+                                ActiveFlg = result.ActiveFlg,
+                                PrimaryFlg = result.PrimaryFlg
 
                             }).ToList();
                 } // Guaranteed to close the Connection
@@ -54,7 +55,8 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                                 PhoneID = result.PhoneID,
                                 PhoneNbr = result.PhoneNbr,
                                 VolID = result.VolID,
-                                ActiveFlg = result.ActiveFlg
+                                ActiveFlg = result.ActiveFlg,
+                                PrimaryFlg = result.PrimaryFlg
                             }).ToList();
                 } // Guaranteed to close the Connection
             }
@@ -86,8 +88,8 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                     VolID = _cPhone.VolID,
                     PhoneID = _cPhone.PhoneID,
                     PhoneNbr = _cPhone.PhoneNbr,
-                    ActiveFlg = _cPhone.ActiveFlg
-                    
+                    ActiveFlg = _cPhone.ActiveFlg,
+                    PrimaryFlg = _cPhone.PrimaryFlg
                 };
                 context.tblVolPhones.Add(cPhone);
                 context.SaveChanges();
@@ -105,10 +107,11 @@ namespace VolTeer.DataAccessLayer.VT.Vol
         {
             using (VolTeerEntities context = new VolTeerEntities())
             {
-                var cPhone = context.tblVolPhones.Find(_cPhone.PhoneID);
+                var cPhone = context.tblVolPhones.Find(_cPhone.PhoneID, _cPhone.VolID);
 
                 if (cPhone != null)
                 {
+                    cPhone.PhoneID = _cPhone.PhoneID;
                     cPhone.PhoneNbr = _cPhone.PhoneNbr;
                     cPhone.VolID = _cPhone.VolID;
                     cPhone.ActiveFlg = _cPhone.ActiveFlg;
