@@ -11,7 +11,7 @@ namespace VolTeer.DataAccessLayer.VT.Vend
     {
 
         #region Select Statements
-        public List<sp_VendorAddr_DM> ListAddresses(Guid VendorID)
+        public sp_VendorAddr_DM ListAddresses(Guid VendorID)
         {
             List<sp_VendorAddr_DM> list = new List<sp_VendorAddr_DM>();
             try
@@ -32,7 +32,7 @@ namespace VolTeer.DataAccessLayer.VT.Vend
                 throw (ex);
             }
 
-            return list;
+            return list.FirstOrDefault();
         }
 
         public List<sp_VendorAddr_DM> ListAddresses()
