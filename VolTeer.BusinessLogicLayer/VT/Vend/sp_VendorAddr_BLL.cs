@@ -19,7 +19,7 @@ namespace VolTeer.BusinessLogicLayer.VT.Vend
 
         public sp_VendorAddr_DM ListAddresses(Guid VendorID)
         {
-            return DAL.ListAddresses(VendorID).Single();
+            return DAL.ListAddresses(VendorID);
         }
 
         public int InsertAddressContext(sp_VendorAddr_DM InputAddress)

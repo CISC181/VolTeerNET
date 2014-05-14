@@ -19,7 +19,7 @@ namespace VolTeer.BusinessLogicLayer.VT.Vend
 
         public sp_VendorProjContact_DM ListContact(Guid VendorID, Guid ProjectID, Guid ContactID)
         {
-            return DAL.ListContact(VendorID, ProjectID, ContactID).Single();
+            return DAL.ListContact(VendorID, ProjectID, ContactID);
         }
 
         public Guid InsertContactContext(sp_VendorProjContact_DM InputContact)
