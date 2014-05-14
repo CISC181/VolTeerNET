@@ -62,7 +62,8 @@
         AllowSorting="True"
         Skin='<%$ AppSettings:Telerik.Skin %>'
         CellSpacing="0"
-        GridLines="None"
+        GridLines="None" 
+        OnPreRender="rGridAddress_PreRender"
         AllowMultiRowEdit="True"
         AllowMultiRowSelection="True">
         <GroupingSettings CaseSensitive="False" />
@@ -90,6 +91,9 @@
 
                 <telerik:GridCheckBoxColumn DataField="ActiveFlg" HeaderText="Active" DataType="System.Boolean" FilterControlAltText="Filter column1 column" UniqueName="ActiveFlg">
                 </telerik:GridCheckBoxColumn>
+
+               <%-- <telerik:GridCheckBoxColumn DataField="PrimaryAddr" HeaderText="Primary Addr" DataType="System.Boolean" FilterControlAltText="Filter column1 column" UniqueName="PrimaryAddr">
+                </telerik:GridCheckBoxColumn>--%>
 
                 <telerik:GridTemplateColumn FilterControlAltText="Filter TemplateColumn column" HeaderText="Primary Addr" DataField="PrimaryAddr" UniqueName="PrimaryAddr">
                     <ItemTemplate>

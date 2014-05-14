@@ -1,7 +1,7 @@
 ﻿using System;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using VolTeer.DomainModels.VT.Vend;
-using VolTeer.BusinessLogicLayer.VT.Vend;
+using VolTeer.DomainModels.VT.Vol;
+using VolTeer.BusinessLogicLayer.VT.Vol;
 using System.Data;
 using System.Data.SqlClient;
 using System.Data.EntityClient;
@@ -17,102 +17,138 @@ namespace UT.Vol.BLL
     public class utGroup
     {
 
-        static string[] ExcelFilenames = new string[] {
-            "Group.xlsx"
+        static string[] ExcelFilenames = {
+            "Group.xlsx",
         };
 
-       
-
-        public static string getConnectionString()
+        bool Equals(sp_Group_DM dm1, sp_Group_DM dm2)
         {
-            return new EntityConnectionStringBuilder(ConfigurationManager.ConnectionStrings["VolTeerConnectionString"].ConnectionString).ProviderConnectionString;
+            return (dm1.GroupID == dm2.GroupID &&
+                    dm1.GroupName == dm2.GroupName &&
+                    dm1.LongDesc == dm2.LongDesc &&
+                    dm1.ShortDesc == dm2.ShortDesc &&
+                    dm1.ActiveFlg == dm2.ActiveFlg &&
+                    dm1.ParticipationLevelID == dm2.ParticipationLevelID
+                    );
         }
 
-        public static void setIdentityInsert(SqlCommand command, string table, string value)
+        private static List<sp_Group_DM> DMsFrom(DataTable dataTable)
         {
-            try
+            var DMs = new List<sp_Group_DM>();
+            for (int i = 0; i < dataTable.Rows.Count; i++)
             {
-                command.CommandText = string.Format("SET IDENTITY_INSERT {0} {1}", table, value);
-                command.ExecuteNonQuery();
+                var returnGroup = new sp_Group_DM();
+                returnGroup.GroupID = Convert.ToInt32(dataTable.Rows[i]["GroupID"]);
+                returnGroup.GroupName = (String)dataTable.Rows[i]["GroupName"];
+                returnGroup.LongDesc = (String)dataTable.Rows[i]["LongDesc"];
+                returnGroup.ShortDesc = (String)dataTable.Rows[i]["ShortDesc"];
+                returnGroup.ParticipationLevelID = Convert.ToInt32(dataTable.Rows[i]["ParticipationLevelID"]);
+                returnGroup.ActiveFlg = Convert.ToBoolean(dataTable.Rows[i]["ActiveFlg"]);
+                DMs.Add(returnGroup);
             }
-            catch
-            {
-            }
+            return DMs;
         }
 
         [ClassInitialize]
         public static void InsertGroupData(TestContext testContext)
         {
-            RemoveAllData();
-            List<string> ExcelFiles = UT.Helper.cExcel.GetAllExcelFiles();
-            foreach (string excelFile in ExcelFiles)
+            System.Diagnostics.Debug.WriteLine(String.Format("{0}", DateTime.Now));
+            cExcel.RemoveData(ExcelFilenames);
+            cExcel.InsertData(ExcelFilenames);
+        }
+
+        [TestMethod]
+        public void TestGroupRead()
+        {
+            //Pull our data from the excel file
+            string helperDir = cExcel.GetHelperFilesDir();
+            DataTable dt = cExcel.ReadExcelFile("Sheet1", Path.Combine(helperDir, "Group.xlsx"));
+            var excelDMs = DMsFrom(dt);
+            //Pull our data directly from the DB
+            var numRows = cExcel.getNumRecordsFromDB("[Vol].[tblGroup]");
+
+            //Pull our data from the DB through the BLL
+            var group_bll = new sp_Group_BLL();
+            var allGroups = group_bll.ListGroups();
+
+            //Test the data from the BLL
+            Assert.AreEqual(numRows, allGroups.Count);
+            foreach (var testGroup in excelDMs)
             {
-                Console.WriteLine(String.Format("{0} exists: {1}", excelFile, File.Exists(excelFile)));
-                DataTable dt = new DataTable();
-                string strSheetName = "Sheet1";
-                dt = cExcel.ReadExcelFile(strSheetName, excelFile);
-                string connectionString = getConnectionString();
-                Console.WriteLine(String.Format("Connection String: {0}", connectionString));
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    connection.Open();
-                    using (SqlCommand command = new SqlCommand())
-                    {
-                        command.Connection = connection;
-                        setIdentityInsert(command, dt.Rows[0]["Table"].ToString(), "ON");
-                        foreach (DataRow row in dt.Rows) // Loop over the rows.
-                        {
-                            string query = row["Query"].ToString();
-                            int numRowsAffected = 0;
-                            if (query.Length > 1)
-                            {
-                                Console.WriteLine(query);
-                                command.CommandText = query;
-                                numRowsAffected = command.ExecuteNonQuery();
-                                if (numRowsAffected != 1)
-                                {
-                                    Console.WriteLine(String.Format("Query affected {0} rows instead of the expected 1 row.", numRowsAffected));
-                                }
-                            }
-                        }
-                        setIdentityInsert(command, dt.Rows[0]["Table"].ToString(), "OFF");
-                    }
-                }
+                var selectedGroup = group_bll.ListGroups(testGroup.GroupID);
+                Assert.IsTrue(Equals(testGroup, selectedGroup));
             }
         }
 
         [TestMethod]
-        public void TestGroup()
+        public void TestGroupCreate()
         {
+            string groupName = "TestGroup";
+            string shortDesc = "We Rock!";
+            string longDesc = "We will, we will, rock you!";
+            int levelID = 5;
+            var group_bll = new sp_Group_BLL();
+            var group_dm = new sp_Group_DM();
+            group_dm.GroupName = groupName;
+            group_dm.ShortDesc = shortDesc;
+            group_dm.LongDesc = longDesc;
+            group_dm.ParticipationLevelID = levelID;
+            var groupID = group_bll.InsertGroupContext(ref group_dm).GroupID;
+            group_dm.GroupID = groupID;
+
+            var group_dm_selected = group_bll.ListGroups(groupID);
+            Assert.IsTrue(Equals(group_dm, group_dm_selected));
         }
 
-        [ClassCleanup]
-        public static void RemoveAllData()
+        [TestMethod]
+        public void TestGroupUpdate()
         {
-            string connectionString = getConnectionString();
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                connection.Open();
-                using (SqlCommand command = new SqlCommand())
-                {
-                    command.Connection = connection;
-                    foreach (string excelFile in cExcel.GetAllExcelFiles())
-                    {
-                        Console.WriteLine(String.Format("{0} exists: {1}", excelFile, File.Exists(excelFile)));
-                        DataTable dt = new DataTable();
-                        cExcel _cExcel = new cExcel();
-                        string strSheetName = "Sheet1";
-                        dt = cExcel.ReadExcelFile(strSheetName, excelFile);
-                        string table = dt.Rows[0]["Table"].ToString();
-                        string query = string.Format("DELETE FROM {0}", table);
-                        Console.WriteLine(query);
-                        command.CommandText = query;
-                        int numRowsAffected = command.ExecuteNonQuery();
-                        Console.WriteLine(String.Format("\t{0} rows affected", numRowsAffected));
-                    }
-                }
-            }
+            var group_bll = new sp_Group_BLL();
+            var allGroups = group_bll.ListGroups();
+            Assert.IsTrue(allGroups.Count > 0, "The ListGroups() is broken, or no data in DB");
+            var firstGroup = allGroups[0];
+            var newGroupName = "Updated Group Name";
+            firstGroup.GroupName = newGroupName;
+            group_bll.UpdateGroupContext(firstGroup);
+            var selectedGroup = group_bll.ListGroups(firstGroup.GroupID);
 
+            Assert.IsTrue(Equals(firstGroup, selectedGroup));
+            Assert.AreEqual(newGroupName, selectedGroup.GroupName);
+        }
+
+        [TestMethod]
+        public void TestGroupDelete()
+        {
+            var group_bll = new sp_Group_BLL();
+            var allGroups = group_bll.ListGroups();
+            Assert.IsTrue(allGroups.Count > 0, "The ListGroups() is broken, or no data in DB");
+            var currGroup = allGroups[0];
+            //TODO: change activeflg to bool not bool?
+            var notActive = currGroup.ActiveFlg != true;
+            var i = 1;
+            while (notActive)
+            {
+                currGroup = allGroups[i];
+                notActive = currGroup.ActiveFlg != true;
+            }
+            group_bll.DeleteGroupContext(currGroup);
+            var selectedGroup = group_bll.ListGroups(currGroup.GroupID);
+
+            //TODO: change activeflg to bool not bool?
+            Assert.IsNotNull(selectedGroup.ActiveFlg);
+            Assert.IsFalse(selectedGroup.ActiveFlg == true);
+            Assert.IsTrue(selectedGroup.ActiveFlg == false);
+        }
+
+        //TODO: Write tests to check for expected failures
+        //IDEAS:
+        //  Insert a NULL ActiveFlg, should error
+        //  Test for XACT rollback
+
+        [ClassCleanup]
+        public static void ClassCleanup()
+        {
+            cExcel.RemoveData(ExcelFilenames);
         }
     }
 }

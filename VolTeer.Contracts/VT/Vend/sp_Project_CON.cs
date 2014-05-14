@@ -11,7 +11,7 @@ namespace VolTeer.Contracts.VT.Vend
         List<sp_Project_DM> ListProjects();
         sp_Project_DM ListProjects(Guid? ProjectID);
         sp_Project_DM InsertProjectContext(ref sp_Project_DM _cProject);
-        void UpdateVolunteerContext(sp_Project_DM _cProject);
+        void UpdateProjectContext(sp_Project_DM _cProject);
         void DeleteProjectContext(sp_Project_DM _cProject);
     }
 }

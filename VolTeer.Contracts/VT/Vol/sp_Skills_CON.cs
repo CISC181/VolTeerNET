@@ -11,6 +11,8 @@ namespace VolTeer.Contracts.VT.Vol
     {
         List<sp_Skill_DM> ListSkills();
         List<sp_Skill_DM> ListSkills(Guid? Skill);
+        //sp_Skill_DM ListSingleSkill(Guid? Skill);
+        List<sp_Skill_DM> ListSkills(bool showNullMstrSkill);
         void UpdateSampleAddressContext(sp_Skill_DM _cSkill);
         void InsertSkillContext(ref sp_Skill_DM _cSkill);
         void DeleteSkillContext(sp_Skill_DM _cSkill);

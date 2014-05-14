@@ -35,9 +35,6 @@ namespace VolTeer.Common.WebControls
         public int iRecordTypeID;
 
         //  Object References
-        //private sp_Vol_Address_BLL VolAddrBLL = new sp_Vol_Address_BLL();
-        //private sp_Vol_Address_Cache VolAddrCash = new sp_Vol_Address_Cache();
-        
         private sp_VolEmail_BLL VolEmailBLL = new sp_VolEmail_BLL();
         private sp_VolEmail_Cache VolEmailCash = new sp_VolEmail_Cache(); 
         
@@ -59,12 +56,9 @@ namespace VolTeer.Common.WebControls
 
             currentUser = Membership.GetUser();
 
-            //pnlSingleAddress.Visible = false;
             pnlEmailGrid.Visible = true;
-            //sp_Vol_Address_DM VolDM = new sp_Vol_Address_DM();
             sp_Email_DM VolDM = new sp_Email_DM();
             VolDM.VolID = (Guid)currentUser.ProviderUserKey;
-            //rGridAddress.DataSource = VolAddrBLL.ListAddresses(VolDM);
 
             rGridEmail.DataSource = VolEmailCash.ListEmails(VolDM);
             rGridEmail.DataBind();
@@ -87,6 +81,7 @@ namespace VolTeer.Common.WebControls
             {
                 if (e.Item is GridEditableItem && e.Item.IsInEditMode)
                 {
+
                     if (e.Item is GridEditFormInsertItem)
                     {
                         GridEditableItem edtItem = (GridEditableItem)e.Item;
@@ -98,19 +93,18 @@ namespace VolTeer.Common.WebControls
 
                         GridEditableItem edtItem = (GridEditableItem)e.Item;
 
-                        //RadDropDownList rDDSt = (RadDropDownList)edtItem.FindControl("rDDSt");
-                        //rDDSt.DataSource = stBLL.ListStates();
-                        //rDDSt.DataValueField = "StateAbbr";
-                        //rDDSt.DataTextField = "StateName";
-                        //rDDSt.DataBind();
-
-                        //rDDSt.SelectedValue = DataBinder.Eval(edtItem.DataItem, "St").ToString();
-
                         CheckBox ckActive = (CheckBox)edtItem.FindControl("chkActive");
                         ckActive.Checked = (bool)DataBinder.Eval(edtItem.DataItem, "ActiveFlg");
 
                         CheckBox chkPrimaryAddr = (CheckBox)edtItem.FindControl("chkPrimaryFlg");
                         chkPrimaryAddr.Checked = (bool)DataBinder.Eval(edtItem.DataItem, "PrimaryFlg");
+
+                        if (chkPrimaryAddr.Checked)
+                        {
+                            //Make control unclickable
+                            chkPrimaryAddr.Enabled = false;
+                            
+                        }
                     }
                 }
 
@@ -123,6 +117,7 @@ namespace VolTeer.Common.WebControls
                     CheckBox bPrimaryEmail = (CheckBox)Item.FindControl("chkPrimaryFlg");
                     if (bPrimaryEmail != null)
                     {
+                        bPrimaryEmail.Enabled = false;
                         if (bPrimaryEmail.Checked)
                         {
                             GridDataItem ditem = (GridDataItem)e.Item;
@@ -156,8 +151,6 @@ namespace VolTeer.Common.WebControls
             {
                 sp_Email_DM VolDM = new sp_Email_DM();
                 VolDM.VolID = (Guid)currentUser.ProviderUserKey;
-                //rGridAddress.DataSource = VolAddrBLL.ListAddresses(VolDM);
-
                 rGridEmail.DataSource = VolEmailCash.ListEmails(VolDM);
             }
             catch (Exception ex)
@@ -213,35 +206,24 @@ namespace VolTeer.Common.WebControls
             {
                 GridEditableItem eeditedItem = e.Item as GridEditableItem;
 
-                //sp_Vol_Address_DM VolAddressDM = new sp_Vol_Address_DM();
-                //sp_Vol_Addr_DM VolAddrDM = new sp_Vol_Addr_DM();
-
                 sp_Email_DM VolEmailDM = new sp_Email_DM();
                 VolEmailDM.VolID = (Guid)currentUser.ProviderUserKey;
-                //VolAddrDM.VolID = (Guid)currentUser.ProviderUserKey; ;
-
-                //VolAddressDM.VolID = (Guid)currentUser.ProviderUserKey;
                 if (iAction == (int)RecordAction.Update)
                 {
                     VolEmailDM.EmailID = Convert.ToInt32(eeditedItem.OwnerTableView.DataKeyValues[eeditedItem.ItemIndex]["EmailID"]);
-                    //VolAddrDM.AddrID = Convert.ToInt32(eeditedItem.OwnerTableView.DataKeyValues[eeditedItem.ItemIndex]["AddrID"]);
                 }
                 VolEmailDM.ActiveFlg = (eeditedItem.FindControl("chkActive") as CheckBox).Checked;
                 VolEmailDM.PrimaryFlg = (eeditedItem.FindControl("chkPrimaryFlg") as CheckBox).Checked;
 
                 VolEmailDM.EmailAddr = (eeditedItem.FindControl("rTBEmail") as RadTextBox).Text.ToString();
-                //TODO - Test to see if GeoCode works without USA at end
-                //   VolAddressDM.GeoCodeGetSet = GetGeoCode(VolAddressDM);
 
                 if (iAction == (int)RecordAction.Update)
                 {
-                    //VolAddrBLL.UpdateAddressContext(VolAddressDM, VolAddrDM);
                     VolEmailBLL.UpdateEmailAddr(VolEmailDM);
 
                 }
                 else if (iAction == (int)RecordAction.Insert)
                 {
-                    //VolAddrBLL.InsertAddressContext(ref VolAddressDM, ref VolAddrDM);
                     VolEmailBLL.InsertEmailContext(ref VolEmailDM);
                 }
             }
@@ -280,9 +262,6 @@ namespace VolTeer.Common.WebControls
         /// <param name="e"></param>
         protected void rGridEmail_DeleteCommand(object sender, GridCommandEventArgs e)
         {
-            //sp_Vol_Address_DM VolAddressDM = new sp_Vol_Address_DM();
-            //sp_Vol_Addr_DM VolAddrDM = new sp_Vol_Addr_DM();
-
             sp_Email_DM VolEmailDM = new sp_Email_DM();
             try
             {
@@ -290,7 +269,6 @@ namespace VolTeer.Common.WebControls
                 VolEmailDM.EmailID = (int)e.Item.OwnerTableView.DataKeyValues[e.Item.ItemIndex]["EmailID"];
 
                 VolEmailBLL.DeleteEmailsContext(VolEmailDM);
-                //VolEmailBLL.DeleteAddressContext(VolAddressDM, VolAddrDM);
             }
             catch (Exception ex)
             {

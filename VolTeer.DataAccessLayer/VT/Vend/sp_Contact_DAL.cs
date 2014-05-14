@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using VolTeer.DomainModels.VT.Vend;
+using VolTeer.Contracts.VT.Vend;
 
 namespace VolTeer.DataAccessLayer.VT.Vend
 {
-    class sp_Contact_DAL
+    public class sp_Contact_DAL : sp_Contact_CON
     {
         #region Select Statements
         public List<sp_Contact_DM> ListContacts()
@@ -14,20 +15,20 @@ namespace VolTeer.DataAccessLayer.VT.Vend
             List<sp_Contact_DM> list = new List<sp_Contact_DM>();
             try
             {
-                //using (VolTeerEntities context = new VolTeerEntities())
-                //{
-                //    list = (from result in context.sp_Contact_Select(null)
-                //                select new sp_Contact_DM
-                //                {
-                //                    ContactID = result.ContactID,
-                //                    ContactFirstName = result.ContactFirstName,
-                //                    ContactMiddleName = result.ContactMiddleName,
-                //                    ContactLastName = result.ContactLastName,
-                //                    ActiveFlg = result.ActiveFlg
+                using (VolTeerEntities context = new VolTeerEntities())
+                {
+                    list = (from result in context.sp_Contact_Select(null)
+                            select new sp_Contact_DM
+                            {
+                                ContactID = result.ContactID,
+                                ContactFirstName = result.ContactFirstName,
+                                ContactMiddleName = result.ContactMiddleName,
+                                ContactLastName = result.ContactLastName,
+                                ActiveFlg = result.ActiveFlg
 
-                //                }).ToList();
+                            }).ToList();
 
-                //}
+                }
             }
             catch (Exception ex)
             {
@@ -35,47 +36,47 @@ namespace VolTeer.DataAccessLayer.VT.Vend
             }
 
             return list;
+        }
 
-        }        
-        public List<sp_Contact_DM> ListContacts(Guid ContactID)
+        public sp_Contact_DM ListContacts(Guid? contactid)
         {
             List<sp_Contact_DM> list = new List<sp_Contact_DM>();
             try
             {
-                //using (VolTeerEntities context = new VolTeerEntities())
-                //{
-                //    list = (from result in context.sp_Contact_Select(ContactID)
-                //            select new sp_Contact_DM
-                //            {
-                //                ContactID = result.ContactID,
-                //                ContactFirstName = result.ContactFirstName,
-                //                ContactMiddleName = result.ContactMiddleName,
-                //                ContactLastName = result.ContactLastName,
-                //                ActiveFlg = result.ActiveFlg
+                using (VolTeerEntities context = new VolTeerEntities())
+                {
+                    list = (from result in context.sp_Contact_Select(contactid)
+                            select new sp_Contact_DM
+                            {
+                                ContactID = result.ContactID,
+                                ContactFirstName = result.ContactFirstName,
+                                ContactMiddleName = result.ContactMiddleName,
+                                ContactLastName = result.ContactLastName,
+                                ActiveFlg = result.ActiveFlg
 
-                //            }).ToList();
+                            }).ToList();
 
-                //}
+                }
             }
             catch (Exception ex)
             {
                 throw (ex);
             }
-            return list;
+            return list.FirstOrDefault();
         }
         #endregion
 
         #region Insert Statement
-        public void insert(sp_Contact_DM Contact)
+        public void InsertContactContext(ref sp_Contact_DM contact)
         {
             using (VolTeerEntities context = new VolTeerEntities())
             {
                 var NewContact = new tblContact
                 {
-                    ContactFirstName = Contact.ContactFirstName,
-                    ContactMiddleName = Contact.ContactMiddleName,
-                    ContactLastName = Contact.ContactLastName,
-                    ActiveFlg = Contact.ActiveFlg
+                    ContactFirstName = contact.ContactFirstName,
+                    ContactMiddleName = contact.ContactMiddleName,
+                    ContactLastName = contact.ContactLastName,
+                    ActiveFlg = contact.ActiveFlg
 
                 };
                 context.tblContacts.Add(NewContact);
@@ -85,7 +86,7 @@ namespace VolTeer.DataAccessLayer.VT.Vend
         #endregion
 
         #region Update Statement
-        public void update(sp_Contact_DM contact)
+        public void UpdateContactContext(sp_Contact_DM contact)
         {
             using (VolTeerEntities context = new VolTeerEntities())
             {
@@ -104,7 +105,7 @@ namespace VolTeer.DataAccessLayer.VT.Vend
         #endregion
 
         #region Delete Statement
-        public void delete(Guid ContactID)
+        public void DeleteContactContext(Guid? ContactID)
         {
             using (VolTeerEntities context = new VolTeerEntities())
             {

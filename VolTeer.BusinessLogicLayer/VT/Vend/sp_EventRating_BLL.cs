@@ -22,9 +22,9 @@ namespace VolTeer.BusinessLogicLayer.VT.Vend
             return DAL.ListEventRatings(EventRating).Single();
         }
 
-        public void InsertEventRatingContext(sp_EventRating_DM _cEventRating)
+        public sp_EventRating_DM InsertEventRatingContext(sp_EventRating_DM _cEventRating)
         {
-            DAL.InsertEventRatingContext(_cEventRating);
+            return DAL.InsertEventRatingContext(_cEventRating);
         }
 
         public void UpdateEventRatingContext(sp_EventRating_DM _cEventRating)

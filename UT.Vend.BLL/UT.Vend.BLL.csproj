@@ -66,8 +66,13 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="utEventRating.cs" />
+    <Compile Include="utProjectEventContact.cs" />
+    <Compile Include="utProjectEvent.cs" />
+    <Compile Include="utContactEmail.cs" />
     <Compile Include="utContact.cs" />
     <Compile Include="UTVendEmail.cs" />
+    <Compile Include="utVendAddress.cs" />
     <Compile Include="utVendor.cs" />
     <Compile Include="utProject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

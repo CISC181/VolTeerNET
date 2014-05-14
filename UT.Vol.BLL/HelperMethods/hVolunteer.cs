@@ -15,14 +15,13 @@ namespace UT.Vol.BLL.HelperMethods
             sp_Volunteer_DM VOL = new sp_Volunteer_DM();
             sp_Volunteer_BLL VOlBll = new sp_Volunteer_BLL();
 
+            VOL.VolID = Guid.NewGuid();
+            VOL.ActiveFlg = true;
             VOL.VolFirstName = strFirstName;
             VOL.VolMiddleName = strMiddleName;
             VOL.VolLastName = strLastName;
 
             VOL = VOlBll.InsertVolunteerContext(ref VOL);
-
-            //Console.WriteLine(VOL.VolID);
-            //System.Diagnostics.Debug.Write(VOL.VolID);
 
             return VOL;
 

@@ -51,8 +51,8 @@
         AllowFilteringByColumn="True"
         AllowSorting="True"
         Skin='<%$ AppSettings:Telerik.Skin %>'
-        CellSpacing="0" AllowPaging ="true" PageSize ="5"
-        GridLines="None"
+        CellSpacing="0" AllowPaging ="true" PageSize ="10"
+        GridLines="None" PagerStyle-Mode="Slider" 
         AllowMultiRowEdit="True"
         AllowMultiRowSelection="True">
         <GroupingSettings CaseSensitive="False" />
@@ -67,7 +67,7 @@
 
                 <telerik:GridTemplateColumn FilterControlAltText="Filter TemplateColumn column" AllowFiltering ="false"  HeaderText="Invite" UniqueName="Invite">
                     <ItemTemplate>
-                        <telerik:RadButton ID="rBTNInvite" Enabled="false" runat="server" Text="Invite" AutoPostBack="true" OnClick="rBTNInvite_Click" CommandArgument='<%# DataBinder.Eval(Container, "DataItem.VolID") %>'></telerik:RadButton>
+                        <telerik:RadButton ID="rBTNInvite" ButtonType="SkinnedButton" Skin='<%$ AppSettings:Telerik.Skin %>'  Enabled="false" runat="server" Text="Invite" AutoPostBack="true" OnClick="rBTNInvite_Click" CommandArgument='<%# DataBinder.Eval(Container, "DataItem.VolID") %>'></telerik:RadButton>
                     </ItemTemplate>
                 </telerik:GridTemplateColumn>
 

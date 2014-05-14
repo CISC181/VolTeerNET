@@ -24,8 +24,8 @@ using System.IO;
 
 namespace VolTeer.Common.WebControls
 {
-	public partial class ucPrimary : System.Web.UI.UserControl
-	{
+    public partial class ucPrimary : System.Web.UI.UserControl
+    {
 
         // Event handler to call method on the main page.
         public event EventHandler ShowErrorOccurs;
@@ -39,15 +39,15 @@ namespace VolTeer.Common.WebControls
         private sp_VolEmail_Cache VolEmailCache = new sp_VolEmail_Cache();
         private sp_VolPhone_Cache VolPhoneCache = new sp_VolPhone_Cache();
 
-		protected void Page_Load(object sender, EventArgs e)
-		{
+        protected void Page_Load(object sender, EventArgs e)
+        {
             currentUser = Membership.GetUser();
 
             if (!IsPostBack)
             {
                 HandleScreenLoad();
             }
-		}
+        }
 
         protected void HandleScreenLoad()
         {
@@ -90,7 +90,7 @@ namespace VolTeer.Common.WebControls
 
                 if (phone_DM != null)
                 {
-                PrimaryPhone.Text = phone_DM.PhoneNbr;
+                    PrimaryPhone.Text = phone_DM.PhoneNbr;
                 }
                 else
                 {
@@ -144,5 +144,44 @@ namespace VolTeer.Common.WebControls
             }
 
         }
-	}
+
+        protected void CallSisterUserControl(string main_tabStrip, string main_multiPage, string first_pageView, string sec_tabStrip,
+            int img ,string sec_multiPage, string sec_pageView)
+        {
+
+            RadTabStrip ParentRadTabStrip = (RadTabStrip)Parent.FindControl(main_tabStrip);
+            ParentRadTabStrip.Tabs[0].Selected = true;
+
+            RadMultiPage ParentRadMultiPage = (RadMultiPage)Parent.FindControl(main_multiPage);
+            RadPageView pageview = (RadPageView)ParentRadMultiPage.FindPageViewByID(first_pageView);
+            pageview.Selected = true;
+            RadTabStrip tabstrip = (RadTabStrip)pageview.FindControl(sec_tabStrip);
+            tabstrip.Tabs[img].Selected = true;
+
+            //  Select the correct multipage
+            RadMultiPage multipage = (RadMultiPage)pageview.FindControl(sec_multiPage);
+            RadPageView rPageView = (RadPageView)multipage.FindPageViewByID(sec_pageView);
+            rPageView.Selected = true;
+
+        }
+
+        protected void PrimaryEmail_Click(object sender, EventArgs e)
+        {
+            RadButton rbt = (RadButton)sender;
+            CallSisterUserControl("RadTabStrip1", "RadMultiPage1", "RadPageView1", "RadTabStrip2", 1,  "RadMultiPage2", "PageView2");
+        }
+
+        protected void PrimaryPhone_Click(object sender, EventArgs e)
+        {
+            RadButton rbt = (RadButton)sender;
+            CallSisterUserControl("RadTabStrip1", "RadMultiPage1", "RadPageView1", "RadTabStrip2", 2,"RadMultiPage2", "PageView3");
+        }
+
+        protected void PrimaryAddress_Click(object sender, EventArgs e)
+        {
+            RadButton rbt = (RadButton)sender;
+            CallSisterUserControl("RadTabStrip1", "RadMultiPage1", "RadPageView1", "RadTabStrip2", 3,"RadMultiPage2", "PageView4");
+        }
+
+    }
 }

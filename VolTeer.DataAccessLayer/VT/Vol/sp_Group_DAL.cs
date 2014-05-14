@@ -7,7 +7,7 @@ using VolTeer.Contracts.VT.Vol;
 
 namespace VolTeer.DataAccessLayer.VT.Vol
 {
-    public class sp_Group_DAL: sp_Group_Con
+    public class sp_Group_DAL : sp_Group_Con
     {
         #region Select Statements
         public List<sp_Group_DM> ListGroups()
@@ -23,7 +23,9 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                                 GroupID = result.GroupID,
                                 GroupName = result.GroupName,
                                 ParticipationLevelID = result.ParticipationLevelID,
-                                ActiveFlg = result.ActiveFlg
+                                ActiveFlg = result.ActiveFlg,
+                                ShortDesc = result.ShortDesc,
+                                LongDesc = result.LongDesc
 
 
                             }).ToList();
@@ -47,9 +49,12 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                     list = (from result in context.sp_Group_Select(groupID)
                             select new sp_Group_DM
                             {
+                                GroupID = result.GroupID,
                                 GroupName = result.GroupName,
                                 ParticipationLevelID = result.ParticipationLevelID,
-                                ActiveFlg = result.ActiveFlg
+                                ActiveFlg = result.ActiveFlg,
+                                ShortDesc = result.ShortDesc,
+                                LongDesc = result.LongDesc
                             }).ToList();
                 } // Guaranteed to close the Connection
             }
@@ -75,7 +80,9 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                     GroupID = _cGroup.GroupID,
                     GroupName = _cGroup.GroupName,
                     ParticipationLevelID = _cGroup.ParticipationLevelID,
-                    ActiveFlg = _cGroup.ActiveFlg
+                    ActiveFlg = _cGroup.ActiveFlg,
+                    ShortDesc = _cGroup.ShortDesc,
+                    LongDesc = _cGroup.LongDesc
 
                 };
                 context.tblGroups.Add(cGroup);
@@ -101,6 +108,8 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                     cGroup.GroupName = _cGroup.GroupName;
                     cGroup.ParticipationLevelID = _cGroup.ParticipationLevelID;
                     cGroup.ActiveFlg = _cGroup.ActiveFlg;
+                    cGroup.ShortDesc = _cGroup.ShortDesc;
+                    cGroup.LongDesc = _cGroup.LongDesc;
                     context.SaveChanges();
                 }
             }

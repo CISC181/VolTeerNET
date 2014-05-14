@@ -68,6 +68,10 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="utGroupVol.cs" />
+    <Compile Include="utGroupAddr.cs" />
+    <Compile Include="utVolPhone.cs" />
+    <Compile Include="utVolEmail.cs" />
     <Compile Include="HelperMethods\hVolAddress.cs" />
     <Compile Include="HelperMethods\hVolEmail.cs" />
     <Compile Include="HelperMethods\hVolPhone.cs" />
@@ -103,6 +107,10 @@
     <None Include="HelperFiles\GroupAddr.xlsx" />
     <None Include="HelperFiles\GroupVol.xlsx" />
     <None Include="HelperFiles\Skill.xlsx" />
+    <None Include="HelperFiles\VolAddr.xlsx" />
+    <None Include="HelperFiles\VolAddress.xlsx" />
+    <None Include="HelperFiles\VolEmail.xlsx" />
+    <None Include="HelperFiles\VolPhone.xlsx" />
     <None Include="HelperFiles\VolSkill.xlsx" />
     <None Include="HelperFiles\VolState.xlsx" />
     <None Include="HelperFiles\Volunteer.xlsx" />

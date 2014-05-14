@@ -68,7 +68,7 @@ namespace VolTeer.DataAccessLayer.VT.Vend
         #endregion
 
         #region Insert Statements
-        public void InsertEventRatingContext(sp_EventRating_DM InputRating)
+        public sp_EventRating_DM InsertEventRatingContext(sp_EventRating_DM InputRating)
         {
             using (VolTeerEntities context = new VolTeerEntities())
             {
@@ -83,6 +83,9 @@ namespace VolTeer.DataAccessLayer.VT.Vend
                 };
                 context.tblEventRatings.Add(NewEventRating);
                 context.SaveChanges();
+
+                InputRating.RatingID = NewEventRating.RatingID;
+                return InputRating;
             }
         }
         #endregion

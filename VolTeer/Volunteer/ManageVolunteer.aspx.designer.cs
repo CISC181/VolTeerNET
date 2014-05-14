@@ -13,6 +13,15 @@ namespace VolTeer.Volunteer {
     public partial class ManageVolunteer {
         
         /// <summary>
+        /// HDDGroupID control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField HDDGroupID;
+        
+        /// <summary>
         /// QsfFromDecorator control.
         /// </summary>
         /// <remarks>
@@ -112,13 +121,13 @@ namespace VolTeer.Volunteer {
         protected global::Telerik.Web.UI.RadPageView PageView3;
         
         /// <summary>
-        /// Label1 control.
+        /// ucPhone control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::VolTeer.Common.WebControls.ucPhone ucPhone;
         
         /// <summary>
         /// PageView4 control.
@@ -148,13 +157,13 @@ namespace VolTeer.Volunteer {
         protected global::Telerik.Web.UI.RadPageView PageView5;
         
         /// <summary>
-        /// Label3 control.
+        /// RadMenu1 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label3;
+        protected global::Telerik.Web.UI.RadMenu RadMenu1;
         
         /// <summary>
         /// RadPageView2 control.
@@ -209,6 +218,15 @@ namespace VolTeer.Volunteer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadPageView RadPageView6;
+        
+        /// <summary>
+        /// ucGroupInsertUpdate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::VolTeer.Common.WebControls.ucGroupInsertUpdate ucGroupInsertUpdate;
         
         /// <summary>
         /// RadPageView8 control.

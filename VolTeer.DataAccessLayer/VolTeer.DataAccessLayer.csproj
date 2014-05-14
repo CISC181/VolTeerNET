@@ -240,6 +240,9 @@
     <Compile Include="VT\sp_Sample_Address_Select_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
+    <Compile Include="VT\sp_Skill_Select_Manage_Result.cs">
+      <DependentUpon>VolTeer.tt</DependentUpon>
+    </Compile>
     <Compile Include="VT\sp_Skill_Select_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
@@ -357,14 +360,16 @@
     <Compile Include="VT\tblVolunteer.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
+    <Compile Include="VT\Vend\sp_Contact_DAL.cs" />
     <Compile Include="VT\Vend\sp_ProjectEvent_DAL.cs" />
     <Compile Include="VT\Vend\sp_Project_DAL.cs" />
     <Compile Include="VT\Vend\sp_ContactEmail_DAL.cs" />
-    <Compile Include="VT\Vend\sp_Contact_DAL.cs" />
     <Compile Include="VT\Vend\sp_VendAddress_DAL.cs" />
     <Compile Include="VT\Vend\sp_Event_Rating_DAL.cs" />
     <Compile Include="VT\Vend\sp_VendContact_DAL.cs" />
     <Compile Include="VT\Vend\sp_VendEmail_DAL.cs" />
+    <Compile Include="VT\Vend\sp_VendorAddr_DAL.cs" />
+    <Compile Include="VT\Vend\sp_VendorProjContact_DAL.cs" />
     <Compile Include="VT\Vend\sp_Vendor_DAL.cs" />
     <Compile Include="VT\Vend_tblUserCred.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
@@ -385,11 +390,6 @@
       <DependentUpon>VolTeer.edmx</DependentUpon>
     </Compile>
     <Compile Include="VT\VolTeer1.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>VolTeer.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="VT\VolTeer2.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>VolTeer.edmx</DependentUpon>

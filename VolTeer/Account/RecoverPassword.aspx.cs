@@ -16,14 +16,14 @@ namespace VolTeer.Account
 
         protected void PasswordRecovery1_UserLookupError(object sender, EventArgs e)
         {
-            pnlContinue.Visible = true;
-            lblUserNotFound.Visible = true;
+            //pnlContinue.Visible = true;
+            //lblUserNotFound.Visible = true;
         }
 
         protected void PasswordRecovery1_SendingMail(object sender, MailMessageEventArgs e)
         {
-            pnlContinue.Visible = true;
-            rBTNContinue.Visible = true;
+            //pnlContinue.Visible = true;
+            //rBTNContinue.Visible = true;
 
         }
     }

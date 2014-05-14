@@ -15,7 +15,7 @@
         BorderWidth="1px"
         AllowFilteringByColumn="True"
         AllowSorting="True"
-        Skin="Vista"
+        Skin='<%$ AppSettings:Telerik.Skin %>'
         CellSpacing="0"
         GridLines="None"
         AllowMultiRowEdit="True"
@@ -35,6 +35,9 @@
 
                 <telerik:GridCheckBoxColumn DataField="ActiveFlg" HeaderText="Active" DataType="System.Boolean" FilterControlAltText="Filter column1 column" UniqueName="ActiveFlg">
                 </telerik:GridCheckBoxColumn>
+
+<%--                 <telerik:GridCheckBoxColumn DataField="PrimaryFlg" HeaderText="PrimaryFlg" DataType="System.Boolean" FilterControlAltText="Filter column2 column" UniqueName="PrimaryFlg">
+                </telerik:GridCheckBoxColumn>--%>
 
                 <telerik:GridTemplateColumn FilterControlAltText="Filter TemplateColumn column" HeaderText="PrimaryFlg" DataField="PrimaryFlg" UniqueName="PrimaryFlg">
                     <ItemTemplate>

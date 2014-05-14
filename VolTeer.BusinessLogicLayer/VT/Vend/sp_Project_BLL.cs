@@ -8,7 +8,7 @@ using VolTeer.DataAccessLayer.VT.Vend;
 
 namespace VolTeer.BusinessLogicLayer.VT.Vend
 {
-    class sp_Project_BLL : sp_Project_CON
+    public class sp_Project_BLL : sp_Project_CON
     {
         sp_Project_DAL dal = new sp_Project_DAL();
         public List<sp_Project_DM> ListProjects()
@@ -26,7 +26,7 @@ namespace VolTeer.BusinessLogicLayer.VT.Vend
             throw new NotImplementedException();
         }
 
-        public void UpdateVolunteerContext(sp_Project_DM _cProject)
+        public void UpdateProjectContext(sp_Project_DM _cProject)
         {
             throw new NotImplementedException();
         }
