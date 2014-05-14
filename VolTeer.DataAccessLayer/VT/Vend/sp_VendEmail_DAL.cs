@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using VolTeer.DomainModels.VT.Vend;
+using VolTeer.Contracts.VT.Vend;
 
 namespace VolTeer.DataAccessLayer.VT.Vend
 {
-    public class sp_VendEmail_DAL
+    public class sp_VendEmail_DAL : sp_VendEmail_CON
     {
 
         #region Select Statements
