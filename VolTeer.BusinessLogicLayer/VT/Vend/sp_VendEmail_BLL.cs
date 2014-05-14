@@ -17,9 +17,9 @@ namespace VolTeer.BusinessLogicLayer.VT.Vend
             return DAL.ListEmails();
         }
 
-        public sp_VendEmail_DM ListEmails(int? EmailID)
+        public sp_VendEmail_DM ListEmails(int EmailID)
         {
-            return DAL.ListEmails(EmailID).Single();
+            return DAL.ListEmails(EmailID);
         }
 
         public int InsertEmailContext(sp_VendEmail_DM InputEmail)
