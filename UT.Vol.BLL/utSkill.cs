@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using UT.Helper;
 using VolTeer.BusinessLogicLayer;
 using VolTeer.BusinessLogicLayer.VT.Vol;
@@ -89,6 +90,87 @@ namespace UT.Volteer.BLL
                 sp_Skill_DM returned_Skill = skillBLL.ListSingleSkill(dmskill.SkillID);
                 Assert.AreEqual(returned_Skill, dmskill);
             }
+            cExcel.RemoveData(removeNames);
+        }
+
+
+
+        [TestMethod]
+        public void testDeleteSkill()
+        {
+            string[] tablesToFill = { "Volunteer.xlsx", "Group.xlsx", "GroupVol.xlsx", "VolAddress.xlsx", 
+                                "VolAddr.xlsx", "Skill.xlsx", "VolSkill.xlsx", "VolState.xlsx", 
+                                "VolEmail.xlsx", "VolPhone.xlsx"};
+            cExcel.InsertData(tablesToFill);
+
+            string directory = cExcel.GetHelperFilesDir();
+            string hdir = cExcel.GetHelperFilesDir();
+            sp_Skill_BLL skillBLL = new sp_Skill_BLL();
+            string query = "SELECT * FROM [Sheet1$]";
+            DataTable dt = cExcel.QueryExcelFile(hdir + "Skill.xlsx", query);
+            List<Tuple<Guid, String, int, Guid?>> rowTree = new List<Tuple<Guid, string, int, Guid?>>();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                var key = new Guid(row["SkillID"].ToString());
+                var mstr = row["MstrSkillID"].ToString() == "" ? new Nullable<Guid>() : (Guid?)(new Guid(row["MstrSkillID"].ToString()));
+                var activeFlag = Convert.ToInt32(row["ActiveFlg"]);
+                var skillname = row["SkillName"].ToString();
+                rowTree.Add(Tuple.Create<Guid, string, int, Guid?>(key, skillname, activeFlag, mstr));
+            }
+            //this function returns the guid of the parent we deleted
+            Func<Guid, List<Tuple<Guid, String, int, Guid?>>> deleteReturnParent = (Guid key) =>
+            {
+                //Check to make sure this key is still contained in the database based
+                //on the description of how it should work.
+                var toDeleteRow = rowTree.Find((x) => { 
+                        return x.Item1.Equals(key); 
+                });
+                rowTree.Remove(toDeleteRow);
+                //Find all rows that have the key as their mstrskill
+                var updateRows = rowTree.FindAll((x) =>
+                {
+                    return x.Item4.Equals(key);
+                });
+                //Remove them
+                rowTree.RemoveAll((x) =>
+                {
+                    return x.Item4.Equals(key);
+                });
+                var returnList = new List<Tuple<Guid, String, int, Guid?>>();
+                foreach (var row in updateRows){
+                    //Update them so that their master skill ids point at the master skill of the deleted node
+                    var guidTpl = Tuple.Create<Guid, String, int, Guid?>(row.Item1, row.Item2, row.Item3, toDeleteRow.Item4);
+                    rowTree.Add(guidTpl);
+                    returnList.Add(guidTpl);
+                }
+                return returnList;
+            };
+
+            foreach (DataRow row in dt.Rows)
+            {
+                sp_Skill_DM dmskill = new sp_Skill_DM();
+                dmskill.ActiveFlg = Convert.ToInt32(row["ActiveFlg"]);
+                dmskill.MstrSkillID = row["MstrSkillID"].ToString() == "" ? new Nullable<Guid>() : (Guid?)(new Guid(row["MstrSkillID"].ToString()));
+                dmskill.SkillID = new Guid(row["SkillID"].ToString());
+                dmskill.SkillName = row["SkillName"].ToString();
+
+                //Delete a skill
+                int before = cExcel.getNumRecordsFromDB("Vol.tblVolSkill");
+                skillBLL.DeleteSkillContext(dmskill);
+                var updatedList = deleteReturnParent(dmskill.SkillID);
+                int after = cExcel.getNumRecordsFromDB("Vol.tblVolSkill");
+                //Did the skill actually get deleted.
+                Assert.AreEqual(before - 1, after);
+                //Did all the values get properly updated
+                foreach (var updatedRow in updatedList){
+                    sp_Skill_DM updatedSkill = skillBLL.ListSingleSkill(updatedRow.Item1);
+                    Assert.AreEqual(updatedSkill.ActiveFlg, updatedRow.Item3);
+                    Assert.AreEqual(updatedSkill.MstrSkillID, updatedRow.Item4);
+                    Assert.AreEqual(updatedSkill.SkillName, updatedRow.Item2);
+                }
+            }
+            cExcel.RemoveData(tablesToFill);
         }
     }
 }
