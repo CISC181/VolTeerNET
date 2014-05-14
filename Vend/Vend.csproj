@@ -86,6 +86,12 @@
     <Compile Include="Common\WebControls\ucAccountMaint.ascx.designer.cs">
       <DependentUpon>ucAccountMaint.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Common\WebControls\ucVendor.ascx.cs">
+      <DependentUpon>ucVendor.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Common\WebControls\ucVendor.ascx.designer.cs">
+      <DependentUpon>ucVendor.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Common\WebControls\ucVendorContacts.ascx.cs">
       <DependentUpon>ucVendorContacts.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -177,6 +183,7 @@
     <Content Include="App_Data\RadCaptcha\Y.wav" />
     <Content Include="App_Data\RadCaptcha\Z.wav" />
     <Content Include="Common\WebControls\ucAccountMaint.ascx" />
+    <Content Include="Common\WebControls\ucVendor.ascx" />
     <Content Include="Common\WebControls\ucVendorContacts.ascx" />
     <Content Include="Common\WebControls\ucVendorProjects.ascx" />
     <Content Include="Common\WebControls\ucVendorSearch.ascx" />
@@ -267,7 +274,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
+      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
