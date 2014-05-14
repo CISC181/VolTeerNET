@@ -64,7 +64,7 @@ namespace VolTeer.DataAccessLayer.VT.Vend
         {
             using (VolTeerEntities context = new VolTeerEntities())
             {
-                var existingAddress = context.tblVendorAddrs.Find(InputAddress.AddrID, InputAddress.VendorID, InputAddress.HQ);
+                var existingAddress = context.tblVendorAddrs.Find(InputAddress.AddrID, InputAddress.HQ);
 
                 if (InputAddress != null)
                 {
