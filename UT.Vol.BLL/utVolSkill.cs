@@ -14,7 +14,8 @@ namespace UT.Volteer.BLL
         public void TestListVolSkill()
         {
             string[] fnames = { "Volunteer.xlsx", "Group.xlsx", "GroupVol.xlsx", "VolAddress.xlsx", 
-                                "VolAddr.xlsx", "Skill.xlsx", "VolSkill.xlsx", "VolState.xlsx"};
+                                "VolAddr.xlsx", "Skill.xlsx", "VolSkill.xlsx", "VolState.xlsx",
+                                "VolEmail.xlsx"};
 
             cExcel.InsertData(fnames);
             string hdir = cExcel.GetHelperFilesDir();
@@ -47,7 +48,8 @@ namespace UT.Volteer.BLL
             string[] insertNames = { "Volunteer.xlsx", "Group.xlsx", "GroupVol.xlsx", "VolAddress.xlsx", 
                                                  "VolAddr.xlsx", "Skill.xlsx"};
             string[] removeNames = { "Volunteer.xlsx", "Group.xlsx", "GroupVol.xlsx", "VolAddress.xlsx", 
-                                    "VolAddr.xlsx", "Skill.xlsx", "VolSkill.xlsx"};
+                                "VolAddr.xlsx", "Skill.xlsx", "VolSkill.xlsx", "VolState.xlsx",
+                                "VolEmail.xlsx"};
             cExcel.RemoveData(removeNames);
             cExcel.InsertData(insertNames);
 
@@ -76,8 +78,8 @@ namespace UT.Volteer.BLL
         public void TestDeleteVolSkill()
         {
             string[] insertNames = { "Volunteer.xlsx", "Group.xlsx", "GroupVol.xlsx", "VolAddress.xlsx", 
-                                                 "VolAddr.xlsx", "Skill.xlsx", "VolSkill.xlsx"};
-
+                                    "VolAddr.xlsx", "Skill.xlsx", "VolSkill.xlsx", "VolState.xlsx",
+                                    "VolEmail.xlsx"};
             cExcel.InsertData(insertNames);
 
 

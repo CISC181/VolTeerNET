@@ -87,7 +87,7 @@ namespace UT.Volteer.BLL
                 //we get out the other end is the same.
                 skillBLL.InsertSkillContext(ref dmskill);
                 sp_Skill_DM returned_Skill = skillBLL.ListSingleSkill(dmskill.SkillID);
-                Assert.Equals(returned_Skill, dmskill);
+                Assert.AreEqual(returned_Skill, dmskill);
             }
         }
     }
