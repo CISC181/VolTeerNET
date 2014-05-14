@@ -17,24 +17,24 @@ namespace VolTeer.BusinessLogicLayer.VT.Vend
             return DAL.ListContacts(null, null);
         }
 
-        public sp_ContactEmail_DM ListContacts(Guid? VendContact, int? EmailID)
+        public List<sp_ContactEmail_DM> ListContacts(Guid? VendContact, int? EmailID)
         {
-            return DAL.ListContacts(VendContact, EmailID).Single();
+            return DAL.ListContacts(VendContact, EmailID);
         }
 
         public void InsertContactContext(sp_ContactEmail_DM _cVendContact)
         {
-            DAL.insert(_cVendContact);
+            DAL.InsertContactContext(ref _cVendContact);
         }
 
         public void UpdateContactContext(sp_ContactEmail_DM _cVendContact)
         {
-            DAL.update(_cVendContact);
+            DAL.UpdateContactContext(_cVendContact);
         }
 
         public void DeleteContactContext(sp_ContactEmail_DM _cVendContact)
         {
-            DAL.delete(_cVendContact);
+            DAL.DeleteContactContext(_cVendContact);
         }
 
     }
