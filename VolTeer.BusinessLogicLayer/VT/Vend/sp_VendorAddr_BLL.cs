@@ -16,7 +16,7 @@ namespace VolTeer.BusinessLogicLayer.VT.Vend
             return DAL.ListAddresses();
         }
 
-        public sp_VendorAddr_DM ListAddresses(Guid? VendorID)
+        public sp_VendorAddr_DM ListAddresses(Guid VendorID)
         {
             return DAL.ListAddresses(VendorID).Single();
         }
