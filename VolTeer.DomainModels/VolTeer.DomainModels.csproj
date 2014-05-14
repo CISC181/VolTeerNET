@@ -79,6 +79,7 @@
     <Compile Include="VT\Vend\sp_VendAddress_DM.cs" />
     <Compile Include="VT\Vend\sp_EventRating_DM.cs" />
     <Compile Include="VT\Vend\sp_VendorContacts_DM.cs" />
+    <Compile Include="VT\Vend\sp_VendorProjContact_DM.cs" />
     <Compile Include="VT\Vend\sp_Vendor_DM.cs" />
     <Compile Include="VT\Vol\sp_GroupAddr_DM.cs" />
     <Compile Include="VT\Vol\sp_Phone_DM.cs" />

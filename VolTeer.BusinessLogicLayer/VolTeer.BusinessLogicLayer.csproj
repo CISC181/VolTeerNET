@@ -84,6 +84,7 @@
     <Compile Include="VT\Vend\sp_VendContact_BLL.cs" />
     <Compile Include="VT\Vend\sp_VendEmail_BLL.cs" />
     <Compile Include="VT\Vend\sp_VendorAddr_BLL.cs" />
+    <Compile Include="VT\Vend\sp_VendorProjContact_BLL.cs" />
     <Compile Include="VT\Vend\sp_Vendor_BLL.cs" />
     <Compile Include="VT\Vol\sp_GroupAddr_BLL.cs" />
     <Compile Include="VT\Vol\sp_GroupVol_BLL.cs" />
