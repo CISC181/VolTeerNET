@@ -76,6 +76,7 @@
     <Compile Include="utVendor.cs" />
     <Compile Include="utProject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="utVendorProjContact.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\UT.Helper\UT.Helper.csproj">
