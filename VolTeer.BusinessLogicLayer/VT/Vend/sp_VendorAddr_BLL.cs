@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using VolTeer.DomainModels.VT.Vend;
 using VolTeer.DataAccessLayer.VT.Vend;
+using VolTeer.Contracts.VT.Vend;
 
 namespace VolTeer.BusinessLogicLayer.VT.Vend
 {
-    public class sp_VendorAddr_BLL
+    public class sp_VendorAddr_BLL : sp_VendorAddr_CON
     {
         sp_VendorAddr_DAL DAL = new sp_VendorAddr_DAL();
 
@@ -16,9 +17,9 @@ namespace VolTeer.BusinessLogicLayer.VT.Vend
             return DAL.ListAddresses();
         }
 
-        public sp_VendorAddr_DM ListAddresses(Guid? VendorID)
+        public sp_VendorAddr_DM ListAddresses(Guid VendorID)
         {
-            return DAL.ListAddresses(VendorID).Single();
+            return DAL.ListAddresses(VendorID);
         }
 
         public int InsertAddressContext(sp_VendorAddr_DM InputAddress)

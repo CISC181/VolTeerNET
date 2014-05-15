@@ -4,10 +4,11 @@ using System.Linq;
 using System.Text;
 using VolTeer.DomainModels.VT.Vend;
 using VolTeer.DataAccessLayer.VT.Vend;
+using VolTeer.Contracts.VT.Vend;
 
 namespace VolTeer.BusinessLogicLayer.VT.Vend
 {
-    public class sp_VendEmail_BLL
+    public class sp_VendEmail_BLL : sp_VendEmail_CON
     {
         sp_VendEmail_DAL DAL = new sp_VendEmail_DAL();
 
@@ -16,9 +17,9 @@ namespace VolTeer.BusinessLogicLayer.VT.Vend
             return DAL.ListEmails();
         }
 
-        public sp_VendEmail_DM ListEmails(int? EmailID)
+        public sp_VendEmail_DM ListEmails(int EmailID)
         {
-            return DAL.ListEmails(EmailID).Single();
+            return DAL.ListEmails(EmailID);
         }
 
         public int InsertEmailContext(sp_VendEmail_DM InputEmail)
