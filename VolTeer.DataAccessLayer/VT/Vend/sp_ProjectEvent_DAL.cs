@@ -63,7 +63,7 @@ namespace VolTeer.DataAccessLayer.VT.Vend
         #endregion
 
         #region Update Statements
-        public void UpdateProjectEVentContext(sp_ProjectEvent_DM InputProjectEvent)
+        public void UpdateProjectEventContext(sp_ProjectEvent_DM InputProjectEvent)
         {
             using (VolTeerEntities context = new VolTeerEntities())
             {
