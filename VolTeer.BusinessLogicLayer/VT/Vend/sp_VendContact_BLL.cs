@@ -4,38 +4,42 @@ using System.Linq;
 using System.Text;
 using VolTeer.DomainModels.VT.Vend;
 using VolTeer.DataAccessLayer.VT.Vend;
-
+using VolTeer.Contracts.VT.Vend;
 
 namespace VolTeer.BusinessLogicLayer.VT.Vend
 {
-    public class sp_VendContact_BLL
+    public class sp_VendContact_BLL : sp_VendContact_CON
     {
         sp_VendContact_DAL DAL = new sp_VendContact_DAL();
 
-        public List<sp_VendContact_DM> ListContacts()
+        public List<sp_VendContact_DM> ListVendContacts()
         {
-            return DAL.ListContacts();
+            return DAL.ListVendContacts();
         }
 
-        public sp_VendContact_DM ListContacts(Guid? VendContact)
+        public List<sp_VendContact_DM> ListVendContacts(Guid? vendorid, Guid? contactid)
         {
-            return DAL.ListContacts(VendContact).Single();
+            return DAL.ListVendContacts(vendorid, contactid);
         }
 
-        public void InsertContactContext(sp_VendContact_DM _cVendContact)
+        public sp_VendContact_DM ListVendContact(Guid vendorid, Guid contactid)
         {
-            DAL.InsertContactContext(_cVendContact);
+            return DAL.ListVendContact(vendorid, contactid);
         }
 
-        public void UpdateContactContext(sp_VendContact_DM _cVendContact)
+        public void InsertVendContactContext(sp_VendContact_DM vendcontact)
         {
-            DAL.UpdateContactContext(_cVendContact);
+            DAL.InsertVendContactContext(vendcontact);
         }
 
-        public void DeleteContactContext(sp_VendContact_DM _cVendContact)
+        public void UpdateVendContactContext(sp_VendContact_DM vendcontact)
         {
-            DAL.DeleteContactContext(_cVendContact);
+            DAL.UpdateVendContactContext(vendcontact);
         }
 
+        public void DeleteVendContactContext(sp_VendContact_DM vendcontact)
+        {
+            DAL.DeleteVendContactContext(vendcontact);
+        }
     }
 }

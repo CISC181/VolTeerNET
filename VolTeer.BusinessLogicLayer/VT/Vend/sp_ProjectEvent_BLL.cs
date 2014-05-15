@@ -10,30 +10,30 @@ namespace VolTeer.BusinessLogicLayer.VT.Vend
 {
     public class sp_ProjectEvent_BLL : sp_ProjectEvent_CON
     {
-        sp_ProjectEvent_DAL dal = new sp_ProjectEvent_DAL();
+        sp_ProjectEvent_DAL DAL = new sp_ProjectEvent_DAL();
         public List<sp_ProjectEvent_DM> ListEvents()
         {
-            throw new NotImplementedException();
+            return DAL.ListEvents();
         }
 
-        public sp_ProjectEvent_DM ListEvents(Guid? EventID)
+        public sp_ProjectEvent_DM ListEvent(Guid EventID)
         {
-            throw new NotImplementedException();
+            return DAL.ListEvent(EventID);
         }
 
-        public sp_ProjectEvent_DM InsertEventContext(ref sp_ProjectEvent_DM _cEvent)
+        public Guid InsertProjectEventContext(sp_ProjectEvent_DM InputProjectEvent)
         {
-            throw new NotImplementedException();
+            return DAL.InsertProjectEventContext(InputProjectEvent);
         }
 
-        public void UpdateEventContext(sp_ProjectEvent_DM _cEvent)
+        public void UpdateProjectEventContext(sp_ProjectEvent_DM InputProjectEvent)
         {
-            throw new NotImplementedException();
+            DAL.UpdateProjectEventContext(InputProjectEvent);
         }
 
-        public void DeleteEventContext(sp_ProjectEvent_DM _cEvent)
+        public void DeleteProjectEventContext(sp_ProjectEvent_DM InputProjectEvent)
         {
-            throw new NotImplementedException();
+            DAL.DeleteProjectEventContext(InputProjectEvent);
         }
     }
 }

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using VolTeer.DomainModels.VT.Vend;
 using VolTeer.DataAccessLayer.VT.Vend;
-
+using VolTeer.Contracts.VT.Vend;
 
 namespace VolTeer.BusinessLogicLayer.VT.Vend
 {
@@ -14,27 +14,27 @@ namespace VolTeer.BusinessLogicLayer.VT.Vend
 
         public List<sp_ContactEmail_DM> ListContacts()
         {
-            return DAL.ListContacts(null, null);
+            return DAL.ListContactEmails(null, null);
         }
 
-        public sp_ContactEmail_DM ListContacts(Guid? VendContact, int? EmailID)
+        public List<sp_ContactEmail_DM> ListContacts(Guid? VendContact, int? EmailID)
         {
-            return DAL.ListContacts(VendContact, EmailID).Single();
+            return DAL.ListContactEmails(VendContact, EmailID);
         }
 
         public void InsertContactContext(sp_ContactEmail_DM _cVendContact)
         {
-            DAL.insert(_cVendContact);
+            DAL.InsertContactEmailContext(ref _cVendContact);
         }
 
         public void UpdateContactContext(sp_ContactEmail_DM _cVendContact)
         {
-            DAL.update(_cVendContact);
+            DAL.UpdateContactEmailContext(_cVendContact);
         }
 
         public void DeleteContactContext(sp_ContactEmail_DM _cVendContact)
         {
-            DAL.delete(_cVendContact);
+            DAL.DeleteContactEmailContext(_cVendContact);
         }
 
     }

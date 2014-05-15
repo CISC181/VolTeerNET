@@ -3,14 +3,15 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using VolTeer.DomainModels.VT.Vend;
+using VolTeer.Contracts.VT.Vend;
 
 namespace VolTeer.DataAccessLayer.VT.Vend
 {
-    public class sp_ProjectEvent_DAL
+    public class sp_ProjectEvent_DAL : sp_ProjectEvent_CON
     {
 
         #region Select Statements
-        /*
+
         public List<sp_ProjectEvent_DM> ListEvents(Guid? EventID)
         {
             List<sp_ProjectEvent_DM> list = new List<sp_ProjectEvent_DM>();
@@ -40,10 +41,17 @@ namespace VolTeer.DataAccessLayer.VT.Vend
         public List<sp_ProjectEvent_DM> ListEvents()
         {
             return ListEvents(null);
-        }*/
+        }
         #endregion
 
+        public sp_ProjectEvent_DM ListEvent(Guid EventID)
+        {
+            return ListEvents(EventID).FirstOrDefault();
+        }
+
         #region Insert Statements
+
+
         public Guid InsertProjectEventContext(sp_ProjectEvent_DM InputProjectEvent)
         {
             using (VolTeerEntities context = new VolTeerEntities())
@@ -60,10 +68,11 @@ namespace VolTeer.DataAccessLayer.VT.Vend
                 return NewProjectEvent.EventID;
             }
         }
+
         #endregion
 
         #region Update Statements
-        public void UpdateProjectEVentContext(sp_ProjectEvent_DM InputProjectEvent)
+        public void UpdateProjectEventContext(sp_ProjectEvent_DM InputProjectEvent)
         {
             using (VolTeerEntities context = new VolTeerEntities())
             {

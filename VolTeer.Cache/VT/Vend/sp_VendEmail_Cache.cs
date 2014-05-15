@@ -39,7 +39,7 @@ namespace VolTeer.Cache.VT.Vend
         /// </summary>
         /// <param name="Emails"></param>
         /// <returns></returns>
-        public sp_VendEmail_DM ListEmails(int? VendEmail)
+        public sp_VendEmail_DM ListEmails(int VendEmail)
         {
             sp_VendEmail_DM caEmail = new sp_VendEmail_DM();
 

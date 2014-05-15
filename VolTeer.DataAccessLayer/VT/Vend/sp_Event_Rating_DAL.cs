@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using VolTeer.DomainModels.VT.Vend;
+using VolTeer.Contracts.VT.Vend;
 
 
 namespace VolTeer.DataAccessLayer.VT.Vend
 {
-    public class sp_EventRating_DAL
+    public class sp_EventRating_DAL : sp_EventRating_CON
     {
 
         #region Select Statements

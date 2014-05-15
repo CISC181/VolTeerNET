@@ -231,7 +231,7 @@
     <Compile Include="VT\sp_ProjectEventContact_Select_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
-    <Compile Include="VT\sp_ProjectEvent_Select2_Result.cs">
+    <Compile Include="VT\sp_ProjectEvent_Select_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
     <Compile Include="VT\sp_Project_Select_Result.cs">
@@ -361,6 +361,7 @@
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
     <Compile Include="VT\Vend\sp_Contact_DAL.cs" />
+    <Compile Include="VT\Vend\sp_ProjectEventContact_DAL.cs" />
     <Compile Include="VT\Vend\sp_ProjectEvent_DAL.cs" />
     <Compile Include="VT\Vend\sp_Project_DAL.cs" />
     <Compile Include="VT\Vend\sp_ContactEmail_DAL.cs" />
@@ -390,6 +391,11 @@
       <DependentUpon>VolTeer.edmx</DependentUpon>
     </Compile>
     <Compile Include="VT\VolTeer1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>VolTeer.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="VT\VolTeer2.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>VolTeer.edmx</DependentUpon>

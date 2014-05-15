@@ -944,13 +944,17 @@ namespace VolTeer.DataAccessLayer.VT
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("sp_Vend_Contact_Insert", vendorIDParameter, contactIDParameter, primaryContactParameter);
         }
     
-        public virtual ObjectResult<sp_Vend_Contact_Select_Result> sp_Vend_Contact_Select(Nullable<System.Guid> contactID)
+        public virtual ObjectResult<sp_Vend_Contact_Select_Result> sp_Vend_Contact_Select(Nullable<System.Guid> vendorID, Nullable<System.Guid> contactID)
         {
+            var vendorIDParameter = vendorID.HasValue ?
+                new ObjectParameter("VendorID", vendorID) :
+                new ObjectParameter("VendorID", typeof(System.Guid));
+    
             var contactIDParameter = contactID.HasValue ?
                 new ObjectParameter("ContactID", contactID) :
                 new ObjectParameter("ContactID", typeof(System.Guid));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Vend_Contact_Select_Result>("sp_Vend_Contact_Select", contactIDParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Vend_Contact_Select_Result>("sp_Vend_Contact_Select", vendorIDParameter, contactIDParameter);
         }
     
         public virtual int sp_Vend_Contact_Update(Nullable<System.Guid> vendorID, Nullable<System.Guid> contactID, Nullable<bool> primaryContact)
@@ -1073,65 +1077,6 @@ namespace VolTeer.DataAccessLayer.VT
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
     
-        public virtual ObjectResult<Nullable<System.Guid>> sp_ProjectEvent_Insert(Nullable<System.Guid> eventID, Nullable<System.Guid> projectID, Nullable<System.DateTime> startDateTime, Nullable<System.DateTime> endDateTime, Nullable<int> addrID)
-        {
-            var eventIDParameter = eventID.HasValue ?
-                new ObjectParameter("EventID", eventID) :
-                new ObjectParameter("EventID", typeof(System.Guid));
-    
-            var projectIDParameter = projectID.HasValue ?
-                new ObjectParameter("ProjectID", projectID) :
-                new ObjectParameter("ProjectID", typeof(System.Guid));
-    
-            var startDateTimeParameter = startDateTime.HasValue ?
-                new ObjectParameter("StartDateTime", startDateTime) :
-                new ObjectParameter("StartDateTime", typeof(System.DateTime));
-    
-            var endDateTimeParameter = endDateTime.HasValue ?
-                new ObjectParameter("EndDateTime", endDateTime) :
-                new ObjectParameter("EndDateTime", typeof(System.DateTime));
-    
-            var addrIDParameter = addrID.HasValue ?
-                new ObjectParameter("AddrID", addrID) :
-                new ObjectParameter("AddrID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("sp_ProjectEvent_Insert", eventIDParameter, projectIDParameter, startDateTimeParameter, endDateTimeParameter, addrIDParameter);
-        }
-    
-        public virtual int sp_ProjectEvent_Select(Nullable<System.Guid> eventID)
-        {
-            var eventIDParameter = eventID.HasValue ?
-                new ObjectParameter("EventID", eventID) :
-                new ObjectParameter("EventID", typeof(System.Guid));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ProjectEvent_Select", eventIDParameter);
-        }
-    
-        public virtual int sp_ProjectEvent_Update(ObjectParameter flag, Nullable<System.Guid> eventID, Nullable<System.Guid> projectID, Nullable<System.DateTime> startDateTime, Nullable<System.DateTime> endDateTime, Nullable<int> addrID)
-        {
-            var eventIDParameter = eventID.HasValue ?
-                new ObjectParameter("EventID", eventID) :
-                new ObjectParameter("EventID", typeof(System.Guid));
-    
-            var projectIDParameter = projectID.HasValue ?
-                new ObjectParameter("ProjectID", projectID) :
-                new ObjectParameter("ProjectID", typeof(System.Guid));
-    
-            var startDateTimeParameter = startDateTime.HasValue ?
-                new ObjectParameter("StartDateTime", startDateTime) :
-                new ObjectParameter("StartDateTime", typeof(System.DateTime));
-    
-            var endDateTimeParameter = endDateTime.HasValue ?
-                new ObjectParameter("EndDateTime", endDateTime) :
-                new ObjectParameter("EndDateTime", typeof(System.DateTime));
-    
-            var addrIDParameter = addrID.HasValue ?
-                new ObjectParameter("AddrID", addrID) :
-                new ObjectParameter("AddrID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ProjectEvent_Update", flag, eventIDParameter, projectIDParameter, startDateTimeParameter, endDateTimeParameter, addrIDParameter);
-        }
-    
         public virtual int sp_GroupAddr_Delete(Nullable<int> groupID, Nullable<int> addrID)
         {
             var groupIDParameter = groupID.HasValue ?
@@ -1220,70 +1165,6 @@ namespace VolTeer.DataAccessLayer.VT
                 new ObjectParameter("EmailID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Vend_Email_Delete", emailIDParameter);
-        }
-    
-        public virtual int sp_ProjectEvent_Delete(Nullable<System.Guid> eventID)
-        {
-            var eventIDParameter = eventID.HasValue ?
-                new ObjectParameter("EventID", eventID) :
-                new ObjectParameter("EventID", typeof(System.Guid));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ProjectEvent_Delete", eventIDParameter);
-        }
-    
-        public virtual ObjectResult<Nullable<System.Guid>> sp_ProjectEvent_Insert1(Nullable<System.Guid> projectID, Nullable<System.DateTime> startDateTime, Nullable<System.DateTime> endDateTime, Nullable<int> addrID)
-        {
-            var projectIDParameter = projectID.HasValue ?
-                new ObjectParameter("ProjectID", projectID) :
-                new ObjectParameter("ProjectID", typeof(System.Guid));
-    
-            var startDateTimeParameter = startDateTime.HasValue ?
-                new ObjectParameter("StartDateTime", startDateTime) :
-                new ObjectParameter("StartDateTime", typeof(System.DateTime));
-    
-            var endDateTimeParameter = endDateTime.HasValue ?
-                new ObjectParameter("EndDateTime", endDateTime) :
-                new ObjectParameter("EndDateTime", typeof(System.DateTime));
-    
-            var addrIDParameter = addrID.HasValue ?
-                new ObjectParameter("AddrID", addrID) :
-                new ObjectParameter("AddrID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("sp_ProjectEvent_Insert1", projectIDParameter, startDateTimeParameter, endDateTimeParameter, addrIDParameter);
-        }
-    
-        public virtual int sp_ProjectEvent_Select1(Nullable<System.Guid> eventID)
-        {
-            var eventIDParameter = eventID.HasValue ?
-                new ObjectParameter("EventID", eventID) :
-                new ObjectParameter("EventID", typeof(System.Guid));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ProjectEvent_Select1", eventIDParameter);
-        }
-    
-        public virtual int sp_ProjectEvent_Update1(Nullable<System.Guid> eventID, Nullable<System.Guid> projectID, Nullable<System.DateTime> startDateTime, Nullable<System.DateTime> endDateTime, Nullable<int> addrID)
-        {
-            var eventIDParameter = eventID.HasValue ?
-                new ObjectParameter("EventID", eventID) :
-                new ObjectParameter("EventID", typeof(System.Guid));
-    
-            var projectIDParameter = projectID.HasValue ?
-                new ObjectParameter("ProjectID", projectID) :
-                new ObjectParameter("ProjectID", typeof(System.Guid));
-    
-            var startDateTimeParameter = startDateTime.HasValue ?
-                new ObjectParameter("StartDateTime", startDateTime) :
-                new ObjectParameter("StartDateTime", typeof(System.DateTime));
-    
-            var endDateTimeParameter = endDateTime.HasValue ?
-                new ObjectParameter("EndDateTime", endDateTime) :
-                new ObjectParameter("EndDateTime", typeof(System.DateTime));
-    
-            var addrIDParameter = addrID.HasValue ?
-                new ObjectParameter("AddrID", addrID) :
-                new ObjectParameter("AddrID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ProjectEvent_Update1", eventIDParameter, projectIDParameter, startDateTimeParameter, endDateTimeParameter, addrIDParameter);
         }
     
         public virtual int sp_ProjectEventContact_Delete(Nullable<System.Guid> eventID, Nullable<System.Guid> contactID)
@@ -1547,70 +1428,6 @@ namespace VolTeer.DataAccessLayer.VT
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Project_Update", projectIDParameter, projectNameParameter, projectDescParameter, addrIDParameter, activeFlgParameter);
         }
     
-        public virtual int sp_ProjectEvent_Delete1(Nullable<System.Guid> eventID)
-        {
-            var eventIDParameter = eventID.HasValue ?
-                new ObjectParameter("EventID", eventID) :
-                new ObjectParameter("EventID", typeof(System.Guid));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ProjectEvent_Delete1", eventIDParameter);
-        }
-    
-        public virtual ObjectResult<Nullable<System.Guid>> sp_ProjectEvent_Insert2(Nullable<System.Guid> projectID, Nullable<System.DateTime> startDateTime, Nullable<System.DateTime> endDateTime, Nullable<int> addrID)
-        {
-            var projectIDParameter = projectID.HasValue ?
-                new ObjectParameter("ProjectID", projectID) :
-                new ObjectParameter("ProjectID", typeof(System.Guid));
-    
-            var startDateTimeParameter = startDateTime.HasValue ?
-                new ObjectParameter("StartDateTime", startDateTime) :
-                new ObjectParameter("StartDateTime", typeof(System.DateTime));
-    
-            var endDateTimeParameter = endDateTime.HasValue ?
-                new ObjectParameter("EndDateTime", endDateTime) :
-                new ObjectParameter("EndDateTime", typeof(System.DateTime));
-    
-            var addrIDParameter = addrID.HasValue ?
-                new ObjectParameter("AddrID", addrID) :
-                new ObjectParameter("AddrID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("sp_ProjectEvent_Insert2", projectIDParameter, startDateTimeParameter, endDateTimeParameter, addrIDParameter);
-        }
-    
-        public virtual ObjectResult<sp_ProjectEvent_Select2_Result> sp_ProjectEvent_Select2(Nullable<System.Guid> eventID)
-        {
-            var eventIDParameter = eventID.HasValue ?
-                new ObjectParameter("EventID", eventID) :
-                new ObjectParameter("EventID", typeof(System.Guid));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ProjectEvent_Select2_Result>("sp_ProjectEvent_Select2", eventIDParameter);
-        }
-    
-        public virtual int sp_ProjectEvent_Update2(Nullable<System.Guid> eventID, Nullable<System.Guid> projectID, Nullable<System.DateTime> startDateTime, Nullable<System.DateTime> endDateTime, Nullable<int> addrID)
-        {
-            var eventIDParameter = eventID.HasValue ?
-                new ObjectParameter("EventID", eventID) :
-                new ObjectParameter("EventID", typeof(System.Guid));
-    
-            var projectIDParameter = projectID.HasValue ?
-                new ObjectParameter("ProjectID", projectID) :
-                new ObjectParameter("ProjectID", typeof(System.Guid));
-    
-            var startDateTimeParameter = startDateTime.HasValue ?
-                new ObjectParameter("StartDateTime", startDateTime) :
-                new ObjectParameter("StartDateTime", typeof(System.DateTime));
-    
-            var endDateTimeParameter = endDateTime.HasValue ?
-                new ObjectParameter("EndDateTime", endDateTime) :
-                new ObjectParameter("EndDateTime", typeof(System.DateTime));
-    
-            var addrIDParameter = addrID.HasValue ?
-                new ObjectParameter("AddrID", addrID) :
-                new ObjectParameter("AddrID", typeof(int));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ProjectEvent_Update2", eventIDParameter, projectIDParameter, startDateTimeParameter, endDateTimeParameter, addrIDParameter);
-        }
-    
         public virtual ObjectResult<sp_Vendor_Select_Result> sp_Vendor_Select(Nullable<System.Guid> vendorID)
         {
             var vendorIDParameter = vendorID.HasValue ?
@@ -1849,6 +1666,70 @@ namespace VolTeer.DataAccessLayer.VT
                 new ObjectParameter("LongDesc", typeof(string));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_Group_Update", groupIDParameter, groupNameParameter, participationLevelIDParameter, activeFlgParameter, shortDescParameter, longDescParameter);
+        }
+    
+        public virtual int sp_ProjectEvent_Delete(Nullable<System.Guid> eventID)
+        {
+            var eventIDParameter = eventID.HasValue ?
+                new ObjectParameter("EventID", eventID) :
+                new ObjectParameter("EventID", typeof(System.Guid));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ProjectEvent_Delete", eventIDParameter);
+        }
+    
+        public virtual int sp_ProjectEvent_Insert(Nullable<System.Guid> projectID, Nullable<System.DateTime> startDateTime, Nullable<System.DateTime> endDateTime, Nullable<int> addrID)
+        {
+            var projectIDParameter = projectID.HasValue ?
+                new ObjectParameter("ProjectID", projectID) :
+                new ObjectParameter("ProjectID", typeof(System.Guid));
+    
+            var startDateTimeParameter = startDateTime.HasValue ?
+                new ObjectParameter("StartDateTime", startDateTime) :
+                new ObjectParameter("StartDateTime", typeof(System.DateTime));
+    
+            var endDateTimeParameter = endDateTime.HasValue ?
+                new ObjectParameter("EndDateTime", endDateTime) :
+                new ObjectParameter("EndDateTime", typeof(System.DateTime));
+    
+            var addrIDParameter = addrID.HasValue ?
+                new ObjectParameter("AddrID", addrID) :
+                new ObjectParameter("AddrID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ProjectEvent_Insert", projectIDParameter, startDateTimeParameter, endDateTimeParameter, addrIDParameter);
+        }
+    
+        public virtual ObjectResult<sp_ProjectEvent_Select_Result> sp_ProjectEvent_Select(Nullable<System.Guid> eventID)
+        {
+            var eventIDParameter = eventID.HasValue ?
+                new ObjectParameter("EventID", eventID) :
+                new ObjectParameter("EventID", typeof(System.Guid));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_ProjectEvent_Select_Result>("sp_ProjectEvent_Select", eventIDParameter);
+        }
+    
+        public virtual int sp_ProjectEvent_Update(Nullable<System.Guid> eventID, Nullable<System.Guid> projectID, Nullable<System.DateTime> startDateTime, Nullable<System.DateTime> endDateTime, Nullable<int> addrID)
+        {
+            var eventIDParameter = eventID.HasValue ?
+                new ObjectParameter("EventID", eventID) :
+                new ObjectParameter("EventID", typeof(System.Guid));
+    
+            var projectIDParameter = projectID.HasValue ?
+                new ObjectParameter("ProjectID", projectID) :
+                new ObjectParameter("ProjectID", typeof(System.Guid));
+    
+            var startDateTimeParameter = startDateTime.HasValue ?
+                new ObjectParameter("StartDateTime", startDateTime) :
+                new ObjectParameter("StartDateTime", typeof(System.DateTime));
+    
+            var endDateTimeParameter = endDateTime.HasValue ?
+                new ObjectParameter("EndDateTime", endDateTime) :
+                new ObjectParameter("EndDateTime", typeof(System.DateTime));
+    
+            var addrIDParameter = addrID.HasValue ?
+                new ObjectParameter("AddrID", addrID) :
+                new ObjectParameter("AddrID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ProjectEvent_Update", eventIDParameter, projectIDParameter, startDateTimeParameter, endDateTimeParameter, addrIDParameter);
         }
     }
 }
