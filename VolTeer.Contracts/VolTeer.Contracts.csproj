@@ -50,6 +50,7 @@
     <Compile Include="VT\Vend\sp_ProjectEvent_CON.cs" />
     <Compile Include="VT\Vend\sp_Project_CON.cs" />
     <Compile Include="VT\Vend\sp_VendAddress_CON.cs" />
+    <Compile Include="VT\Vend\sp_VendContact_CON.cs" />
     <Compile Include="VT\Vend\sp_VendEmail_CON.cs" />
     <Compile Include="VT\Vend\sp_VendorAddr_CON.cs" />
     <Compile Include="VT\Vend\sp_VendorProjContact_CON.cs" />

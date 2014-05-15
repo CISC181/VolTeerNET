@@ -35,7 +35,7 @@ namespace UT.Vend.BLL
         [TestMethod]
         public void TestContactCreate()
         {
-            sp_VendContact_DM data = new sp_VendContact_DM();
+            sp_Contact_DM data = new sp_Contact_DM();
             data.ContactID = new Guid();
             string insertFirstName = "A";
             string insertMiddleName = "J";
@@ -44,8 +44,8 @@ namespace UT.Vend.BLL
             data.ContactMiddleName = insertMiddleName;
             data.ContactLastName = insertLastName;
             data.ActiveFlg = true;
-            sp_VendContact_BLL contact = new sp_VendContact_BLL();
-            contact.InsertContactContext(data);
+            sp_Contact_BLL contact = new sp_Contact_BLL();
+            contact.InsertContactContext(ref data);
             Assert.AreEqual(insertFirstName, data.ContactFirstName, "Contact First Name Not Set As Expected");
             Assert.AreEqual(insertMiddleName, data.ContactMiddleName, "Contact Middle Name Not Set As Expected");
             Assert.AreEqual(insertLastName, data.ContactLastName, "Contact Last Name Not Set As Expected");
@@ -61,7 +61,7 @@ namespace UT.Vend.BLL
             var numRows = cExcel.getNumRecordsFromDB("[Vend].[tblContact]");
 
             //Pull our data from the DB through the BLL
-            sp_VendContact_BLL contact = new sp_VendContact_BLL();
+            sp_Contact_BLL contact = new sp_Contact_BLL();
             var allContacts = contact.ListContacts();
 
             //Test the data from the BLL
@@ -76,8 +76,8 @@ namespace UT.Vend.BLL
             foreach (DataRow row in dt.Rows) // Loop over the rows.
             {
                 string contactID = row["ContactID"].ToString();
-                sp_VendContact_BLL contact = new sp_VendContact_BLL();
-                sp_VendContact_DM data = contact.ListContacts(new Guid(contactID));
+                sp_Contact_BLL contact = new sp_Contact_BLL();
+                sp_Contact_DM data = contact.ListContacts(new Guid(contactID));
                 Assert.AreEqual(row["ContactFirstName"].ToString(), data.ContactFirstName, "Contact First Name Not Set As Expected");
                 Assert.AreEqual(row["ContactMiddleName"].ToString(), data.ContactMiddleName, "Contact Middle Name Not Set As Expected");
                 Assert.AreEqual(row["ContactLastName"].ToString(), data.ContactLastName, "Contact Last Name Not Set As Expected");
@@ -95,12 +95,12 @@ namespace UT.Vend.BLL
                 string updateMiddleName = "TestMiddleName";
                 string updateLastName = "TestLastName";
                 string contactID = row["ContactID"].ToString();
-                sp_VendContact_DM data = new sp_VendContact_DM();
+                sp_Contact_DM data = new sp_Contact_DM();
                 data.ContactID = new Guid(contactID);
                 data.ContactFirstName = updateFirstName;
                 data.ContactMiddleName = updateMiddleName;
                 data.ContactLastName = updateLastName;
-                sp_VendContact_BLL contact = new sp_VendContact_BLL();
+                sp_Contact_BLL contact = new sp_Contact_BLL();
                 contact.UpdateContactContext(data);
                 data = contact.ListContacts(new Guid(contactID));
                 Assert.AreEqual(updateFirstName, data.ContactFirstName, "Contact First Name Not Set As Expected");
@@ -117,10 +117,10 @@ namespace UT.Vend.BLL
                 foreach (DataRow row in dt.Rows) // Loop over the rows.
                 {
                     string contactID = row["ContactID"].ToString();
-                    sp_VendContact_DM data = new sp_VendContact_DM();
+                    sp_Contact_DM data = new sp_Contact_DM();
                     data.ContactID = new Guid(contactID);
-                    sp_VendContact_BLL contact = new sp_VendContact_BLL();
-                    contact.DeleteContactContext(data);
+                    sp_Contact_BLL contact = new sp_Contact_BLL();
+                    contact.DeleteContactContext(data.ContactID);
                     data = contact.ListContacts(new Guid(contactID));
                     Assert.AreEqual(false, data.ActiveFlg, "ActiveFlag not set as expected");
                 }

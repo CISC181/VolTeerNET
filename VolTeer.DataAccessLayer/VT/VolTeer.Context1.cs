@@ -944,13 +944,17 @@ namespace VolTeer.DataAccessLayer.VT
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("sp_Vend_Contact_Insert", vendorIDParameter, contactIDParameter, primaryContactParameter);
         }
     
-        public virtual ObjectResult<sp_Vend_Contact_Select_Result> sp_Vend_Contact_Select(Nullable<System.Guid> contactID)
+        public virtual ObjectResult<sp_Vend_Contact_Select_Result> sp_Vend_Contact_Select(Nullable<System.Guid> vendorID, Nullable<System.Guid> contactID)
         {
+            var vendorIDParameter = vendorID.HasValue ?
+                new ObjectParameter("VendorID", vendorID) :
+                new ObjectParameter("VendorID", typeof(System.Guid));
+    
             var contactIDParameter = contactID.HasValue ?
                 new ObjectParameter("ContactID", contactID) :
                 new ObjectParameter("ContactID", typeof(System.Guid));
     
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Vend_Contact_Select_Result>("sp_Vend_Contact_Select", contactIDParameter);
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Vend_Contact_Select_Result>("sp_Vend_Contact_Select", vendorIDParameter, contactIDParameter);
         }
     
         public virtual int sp_Vend_Contact_Update(Nullable<System.Guid> vendorID, Nullable<System.Guid> contactID, Nullable<bool> primaryContact)
