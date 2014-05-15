@@ -47,6 +47,7 @@
     <Compile Include="VT\Vend\sp_ContactEmail_CON.cs" />
     <Compile Include="VT\Vend\sp_Contact_CON.cs" />
     <Compile Include="VT\Vend\sp_EventRating_CON.cs" />
+    <Compile Include="VT\Vend\sp_ProjectEventContact_CON.cs" />
     <Compile Include="VT\Vend\sp_ProjectEvent_CON.cs" />
     <Compile Include="VT\Vend\sp_Project_CON.cs" />
     <Compile Include="VT\Vend\sp_VendAddress_CON.cs" />
