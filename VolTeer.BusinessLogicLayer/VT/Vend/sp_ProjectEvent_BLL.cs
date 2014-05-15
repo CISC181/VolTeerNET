@@ -8,7 +8,7 @@ using VolTeer.DataAccessLayer.VT.Vend;
 
 namespace VolTeer.BusinessLogicLayer.VT.Vend
 {
-    public class sp_ProjectEvent_BLL : sp_ProjectEvent_CON
+    public class sp_ProjectEvent_BLL
     {
         sp_ProjectEvent_DAL DAL = new sp_ProjectEvent_DAL();
         public List<sp_ProjectEvent_DM> ListEvents()
