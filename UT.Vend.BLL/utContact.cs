@@ -33,6 +33,42 @@ namespace UT.Vend.BLL
         }
 
         [TestMethod]
+        public void TestContactCreate()
+        {
+            sp_VendContact_DM data = new sp_VendContact_DM();
+            data.ContactID = new Guid();
+            string insertFirstName = "A";
+            string insertMiddleName = "J";
+            string insertLastName = "Riz";
+            data.ContactFirstName = insertFirstName;
+            data.ContactMiddleName = insertMiddleName;
+            data.ContactLastName = insertLastName;
+            data.ActiveFlg = true;
+            sp_VendContact_BLL contact = new sp_VendContact_BLL();
+            contact.InsertContactContext(data);
+            Assert.AreEqual(insertFirstName, data.ContactFirstName, "Contact First Name Not Set As Expected");
+            Assert.AreEqual(insertMiddleName, data.ContactMiddleName, "Contact Middle Name Not Set As Expected");
+            Assert.AreEqual(insertLastName, data.ContactLastName, "Contact Last Name Not Set As Expected");
+        }
+
+        [TestMethod]
+        public void TestContactReadAll()
+        {
+            //Pull our data from the excel file
+            string helperDir = cExcel.GetHelperFilesDir();
+            DataTable dt = cExcel.ReadExcelFile("Sheet1", Path.Combine(helperDir, "Contact.xlsx"));
+            //Pull our data directly from the DB
+            var numRows = cExcel.getNumRecordsFromDB("[Vend].[tblContact]");
+
+            //Pull our data from the DB through the BLL
+            sp_VendContact_BLL contact = new sp_VendContact_BLL();
+            var allContacts = contact.ListContacts();
+
+            //Test the data from the BLL
+            Assert.AreEqual(numRows, allContacts.Count);
+        }
+
+        [TestMethod]
         public void TestContactRead()
         {
             //Test Our Read
@@ -90,24 +126,7 @@ namespace UT.Vend.BLL
                 }
             }
 
-        [TestMethod]
-        public void TestContactInsert()
-        {
-            sp_VendContact_DM data = new sp_VendContact_DM();
-            data.ContactID = new Guid();
-            string insertFirstName = "A";
-            string insertMiddleName = "J";
-            string insertLastName = "Riz";
-            data.ContactFirstName = insertFirstName;
-            data.ContactMiddleName = insertMiddleName;
-            data.ContactLastName = insertLastName;
-            data.ActiveFlg = true;
-            sp_VendContact_BLL contact = new sp_VendContact_BLL();
-            contact.InsertContactContext(data);
-            Assert.AreEqual(insertFirstName, data.ContactFirstName, "Contact First Name Not Set As Expected");
-            Assert.AreEqual(insertMiddleName, data.ContactMiddleName, "Contact Middle Name Not Set As Expected");
-            Assert.AreEqual(insertLastName, data.ContactLastName, "Contact Last Name Not Set As Expected");
-        }
+        
 
 
         [ClassCleanup]

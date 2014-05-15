@@ -33,6 +33,40 @@ namespace UT.Vend.BLL
         }
 
         [TestMethod]
+        public void TestVendAddressCreate()
+        {
+            //Test Our Read
+            sp_VendAddress_DM data = new sp_VendAddress_DM();
+            string AddrLine1 = "Add1";
+            string AddrLine2 = "Add2";
+            string AddrLine3 = "Add3";
+            string City = "City";
+            string St = "St";
+            int Zip = 11111;
+            int Zip4 = 1111;
+
+
+            data.AddrLine1 = AddrLine1;
+            data.AddrLine2 = AddrLine2;
+            data.AddrLine3 = AddrLine3;
+            data.City = City;
+            data.St = St;
+            data.Zip = Zip;
+            data.Zip4 = Zip4;
+            data.ActiveFlg = true;
+            sp_VendAddress_BLL vend = new sp_VendAddress_BLL();
+            vend.InsertAddressContext(data);
+            Assert.AreEqual(AddrLine1, data.AddrLine1, "AddrLine1 Not Set As Expected");
+            Assert.AreEqual(AddrLine2, data.AddrLine2, "AddrLine2 Not Set As Expected");
+            Assert.AreEqual(AddrLine3, data.AddrLine3, "AddrLine3 Not Set As Expected");
+            Assert.AreEqual(City, data.City, "City Not Set As Expected");
+            Assert.AreEqual(St, data.St, "St Not Set As Expected");
+            Assert.AreEqual(Zip, data.Zip, "Zip Not Set As Expected");
+            Assert.AreEqual(Zip4, data.Zip4, "Zip Not Set As Expected");
+
+        }
+
+        [TestMethod]
         public void TestVendAddressRead()
         {
             //Test Our Read
@@ -52,6 +86,22 @@ namespace UT.Vend.BLL
             }
         }
 
+        [TestMethod]
+        public void TestVendorAddrReadAll()
+        {
+            //Pull our data from the excel file
+            string helperDir = cExcel.GetHelperFilesDir();
+            DataTable dt = cExcel.ReadExcelFile("Sheet1", Path.Combine(helperDir, "VendAddress.xlsx"));
+            //Pull our data directly from the DB
+            var numRows = cExcel.getNumRecordsFromDB("[Vend].[tblVendAddress]");
+
+            //Pull our data from the DB through the BLL
+            sp_VendAddress_BLL vendor = new sp_VendAddress_BLL();
+            var allVendors = vendor.ListAddresses();
+
+            //Test the data from the BLL
+            Assert.AreEqual(numRows, allVendors.Count);
+        }
 
         [TestMethod]
         public void TestVendAddressUpdate()
@@ -109,39 +159,7 @@ namespace UT.Vend.BLL
             }
         }
 
-        [TestMethod]
-        public void TestVendAddressInsert()
-        {
-            //Test Our Read
-            sp_VendAddress_DM data = new sp_VendAddress_DM();
-            string AddrLine1 = "Add1";
-            string AddrLine2 = "Add2";
-            string AddrLine3 = "Add3";
-            string City = "City";
-            string St = "St";
-            int Zip = 11111;
-            int Zip4 = 1111;
-
-            
-            data.AddrLine1 = AddrLine1;
-            data.AddrLine2 = AddrLine2;
-            data.AddrLine3 = AddrLine3;
-            data.City = City;
-            data.St = St;
-            data.Zip = Zip;
-            data.Zip4 = Zip4;
-            data.ActiveFlg = true;
-            sp_VendAddress_BLL vend = new sp_VendAddress_BLL();
-            vend.InsertAddressContext(data);
-            Assert.AreEqual(AddrLine1, data.AddrLine1, "AddrLine1 Not Set As Expected");
-            Assert.AreEqual(AddrLine2, data.AddrLine2, "AddrLine2 Not Set As Expected");
-            Assert.AreEqual(AddrLine3, data.AddrLine3, "AddrLine3 Not Set As Expected");
-            Assert.AreEqual(City, data.City, "City Not Set As Expected");
-            Assert.AreEqual(St, data.St, "St Not Set As Expected");
-            Assert.AreEqual(Zip, data.Zip, "Zip Not Set As Expected");
-            Assert.AreEqual(Zip4, data.Zip4, "Zip Not Set As Expected");
-
-        }
+        
 
 
         [ClassCleanup]
