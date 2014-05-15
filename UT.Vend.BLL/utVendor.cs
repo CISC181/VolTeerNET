@@ -33,7 +33,7 @@ namespace UT.Vend.BLL
         }
 
         [TestMethod]
-        public void TestVendorInsert()
+        public void TestVendorCreate()
         {
             sp_Vendor_DM data = new sp_Vendor_DM();
             data.VendorID = new Guid();
@@ -44,6 +44,23 @@ namespace UT.Vend.BLL
             vendor.InsertVendorContext(ref data);
             Assert.AreEqual(vendorName, data.VendorName, "Vendor Name Not Set As Expected");
             Assert.AreEqual(true, data.ActiveFlg, "Active Flag Not Set As Expected");
+        }
+
+        [TestMethod]
+        public void TestVendorReadAll()
+        {
+            //Pull our data from the excel file
+            string helperDir = cExcel.GetHelperFilesDir();
+            DataTable dt = cExcel.ReadExcelFile("Sheet1", Path.Combine(helperDir, "Vendor.xlsx"));
+            //Pull our data directly from the DB
+            var numRows = cExcel.getNumRecordsFromDB("[Vend].[tblVendor]");
+
+            //Pull our data from the DB through the BLL
+            sp_Vendor_BLL vendor = new sp_Vendor_BLL();
+            var allVendors = vendor.ListVendors();
+
+            //Test the data from the BLL
+            Assert.AreEqual(numRows, allVendors.Count);
         }
 
         [TestMethod]
