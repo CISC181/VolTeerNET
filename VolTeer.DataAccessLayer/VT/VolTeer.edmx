@@ -1671,7 +1671,7 @@ FROM [dbo].[Vend.tblUserCred] AS [Vend_tblUserCred]</DefiningQuery>
             <Parameter Name="PrimaryContact" Mode="In" Type="Boolean" />
           </FunctionImport>
           <FunctionImport Name="sp_Vend_Contact_Select" ReturnType="Collection(VolTeerModel.sp_Vend_Contact_Select_Result)">
-          <Parameter Name="VendorID" Mode="In" Type="Guid" />
+            <Parameter Name="VendorID" Mode="In" Type="Guid" />
             <Parameter Name="ContactID" Mode="In" Type="Guid" />
           </FunctionImport>
           <FunctionImport Name="sp_Vend_Contact_Update">
@@ -1709,24 +1709,6 @@ FROM [dbo].[Vend.tblUserCred] AS [Vend_tblUserCred]</DefiningQuery>
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
-          <FunctionImport Name="sp_ProjectEvent_Insert" ReturnType="Collection(Guid)">
-            <Parameter Name="EventID" Mode="In" Type="Guid" />
-            <Parameter Name="ProjectID" Mode="In" Type="Guid" />
-            <Parameter Name="StartDateTime" Mode="In" Type="DateTime" />
-            <Parameter Name="EndDateTime" Mode="In" Type="DateTime" />
-            <Parameter Name="AddrID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_ProjectEvent_Select">
-          <Parameter Name="EventID" Mode="In" Type="Guid" />
-          </FunctionImport>
-          <FunctionImport Name="sp_ProjectEvent_Update">
-            <Parameter Name="flag" Mode="InOut" Type="Boolean" />
-            <Parameter Name="EventID" Mode="In" Type="Guid" />
-            <Parameter Name="ProjectID" Mode="In" Type="Guid" />
-            <Parameter Name="StartDateTime" Mode="In" Type="DateTime" />
-            <Parameter Name="EndDateTime" Mode="In" Type="DateTime" />
-            <Parameter Name="AddrID" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="sp_GroupAddr_Delete">
             <Parameter Name="GroupID" Mode="In" Type="Int32" />
             <Parameter Name="AddrID" Mode="In" Type="Int32" />
@@ -1759,25 +1741,6 @@ FROM [dbo].[Vend.tblUserCred] AS [Vend_tblUserCred]</DefiningQuery>
             <End Role="tblVolAddress" EntitySet="tblVolAddresses" />
             <End Role="tblGroupAddr" EntitySet="tblGroupAddrs" />
           </AssociationSet>
-          <FunctionImport Name="sp_ProjectEvent_Delete">
-          <Parameter Name="EventID" Mode="In" Type="Guid" />
-          </FunctionImport>
-          <FunctionImport Name="sp_ProjectEvent_Insert1" ReturnType="Collection(Guid)">
-            <Parameter Name="ProjectID" Mode="In" Type="Guid" />
-            <Parameter Name="StartDateTime" Mode="In" Type="DateTime" />
-            <Parameter Name="EndDateTime" Mode="In" Type="DateTime" />
-            <Parameter Name="AddrID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_ProjectEvent_Select1">
-          <Parameter Name="EventID" Mode="In" Type="Guid" />
-          </FunctionImport>
-          <FunctionImport Name="sp_ProjectEvent_Update1">
-            <Parameter Name="EventID" Mode="In" Type="Guid" />
-            <Parameter Name="ProjectID" Mode="In" Type="Guid" />
-            <Parameter Name="StartDateTime" Mode="In" Type="DateTime" />
-            <Parameter Name="EndDateTime" Mode="In" Type="DateTime" />
-            <Parameter Name="AddrID" Mode="In" Type="Int32" />
-          </FunctionImport>
           <EntitySet Name="tblGroups" EntityType="VolTeerModel.tblGroup" />
           <AssociationSet Name="FK_tblGroupAddr_tblGroup" Association="VolTeerModel.FK_tblGroupAddr_tblGroup">
             <End Role="tblGroup" EntitySet="tblGroups" />
@@ -1874,25 +1837,6 @@ FROM [dbo].[Vend.tblUserCred] AS [Vend_tblUserCred]</DefiningQuery>
             <Parameter Name="AddrID" Mode="In" Type="Int32" />
             <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
           </FunctionImport>
-          <FunctionImport Name="sp_ProjectEvent_Delete1">
-          <Parameter Name="EventID" Mode="In" Type="Guid" />
-          </FunctionImport>
-          <FunctionImport Name="sp_ProjectEvent_Insert2" ReturnType="Collection(Guid)">
-            <Parameter Name="ProjectID" Mode="In" Type="Guid" />
-            <Parameter Name="StartDateTime" Mode="In" Type="DateTime" />
-            <Parameter Name="EndDateTime" Mode="In" Type="DateTime" />
-            <Parameter Name="AddrID" Mode="In" Type="Int32" />
-          </FunctionImport>
-          <FunctionImport Name="sp_ProjectEvent_Select2" ReturnType="Collection(VolTeerModel.sp_ProjectEvent_Select2_Result)">
-          <Parameter Name="EventID" Mode="In" Type="Guid" />
-          </FunctionImport>
-          <FunctionImport Name="sp_ProjectEvent_Update2">
-            <Parameter Name="EventID" Mode="In" Type="Guid" />
-            <Parameter Name="ProjectID" Mode="In" Type="Guid" />
-            <Parameter Name="StartDateTime" Mode="In" Type="DateTime" />
-            <Parameter Name="EndDateTime" Mode="In" Type="DateTime" />
-            <Parameter Name="AddrID" Mode="In" Type="Int32" />
-          </FunctionImport>
           <FunctionImport Name="sp_Vendor_Select" ReturnType="Collection(VolTeerModel.sp_Vendor_Select_Result)">
           <Parameter Name="VendorID" Mode="In" Type="Guid" />
           </FunctionImport>
@@ -1964,6 +1908,25 @@ FROM [dbo].[Vend.tblUserCred] AS [Vend_tblUserCred]</DefiningQuery>
             <Parameter Name="ActiveFlg" Mode="In" Type="Boolean" />
             <Parameter Name="ShortDesc" Mode="In" Type="String" />
             <Parameter Name="LongDesc" Mode="In" Type="String" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ProjectEvent_Delete">
+          <Parameter Name="EventID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ProjectEvent_Insert">
+            <Parameter Name="ProjectID" Mode="In" Type="Guid" />
+            <Parameter Name="StartDateTime" Mode="In" Type="DateTime" />
+            <Parameter Name="EndDateTime" Mode="In" Type="DateTime" />
+            <Parameter Name="AddrID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ProjectEvent_Select" ReturnType="Collection(VolTeerModel.sp_ProjectEvent_Select_Result)">
+          <Parameter Name="EventID" Mode="In" Type="Guid" />
+          </FunctionImport>
+          <FunctionImport Name="sp_ProjectEvent_Update">
+            <Parameter Name="EventID" Mode="In" Type="Guid" />
+            <Parameter Name="ProjectID" Mode="In" Type="Guid" />
+            <Parameter Name="StartDateTime" Mode="In" Type="DateTime" />
+            <Parameter Name="EndDateTime" Mode="In" Type="DateTime" />
+            <Parameter Name="AddrID" Mode="In" Type="Int32" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="tblContact">
@@ -2766,13 +2729,6 @@ FROM [dbo].[Vend.tblUserCred] AS [Vend_tblUserCred]</DefiningQuery>
           <Property Type="Int32" Name="AddrID" Nullable="true" />
           <Property Type="Boolean" Name="ActiveFlg" Nullable="true" />
         </ComplexType>
-        <ComplexType Name="sp_ProjectEvent_Select2_Result">
-          <Property Type="Guid" Name="EventID" Nullable="false" />
-          <Property Type="Guid" Name="ProjectID" Nullable="false" />
-          <Property Type="DateTime" Name="StartDateTime" Nullable="true" Precision="23" />
-          <Property Type="DateTime" Name="EndDateTime" Nullable="true" Precision="23" />
-          <Property Type="Int32" Name="AddrID" Nullable="true" />
-        </ComplexType>
         <ComplexType Name="sp_Vendor_Select_Result">
           <Property Type="Guid" Name="VendorID" Nullable="false" />
           <Property Type="String" Name="VendorName" Nullable="true" MaxLength="50" />
@@ -2823,6 +2779,13 @@ FROM [dbo].[Vend.tblUserCred] AS [Vend_tblUserCred]</DefiningQuery>
           <Property Type="Boolean" Name="ActiveFlg" Nullable="true" />
           <Property Type="String" Name="ShortDesc" Nullable="true" MaxLength="200" />
           <Property Type="String" Name="LongDesc" Nullable="true" />
+        </ComplexType>
+        <ComplexType Name="sp_ProjectEvent_Select_Result" >
+          <Property Type="Guid" Name="EventID" Nullable="false" />
+          <Property Type="Guid" Name="ProjectID" Nullable="false" />
+          <Property Type="DateTime" Name="StartDateTime" Nullable="true" Precision="23" />
+          <Property Type="DateTime" Name="EndDateTime" Nullable="true" Precision="23" />
+          <Property Type="Int32" Name="AddrID" Nullable="true" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -2928,6 +2891,26 @@ FROM [dbo].[Vend.tblUserCred] AS [Vend_tblUserCred]</DefiningQuery>
                 <ScalarProperty Name="EndDateTime" ColumnName="EndDateTime" />
                 <ScalarProperty Name="AddrID" ColumnName="AddrID" />
               </MappingFragment>
+            </EntityTypeMapping>
+            <EntityTypeMapping TypeName="VolTeerModel.tblProjectEvent">
+              <ModificationFunctionMapping>
+                <InsertFunction FunctionName="VolTeerModel.Store.sp_ProjectEvent_Insert">
+                  <ScalarProperty Name="AddrID" ParameterName="AddrID" />
+                  <ScalarProperty Name="EndDateTime" ParameterName="EndDateTime" />
+                  <ScalarProperty Name="StartDateTime" ParameterName="StartDateTime" />
+                  <ScalarProperty Name="ProjectID" ParameterName="ProjectID" />
+                </InsertFunction>
+                <DeleteFunction FunctionName="VolTeerModel.Store.sp_ProjectEvent_Delete">
+                  <ScalarProperty Name="EventID" ParameterName="EventID" />
+                </DeleteFunction>
+                <UpdateFunction FunctionName="VolTeerModel.Store.sp_ProjectEvent_Update">
+                  <ScalarProperty Name="AddrID" ParameterName="AddrID" Version="Current" />
+                  <ScalarProperty Name="EndDateTime" ParameterName="EndDateTime" Version="Current" />
+                  <ScalarProperty Name="StartDateTime" ParameterName="StartDateTime" Version="Current" />
+                  <ScalarProperty Name="ProjectID" ParameterName="ProjectID" Version="Current" />
+                  <ScalarProperty Name="EventID" ParameterName="EventID" Version="Current" />
+                </UpdateFunction>
+              </ModificationFunctionMapping>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="tblProjectEventContacts">
@@ -3865,20 +3848,6 @@ FROM [dbo].[Vend.tblUserCred] AS [Vend_tblUserCred]</DefiningQuery>
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_Project_Update" FunctionName="VolTeerModel.Store.sp_Project_Update" />
-          <FunctionImportMapping FunctionImportName="sp_ProjectEvent_Delete1" FunctionName="VolTeerModel.Store.sp_ProjectEvent_Delete" />
-          <FunctionImportMapping FunctionImportName="sp_ProjectEvent_Insert2" FunctionName="VolTeerModel.Store.sp_ProjectEvent_Insert" />
-          <FunctionImportMapping FunctionImportName="sp_ProjectEvent_Select2" FunctionName="VolTeerModel.Store.sp_ProjectEvent_Select">
-            <ResultMapping>
-              <ComplexTypeMapping TypeName="VolTeerModel.sp_ProjectEvent_Select2_Result">
-                <ScalarProperty Name="EventID" ColumnName="EventID" />
-                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
-                <ScalarProperty Name="StartDateTime" ColumnName="StartDateTime" />
-                <ScalarProperty Name="EndDateTime" ColumnName="EndDateTime" />
-                <ScalarProperty Name="AddrID" ColumnName="AddrID" />
-              </ComplexTypeMapping>
-            </ResultMapping>
-          </FunctionImportMapping>
-          <FunctionImportMapping FunctionImportName="sp_ProjectEvent_Update2" FunctionName="VolTeerModel.Store.sp_ProjectEvent_Update" />
           <FunctionImportMapping FunctionImportName="sp_Vendor_Select" FunctionName="VolTeerModel.Store.sp_Vendor_Select">
             <ResultMapping>
               <ComplexTypeMapping TypeName="VolTeerModel.sp_Vendor_Select_Result">
@@ -3967,6 +3936,20 @@ FROM [dbo].[Vend.tblUserCred] AS [Vend_tblUserCred]</DefiningQuery>
             </ResultMapping>
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_Group_Update" FunctionName="VolTeerModel.Store.sp_Group_Update" />
+          <FunctionImportMapping FunctionImportName="sp_ProjectEvent_Delete" FunctionName="VolTeerModel.Store.sp_ProjectEvent_Delete" />
+          <FunctionImportMapping FunctionImportName="sp_ProjectEvent_Insert" FunctionName="VolTeerModel.Store.sp_ProjectEvent_Insert" />
+          <FunctionImportMapping FunctionImportName="sp_ProjectEvent_Select" FunctionName="VolTeerModel.Store.sp_ProjectEvent_Select" >
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VolTeerModel.sp_ProjectEvent_Select_Result">
+                <ScalarProperty Name="EventID" ColumnName="EventID" />
+                <ScalarProperty Name="ProjectID" ColumnName="ProjectID" />
+                <ScalarProperty Name="StartDateTime" ColumnName="StartDateTime" />
+                <ScalarProperty Name="EndDateTime" ColumnName="EndDateTime" />
+                <ScalarProperty Name="AddrID" ColumnName="AddrID" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_ProjectEvent_Update" FunctionName="VolTeerModel.Store.sp_ProjectEvent_Update" />
           </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

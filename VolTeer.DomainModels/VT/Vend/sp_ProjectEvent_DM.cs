@@ -14,8 +14,8 @@ namespace VolTeer.DomainModels.VT.Vend
 
         public Guid EventID { get; set; }
         public Guid ProjectID { get; set; }
-        public DateTime StartDateTime { get; set; }
-        public DateTime EndDateTime { get; set; }
-        public int AddrID { get; set; }
+        public DateTime? StartDateTime { get; set; }
+        public DateTime? EndDateTime { get; set; }
+        public int? AddrID { get; set; }
     }
 }

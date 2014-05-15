@@ -74,7 +74,7 @@ namespace UT.Vend.BLL
             Assert.AreEqual(numRows, allProjectEvents.Count);
             foreach (var testProjectEvent in excelDMs)
             {
-                var selectedProjectEvent = ProjectEvent_bll.ListEvents(testProjectEvent.ProjectID);
+                var selectedProjectEvent = ProjectEvent_bll.ListEvent(testProjectEvent.EventID);
                 Assert.IsTrue(Equals(testProjectEvent, selectedProjectEvent));
             }
         }
@@ -117,7 +117,7 @@ namespace UT.Vend.BLL
             firstProjectEvent.StartDateTime = StartDate;
             firstProjectEvent.EndDateTime = EndDate;
             //ProjectEvent_bll.UpdateEventContext(firstProjectEvent);
-            var selectedProjectEvent = ProjectEvent_bll.ListEvents(firstProjectEvent.ProjectID);
+            var selectedProjectEvent = ProjectEvent_bll.ListEvent(firstProjectEvent.EventID);
 
             Assert.IsTrue(Equals(firstProjectEvent, selectedProjectEvent));
             Assert.AreEqual(StartDate, selectedProjectEvent.StartDateTime);
@@ -135,7 +135,7 @@ namespace UT.Vend.BLL
             var numRows = cExcel.getNumRecordsFromDB("[Vend].[tblProjectEvent]");
 
             //ProjectEvent_bll.DeleteEventContext(currProjectEvent);
-            var selectedProjectEvent = ProjectEvent_bll.ListEvents(currProjectEvent.ProjectID);
+            var selectedProjectEvent = ProjectEvent_bll.ListEvent(currProjectEvent.EventID);
 
             var numCurrRows = cExcel.getNumRecordsFromDB("[Vend].[tblProjectEvent]");
 

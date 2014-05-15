@@ -231,7 +231,7 @@
     <Compile Include="VT\sp_ProjectEventContact_Select_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
-    <Compile Include="VT\sp_ProjectEvent_Select2_Result.cs">
+    <Compile Include="VT\sp_ProjectEvent_Select_Result.cs">
       <DependentUpon>VolTeer.tt</DependentUpon>
     </Compile>
     <Compile Include="VT\sp_Project_Select_Result.cs">

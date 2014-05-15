@@ -11,7 +11,7 @@ namespace VolTeer.DataAccessLayer.VT
 {
     using System;
     
-    public partial class sp_ProjectEvent_Select2_Result
+    public partial class sp_ProjectEvent_Select_Result
     {
         public System.Guid EventID { get; set; }
         public System.Guid ProjectID { get; set; }

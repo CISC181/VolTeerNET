@@ -10,29 +10,6 @@ namespace VolTeer.DataAccessLayer.VT.Vend
     {
         #region Select Statements
 
-        public List<sp_ContactEmail_DM> ListContactEmails()
-        {
-            List<sp_ContactEmail_DM> list = new List<sp_ContactEmail_DM>();
-            try
-            {
-                using (VolTeerEntities context = new VolTeerEntities())
-                {
-                    list = (from result in context.sp_ContactEmail_Select(null, null)
-                            select new sp_ContactEmail_DM
-                            {
-                                ContactID = result.ContactID,
-                                EmailID = result.EmailID,
-                                PrimaryEmail = result.PrimaryEmail
-                            }).ToList();
-                }
-            }
-            catch (Exception ex)
-            {
-                throw (ex);
-            }
-            return list;
-        }
-
         public List<sp_ContactEmail_DM> ListContactEmails(Guid? contactid, int? emailid)
         {
             List<sp_ContactEmail_DM> list = new List<sp_ContactEmail_DM>();
@@ -54,6 +31,11 @@ namespace VolTeer.DataAccessLayer.VT.Vend
                 throw (ex);
             }
             return list;
+        }
+
+        public List<sp_ContactEmail_DM> ListContactEmails()
+        {
+            return ListContactEmails(null, null);
         }
 
         public sp_ContactEmail_DM ListContactEmails(Guid contactid, int emailid)
