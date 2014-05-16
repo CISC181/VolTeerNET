@@ -76,13 +76,13 @@ namespace VolTeer.Volunteer {
         protected global::Telerik.Web.UI.RadPageView PageView1;
         
         /// <summary>
-        /// ucVendorMail control.
+        /// ucVendorProfile control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Vend.Common.WebControls.ucVendorMail ucVendorMail;
+        protected global::Vend.Common.WebControls.ucVendorProfile ucVendorProfile;
         
         /// <summary>
         /// PageView2 control.
@@ -94,13 +94,13 @@ namespace VolTeer.Volunteer {
         protected global::Telerik.Web.UI.RadPageView PageView2;
         
         /// <summary>
-        /// ucVendorContact control.
+        /// ucVendorMail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Vend.Common.WebControls.ucVendorContact ucVendorContact;
+        protected global::Vend.Common.WebControls.ucVendorMail ucVendorMail;
         
         /// <summary>
         /// PageView3 control.
@@ -110,6 +110,24 @@ namespace VolTeer.Volunteer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadPageView PageView3;
+        
+        /// <summary>
+        /// ucVendorContact control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Vend.Common.WebControls.ucVendorContact ucVendorContact;
+        
+        /// <summary>
+        /// PageView4 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadPageView PageView4;
         
         /// <summary>
         /// ucVendorAddress control.

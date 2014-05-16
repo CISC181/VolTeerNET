@@ -7,6 +7,8 @@
 <%@ Register Src="~/Common/WebControls/ucVendorMail.ascx" TagPrefix="uc1" TagName="ucVendorMail" %>
 <%@ Register Src="~/Common/WebControls/ucVendorContact.ascx" TagPrefix="uc1" TagName="ucVendorContact" %>
 <%@ Register Src="~/Common/WebControls/ucVendorAddress.ascx" TagPrefix="uc1" TagName="ucVendorAddress" %>
+<%@ Register Src="~/Common/WebControls/ucVendorProfile.ascx" TagPrefix="uc1" TagName="ucVendorProfile" %>
+
 
 
 
@@ -42,20 +44,24 @@
                 <telerik:RadTabStrip runat="server" ID="RadTabStrip2" MultiPageID="RadMultiPage2"
                     Orientation="VerticalLeft" Skin='<%$ AppSettings:Telerik.Skin %>' Width="100px" Height="475px" SelectedIndex="0">
                     <Tabs>
-                        <telerik:RadTab Height="90px" ImageUrl="../Content/imageLibrary/PNG/mail_32.png"></telerik:RadTab>
-                        <telerik:RadTab Height="90px" ImageUrl="../Content/imageLibrary/PNG/phone_32.png"></telerik:RadTab>
-                        <telerik:RadTab Height="90px" ImageUrl="../Content/imageLibrary/PNG/addbk_32.png"></telerik:RadTab>
+                        <telerik:RadTab Text="Profile" Height="90px"></telerik:RadTab>
+                        <telerik:RadTab Text="Mail" Height="90px"></telerik:RadTab>
+                        <telerik:RadTab Text="Contacts" Height="90px"></telerik:RadTab>
+                        <telerik:RadTab Text="Address" Height="90px"></telerik:RadTab>
                     </Tabs>
                 </telerik:RadTabStrip>
 
                 <telerik:RadMultiPage runat="server" ID="RadMultiPage2" SelectedIndex="0" CssClass="innerMultiPage" Height="100%" Width="90%">
                     <telerik:RadPageView runat="server" ID="PageView1" Height="100%" Width="100%">
+                        <uc1:ucVendorProfile runat="server" ID="ucVendorProfile" />
+                    </telerik:RadPageView>
+                     <telerik:RadPageView runat="server" ID="PageView2" Height="100%" Width="100%">
                         <uc1:ucVendorMail runat="server" id="ucVendorMail" />
                     </telerik:RadPageView>
-                    <telerik:RadPageView runat="server" ID="PageView2" Height="100%" Width="100%">
+                    <telerik:RadPageView runat="server" ID="PageView3" Height="100%" Width="100%">
                         <uc1:ucVendorContact runat="server" id="ucVendorContact" />
                     </telerik:RadPageView>
-                    <telerik:RadPageView runat="server" ID="PageView3" Height="100%" Width="100%">
+                    <telerik:RadPageView runat="server" ID="PageView4" Height="100%" Width="100%">
                         <uc1:ucVendorAddress runat="server" id="ucVendorAddress" />
                     </telerik:RadPageView>
 

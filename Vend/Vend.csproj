@@ -114,6 +114,13 @@
     <Compile Include="Common\WebControls\ucVendorMail.ascx.designer.cs">
       <DependentUpon>ucVendorMail.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Common\WebControls\ucVendorProfile.ascx.cs">
+      <DependentUpon>ucVendorProfile.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Common\WebControls\ucVendorProfile.ascx.designer.cs">
+      <DependentUpon>ucVendorProfile.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Common\WebControls\ucVendorProjects.ascx.cs">
       <DependentUpon>ucVendorProjects.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -202,6 +209,7 @@
     <Content Include="Common\WebControls\ucVendorContact.ascx" />
     <Content Include="Common\WebControls\ucVendorContacts.ascx" />
     <Content Include="Common\WebControls\ucVendorMail.ascx" />
+    <Content Include="Common\WebControls\ucVendorProfile.ascx" />
     <Content Include="Common\WebControls\ucVendorProjects.ascx" />
     <Content Include="Common\WebControls\ucVendorSearch.ascx" />
     <Content Include="Content\GridStyleSheet.css" />
