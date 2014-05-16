@@ -109,7 +109,6 @@
     </Compile>
     <Compile Include="Common\WebControls\ucVendorMail.ascx.cs">
       <DependentUpon>ucVendorMail.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Common\WebControls\ucVendorMail.ascx.designer.cs">
       <DependentUpon>ucVendorMail.ascx</DependentUpon>
@@ -299,7 +298,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
+      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
