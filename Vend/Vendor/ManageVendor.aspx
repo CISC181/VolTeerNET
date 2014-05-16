@@ -4,7 +4,12 @@
 <%@ Register Src="~/Common/WebControls/ucVendorContacts.ascx" TagPrefix="uc1" TagName="ucVendorContacts" %>
 <%@ Register Src="~/Common/WebControls/ucVendorSearch.ascx" TagPrefix="uc1" TagName="ucVendorSearch" %>
 <%@ Register Src="~/Common/WebControls/ucAccountMaint.ascx" TagPrefix="uc1" TagName="ucAccountMaint" %>
-<%@ Register Src="~/Common/WebControls/ucVendor.ascx" TagPrefix="uc1" TagName="ucVendor" %>
+<%@ Register Src="~/Common/WebControls/ucVendorMail.ascx" TagPrefix="uc1" TagName="ucVendorMail" %>
+<%@ Register Src="~/Common/WebControls/ucVendorContact.ascx" TagPrefix="uc1" TagName="ucVendorContact" %>
+<%@ Register Src="~/Common/WebControls/ucVendorAddress.ascx" TagPrefix="uc1" TagName="ucVendorAddress" %>
+
+
+
 
 
 
@@ -31,24 +36,52 @@
 
 
         <telerik:RadMultiPage runat="server" ID="RadMultiPage1" SelectedIndex="0" CssClass="outerMultiPage">
+
             <telerik:RadPageView runat="server" ID="RadPageView1">
-                <uc1:ucVendor runat="server" id="ucVendor" />
+
+                <telerik:RadTabStrip runat="server" ID="RadTabStrip2" MultiPageID="RadMultiPage2"
+                    Orientation="VerticalLeft" Skin='<%$ AppSettings:Telerik.Skin %>' Width="100px" Height="475px" SelectedIndex="0">
+                    <Tabs>
+                        <telerik:RadTab Height="90px" ImageUrl="../Content/imageLibrary/PNG/mail_32.png"></telerik:RadTab>
+                        <telerik:RadTab Height="90px" ImageUrl="../Content/imageLibrary/PNG/phone_32.png"></telerik:RadTab>
+                        <telerik:RadTab Height="90px" ImageUrl="../Content/imageLibrary/PNG/addbk_32.png"></telerik:RadTab>
+                    </Tabs>
+                </telerik:RadTabStrip>
+
+                <telerik:RadMultiPage runat="server" ID="RadMultiPage2" SelectedIndex="0" CssClass="innerMultiPage" Height="100%" Width="90%">
+                    <telerik:RadPageView runat="server" ID="PageView1" Height="100%" Width="100%">
+                        <uc1:ucVendorMail runat="server" id="ucVendorMail" />
+                    </telerik:RadPageView>
+                    <telerik:RadPageView runat="server" ID="PageView2" Height="100%" Width="100%">
+                        <uc1:ucVendorContact runat="server" id="ucVendorContact" />
+                    </telerik:RadPageView>
+                    <telerik:RadPageView runat="server" ID="PageView3" Height="100%" Width="100%">
+                        <uc1:ucVendorAddress runat="server" id="ucVendorAddress" />
+                    </telerik:RadPageView>
+
+                </telerik:RadMultiPage>
+
             </telerik:RadPageView>
-            
+
+
+
+
+
+
             <telerik:RadPageView runat="server" ID="RadPageView2">
-                <uc1:ucVendorProjects runat="server" id="ucVendorProjects" />
+                <uc1:ucVendorProjects runat="server" ID="ucVendorProjects" />
             </telerik:RadPageView>
 
             <telerik:RadPageView runat="server" ID="RadPageView3">
-               <uc1:ucVendorContacts runat="server" id="ucVendorContacts" />
+                <uc1:ucVendorContacts runat="server" ID="ucVendorContacts" />
             </telerik:RadPageView>
 
             <telerik:RadPageView runat="server" ID="RadPageView4">
-                <uc1:ucVendorSearch runat="server" id="ucVendorSearch" />
+                <uc1:ucVendorSearch runat="server" ID="ucVendorSearch" />
             </telerik:RadPageView>
 
             <telerik:RadPageView runat="server" ID="RadPageView5">
-                <uc1:ucAccountMaint runat="server" id="ucAccountMaint" />
+                <uc1:ucAccountMaint runat="server" ID="ucAccountMaint" />
             </telerik:RadPageView>
         </telerik:RadMultiPage>
     </div>

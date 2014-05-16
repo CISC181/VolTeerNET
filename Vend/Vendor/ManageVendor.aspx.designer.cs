@@ -49,13 +49,76 @@ namespace VolTeer.Volunteer {
         protected global::Telerik.Web.UI.RadPageView RadPageView1;
         
         /// <summary>
-        /// ucVendor control.
+        /// RadTabStrip2 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Vend.Common.WebControls.ucVendor ucVendor;
+        protected global::Telerik.Web.UI.RadTabStrip RadTabStrip2;
+        
+        /// <summary>
+        /// RadMultiPage2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadMultiPage RadMultiPage2;
+        
+        /// <summary>
+        /// PageView1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadPageView PageView1;
+        
+        /// <summary>
+        /// ucVendorMail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Vend.Common.WebControls.ucVendorMail ucVendorMail;
+        
+        /// <summary>
+        /// PageView2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadPageView PageView2;
+        
+        /// <summary>
+        /// ucVendorContact control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Vend.Common.WebControls.ucVendorContact ucVendorContact;
+        
+        /// <summary>
+        /// PageView3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadPageView PageView3;
+        
+        /// <summary>
+        /// ucVendorAddress control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Vend.Common.WebControls.ucVendorAddress ucVendorAddress;
         
         /// <summary>
         /// RadPageView2 control.
