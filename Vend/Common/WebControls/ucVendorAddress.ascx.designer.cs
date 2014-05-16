@@ -11,7 +11,7 @@ namespace Vend.Common.WebControls
 {
 
 
-    public partial class ucVendor
+    public partial class ucVendorAddress
     {
     }
 }

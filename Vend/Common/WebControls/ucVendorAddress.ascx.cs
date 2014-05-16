@@ -7,7 +7,7 @@ using System.Web.UI.WebControls;
 
 namespace Vend.Common.WebControls
 {
-    public partial class ucVendor : System.Web.UI.UserControl
+    public partial class ucVendorAddress : System.Web.UI.UserControl
     {
         protected void Page_Load(object sender, EventArgs e)
         {
