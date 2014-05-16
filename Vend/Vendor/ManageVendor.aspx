@@ -19,14 +19,13 @@
 
     <telerik:RadFormDecorator ID="QsfFromDecorator" runat="server" DecoratedControls="All" EnableRoundedCorners="false" />
     <div class="exampleWrapper">
-        <telerik:RadTabStrip runat="server" ID="RadTabStrip1" MultiPageID="RadMultiPage1" SelectedIndex="0" Skin="Web20">
+        <telerik:RadTabStrip runat="server" ID="RadTabStrip1" MultiPageID="RadMultiPage1" Height="26px" SelectedIndex="0" Skin='<%$ AppSettings:Telerik.Skin %>'>
             <Tabs>
-                <telerik:RadTab Text="Vendor"></telerik:RadTab>
-                <telerik:RadTab Text="Projects"></telerik:RadTab>
-                <telerik:RadTab Text="Vendor Contacts"></telerik:RadTab>
-                <telerik:RadTab Text="Search"></telerik:RadTab>
-                <telerik:RadTab Text="Account Maint"></telerik:RadTab>
-
+                <telerik:RadTab Text="Vendor" Height="25px" Width="200px"></telerik:RadTab>
+                <telerik:RadTab Text="Projects" Height="25px" Width="200px"></telerik:RadTab>
+                <telerik:RadTab Text="Vendor Contacts" Height="25px" Width="200px"></telerik:RadTab>
+                <telerik:RadTab Text="Search" Height="25px" Width="200px"></telerik:RadTab>
+                <telerik:RadTab Text="Account Maint" Height="25px" Width="200px"></telerik:RadTab>
             </Tabs>
         </telerik:RadTabStrip>
 
