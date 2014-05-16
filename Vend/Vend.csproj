@@ -86,11 +86,19 @@
     <Compile Include="Common\WebControls\ucAccountMaint.ascx.designer.cs">
       <DependentUpon>ucAccountMaint.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Common\WebControls\ucVendor.ascx.cs">
-      <DependentUpon>ucVendor.ascx</DependentUpon>
+    <Compile Include="Common\WebControls\ucVendorAddress.ascx.cs">
+      <DependentUpon>ucVendorAddress.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
-    <Compile Include="Common\WebControls\ucVendor.ascx.designer.cs">
-      <DependentUpon>ucVendor.ascx</DependentUpon>
+    <Compile Include="Common\WebControls\ucVendorAddress.ascx.designer.cs">
+      <DependentUpon>ucVendorAddress.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Common\WebControls\ucVendorContact.ascx.cs">
+      <DependentUpon>ucVendorContact.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Common\WebControls\ucVendorContact.ascx.designer.cs">
+      <DependentUpon>ucVendorContact.ascx</DependentUpon>
     </Compile>
     <Compile Include="Common\WebControls\ucVendorContacts.ascx.cs">
       <DependentUpon>ucVendorContacts.ascx</DependentUpon>
@@ -98,6 +106,13 @@
     </Compile>
     <Compile Include="Common\WebControls\ucVendorContacts.ascx.designer.cs">
       <DependentUpon>ucVendorContacts.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Common\WebControls\ucVendorMail.ascx.cs">
+      <DependentUpon>ucVendorMail.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Common\WebControls\ucVendorMail.ascx.designer.cs">
+      <DependentUpon>ucVendorMail.ascx</DependentUpon>
     </Compile>
     <Compile Include="Common\WebControls\ucVendorProjects.ascx.cs">
       <DependentUpon>ucVendorProjects.ascx</DependentUpon>
@@ -183,8 +198,10 @@
     <Content Include="App_Data\RadCaptcha\Y.wav" />
     <Content Include="App_Data\RadCaptcha\Z.wav" />
     <Content Include="Common\WebControls\ucAccountMaint.ascx" />
-    <Content Include="Common\WebControls\ucVendor.ascx" />
+    <Content Include="Common\WebControls\ucVendorAddress.ascx" />
+    <Content Include="Common\WebControls\ucVendorContact.ascx" />
     <Content Include="Common\WebControls\ucVendorContacts.ascx" />
+    <Content Include="Common\WebControls\ucVendorMail.ascx" />
     <Content Include="Common\WebControls\ucVendorProjects.ascx" />
     <Content Include="Common\WebControls\ucVendorSearch.ascx" />
     <Content Include="Content\GridStyleSheet.css" />
@@ -274,7 +291,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
+      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
