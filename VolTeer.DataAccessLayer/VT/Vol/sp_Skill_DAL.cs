@@ -44,7 +44,9 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                             {
                             SkillID = result.SkillID,
                             SkillName = result.SkillName,
-                            MstrSkillID = result.MstrSkillID
+                            MstrSkillID = result.MstrSkillID,
+                            ActiveFlg = result.ActiveFlg,
+                            ReqCert = result.ReqCert
                             }).ToList();
                 } // Guaranteed to close the Connection
             }
@@ -72,7 +74,8 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                                 SkillID = result.SkillID,
                                 SkillName = result.SkillName,
                                 MstrSkillID = result.MstrSkillID,
-                                ActiveFlg = result.ActiveFlg
+                                ActiveFlg = result.ActiveFlg,
+                                ReqCert = result.ReqCert
 
                             }).ToList();
                 } // Guaranteed to close the Connection
