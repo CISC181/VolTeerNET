@@ -32,8 +32,10 @@ namespace UT.Volteer.BLL
                 Assert.AreEqual(selectedRow[0]["SkillName"], skill.SkillName);
                 var tmp = skill.MstrSkillID == null ? (object)"" : skill.MstrSkillID.Value.ToString();
                 Assert.AreEqual(tmp, selectedRow[0]["MStrSkillID"].ToString().ToLower());
+                System.Console.WriteLine(skill.ActiveFlg);
                 Assert.AreEqual(skill.ActiveFlg, Convert.ToInt32(selectedRow[0]["ActiveFlg"]));
             }
+            cExcel.RemoveData(fnames);
         }
 
         [TestMethod]
