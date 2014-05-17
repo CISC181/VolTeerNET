@@ -493,15 +493,6 @@ namespace VolTeer.DataAccessLayer.VT
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<Nullable<System.Guid>>("sp_Skill_Insert", skillNameParameter, mstrSkillIDParameter, reqCertParameter);
         }
     
-        public virtual ObjectResult<sp_Skill_Select_Result> sp_Skill_Select(Nullable<System.Guid> skillID)
-        {
-            var skillIDParameter = skillID.HasValue ?
-                new ObjectParameter("SkillID", skillID) :
-                new ObjectParameter("SkillID", typeof(System.Guid));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Skill_Select_Result>("sp_Skill_Select", skillIDParameter);
-        }
-    
         public virtual int sp_Skill_Update(Nullable<System.Guid> skillID, string skillName, Nullable<System.Guid> mstrSkillID, Nullable<bool> reqCert)
         {
             var skillIDParameter = skillID.HasValue ?
@@ -1587,15 +1578,6 @@ namespace VolTeer.DataAccessLayer.VT
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_GroupVol_Select_FindNewVols_Result>("sp_GroupVol_Select_FindNewVols", groupIDParameter);
         }
     
-        public virtual ObjectResult<sp_Skill_Select_Manage_Result> sp_Skill_Select_Manage(Nullable<bool> showNullMstrSkillItems)
-        {
-            var showNullMstrSkillItemsParameter = showNullMstrSkillItems.HasValue ?
-                new ObjectParameter("ShowNullMstrSkillItems", showNullMstrSkillItems) :
-                new ObjectParameter("ShowNullMstrSkillItems", typeof(bool));
-    
-            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Skill_Select_Manage_Result>("sp_Skill_Select_Manage", showNullMstrSkillItemsParameter);
-        }
-    
         public virtual int sp_Group_Delete(Nullable<int> groupID)
         {
             var groupIDParameter = groupID.HasValue ?
@@ -1730,6 +1712,24 @@ namespace VolTeer.DataAccessLayer.VT
                 new ObjectParameter("AddrID", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_ProjectEvent_Update", eventIDParameter, projectIDParameter, startDateTimeParameter, endDateTimeParameter, addrIDParameter);
+        }
+    
+        public virtual ObjectResult<sp_Skill_Select_Result1> sp_Skill_Select(Nullable<System.Guid> skillID)
+        {
+            var skillIDParameter = skillID.HasValue ?
+                new ObjectParameter("SkillID", skillID) :
+                new ObjectParameter("SkillID", typeof(System.Guid));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Skill_Select_Result1>("sp_Skill_Select", skillIDParameter);
+        }
+    
+        public virtual ObjectResult<sp_Skill_Select_Manage_Result1> sp_Skill_Select_Manage(Nullable<bool> showNullMstrSkillItems)
+        {
+            var showNullMstrSkillItemsParameter = showNullMstrSkillItems.HasValue ?
+                new ObjectParameter("ShowNullMstrSkillItems", showNullMstrSkillItems) :
+                new ObjectParameter("ShowNullMstrSkillItems", typeof(bool));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Skill_Select_Manage_Result1>("sp_Skill_Select_Manage", showNullMstrSkillItemsParameter);
         }
     }
 }
