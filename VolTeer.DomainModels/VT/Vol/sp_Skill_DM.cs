@@ -11,6 +11,7 @@ namespace VolTeer.DomainModels.VT.Vol
         public string SkillName { get; set; }
         public Guid? MstrSkillID { get; set; }
         public int ActiveFlg { get; set; }
+        public bool? ReqCert { get; set; }
         public bool Equals(Object obj)
         {
             if (obj == null || GetType() != obj.GetType())

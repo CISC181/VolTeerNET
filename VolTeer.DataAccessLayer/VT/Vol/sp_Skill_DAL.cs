@@ -21,7 +21,9 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                         {
                             SkillID = result.SkillID,
                             SkillName = result.SkillName,
-                            MstrSkillID = result.MstrSkillID
+                            MstrSkillID = result.MstrSkillID,
+                            ActiveFlg = result.ActiveFlg,
+                            ReqCert = result.ReqCert
 
                         }).ToList();
             } // Guaranteed to close the Connection
@@ -40,10 +42,9 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                     list = (from result in context.sp_Skill_Select(Skill)
                             select new sp_Skill_DM
                             {
-                                SkillID = result.SkillID,
+                            SkillID = result.SkillID,
                             SkillName = result.SkillName,
                             MstrSkillID = result.MstrSkillID
-
                             }).ToList();
                 } // Guaranteed to close the Connection
             }
