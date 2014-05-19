@@ -12,9 +12,11 @@ using System.Web.Security;
 namespace Vend.Common.WebControls
 {
     public partial class ucVendorSearch : System.Web.UI.UserControl
-    {
+    
+        {
         private sp_Skill_BLL SkillsBLL = new sp_Skill_BLL();
         sp_VolSkill_BLL VolSkillBLL = new sp_VolSkill_BLL();
+        sp_Volunteer_BLL VOL = new sp_Volunteer_BLL();
 
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -53,6 +55,10 @@ namespace Vend.Common.WebControls
         {
             MembershipUser currentUser = Membership.GetUser();
             Guid? VolID = (Guid)currentUser.ProviderUserKey;
+            List<sp_Volunteer_DM> VolTeers = VOL.ListVolunteers();
+            foreach (sp_Volunteer_DM volDM in VolTeers){
+                        // doStuff
+            }
 
         }
 
