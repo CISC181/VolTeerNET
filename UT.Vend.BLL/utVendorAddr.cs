@@ -111,7 +111,7 @@ namespace UT.Vend.BLL
         
 
         [TestMethod]
-        public void TTestVendorAddrDelete()
+        public void TestVendorAddrDelete()
         {
             DataTable dt = cExcel.ReadExcelFile("Sheet1", Path.Combine(cExcel.GetHelperFilesDir(), "VendorAddr.xlsx"));
             foreach (DataRow row in dt.Rows) // Loop over the rows.
@@ -122,7 +122,7 @@ namespace UT.Vend.BLL
                 sp_VendorAddr_BLL vendor = new sp_VendorAddr_BLL();
                 vendor.DeleteAddressContext(data);
                 var newdata = vendor.ListAddresses(vendorID);
-                
+                Assert.IsNull(newdata);
             }
         }
 
