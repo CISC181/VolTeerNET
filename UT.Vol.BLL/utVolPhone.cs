@@ -69,7 +69,7 @@ namespace UT.Vol.BLL
         public static void InsertVolPhoneData(TestContext testContext)
         {
             System.Diagnostics.Debug.WriteLine(String.Format("{0}", DateTime.Now));
-            cExcel.RemoveData(ExcelFilenames);
+            cExcel.RemoveAllData();
             cExcel.InsertData(ExcelFilenames);
 
             sp_Volunteer_BLL volBLL = new sp_Volunteer_BLL();
