@@ -37,7 +37,7 @@ namespace VolTeer.DataAccessLayer.VT.Vend
             return list;
         }
 
-        public sp_Contact_DM ListContacts(Guid? contactid)
+        public sp_Contact_DM ListContacts(Guid contactid)
         {
             List<sp_Contact_DM> list = new List<sp_Contact_DM>();
             try
@@ -104,7 +104,7 @@ namespace VolTeer.DataAccessLayer.VT.Vend
         #endregion
 
         #region Delete Statement
-        public void DeleteContactContext(Guid? ContactID)
+        public void DeleteContactContext(Guid ContactID)
         {
             using (VolTeerEntities context = new VolTeerEntities())
             {
