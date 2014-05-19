@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Configuration;
 using System.Diagnostics;
 using System.Text;
@@ -13,18 +11,13 @@ using VolTeer.App_Code;
 using VolTeer.BusinessLogicLayer.VT.Vol;
 using VolTeer.BusinessLogicLayer.VT.Vend;
 using VolTeer.DomainModels.VT.Vol;
-using VolTeer.DomainModels.VT.Vend;
 using VolTeer.BusinessLogicLayer.VT.Other;
 using VolTeer.Cache.VT.Vol;
 using VolTeer.DomainModels.VT.Vend;
-using VolTeer.GoogleAPI;
-using System.Web.ApplicationServices;
 using System.Web.Security;
-
 using VolTeer.DomainModels.Service;
-using VolTeer.GoogleAPI;
 using System.IO;
-
+using VolTeer.GoogleAPI;
 
 namespace Vend.Common.WebControls
 {
