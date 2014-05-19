@@ -13,10 +13,8 @@ namespace UT.Vol.BLL
     [TestClass]
     public class utVolPhone
     {
-        static sp_Volunteer_DM createTestVol;
         static sp_Volunteer_DM generalTestVol;
 
-        static sp_Phone_DM createTestVolPhone;
         static sp_Phone_DM primaryTestVolPhone;
         static sp_Phone_DM secondaryTestVolPhone;
 
@@ -124,7 +122,6 @@ namespace UT.Vol.BLL
             vol_dm.ActiveFlg = true;
             System.Guid volID = vol_bll.InsertVolunteerContext(ref vol_dm).VolID;
             vol_dm.VolID = volID;
-            createTestVol = vol_dm;
 
             string volPhoneNbr = "0123456789";
             bool PrimaryFlg = true;
@@ -137,7 +134,6 @@ namespace UT.Vol.BLL
             volPhone_dm.PrimaryFlg = PrimaryFlg;
             volPhone_bll.InsertPhoneContext(volPhone_dm);
             int volPhoneID = volPhone_dm.PhoneID;
-            createTestVolPhone = volPhone_dm;
 
             List<sp_Phone_DM> volPhoneDMs_selected = volPhone_bll.ListPhones(volPhone_dm);
             Assert.IsTrue(PhoneListContains(volPhoneDMs_selected, volPhone_dm));
@@ -192,15 +188,6 @@ namespace UT.Vol.BLL
         [ClassCleanup]
         public static void RemoveVolPhoneData()
         {
-            sp_VolPhone_BLL volPhoneBLL = new sp_VolPhone_BLL();
-            volPhoneBLL.DeletePhonesContext(secondaryTestVolPhone);
-            volPhoneBLL.DeletePhonesContext(primaryTestVolPhone);
-            volPhoneBLL.DeletePhonesContext(createTestVolPhone);
-
-            sp_Volunteer_BLL volBLL = new sp_Volunteer_BLL();
-            volBLL.DeleteVolunteerContext(generalTestVol);
-            volBLL.DeleteVolunteerContext(createTestVol);
-
             cExcel.RemoveData(ExcelFilenames);
         }
 

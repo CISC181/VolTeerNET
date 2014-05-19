@@ -14,8 +14,6 @@ namespace UT.Vol.BLL
     public class utVolunteer
     {
 
-        static sp_Volunteer_DM createTestVol;
-
         static string[] ExcelFilenames = new string[] {
             "Volunteer.xlsx"
         };
@@ -55,8 +53,6 @@ namespace UT.Vol.BLL
             System.Diagnostics.Debug.WriteLine(String.Format("{0}", DateTime.Now));
             cExcel.RemoveAllData();
             cExcel.InsertData(ExcelFilenames);
-
-            createTestVol = new sp_Volunteer_DM();
         }
 
         [TestMethod]
@@ -93,7 +89,6 @@ namespace UT.Vol.BLL
             vol_dm.ActiveFlg = ActiveFlg;
             System.Guid volID = vol_bll.InsertVolunteerContext(ref vol_dm).VolID;
             vol_dm.VolID = volID;
-            createTestVol = vol_dm;
 
             sp_Volunteer_DM vol_dm_selected = vol_bll.ListVolunteers(volID);
             Assert.IsTrue(VolEquals(vol_dm, vol_dm_selected));
@@ -147,9 +142,6 @@ namespace UT.Vol.BLL
         [ClassCleanup]
         public static void RemoveVolunteerData()
         {
-            sp_Volunteer_BLL volBLL = new sp_Volunteer_BLL();
-            volBLL.DeleteVolunteerContext(createTestVol);
-
             cExcel.RemoveData(ExcelFilenames);
         }
 
