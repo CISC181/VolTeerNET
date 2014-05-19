@@ -14,4 +14,6 @@ namespace VolTeer.DomainModels.VT.Vol
         public string ShortDesc { get; set; }
         public string LongDesc { get; set; }
     }
+
+
 }
