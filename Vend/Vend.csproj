@@ -74,6 +74,13 @@
     <Compile Include="Account\Login.aspx.designer.cs">
       <DependentUpon>Login.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Account\ManageUser.aspx.cs">
+      <DependentUpon>ManageUser.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Account\ManageUser.aspx.designer.cs">
+      <DependentUpon>ManageUser.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Account\RecoverPassword.aspx.cs">
       <DependentUpon>RecoverPassword.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -167,6 +174,7 @@
   <ItemGroup>
     <Content Include="Account\ChangePassword.aspx" />
     <Content Include="Account\Login.aspx" />
+    <Content Include="Account\ManageUser.aspx" />
     <Content Include="Account\RecoverPassword.aspx" />
     <Content Include="Account\Register.aspx" />
     <Content Include="App_Data\RadCaptcha\0.wav" />
@@ -298,7 +306,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
+      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
