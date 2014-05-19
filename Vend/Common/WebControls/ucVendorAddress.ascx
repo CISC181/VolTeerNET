@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="ucVendorAddress.ascx.cs" Inherits="Vend.Common.WebControls.ucVendorAddress" %>
-
+<%@ Register Assembly="Telerik.Web.UI" Namespace="Telerik.Web.UI" TagPrefix="telerik" %>
 <asp:Panel ID="pnlSingleAddress" runat="server" Width="90%" >
     <asp:Table ID="tblMainTable" runat="server">
         <asp:TableRow>

@@ -99,7 +99,7 @@
     <Compile Include="App_Code\cEnums.cs" />
     <Compile Include="App_Code\cMail.cs" />
     <Compile Include="App_Code\cValidations.cs" />
-    <Compile Include="App_Code\ExceptionUtility.cs" />
+    <Compile Include="App_Data\ExceptionUtility.cs" />
     <Compile Include="Common\WebControls\ucVendorAddress.ascx.cs">
       <DependentUpon>ucVendorAddress.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -116,6 +116,7 @@
     </Compile>
     <Compile Include="Common\WebControls\ucVendorMail.ascx.cs">
       <DependentUpon>ucVendorMail.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Common\WebControls\ucVendorMail.ascx.designer.cs">
       <DependentUpon>ucVendorMail.ascx</DependentUpon>

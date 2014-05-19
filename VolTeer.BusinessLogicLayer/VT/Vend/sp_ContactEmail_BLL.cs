@@ -25,9 +25,9 @@ namespace VolTeer.BusinessLogicLayer.VT.Vend
             return DAL.ListContactEmails(contactid, emailid);
         }
 
-        public void InsertContactEmailContext(ref sp_ContactEmail_DM contactemail)
+        public void InsertContactEmailContext(sp_ContactEmail_DM contactemail)
         {
-            DAL.InsertContactEmailContext(ref contactemail);
+            DAL.InsertContactEmailContext(contactemail);
         }
 
         public void UpdateContactEmailContext(sp_ContactEmail_DM contactemail)

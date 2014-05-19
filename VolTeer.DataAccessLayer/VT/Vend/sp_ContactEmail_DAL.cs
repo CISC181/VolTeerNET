@@ -64,7 +64,7 @@ namespace VolTeer.DataAccessLayer.VT.Vend
         #endregion
 
         #region Insert Statements
-        public void InsertContactEmailContext(ref sp_ContactEmail_DM contactemail)
+        public void InsertContactEmailContext(sp_ContactEmail_DM contactemail)
         {
             using (VolTeerEntities context = new VolTeerEntities())
             {
