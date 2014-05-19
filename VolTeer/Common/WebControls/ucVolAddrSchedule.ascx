@@ -34,3 +34,4 @@
         <AppointmentContextMenuSettings EnableDefault="true"></AppointmentContextMenuSettings>
         <Reminders Enabled="true"></Reminders>
     </telerik:RadScheduler>
+</div>
