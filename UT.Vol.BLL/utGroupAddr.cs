@@ -51,7 +51,7 @@ namespace UT.Vol.BLL
         public static void InsertGroupAddrData(TestContext testContext)
         {
             System.Diagnostics.Debug.WriteLine(String.Format("{0}", DateTime.Now));
-            cExcel.RemoveData(ExcelFilenames);
+            cExcel.RemoveAllData();
             cExcel.InsertData(ExcelFilenames);
         }
 
@@ -66,15 +66,15 @@ namespace UT.Vol.BLL
             var numRows = cExcel.getNumRecordsFromDB("[Vol].[tblGroupAddr]");
 
             //Pull our data from the DB through the BLL
-            var group_bll = new sp_Group_BLL();
-            var allGroups = group_bll.ListGroups();
+            var groupAddr_bll = new sp_GroupAddr_BLL();
+            var allGroupAddrs = groupAddr_bll.ListAddresses(new sp_GroupAddr_DM());
 
             //Test the data from the BLL
-            Assert.AreEqual(numRows, allGroups.Count);
-            foreach (var testGroup in excelDMs)
+            Assert.AreEqual(numRows, allGroupAddrs.Count);
+            foreach (var testGroupAddr in excelDMs)
             {
-                var selectedGroup = group_bll.ListGroups(testGroup.GroupID);
-                Assert.IsTrue(Equals(testGroup, selectedGroup));
+                var selectedGroupAddr = groupAddr_bll.ListAddress(testGroupAddr);
+                Assert.IsTrue(Equals(testGroupAddr, selectedGroupAddr));
             }
         }
 
@@ -90,7 +90,7 @@ namespace UT.Vol.BLL
             groupAddr_dm.PrimaryAddrID = true;
             groupAddr_dm.ActiveFlg = true;
             var volAddress_bll = new sp_Vol_Address_BLL();
-            var volAddress_dm = volAddress_bll.ListAddress(null);
+            var volAddress_dm = volAddress_bll.ListAddress(new sp_Vol_Address_DM());
             groupAddr_bll.InsertAddressContext(ref volAddress_dm, ref groupAddr_dm);
             groupAddr_dm.AddrID = volAddress_dm.AddrID;
 

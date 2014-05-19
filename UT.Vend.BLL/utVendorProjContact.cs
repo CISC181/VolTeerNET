@@ -18,10 +18,11 @@ namespace UT.Vend.BLL
     public class utVendorProjContact
     {
         static string[] ExcelFilenames = new string[] {
+            "Vendor.xlsx",
+            "VendAddress.xlsx",
+            "VendorAddr.xlsx",
             "Project.xlsx",
             "Contact.xlsx",
-            "Vendor.xlsx",
-            "VendorAddr.xlsx",
             "tblVendContact.xlsx", 
             "tblVendorProjContact.xlsx"
         };
@@ -30,8 +31,8 @@ namespace UT.Vend.BLL
         [ClassInitialize]
         public static void InsertVendorProjContactData(TestContext testContext)
         {
+            cExcel.RemoveAllData();
             cExcel.InsertData(ExcelFilenames);
-
         }
 
         [TestMethod]

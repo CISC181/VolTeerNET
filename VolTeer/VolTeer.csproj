@@ -312,6 +312,13 @@
     <Compile Include="SampleControls\GeoCode.aspx.designer.cs">
       <DependentUpon>GeoCode.aspx</DependentUpon>
     </Compile>
+    <Compile Include="SampleControls\GroupSearch.aspx.cs">
+      <DependentUpon>GroupSearch.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="SampleControls\GroupSearch.aspx.designer.cs">
+      <DependentUpon>GroupSearch.aspx</DependentUpon>
+    </Compile>
     <Compile Include="SampleControls\InputControls.aspx.cs">
       <DependentUpon>InputControls.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -848,6 +855,7 @@
     <Content Include="Org\ManageOrg.aspx" />
     <Content Include="SampleControls\DataManipulation.aspx" />
     <Content Include="SampleControls\GeoCode.aspx" />
+    <Content Include="SampleControls\GroupSearch.aspx" />
     <Content Include="SampleControls\InputControls.aspx" />
     <Content Include="SampleControls\ListBox.aspx" />
     <Content Include="SampleControls\ManageSkills.aspx" />
@@ -943,7 +951,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
+      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

@@ -13,5 +13,6 @@ namespace VolTeer.Contracts.VT.Vol
         sp_Group_DM InsertGroupContext(ref sp_Group_DM _cGroup);
         void UpdateGroupContext(sp_Group_DM _cGroup);
         void DeleteGroupContext(sp_Group_DM _cGroup);
+        List<sp_GroupSearch_DM> SearchGroups(string searchTerms);
     }
 }

@@ -1731,5 +1731,14 @@ namespace VolTeer.DataAccessLayer.VT
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Skill_Select_Manage_Result1>("sp_Skill_Select_Manage", showNullMstrSkillItemsParameter);
         }
+    
+        public virtual ObjectResult<sp_Group_Search_Result> sp_Group_Search(string xML_IN)
+        {
+            var xML_INParameter = xML_IN != null ?
+                new ObjectParameter("XML_IN", xML_IN) :
+                new ObjectParameter("XML_IN", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<sp_Group_Search_Result>("sp_Group_Search", xML_INParameter);
+        }
     }
 }

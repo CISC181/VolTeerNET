@@ -82,7 +82,7 @@ namespace UT.Vol.BLL
         public static void InsertVolAddressData(TestContext testContext)
         {
             System.Diagnostics.Debug.WriteLine(String.Format("{0}", DateTime.Now));
-            cExcel.RemoveData(ExcelFilenames);
+            cExcel.RemoveAllData();
             cExcel.InsertData(ExcelFilenames);
 
             sp_Volunteer_BLL volBLL = new sp_Volunteer_BLL();
@@ -91,8 +91,7 @@ namespace UT.Vol.BLL
             generalTestVol.VolMiddleName = "TestMiddle";
             generalTestVol.VolLastName = "TestLast";
             generalTestVol.ActiveFlg = true;
-            System.Guid volID = volBLL.InsertVolunteerContext(ref generalTestVol).VolID;
-            generalTestVol.VolID = volID;
+            volBLL.InsertVolunteerContext(ref generalTestVol);
 
             sp_Vol_Address_BLL volAddress_bll = new sp_Vol_Address_BLL();
             primaryTestVolAddress = new sp_Vol_Address_DM();
@@ -104,8 +103,6 @@ namespace UT.Vol.BLL
             primaryTestVolAddress.Zip = 12345;
             primaryTestVolAddress.Zip4 = 6789;
             primaryTestVolAddress.ActiveFlg = true;
-            primaryTestVolAddr.VolID = volID;
-            primaryTestVolAddr.PrimaryAddr = true;
             volAddress_bll.InsertAddressContext(ref primaryTestVolAddress, ref primaryTestVolAddr);
 
             secondaryTestVolAddress = new sp_Vol_Address_DM();
@@ -117,8 +114,6 @@ namespace UT.Vol.BLL
             secondaryTestVolAddress.Zip = 98765;
             secondaryTestVolAddress.Zip4 = 4321;
             secondaryTestVolAddress.ActiveFlg = true;
-            secondaryTestVolAddr.VolID = volID;
-            secondaryTestVolAddr.PrimaryAddr = false;
             volAddress_bll.InsertAddressContext(ref secondaryTestVolAddress, ref secondaryTestVolAddr);
         }
 

@@ -18,7 +18,7 @@ namespace UT.Volteer.BLL
             string[] fnames = { "Volunteer.xlsx", "Group.xlsx", "GroupVol.xlsx", "VolAddress.xlsx", 
                                 "VolAddr.xlsx", "Skill.xlsx", "VolSkill.xlsx", "VolState.xlsx", 
                                 "VolEmail.xlsx", "VolPhone.xlsx"};
-            cExcel.RemoveData(fnames);
+            cExcel.RemoveAllData();
             cExcel.InsertData(fnames);
             string directory = cExcel.GetHelperFilesDir();
             sp_Skill_BLL skillBLL = new sp_Skill_BLL();
@@ -44,6 +44,7 @@ namespace UT.Volteer.BLL
             string[] fnames = { "Volunteer.xlsx", "Group.xlsx", "GroupVol.xlsx", "VolAddress.xlsx", 
                                 "VolAddr.xlsx", "Skill.xlsx", "VolSkill.xlsx", "VolState.xlsx", 
                                 "VolEmail.xlsx", "VolPhone.xlsx"};
+            cExcel.RemoveAllData();
             cExcel.InsertData(fnames);
             string directory = cExcel.GetHelperFilesDir();
             string hdir = cExcel.GetHelperFilesDir();
@@ -59,6 +60,7 @@ namespace UT.Volteer.BLL
                 Assert.AreEqual(skdm.SkillName, row["SkillName"]);
                 Assert.AreEqual(skdm.ActiveFlg, Convert.ToInt32(row["ActiveFlg"]));
             }
+            cExcel.RemoveData(fnames);
         }
 
         [TestMethod]
@@ -69,7 +71,7 @@ namespace UT.Volteer.BLL
             string[] removeNames = { "Volunteer.xlsx", "Group.xlsx", "GroupVol.xlsx", "VolAddress.xlsx", 
                                 "VolAddr.xlsx", "Skill.xlsx", "VolSkill.xlsx", "VolState.xlsx", 
                                 "VolEmail.xlsx", "VolPhone.xlsx"};
-            cExcel.RemoveData(removeNames);
+            cExcel.RemoveAllData();
             cExcel.InsertData(insertNames);
 
             string directory = cExcel.GetHelperFilesDir();
@@ -103,6 +105,7 @@ namespace UT.Volteer.BLL
             string[] tablesToFill = { "Volunteer.xlsx", "Group.xlsx", "GroupVol.xlsx", "VolAddress.xlsx", 
                                 "VolAddr.xlsx", "Skill.xlsx", "VolSkill.xlsx", "VolState.xlsx", 
                                 "VolEmail.xlsx", "VolPhone.xlsx"};
+            cExcel.RemoveAllData();
             cExcel.InsertData(tablesToFill);
 
             string directory = cExcel.GetHelperFilesDir();

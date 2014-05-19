@@ -28,6 +28,7 @@ namespace UT.Vend.BLL
         [ClassInitialize]
         public static void InsertContactEmailData(TestContext testContext)
         {
+            cExcel.RemoveAllData();
             cExcel.InsertData(ExcelFilenames);
             
         }
@@ -48,7 +49,7 @@ namespace UT.Vend.BLL
             data.EmailID = 1;
             data.PrimaryEmail = true;
             sp_ContactEmail_BLL vendor = new sp_ContactEmail_BLL();
-            vendor.InsertContactEmailContext(ref data);
+            vendor.InsertContactEmailContext(data);
             var newdata = vendor.ListContactEmails(data.ContactID, data.EmailID);
             Assert.AreEqual(data.ContactID, newdata.ContactID, "Contact ID Not Set As Expected");
             Assert.AreEqual(data.EmailID, newdata.EmailID, "Email ID Not Set As Expected");
@@ -78,21 +79,21 @@ namespace UT.Vend.BLL
             DataTable dt = cExcel.ReadExcelFile("Sheet1", Path.Combine(cExcel.GetHelperFilesDir(), "ContactEmail.xlsx"));
                 foreach (DataRow row in dt.Rows) // Loop over the rows.
                 {
-                    string contactID = row["ContactID"].ToString();
+                    Guid contactID = new Guid(row["ContactID"].ToString());
                     int emailID = Convert.ToInt32(row["EmailID"]);
                     sp_ContactEmail_BLL contact = new sp_ContactEmail_BLL();
 
-                    var data = contact.ListContactEmails(new Guid(contactID), emailID);
-                    Assert.AreEqual(row["ContactID"].ToString(), data.ContactID, "ContactID Not Set As Expected");
-                    Assert.AreEqual(row["EmailID"].ToString(), data.EmailID, "EmailID Not Set As Expected");  
+                    var data = contact.ListContactEmails(contactID, emailID);
+                    Assert.AreEqual(contactID, data.ContactID, "ContactID Not Set As Expected");
+                    Assert.AreEqual(emailID, data.EmailID, "EmailID Not Set As Expected");  
                 }
         }
 
         [TestMethod]
-        public void TestContactUpdate()
+        public void TestContactEmailUpdate()
         {
             //Test Our Read
-            DataTable dt = cExcel.ReadExcelFile("Sheet1", Path.Combine(cExcel.GetHelperFilesDir(), "Contact.xlsx"));
+            DataTable dt = cExcel.ReadExcelFile("Sheet1", Path.Combine(cExcel.GetHelperFilesDir(), "ContactEmail.xlsx"));
             foreach (DataRow row in dt.Rows) // Loop over the rows.
             {
                 bool primaryEmail = true;
@@ -104,10 +105,10 @@ namespace UT.Vend.BLL
                 data.PrimaryEmail = primaryEmail;
                 sp_ContactEmail_BLL contact = new sp_ContactEmail_BLL();
                 contact.UpdateContactEmailContext(data);
-                var newdata = contact.ListContactEmails();
-                Assert.AreEqual(primaryEmail, newdata[0].PrimaryEmail, "PrimaryEmail Not Set As Expected");
-                Assert.AreEqual(emailID, newdata[0].EmailID, "EmailID Not Set As Expected");
-                Assert.AreEqual(contactID, newdata[0].ContactID, "ContactIDe Not Set As Expected");
+                var newdata = contact.ListContactEmails(contactID, emailID);
+                Assert.AreEqual(primaryEmail, newdata.PrimaryEmail, "PrimaryEmail Not Set As Expected");
+                Assert.AreEqual(emailID, newdata.EmailID, "EmailID Not Set As Expected");
+                Assert.AreEqual(contactID, newdata.ContactID, "ContactIDe Not Set As Expected");
 
             }
         }

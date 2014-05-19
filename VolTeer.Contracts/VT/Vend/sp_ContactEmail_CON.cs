@@ -11,7 +11,7 @@ namespace VolTeer.Contracts.VT.Vend
         List<sp_ContactEmail_DM> ListContactEmails(Guid? contactid, int? emailid);
         sp_ContactEmail_DM ListContactEmails(Guid contactid, int emailid);
 
-        void InsertContactEmailContext(ref sp_ContactEmail_DM contactemail);
+        void InsertContactEmailContext(sp_ContactEmail_DM contactemail);
         void UpdateContactEmailContext(sp_ContactEmail_DM contactemail);
         void DeleteContactEmailContext(sp_ContactEmail_DM contactemail);
 

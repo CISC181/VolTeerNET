@@ -28,6 +28,7 @@ namespace UT.Vend.BLL
         [ClassInitialize]
         public static void InsertVendorAddrData(TestContext testContext)
         {
+            cExcel.RemoveAllData();
             cExcel.InsertData(ExcelFilenames);
             
         }
