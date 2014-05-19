@@ -51,7 +51,7 @@ namespace UT.Vol.BLL
         public static void InsertGroupAddrData(TestContext testContext)
         {
             System.Diagnostics.Debug.WriteLine(String.Format("{0}", DateTime.Now));
-            cExcel.RemoveData(ExcelFilenames);
+            cExcel.RemoveAllData();
             cExcel.InsertData(ExcelFilenames);
         }
 

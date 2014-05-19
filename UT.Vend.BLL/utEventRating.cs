@@ -56,7 +56,7 @@ namespace UT.Vend.BLL
         public static void initializeClass(TestContext testContext)
         {
             System.Diagnostics.Debug.WriteLine(String.Format("{0}", DateTime.Now));
-            cExcel.RemoveData(ExcelFilenames);
+            cExcel.RemoveAllData();
             cExcel.InsertData(ExcelFilenames);
         }
 
@@ -95,7 +95,7 @@ namespace UT.Vend.BLL
             var allEvents = Event_bll.ListEvents();
             Assert.IsTrue(allEvents.Count > 0, "The ListEventRatings() is broken, or no data in DB");
             EventRating_dm.EventID = allEvents[0].EventID;
-
+            EventRating_dm.ActiveFlg = true;
             int RatingID = EventRating_bll.InsertEventRatingContext(EventRating_dm).RatingID;
             EventRating_dm.RatingID = RatingID;
 

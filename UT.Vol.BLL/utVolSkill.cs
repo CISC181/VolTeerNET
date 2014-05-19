@@ -16,7 +16,7 @@ namespace UT.Volteer.BLL
             string[] fnames = { "Volunteer.xlsx", "Group.xlsx", "GroupVol.xlsx", "VolAddress.xlsx", 
                                 "VolAddr.xlsx", "Skill.xlsx", "VolSkill.xlsx", "VolState.xlsx",
                                 "VolEmail.xlsx", "VolPhone.xlsx"};
-
+            cExcel.RemoveAllData();
             cExcel.InsertData(fnames);
             string hdir = cExcel.GetHelperFilesDir();
             string query = "SELECT * FROM [Sheet1$]";
@@ -50,7 +50,7 @@ namespace UT.Volteer.BLL
             string[] removeNames = { "Volunteer.xlsx", "Group.xlsx", "GroupVol.xlsx", "VolAddress.xlsx", 
                                 "VolAddr.xlsx", "Skill.xlsx", "VolSkill.xlsx", "VolState.xlsx",
                                 "VolEmail.xlsx", "VolPhone.xlsx"};
-            cExcel.RemoveData(removeNames);
+            cExcel.RemoveAllData();
             cExcel.InsertData(insertNames);
 
 
@@ -80,6 +80,7 @@ namespace UT.Volteer.BLL
             string[] insertNames = { "Volunteer.xlsx", "Group.xlsx", "GroupVol.xlsx", "VolAddress.xlsx", 
                                     "VolAddr.xlsx", "Skill.xlsx", "VolSkill.xlsx", "VolState.xlsx",
                                     "VolEmail.xlsx", "VolPhone.xlsx"};
+            cExcel.RemoveAllData();
             cExcel.InsertData(insertNames);
 
 
@@ -98,6 +99,7 @@ namespace UT.Volteer.BLL
                 int after = cExcel.getNumRecordsFromDB("Vol.tblVolSkill");
                 Assert.AreEqual(before - 1, after);
             }
+            cExcel.RemoveData(insertNames);
         }
     }
 }
