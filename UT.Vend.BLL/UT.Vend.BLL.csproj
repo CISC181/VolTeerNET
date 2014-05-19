@@ -103,13 +103,16 @@
     </None>
     <None Include="HelperFiles\Contact.xlsx" />
     <None Include="HelperFiles\ContactEmail.xlsx" />
+    <None Include="HelperFiles\EventRating.xlsx" />
     <None Include="HelperFiles\Project.xlsx" />
     <None Include="HelperFiles\ProjectEvent.xlsx" />
+    <None Include="HelperFiles\ProjectEventContact.xlsx" />
     <None Include="HelperFiles\tblVendContact.xlsx" />
     <None Include="HelperFiles\tblVendEmail.xlsx" />
     <None Include="HelperFiles\tblVendorProjContact.xlsx" />
     <None Include="HelperFiles\tblVendState.xlsx" />
     <None Include="HelperFiles\VendAddress.xlsx" />
+    <None Include="HelperFiles\VendEmail.xlsx" />
     <None Include="HelperFiles\Vendor.xlsx" />
     <None Include="HelperFiles\VendorAddr.xlsx" />
     <None Include="packages.config" />

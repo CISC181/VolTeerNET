@@ -18,11 +18,13 @@ namespace UT.Vend.BLL
     public class utVendorProjContact
     {
         static string[] ExcelFilenames = new string[] {
-            "Project.xlsx", "VendContact.xlsx", "VendorProjContact.xlsx"
+            "Project.xlsx",
+            "Contact.xlsx",
+            "Vendor.xlsx",
+            "VendorAddr.xlsx",
+            "tblVendContact.xlsx", 
+            "tblVendorProjContact.xlsx"
         };
-
-
-
 
 
         [ClassInitialize]
@@ -36,7 +38,7 @@ namespace UT.Vend.BLL
         public void TestVendorProjContactRead()
         {
             //Test Our Read
-            DataTable dt = cExcel.ReadExcelFile("Sheet1", Path.Combine(cExcel.GetHelperFilesDir(), "VendorProjContact.xlsx"));
+            DataTable dt = cExcel.ReadExcelFile("Sheet1", Path.Combine(cExcel.GetHelperFilesDir(), "tblVendorProjContact.xlsx"));
             foreach (DataRow row in dt.Rows) // Loop over the rows.
             {
                 string vendorID = row["VendorID"].ToString();
@@ -54,7 +56,7 @@ namespace UT.Vend.BLL
         public void TestVendorProjContactUpdate()
         {
             //Test Our Read
-            DataTable dt = cExcel.ReadExcelFile("Sheet1", Path.Combine(cExcel.GetHelperFilesDir(), "VendorProjContact.xlsx"));
+            DataTable dt = cExcel.ReadExcelFile("Sheet1", Path.Combine(cExcel.GetHelperFilesDir(), "tblVendorProjContact.xlsx"));
             foreach (DataRow row in dt.Rows) // Loop over the rows.
             {
                 string updatePrimaryContact = row["PrimaryContact"].ToString();
@@ -76,17 +78,19 @@ namespace UT.Vend.BLL
 
         public void TestVendorProjContactDelete()
         {
-            DataTable dt = cExcel.ReadExcelFile("Sheet1", Path.Combine(cExcel.GetHelperFilesDir(), "VendorProjContact.xlsx"));
+            DataTable dt = cExcel.ReadExcelFile("Sheet1", Path.Combine(cExcel.GetHelperFilesDir(), "tblVendorProjContact.xlsx"));
             foreach (DataRow row in dt.Rows) // Loop over the rows.
             {
-                string VendorID = (row["VendorID"].ToString());
-                string ProjectID = (row["ProjectID"].ToString());
-                string ContactID = (row["ContactID"].ToString());
+                Guid VendorID = new Guid(row["VendorID"].ToString());
+                Guid ProjectID = new Guid(row["ProjectID"].ToString());
+                Guid ContactID = new Guid(row["ContactID"].ToString());
                 sp_VendorProjContact_DM data = new sp_VendorProjContact_DM();
                 sp_VendorProjContact_BLL vend = new sp_VendorProjContact_BLL();
-                data.VendorID = new Guid(VendorID);
+                data.VendorID = VendorID;
+                data.ProjectID = ProjectID;
+                data.ContactID = ContactID;
                 vend.DeleteContactContext(data);
-                data = vend.ListContact(new Guid(VendorID), new Guid(ProjectID), new Guid(ContactID));
+                data = vend.ListContact(VendorID, ProjectID, ContactID);
                 Assert.AreEqual(false, data.PrimaryContact, "PrimaryContact not set as expected");
             }
         }
