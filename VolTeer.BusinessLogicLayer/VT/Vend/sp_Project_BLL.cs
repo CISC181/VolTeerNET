@@ -13,27 +13,27 @@ namespace VolTeer.BusinessLogicLayer.VT.Vend
         sp_Project_DAL dal = new sp_Project_DAL();
         public List<sp_Project_DM> ListProjects()
         {
-            throw new NotImplementedException();
+            return dal.ListProjects();
         }
 
         public sp_Project_DM ListProjects(Guid? ProjectID)
         {
-            throw new NotImplementedException();
+            return dal.ListProjects(ProjectID);
         }
 
         public sp_Project_DM InsertProjectContext(ref sp_Project_DM _cProject)
         {
-            throw new NotImplementedException();
+            return dal.InsertProjectContext(ref _cProject);
         }
 
         public void UpdateProjectContext(sp_Project_DM _cProject)
         {
-            throw new NotImplementedException();
+            dal.UpdateProjectContext(_cProject);
         }
 
         public void DeleteProjectContext(sp_Project_DM _cProject)
         {
-            throw new NotImplementedException();
+            dal.DeleteProjectContext(_cProject);
         }
     }
 }

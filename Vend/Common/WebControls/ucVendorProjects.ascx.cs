@@ -30,7 +30,7 @@ namespace Vend.Common.WebControls
         public delegate void ButtonClickEventHandler(string data);
         public event ButtonClickEventHandler ButtonClickEvent = null;
 
-
+        sp_VendorProjContact_BLL vpcBLL = new sp_VendorProjContact_BLL();
         sp_Project_BLL projectBLL = new sp_Project_BLL();
         MembershipUser currentUser;
 
@@ -44,12 +44,13 @@ namespace Vend.Common.WebControls
         {
             try
             {
+                sp_Vendor_DM vendor = new sp_Vendor_DM();
+                vendor.VendorID = (Guid)currentUser.ProviderUserKey;
+                //List<sp_VendorProjContact_DM> vpcDMs = vpcBLL.ListContact();
 
-                sp_VendorProjContact_DM vendProjContact = new sp_VendorProjContact_DM();
+                //vendProjContact.VendorID = (Guid)currentUser.ProviderUserKey;
 
-                vendProjContact.VendorID = (Guid)currentUser.ProviderUserKey;
-                rGridVendProjects.DataSource = new List<sp_Project_DM>();
-                //rGridVendProjects.DataSource = projectBLL.ListProjects();
+                rGridVendProjects.DataSource = projectBLL.ListProjects();
             }
             catch (Exception ex)
             {

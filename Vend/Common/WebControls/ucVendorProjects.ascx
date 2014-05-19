@@ -18,7 +18,7 @@
         AllowMultiRowEdit="True"
         AllowMultiRowSelection="True">
         <GroupingSettings CaseSensitive="False" />
-        <MasterTableView DataKeyNames="ProjectID, VendorID"
+        <MasterTableView DataKeyNames="ProjectID"
             CommandItemDisplay="None"
             EditMode="InPlace"
             EnableHeaderContextAggregatesMenu="True"
@@ -32,7 +32,7 @@
                 </telerik:GridTemplateColumn>
                 <telerik:GridTemplateColumn DataField="ProjectDesc" HeaderText="Description" UniqueName="ProjectDesc">
                     <ItemTemplate>
-                        <asp:Label ID="lblProjectDesc" runat="server" Width="200px" Text='<%# DataBinder.Eval(Container, "DataItem.ProejctDesc") %>'></asp:Label>
+                        <asp:Label ID="lblProjectDesc" runat="server" Width="200px" Text='<%# DataBinder.Eval(Container, "DataItem.ProjectDesc") %>'></asp:Label>
                     </ItemTemplate>
                 </telerik:GridTemplateColumn>
                 <telerik:GridCheckBoxColumn DataField="ActiveFlg" ItemStyle-Width="50px" HeaderText="Active" DataType="System.Boolean" FilterControlAltText="Filter column1 column" UniqueName="Active">
