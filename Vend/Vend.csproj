@@ -99,7 +99,7 @@
     <Compile Include="App_Code\cEnums.cs" />
     <Compile Include="App_Code\cMail.cs" />
     <Compile Include="App_Code\cValidations.cs" />
-    <Compile Include="App_Code\ExceptionUtility.cs" />
+    <Compile Include="App_Data\ExceptionUtility.cs" />
     <Compile Include="Common\WebControls\ucVendorAddress.ascx.cs">
       <DependentUpon>ucVendorAddress.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -116,6 +116,7 @@
     </Compile>
     <Compile Include="Common\WebControls\ucVendorMail.ascx.cs">
       <DependentUpon>ucVendorMail.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Common\WebControls\ucVendorMail.ascx.designer.cs">
       <DependentUpon>ucVendorMail.ascx</DependentUpon>
@@ -253,6 +254,10 @@
     <Folder Include="Content\themes\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\GoogleAPI\GoogleAPI.csproj">
+      <Project>{F4EF7342-0228-4811-8E3D-0311F0608629}</Project>
+      <Name>GoogleAPI</Name>
+    </ProjectReference>
     <ProjectReference Include="..\VolTeer.BusinessLogicLayer\VolTeer.BusinessLogicLayer.csproj">
       <Project>{81446b41-8d0a-4e58-a275-1578c7f536f2}</Project>
       <Name>VolTeer.BusinessLogicLayer</Name>
@@ -306,7 +311,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
+      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

@@ -18,6 +18,11 @@ namespace VolTeer.BusinessLogicLayer.VT.Vol
             return DAL.ListAddresses(cGroupAddr);
         }
 
+        public List<sp_GroupAddr_DM> ListGroups()
+        {
+            return DAL.ListGroups();
+        }
+
         public sp_GroupAddr_DM ListAddress(sp_GroupAddr_DM cGroupAddr)
         {
             return DAL.ListAddress(cGroupAddr);

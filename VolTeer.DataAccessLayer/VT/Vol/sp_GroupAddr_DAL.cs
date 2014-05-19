@@ -37,6 +37,32 @@ namespace VolTeer.DataAccessLayer.VT.Vol
 
         }
 
+        public List<sp_GroupAddr_DM> ListGroups()
+        {
+            List<sp_GroupAddr_DM> list = new List<sp_GroupAddr_DM>();
+            try
+            {
+                using (VolTeerEntities context = new VolTeerEntities())
+                {
+                    list = (from result in context.sp_GroupAddr_Select(null,null)
+                            select new sp_GroupAddr_DM
+                            {
+                                GroupID = result.GroupID,
+                                AddrID = result.AddrID,
+                                PrimaryAddrID = result.PrimaryAddrID,
+                                ActiveFlg = result.ActiveFlg
+                            }).ToList();
+                } // Guaranteed to close the Connection
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+
+            return list;
+
+        }
+
         public sp_GroupAddr_DM ListAddress(sp_GroupAddr_DM cGroupAddr)
         {
             return ListAddresses(cGroupAddr).Single();
