@@ -46,11 +46,16 @@ namespace Vend.Common.WebControls
             {
                 sp_Vendor_DM vendor = new sp_Vendor_DM();
                 vendor.VendorID = (Guid)currentUser.ProviderUserKey;
-                //List<sp_VendorProjContact_DM> vpcDMs = vpcBLL.ListContact();
+                List<sp_VendorProjContact_DM> vpcDMs = vpcBLL.ListContact(vendor.VendorID);
+                List<sp_Project_DM> projects = new List<sp_Project_DM>();
+                foreach (sp_VendorProjContact_DM vpcDM in vpcDMs)
+                {
+                    sp_Project_DM proj = projectBLL.ListProjects(vpcDM.ProjectID);
+                    if(proj != null)
+                        projects.Add(proj);
+                }
 
-                //vendProjContact.VendorID = (Guid)currentUser.ProviderUserKey;
-
-                rGridVendProjects.DataSource = projectBLL.ListProjects();
+                rGridVendProjects.DataSource = projects;
             }
             catch (Exception ex)
             {

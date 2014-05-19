@@ -33,6 +33,29 @@ namespace VolTeer.DataAccessLayer.VT.Vend
             return list.FirstOrDefault();
         }
 
+        //For use in finding lists of project IDs with only the VendorID
+        public List<sp_VendorProjContact_DM> ListContact(Guid VendorID)
+        {
+            List<sp_VendorProjContact_DM> list = new List<sp_VendorProjContact_DM>();
+            try
+            {
+                using (VolTeerEntities context = new VolTeerEntities())
+                {
+                    list = (from result in context.sp_VendorProjContact_Select(VendorID, null, null)
+                            select new sp_VendorProjContact_DM
+                            {
+                                PrimaryContact = result.PrimaryContact
+                            }).ToList();
+                } // Guaranteed to close the Connection
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+
+            return list;
+        }
+
         public List<sp_VendorProjContact_DM> ListContact()
         {
             return ListContact();
