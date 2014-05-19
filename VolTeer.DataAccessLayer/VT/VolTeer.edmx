@@ -1077,6 +1077,9 @@
           <Parameter Name="ShortDesc" Type="varchar" Mode="In" />
           <Parameter Name="LongDesc" Type="varchar(max)" Mode="In" />
         </Function>
+        <Function Name="sp_Group_Search" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
+          <Parameter Name="XML_IN" Type="xml" Mode="In" />
+        </Function>
         <Function Name="sp_Group_Select" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="Vol">
           <Parameter Name="GroupID" Type="int" Mode="In" />
         </Function>
@@ -1926,10 +1929,13 @@
             <Parameter Name="AddrID" Mode="In" Type="Int32" />
           </FunctionImport>
           <FunctionImport Name="sp_Skill_Select" ReturnType="Collection(VolTeerModel.sp_Skill_Select_Result1)">
-            <Parameter Name="SkillID" Mode="In" Type="Guid" />
+          <Parameter Name="SkillID" Mode="In" Type="Guid" />
           </FunctionImport>
           <FunctionImport Name="sp_Skill_Select_Manage" ReturnType="Collection(VolTeerModel.sp_Skill_Select_Manage_Result1)">
-            <Parameter Name="ShowNullMstrSkillItems" Mode="In" Type="Boolean" />
+          <Parameter Name="ShowNullMstrSkillItems" Mode="In" Type="Boolean" />
+          </FunctionImport>
+          <FunctionImport Name="sp_Group_Search" ReturnType="Collection(VolTeerModel.sp_Group_Search_Result)">
+            <Parameter Name="XML_IN" Mode="In" Type="String" />
           </FunctionImport>
         </EntityContainer>
         <EntityType Name="tblContact">
@@ -2803,6 +2809,12 @@
           <Property Type="Guid" Name="MstrSkillID" Nullable="true" />
           <Property Type="Boolean" Name="ReqCert" Nullable="true" />
           <Property Type="Int32" Name="ActiveFlg" Nullable="false" />
+        </ComplexType>
+        <ComplexType Name="sp_Group_Search_Result">
+          <Property Type="Int32" Name="GroupID" Nullable="false" />
+          <Property Type="String" Name="GroupName" Nullable="true" MaxLength="50" />
+          <Property Type="String" Name="ShortDesc" Nullable="true" MaxLength="200" />
+          <Property Type="Int32" Name="countsTerms" Nullable="false" />
         </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
@@ -3967,6 +3979,16 @@
                 <ScalarProperty Name="MstrSkillID" ColumnName="MstrSkillID" />
                 <ScalarProperty Name="ReqCert" ColumnName="ReqCert" />
                 <ScalarProperty Name="ActiveFlg" ColumnName="ActiveFlg" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="sp_Group_Search" FunctionName="VolTeerModel.Store.sp_Group_Search">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="VolTeerModel.sp_Group_Search_Result">
+                <ScalarProperty Name="GroupID" ColumnName="GroupID" />
+                <ScalarProperty Name="GroupName" ColumnName="GroupName" />
+                <ScalarProperty Name="ShortDesc" ColumnName="ShortDesc" />
+                <ScalarProperty Name="countsTerms" ColumnName="countsTerms" />
               </ComplexTypeMapping>
             </ResultMapping>
           </FunctionImportMapping>
