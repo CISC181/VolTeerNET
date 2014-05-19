@@ -17,10 +17,10 @@ namespace Vend.Masters
                 {
                     
 
-                    RadMenu1.Items[1].Items[0].Visible = true;
+                    RadMenu1.Items[1].Items[0].Visible = false;
                     RadMenu1.Items[1].Items[1].Visible = true;
                     RadMenu1.Items[1].Items[2].Visible = false;
-                    RadMenu1.Items[1].Items[3].Visible = true;
+                    RadMenu1.Items[1].Items[3].Visible = false;
 
                     RadMenu1.Height = 48;
                 }
@@ -33,7 +33,7 @@ namespace Vend.Masters
 
                     RadMenu1.Height = 80;
                 }
-//                RadMenu1.Height = rHeight;
+
 
             }
 
