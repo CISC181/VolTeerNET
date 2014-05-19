@@ -49,6 +49,7 @@ namespace UT.Vend.BLL
         [ClassInitialize]
         public static void InsertVendEmailData(TestContext testContext)
         {
+            cExcel.RemoveAllData();
             cExcel.InsertData(ExcelFilenames);
 
         }
