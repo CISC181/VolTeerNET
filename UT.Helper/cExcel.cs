@@ -145,7 +145,6 @@ namespace UT.Helper
 
         }
 
-
         public static String GetHelperFilesDir()
         {
             string exeDir = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
@@ -153,12 +152,64 @@ namespace UT.Helper
             return helperFilesDir;
         }
 
+        public static List<string> GetAllVendExcelFiles()
+        {
+            var ListOfFiles = new List<string> {
+                "Contact.xlsx",
+                "Vendor.xlsx",
+                "VendEmail.xlsx",
+                "tblVendEmail.xlsx",
+                "ContactEmail.xlsx",
+                "VendAddress.xlsx",
+                "VendorAddr.xlsx",
+                "Project.xlsx",
+                "ProjectEvent.xlsx",
+                "ProjectEventContact.xlsx",
+                "EventRating.xlsx",
+                "tblVendContact.xlsx",
+                "tblVendorProjContact.xlsx",
+                "tblVendState.xlsx"
+            };
+            string exeDir = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            string helperFilesDir = Path.GetFullPath(Path.Combine(exeDir, "..\\..\\..\\UT.Vend.BLL\\HelperFiles\\"));
+            var ListofFullFiles = new List<string>();
+            foreach (string Filename in ListOfFiles)
+            {
+                ListofFullFiles.Add(Path.Combine(helperFilesDir, Filename));
+            }
+            return ListofFullFiles;
+        }
+
+        public static List<string> GetAllVolExcelFiles()
+        {
+            var ListOfFiles = new List<string> {
+                "Volunteer.xlsx",
+                "Skill.xlsx",
+                "Group.xlsx",
+                "VolAddress.xlsx",
+                "VolAddr.xlsx",
+                "VolEmail.xlsx",
+                "VolPhone.xlsx",
+                "VolSkill.xlsx",
+                "VolState.xlsx",
+                "GroupAddr.xlsx",
+                "GroupVol.xlsx"
+            };
+            string exeDir = Path.GetDirectoryName(System.Reflection.Assembly.GetExecutingAssembly().Location);
+            string helperFilesDir = Path.GetFullPath(Path.Combine(exeDir, "..\\..\\..\\UT.Vol.BLL\\HelperFiles\\"));
+            var ListofFullFiles = new List<string>();
+            foreach (string Filename in ListOfFiles)
+            {
+                ListofFullFiles.Add(Path.Combine(helperFilesDir, Filename));
+            }
+            return ListofFullFiles;
+        }
+
         public static List<string> GetAllExcelFiles()
         {
             List<string> ExcelFiles = new List<string>();
-            string helperFilesDir = GetHelperFilesDir();
-            foreach (var excelFilename in Directory.GetFiles(helperFilesDir, "*.xlsx"))
-                ExcelFiles.Add(Path.Combine(helperFilesDir, excelFilename));
+            ExcelFiles.AddRange(GetAllVolExcelFiles());
+            ExcelFiles.AddRange(GetAllVendExcelFiles());
             return ExcelFiles;
         }
         public static void InsertProjectData(TestContext testContext)
@@ -209,7 +260,9 @@ namespace UT.Helper
                 using (SqlCommand command = new SqlCommand())
                 {
                     command.Connection = connection;
-                    foreach (string excelFile in cExcel.GetAllExcelFiles())
+                    var allExcelFiles = GetAllExcelFiles();
+                    allExcelFiles.Reverse();
+                    foreach (string excelFile in allExcelFiles)
                     {
                         Console.WriteLine(String.Format("{0} exists: {1}", excelFile, File.Exists(excelFile)));
                         DataTable dt = new DataTable();

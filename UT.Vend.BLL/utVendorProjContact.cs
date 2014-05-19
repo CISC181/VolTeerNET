@@ -30,8 +30,8 @@ namespace UT.Vend.BLL
         [ClassInitialize]
         public static void InsertVendorProjContactData(TestContext testContext)
         {
+            cExcel.RemoveAllData();
             cExcel.InsertData(ExcelFilenames);
-
         }
 
         [TestMethod]

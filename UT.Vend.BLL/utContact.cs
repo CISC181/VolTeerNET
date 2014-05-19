@@ -21,15 +21,11 @@ namespace UT.Vend.BLL
             "Contact.xlsx", "VendEmail.xlsx", "ContactEmail.xlsx"
         };
 
-       
-
-      
-
         [ClassInitialize]
         public static void InsertContactData(TestContext testContext)
         {
-            cExcel.InsertData(ExcelFilenames);
-            
+            cExcel.RemoveAllData();
+            cExcel.InsertData(ExcelFilenames);  
         }
 
         [TestMethod]
