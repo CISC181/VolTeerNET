@@ -46,7 +46,7 @@ namespace UT.Vend.BLL
                 string contactID = row["ContactID"].ToString();
                 sp_VendorProjContact_BLL contact = new sp_VendorProjContact_BLL();
                 sp_VendorProjContact_DM data = contact.ListContact(new Guid(vendorID), new Guid(projectID), new Guid(contactID));
-                Assert.AreEqual(row["PrimaryContact"].ToString(), data.PrimaryContact, "Primary Contact Not Set As Expected");
+                Assert.AreEqual(Convert.ToBoolean(row["PrimaryContact"]), data.PrimaryContact, "Primary Contact Not Set As Expected");
                 
             }
         }
@@ -59,13 +59,13 @@ namespace UT.Vend.BLL
             DataTable dt = cExcel.ReadExcelFile("Sheet1", Path.Combine(cExcel.GetHelperFilesDir(), "tblVendorProjContact.xlsx"));
             foreach (DataRow row in dt.Rows) // Loop over the rows.
             {
-                string updatePrimaryContact = row["PrimaryContact"].ToString();
+                bool updatePrimaryContact = Convert.ToBoolean(row["PrimaryContact"]);
                 string contactID = row["ContactID"].ToString();
                 string vendorID = row["VendorID"].ToString();
                 string projectID = row["ProjectID"].ToString();
                 sp_VendorProjContact_DM data = new sp_VendorProjContact_DM();
                 data.ContactID = new Guid(contactID);
-                data.PrimaryContact = bool.Parse(updatePrimaryContact);
+                data.PrimaryContact = updatePrimaryContact;
                 sp_VendorProjContact_BLL VendorProjContact = new sp_VendorProjContact_BLL();
                 VendorProjContact.UpdateContactContext(data);
                 data = VendorProjContact.ListContact(new Guid(vendorID), new Guid(projectID), new Guid(contactID));
