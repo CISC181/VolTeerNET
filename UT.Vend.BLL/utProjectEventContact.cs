@@ -23,33 +23,29 @@ namespace UT.Vend.BLL
             "ProjectEvent.xlsx",
             "ProjectEventContact.xlsx"
         };
-        /*
-        private static bool Equals(sp_ProjectEvent_DM dm1, sp_ProjectEvent_DM dm2)
+        
+        private static bool Equals(sp_ProjectEventContact_DM dm1, sp_ProjectEventContact_DM dm2)
         {
-            return (dm1.ProjectID == dm2.ProjectID &&
+            return (dm1.ContactID == dm2.ContactID &&
                     dm1.EventID == dm2.EventID &&
-                    dm1.StartDateTime == dm2.StartDateTime &&
-                    dm1.EndDateTime == dm2.EndDateTime &&
-                    dm1.AddrID == dm2.AddrID
+                    dm1.PrimaryContact == dm2.PrimaryContact
                     );
         }
 
-        private static List<sp_ProjectEvent_DM> DMsFrom(DataTable dataTable)
+        private static List<sp_ProjectEventContact_DM> DMsFrom(DataTable dataTable)
         {
-            var DMs = new List<sp_ProjectEvent_DM>();
+            var DMs = new List<sp_ProjectEventContact_DM>();
             for (int i = 0; i < dataTable.Rows.Count; i++)
             {
-                var returnProjectEvent = new sp_ProjectEvent_DM();
-                returnProjectEvent.ProjectID = new Guid((string)dataTable.Rows[i]["ProjectID"]);
-                returnProjectEvent.EventID = new Guid((String)dataTable.Rows[i]["EventID"]);
-                returnProjectEvent.StartDateTime = Convert.ToDateTime(dataTable.Rows[i]["StartDateTime"]);
-                returnProjectEvent.EndDateTime = Convert.ToDateTime(dataTable.Rows[i]["EndDateTime"]);
-                returnProjectEvent.AddrID = Convert.ToInt32(dataTable.Rows[i]["AddrID"]);
-                DMs.Add(returnProjectEvent);
+                var returnProjectEventContact = new sp_ProjectEventContact_DM();
+                returnProjectEventContact.ContactID = new Guid((string)dataTable.Rows[i]["ContactID"]);
+                returnProjectEventContact.EventID = new Guid((String)dataTable.Rows[i]["EventID"]);
+                returnProjectEventContact.PrimaryContact = Convert.ToBoolean(dataTable.Rows[i]["PrimaryContact"]);
+                DMs.Add(returnProjectEventContact);
             }
             return DMs;
         }
-        */
+        
         [ClassInitialize]
         public static void initializeClass(TestContext testContext)
         {
@@ -57,93 +53,95 @@ namespace UT.Vend.BLL
             cExcel.RemoveAllData();
             cExcel.InsertData(ExcelFilenames);
         }
-        /*
+        
         [TestMethod]
-        public void TestProjectEventRead()
+        public void TestProjectEventContactRead()
         {
             //Pull our data from the excel file
             string helperDir = cExcel.GetHelperFilesDir();
-            DataTable dt = cExcel.ReadExcelFile("Sheet1", Path.Combine(helperDir, "ProjectEvent.xlsx"));
+            DataTable dt = cExcel.ReadExcelFile("Sheet1", Path.Combine(helperDir, "ProjectEventContact.xlsx"));
             var excelDMs = DMsFrom(dt);
             //Pull our data directly from the DB
-            var numRows = cExcel.getNumRecordsFromDB("[Vend].[tblProjectEvent]");
+            var numRows = cExcel.getNumRecordsFromDB("[Vend].[tblProjectEventContact]");
 
             //Pull our data from the DB through the BLL
-            var ProjectEvent_bll = new sp_ProjectEvent_BLL();
-            var allProjectEvents = ProjectEvent_bll.ListEvents();
+            var ProjectEventContact_bll = new sp_ProjectEventContact_BLL();
+            var allProjectEventContacts = ProjectEventContact_bll.ListEventsContacts();
 
             //Test the data from the BLL
-            Assert.AreEqual(numRows, allProjectEvents.Count);
-            foreach (var testProjectEvent in excelDMs)
+            Assert.AreEqual(numRows, allProjectEventContacts.Count);
+            foreach (var testProjectEventContact in excelDMs)
             {
-                var selectedProjectEvent = ProjectEvent_bll.ListEvents(testProjectEvent.ProjectID);
-                Assert.IsTrue(Equals(testProjectEvent, selectedProjectEvent));
+                var selectedProjectEventContact = ProjectEventContact_bll.ListEventsContacts(
+                                                            testProjectEventContact.EventID,
+                                                            testProjectEventContact.ContactID);
+                Assert.AreEqual(1, selectedProjectEventContact.Count);
+                Assert.IsTrue(Equals(testProjectEventContact, selectedProjectEventContact[0]));
             }
         }
 
         [TestMethod]
-        public void TestProjectEventCreate()
+        public void TestProjectEventContactCreate()
         {
-            DateTime StartDate = new DateTime(2014, 05, 01, 10, 0, 0);
-            DateTime EndDate = new DateTime(2014, 05, 02, 11, 0, 0);
+            bool PrimaryContact = true;
+            var ProjectEventContact_bll = new sp_ProjectEventContact_BLL();
+            var ProjectEventContact_dm = new sp_ProjectEventContact_DM();
             var ProjectEvent_bll = new sp_ProjectEvent_BLL();
-            var ProjectEvent_dm = new sp_ProjectEvent_DM();
-            var Project_bll = new sp_Project_BLL();
-            var VendAdress_bll = new sp_VendAddress_BLL();
-            ProjectEvent_dm.StartDateTime = StartDate;
-            ProjectEvent_dm.EndDateTime = EndDate;
+            var Contact_bll = new sp_Contact_BLL();
+            ProjectEventContact_dm.PrimaryContact = PrimaryContact;
 
-            var allProjects = Project_bll.ListProjects();
-            Assert.IsTrue(allProjects.Count > 0, "The ListProjects() is broken, or no data in DB");
-            ProjectEvent_dm.ProjectID = allProjects[0].ProjectID;
-
-            var allAddresses = VendAdress_bll.ListAddresses();
-            Assert.IsTrue(allAddresses.Count > 0, "The ListAddresses() is broken, or no data in DB");
-            ProjectEvent_dm.AddrID = allAddresses[0].AddrID;
-            var ProjectID = ProjectEvent_bll.InsertEventContext(ref ProjectEvent_dm).ProjectID;
-            ProjectEvent_dm.ProjectID = ProjectID;
-
-            var ProjectEvent_dm_selected = ProjectEvent_bll.ListEvents(ProjectID);
-            Assert.IsTrue(Equals(ProjectEvent_dm, ProjectEvent_dm_selected));
-        }
-
-        [TestMethod]
-        public void TestProjectEventUpdate()
-        {
-            var ProjectEvent_bll = new sp_ProjectEvent_BLL();
             var allProjectEvents = ProjectEvent_bll.ListEvents();
             Assert.IsTrue(allProjectEvents.Count > 0, "The ListEvents() is broken, or no data in DB");
-            var firstProjectEvent = allProjectEvents[0];
-            DateTime StartDate = new DateTime(1998, 02, 03, 1, 2, 3);
-            DateTime EndDate = new DateTime(1999, 04, 05, 3, 2, 1);
-            firstProjectEvent.StartDateTime = StartDate;
-            firstProjectEvent.EndDateTime = EndDate;
-            ProjectEvent_bll.UpdateEventContext(firstProjectEvent);
-            var selectedProjectEvent = ProjectEvent_bll.ListEvents(firstProjectEvent.ProjectID);
+            ProjectEventContact_dm.EventID = allProjectEvents[0].EventID;
 
-            Assert.IsTrue(Equals(firstProjectEvent, selectedProjectEvent));
-            Assert.AreEqual(StartDate, selectedProjectEvent.StartDateTime);
-            Assert.AreEqual(EndDate, selectedProjectEvent.EndDateTime);
+            var allContacts = Contact_bll.ListContacts();
+            Assert.IsTrue(allContacts.Count > 0, "The ListContacts() is broken, or no data in DB");
+            ProjectEventContact_dm.ContactID = allContacts[0].ContactID;
+
+            ProjectEventContact_bll.InsertProjectEventContactContext(ProjectEventContact_dm);
+
+            var ProjectEventContact_dm_selected = ProjectEventContact_bll.ListEventsContacts(
+                                                                ProjectEventContact_dm.EventID,
+                                                                ProjectEventContact_dm.ContactID);
+            Assert.AreEqual(1, ProjectEventContact_dm_selected.Count);
+            Assert.IsTrue(Equals(ProjectEventContact_dm, ProjectEventContact_dm_selected[0]));
         }
 
         [TestMethod]
-        public void TestProjectEventDelete()
+        public void TestProjectEventContactUpdate()
         {
-            var ProjectEvent_bll = new sp_ProjectEvent_BLL();
-            var allProjectEvents = ProjectEvent_bll.ListEvents();
-            Assert.IsTrue(allProjectEvents.Count > 0, "The ListProjectEvents() is broken, or no data in DB");
-            var currProjectEvent = allProjectEvents[0];
+            var ProjectEventContact_bll = new sp_ProjectEventContact_BLL();
+            var allProjectEventContacts = ProjectEventContact_bll.ListEventsContacts();
+            Assert.IsTrue(allProjectEventContacts.Count > 0, "The ListEventsContacts() is broken, or no data in DB");
+            var firstProjectEventContact = allProjectEventContacts[0];
+            firstProjectEventContact.PrimaryContact = !firstProjectEventContact.PrimaryContact;
+            ProjectEventContact_bll.UpdateProjectEventContactContext(firstProjectEventContact);
+            var selectedProjectEventContact = ProjectEventContact_bll.ListEventsContacts(
+                                                        firstProjectEventContact.EventID,
+                                                        firstProjectEventContact.ContactID);
+            Assert.AreEqual(1, selectedProjectEventContact.Count);
+            Assert.IsTrue(Equals(firstProjectEventContact, selectedProjectEventContact));
+        }
 
-            var numRows = cExcel.getNumRecordsFromDB("[Vend].[tblProjectEvent]");
+        [TestMethod]
+        public void TestProjectEventContactDelete()
+        {
+            var ProjectEventContact_bll = new sp_ProjectEventContact_BLL();
+            var allProjectEventContacts = ProjectEventContact_bll.ListEventsContacts();
+            Assert.IsTrue(allProjectEventContacts.Count > 0, "The ListProjectEventContacts() is broken, or no data in DB");
+            var currProjectEventContact = allProjectEventContacts[0];
 
-            ProjectEvent_bll.DeleteEventContext(currProjectEvent);
-            var selectedProjectEvent = ProjectEvent_bll.ListEvents(currProjectEvent.ProjectID);
+            var numRows = cExcel.getNumRecordsFromDB("[Vend].[tblProjectEventContact]");
 
-            var numCurrRows = cExcel.getNumRecordsFromDB("[Vend].[tblProjectEvent]");
-
+            ProjectEventContact_bll.DeleteProjectEventContactContext(currProjectEventContact);
+            var selectedProjectEventContact = ProjectEventContact_bll.ListEventsContacts(
+                                                                currProjectEventContact.EventID,
+                                                                currProjectEventContact.ContactID);
+            Assert.AreEqual(1, selectedProjectEventContact.Count);
+            var numCurrRows = cExcel.getNumRecordsFromDB("[Vend].[tblProjectEventContact]");
             Assert.AreEqual(numRows - 1, numCurrRows);
         }
-        */
+        
         [ClassCleanup]
         public static void postRun()
         {

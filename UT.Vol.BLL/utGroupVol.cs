@@ -99,7 +99,8 @@ namespace UT.Vol.BLL
             groupVol_bll.InsertGroupContext(ref groupVol_dm);
 
             var groupVol_dm_selected = groupVol_bll.ListGroupVols(groupVol_dm);
-            Assert.IsTrue(Equals(groupVol_dm, groupVol_dm_selected));
+            Assert.AreEqual(1, groupVol_dm_selected.Count);
+            Assert.IsTrue(Equals(groupVol_dm, groupVol_dm_selected[0]));
         }
 
         [TestMethod]
