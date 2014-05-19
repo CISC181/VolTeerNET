@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/Site.Master" AutoEventWireup="true" CodeBehind="ManageVendor.aspx.cs" Inherits="VolTeer.Volunteer.ManageVendor" %>
 
 <%@ Register Src="~/Common/WebControls/ucVendorProjects.ascx" TagPrefix="uc1" TagName="ucVendorProjects" %>
-<%@ Register Src="~/Common/WebControls/ucVendorContacts.ascx" TagPrefix="uc1" TagName="ucVendorContacts" %>
 <%@ Register Src="~/Common/WebControls/ucVendorSearch.ascx" TagPrefix="uc1" TagName="ucVendorSearch" %>
 <%@ Register Src="~/Common/WebControls/ucAccountMaint.ascx" TagPrefix="uc1" TagName="ucAccountMaint" %>
 <%@ Register Src="~/Common/WebControls/ucVendorMail.ascx" TagPrefix="uc1" TagName="ucVendorMail" %>
@@ -30,7 +29,6 @@
             <Tabs>
                 <telerik:RadTab Text="Vendor" Height="25px" Width="200px"></telerik:RadTab>
                 <telerik:RadTab Text="Projects" Height="25px" Width="200px"></telerik:RadTab>
-                <telerik:RadTab Text="Vendor Contacts" Height="25px" Width="200px"></telerik:RadTab>
                 <telerik:RadTab Text="Search" Height="25px" Width="200px"></telerik:RadTab>
                 <telerik:RadTab Text="Account Maint" Height="25px" Width="200px"></telerik:RadTab>
             </Tabs>
@@ -69,24 +67,15 @@
 
             </telerik:RadPageView>
 
-
-
-
-
-
             <telerik:RadPageView runat="server" ID="RadPageView2">
                 <uc1:ucVendorProjects runat="server" ID="ucVendorProjects" />
             </telerik:RadPageView>
 
             <telerik:RadPageView runat="server" ID="RadPageView3">
-                <uc1:ucVendorContacts runat="server" ID="ucVendorContacts" />
-            </telerik:RadPageView>
-
-            <telerik:RadPageView runat="server" ID="RadPageView4">
                 <uc1:ucVendorSearch runat="server" ID="ucVendorSearch" />
             </telerik:RadPageView>
 
-            <telerik:RadPageView runat="server" ID="RadPageView5">
+            <telerik:RadPageView runat="server" ID="RadPageView4">
                 <uc1:ucAccountMaint runat="server" ID="ucAccountMaint" />
             </telerik:RadPageView>
         </telerik:RadMultiPage>

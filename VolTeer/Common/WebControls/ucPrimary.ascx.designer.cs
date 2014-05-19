@@ -22,6 +22,24 @@ namespace VolTeer.Common.WebControls {
         protected global::System.Web.UI.WebControls.Panel pnlPrimaryInfo;
         
         /// <summary>
+        /// tblPrimaryInfo control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Table tblPrimaryInfo;
+        
+        /// <summary>
+        /// TableRow1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TableRow TableRow1;
+        
+        /// <summary>
         /// PrimaryEmail control.
         /// </summary>
         /// <remarks>

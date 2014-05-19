@@ -99,7 +99,7 @@
                                     runat="server" ButtonType="SkinnedButton" CommandName='<%# (Container is GridEditFormInsertItem) ? "PerformInsert" : "Update" %>'>
                                 </telerik:RadButton>
                                 &nbsp;
-                                <telerik:RadButton ID="btnCancel" Text="Cancel" runat="server" CausesValidation="False"
+                                <telerik:RadButton ID="btnCancel" Text="Cancel" runat="server" CausesValidation="False" ButtonType="SkinnedButton"
                                     CommandName="Cancel">
                                 </telerik:RadButton>
 

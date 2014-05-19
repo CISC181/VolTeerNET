@@ -100,13 +100,6 @@
     <Compile Include="Common\WebControls\ucVendorContact.ascx.designer.cs">
       <DependentUpon>ucVendorContact.ascx</DependentUpon>
     </Compile>
-    <Compile Include="Common\WebControls\ucVendorContacts.ascx.cs">
-      <DependentUpon>ucVendorContacts.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Common\WebControls\ucVendorContacts.ascx.designer.cs">
-      <DependentUpon>ucVendorContacts.ascx</DependentUpon>
-    </Compile>
     <Compile Include="Common\WebControls\ucVendorMail.ascx.cs">
       <DependentUpon>ucVendorMail.ascx</DependentUpon>
     </Compile>
@@ -206,7 +199,6 @@
     <Content Include="Common\WebControls\ucAccountMaint.ascx" />
     <Content Include="Common\WebControls\ucVendorAddress.ascx" />
     <Content Include="Common\WebControls\ucVendorContact.ascx" />
-    <Content Include="Common\WebControls\ucVendorContacts.ascx" />
     <Content Include="Common\WebControls\ucVendorMail.ascx" />
     <Content Include="Common\WebControls\ucVendorProfile.ascx" />
     <Content Include="Common\WebControls\ucVendorProjects.ascx" />
@@ -298,7 +290,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
+      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
