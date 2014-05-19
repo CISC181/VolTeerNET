@@ -13,22 +13,22 @@ namespace Vend.Common.WebControls {
     public partial class ucVendorSearch {
         
         /// <summary>
-        /// pnlVendorSearch control.
+        /// pnlSkills control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Panel pnlVendorSearch;
+        protected global::System.Web.UI.WebControls.Panel pnlSkills;
         
         /// <summary>
-        /// RadAjaxPanel1 control.
+        /// pnlAutoComplete control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadAjaxPanel RadAjaxPanel1;
+        protected global::System.Web.UI.WebControls.Panel pnlAutoComplete;
         
         /// <summary>
         /// rACSkills control.
@@ -47,5 +47,41 @@ namespace Vend.Common.WebControls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadButton rBTNProcess;
+        
+        /// <summary>
+        /// pnlTree control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlTree;
+        
+        /// <summary>
+        /// rTLSkills control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadTreeList rTLSkills;
+        
+        /// <summary>
+        /// RadButton1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadButton RadButton1;
+        
+        /// <summary>
+        /// CodeBlock1 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadCodeBlock CodeBlock1;
     }
 }
