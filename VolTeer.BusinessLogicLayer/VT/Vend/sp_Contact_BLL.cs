@@ -16,7 +16,7 @@ namespace VolTeer.BusinessLogicLayer.VT.Vend
             return dal.ListContacts();
         }
 
-        public sp_Contact_DM ListContacts(Guid? contactid)
+        public sp_Contact_DM ListContacts(Guid contactid)
         {
             return dal.ListContacts(contactid);
         }
@@ -31,7 +31,7 @@ namespace VolTeer.BusinessLogicLayer.VT.Vend
             dal.UpdateContactContext(contact);
         }
 
-        public void DeleteContactContext(Guid? contactid)
+        public void DeleteContactContext(Guid contactid)
         {
             dal.DeleteContactContext(contactid);
         }
