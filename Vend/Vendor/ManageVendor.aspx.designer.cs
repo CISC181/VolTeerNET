@@ -166,24 +166,6 @@ namespace VolTeer.Volunteer {
         protected global::Telerik.Web.UI.RadPageView RadPageView3;
         
         /// <summary>
-        /// ucVendorContacts control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Vend.Common.WebControls.ucVendorContacts ucVendorContacts;
-        
-        /// <summary>
-        /// RadPageView4 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadPageView RadPageView4;
-        
-        /// <summary>
         /// ucVendorSearch control.
         /// </summary>
         /// <remarks>
@@ -193,13 +175,13 @@ namespace VolTeer.Volunteer {
         protected global::Vend.Common.WebControls.ucVendorSearch ucVendorSearch;
         
         /// <summary>
-        /// RadPageView5 control.
+        /// RadPageView4 control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadPageView RadPageView5;
+        protected global::Telerik.Web.UI.RadPageView RadPageView4;
         
         /// <summary>
         /// ucAccountMaint control.

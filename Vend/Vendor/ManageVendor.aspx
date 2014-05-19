@@ -1,7 +1,6 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/Site.Master" AutoEventWireup="true" CodeBehind="ManageVendor.aspx.cs" Inherits="VolTeer.Volunteer.ManageVendor" %>
 
 <%@ Register Src="~/Common/WebControls/ucVendorProjects.ascx" TagPrefix="uc1" TagName="ucVendorProjects" %>
-<%@ Register Src="~/Common/WebControls/ucVendorContacts.ascx" TagPrefix="uc1" TagName="ucVendorContacts" %>
 <%@ Register Src="~/Common/WebControls/ucVendorSearch.ascx" TagPrefix="uc1" TagName="ucVendorSearch" %>
 <%@ Register Src="~/Common/WebControls/ucAccountMaint.ascx" TagPrefix="uc1" TagName="ucAccountMaint" %>
 <%@ Register Src="~/Common/WebControls/ucVendorMail.ascx" TagPrefix="uc1" TagName="ucVendorMail" %>
@@ -79,14 +78,10 @@
             </telerik:RadPageView>
 
             <telerik:RadPageView runat="server" ID="RadPageView3">
-                <uc1:ucVendorContacts runat="server" ID="ucVendorContacts" />
-            </telerik:RadPageView>
-
-            <telerik:RadPageView runat="server" ID="RadPageView4">
                 <uc1:ucVendorSearch runat="server" ID="ucVendorSearch" />
             </telerik:RadPageView>
 
-            <telerik:RadPageView runat="server" ID="RadPageView5">
+            <telerik:RadPageView runat="server" ID="RadPageView4">
                 <uc1:ucAccountMaint runat="server" ID="ucAccountMaint" />
             </telerik:RadPageView>
         </telerik:RadMultiPage>
