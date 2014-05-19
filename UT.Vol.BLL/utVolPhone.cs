@@ -13,150 +13,196 @@ namespace UT.Vol.BLL
     [TestClass]
     public class utVolPhone
     {
+        static sp_Volunteer_DM createTestVol;
+        static sp_Volunteer_DM generalTestVol;
+
+        static sp_Phone_DM createTestVolPhone;
+        static sp_Phone_DM primaryTestVolPhone;
+        static sp_Phone_DM secondaryTestVolPhone;
+
         static string[] ExcelFilenames = new string[] {
             "Volunteer.xlsx", "VolPhone.xlsx"
         };
 
-        /*[ClassInitialize]
-        public static void InsertVolPhoneData(TestContext testContext)
+        private static bool PhoneEquals(sp_Phone_DM dm1, sp_Phone_DM dm2)
         {
-            cExcel.InsertData(ExcelFilenames);
-        }*/
+            return ((dm1.ActiveFlg == dm2.ActiveFlg) &&
+                (dm1.PhoneNbr == dm2.PhoneNbr) &&
+                (dm1.PhoneID == dm2.PhoneID) &&
+                (dm1.PrimaryFlg == dm2.PrimaryFlg) &&
+                (dm1.VolID == dm2.VolID));
+        }
 
-        [TestMethod]
-        public void TestVolPhone()
+        private static bool PhoneListContains(List<sp_Phone_DM> phoneList, sp_Phone_DM phone)
         {
 
-            sp_Volunteer_DM testVol = new sp_Volunteer_DM();
-            sp_Phone_DM primaryPhone = new sp_Phone_DM();
-            sp_Phone_DM secondPhone = new sp_Phone_DM();
-            sp_Phone_DM thirdPhone = new sp_Phone_DM();
-            sp_Phone_DM selectPhone = new sp_Phone_DM();
-            List<sp_Phone_DM> phoneList = new List<sp_Phone_DM>();
-            List<string> numberList = new List<string>();
-            List<int> idList = new List<int>();
-            int numberPhones = 200;
+            bool listContainsPhone = false;
 
-            hVolunteer hVol = new hVolunteer();
-            testVol = hVol.hCreateVolunteer("testName1","testName2","testName3");
-
-            hVolPhone hPhone = new hVolPhone();
-            primaryPhone = hPhone.hCreateVolPhone("1111111111", testVol.VolID,true,ref numberPhones);
-            secondPhone = hPhone.hCreateVolPhone("2222222222", testVol.VolID, false,ref numberPhones);
-            thirdPhone = hPhone.hCreateVolPhone("3333333333", testVol.VolID, false,ref numberPhones);
-
-            phoneList = hPhone.hSelectVolPhone(primaryPhone);
-            foreach(sp_Phone_DM phone in phoneList)
+            foreach (sp_Phone_DM currPhone in phoneList)
             {
-                numberList.Add(phone.PhoneNbr);
-                idList.Add(phone.PhoneID);
+
+                listContainsPhone = listContainsPhone || PhoneEquals(currPhone, phone);
+
             }
-            Assert.IsTrue(numberList.Contains(primaryPhone.PhoneNbr));
-            Assert.IsTrue(numberList.Contains(secondPhone.PhoneNbr));
-            Assert.IsTrue(numberList.Contains(thirdPhone.PhoneNbr));
-            Assert.IsTrue(idList.Contains(primaryPhone.PhoneID));
-            Assert.IsTrue(idList.Contains(secondPhone.PhoneID));
-            Assert.IsTrue(idList.Contains(thirdPhone.PhoneID));
-            numberList.Clear();
-            idList.Clear();
 
-            phoneList = hPhone.hSelectVolPhone(secondPhone);
-            foreach(sp_Phone_DM phone in phoneList)
-            {
-                numberList.Add(phone.PhoneNbr);
-                idList.Add(phone.PhoneID);
-            }
-            Assert.IsTrue(numberList.Contains(primaryPhone.PhoneNbr));
-            Assert.IsTrue(numberList.Contains(secondPhone.PhoneNbr));
-            Assert.IsTrue(numberList.Contains(thirdPhone.PhoneNbr));
-            Assert.IsTrue(idList.Contains(primaryPhone.PhoneID));
-            Assert.IsTrue(idList.Contains(secondPhone.PhoneID));
-            Assert.IsTrue(idList.Contains(thirdPhone.PhoneID));
-            numberList.Clear();
-            idList.Clear();
-
-            phoneList = hPhone.hSelectVolPhone(thirdPhone);
-            foreach(sp_Phone_DM phone in phoneList)
-            {
-                numberList.Add(phone.PhoneNbr);
-                idList.Add(phone.PhoneID);
-            }
-            Assert.IsTrue(numberList.Contains(primaryPhone.PhoneNbr));
-            Assert.IsTrue(numberList.Contains(secondPhone.PhoneNbr));
-            Assert.IsTrue(numberList.Contains(thirdPhone.PhoneNbr));
-            Assert.IsTrue(idList.Contains(primaryPhone.PhoneID));
-            Assert.IsTrue(idList.Contains(secondPhone.PhoneID));
-            Assert.IsTrue(idList.Contains(thirdPhone.PhoneID));
-            numberList.Clear();
-            idList.Clear();
-
-            selectPhone = hPhone.hSelectPrimaryVolPhone(primaryPhone);
-            Assert.AreEqual(primaryPhone.PhoneNbr, selectPhone.PhoneNbr);
-            Assert.AreEqual(primaryPhone.PhoneID, selectPhone.PhoneID);
-            Assert.AreEqual(primaryPhone.ActiveFlg, selectPhone.ActiveFlg);
-            Assert.AreEqual(primaryPhone.VolID, selectPhone.VolID);
-            Assert.AreEqual(true, selectPhone.PrimaryFlg);
-            
-            selectPhone = hPhone.hSelectPrimaryVolPhone(secondPhone);
-            Assert.AreEqual(primaryPhone.PhoneNbr, selectPhone.PhoneNbr);
-            Assert.AreEqual(primaryPhone.PhoneID, selectPhone.PhoneID);
-            Assert.AreEqual(primaryPhone.ActiveFlg, selectPhone.ActiveFlg);
-            Assert.AreEqual(primaryPhone.VolID, selectPhone.VolID);
-            Assert.AreEqual(true, selectPhone.PrimaryFlg);
-
-            selectPhone = hPhone.hSelectPrimaryVolPhone(thirdPhone);
-            Assert.AreEqual(primaryPhone.PhoneNbr, selectPhone.PhoneNbr);
-            Assert.AreEqual(primaryPhone.PhoneID, selectPhone.PhoneID);
-            Assert.AreEqual(primaryPhone.ActiveFlg, selectPhone.ActiveFlg);
-            Assert.AreEqual(primaryPhone.VolID, selectPhone.VolID);
-            Assert.AreEqual(true, selectPhone.PrimaryFlg);
-
-            hPhone.hUpdateVolPhone(primaryPhone, "3335557777",true);
-            selectPhone = hPhone.hSelectPrimaryVolPhone(primaryPhone);
-            Assert.AreEqual("3335557777",selectPhone.PhoneNbr);
-            Assert.AreEqual(true, selectPhone.PrimaryFlg);
-            Assert.AreEqual(primaryPhone.ActiveFlg, selectPhone.ActiveFlg);
-            Assert.AreEqual(primaryPhone.PhoneID, selectPhone.PhoneID);
-            Assert.AreEqual(primaryPhone.VolID, selectPhone.VolID);
-
-
-            hPhone.hUpdateVolPhone(primaryPhone, primaryPhone.PhoneNbr, false);
-            hPhone.hUpdateVolPhone(secondPhone, secondPhone.PhoneNbr, true);
-            selectPhone = hPhone.hSelectPrimaryVolPhone(primaryPhone);
-            Assert.AreEqual(secondPhone.PhoneNbr,selectPhone.PhoneNbr);
-            Assert.AreEqual(true, selectPhone.PrimaryFlg);
-            Assert.AreEqual(secondPhone.ActiveFlg, selectPhone.ActiveFlg);
-            Assert.AreEqual(secondPhone.PhoneID, selectPhone.PhoneID);
-            Assert.AreEqual(secondPhone.VolID, selectPhone.VolID);
-
-            hPhone.hUpdateVolPhone(primaryPhone, primaryPhone.PhoneNbr, true);
-            hPhone.hUpdateVolPhone(secondPhone, secondPhone.PhoneNbr, false);
-            selectPhone = hPhone.hSelectPrimaryVolPhone(thirdPhone);
-            Assert.AreEqual(primaryPhone.PhoneNbr,selectPhone.PhoneNbr);
-            Assert.AreEqual(true, selectPhone.PrimaryFlg);
-            Assert.AreEqual(primaryPhone.ActiveFlg, selectPhone.ActiveFlg);
-            Assert.AreEqual(primaryPhone.PhoneID, selectPhone.PhoneID);
-            Assert.AreEqual(primaryPhone.VolID, selectPhone.VolID);
-
-            hPhone.hDeleteVolPhone(primaryPhone);
-            selectPhone = hPhone.hSelectPrimaryVolPhone(primaryPhone);
-            Assert.AreEqual(primaryPhone.PhoneNbr,selectPhone.PhoneNbr);
-            Assert.AreEqual(true, selectPhone.PrimaryFlg);
-            Assert.AreEqual(false,selectPhone.ActiveFlg);
-            Assert.AreEqual(primaryPhone.PhoneID, selectPhone.PhoneID);
-            Assert.AreEqual(primaryPhone.VolID, selectPhone.VolID);
-
-            hPhone.hDeleteVolPhone(secondPhone);
-            hPhone.hDeleteVolPhone(thirdPhone);
-            hVol.hDeleteVolunteer(testVol);
+            return listContainsPhone;
 
         }
 
-        /*[ClassCleanup]
+        private static List<sp_Phone_DM> getVolPhoneDMs(DataTable dataTable)
+        {
+            List<sp_Phone_DM> volPhoneDMs = new List<sp_Phone_DM>();
+            for (int i = 0; i < dataTable.Rows.Count; i++)
+            {
+                sp_Phone_DM returnPhone = new sp_Phone_DM();
+                returnPhone.VolID = new Guid((string)dataTable.Rows[i]["VolID"]);
+                returnPhone.PhoneNbr = (String)dataTable.Rows[i]["PhoneNbr"];
+                returnPhone.PrimaryFlg = Convert.ToBoolean(dataTable.Rows[i]["PrimaryFlg"]);
+                returnPhone.PhoneID = Convert.ToInt32(dataTable.Rows[i]["PhoneID"]);
+                returnPhone.ActiveFlg = Convert.ToBoolean(dataTable.Rows[i]["ActiveFlg"]);
+                volPhoneDMs.Add(returnPhone);
+            }
+            return volPhoneDMs;
+        }
+
+        [ClassInitialize]
+        public static void InsertVolPhoneData(TestContext testContext)
+        {
+            System.Diagnostics.Debug.WriteLine(String.Format("{0}", DateTime.Now));
+            cExcel.RemoveData(ExcelFilenames);
+            cExcel.InsertData(ExcelFilenames);
+
+            sp_Volunteer_BLL volBLL = new sp_Volunteer_BLL();
+            generalTestVol = new sp_Volunteer_DM();
+            generalTestVol.VolFirstName = "TestFirst";
+            generalTestVol.VolMiddleName = "TestMiddle";
+            generalTestVol.VolLastName = "TestLast";
+            generalTestVol.ActiveFlg = true;
+            System.Guid volID = volBLL.InsertVolunteerContext(ref generalTestVol).VolID;
+            generalTestVol.VolID = volID;
+
+            sp_VolPhone_BLL volPhone_bll = new sp_VolPhone_BLL();
+            primaryTestVolPhone = new sp_Phone_DM();
+            primaryTestVolPhone.PhoneNbr = "1357924680";
+            primaryTestVolPhone.VolID = volID;
+            primaryTestVolPhone.ActiveFlg = true;
+            primaryTestVolPhone.PrimaryFlg = true;
+            volPhone_bll.InsertPhoneContext(primaryTestVolPhone);
+
+            secondaryTestVolPhone = new sp_Phone_DM();
+            secondaryTestVolPhone.PhoneNbr = "2468013579";
+            secondaryTestVolPhone.VolID = volID;
+            secondaryTestVolPhone.ActiveFlg = true;
+            secondaryTestVolPhone.PrimaryFlg = false;
+            volPhone_bll.InsertPhoneContext(secondaryTestVolPhone);
+        }
+
+        [TestMethod]
+        public void TestVolPhoneRead()
+        {
+            string helperDir = cExcel.GetHelperFilesDir();
+            DataTable dt = cExcel.ReadExcelFile("Sheet1", Path.Combine(helperDir, "VolPhone.xlsx"));
+            List<sp_Phone_DM> excelDMs = getVolPhoneDMs(dt);
+            sp_VolPhone_BLL volPhone_bll = new sp_VolPhone_BLL();
+
+            foreach (sp_Phone_DM testVolPhone in excelDMs)
+            {
+                List<sp_Phone_DM> selectedVolPhones = volPhone_bll.ListPhones(testVolPhone);
+                Assert.IsTrue(PhoneListContains(selectedVolPhones, testVolPhone));
+            }
+        }
+
+        [TestMethod]
+        public void TestVolPhoneCreate()
+        {
+
+            sp_Volunteer_BLL vol_bll = new sp_Volunteer_BLL();
+            sp_Volunteer_DM vol_dm = new sp_Volunteer_DM();
+            vol_dm.VolFirstName = "createFirst";
+            vol_dm.VolMiddleName = "createMiddle";
+            vol_dm.VolLastName = "createLast";
+            vol_dm.ActiveFlg = true;
+            System.Guid volID = vol_bll.InsertVolunteerContext(ref vol_dm).VolID;
+            vol_dm.VolID = volID;
+            createTestVol = vol_dm;
+
+            string volPhoneNbr = "0123456789";
+            bool PrimaryFlg = true;
+            bool ActiveFlg = true;
+            sp_VolPhone_BLL volPhone_bll = new sp_VolPhone_BLL();
+            sp_Phone_DM volPhone_dm = new sp_Phone_DM();
+            volPhone_dm.PhoneNbr = volPhoneNbr;
+            volPhone_dm.VolID = volID;
+            volPhone_dm.ActiveFlg = ActiveFlg;
+            volPhone_dm.PrimaryFlg = PrimaryFlg;
+            volPhone_bll.InsertPhoneContext(volPhone_dm);
+            int volPhoneID = volPhone_dm.PhoneID;
+            createTestVolPhone = volPhone_dm;
+
+            List<sp_Phone_DM> volPhoneDMs_selected = volPhone_bll.ListPhones(volPhone_dm);
+            Assert.IsTrue(PhoneListContains(volPhoneDMs_selected, volPhone_dm));
+
+        }
+
+        [TestMethod]
+        public void TestVolPhonePrimaryRead()
+        {
+
+            sp_VolPhone_BLL volPhoneBLL = new sp_VolPhone_BLL();
+            sp_Phone_DM volPhoneDM_selected = volPhoneBLL.ListPrimaryPhone(primaryTestVolPhone);
+            Assert.IsTrue(PhoneEquals(primaryTestVolPhone, volPhoneDM_selected));
+
+            volPhoneDM_selected = volPhoneBLL.ListPrimaryPhone(secondaryTestVolPhone);
+            Assert.IsTrue(PhoneEquals(primaryTestVolPhone, volPhoneDM_selected));
+
+        }
+
+        [TestMethod]
+        public void TestVolPhoneUpdate()
+        {
+
+            sp_VolPhone_BLL volPhoneBLL = new sp_VolPhone_BLL();
+            sp_Phone_DM updatePhone = volPhoneBLL.ListPrimaryPhone(primaryTestVolPhone);
+            String newPhoneNbr = "9876543210";
+            updatePhone.PhoneNbr = newPhoneNbr;
+            volPhoneBLL.UpdatePhoneNbr(updatePhone);
+            sp_Phone_DM selectedPhone = volPhoneBLL.ListPrimaryPhone(updatePhone);
+            List<sp_Phone_DM> selectedPhoneList = volPhoneBLL.ListPhones(updatePhone);
+
+            Assert.IsTrue(PhoneListContains(selectedPhoneList, updatePhone));
+            Assert.IsTrue(PhoneListContains(selectedPhoneList, secondaryTestVolPhone));
+            Assert.IsTrue(PhoneEquals(selectedPhone, updatePhone));
+            Assert.AreEqual(newPhoneNbr, selectedPhone.PhoneNbr);
+
+        }
+
+        [TestMethod]
+        public void TestVolPhoneDelete()
+        {
+
+            sp_VolPhone_BLL volPhone_bll = new sp_VolPhone_BLL();
+            volPhone_bll.DeletePhonesContext(primaryTestVolPhone);
+            sp_Phone_DM selectedVolPhone = volPhone_bll.ListPrimaryPhone(primaryTestVolPhone);
+
+            Assert.IsNotNull(selectedVolPhone.ActiveFlg);
+            Assert.IsFalse(selectedVolPhone.ActiveFlg == true);
+            Assert.IsTrue(selectedVolPhone.ActiveFlg == false);
+        }
+
+        [ClassCleanup]
         public static void RemoveVolPhoneData()
         {
+            sp_VolPhone_BLL volPhoneBLL = new sp_VolPhone_BLL();
+            volPhoneBLL.DeletePhonesContext(secondaryTestVolPhone);
+            volPhoneBLL.DeletePhonesContext(primaryTestVolPhone);
+            volPhoneBLL.DeletePhonesContext(createTestVolPhone);
+
+            sp_Volunteer_BLL volBLL = new sp_Volunteer_BLL();
+            volBLL.DeleteVolunteerContext(generalTestVol);
+            volBLL.DeleteVolunteerContext(createTestVol);
+
             cExcel.RemoveData(ExcelFilenames);
-        }*/
+        }
 
     }
 }

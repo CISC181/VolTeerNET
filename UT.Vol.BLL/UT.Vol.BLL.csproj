@@ -68,6 +68,7 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="utVolAddress.cs" />
     <Compile Include="utGroupVol.cs" />
     <Compile Include="utGroupAddr.cs" />
     <Compile Include="utVolPhone.cs" />

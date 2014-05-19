@@ -13,150 +13,197 @@ namespace UT.Vol.BLL
     [TestClass]
     public class utVolEmail
     {
+
+        static sp_Volunteer_DM createTestVol;
+        static sp_Volunteer_DM generalTestVol;
+
+        static sp_Email_DM createTestVolEmail;
+        static sp_Email_DM primaryTestVolEmail;
+        static sp_Email_DM secondaryTestVolEmail;
+
         static string[] ExcelFilenames = new string[] {
             "Volunteer.xlsx", "VolEmail.xlsx"
         };
 
-        /*[ClassInitialize]
-        public static void InsertVolEmailData(TestContext testContext)
+        private static bool EmailEquals(sp_Email_DM dm1, sp_Email_DM dm2)
         {
-            cExcel.InsertData(ExcelFilenames);
-        }*/
+            return ((dm1.ActiveFlg == dm2.ActiveFlg) &&
+                (dm1.EmailAddr == dm2.EmailAddr) &&
+                (dm1.EmailID == dm2.EmailID) &&
+                (dm1.PrimaryFlg == dm2.PrimaryFlg) &&
+                (dm1.VolID == dm2.VolID));
+        }
 
-        [TestMethod]
-        public void TestVolEmail()
+        private static bool EmailListContains(List<sp_Email_DM> emailList, sp_Email_DM email)
         {
 
-            sp_Volunteer_DM testVol = new sp_Volunteer_DM();
-            sp_Email_DM primaryEmail = new sp_Email_DM();
-            sp_Email_DM secondEmail = new sp_Email_DM();
-            sp_Email_DM thirdEmail = new sp_Email_DM();
-            sp_Email_DM selectEmail = new sp_Email_DM();
-            List<sp_Email_DM> emailList = new List<sp_Email_DM>();
-            List<string> addressList = new List<string>();
-            List<int> idList = new List<int>();
-            int numberEmails = 300;
+            bool listContainsEmail = false;
 
-            hVolunteer hVol = new hVolunteer();
-            testVol = hVol.hCreateVolunteer("testName1","testName2","testName3");
-
-            hVolEmail hEmail = new hVolEmail();
-            primaryEmail = hEmail.hCreateVolEmail("test1@test.tes", testVol.VolID, true, ref numberEmails);
-            secondEmail = hEmail.hCreateVolEmail("test2@test.tes", testVol.VolID, false, ref numberEmails);
-            thirdEmail = hEmail.hCreateVolEmail("test3@test.tes", testVol.VolID, false, ref numberEmails);
-
-            emailList = hEmail.hSelectVolEmail(primaryEmail);
-            foreach (sp_Email_DM email in emailList)
+            foreach (sp_Email_DM currEmail in emailList)
             {
-                addressList.Add(email.EmailAddr);
-                idList.Add(email.EmailID);
+
+                listContainsEmail = listContainsEmail || EmailEquals(currEmail, email);
+
             }
-            Assert.IsTrue(addressList.Contains(primaryEmail.EmailAddr));
-            Assert.IsTrue(addressList.Contains(secondEmail.EmailAddr));
-            Assert.IsTrue(addressList.Contains(thirdEmail.EmailAddr));
-            Assert.IsTrue(idList.Contains(primaryEmail.EmailID));
-            Assert.IsTrue(idList.Contains(secondEmail.EmailID));
-            Assert.IsTrue(idList.Contains(thirdEmail.EmailID));
-            addressList.Clear();
-            idList.Clear();
 
-            emailList = hEmail.hSelectVolEmail(secondEmail);
-            foreach (sp_Email_DM email in emailList)
-            {
-                addressList.Add(email.EmailAddr);
-                idList.Add(email.EmailID);
-            }
-            Assert.IsTrue(addressList.Contains(primaryEmail.EmailAddr));
-            Assert.IsTrue(addressList.Contains(secondEmail.EmailAddr));
-            Assert.IsTrue(addressList.Contains(thirdEmail.EmailAddr));
-            Assert.IsTrue(idList.Contains(primaryEmail.EmailID));
-            Assert.IsTrue(idList.Contains(secondEmail.EmailID));
-            Assert.IsTrue(idList.Contains(thirdEmail.EmailID));
-            addressList.Clear();
-            idList.Clear();
-
-            emailList = hEmail.hSelectVolEmail(thirdEmail);
-            foreach (sp_Email_DM email in emailList)
-            {
-                addressList.Add(email.EmailAddr);
-                idList.Add(email.EmailID);
-            }
-            Assert.IsTrue(addressList.Contains(primaryEmail.EmailAddr));
-            Assert.IsTrue(addressList.Contains(secondEmail.EmailAddr));
-            Assert.IsTrue(addressList.Contains(thirdEmail.EmailAddr));
-            Assert.IsTrue(idList.Contains(primaryEmail.EmailID));
-            Assert.IsTrue(idList.Contains(secondEmail.EmailID));
-            Assert.IsTrue(idList.Contains(thirdEmail.EmailID));
-            addressList.Clear();
-            idList.Clear();
-
-            selectEmail = hEmail.hSelectPrimaryVolEmail(primaryEmail);
-            Assert.AreEqual(primaryEmail.EmailAddr, selectEmail.EmailAddr);
-            Assert.AreEqual(primaryEmail.EmailID, selectEmail.EmailID);
-            Assert.AreEqual(primaryEmail.ActiveFlg, selectEmail.ActiveFlg);
-            Assert.AreEqual(primaryEmail.VolID, selectEmail.VolID);
-            Assert.AreEqual(true, selectEmail.PrimaryFlg);
-
-            selectEmail = hEmail.hSelectPrimaryVolEmail(secondEmail);
-            Assert.AreEqual(primaryEmail.EmailAddr, selectEmail.EmailAddr);
-            Assert.AreEqual(primaryEmail.EmailID, selectEmail.EmailID);
-            Assert.AreEqual(primaryEmail.ActiveFlg, selectEmail.ActiveFlg);
-            Assert.AreEqual(primaryEmail.VolID, selectEmail.VolID);
-            Assert.AreEqual(true, selectEmail.PrimaryFlg);
-
-            selectEmail = hEmail.hSelectPrimaryVolEmail(thirdEmail);
-            Assert.AreEqual(primaryEmail.EmailAddr, selectEmail.EmailAddr);
-            Assert.AreEqual(primaryEmail.EmailID, selectEmail.EmailID);
-            Assert.AreEqual(primaryEmail.ActiveFlg, selectEmail.ActiveFlg);
-            Assert.AreEqual(primaryEmail.VolID, selectEmail.VolID);
-            Assert.AreEqual(true, selectEmail.PrimaryFlg);
-
-            hEmail.hUpdateVolEmail(primaryEmail, "replaceTest@replace.tes", true);
-            selectEmail = hEmail.hSelectPrimaryVolEmail(primaryEmail);
-            Assert.AreEqual("replaceTest@replace.tes", selectEmail.EmailAddr);
-            Assert.AreEqual(primaryEmail.EmailID, selectEmail.EmailID);
-            Assert.AreEqual(primaryEmail.ActiveFlg, selectEmail.ActiveFlg);
-            Assert.AreEqual(primaryEmail.VolID, selectEmail.VolID);
-            Assert.AreEqual(true, selectEmail.PrimaryFlg);
-
-
-            /*hPhone.hUpdateVolPhone(primaryPhone, primaryPhone.PhoneNbr, false);
-            hPhone.hUpdateVolPhone(secondPhone, secondPhone.PhoneNbr, true);
-            selectPhone = hPhone.hSelectPrimaryVolPhone(primaryPhone);
-            Assert.AreEqual(secondPhone.PhoneNbr,selectPhone.PhoneNbr);
-            Assert.AreEqual(true, selectPhone.PrimaryFlg);
-            Assert.AreEqual(secondPhone.ActiveFlg, selectPhone.ActiveFlg);
-            Assert.AreEqual(secondPhone.PhoneID, selectPhone.PhoneID);
-            Assert.AreEqual(secondPhone.VolID, selectPhone.VolID);
-
-            hPhone.hUpdateVolPhone(primaryPhone, primaryPhone.PhoneNbr, true);
-            hPhone.hUpdateVolPhone(secondPhone, secondPhone.PhoneNbr, false);
-            selectPhone = hPhone.hSelectPrimaryVolPhone(thirdPhone);
-            Assert.AreEqual(primaryPhone.PhoneNbr,selectPhone.PhoneNbr);
-            Assert.AreEqual(true, selectPhone.PrimaryFlg);
-            Assert.AreEqual(primaryPhone.ActiveFlg, selectPhone.ActiveFlg);
-            Assert.AreEqual(primaryPhone.PhoneID, selectPhone.PhoneID);
-            Assert.AreEqual(primaryPhone.VolID, selectPhone.VolID);*/
-
-            hEmail.hDeleteVolEmail(primaryEmail);
-            /*selectPhone = hPhone.hSelectPrimaryVolPhone(primaryPhone);
-            Assert.AreEqual(primaryPhone.PhoneNbr,selectPhone.PhoneNbr);
-            Assert.AreEqual(true, selectPhone.PrimaryFlg);
-            Assert.AreEqual(false,selectPhone.ActiveFlg);
-            Assert.AreEqual(primaryPhone.PhoneID, selectPhone.PhoneID);
-            Assert.AreEqual(primaryPhone.VolID, selectPhone.VolID);*/
-
-            hEmail.hDeleteVolEmail(secondEmail);
-            hEmail.hDeleteVolEmail(thirdEmail);
-            hVol.hDeleteVolunteer(testVol);
+            return listContainsEmail;
 
         }
 
-        /*[ClassCleanup]
-        public static void RemoveVolPhoneData()
+        private static List<sp_Email_DM> getVolEmailDMs(DataTable dataTable)
         {
+            List<sp_Email_DM> volEmailDMs = new List<sp_Email_DM>();
+            for (int i = 0; i < dataTable.Rows.Count; i++)
+            {
+                sp_Email_DM returnEmail = new sp_Email_DM();
+                returnEmail.VolID = new Guid((string)dataTable.Rows[i]["VolID"]);
+                returnEmail.EmailAddr = (String)dataTable.Rows[i]["EmailAddr"];
+                returnEmail.PrimaryFlg = Convert.ToBoolean(dataTable.Rows[i]["PrimaryFlg"]);
+                returnEmail.EmailID = Convert.ToInt32(dataTable.Rows[i]["EmailID"]);
+                returnEmail.ActiveFlg = Convert.ToBoolean(dataTable.Rows[i]["ActiveFlg"]);
+                volEmailDMs.Add(returnEmail);
+            }
+            return volEmailDMs;
+        }
+
+        [ClassInitialize]
+        public static void InsertVolEmailData(TestContext testContext)
+        {
+            System.Diagnostics.Debug.WriteLine(String.Format("{0}", DateTime.Now));
             cExcel.RemoveData(ExcelFilenames);
-        }*/
+            cExcel.InsertData(ExcelFilenames);
+
+            sp_Volunteer_BLL volBLL = new sp_Volunteer_BLL();
+            generalTestVol = new sp_Volunteer_DM();
+            generalTestVol.VolFirstName = "TestFirst";
+            generalTestVol.VolMiddleName = "TestMiddle";
+            generalTestVol.VolLastName = "TestLast";
+            generalTestVol.ActiveFlg = true;
+            System.Guid volID = volBLL.InsertVolunteerContext(ref generalTestVol).VolID;
+            generalTestVol.VolID = volID;
+
+            sp_VolEmail_BLL volEmail_bll = new sp_VolEmail_BLL();
+            primaryTestVolEmail = new sp_Email_DM();
+            primaryTestVolEmail.EmailAddr = "PrimaryAddress@te.st";
+            primaryTestVolEmail.VolID = volID;
+            primaryTestVolEmail.ActiveFlg = true;
+            primaryTestVolEmail.PrimaryFlg = true;
+            volEmail_bll.InsertEmailContext(ref primaryTestVolEmail);
+
+            secondaryTestVolEmail = new sp_Email_DM();
+            secondaryTestVolEmail.EmailAddr = "SecondaryAddress@te.st";
+            secondaryTestVolEmail.VolID = volID;
+            secondaryTestVolEmail.ActiveFlg = true;
+            secondaryTestVolEmail.PrimaryFlg = false;
+            volEmail_bll.InsertEmailContext(ref secondaryTestVolEmail);
+        }
+
+        [TestMethod]
+        public void TestVolEmailRead()
+        {
+            string helperDir = cExcel.GetHelperFilesDir();
+            DataTable dt = cExcel.ReadExcelFile("Sheet1", Path.Combine(helperDir, "VolEmail.xlsx"));
+            List<sp_Email_DM> excelDMs = getVolEmailDMs(dt);
+            sp_VolEmail_BLL volEmail_bll = new sp_VolEmail_BLL();
+
+            foreach (sp_Email_DM testVolEmail in excelDMs)
+            {
+                List<sp_Email_DM> selectedVolEmails = volEmail_bll.ListEmails(testVolEmail);
+                Assert.IsTrue(EmailListContains(selectedVolEmails,testVolEmail));
+            }
+        }
+
+        [TestMethod]
+        public void TestVolEmailCreate()
+        {
+
+            sp_Volunteer_BLL vol_bll = new sp_Volunteer_BLL();
+            sp_Volunteer_DM vol_dm = new sp_Volunteer_DM();
+            vol_dm.VolFirstName = "createFirst";
+            vol_dm.VolMiddleName = "createMiddle";
+            vol_dm.VolLastName = "createLast";
+            vol_dm.ActiveFlg = true;
+            System.Guid volID = vol_bll.InsertVolunteerContext(ref vol_dm).VolID;
+            vol_dm.VolID = volID;
+            createTestVol = vol_dm;
+
+            string volEmailAddr = "CreateAddress@te.st";
+            bool PrimaryFlg = true;
+            bool ActiveFlg = true;
+            sp_VolEmail_BLL volEmail_bll = new sp_VolEmail_BLL();
+            sp_Email_DM volEmail_dm = new sp_Email_DM();            
+            volEmail_dm.EmailAddr = volEmailAddr;
+            volEmail_dm.VolID = volID;
+            volEmail_dm.ActiveFlg = ActiveFlg;
+            volEmail_dm.PrimaryFlg = PrimaryFlg;
+            volEmail_bll.InsertEmailContext(ref volEmail_dm);
+            int volEmailID = volEmail_dm.EmailID;
+            createTestVolEmail = volEmail_dm;
+
+            List<sp_Email_DM> volEmailDMs_selected = volEmail_bll.ListEmails(volEmail_dm);
+            Assert.IsTrue(EmailListContains(volEmailDMs_selected,volEmail_dm));
+
+        }
+
+        [TestMethod]
+        public void TestVolEmailPrimaryRead()
+        {
+
+            sp_VolEmail_BLL volEmailBLL = new sp_VolEmail_BLL();
+            sp_Email_DM volEmailDM_selected = volEmailBLL.ListPrimaryEmail(primaryTestVolEmail);
+            Assert.IsTrue(EmailEquals(primaryTestVolEmail,volEmailDM_selected));
+
+            volEmailDM_selected = volEmailBLL.ListPrimaryEmail(secondaryTestVolEmail);
+            Assert.IsTrue(EmailEquals(primaryTestVolEmail, volEmailDM_selected));
+
+        }
+
+        [TestMethod]
+        public void TestVolEmailUpdate()
+        {
+
+            sp_VolEmail_BLL volEmailBLL = new sp_VolEmail_BLL();
+            sp_Email_DM updateEmail = volEmailBLL.ListPrimaryEmail(primaryTestVolEmail);
+            String newEmailAddr = "updated@em.ail";
+            updateEmail.EmailAddr = newEmailAddr;
+            volEmailBLL.UpdateEmailAddr(updateEmail);
+            sp_Email_DM selectedEmail = volEmailBLL.ListPrimaryEmail(updateEmail);
+            List<sp_Email_DM> selectedEmailList = volEmailBLL.ListEmails(updateEmail);
+
+            Assert.IsTrue(EmailListContains(selectedEmailList,updateEmail));
+            Assert.IsTrue(EmailListContains(selectedEmailList, secondaryTestVolEmail));
+            Assert.IsTrue(EmailEquals(selectedEmail,updateEmail));
+            Assert.AreEqual(newEmailAddr, selectedEmail.EmailAddr);
+
+        }
+
+        [TestMethod]
+        public void TestVolEmailDelete()
+        {
+
+            sp_VolEmail_BLL volEmail_bll = new sp_VolEmail_BLL();
+            volEmail_bll.DeleteEmailsContext(primaryTestVolEmail);
+            sp_Email_DM selectedVolEmail = volEmail_bll.ListPrimaryEmail(primaryTestVolEmail);
+
+            Assert.IsNotNull(selectedVolEmail.ActiveFlg);
+            Assert.IsFalse(selectedVolEmail.ActiveFlg == true);
+            Assert.IsTrue(selectedVolEmail.ActiveFlg == false);
+        }
+
+        [ClassCleanup]
+        public static void RemoveVolEmailData()
+        {
+            sp_VolEmail_BLL volEmailBLL = new sp_VolEmail_BLL();
+            volEmailBLL.DeleteEmailsContext(secondaryTestVolEmail);
+            volEmailBLL.DeleteEmailsContext(primaryTestVolEmail);
+            volEmailBLL.DeleteEmailsContext(createTestVolEmail);
+
+            sp_Volunteer_BLL volBLL = new sp_Volunteer_BLL();
+            volBLL.DeleteVolunteerContext(generalTestVol);
+            volBLL.DeleteVolunteerContext(createTestVol);
+
+            cExcel.RemoveData(ExcelFilenames);
+        }
 
     }
 }
