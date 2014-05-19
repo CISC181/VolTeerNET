@@ -2,20 +2,10 @@
 
 <%@ Register Src="~/Common/WebControls/ucVendorProjects.ascx" TagPrefix="uc1" TagName="ucVendorProjects" %>
 <%@ Register Src="~/Common/WebControls/ucVendorSearch.ascx" TagPrefix="uc1" TagName="ucVendorSearch" %>
-<%@ Register Src="~/Common/WebControls/ucAccountMaint.ascx" TagPrefix="uc1" TagName="ucAccountMaint" %>
 <%@ Register Src="~/Common/WebControls/ucVendorMail.ascx" TagPrefix="uc1" TagName="ucVendorMail" %>
 <%@ Register Src="~/Common/WebControls/ucVendorContact.ascx" TagPrefix="uc1" TagName="ucVendorContact" %>
 <%@ Register Src="~/Common/WebControls/ucVendorAddress.ascx" TagPrefix="uc1" TagName="ucVendorAddress" %>
 <%@ Register Src="~/Common/WebControls/ucVendorProfile.ascx" TagPrefix="uc1" TagName="ucVendorProfile" %>
-
-
-
-
-
-
-
-
-
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
@@ -30,7 +20,6 @@
                 <telerik:RadTab Text="Vendor" Height="25px" Width="200px"></telerik:RadTab>
                 <telerik:RadTab Text="Projects" Height="25px" Width="200px"></telerik:RadTab>
                 <telerik:RadTab Text="Search" Height="25px" Width="200px"></telerik:RadTab>
-                <telerik:RadTab Text="Account Maint" Height="25px" Width="200px"></telerik:RadTab>
             </Tabs>
         </telerik:RadTabStrip>
 
@@ -53,18 +42,16 @@
                     <telerik:RadPageView runat="server" ID="PageView1" Height="100%" Width="100%">
                         <uc1:ucVendorProfile runat="server" ID="ucVendorProfile" />
                     </telerik:RadPageView>
-                     <telerik:RadPageView runat="server" ID="PageView2" Height="100%" Width="100%">
-                        <uc1:ucVendorMail runat="server" id="ucVendorMail" />
+                    <telerik:RadPageView runat="server" ID="PageView2" Height="100%" Width="100%">
+                        <uc1:ucVendorMail runat="server" ID="ucVendorMail" />
                     </telerik:RadPageView>
                     <telerik:RadPageView runat="server" ID="PageView3" Height="100%" Width="100%">
-                        <uc1:ucVendorContact runat="server" id="ucVendorContact" />
+                        <uc1:ucVendorContact runat="server" ID="ucVendorContact" />
                     </telerik:RadPageView>
                     <telerik:RadPageView runat="server" ID="PageView4" Height="100%" Width="100%">
-                        <uc1:ucVendorAddress runat="server" id="ucVendorAddress" />
+                        <uc1:ucVendorAddress runat="server" ID="ucVendorAddress" />
                     </telerik:RadPageView>
-
                 </telerik:RadMultiPage>
-
             </telerik:RadPageView>
 
             <telerik:RadPageView runat="server" ID="RadPageView2">
@@ -75,10 +62,6 @@
                 <uc1:ucVendorSearch runat="server" ID="ucVendorSearch" />
             </telerik:RadPageView>
 
-            <telerik:RadPageView runat="server" ID="RadPageView4">
-                <uc1:ucAccountMaint runat="server" ID="ucAccountMaint" />
-            </telerik:RadPageView>
         </telerik:RadMultiPage>
     </div>
 </asp:Content>
-
