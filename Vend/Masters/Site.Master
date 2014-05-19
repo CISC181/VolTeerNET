@@ -29,7 +29,6 @@
             <div class="content-wrapper">
                 <div class="float-right">
                     <p class="site-title">
-                        <asp:Image ID="Image1" runat="server" ImageUrl="~/Content/themes/base/images/volunteer-green-logo1.jpg" Height="61px" Width="107px" />
                     </p>
 
                 </div>
@@ -67,13 +66,11 @@
                             <GroupSettings Width="300px" />
                             <Items>
                                 <telerik:RadMenuItem Text="Login" NavigateUrl="~/Account/Login.aspx" EnableImageSprite="true" CssClass="icon-chair"></telerik:RadMenuItem>
+                                <telerik:RadMenuItem Text="Change Password" NavigateUrl="~/Account/ChangePassword.aspx" EnableImageSprite="true" CssClass="icon-chair"></telerik:RadMenuItem>
                                 <telerik:RadMenuItem Text="Forgot Password" NavigateUrl="~/Account/RecoverPassword.aspx" EnableImageSprite="true" CssClass="icon-sofa"></telerik:RadMenuItem>
-                                <telerik:RadMenuItem Text="Manage Roles" NavigateUrl="~/Account/ManageRole.aspx" EnableImageSprite="true" CssClass="icon-table"></telerik:RadMenuItem>
-                                <telerik:RadMenuItem Text="Manage Users" NavigateUrl="~/Account/ManageUser.aspx" EnableImageSprite="true" CssClass="icon-table"></telerik:RadMenuItem>
                                 <telerik:RadMenuItem Text="Register" NavigateUrl="~/Account/Register.aspx" EnableImageSprite="true" CssClass="icon-table"></telerik:RadMenuItem>
                             </Items>
                         </telerik:RadMenuItem>
-                        <telerik:RadMenuItem Text="ManageSkills" NavigateUrl="~/Skills/ManageSkills.aspx" />
                         <telerik:RadMenuItem Text="About" NavigateUrl="DefaultCS.aspx?page=aboutus" />
                     </Items>
                 </telerik:RadMenu>

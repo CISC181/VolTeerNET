@@ -79,13 +79,6 @@
     <Compile Include="App_Code\cMail.cs" />
     <Compile Include="App_Code\cValidations.cs" />
     <Compile Include="App_Code\ExceptionUtility.cs" />
-    <Compile Include="Common\WebControls\ucAccountMaint.ascx.cs">
-      <DependentUpon>ucAccountMaint.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Common\WebControls\ucAccountMaint.ascx.designer.cs">
-      <DependentUpon>ucAccountMaint.ascx</DependentUpon>
-    </Compile>
     <Compile Include="Common\WebControls\ucVendorAddress.ascx.cs">
       <DependentUpon>ucVendorAddress.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -196,7 +189,6 @@
     <Content Include="App_Data\RadCaptcha\X.wav" />
     <Content Include="App_Data\RadCaptcha\Y.wav" />
     <Content Include="App_Data\RadCaptcha\Z.wav" />
-    <Content Include="Common\WebControls\ucAccountMaint.ascx" />
     <Content Include="Common\WebControls\ucVendorAddress.ascx" />
     <Content Include="Common\WebControls\ucVendorContact.ascx" />
     <Content Include="Common\WebControls\ucVendorMail.ascx" />
@@ -290,7 +282,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
+      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>
