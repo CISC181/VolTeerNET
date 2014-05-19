@@ -29,7 +29,6 @@
             <Tabs>
                 <telerik:RadTab Text="Vendor" Height="25px" Width="200px"></telerik:RadTab>
                 <telerik:RadTab Text="Projects" Height="25px" Width="200px"></telerik:RadTab>
-                <telerik:RadTab Text="Vendor Contacts" Height="25px" Width="200px"></telerik:RadTab>
                 <telerik:RadTab Text="Search" Height="25px" Width="200px"></telerik:RadTab>
                 <telerik:RadTab Text="Account Maint" Height="25px" Width="200px"></telerik:RadTab>
             </Tabs>
@@ -67,11 +66,6 @@
                 </telerik:RadMultiPage>
 
             </telerik:RadPageView>
-
-
-
-
-
 
             <telerik:RadPageView runat="server" ID="RadPageView2">
                 <uc1:ucVendorProjects runat="server" ID="ucVendorProjects" />
