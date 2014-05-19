@@ -1111,7 +1111,8 @@ tr.pager td {
 }
 
     .exampleWrapper .outerMultiPage {
-        height: 600px;
+        min-height: 508px;
+        height: 100%;
         width: 100%;
         border-color: darkblue;
         border-width: 1px;
