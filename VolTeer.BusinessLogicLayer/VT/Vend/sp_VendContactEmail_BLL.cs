@@ -24,7 +24,7 @@ namespace VolTeer.BusinessLogicLayer.VT.Vend
 
         public void InsertContactContext(sp_ContactEmail_DM _cVendContact)
         {
-            DAL.InsertContactEmailContext(ref _cVendContact);
+            DAL.InsertContactEmailContext(_cVendContact);
         }
 
         public void UpdateContactContext(sp_ContactEmail_DM _cVendContact)
