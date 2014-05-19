@@ -67,6 +67,34 @@ namespace VolTeer.DataAccessLayer.VT.Vol
             //return list.FirstOrDefault();
 
         }
+
+        public List<sp_GroupSearch_DM> SearchGroups(string searchTerms)
+        {
+            List<sp_GroupSearch_DM> list = new List<sp_GroupSearch_DM>();
+            try
+            {
+                using (VolTeerEntities context = new VolTeerEntities())
+                {
+                    list = (from result in context.sp_Group_Search(searchTerms)
+                            select new sp_GroupSearch_DM
+                            {
+                                GroupID = result.GroupID,
+                                GroupName = result.GroupName,
+                                ShortDesc = result.ShortDesc,
+                                countTerms = result.countsTerms
+
+
+                            }).ToList();
+                } // Guaranteed to close the Connection
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+
+            return list;
+
+        }
         #endregion
 
         # region Inserts
