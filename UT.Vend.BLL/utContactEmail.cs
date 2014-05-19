@@ -49,7 +49,7 @@ namespace UT.Vend.BLL
             data.EmailID = 1;
             data.PrimaryEmail = true;
             sp_ContactEmail_BLL vendor = new sp_ContactEmail_BLL();
-            vendor.InsertContactEmailContext(ref data);
+            vendor.InsertContactEmailContext(data);
             var newdata = vendor.ListContactEmails(data.ContactID, data.EmailID);
             Assert.AreEqual(data.ContactID, newdata.ContactID, "Contact ID Not Set As Expected");
             Assert.AreEqual(data.EmailID, newdata.EmailID, "Email ID Not Set As Expected");
