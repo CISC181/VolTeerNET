@@ -11,6 +11,7 @@ namespace VolTeer.Contracts.VT.Vol
     {
         List<sp_GroupAddr_DM> ListAddresses(sp_GroupAddr_DM cGroupAddr);
         sp_GroupAddr_DM ListAddress(sp_GroupAddr_DM cGroupAddr);
+        List<sp_GroupAddr_DM> ListGroups();
         List<sp_GroupAddr_DM> ListAddresses(int? GroupID, int? Address);
         sp_GroupAddr_DM ListPrimaryAddress(sp_GroupAddr_DM cGroupAddr);
         void DeleteAddressContext(sp_Vol_Address_DM _cAddress, sp_GroupAddr_DM _cGroupAddr);
