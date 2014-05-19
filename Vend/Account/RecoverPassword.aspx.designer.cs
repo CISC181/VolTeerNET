@@ -10,7 +10,7 @@
 namespace Vend.Account {
     
     
-    public partial class RecoverPassword {
+    public partial class RecoverPassword1 {
         
         /// <summary>
         /// PasswordRecovery2 control.
