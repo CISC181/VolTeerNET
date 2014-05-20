@@ -14,18 +14,12 @@ namespace UT.Vol.BLL
     public class utVolAddress
     {
         static sp_Volunteer_DM generalTestVol;
+        static sp_Volunteer_DM createTestVol;
 
-<<<<<<< HEAD
         //static sp_Vol_Addr_DM createTestVolAddr;
         static sp_Vol_Addr_DM primaryTestVolAddr;
         static sp_Vol_Addr_DM secondaryTestVolAddr;
 
-        //static sp_Vol_Address_DM createTestVolAddress;
-=======
-        static sp_Vol_Addr_DM primaryTestVolAddr;
-        static sp_Vol_Addr_DM secondaryTestVolAddr;
-
->>>>>>> 83374a0aed7b24740b9d4993b0e3c0163f0624d5
         static sp_Vol_Address_DM primaryTestVolAddress;
         static sp_Vol_Address_DM secondaryTestVolAddress;
 
@@ -174,11 +168,8 @@ namespace UT.Vol.BLL
             vol_dm.ActiveFlg = true;
             System.Guid volID = Guid.NewGuid();
             vol_dm.VolID = volID;
-<<<<<<< HEAD
             createTestVol = vol_dm;
             vol_bll.InsertVolunteerContext(ref vol_dm);
-=======
->>>>>>> 83374a0aed7b24740b9d4993b0e3c0163f0624d5
 
             string volAddr1 = "CreateLine1";
             string volAddr2 = "CreateLine2";
@@ -281,7 +272,6 @@ namespace UT.Vol.BLL
         [ClassCleanup]
         public static void RemoveVolAddressData()
         {
-<<<<<<< HEAD
             sp_Vol_Address_BLL volAddressBLL = new sp_Vol_Address_BLL();
             volAddressBLL.DeleteAddressContext(secondaryTestVolAddress, secondaryTestVolAddr);
             volAddressBLL.DeleteAddressContext(primaryTestVolAddress, primaryTestVolAddr);
@@ -292,8 +282,6 @@ namespace UT.Vol.BLL
             if (createTestVol != null)
                 volBLL.DeleteVolunteerContext(createTestVol);
 
-=======
->>>>>>> 83374a0aed7b24740b9d4993b0e3c0163f0624d5
             cExcel.RemoveData(ExcelFilenames);
         }
 

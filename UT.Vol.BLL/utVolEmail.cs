@@ -16,9 +16,11 @@ namespace UT.Vol.BLL
     {
 
         static sp_Volunteer_DM generalTestVol;
+        static sp_Volunteer_DM createTestVol;
 
         static sp_Email_DM primaryTestVolEmail;
         static sp_Email_DM secondaryTestVolEmail;
+        static sp_Email_DM createTestVolEmail;
 
         static string[] ExcelFilenames = new string[] {
             "Volunteer.xlsx", "VolEmail.xlsx"
@@ -200,7 +202,6 @@ namespace UT.Vol.BLL
         [ClassCleanup]
         public static void RemoveVolEmailData()
         {
-<<<<<<< HEAD
             sp_VolEmail_BLL volEmailBLL = new sp_VolEmail_BLL();
             volEmailBLL.DeleteEmailsContext(secondaryTestVolEmail);
             volEmailBLL.DeleteEmailsContext(primaryTestVolEmail);
@@ -214,8 +215,6 @@ namespace UT.Vol.BLL
             if (createTestVolEmail != null)
                 volBLL.DeleteVolunteerContext(createTestVol);
 
-=======
->>>>>>> 83374a0aed7b24740b9d4993b0e3c0163f0624d5
             cExcel.RemoveData(ExcelFilenames);
         }
 

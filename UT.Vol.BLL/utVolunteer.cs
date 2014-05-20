@@ -13,13 +13,10 @@ namespace UT.Vol.BLL
     [TestClass]
     public class utVolunteer
     {
-<<<<<<< HEAD
         static List<sp_Volunteer_DM> volunteersToRemove;
         static sp_Volunteer_DM createTestVol;
 
         static sp_Volunteer_DM secondaryTestVol;
-=======
->>>>>>> 83374a0aed7b24740b9d4993b0e3c0163f0624d5
 
         static string[] ExcelFilenames = new string[] {
             "Volunteer.xlsx"
@@ -61,7 +58,6 @@ namespace UT.Vol.BLL
             System.Diagnostics.Debug.WriteLine(String.Format("{0}", DateTime.Now));
             cExcel.RemoveAllData();
             cExcel.InsertData(ExcelFilenames);
-<<<<<<< HEAD
 
             secondaryTestVol = new sp_Volunteer_DM();
             secondaryTestVol.ActiveFlg = true;
@@ -72,8 +68,6 @@ namespace UT.Vol.BLL
 
             sp_Volunteer_BLL vol_bll = new sp_Volunteer_BLL();
             vol_bll.InsertVolunteerContext(ref secondaryTestVol);
-=======
->>>>>>> 83374a0aed7b24740b9d4993b0e3c0163f0624d5
         }
 
         [TestMethod]
@@ -111,11 +105,9 @@ namespace UT.Vol.BLL
             vol_dm.ActiveFlg = ActiveFlg;
             System.Guid volID = Guid.NewGuid();
             vol_dm.VolID = volID;
-<<<<<<< HEAD
+
             createTestVol = vol_dm;
             vol_bll.InsertVolunteerContext(ref vol_dm);
-=======
->>>>>>> 83374a0aed7b24740b9d4993b0e3c0163f0624d5
 
             sp_Volunteer_DM vol_dm_selected = vol_bll.ListVolunteers(volID);
             Assert.IsTrue(VolEquals(vol_dm, vol_dm_selected));
@@ -162,7 +154,6 @@ namespace UT.Vol.BLL
         [ClassCleanup]
         public static void RemoveVolunteerData()
         {
-<<<<<<< HEAD
             sp_Volunteer_BLL volBLL = new sp_Volunteer_BLL();
             if (createTestVol != null)
                 volBLL.DeleteVolunteerContext(createTestVol);
@@ -170,8 +161,6 @@ namespace UT.Vol.BLL
             foreach (sp_Volunteer_DM volunteer in volunteersToRemove)
                 volBLL.DeleteVolunteerContext(volunteer);
 
-=======
->>>>>>> 83374a0aed7b24740b9d4993b0e3c0163f0624d5
             cExcel.RemoveData(ExcelFilenames);
         }
 

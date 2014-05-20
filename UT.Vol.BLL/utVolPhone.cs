@@ -15,9 +15,11 @@ namespace UT.Vol.BLL
     public class utVolPhone
     {
         static sp_Volunteer_DM generalTestVol;
+        static sp_Volunteer_DM createTestVol;
 
         static sp_Phone_DM primaryTestVolPhone;
         static sp_Phone_DM secondaryTestVolPhone;
+        static sp_Phone_DM createTestVolPhone;
 
         static string[] ExcelFilenames = new string[] {
             "Volunteer.xlsx", "VolPhone.xlsx"
@@ -197,7 +199,6 @@ namespace UT.Vol.BLL
         [ClassCleanup]
         public static void RemoveVolPhoneData()
         {
-<<<<<<< HEAD
             sp_VolPhone_BLL volPhoneBLL = new sp_VolPhone_BLL();
             volPhoneBLL.DeletePhonesContext(secondaryTestVolPhone);
             volPhoneBLL.DeletePhonesContext(primaryTestVolPhone);
@@ -209,8 +210,6 @@ namespace UT.Vol.BLL
             if (createTestVol != null)
                 volBLL.DeleteVolunteerContext(createTestVol);
 
-=======
->>>>>>> 83374a0aed7b24740b9d4993b0e3c0163f0624d5
             cExcel.RemoveData(ExcelFilenames);
         }
 
