@@ -1,11 +1,13 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Masters/Site.Master" AutoEventWireup="true" CodeBehind="ManageVendor.aspx.cs" Inherits="VolTeer.Volunteer.ManageVendor" %>
 
 <%@ Register Src="~/Common/WebControls/ucVendorProjects.ascx" TagPrefix="uc1" TagName="ucVendorProjects" %>
+<%@ Register Src="~/Common/WebControls/ucVendorProjectCreate.ascx" TagPrefix="uc1" TagName="ucVendorProjectCreate" %>
 <%@ Register Src="~/Common/WebControls/ucVendorSearch.ascx" TagPrefix="uc1" TagName="ucVendorSearch" %>
 <%@ Register Src="~/Common/WebControls/ucVendorMail.ascx" TagPrefix="uc1" TagName="ucVendorMail" %>
 <%@ Register Src="~/Common/WebControls/ucVendorContact.ascx" TagPrefix="uc1" TagName="ucVendorContact" %>
 <%@ Register Src="~/Common/WebControls/ucVendorAddress.ascx" TagPrefix="uc1" TagName="ucVendorAddress" %>
 <%@ Register Src="~/Common/WebControls/ucVendorProfile.ascx" TagPrefix="uc1" TagName="ucVendorProfile" %>
+
 
 <asp:Content ID="Content1" ContentPlaceHolderID="HeadContent" runat="server">
 </asp:Content>
@@ -55,7 +57,22 @@
             </telerik:RadPageView>
 
             <telerik:RadPageView runat="server" ID="RadPageView2">
-                <uc1:ucVendorProjects runat="server" ID="ucVendorProjects" />
+                
+                <telerik:RadTabStrip runat="server" ID="RadTabStrip3" MultiPageID="RadMultiPage3"
+                    Orientation="VerticalLeft" Skin='<%$ AppSettings:Telerik.Skin %>' Width="100px" Height="475px" SelectedIndex="0">
+                    <Tabs>
+                        <telerik:RadTab Text="My Projects" Height="90px"></telerik:RadTab>
+                        <telerik:RadTab Text="New Project" Height="90px"></telerik:RadTab>
+                    </Tabs>
+                </telerik:RadTabStrip>
+                <telerik:RadMultiPage runat="server" ID="RadMultiPage3" SelectedIndex="0" CssClass="innerMultiPage" Height="100%" Width="90%">
+                    <telerik:RadPageView runat="server" ID="PageView5" Height="100%" Width="100%">
+                        <uc1:ucVendorProjects runat="server" ID="ucVendorProjects" />
+                    </telerik:RadPageView>
+                    <telerik:RadPageView runat="server" ID="PageView6" Height="100%" Width="100%">
+                        <uc1:ucVendorProjectCreate runat="server" ID="ucVendorProjectCreate" />
+                    </telerik:RadPageView>
+                </telerik:RadMultiPage>
             </telerik:RadPageView>
 
             <telerik:RadPageView runat="server" ID="RadPageView3">

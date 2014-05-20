@@ -15,10 +15,8 @@ namespace UT.Vol.BLL
     public class utVolEmail
     {
 
-        static sp_Volunteer_DM createTestVol;
         static sp_Volunteer_DM generalTestVol;
 
-        static sp_Email_DM createTestVolEmail;
         static sp_Email_DM primaryTestVolEmail;
         static sp_Email_DM secondaryTestVolEmail;
 
@@ -128,7 +126,6 @@ namespace UT.Vol.BLL
             vol_dm.ActiveFlg = true;
             System.Guid volID = vol_bll.InsertVolunteerContext(ref vol_dm).VolID;
             vol_dm.VolID = volID;
-            createTestVol = vol_dm;
 
             string volEmailAddr = "CreateAddress@te.st";
             bool PrimaryFlg = true;
@@ -141,7 +138,6 @@ namespace UT.Vol.BLL
             volEmail_dm.PrimaryFlg = PrimaryFlg;
             volEmail_bll.InsertEmailContext(ref volEmail_dm);
             int volEmailID = volEmail_dm.EmailID;
-            createTestVolEmail = volEmail_dm;
 
             List<sp_Email_DM> volEmailDMs_selected = volEmail_bll.ListEmails(volEmail_dm);
             Assert.IsTrue(EmailListContains(volEmailDMs_selected,volEmail_dm));
@@ -204,6 +200,7 @@ namespace UT.Vol.BLL
         [ClassCleanup]
         public static void RemoveVolEmailData()
         {
+<<<<<<< HEAD
             sp_VolEmail_BLL volEmailBLL = new sp_VolEmail_BLL();
             volEmailBLL.DeleteEmailsContext(secondaryTestVolEmail);
             volEmailBLL.DeleteEmailsContext(primaryTestVolEmail);
@@ -217,6 +214,8 @@ namespace UT.Vol.BLL
             if (createTestVolEmail != null)
                 volBLL.DeleteVolunteerContext(createTestVol);
 
+=======
+>>>>>>> 83374a0aed7b24740b9d4993b0e3c0163f0624d5
             cExcel.RemoveData(ExcelFilenames);
         }
 

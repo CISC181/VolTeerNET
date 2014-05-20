@@ -17,6 +17,12 @@ namespace VolTeer.BusinessLogicLayer.VT.Vend
             return DAL.ListContact();
         }
 
+
+        public List<sp_VendorProjContact_DM> ListContact(Guid VendorID)
+        {
+            return DAL.ListContact(VendorID);
+        }
+
         public sp_VendorProjContact_DM ListContact(Guid VendorID, Guid ProjectID, Guid ContactID)
         {
             return DAL.ListContact(VendorID, ProjectID, ContactID);
