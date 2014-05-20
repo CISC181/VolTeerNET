@@ -6,6 +6,7 @@ using VolTeer.BusinessLogicLayer.VT.Vol;
 using UT.Vol.BLL.HelperMethods;
 using System.Data;
 using System.IO;
+using System.Linq;
 using UT.Helper;
 
 namespace UT.Vol.BLL
@@ -56,7 +57,7 @@ namespace UT.Vol.BLL
             {
                 sp_Phone_DM returnPhone = new sp_Phone_DM();
                 returnPhone.VolID = new Guid((string)dataTable.Rows[i]["VolID"]);
-                returnPhone.PhoneNbr = (String)dataTable.Rows[i]["PhoneNbr"];
+                returnPhone.PhoneNbr = (dataTable.Rows[i]["PhoneNbr"]).ToString();
                 returnPhone.PrimaryFlg = Convert.ToBoolean(dataTable.Rows[i]["PrimaryFlg"]);
                 returnPhone.PhoneID = Convert.ToInt32(dataTable.Rows[i]["PhoneID"]);
                 returnPhone.ActiveFlg = Convert.ToBoolean(dataTable.Rows[i]["ActiveFlg"]);
@@ -78,8 +79,9 @@ namespace UT.Vol.BLL
             generalTestVol.VolMiddleName = "TestMiddle";
             generalTestVol.VolLastName = "TestLast";
             generalTestVol.ActiveFlg = true;
-            System.Guid volID = volBLL.InsertVolunteerContext(ref generalTestVol).VolID;
+            System.Guid volID = Guid.NewGuid(); 
             generalTestVol.VolID = volID;
+            volBLL.InsertVolunteerContext(ref generalTestVol);
 
             sp_VolPhone_BLL volPhone_bll = new sp_VolPhone_BLL();
             primaryTestVolPhone = new sp_Phone_DM();
@@ -167,7 +169,12 @@ namespace UT.Vol.BLL
             updatePhone.PhoneNbr = newPhoneNbr;
             volPhoneBLL.UpdatePhoneNbr(updatePhone);
             sp_Phone_DM selectedPhone = volPhoneBLL.ListPrimaryPhone(updatePhone);
-            List<sp_Phone_DM> selectedPhoneList = volPhoneBLL.ListPhones(updatePhone);
+            primaryTestVolPhone.PhoneNbr = newPhoneNbr;
+
+            //To get all phones listed, create a new domain model with no phoneID specified.
+            sp_Phone_DM selectAllPhones = new sp_Phone_DM();
+            selectAllPhones.VolID = updatePhone.VolID;
+            List<sp_Phone_DM> selectedPhoneList = volPhoneBLL.ListPhones(selectAllPhones);
 
             Assert.IsTrue(PhoneListContains(selectedPhoneList, updatePhone));
             Assert.IsTrue(PhoneListContains(selectedPhoneList, secondaryTestVolPhone));
@@ -181,8 +188,10 @@ namespace UT.Vol.BLL
         {
 
             sp_VolPhone_BLL volPhone_bll = new sp_VolPhone_BLL();
-            volPhone_bll.DeletePhonesContext(primaryTestVolPhone);
-            sp_Phone_DM selectedVolPhone = volPhone_bll.ListPrimaryPhone(primaryTestVolPhone);
+            //Can't delete primary
+            volPhone_bll.DeletePhonesContext(secondaryTestVolPhone);
+            sp_Phone_DM selectedVolPhone = volPhone_bll.ListPhones(secondaryTestVolPhone).First();
+            secondaryTestVolPhone.ActiveFlg = false;
 
             Assert.IsNotNull(selectedVolPhone.ActiveFlg);
             Assert.IsFalse(selectedVolPhone.ActiveFlg == true);
@@ -195,11 +204,13 @@ namespace UT.Vol.BLL
             sp_VolPhone_BLL volPhoneBLL = new sp_VolPhone_BLL();
             volPhoneBLL.DeletePhonesContext(secondaryTestVolPhone);
             volPhoneBLL.DeletePhonesContext(primaryTestVolPhone);
-            volPhoneBLL.DeletePhonesContext(createTestVolPhone);
+            if (createTestVolPhone != null)
+                volPhoneBLL.DeletePhonesContext(createTestVolPhone);
 
             sp_Volunteer_BLL volBLL = new sp_Volunteer_BLL();
             volBLL.DeleteVolunteerContext(generalTestVol);
-            volBLL.DeleteVolunteerContext(createTestVol);
+            if (createTestVol != null)
+                volBLL.DeleteVolunteerContext(createTestVol);
 
             cExcel.RemoveData(ExcelFilenames);
         }

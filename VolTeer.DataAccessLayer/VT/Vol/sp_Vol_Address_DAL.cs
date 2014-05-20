@@ -95,7 +95,7 @@ namespace VolTeer.DataAccessLayer.VT.Vol
             {
                 using (VolTeerEntities context = new VolTeerEntities())
                 {
-                    item = (from result in context.sp_Vol_Address_Select(cVolAddr.VolID, cVolAddr.AddrID, true)
+                    item = (from result in context.sp_Vol_Address_Select(cVolAddr.VolID, null, true)
                             select new sp_Vol_Address_DM
                             {
                                 AddrID = result.AddrID,
@@ -240,7 +240,11 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                     context.SaveChanges();
 
                     var AddressToRemove = (from n in context.tblVolAddresses where n.AddrID == _cAddress.AddrID select n).FirstOrDefault();
-                    context.tblVolAddresses.Remove(AddressToRemove);
+                    //context.tblVolAddresses.Remove(AddressToRemove);
+                    AddressToRemove.ActiveFlg = false;
+                    context.sp_Vol_Address_Update(AddressToRemove.AddrID, AddressToRemove.ActiveFlg, AddressToRemove.AddrLine1, 
+                        AddressToRemove.AddrLine2, AddressToRemove.AddrLine3, AddressToRemove.City, AddressToRemove.St, AddressToRemove.Zip, 
+                        AddressToRemove.Zip4, AddressToRemove.GeoCodeGetSet);
                     context.SaveChanges();
 
                 }

@@ -16,11 +16,11 @@ namespace UT.Vol.BLL
         static sp_Volunteer_DM createTestVol;
         static sp_Volunteer_DM generalTestVol;
 
-        static sp_Vol_Addr_DM createTestVolAddr;
+        //static sp_Vol_Addr_DM createTestVolAddr;
         static sp_Vol_Addr_DM primaryTestVolAddr;
         static sp_Vol_Addr_DM secondaryTestVolAddr;
 
-        static sp_Vol_Address_DM createTestVolAddress;
+        //static sp_Vol_Address_DM createTestVolAddress;
         static sp_Vol_Address_DM primaryTestVolAddress;
         static sp_Vol_Address_DM secondaryTestVolAddress;
 
@@ -91,6 +91,7 @@ namespace UT.Vol.BLL
             generalTestVol.VolMiddleName = "TestMiddle";
             generalTestVol.VolLastName = "TestLast";
             generalTestVol.ActiveFlg = true;
+            generalTestVol.VolID = Guid.NewGuid();
             volBLL.InsertVolunteerContext(ref generalTestVol);
 
             sp_Vol_Address_BLL volAddress_bll = new sp_Vol_Address_BLL();
@@ -103,6 +104,11 @@ namespace UT.Vol.BLL
             primaryTestVolAddress.Zip = 12345;
             primaryTestVolAddress.Zip4 = 6789;
             primaryTestVolAddress.ActiveFlg = true;
+
+            primaryTestVolAddr = new sp_Vol_Addr_DM();
+            primaryTestVolAddr.VolID = generalTestVol.VolID;
+            primaryTestVolAddr.PrimaryAddr = true;
+
             volAddress_bll.InsertAddressContext(ref primaryTestVolAddress, ref primaryTestVolAddr);
 
             secondaryTestVolAddress = new sp_Vol_Address_DM();
@@ -114,6 +120,10 @@ namespace UT.Vol.BLL
             secondaryTestVolAddress.Zip = 98765;
             secondaryTestVolAddress.Zip4 = 4321;
             secondaryTestVolAddress.ActiveFlg = true;
+
+            secondaryTestVolAddr = new sp_Vol_Addr_DM();
+            secondaryTestVolAddr.VolID = generalTestVol.VolID;
+            secondaryTestVolAddr.PrimaryAddr = false;
             volAddress_bll.InsertAddressContext(ref secondaryTestVolAddress, ref secondaryTestVolAddr);
         }
 
@@ -157,9 +167,10 @@ namespace UT.Vol.BLL
             vol_dm.VolMiddleName = "createMiddle";
             vol_dm.VolLastName = "createLast";
             vol_dm.ActiveFlg = true;
-            System.Guid volID = vol_bll.InsertVolunteerContext(ref vol_dm).VolID;
+            System.Guid volID = Guid.NewGuid();
             vol_dm.VolID = volID;
             createTestVol = vol_dm;
+            vol_bll.InsertVolunteerContext(ref vol_dm);
 
             string volAddr1 = "CreateLine1";
             string volAddr2 = "CreateLine2";
@@ -263,13 +274,14 @@ namespace UT.Vol.BLL
         public static void RemoveVolAddressData()
         {
             sp_Vol_Address_BLL volAddressBLL = new sp_Vol_Address_BLL();
-            volAddressBLL.DeleteAddressContext(secondaryTestVolAddress,secondaryTestVolAddr);
+            volAddressBLL.DeleteAddressContext(secondaryTestVolAddress, secondaryTestVolAddr);
             volAddressBLL.DeleteAddressContext(primaryTestVolAddress, primaryTestVolAddr);
-            volAddressBLL.DeleteAddressContext(createTestVolAddress, createTestVolAddr);
+            //volAddressBLL.DeleteAddressContext(createTestVolAddress, createTestVolAddr);
 
             sp_Volunteer_BLL volBLL = new sp_Volunteer_BLL();
             volBLL.DeleteVolunteerContext(generalTestVol);
-            volBLL.DeleteVolunteerContext(createTestVol);
+            if (createTestVol != null)
+                volBLL.DeleteVolunteerContext(createTestVol);
 
             cExcel.RemoveData(ExcelFilenames);
         }

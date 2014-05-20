@@ -6,6 +6,7 @@ using VolTeer.BusinessLogicLayer.VT.Vol;
 using UT.Vol.BLL.HelperMethods;
 using System.Data;
 using System.IO;
+using System.Linq;
 using UT.Helper;
 
 namespace UT.Vol.BLL
@@ -79,8 +80,10 @@ namespace UT.Vol.BLL
             generalTestVol.VolMiddleName = "TestMiddle";
             generalTestVol.VolLastName = "TestLast";
             generalTestVol.ActiveFlg = true;
-            System.Guid volID = volBLL.InsertVolunteerContext(ref generalTestVol).VolID;
+            Guid volID = Guid.NewGuid();
             generalTestVol.VolID = volID;
+            volBLL.InsertVolunteerContext(ref generalTestVol);
+            
 
             sp_VolEmail_BLL volEmail_bll = new sp_VolEmail_BLL();
             primaryTestVolEmail = new sp_Email_DM();
@@ -163,15 +166,20 @@ namespace UT.Vol.BLL
         {
 
             sp_VolEmail_BLL volEmailBLL = new sp_VolEmail_BLL();
+            volEmailBLL.InsertEmailContext(ref primaryTestVolEmail);
             sp_Email_DM updateEmail = volEmailBLL.ListPrimaryEmail(primaryTestVolEmail);
             String newEmailAddr = "updated@em.ail";
             updateEmail.EmailAddr = newEmailAddr;
             volEmailBLL.UpdateEmailAddr(updateEmail);
             sp_Email_DM selectedEmail = volEmailBLL.ListPrimaryEmail(updateEmail);
-            List<sp_Email_DM> selectedEmailList = volEmailBLL.ListEmails(updateEmail);
 
-            Assert.IsTrue(EmailListContains(selectedEmailList,updateEmail));
-            Assert.IsTrue(EmailListContains(selectedEmailList, secondaryTestVolEmail));
+            //To get all emails listed, create a new domain model with no emailID specified.
+            sp_Email_DM selectAllEmails = new sp_Email_DM();
+            selectAllEmails.VolID = updateEmail.VolID;
+            List<sp_Email_DM> selectedEmailList = volEmailBLL.ListEmails(selectAllEmails);
+
+            Assert.IsTrue(EmailListContains(selectedEmailList, updateEmail));
+            Assert.IsTrue(EmailListContains(selectedEmailList, selectedEmail));
             Assert.IsTrue(EmailEquals(selectedEmail,updateEmail));
             Assert.AreEqual(newEmailAddr, selectedEmail.EmailAddr);
 
@@ -182,8 +190,11 @@ namespace UT.Vol.BLL
         {
 
             sp_VolEmail_BLL volEmail_bll = new sp_VolEmail_BLL();
-            volEmail_bll.DeleteEmailsContext(primaryTestVolEmail);
-            sp_Email_DM selectedVolEmail = volEmail_bll.ListPrimaryEmail(primaryTestVolEmail);
+            //Can't delete primary emails
+            //volEmail_bll.DeleteEmailsContext(primaryTestVolEmail);
+            //sp_Email_DM selectedVolEmail = volEmail_bll.ListPrimaryEmail(primaryTestVolEmail);
+            volEmail_bll.DeleteEmailsContext(secondaryTestVolEmail);
+            sp_Email_DM selectedVolEmail = volEmail_bll.ListEmails(secondaryTestVolEmail).First();
 
             Assert.IsNotNull(selectedVolEmail.ActiveFlg);
             Assert.IsFalse(selectedVolEmail.ActiveFlg == true);
@@ -196,11 +207,15 @@ namespace UT.Vol.BLL
             sp_VolEmail_BLL volEmailBLL = new sp_VolEmail_BLL();
             volEmailBLL.DeleteEmailsContext(secondaryTestVolEmail);
             volEmailBLL.DeleteEmailsContext(primaryTestVolEmail);
-            volEmailBLL.DeleteEmailsContext(createTestVolEmail);
+            //Make sure we don't pass it null because we didn't run one of the tests
+            if (createTestVolEmail != null)
+                volEmailBLL.DeleteEmailsContext(createTestVolEmail);
 
             sp_Volunteer_BLL volBLL = new sp_Volunteer_BLL();
             volBLL.DeleteVolunteerContext(generalTestVol);
-            volBLL.DeleteVolunteerContext(createTestVol);
+            //Make sure we don't pass it null because we didn't run one of the tests
+            if (createTestVolEmail != null)
+                volBLL.DeleteVolunteerContext(createTestVol);
 
             cExcel.RemoveData(ExcelFilenames);
         }

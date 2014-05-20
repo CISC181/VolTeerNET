@@ -50,7 +50,7 @@ namespace VolTeer.DataAccessLayer.VT.Vol
             {
                 using (VolTeerEntities context = new VolTeerEntities())
                 {
-                    item = (from result in context.sp_Vol_Email_Select(cVolEmail.VolID, cVolEmail.EmailID, true)
+                    item = (from result in context.sp_Vol_Email_Select(cVolEmail.VolID, null, true)
                             select new sp_Email_DM
                             {
                                 EmailID = result.EmailID,
@@ -95,6 +95,8 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                 };
                 context.tblVolEmails.Add(cEmail);
                 context.SaveChanges();
+
+                _cEmail.EmailID = cEmail.EmailID;
             }
         }
         #endregion
@@ -135,7 +137,10 @@ namespace VolTeer.DataAccessLayer.VT.Vol
             using (VolTeerEntities context = new VolTeerEntities())
             {
                 var EmailsToRemove = (from n in context.tblVolEmails where n.EmailID == _cEmail.EmailID select n).FirstOrDefault();
-                context.tblVolEmails.Remove(EmailsToRemove);
+                //context.tblVolEmails.Remove(EmailsToRemove);
+                EmailsToRemove.ActiveFlg = false;
+                context.sp_Vol_Email_Update(EmailsToRemove.EmailID, EmailsToRemove.VolID, EmailsToRemove.EmailAddr, 
+                    EmailsToRemove.ActiveFlg, EmailsToRemove.PrimaryFlg);
                 context.SaveChanges();
 
             }

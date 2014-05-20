@@ -147,7 +147,9 @@ namespace VolTeer.DataAccessLayer.VT.Vol
             using (VolTeerEntities context = new VolTeerEntities())
             {
                 var VolunteerToRemove = (from n in context.tblVolunteers where n.VolID == _cVolunteer.VolID select n).FirstOrDefault();
-                context.tblVolunteers.Remove(VolunteerToRemove);
+                VolunteerToRemove.ActiveFlg = false;
+                context.sp_Volunteer_Update(VolunteerToRemove.VolID, VolunteerToRemove.ActiveFlg, VolunteerToRemove.VolFirstName,
+                    VolunteerToRemove.VolMiddleName, VolunteerToRemove.VolLastName);
                 context.SaveChanges();
 
             }

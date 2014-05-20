@@ -13,8 +13,10 @@ namespace UT.Vol.BLL
     [TestClass]
     public class utVolunteer
     {
-
+        static List<sp_Volunteer_DM> volunteersToRemove;
         static sp_Volunteer_DM createTestVol;
+
+        static sp_Volunteer_DM secondaryTestVol;
 
         static string[] ExcelFilenames = new string[] {
             "Volunteer.xlsx"
@@ -52,11 +54,20 @@ namespace UT.Vol.BLL
         [ClassInitialize]
         public static void InsertVolunteerData(TestContext testContext)
         {
+            volunteersToRemove = new List<sp_Volunteer_DM>();
             System.Diagnostics.Debug.WriteLine(String.Format("{0}", DateTime.Now));
             cExcel.RemoveAllData();
             cExcel.InsertData(ExcelFilenames);
 
-            createTestVol = new sp_Volunteer_DM();
+            secondaryTestVol = new sp_Volunteer_DM();
+            secondaryTestVol.ActiveFlg = true;
+            secondaryTestVol.VolFirstName = "first2";
+            secondaryTestVol.VolMiddleName = "middle2";
+            secondaryTestVol.VolLastName = "last2";
+            secondaryTestVol.VolID = Guid.NewGuid();
+
+            sp_Volunteer_BLL vol_bll = new sp_Volunteer_BLL();
+            vol_bll.InsertVolunteerContext(ref secondaryTestVol);
         }
 
         [TestMethod]
@@ -81,6 +92,7 @@ namespace UT.Vol.BLL
         [TestMethod]
         public void TestVolunteerCreate()
         {
+            createTestVol = new sp_Volunteer_DM();
             string volFirst = "TestFirst";
             string volMiddle = "TestMiddle";
             string volLast = "TestLast";
@@ -91,9 +103,10 @@ namespace UT.Vol.BLL
             vol_dm.VolMiddleName = volMiddle;
             vol_dm.VolLastName = volLast;
             vol_dm.ActiveFlg = ActiveFlg;
-            System.Guid volID = vol_bll.InsertVolunteerContext(ref vol_dm).VolID;
+            System.Guid volID = Guid.NewGuid();
             vol_dm.VolID = volID;
             createTestVol = vol_dm;
+            vol_bll.InsertVolunteerContext(ref vol_dm);
 
             sp_Volunteer_DM vol_dm_selected = vol_bll.ListVolunteers(volID);
             Assert.IsTrue(VolEquals(vol_dm, vol_dm_selected));
@@ -106,6 +119,8 @@ namespace UT.Vol.BLL
             List<sp_Volunteer_DM> allVols = vol_bll.ListVolunteers();
             Assert.IsTrue(allVols.Count > 0, "The ListVolunteers() is broken, or no data in DB");
             sp_Volunteer_DM firstVol = allVols[0];
+            firstVol.VolID = Guid.NewGuid();
+            vol_bll.InsertVolunteerContext(ref firstVol);
             String newFirst = "NewFirst";
             String newMiddle = "NewMiddle";
             String newLast = "NewLast";
@@ -113,6 +128,7 @@ namespace UT.Vol.BLL
             firstVol.VolMiddleName = newMiddle;
             firstVol.VolLastName = newLast;
             vol_bll.UpdateVolunteerContext(firstVol);
+            volunteersToRemove.Add(firstVol);
             sp_Volunteer_DM selectedVol = vol_bll.ListVolunteers(firstVol.VolID);
 
             Assert.IsTrue(VolEquals(firstVol, selectedVol));
@@ -125,19 +141,9 @@ namespace UT.Vol.BLL
         public void TestVolunteerDelete()
         {
             sp_Volunteer_BLL vol_bll = new sp_Volunteer_BLL();
-            List<sp_Volunteer_DM> allVols = vol_bll.ListVolunteers();
-            Assert.IsTrue(allVols.Count > 0, "The ListVolunteers() is broken, or no data in DB");
-            sp_Volunteer_DM currVol = allVols[0];
-            bool notActive = currVol.ActiveFlg != true;
-            int i = 1;
-            while (notActive && (i < allVols.Count))
-            {
-                currVol = allVols[i];
-                notActive = currVol.ActiveFlg != true;
-                i++;
-            }
-            vol_bll.DeleteVolunteerContext(currVol);
-            sp_Volunteer_DM selectedVol = vol_bll.ListVolunteers(currVol.VolID);
+            vol_bll.DeleteVolunteerContext(secondaryTestVol);
+            sp_Volunteer_DM selectedVol = vol_bll.ListVolunteers(secondaryTestVol.VolID);
+            secondaryTestVol.ActiveFlg = false;
 
             Assert.IsNotNull(selectedVol.ActiveFlg);
             Assert.IsFalse(selectedVol.ActiveFlg == true);
@@ -148,7 +154,11 @@ namespace UT.Vol.BLL
         public static void RemoveVolunteerData()
         {
             sp_Volunteer_BLL volBLL = new sp_Volunteer_BLL();
-            volBLL.DeleteVolunteerContext(createTestVol);
+            if (createTestVol != null)
+                volBLL.DeleteVolunteerContext(createTestVol);
+            volBLL.DeleteVolunteerContext(secondaryTestVol);
+            foreach (sp_Volunteer_DM volunteer in volunteersToRemove)
+                volBLL.DeleteVolunteerContext(volunteer);
 
             cExcel.RemoveData(ExcelFilenames);
         }

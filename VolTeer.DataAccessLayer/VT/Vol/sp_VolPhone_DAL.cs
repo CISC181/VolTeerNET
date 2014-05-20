@@ -49,7 +49,7 @@ namespace VolTeer.DataAccessLayer.VT.Vol
             {
                 using (VolTeerEntities context = new VolTeerEntities())
                 {
-                    list = (from result in context.sp_Vol_Phone_Select(cVolPhone.VolID, cVolPhone.PhoneID,true)
+                    list = (from result in context.sp_Vol_Phone_Select(cVolPhone.VolID, null, true)
                             select new sp_Phone_DM
                             {
                                 PhoneID = result.PhoneID,
@@ -70,7 +70,6 @@ namespace VolTeer.DataAccessLayer.VT.Vol
         }
 
         #endregion
-
 
         #region Insert Statements
 
@@ -93,6 +92,8 @@ namespace VolTeer.DataAccessLayer.VT.Vol
                 };
                 context.tblVolPhones.Add(cPhone);
                 context.SaveChanges();
+
+                _cPhone.PhoneID = cPhone.PhoneID;
             }
         }
         #endregion
@@ -133,7 +134,9 @@ namespace VolTeer.DataAccessLayer.VT.Vol
             using (VolTeerEntities context = new VolTeerEntities())
             {
                 var PhonesToRemove = (from n in context.tblVolPhones where n.PhoneID == _cPhone.PhoneID select n).FirstOrDefault();
-                context.tblVolPhones.Remove(PhonesToRemove);
+                PhonesToRemove.ActiveFlg = false;
+                context.sp_Vol_Phone_Update(PhonesToRemove.PhoneID, PhonesToRemove.VolID, PhonesToRemove.PhoneNbr,
+                    PhonesToRemove.ActiveFlg, PhonesToRemove.PrimaryFlg);
                 context.SaveChanges();
 
             }
