@@ -85,102 +85,39 @@ namespace Vend.Common.WebControls {
         protected global::Telerik.Web.UI.RadTextBox rTBProjDesc;
         
         /// <summary>
-        /// addrHead control.
+        /// lblProjContact control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label addrHead;
+        protected global::System.Web.UI.WebControls.Label lblProjContact;
         
         /// <summary>
-        /// addrLine1 control.
+        /// rCBContact control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label addrLine1;
+        protected global::Telerik.Web.UI.RadComboBox rCBContact;
         
         /// <summary>
-        /// addrLine1Box control.
+        /// lblProjPrimaryContact control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::Telerik.Web.UI.RadTextBox addrLine1Box;
+        protected global::System.Web.UI.WebControls.Label lblProjPrimaryContact;
         
         /// <summary>
-        /// addrLine2 control.
+        /// cbPrimaryContact control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label addrLine2;
-        
-        /// <summary>
-        /// addrLine2Box control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadTextBox addrLine2Box;
-        
-        /// <summary>
-        /// addrLine3 control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label addrLine3;
-        
-        /// <summary>
-        /// addrLine3Box control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadTextBox addrLine3Box;
-        
-        /// <summary>
-        /// lblProjCity control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblProjCity;
-        
-        /// <summary>
-        /// rTBProjCity control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadTextBox rTBProjCity;
-        
-        /// <summary>
-        /// lblProjState control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lblProjState;
-        
-        /// <summary>
-        /// rCBState control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::Telerik.Web.UI.RadComboBox rCBState;
+        protected global::System.Web.UI.WebControls.CheckBox cbPrimaryContact;
     }
 }

@@ -24,7 +24,7 @@
             <asp:TableRow>
                 <asp:TableCell>
                     <asp:Label ID="lblProjDesc" runat="server" Text="Project Description: " CssClass="formBoxLabel"></asp:Label>
-                    <div style="margin-right: 30px; font-size: 10px;">
+                    <div style="margin-right: 15px; font-size: 10px;">
                         <asp:Label ID="lblCharMax" runat="server" Text="(max 500 char) " CssClass="formBoxLabel"></asp:Label>
                     </div>
                 </asp:TableCell><asp:TableCell>
@@ -34,6 +34,23 @@
                 </asp:TableCell>
             </asp:TableRow>
             <asp:TableRow>
+                <asp:TableCell>
+                    <asp:Label ID="lblProjContact" runat="server" Text="Select a contact from the list: " CssClass="formBoxLabel"></asp:Label>
+                </asp:TableCell>
+                <asp:TableCell>
+                    <telerik:RadComboBox ID="rCBContact" runat="server" Width="300px">
+                    </telerik:RadComboBox>
+                </asp:TableCell>
+            </asp:TableRow>
+            <asp:TableRow>
+                <asp:TableCell>
+                    <asp:Label ID="lblProjPrimaryContact" runat="server" Text="This is a primary contact: " CssClass="formBoxLabel"></asp:Label>
+                </asp:TableCell>
+                <asp:TableCell>
+                    <asp:CheckBox ID="cbPrimaryContact" runat="server" />
+                </asp:TableCell>
+            </asp:TableRow>
+         <%--   <asp:TableRow>
                 <asp:TableCell>
                     <br />
                     <br />
@@ -47,7 +64,8 @@
             <asp:TableRow>
                 <asp:TableCell>
                     <asp:Label ID="addrLine1" runat="server" Text="Address: " CssClass="formBoxLabel"></asp:Label>
-                </asp:TableCell><asp:TableCell>
+                </asp:TableCell>
+                <asp:TableCell>
                     <telerik:RadTextBox ID="addrLine1Box" runat="server" Width="300px" EmptyMessage="Enter Address Line 1 Here">
                     </telerik:RadTextBox>
                 </asp:TableCell>
@@ -139,6 +157,14 @@
                     </telerik:RadComboBox>
                 </asp:TableCell>
             </asp:TableRow>
+            <asp:TableRow>
+                <asp:TableCell>
+                    <asp:Label ID="lblProjZip" runat="server" Text="Zip Code: " CssClass="formBoxLabel"></asp:Label>
+                </asp:TableCell><asp:TableCell>
+                    <telerik:RadNumericTextBox ID="rNTBZip" runat="server" Width="300px" EmptyMessage="Enter Zip Code">
+                    </telerik:RadNumericTextBox>
+                </asp:TableCell>
+            </asp:TableRow> --%>
         </asp:Table>
     </asp:Panel>
 </div>

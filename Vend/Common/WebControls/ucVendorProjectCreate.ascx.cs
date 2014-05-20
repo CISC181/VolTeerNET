@@ -10,14 +10,21 @@ using System.Web.Security;
 using System.Web.UI.WebControls.WebParts;
 using System.Web.UI.HtmlControls;
 using Telerik.Web.UI;
-using VolTeer.DomainModels.VT.Vol;
-using VolTeer.BusinessLogicLayer.VT.Vol;
+using VolTeer.DomainModels.VT.Vend;
+using VolTeer.BusinessLogicLayer.VT.Vend;
 namespace Vend.Common.WebControls
 {
     public partial class ucVendorProjectCreate : System.Web.UI.UserControl
     {
 
+
+        sp_VendAddress_DM addrDM = new sp_VendAddress_DM();
+
+        MembershipUser currentUser;
+
+        //we may not end up needing this. I added the states into the actual ascx file as items
         static List<String> states = new List<String>();
+        List<sp_Contact_DM> contacts = new List<sp_Contact_DM>();
 
         static ucVendorProjectCreate()
         {
@@ -78,7 +85,80 @@ namespace Vend.Common.WebControls
 
         protected void Page_Load(object sender, EventArgs e)
         {
+            currentUser = Membership.GetUser();
+            if (!Page.IsPostBack)
+            {
+                getContacts();
+                RadComboBoxItem newItem = new RadComboBoxItem();
+                newItem.Text = "--";
+                newItem.Value = "1";
+                rCBContact.Items.Add(newItem);
+                foreach (sp_Contact_DM contact in contacts)
+                {
+                    RadComboBoxItem item = new RadComboBoxItem();
+                    item.Text = contact.ContactFirstName + " ";
+                    if (contact.ContactMiddleName != null)
+                    {
+                        item.Text += contact.ContactMiddleName + " ";
+                    }
+                    item.Text += contact.ContactLastName;
+                    rCBContact.Items.Add(item);
+
+                }
+            }
+        }
+
+        protected void getContacts()
+        {
+            sp_VendContact_BLL vendContactBLL = new sp_VendContact_BLL();
+            sp_Contact_BLL contactBLL = new sp_Contact_BLL();
+            List<sp_VendContact_DM> vendContacts = vendContactBLL.ListVendContacts((Guid)currentUser.ProviderUserKey, null);
+            foreach (sp_VendContact_DM vendCont in vendContacts)
+            {
+                contacts.Add(contactBLL.ListContacts(vendCont.ContactID));
+                
+            }
+
+            //Uncomment to see that the combobox loads correctly
+            /*sp_Contact_DM newCont = new sp_Contact_DM();
+            newCont.ContactID = Guid.NewGuid();
+            newCont.ContactFirstName = "Daniel";
+            newCont.ContactMiddleName = "Lees";
+            newCont.ContactLastName = "Barker";
+            newCont.ActiveFlg = true;
+            contacts.Add(newCont);*/
 
         }
+
+        protected void saveForm()
+        {
+            sp_Project_DM projectDM = new sp_Project_DM();
+            sp_VendorProjContact_DM vpContactDM = new sp_VendorProjContact_DM();
+
+            vpContactDM.VendorID = (Guid)currentUser.ProviderUserKey;
+            Guid projectID = Guid.NewGuid();
+
+            vpContactDM.ProjectID = projectID;
+
+            int contectIndex = rCBContact.SelectedIndex;
+            if (rCBContact.SelectedIndex != 0)
+            {
+                vpContactDM.ContactID = contacts.ElementAt(rCBContact.SelectedIndex - 1).ContactID;
+            }
+
+
+            projectDM.ProjectID = projectID;
+            projectDM.ProjectName = rTBProjName.Text;
+            projectDM.ProjectDesc = rTBProjDesc.Text;
+            projectDM.ActiveFlg = false;
+
+            sp_Project_BLL projectBLL = new sp_Project_BLL();
+            sp_VendorProjContact_BLL vpContactBLL = new sp_VendorProjContact_BLL();
+
+            //Why is it by ref? That's weird.
+            projectBLL.InsertProjectContext(ref projectDM);
+            vpContactBLL.InsertContactContext(vpContactDM);
+        }
+
     }
 }
