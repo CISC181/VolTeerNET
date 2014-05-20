@@ -128,6 +128,13 @@
     <Compile Include="Common\WebControls\ucVendorProfile.ascx.designer.cs">
       <DependentUpon>ucVendorProfile.ascx</DependentUpon>
     </Compile>
+    <Compile Include="Common\WebControls\ucVendorProjectCreate.ascx.cs">
+      <DependentUpon>ucVendorProjectCreate.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Common\WebControls\ucVendorProjectCreate.ascx.designer.cs">
+      <DependentUpon>ucVendorProjectCreate.ascx</DependentUpon>
+    </Compile>
     <Compile Include="Common\WebControls\ucVendorProjects.ascx.cs">
       <DependentUpon>ucVendorProjects.ascx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -218,6 +225,7 @@
     <Content Include="Common\WebControls\ucVendorContact.ascx" />
     <Content Include="Common\WebControls\ucVendorMail.ascx" />
     <Content Include="Common\WebControls\ucVendorProfile.ascx" />
+    <Content Include="Common\WebControls\ucVendorProjectCreate.ascx" />
     <Content Include="Common\WebControls\ucVendorProjects.ascx" />
     <Content Include="Common\WebControls\ucVendorSearch.ascx" />
     <Content Include="Content\GridStyleSheet.css" />
@@ -311,7 +319,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
+      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

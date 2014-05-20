@@ -148,6 +148,33 @@ namespace VolTeer.Volunteer {
         protected global::Telerik.Web.UI.RadPageView RadPageView2;
         
         /// <summary>
+        /// RadTabStrip3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadTabStrip RadTabStrip3;
+        
+        /// <summary>
+        /// RadMultiPage3 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadMultiPage RadMultiPage3;
+        
+        /// <summary>
+        /// PageView5 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadPageView PageView5;
+        
+        /// <summary>
         /// ucVendorProjects control.
         /// </summary>
         /// <remarks>
@@ -155,6 +182,24 @@ namespace VolTeer.Volunteer {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Vend.Common.WebControls.ucVendorProjects ucVendorProjects;
+        
+        /// <summary>
+        /// PageView6 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadPageView PageView6;
+        
+        /// <summary>
+        /// ucVendorProjectCreate control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Vend.Common.WebControls.ucVendorProjectCreate ucVendorProjectCreate;
         
         /// <summary>
         /// RadPageView3 control.
