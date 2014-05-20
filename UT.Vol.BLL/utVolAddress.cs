@@ -64,13 +64,16 @@ namespace UT.Vol.BLL
                 sp_Vol_Address_DM returnAddress = new sp_Vol_Address_DM();
                 returnAddress.ActiveFlg = Convert.ToBoolean(dataTable.Rows[i]["ActiveFlg"]);
                 returnAddress.AddrID = Convert.ToInt32(dataTable.Rows[i]["AddrID"]);
-                returnAddress.AddrLine1 = (String)dataTable.Rows[i]["AddrLine1"];
-                returnAddress.AddrLine2 = (String)dataTable.Rows[i]["AddrLine2"];
-                returnAddress.AddrLine3 = (String)dataTable.Rows[i]["AddrLine3"];
-                returnAddress.City = (String)dataTable.Rows[i]["City"];
-                returnAddress.St = (String)dataTable.Rows[i]["St"];
+                returnAddress.AddrLine1 = dataTable.Rows[i]["AddrLine1"].ToString();
+                returnAddress.AddrLine2 = dataTable.Rows[i]["AddrLine2"].ToString();
+                returnAddress.AddrLine3 = dataTable.Rows[i]["AddrLine3"].ToString();
+                returnAddress.City = dataTable.Rows[i]["City"].ToString();
+                returnAddress.St = dataTable.Rows[i]["St"].ToString();
                 returnAddress.Zip = Convert.ToInt32(dataTable.Rows[i]["Zip"]);
-                returnAddress.Zip4 = Convert.ToInt32(dataTable.Rows[i]["Zip4"]);
+                if (!(dataTable.Rows[i]["Zip4"] is DBNull))
+                    returnAddress.Zip4 = Convert.ToInt32(dataTable.Rows[i]["Zip4"]);
+                else
+                    returnAddress.Zip4 = null;
   
                 volAddressDMs.Add(returnAddress);
             }
@@ -99,9 +102,10 @@ namespace UT.Vol.BLL
             primaryTestVolAddress.AddrLine2 = "PrimaryLine2";
             primaryTestVolAddress.AddrLine3 = "PrimaryLine3";
             primaryTestVolAddress.City = "PrimaryCity";
-            primaryTestVolAddress.St = "PrimarySt";
+            primaryTestVolAddress.St = "PS";
             primaryTestVolAddress.Zip = 12345;
             primaryTestVolAddress.Zip4 = 6789;
+            primaryTestVolAddress.VolID = generalTestVol.VolID;
             primaryTestVolAddress.ActiveFlg = true;
 
             primaryTestVolAddr = new sp_Vol_Addr_DM();
@@ -115,7 +119,7 @@ namespace UT.Vol.BLL
             secondaryTestVolAddress.AddrLine2 = "SecondaryLine2";
             secondaryTestVolAddress.AddrLine3 = "SecondaryLine3";
             secondaryTestVolAddress.City = "SecondaryCity";
-            secondaryTestVolAddress.St = "SecondarySt";
+            secondaryTestVolAddress.St = "SS";
             secondaryTestVolAddress.Zip = 98765;
             secondaryTestVolAddress.Zip4 = 4321;
             secondaryTestVolAddress.ActiveFlg = true;
@@ -175,7 +179,7 @@ namespace UT.Vol.BLL
             string volAddr2 = "CreateLine2";
             string volAddr3 = "CreateLine3";
             string volCity = "CreateCity";
-            string volSt = "CreateSt";
+            string volSt = "CS";
             int volZip = 13579;
             int volZip4 = 2468;
             bool PrimaryFlg = true;
@@ -227,7 +231,7 @@ namespace UT.Vol.BLL
             String newAddr2 = "UpdateLine2";
             String newAddr3 = "UpdateLine3";
             String newCity = "UpdateCity";
-            String newSt = "UpdateSt";
+            String newSt = "US";
             int newZip = 08642;
             int newZip4 = 9753;
 
