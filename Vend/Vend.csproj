@@ -228,6 +228,7 @@
     <Content Include="Common\WebControls\ucVendorProjectCreate.ascx" />
     <Content Include="Common\WebControls\ucVendorProjects.ascx" />
     <Content Include="Common\WebControls\ucVendorSearch.ascx" />
+    <Content Include="Content\CustomCSS.css" />
     <Content Include="Content\GridStyleSheet.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\Telerik.css" />
@@ -319,7 +320,7 @@
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
         </WebProjectProperties>
       </FlavorProperties>
-      <UserProperties UseAjaxifiedTemplates="True" UseJQuerySupport="True" />
+      <UserProperties UseJQuerySupport="True" UseAjaxifiedTemplates="True" />
     </VisualStudio>
   </ProjectExtensions>
 </Project>

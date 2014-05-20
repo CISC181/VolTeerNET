@@ -31,6 +31,15 @@ namespace Vend.Common.WebControls {
         protected global::System.Web.UI.WebControls.Table projCreateForm;
         
         /// <summary>
+        /// newProjTitle control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label newProjTitle;
+        
+        /// <summary>
         /// lblProjName control.
         /// </summary>
         /// <remarks>
@@ -58,13 +67,13 @@ namespace Vend.Common.WebControls {
         protected global::System.Web.UI.WebControls.Label lblProjDesc;
         
         /// <summary>
-        /// Label1 control.
+        /// lblCharMax control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Label Label1;
+        protected global::System.Web.UI.WebControls.Label lblCharMax;
         
         /// <summary>
         /// rTBProjDesc control.
@@ -137,5 +146,41 @@ namespace Vend.Common.WebControls {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::Telerik.Web.UI.RadTextBox addrLine3Box;
+        
+        /// <summary>
+        /// lblProjCity control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblProjCity;
+        
+        /// <summary>
+        /// rTBProjCity control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadTextBox rTBProjCity;
+        
+        /// <summary>
+        /// lblProjState control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Label lblProjState;
+        
+        /// <summary>
+        /// rCBState control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::Telerik.Web.UI.RadComboBox rCBState;
     }
 }

@@ -1,0 +1,22 @@
+﻿
+.ucForm {
+    height: 100%;
+    width: 100%;
+    /*float: left;*/
+}
+
+.ucForm .formSectionTitle {
+    display: block;
+    margin-left: 10px;
+    margin-right: auto;
+    text-align: left;
+    font-size: 18px;
+    text-decoration:underline;
+}
+
+.formBoxLabel {
+    display: block;
+    margin-left: auto;
+    margin-right: 8px;
+    text-align: right;
+}
