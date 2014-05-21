@@ -37,7 +37,9 @@ namespace UT.Vol.BLL
                 (dm1.City == dm2.City) &&
                 (dm1.St == dm2.St) &&
                 (dm1.Zip == dm2.Zip) &&
-                (dm1.Zip4 == dm2.Zip4));
+                (dm1.Zip4 == dm2.Zip4) &&
+                (dm1.VolID == dm2.VolID) &&
+                (dm1.PrimaryAddr == dm2.PrimaryAddr));
         }
 
         private static bool AddressListContains(List<sp_Vol_Address_DM> addressList, sp_Vol_Address_DM address)
@@ -70,6 +72,8 @@ namespace UT.Vol.BLL
                 returnAddress.City = dataTable.Rows[i]["City"].ToString();
                 returnAddress.St = dataTable.Rows[i]["St"].ToString();
                 returnAddress.Zip = Convert.ToInt32(dataTable.Rows[i]["Zip"]);
+                returnAddress.VolID = new Guid((string)dataTable.Rows[i]["VolID"]);
+                returnAddress.PrimaryAddr = Convert.ToBoolean(dataTable.Rows[i]["PrimaryAddr"]);
                 if (!(dataTable.Rows[i]["Zip4"] is DBNull))
                     returnAddress.Zip4 = Convert.ToInt32(dataTable.Rows[i]["Zip4"]);
                 else
@@ -107,6 +111,7 @@ namespace UT.Vol.BLL
             primaryTestVolAddress.Zip4 = 6789;
             primaryTestVolAddress.VolID = generalTestVol.VolID;
             primaryTestVolAddress.ActiveFlg = true;
+            primaryTestVolAddress.PrimaryAddr = true;
 
             primaryTestVolAddr = new sp_Vol_Addr_DM();
             primaryTestVolAddr.VolID = generalTestVol.VolID;
@@ -122,7 +127,9 @@ namespace UT.Vol.BLL
             secondaryTestVolAddress.St = "SS";
             secondaryTestVolAddress.Zip = 98765;
             secondaryTestVolAddress.Zip4 = 4321;
+            secondaryTestVolAddress.VolID = generalTestVol.VolID;
             secondaryTestVolAddress.ActiveFlg = true;
+            secondaryTestVolAddress.PrimaryAddr = false;
 
             secondaryTestVolAddr = new sp_Vol_Addr_DM();
             secondaryTestVolAddr.VolID = generalTestVol.VolID;
@@ -196,6 +203,8 @@ namespace UT.Vol.BLL
             volAddress_dm.St = volSt;
             volAddress_dm.Zip = volZip;
             volAddress_dm.Zip4 = volZip4;
+            volAddress_dm.VolID = volID;
+            volAddress_dm.PrimaryAddr = PrimaryFlg;
 
             volAddr_dm.PrimaryAddr = PrimaryFlg;
             volAddr_dm.VolID = volID;
