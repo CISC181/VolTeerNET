@@ -29,7 +29,7 @@
                     </div>
                 </asp:TableCell><asp:TableCell>
                     <telerik:RadTextBox ID="rTBProjDesc" runat="server" AutoCompleteType="None" MaxLength="500"
-                        Height="150px" Width="300px" EmptyMessage="Enter Description Here">
+                        Height="150px" Width="300px" EmptyMessage="Enter Description Here" TextMode="MultiLine" Wrap="true">
                     </telerik:RadTextBox>
                 </asp:TableCell>
             </asp:TableRow>
@@ -48,6 +48,12 @@
                 </asp:TableCell>
                 <asp:TableCell>
                     <asp:CheckBox ID="cbPrimaryContact" runat="server" />
+                </asp:TableCell>
+            </asp:TableRow>
+            <asp:TableRow>
+                <asp:TableCell>
+                    <br />
+
                 </asp:TableCell>
             </asp:TableRow>
          <%--   <asp:TableRow>

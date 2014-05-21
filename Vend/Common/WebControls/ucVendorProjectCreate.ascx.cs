@@ -17,7 +17,6 @@ namespace Vend.Common.WebControls
     public partial class ucVendorProjectCreate : System.Web.UI.UserControl
     {
 
-
         sp_VendAddress_DM addrDM = new sp_VendAddress_DM();
 
         MembershipUser currentUser;
@@ -25,6 +24,7 @@ namespace Vend.Common.WebControls
         //we may not end up needing this. I added the states into the actual ascx file as items
         static List<String> states = new List<String>();
         List<sp_Contact_DM> contacts = new List<sp_Contact_DM>();
+        List<sp_VendAddress_DM> addresses = new List<sp_VendAddress_DM>();
 
         static ucVendorProjectCreate()
         {
@@ -127,7 +127,18 @@ namespace Vend.Common.WebControls
             newCont.ContactLastName = "Barker";
             newCont.ActiveFlg = true;
             contacts.Add(newCont);*/
+        }
 
+        protected void getAddresses()
+        {
+            sp_VendorAddr_BLL vendAddrBLL = new sp_VendorAddr_BLL();
+            sp_VendAddress_BLL addressBLL = new sp_VendAddress_BLL();
+
+            foreach (sp_VendorAddr_DM vendAddr in vendAddrBLL.ListAllAddresses((Guid)currentUser.ProviderUserKey))
+            {
+                addresses.Add(addressBLL.ListAddresses(vendAddr.AddrID));
+
+            }
         }
 
         protected void saveForm()
@@ -144,6 +155,9 @@ namespace Vend.Common.WebControls
             if (rCBContact.SelectedIndex != 0)
             {
                 vpContactDM.ContactID = contacts.ElementAt(rCBContact.SelectedIndex - 1).ContactID;
+                
+                //we can't set a contact as primary if there isn't a contact selected
+                vpContactDM.PrimaryContact = cbPrimaryContact.Checked;
             }
 
 
