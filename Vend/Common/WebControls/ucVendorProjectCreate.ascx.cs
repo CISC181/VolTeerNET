@@ -86,13 +86,15 @@ namespace Vend.Common.WebControls
         protected void Page_Load(object sender, EventArgs e)
         {
             currentUser = Membership.GetUser();
+            rBTNSave.Visible = true;
+            lblSaveSuccess.Visible = false;
+            lblSaveFailure.Visible = false;
             if (!Page.IsPostBack)
             {
                 getContacts();
-                RadComboBoxItem newItem = new RadComboBoxItem();
-                newItem.Text = "--";
-                newItem.Value = "1";
-                rCBContact.Items.Add(newItem);
+                getAddresses();
+                rCBContact.Items.Add(new RadComboBoxItem("--"));
+                rCBAddress.Items.Add(new RadComboBoxItem("--"));
                 foreach (sp_Contact_DM contact in contacts)
                 {
                     RadComboBoxItem item = new RadComboBoxItem();
@@ -103,7 +105,20 @@ namespace Vend.Common.WebControls
                     }
                     item.Text += contact.ContactLastName;
                     rCBContact.Items.Add(item);
-
+                }
+                foreach (sp_VendAddress_DM address in addresses)
+                {
+                    RadComboBoxItem addItem = new RadComboBoxItem();
+                    addItem.Text = address.AddrLine1;
+                    if (address.AddrLine2 != null)
+                    {
+                        addItem.Text += " " + address.AddrLine2;
+                    }
+                    if (address.AddrLine3 != null)
+                    {
+                        addItem.Text += " " + address.AddrLine3;
+                    }
+                    rCBContact.Items.Add(addItem);
                 }
             }
         }
@@ -160,7 +175,10 @@ namespace Vend.Common.WebControls
                 vpContactDM.PrimaryContact = cbPrimaryContact.Checked;
             }
 
-
+            if (rCBAddress.SelectedIndex != 0)
+            {
+                projectDM.AddrID = addresses.ElementAt(rCBAddress.SelectedIndex - 1).AddrID;
+            }
             projectDM.ProjectID = projectID;
             projectDM.ProjectName = rTBProjName.Text;
             projectDM.ProjectDesc = rTBProjDesc.Text;
@@ -172,6 +190,23 @@ namespace Vend.Common.WebControls
             //Why is it by ref? That's weird.
             projectBLL.InsertProjectContext(ref projectDM);
             vpContactBLL.InsertContactContext(vpContactDM);
+        }
+
+        //TODO: actually figure out why where getting an exception
+        protected void rBTNSave_Click(object sender, EventArgs e)
+        {
+            rBTNSave.Visible = false;
+            try
+            {
+                saveForm();
+                lblSaveSuccess.Visible = true;
+            }
+            catch (Exception ex)
+            {
+                lblSaveFailure.Visible = true;   
+            }
+            
+            
         }
 
     }

@@ -52,11 +52,22 @@
             </asp:TableRow>
             <asp:TableRow>
                 <asp:TableCell>
-                    <br />
-
+                    <asp:Label ID="lblProjAddress" runat="server" Text="Select an address from the list: " CssClass="formBoxLabel"></asp:Label>
+                </asp:TableCell>
+                <asp:TableCell>
+                    <telerik:RadComboBox ID="rCBAddress" runat="server" Width="300px">
+                    </telerik:RadComboBox>
                 </asp:TableCell>
             </asp:TableRow>
-         <%--   <asp:TableRow>
+            <asp:TableRow>
+                <asp:TableCell>
+                    <br />
+                    <telerik:RadButton ID="rBTNSave" runat="server" Text="Save" OnClick="rBTNSave_Click" ></telerik:RadButton>
+                    <asp:Label ID="lblSaveSuccess" runat="server" Text="Your project has been saved."></asp:Label>
+                    <asp:Label ID="lblSaveFailure" runat="server" Text="An error occured while trying to save your project."></asp:Label>
+                </asp:TableCell>
+            </asp:TableRow>
+            <%--   <asp:TableRow>
                 <asp:TableCell>
                     <br />
                     <br />
