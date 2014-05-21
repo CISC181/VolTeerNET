@@ -12,6 +12,7 @@ namespace VolTeer.BusinessLogicLayer.VT.Vend
     {
         sp_VendorAddr_DAL DAL = new sp_VendorAddr_DAL();
 
+        //This method is deadly: See the DAL implementation
         public List<sp_VendorAddr_DM> ListAddresses()
         {
             return DAL.ListAddresses();
@@ -20,6 +21,11 @@ namespace VolTeer.BusinessLogicLayer.VT.Vend
         public sp_VendorAddr_DM ListAddresses(Guid VendorID)
         {
             return DAL.ListAddresses(VendorID);
+        }
+
+        public List<sp_VendorAddr_DM> ListAllAddresses(Guid VendorID)
+        {
+            return DAL.ListAllAddresses(VendorID);
         }
 
         public int InsertAddressContext(sp_VendorAddr_DM InputAddress)

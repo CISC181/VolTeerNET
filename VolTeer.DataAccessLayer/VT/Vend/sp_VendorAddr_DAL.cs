@@ -35,6 +35,31 @@ namespace VolTeer.DataAccessLayer.VT.Vend
             return list.FirstOrDefault();
         }
 
+        public List<sp_VendorAddr_DM> ListAllAddresses(Guid VendorID)
+        {
+            List<sp_VendorAddr_DM> list = new List<sp_VendorAddr_DM>();
+            try
+            {
+                using (VolTeerEntities context = new VolTeerEntities())
+                {
+                    list = (from result in context.sp_VendorAddr_Select(VendorID)
+                            select new sp_VendorAddr_DM
+                            {
+                                AddrID = result.AddrID,
+                                VendorID = result.VendorID,
+                                HQ = result.HQ
+                            }).ToList();
+                } // Guaranteed to close the Connection
+            }
+            catch (Exception ex)
+            {
+                throw (ex);
+            }
+
+            return list;
+        }
+
+        //Why does this abomination exist? Don't use!
         public List<sp_VendorAddr_DM> ListAddresses()
         {
             return ListAddresses();
