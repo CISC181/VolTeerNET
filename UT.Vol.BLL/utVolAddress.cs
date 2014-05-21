@@ -16,10 +16,11 @@ namespace UT.Vol.BLL
         static sp_Volunteer_DM generalTestVol;
         static sp_Volunteer_DM createTestVol;
 
-        //static sp_Vol_Addr_DM createTestVolAddr;
+        static sp_Vol_Addr_DM createTestVolAddr;
         static sp_Vol_Addr_DM primaryTestVolAddr;
         static sp_Vol_Addr_DM secondaryTestVolAddr;
 
+        static sp_Vol_Address_DM createTestVolAddress;
         static sp_Vol_Address_DM primaryTestVolAddress;
         static sp_Vol_Address_DM secondaryTestVolAddress;
 
@@ -296,7 +297,8 @@ namespace UT.Vol.BLL
             sp_Vol_Address_BLL volAddressBLL = new sp_Vol_Address_BLL();
             volAddressBLL.DeleteAddressContext(secondaryTestVolAddress, secondaryTestVolAddr);
             volAddressBLL.DeleteAddressContext(primaryTestVolAddress, primaryTestVolAddr);
-            //volAddressBLL.DeleteAddressContext(createTestVolAddress, createTestVolAddr);
+            if (createTestVolAddress != null)
+                volAddressBLL.DeleteAddressContext(createTestVolAddress, createTestVolAddr);
 
             sp_Volunteer_BLL volBLL = new sp_Volunteer_BLL();
             volBLL.DeleteVolunteerContext(generalTestVol);
