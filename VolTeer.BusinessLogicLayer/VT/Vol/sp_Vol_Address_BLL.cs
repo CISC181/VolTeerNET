@@ -30,7 +30,7 @@ namespace VolTeer.BusinessLogicLayer.VT.Vol
 
         public sp_Vol_Address_DM ListAddress(sp_Vol_Address_DM cVolAddr)
         {
-            return ListAddresses(cVolAddr).Single();
+            return ListAddresses(cVolAddr).SingleOrDefault();
         }
 
         public void InsertAddressContext(ref sp_Vol_Address_DM _cAddress, ref sp_Vol_Addr_DM _cVolAddr)

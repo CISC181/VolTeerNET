@@ -148,7 +148,7 @@ namespace UT.Vol.BLL
             foreach (sp_Vol_Address_DM testVolAddress in excelDMs)
             {
                 sp_Vol_Address_DM selectedVolAddress = volAddress_bll.ListAddress(testVolAddress);
-                Assert.IsTrue(Equals(selectedVolAddress, testVolAddress));
+                Assert.IsTrue(AddressEquals(selectedVolAddress, testVolAddress));
             }
         }
 
@@ -212,7 +212,7 @@ namespace UT.Vol.BLL
             volAddress_bll.InsertAddressContext(ref volAddress_dm, ref volAddr_dm);
 
             sp_Vol_Address_DM volAddressDMs_selected = volAddress_bll.ListAddress(volAddress_dm);
-            Assert.IsTrue(Equals(volAddressDMs_selected, volAddress_dm));
+            Assert.IsTrue(AddressEquals(volAddressDMs_selected, volAddress_dm));
 
         }
 
@@ -241,7 +241,7 @@ namespace UT.Vol.BLL
             String newAddr3 = "UpdateLine3";
             String newCity = "UpdateCity";
             String newSt = "US";
-            int newZip = 08642;
+            int newZip = 18642;
             int newZip4 = 9753;
 
             updateAddress.AddrLine1 = newAddr1;
@@ -252,9 +252,14 @@ namespace UT.Vol.BLL
             updateAddress.Zip = newZip;
             updateAddress.Zip4 = newZip4;
 
+            primaryTestVolAddress = updateAddress;
+
             volAddressBLL.UpdateAddressContext(updateAddress,primaryTestVolAddr);
             sp_Vol_Address_DM selectedAddress = volAddressBLL.ListPrimaryAddress(updateAddress);
-            List<sp_Vol_Address_DM> selectedAddressList = volAddressBLL.ListAddresses(updateAddress);
+
+            sp_Vol_Address_DM DMToSelectAll = new sp_Vol_Address_DM();
+            DMToSelectAll.VolID = selectedAddress.VolID;
+            List<sp_Vol_Address_DM> selectedAddressList = volAddressBLL.ListAddresses(DMToSelectAll);
 
             Assert.IsTrue(AddressListContains(selectedAddressList, updateAddress));
             Assert.IsTrue(AddressListContains(selectedAddressList, secondaryTestVolAddress));
@@ -275,11 +280,14 @@ namespace UT.Vol.BLL
 
             sp_Vol_Address_BLL volAddress_bll = new sp_Vol_Address_BLL();
             volAddress_bll.DeleteAddressContext(primaryTestVolAddress,primaryTestVolAddr);
-            sp_Vol_Address_DM selectedVolAddress = volAddress_bll.ListPrimaryAddress(primaryTestVolAddress);
+            sp_Vol_Address_DM selectedVolAddress = volAddress_bll.ListAddress(primaryTestVolAddress);
 
-            Assert.IsNotNull(selectedVolAddress.ActiveFlg);
-            Assert.IsFalse(selectedVolAddress.ActiveFlg == true);
-            Assert.IsTrue(selectedVolAddress.ActiveFlg == false);
+            Assert.IsNull(selectedVolAddress);
+            //Impossible to get it back using stored procedures since the joining entry 
+            //in VolAddr is missing. You'd have to do a direct sql query to test this.
+            //Assert.IsNotNull(selectedVolAddress.ActiveFlg);
+            //Assert.IsFalse(selectedVolAddress.ActiveFlg == true);
+            //Assert.IsTrue(selectedVolAddress.ActiveFlg == false);
         }
 
         [ClassCleanup]
